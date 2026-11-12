@@ -1,0 +1,805 @@
+{% comment %}
+  Marquee Banner Section
+  Category: Header
+  A scrolling marquee banner with customizable icon + text blocks
+{% endcomment %}
+
+{%- liquid
+  assign marquee_speed   = section.settings.marquee_speed
+  assign pause_on_hover  = section.settings.pause_on_hover
+  assign direction       = section.settings.direction
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --marquee-bg:               {{ section.settings.background_color }};
+    --marquee-text-color:       {{ section.settings.text_color }};
+    --marquee-icon-color:       {{ section.settings.icon_color }};
+    --marquee-font-size-desktop:{{ section.settings.font_size_desktop }}px;
+    --marquee-font-size-mobile: {{ section.settings.font_size_mobile }}px;
+    --marquee-font-family:      {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+    --marquee-font-weight:      {{ section.settings.font_family.weight }};
+    --marquee-item-gap:         {{ section.settings.item_gap }}px;
+    --marquee-padding-desktop:  {{ section.settings.padding_vertical_desktop }}px;
+    --marquee-padding-mobile:   {{ section.settings.padding_vertical_mobile }}px;
+    --marquee-duration:         {{ marquee_speed }}s;
+    --marquee-icon-size-desktop:{{ section.settings.icon_size_desktop }}px;
+    --marquee-icon-size-mobile: {{ section.settings.icon_size_mobile }}px;
+    --marquee-separator-color:  {{ section.settings.separator_color }};
+    --marquee-border-top:       {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color }};
+    --marquee-border-bottom:    {{ section.settings.border_bottom_width }}px solid {{ section.settings.border_bottom_color }};
+  }
+
+  /* This entire style block only ever renders on pages that include
+     bio-marquee-banner.liquid, which is only ever referenced from
+     bio-header-group.json — i.e. the bioroot template. That already scopes
+     everything below to bioroot; no body:has() wrapper needed (and :has()
+     support isn't universal, so relying on it here was itself a risk).
+
+     The sticky header's reveal animation slides its `top` from -100% to 0
+     over 150ms. Its inner .header-wrapper has a background, but the outer
+     .section-header box that's actually animating did not — during the first
+     frames of that slide, whatever's beneath the header was visible through
+     the gap. Hardcoded to match bio-header-group.json's header instance
+     (color_scheme: "scheme-1" = #ffffff) rather than the --color-background
+     variable, since that variable falls back to whichever scheme is globally
+     first and would silently drift if schemes are ever reordered. Update this
+     if that instance's color_scheme setting changes. */
+  .section-header {
+    background-color: #ffffff !important;
+  }
+
+  /* z-index: base.css only raises the sticky header above page content via
+     `.section-header.shopify-section-group-header-group` — a class Shopify
+     derives from the section-group filename. bioroot renders
+     bio-header-group.json, so the wrapper actually gets
+     `shopify-section-group-bio-header-group` instead, that selector never
+     matches, and the header is left at its default stacking level. Content
+     further down the page (rendered later in the DOM) then paints over it
+     during scroll, which is the transparent/overlapped look this fixes.
+     Forced to the max here rather than mirroring base.css's z-index: 3/4
+     scheme because that scheme is keyed to the same header-group class that
+     doesn't apply on bioroot. Cart/search/menu markup all render inside this
+     same header wrapper (cart_type is "notification", not "drawer"), so
+     nothing on this template needs to stack above the header. */
+  .section-header {
+    z-index: 99999;
+  }
+
+  /* Dawn's .header-wrapper carries a "gradient" class that sets
+     background-attachment: fixed. On iOS Safari specifically, a
+     background-attachment:fixed element nested inside a position:sticky
+     ancestor frequently fails to paint its background at all (a long-standing
+     WebKit rendering bug), rendering the header fully transparent — showing
+     whatever page content is scrolled underneath it. Our bioroot header is the
+     only one in this theme actually configured as sticky, so this is the first
+     place it becomes visible. */
+  .header-wrapper.gradient {
+    background-attachment: scroll !important;
+    background-color: #ffffff !important;
+  }
+
+  /* ── Banner container ── */
+  .marquee-banner-{{ section.id }} {
+    background-color: var(--marquee-bg);
+    border-top: var(--marquee-border-top);
+    border-bottom: var(--marquee-border-bottom);
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: var(--marquee-padding-mobile);
+    padding-bottom: var(--marquee-padding-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .marquee-banner-{{ section.id }} {
+      padding-top: var(--marquee-padding-desktop);
+      padding-bottom: var(--marquee-padding-desktop);
+    }
+  }
+
+  /* ── Scrolling track ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll-{{ section.id }} var(--marquee-duration) linear infinite;
+    {% if direction == 'right' %}animation-direction: reverse;{% endif %}
+    will-change: transform;
+  }
+
+  {% if pause_on_hover %}
+  .marquee-banner-{{ section.id }}:hover .marquee-banner__track {
+    animation-play-state: paused;
+  }
+  {% endif %}
+
+  /* Animation: translate by exactly one copy (1/total_copies of full width) */
+  @keyframes marquee-scroll-{{ section.id }} {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(var(--marquee-translate, -50%)); }
+  }
+
+  /* ── Item list ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--marquee-item-gap);
+    flex-shrink: 0;
+    /* Right-side gap so the last item has breathing room before loop */
+    padding-right: var(--marquee-item-gap);
+  }
+
+  /* ── Single item ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__item {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.icon_text_gap }}px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Text ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__text {
+    color: var(--marquee-text-color);
+    font-family: var(--marquee-font-family);
+    font-weight: var(--marquee-font-weight);
+    font-size: var(--marquee-font-size-mobile);
+    line-height: 1.3;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    text-transform: {{ section.settings.text_transform }};
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .marquee-banner-{{ section.id }} .marquee-banner__text {
+      font-size: var(--marquee-font-size-desktop);
+    }
+  }
+
+  /* ── Icon ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--marquee-icon-size-mobile);
+    height: var(--marquee-icon-size-mobile);
+    color: var(--marquee-icon-color);
+  }
+
+  @media (min-width: 768px) {
+    .marquee-banner-{{ section.id }} .marquee-banner__icon {
+      width: var(--marquee-icon-size-desktop);
+      height: var(--marquee-icon-size-desktop);
+    }
+  }
+
+  .marquee-banner-{{ section.id }} .marquee-banner__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .marquee-banner-{{ section.id }} .marquee-banner__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Testimonial item ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__quote {
+    color: var(--marquee-text-color);
+    font-family: var(--marquee-font-family);
+    font-weight: 700;
+    font-size: var(--marquee-font-size-mobile);
+    line-height: 1.3;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    text-transform: {{ section.settings.text_transform }};
+    margin: 0;
+  }
+
+  .marquee-banner-{{ section.id }} .marquee-banner__author {
+    color: var(--marquee-text-color);
+    font-family: var(--marquee-font-family);
+    font-weight: var(--marquee-font-weight);
+    font-size: var(--marquee-font-size-mobile);
+    line-height: 1.3;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    text-transform: {{ section.settings.text_transform }};
+    margin: 0;
+    opacity: .85;
+  }
+
+  @media (min-width: 768px) {
+    .marquee-banner-{{ section.id }} .marquee-banner__quote,
+    .marquee-banner-{{ section.id }} .marquee-banner__author {
+      font-size: var(--marquee-font-size-desktop);
+    }
+  }
+
+  .marquee-banner-{{ section.id }} .marquee-banner__divider {
+    width: {{ section.settings.divider_width }}px;
+    height: {{ section.settings.divider_height }}px;
+    background-color: {{ section.settings.divider_color }};
+    flex-shrink: 0;
+    margin-left: {{ section.settings.divider_gap }}px;
+  }
+
+  /* ── Separator dot ── */
+  .marquee-banner-{{ section.id }} .marquee-banner__separator {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--marquee-separator-color);
+    flex-shrink: 0;
+    {% unless section.settings.show_separator %}display: none;{% endunless %}
+  }
+</style>
+
+{%- comment -%}
+  We render one master <ul> (aria-hidden, id="marquee-source-ID") that holds the
+  real block markup. JavaScript then reads its outerHTML and stamps enough copies
+  into the track to guarantee the content overflows the viewport — making it look
+  full even with only 1–2 short blocks. The animation always translates by
+  exactly -(100% / total_copies) so the loop is seamless.
+{%- endcomment -%}
+
+{% if section.blocks.size > 0 %}
+<div class="marquee-banner-{{ section.id }} marquee-banner"
+     role="marquee"
+     aria-label="Promotional banner"
+     data-section-id="{{ section.id }}">
+
+  {%- comment -%} Hidden source list — JS clones this to fill the track {%- endcomment -%}
+  <ul id="marquee-source-{{ section.id }}"
+      class="marquee-banner__list"
+      style="display:none"
+      aria-hidden="true">
+
+    {%- for block in section.blocks -%}
+      <li class="marquee-banner__item" {{ block.shopify_attributes }}>
+
+      {%- if block.type == 'testimonial' -%}
+
+        {%- if block.settings.quote != blank -%}
+          <span class="marquee-banner__quote">{{ block.settings.quote }}</span>
+        {%- endif -%}
+
+        {%- if block.settings.show_check -%}
+          <span class="marquee-banner__icon" aria-hidden="true">
+            {%- if block.settings.custom_svg != blank -%}
+              {{ block.settings.custom_svg }}
+            {%- elsif block.settings.custom_icon != blank -%}
+              <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="" loading="lazy" width="64" height="64">
+            {%- else -%}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.3l3 3 6-6.2" fill="none" stroke="{{ section.settings.check_color }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+
+        {%- if block.settings.author != blank -%}
+          <span class="marquee-banner__author">{{ block.settings.author }}</span>
+        {%- endif -%}
+
+        {%- if block.settings.show_divider -%}
+          <span class="marquee-banner__divider" aria-hidden="true"></span>
+        {%- endif -%}
+
+      {%- else -%}
+
+        {%- assign block_text = block.settings.text | default: '' -%}
+
+        {%- comment -%} — Icon (priority: custom SVG > custom image > built-in) — {%- endcomment -%}
+        {%- if block.settings.custom_svg != blank -%}
+          <span class="marquee-banner__icon" aria-hidden="true">
+            {{ block.settings.custom_svg }}
+          </span>
+        {%- elsif block.settings.custom_icon != blank -%}
+          <span class="marquee-banner__icon">
+            <img src="{{ block.settings.custom_icon | image_url: width: 64 }}"
+                alt="" loading="lazy" width="64" height="64">
+          </span>
+        {%- elsif block.settings.icon != 'none' -%}
+          <span class="marquee-banner__icon">
+            {%- case block.settings.icon -%}
+              {%- when 'check' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              {%- when 'check-circle' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              {%- when 'star' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              {%- when 'gift' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              {%- when 'tag' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              {%- when 'truck' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              {%- when 'shield' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {%- when 'heart' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              {%- when 'diamond' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+              {%- when 'bolt' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              {%- when 'percent' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+              {%- when 'clock' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {%- when 'sparkle' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5L12 2z"/></svg>
+              {%- when 'bag' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              {%- when 'arrow-right' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            {%- endcase -%}
+          </span>
+        {%- endif -%}
+
+        {%- comment -%} — Text — {%- endcomment -%}
+        {%- if block_text != blank -%}
+          <span class="marquee-banner__text">{{ block_text }}</span>
+        {%- endif -%}
+
+      {%- endif -%}
+
+      </li>
+
+      {%- if section.settings.show_separator and forloop.last == false -%}
+        <li class="marquee-banner__separator" aria-hidden="true"></li>
+      {%- endif -%}
+
+    {%- endfor -%}
+
+    {%- if section.settings.show_separator -%}
+      <li class="marquee-banner__separator" aria-hidden="true"></li>
+    {%- endif -%}
+  </ul>
+
+  {%- comment -%} The track — JS will inject the cloned lists here {%- endcomment -%}
+  <div class="marquee-banner__track" id="marquee-track-{{ section.id }}"></div>
+</div>
+
+<script>
+(function () {
+  var sectionId   = '{{ section.id }}';
+  var banner      = document.querySelector('.marquee-banner-' + sectionId);
+  var source      = document.getElementById('marquee-source-' + sectionId);
+  var track       = document.getElementById('marquee-track-'  + sectionId);
+  if (!banner || !source || !track) return;
+
+  function init () {
+    track.innerHTML = '';
+
+    /* Make source briefly visible to measure its natural width */
+    source.style.cssText = 'position:absolute;visibility:hidden;display:flex;';
+    document.body.appendChild(source);
+    var listW = source.scrollWidth;
+    source.style.cssText = 'display:none;';
+    banner.appendChild(source); /* put it back */
+
+    if (listW === 0) { setTimeout(init, 100); return; }
+
+    /* How many copies do we need to fill the viewport at least twice? */
+    var copies = Math.max(2, Math.ceil((window.innerWidth * 2.5) / listW));
+
+    for (var i = 0; i < copies; i++) {
+      var clone = source.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.removeAttribute('style');   /* show it */
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    }
+
+    /* Animation translates by exactly one copy worth */
+    var pct = (1 / copies * 100).toFixed(6);
+    banner.style.setProperty('--marquee-translate', '-' + pct + '%');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  /* Re-init on resize (debounced) */
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 200);
+  });
+})();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Bio: Marquee Banner",
+  "tag": "div",
+  "class": "marquee-banner-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#EDEFE8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#14503C"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#14503C"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Checkmark Color",
+      "default": "#EDEFE8"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator Dot Color",
+      "default": "#14503C"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Separator Dots Between Items",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Testimonial Divider Color",
+      "default": "#C3CBBE"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider Width (px)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "divider_height",
+      "label": "Divider Height (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "divider_gap",
+      "label": "Gap Before Divider (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font Size – Desktop (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font Size – Mobile (px)",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Case",
+      "options": [
+        { "value": "none",       "label": "Normal" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "lowercase",  "label": "lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Icon Size – Desktop (px)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon Size – Mobile (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "label": "Gap Between Icon & Text (px)",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Layout & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap Between Items (px)",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_desktop",
+      "label": "Vertical Padding – Desktop (px)",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical Padding – Mobile (px)",
+      "min": 4,
+      "max": 32,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "label": "Border Top Width (px)",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Border Top Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_width",
+      "label": "Border Bottom Width (px)",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_bottom_color",
+      "label": "Border Bottom Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Scroll Speed (seconds per loop)",
+      "min": 5,
+      "max": 120,
+      "step": 5,
+      "default": 30,
+      "info": "Lower = faster, Higher = slower"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Scroll Direction",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_text",
+      "name": "Icon & Text",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "100K+ Happy Customers"
+        },
+        {
+          "type": "header",
+          "content": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Built-in Icon",
+          "options": [
+            { "value": "none",        "label": "None" },
+            { "value": "check",       "label": "Checkmark" },
+            { "value": "check-circle","label": "Check Circle" },
+            { "value": "star",        "label": "Star" },
+            { "value": "gift",        "label": "Gift Box" },
+            { "value": "tag",         "label": "Price Tag" },
+            { "value": "truck",       "label": "Truck / Delivery" },
+            { "value": "shield",      "label": "Shield" },
+            { "value": "heart",       "label": "Heart" },
+            { "value": "diamond",     "label": "Diamond" },
+            { "value": "bolt",        "label": "Lightning Bolt" },
+            { "value": "percent",     "label": "Percent" },
+            { "value": "clock",       "label": "Clock" },
+            { "value": "sparkle",     "label": "Sparkle" },
+            { "value": "bag",         "label": "Shopping Bag" },
+            { "value": "arrow-right", "label": "Arrow Right" }
+          ],
+          "default": "check-circle",
+          "info": "Choose a built-in icon, or upload a Custom Icon below (custom icon takes priority)"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (optional)",
+          "info": "Upload your own SVG, PNG, or WebP icon. Recommended: 64×64px. This overrides the Built-in Icon above."
+        },
+        {
+          "type": "textarea",
+          "id": "custom_svg",
+          "label": "Custom SVG Code (optional)",
+          "info": "Paste raw SVG markup. Overrides both the built-in icon and the custom image."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote (bold)",
+          "default": "\"MY KNEES FEEL LIKE I'M 30 AGAIN\""
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Name",
+          "default": "SARAH M."
+        },
+        {
+          "type": "header",
+          "content": "Checkmark & divider"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_check",
+          "label": "Show checkmark",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show divider after",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom checkmark (optional)"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_svg",
+          "label": "Custom SVG Code (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bio: Marquee Banner",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": { "quote": "\"MY KNEES FEEL LIKE I'M 30 AGAIN\"", "author": "SARAH M." }
+        },
+        {
+          "type": "testimonial",
+          "settings": { "quote": "\"FINALLY STOPPED TAKING IBUPROFEN DAILY\"", "author": "TANYA G." }
+        },
+        {
+          "type": "testimonial",
+          "settings": { "quote": "\"LESS STIFFNESS IN JUST 2 WEEKS\"", "author": "JAMES D." }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

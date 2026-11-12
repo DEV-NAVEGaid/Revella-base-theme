@@ -1,0 +1,402 @@
+{%- comment -%}
+  Final "two choices" CTA. The two panel headings and images are section settings;
+  each bullet is a block assigned to one of the two panels.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    <div class="ts-final-cta__panel">
+      {%- if st.heading != blank -%}
+        <div class="ts-final-cta__heading">{{ st.heading }}</div>
+      {%- endif -%}
+
+      {%- if st.subheading != blank -%}
+        <div class="ts-final-cta__sub">{{ st.subheading }}</div>
+      {%- endif -%}
+
+      {%- if st.intro != blank -%}
+        <div class="ts-final-cta__intro">{{ st.intro }}</div>
+      {%- endif -%}
+
+      <div class="ts-choice-grid">
+        <div class="ts-choice-panel">
+          {% render 'terrastrike-image',
+            image: st.leave_image,
+            alt: '',
+            width: 800,
+            lazy: true,
+            placeholder: 'none'
+          %}
+          {%- if st.leave_heading != blank -%}
+            <div class="ts-choice-panel__heading" style="color: {{ st.leave_heading_color }};">
+              {{- st.leave_heading -}}
+            </div>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.panel == 'leave' -%}
+              {% render 'terrastrike-choice-bullet', block: block %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="ts-choice-panel">
+          {% render 'terrastrike-image',
+            image: st.protect_image,
+            alt: '',
+            width: 800,
+            lazy: true,
+            placeholder: 'none'
+          %}
+          {%- if st.protect_heading != blank -%}
+            <div class="ts-choice-panel__heading" style="color: {{ st.protect_heading_color }};">
+              {{- st.protect_heading -}}
+            </div>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.panel == 'protect' -%}
+              {% render 'terrastrike-choice-bullet', block: block %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {% render 'terrastrike-promo-banner',
+        product: st.featured_product,
+        button_text: st.button_text,
+        button_link: st.button_link,
+        full_width: true
+      %}
+
+      {%- liquid
+        assign closing_url = st.link_url
+        if closing_url == blank and st.featured_product != blank
+          assign closing_url = st.featured_product.url
+        endif
+      -%}
+      {%- if st.link_text != blank and closing_url != blank -%}
+        <a href="{{ closing_url }}" class="ts-final-cta__link">{{ st.link_text }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Final CTA",
+  "tag": "section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Don't Gamble With Your Family's Safety On The Road"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "You came this far. Now you have two options:"
+    },
+    { "type": "richtext", "id": "intro", "label": "Extra intro text", "info": "Optional, shown below the subheading." },
+
+    { "type": "header", "content": "Panel 1" },
+    { "type": "image_picker", "id": "leave_image", "label": "Image" },
+    { "type": "text", "id": "leave_heading", "label": "Heading", "default": "⚠️ CHOICE 1: Leave Without It" },
+    { "type": "color", "id": "leave_heading_color", "label": "Heading color", "default": "#c0392b" },
+
+    { "type": "header", "content": "Panel 2" },
+    { "type": "image_picker", "id": "protect_image", "label": "Image" },
+    { "type": "text", "id": "protect_heading", "label": "Heading", "default": "👉 CHOICE 2: Protect Your Family" },
+    { "type": "color", "id": "protect_heading_color", "label": "Heading color", "default": "#16a085" },
+
+    { "type": "header", "content": "Button and closing link" },
+    { "type": "product", "id": "featured_product", "label": "Product" },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "info": "Leave blank to hide the button.",
+      "default": "Yes, I'm Getting My Family Ready →"
+    },
+    { "type": "url", "id": "button_link", "label": "Button custom link" },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Closing link text",
+      "info": "An extra text link under the button. Usually left blank."
+    },
+    { "type": "url", "id": "link_url", "label": "Closing link URL", "info": "Defaults to the selected product." },
+
+    { "type": "header", "content": "Panel" },
+    { "type": "color", "id": "cta_panel_background", "label": "Panel background", "default": "#eef4fd" },
+    { "type": "color", "id": "cta_border_color", "label": "Panel border", "default": "#1f3b5c" },
+    {
+      "type": "range",
+      "id": "cta_border_width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "Panel border width",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "cta_border_style",
+      "label": "Panel border style",
+      "options": [
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "dashed"
+    },
+    {
+      "type": "range",
+      "id": "cta_radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel corner radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_padding",
+      "min": 8,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "choice_image_width",
+      "min": 120,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Choice image width",
+      "default": 300
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#f39c12" },
+    { "type": "color", "id": "check_color", "label": "Check icon", "default": "#16a085" },
+    { "type": "color", "id": "cross_color", "label": "Cross icon", "default": "#c0392b" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#f39c12" },
+    { "type": "color", "id": "button_background_hover", "label": "Button background (hover)", "default": "#e67e22" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#ffffff" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between panels",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Panel corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "choice_bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "select",
+          "id": "panel",
+          "label": "Panel",
+          "options": [
+            { "value": "leave", "label": "Panel 1 – Leave without it" },
+            { "value": "protect", "label": "Panel 2 – Protect your family" }
+          ],
+          "default": "leave"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "auto", "label": "Match the panel" },
+            { "value": "check", "label": "Check" },
+            { "value": "cross", "label": "Cross" },
+            { "value": "star", "label": "Star" },
+            { "value": "alert", "label": "Alert" }
+          ],
+          "default": "auto"
+        },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Final CTA",
+      "blocks": [
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "leave",
+            "text": "<p><strong>No tool</strong> in the car to break the glass or cut a jammed belt</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "leave",
+            "text": "<p>Still hoping you could punch tempered glass with your bare hands <strong>and hope for the best</strong></p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "leave",
+            "text": "<p><strong>Still assuming</strong> your seatbelt will release when hanging upside down</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "leave",
+            "text": "<p>When <strong>something goes wrong</strong>, you're improvising with no tool</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "leave",
+            "text": "<p><strong>Nothing changes - and this could happen to anyone.</strong></p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "protect",
+            "text": "<p>A tool that actually <strong>works</strong> with zero strength or training</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "protect",
+            "text": "<p><strong>Breaks the side window</strong> and <strong>cuts</strong> a <strong>jammed belt</strong></p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "protect",
+            "text": "<p><strong>120 days</strong> to test it, full refund if you're not satisfied</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "protect",
+            "text": "<p><strong>Free shipping</strong> on bundles, up to <strong>55% off</strong> today</p>"
+          }
+        },
+        {
+          "type": "choice_bullet",
+          "settings": {
+            "panel": "protect",
+            "text": "<p>Done. <strong>One small tool</strong>. <strong>Break the window. Cut the belt.</strong> Your way out when the doors jam.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

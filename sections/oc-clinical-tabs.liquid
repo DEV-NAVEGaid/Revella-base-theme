@@ -1,0 +1,106 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign items = section.blocks | where: 'type', 'ingredient' -%}
+<div class="lm">
+  <section class="wrap cli wi"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="wi-i">
+      <div class="wi-h">
+        {%- if s.eyebrow != blank %}<span class="eb">{{ s.eyebrow }}</span>{% endif -%}
+        {%- if s.heading != blank %}<h2 class="h2 lh48">{{ s.heading }}</h2>{% endif -%}
+        {%- if s.subheading != blank %}<p class="wi-sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+
+      {%- if items.size > 0 -%}
+        <div class="wi-grid">
+          {%- for block in items -%}
+            {%- assign b = block.settings -%}
+            <article class="wi-card" {{ block.shopify_attributes }}>
+              <div class="wi-img">
+                {%- if b.image != blank -%}
+                  {{ b.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200, 400, 600', sizes: '(min-width: 990px) 260px, 96px', alt: b.name }}
+                {%- endif -%}
+              </div>
+              <div class="wi-body">
+                <div class="wi-top">
+                  <p class="wi-name">{{ b.name }}</p>
+                  {%- if b.dose != blank %}<span class="wi-dose">{{ b.dose }}</span>{% endif -%}
+                </div>
+                {%- if b.role != blank %}<p class="wi-role">{{ b.role }}</p>{% endif -%}
+                {%- if b.text != blank %}<p class="wi-text">{{ b.text }}</p>{% endif -%}
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.footnote != blank %}<p class="wi-fn">{{ s.footnote }}</p>{% endif -%}
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm .wi-i{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px}
+  .lm .wi-h{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;max-width:720px}
+  .lm .wi-sub{font-size:17px;line-height:26px;color:rgba(13,30,57,.75)}
+  .lm .wi-grid{width:100%;display:flex;flex-direction:column;gap:12px}
+  .lm .wi-card{display:flex;align-items:flex-start;gap:14px;padding:12px;border-radius:18px;background:#fff;border:1px solid rgba(38,83,146,.1);box-shadow:0 10px 24px -18px rgba(13,30,57,.35);transition:transform .3s ease,box-shadow .3s ease}
+  .lm .wi-img{flex:none;width:96px;height:96px;border-radius:12px;overflow:hidden;background:#E2E8F0}
+  .lm .wi-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+  .lm .wi-body{min-width:0;display:flex;flex-direction:column;gap:4px;padding-top:2px}
+  .lm .wi-top{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px}
+  .lm .wi-name{font-size:17px;line-height:22px;font-weight:700;color:#0D1E39}
+  .lm .wi-dose{padding:3px 8px;border-radius:999px;background:linear-gradient(107deg,#142F54 0%,#0D1E39 100%);color:#F1F5F9;font-size:11px;line-height:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+  .lm .wi-role{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#265392}
+  .lm .wi-text{font-size:14px;line-height:20px;color:rgba(13,30,57,.72)}
+  .lm .wi-fn{font-size:15px;line-height:22px;font-weight:700;color:#265392;text-align:center;max-width:640px}
+  @media (hover:hover){
+    .lm .wi-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px -20px rgba(13,30,57,.45)}
+    .lm .wi-card:hover .wi-img img{transform:scale(1.05)}
+  }
+  @media screen and (min-width:750px){
+    .lm .wi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  }
+  @media screen and (min-width:990px){
+    .lm .wi-i{gap:48px;padding:0 8px}
+    .lm .wi-sub{font-size:18px;line-height:28px}
+    .lm .wi-grid{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:20px}
+    .lm .wi-card{width:calc((100% - 60px) / 4);flex-direction:column;align-items:stretch;gap:16px;padding:12px 12px 20px;border-radius:22px}
+    .lm .wi-img{width:100%;height:auto;aspect-ratio:1/1;border-radius:14px}
+    .lm .wi-body{align-items:center;text-align:center;padding:0 6px;gap:6px}
+    .lm .wi-top{flex-direction:column;gap:8px}
+    .lm .wi-name{font-size:19px;line-height:24px}
+    .lm .wi-text{font-size:14.5px;line-height:21px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .lm .wi-card,.lm .wi-img img{transition:none}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: What's inside",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "What's inside" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "7 Researched Ingredients. <em>One Daily Softgel.</em>" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "textarea", "id": "footnote", "label": "Footnote" },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #F1F5F9." }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Square close-up works best." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Ingredient" },
+        { "type": "text", "id": "dose", "label": "Dose pill", "default": "100mg" },
+        { "type": "text", "id": "role", "label": "Role tag", "default": "Lymph herb" },
+        { "type": "textarea", "id": "text", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "OC: What's inside", "blocks": [ { "type": "ingredient" }, { "type": "ingredient" }, { "type": "ingredient" }, { "type": "ingredient" } ] } ]
+}
+{% endschema %}

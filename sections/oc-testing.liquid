@@ -1,0 +1,95 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+{%- assign pills = section.blocks | where: 'type', 'pill' -%}
+{%- assign badges = section.blocks | where: 'type', 'badge' -%}
+<div class="lm">
+  <section class="wrap tst"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="tcard">
+        {%- if s.lab_logo != blank -%}
+          {%- assign lab_alt = s.lab_logo.alt | default: s.lab_placeholder -%}
+          {{ s.lab_logo | image_url: height: 120 | image_tag: class: 'lab-img', loading: 'lazy', alt: lab_alt }}
+        {%- elsif s.lab_placeholder != blank -%}
+          <div class="ph lab">{{ s.lab_placeholder }}</div>
+        {%- endif -%}
+        {%- if s.text != blank %}<p class="txt">{{ s.text }}</p>{% endif -%}
+        {%- if pills.size > 0 -%}
+          <div class="tpills">
+            {%- for block in pills -%}
+              <span class="tpl" {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != blank -%}
+                  {{ block.settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', width: 16, height: 16, style: 'width:16px;height:16px;object-fit:contain', alt: '' }}
+                {%- else -%}
+                  {% render 'oc-icon', icon: 'check-16' %}
+                {%- endif -%}
+                {{ block.settings.text }}
+              </span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if badges.size > 0 -%}
+        <div class="badges">
+          {%- for block in badges -%}
+            <div class="bd" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                <span class="c"{% unless block.settings.icon_ring %} style="border: 0"{% endunless %}>
+                  {%- capture bd_style %}width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px; object-fit: contain{% endcapture -%}
+                  {{ block.settings.icon | image_url: width: 96 | image_tag: loading: 'lazy', style: bd_style, alt: '' }}
+                </span>
+              {%- else -%}
+                <span class="c">{% render 'oc-icon', icon: 'check-16-white' %}</span>
+              {%- endif -%}
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Lab testing",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "lab_logo", "label": "Testing lab logo", "info": "White/transparent logo, shown 40 px tall." },
+    { "type": "text", "id": "lab_placeholder", "label": "Logo placeholder text", "default": "[Testing lab logo]" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Every batch of Lymphgem is checked by an independent lab for banned substances, heavy metals and contaminants, so you know the dose on the label is the dose in the bag." },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #0D1E39." }
+  ],
+  "blocks": [
+    { "type": "pill", "name": "Test pill", "settings": [ { "type": "image_picker", "id": "icon", "label": "Icon", "info": "Square PNG/SVG, shown 16 px. Empty = green check." }, { "type": "text", "id": "text", "label": "Text", "default": "Verified creatine dose" } ] },
+    { "type": "badge", "name": "Badge", "settings": [ { "type": "image_picker", "id": "icon", "label": "Icon", "info": "Square PNG/SVG. Empty = check in a circle." }, { "type": "range", "id": "icon_size", "label": "Icon size (px)", "min": 12, "max": 32, "step": 1, "default": 16 }, { "type": "checkbox", "id": "icon_ring", "label": "Show circle around icon", "default": true }, { "type": "text", "id": "text", "label": "Text", "default": "Made in a cGMP Facility" } ] }
+  ],
+  "presets": [
+    {
+      "name": "OC: Lab testing",
+      "blocks": [
+        { "type": "pill" },
+        { "type": "pill", "settings": { "text": "[XXX]+ substances tested" } },
+        { "type": "pill", "settings": { "text": "Tested for heavy metals" } },
+        { "type": "pill", "settings": { "text": "GMP certified" } },
+        { "type": "badge" },
+        { "type": "badge", "settings": { "text": "Hormone-Free" } },
+        { "type": "badge", "settings": { "text": "Non-GMO" } },
+        { "type": "badge", "settings": { "text": "Vegan" } },
+        { "type": "badge", "settings": { "text": "Third Party Tested" } },
+        { "type": "badge", "settings": { "text": "[Country of manufacture]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{% doc %}
+  Renders one bullet row inside a final-CTA "Choice" panel. The icon defaults to a
+  cross on the "leave without it" panel and a check on the "protect" panel, and can
+  be overridden per bullet.
+
+  @param {object} block - A section block of type "choice_bullet"
+  @example
+  {% render 'terrastrike-choice-bullet', block: block %}
+{% enddoc %}
+
+{%- liquid
+  assign icon = block.settings.icon
+  if icon == blank or icon == 'auto'
+    assign icon = 'cross'
+    if block.settings.panel == 'protect'
+      assign icon = 'check'
+    endif
+  endif
+  assign icon_class = 'ts-bullet-icon is-' | append: icon
+-%}
+
+<div class="ts-bullet-row" {{ block.shopify_attributes }}>
+  {% render 'terrastrike-icon', name: icon, class: icon_class %}
+  <div class="ts-bullet-content">{{ block.settings.text }}</div>
+</div>

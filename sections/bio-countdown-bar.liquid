@@ -1,0 +1,213 @@
+{%- comment -%} Bio countdown bar — appears once the visitor scrolls past a threshold, hidden at the top {%- endcomment -%}
+{%- assign bio_cdb_is_top = false -%}
+{%- if section.settings.position == 'top' -%}{%- assign bio_cdb_is_top = true -%}{%- endif -%}
+
+<style>
+  #shopify-section-{{ section.id }} { position: static; }
+  .bio-cdb {
+    position: fixed;
+    left: 0;
+    right: 0;
+    {% if section.settings.position == 'top' %}
+    /* `top` is only rewritten when the header's own hide/reveal class actually
+       changes (via MutationObserver, not on every scroll pixel) — matching the
+       header's own 0.15s transition below keeps them visually in sync without
+       forcing a layout read+write on every scroll event, which was causing
+       jank/flicker on mobile during the header's slide animation.
+
+       z-index is intentionally LOWER than the header's own (3, from base.css)
+       — any positive z-index already beats ordinary page content (which sits
+       at z-index:auto), so this only needs to clear that bar. Anything higher
+       risks this bar rendering on top of and hiding the header itself if the
+       two are ever briefly out of sync mid-transition. */
+    top: 0;
+    z-index: 2;
+    {% else %}
+    bottom: 0;
+    z-index: 100;
+    {% endif %}
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 5px;
+    width: 100%;
+    transform: translateY({% if section.settings.position == 'top' %}-100%{% else %}100%{% endif %});
+    transition: transform 0.35s ease-in-out, top 0.15s ease-out;
+  }
+  /* display:none by default — not just shifted offscreen via transform — so it
+     genuinely does not render at all until JS confirms the scroll condition */
+  .bio-cdb.is-visible { display: flex; transform: translateY(0); }
+  .bio-cdb__title { font-weight: 700; font-size: 13px; text-align: center; }
+  .bio-cdb__inner { display: flex; align-items: flex-start; text-align: center; font-weight: 700; }
+  .bio-cdb__inner > div { display: flex; flex-direction: column; padding: 0 6px; }
+  .bio-cdb__inner > div span { font-size: 18px; line-height: 1em; }
+  .bio-cdb__inner > div label { margin-top: 5px; font-size: 11px; line-height: 1em; opacity: 0.85; }
+  .bio-cdb__colon { align-self: center; font-weight: 700; padding-bottom: 14px; }
+
+  @media screen and (min-width: 480px) {
+    .bio-cdb__title { font-size: 15px; }
+    .bio-cdb__inner > div span { font-size: 20px; }
+    .bio-cdb__inner > div label { font-size: 12px; }
+  }
+</style>
+
+<div class="bio-cdb" id="bio-cdb-{{ section.id }}" data-threshold="{{ section.settings.scroll_threshold }}" aria-hidden="true">
+  <div class="bio-cdb__title">{{ section.settings.message }}</div>
+  <div class="bio-cdb__inner">
+    <div>
+      <span data-bio-cdb-hours>00</span>
+      <label>{{ section.settings.hours_label }}</label>
+    </div>
+    <div class="bio-cdb__colon">:</div>
+    <div>
+      <span data-bio-cdb-minutes>00</span>
+      <label>{{ section.settings.minutes_label }}</label>
+    </div>
+    <div class="bio-cdb__colon">:</div>
+    <div>
+      <span data-bio-cdb-seconds>00</span>
+      <label>{{ section.settings.seconds_label }}</label>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var id = '{{ section.id }}';
+  function init() {
+    var root = document.getElementById('bio-cdb-' + id);
+    if (!root || root.dataset.init) return;
+    root.dataset.init = '1';
+
+    var threshold = parseInt(root.dataset.threshold, 10) || 400;
+    var isTop = {{ bio_cdb_is_top | json }};
+    var headerEl = isTop ? document.querySelector('.section-header') : null;
+    var announcementEl = document.querySelector('.bio-ab');
+    var hoursEl = root.querySelector('[data-bio-cdb-hours]');
+    var minutesEl = root.querySelector('[data-bio-cdb-minutes]');
+    var secondsEl = root.querySelector('[data-bio-cdb-seconds]');
+
+    /* countdown resets at the visitor's local midnight, matching the reference behavior */
+    function msUntilMidnight() {
+      var target = new Date();
+      target.setDate(target.getDate() + 1);
+      target.setHours(0, 0, 0, 0);
+      return target.getTime() - Date.now();
+    }
+
+    function pad(n) {
+      return (n < 10 ? '0' : '') + n;
+    }
+
+    function tick() {
+      var distance = msUntilMidnight();
+      if (distance < 0) distance = 0;
+      var hours = Math.floor(distance / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* Position: only recomputed when the header's own class list actually
+       changes (hidden / sticky / reset — set by Dawn's real StickyHeader
+       element), not on every scroll pixel. That keeps this in sync with the
+       header without the layout read+write pair that a per-scroll measurement
+       needs, which is what was causing jank on mobile during the header's own
+       slide animation. A matching 0.15s CSS transition (above) keeps the two
+       moving together visually even though we update less often. */
+    function updateHeaderOffset() {
+      if (!isTop || !headerEl) return;
+      var hidden = headerEl.classList.contains('shopify-section-header-hidden');
+      root.style.top = hidden ? '0px' : headerEl.offsetHeight + 'px';
+    }
+
+    /* show/hide on scroll position, matching the reference's 400px threshold.
+       When anchored to the top, we also require the header's own
+       "scrolled-past-header" class (set the moment it scrolls out of its
+       natural position) so we never show before the header itself has
+       actually moved, AND that the (non-sticky) announcement bar has fully
+       scrolled out of the viewport — otherwise the two would render on top of
+       each other while the announcement bar is still visible near the top. */
+    var ticking = false;
+    function updateVisibility() {
+      var pastThreshold = window.scrollY > threshold;
+      var announcementGone = !announcementEl || announcementEl.getBoundingClientRect().bottom <= 0;
+      var show = isTop && headerEl
+        ? (pastThreshold && headerEl.classList.contains('scrolled-past-header') && announcementGone)
+        : pastThreshold;
+
+      root.classList.toggle('is-visible', show);
+      root.setAttribute('aria-hidden', show ? 'false' : 'true');
+      ticking = false;
+    }
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) {
+          requestAnimationFrame(updateVisibility);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener('resize', function () {
+      updateVisibility();
+      updateHeaderOffset();
+    }, { passive: true });
+
+    if (isTop && headerEl && window.MutationObserver) {
+      new MutationObserver(updateHeaderOffset).observe(headerEl, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
+
+    /* The class-toggle MutationObserver above only catches the header
+       sliding open/shut — it says nothing about the header's actual box
+       height changing (e.g. the heading font finishing its swap-in, or the
+       logo/menu reflowing to a second line on a narrow phone), which is what
+       was leaving the offset stale and showing up as a small gap under the
+       header on mobile. ResizeObserver watches the header's real box size
+       directly, independent of why it changed. */
+    if (isTop && headerEl && window.ResizeObserver) {
+      new ResizeObserver(updateHeaderOffset).observe(headerEl);
+    }
+
+    updateVisibility();
+    updateHeaderOffset();
+  }
+  init();
+  document.addEventListener('shopify:section:load', function (e) {
+    if (e.detail && e.detail.sectionId === id) init();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bio: Countdown Bar",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "message", "label": "Message", "default": "Summer Sale Ends In:" },
+    { "type": "select", "id": "position", "label": "Position", "default": "top",
+      "options": [ {"value":"top","label":"Top"},{"value":"bottom","label":"Bottom"} ],
+      "info": "Top sits just below the sticky header." },
+    { "type": "range", "id": "scroll_threshold", "min": 0, "max": 2000, "step": 50, "unit": "px", "label": "Show after scrolling past", "default": 400 },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#085946" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
+    { "type": "text", "id": "hours_label", "label": "Hours label", "default": "Hr" },
+    { "type": "text", "id": "minutes_label", "label": "Minutes label", "default": "Min" },
+    { "type": "text", "id": "seconds_label", "label": "Seconds label", "default": "Sec" }
+  ],
+  "presets": [
+    { "name": "Bio: Countdown Bar" }
+  ]
+}
+{% endschema %}

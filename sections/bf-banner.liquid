@@ -1,0 +1,64 @@
+{%- comment -%} Black Friday banner. Sits in the header group, below the header. Remove or hide the section to end the campaign. {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign tag = 'div'
+  if s.link != blank
+    assign tag = 'a'
+  endif
+-%}
+{%- if s.heading != blank or s.subheading != blank or s.ticket != blank -%}
+  <{{ tag }} class="bfb"{% if s.link != blank %} href="{{ s.link }}"{% endif %}>
+    <span class="bfb-in">
+      {%- if s.heading != blank or s.subheading != blank -%}
+        <span class="bfb-txt">
+          {%- if s.heading != blank %}<strong>{{ s.heading }}</strong>{% endif -%}
+          {%- if s.subheading != blank %}<span>{{ s.subheading }}</span>{% endif -%}
+        </span>
+      {%- endif -%}
+      {%- if s.ticket != blank %}<span class="bfb-tk">{{ s.ticket }}</span>{% endif -%}
+    </span>
+  </{{ tag }}>
+{%- endif -%}
+
+{% stylesheet %}
+  .bfb { display: block; background: #0b0b0b; color: #fff; text-decoration: none; font-family: var(--font-body-family); }
+  .bfb-in { display: flex; align-items: stretch; justify-content: center; gap: 12px; max-width: 1280px; margin: 0 auto; padding: 8px 12px; }
+  .bfb-txt { display: flex; flex-direction: column; justify-content: center; gap: 3px; flex: 0 1 auto; min-width: 0; text-transform: uppercase; }
+  .bfb-txt strong { font-size: 13px; line-height: 1.1; font-weight: 800; letter-spacing: .04em; }
+  .bfb-txt span { font-size: 10px; line-height: 1.2; font-weight: 700; letter-spacing: .06em; color: #f2c14e; }
+  .bfb-tk { position: relative; display: flex; align-items: center; justify-content: center; flex: 1 1 0; min-width: 0; padding: 8px 14px; border-radius: 4px; background: #fff; color: #b3261e; font-size: 12px; line-height: 1.2; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; text-align: center; }
+  .bfb-tk::before, .bfb-tk::after { content: ""; position: absolute; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: #0b0b0b; }
+  .bfb-tk::before { left: -6px; }
+  .bfb-tk::after { right: -6px; }
+  a.bfb:focus-visible { outline: 2px solid #f2c14e; outline-offset: -4px; }
+  @media (max-width: 359px) {
+    .bfb-in { gap: 10px; }
+    .bfb-txt strong { font-size: 12px; }
+    .bfb-tk { padding: 8px 10px; font-size: 11px; letter-spacing: .02em; }
+  }
+  @media (min-width: 750px) {
+    .bfb-in { align-items: center; gap: 28px; padding: 10px 40px; }
+    .bfb-txt strong { font-size: 16px; }
+    .bfb-txt span { font-size: 13px; }
+    .bfb-tk { flex: 0 0 auto; padding: 8px 28px; font-size: 13px; }
+  }
+  @media (min-width: 990px) {
+    .bfb-txt { flex-direction: row; align-items: baseline; gap: 12px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Black Friday banner",
+  "tag": "div",
+  "class": "bfb-section",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Black Friday Sale" },
+    { "type": "text", "id": "subheading", "label": "Offer text", "default": "Up to 50% off + free shipping" },
+    { "type": "text", "id": "ticket", "label": "Ticket text", "default": "Free shipping on bundles", "info": "White ticket on the right. Empty = hidden." },
+    { "type": "url", "id": "link", "label": "Link (optional)" }
+  ],
+  "presets": [ { "name": "Black Friday banner" } ]
+}
+{% endschema %}

@@ -1,0 +1,250 @@
+{%- comment -%}
+  Marketplace-style review cards (block-driven), distinct from the compact
+  testimonial grid, which is its own section.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+    {%- endif -%}
+    {%- if st.subheading != blank -%}
+      <div class="ts-subheading ts-center">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-reviews-panel">
+      <div class="ts-grid">
+        {%- for block in section.blocks -%}
+          {% render 'terrastrike-native-review-card', block: block %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Reviews (cards)",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real People Who Stopped Leaving It to Chance"
+    },
+    { "type": "richtext", "id": "subheading", "label": "Subheading" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "card_background", "label": "Panel background", "default": "#ffffff" },
+    { "type": "color", "id": "star_color", "label": "Stars", "default": "#f39c12" },
+    { "type": "color", "id": "verified_color", "label": "\"Verified purchase\" text", "default": "#e67e22" },
+    { "type": "color", "id": "review_divider_color", "label": "Divider between reviews", "default": "#e2e2e2" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns (desktop)",
+      "info": "1 gives the stacked list. Higher numbers place reviews side by side inside the panel.",
+      "default": 1
+    },
+    { "type": "range", "id": "columns_tablet", "min": 1, "max": 3, "step": 1, "label": "Columns (tablet)", "default": 1 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between reviews",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "panel_padding",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "review_divider_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Divider between reviews",
+      "info": "0 hides it.",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "avatar_size",
+      "min": 28,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Avatar size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Avatar" },
+        { "type": "text", "id": "name", "label": "Reviewer line" },
+        { "type": "range", "id": "rating", "label": "Star rating", "min": 0, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "headline", "label": "Headline" },
+        { "type": "text", "id": "meta", "label": "Purchase details line" },
+        {
+          "type": "text",
+          "id": "verified_text",
+          "label": "Verified badge",
+          "info": "Leave blank to hide.",
+          "default": "Verified Purchase"
+        },
+        { "type": "richtext", "id": "text", "label": "Review body" },
+        { "type": "text", "id": "helpful_text", "label": "Helpful line" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Reviews (cards)",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Mike R., Fleet Safety Manager | Houston, TX",
+            "rating": 5,
+            "headline": "Standard issue for every driver in our fleet now.",
+            "meta": "Reviewed in the United States on Feb 14, 2026. Size: Fleet Pack TerraStrike", "verified_text": "Verified Purchase",
+            "text": "<p>I manage a fleet of 35 commercial vehicles. Two years ago one of my drivers got T-boned and couldn't open his door. The window punch was bolted to the passenger dash mount. He couldn't reach it with his seatbelt locked. A bystander broke the window with a rock - that was luck, not a safety plan. I ordered TerraStrikes for every driver. Clips right to their keys, same keys they use to clock in. If something goes wrong the tool is already in their pocket. Cheapest fleet safety upgrade I've made in ten years.</p>",
+            "helpful_text": "24 people found this helpful"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Lisa D., San Antonio, TX | Mother of Three",
+            "rating": 4,
+            "headline": "Bought this after seeing the Tesla door video. glad I did.",
+            "meta": "Reviewed in the United States on Jan 8, 2026. Size: Family 3-Pack TerraStrike", "verified_text": "Verified Purchase",
+            "text": "<p>my sister sent me that Bloomberg article about Tesla doors that won't open after crashes. I drive a Model Y. my kids are in the backseat every day. I spent 20 minutes looking for the \"manual door release\" in my car and couldn't find it without googling. That's when I realized - if I can't find it parked in my driveway, I'm definitely not finding it upside down after a crash with smoke coming in. Ordered three TerraStrikes - one on my keys, one on my husband's, one clipped to the visor so my teenagers can reach it. Took ten seconds to set up. Should've done this years ago.</p>",
+            "helpful_text": "18 people found this helpful"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Tom L., Volunteer Firefighter",
+            "rating": 5,
+            "headline": "The seatbelt cutter alone is worth the price.",
+            "meta": "Reviewed in the United States on Mar 2, 2026. Size: Family 6-Pack TerraStrike", "verified_text": "Verified Purchase",
+            "text": "<p>Responded to a rollover last month where a woman was hanging from her seatbelt, conscious, screaming, and couldn't release the buckle. Her body weight was pressing against the latch. We cut her out. She was fine. But if we'd been two minutes later - I don't want to finish that sentence. Ordered TerraStrikes for my whole family. The seatbelt cutter alone is worth the price of admission.</p>",
+            "helpful_text": "31 people found this helpful"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

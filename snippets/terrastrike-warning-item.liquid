@@ -1,0 +1,17 @@
+{% doc %}
+  Renders one "why every backup plan fails" warning card.
+
+  @param {object} block - A section block of type "warning"
+  @example
+  {% render 'terrastrike-warning-item', block: block %}
+{% enddoc %}
+
+{%- assign icon_name = block.settings.icon | default: 'cross' -%}
+
+<div class="ts-warning-card" {{ block.shopify_attributes }}>
+  <div class="ts-warning-card__title">
+    {% render 'terrastrike-icon', name: icon_name %}
+    <strong>{{ block.settings.title }}</strong>
+  </div>
+  <div class="ts-warning-card__body">{{ block.settings.body }}</div>
+</div>

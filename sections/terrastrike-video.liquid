@@ -1,0 +1,185 @@
+{%- comment -%}
+  A heading + video block. Sizes the video with the `aspect-ratio` CSS property
+  instead of the classic percentage `padding-bottom` trick, so shrinking the
+  frame's width via the "Video size" setting recomputes its height too, instead
+  of leaving height pinned to the un-shrunk container (that's the bug this
+  section exists to avoid: `padding-bottom: N%` resolves against the *parent's*
+  width, not the element's own, so a narrower box doesn't get shorter).
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- liquid
+  assign st = section.settings
+  assign ratio = 1.7778
+  if st.video != blank
+    assign ratio = st.video.aspect_ratio
+  elsif st.cover_image != blank
+    assign ratio = st.cover_image.aspect_ratio
+  endif
+-%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+    {%- endif -%}
+
+    <div class="ts-video__frame" style="--ts-video-width: {{ st.video_width }}%; --ts-video-width-mobile: {{ st.video_width_mobile }}%; aspect-ratio: {{ ratio }};">
+      {%- if st.video != blank -%}
+        {{
+          st.video
+          | video_tag:
+            image_size: '1500x',
+            autoplay: st.autoplay,
+            loop: st.enable_video_looping,
+            controls: st.show_controls,
+            muted: st.muted
+        }}
+      {%- elsif st.video_url != blank -%}
+        {%- liquid
+          assign loop_param = ''
+          if st.enable_video_looping
+            assign loop_param = '&loop=1&playlist=' | append: st.video_url.id
+          endif
+          assign autoplay_param = ''
+          if st.autoplay
+            assign autoplay_param = '&autoplay=1'
+            if st.muted
+              assign autoplay_param = autoplay_param | append: '&mute=1'
+            endif
+          endif
+        -%}
+        {%- if st.video_url.type == 'youtube' -%}
+          <iframe
+            src="https://www.youtube.com/embed/{{ st.video_url.id }}?enablejsapi=1{{ autoplay_param }}{{ loop_param }}"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ st.heading | strip_html | default: st.description | escape }}"
+          ></iframe>
+        {%- else -%}
+          <iframe
+            src="https://player.vimeo.com/video/{{ st.video_url.id }}?{% if st.autoplay %}autoplay=1{% if st.muted %}&muted=1{% endif %}{% endif %}{{ loop_param }}"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ st.heading | strip_html | default: st.description | escape }}"
+          ></iframe>
+        {%- endif -%}
+      {%- else -%}
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Video",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading" },
+
+    { "type": "header", "content": "Video" },
+    { "type": "video", "id": "video", "label": "Video", "info": "Shopify-hosted video. Takes priority over the URL below." },
+    { "type": "video_url", "id": "video_url", "accept": ["youtube", "vimeo"], "label": "Or video URL" },
+    { "type": "image_picker", "id": "cover_image", "label": "Cover image", "info": "Used to size the frame when only a video URL is set." },
+    { "type": "text", "id": "description", "label": "Description", "info": "Used for accessibility if there's no heading." },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": true },
+    { "type": "checkbox", "id": "muted", "label": "Muted", "default": true, "info": "Browsers block autoplay with sound, so this should usually stay on if autoplay is on." },
+    { "type": "checkbox", "id": "enable_video_looping", "label": "Loop", "default": true },
+    { "type": "checkbox", "id": "show_controls", "label": "Show player controls", "default": true },
+
+    { "type": "header", "content": "Size" },
+    {
+      "type": "range",
+      "id": "video_width",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Video size (desktop)",
+      "info": "Scales the video frame and keeps it centered. Height follows automatically.",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "video_width_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Video size (mobile)",
+      "default": 100
+    },
+    { "type": "range", "id": "corner_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Corner radius", "default": 12 },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 400,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom", "default": 36 },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 28
+    }
+  ],
+  "presets": [{ "name": "TS: Video" }]
+}
+{% endschema %}

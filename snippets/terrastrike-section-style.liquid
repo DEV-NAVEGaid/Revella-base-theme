@@ -1,0 +1,121 @@
+{% doc %}
+  Emits the per-section CSS custom properties for a TerraStrike section, scoped to
+  that section's wrapper. Every TerraStrike section shares the same setting ids
+  (colors, padding, width, gap, columns, radius, alignment), so this one snippet
+  turns all of them into the `--ts-*` variables that assets/terrastrike.css reads.
+
+  A setting that is blank simply isn't emitted, so the stylesheet default wins.
+
+  @param {object} section - The section object (pass `section: section`)
+  @example
+  {% render 'terrastrike-section-style', section: section %}
+{% enddoc %}
+
+{%- liquid
+  assign st = section.settings
+-%}
+{% style %}
+  #shopify-section-{{ section.id }} .ts-landing {
+    {% if st.background_color != blank %}--ts-bg: {{ st.background_color }};{% endif %}
+    {% if st.text_color != blank %}--ts-text: {{ st.text_color }};{% endif %}
+    {% if st.heading_color != blank %}--ts-heading: {{ st.heading_color }};{% endif %}
+    {% if st.accent_color != blank %}--ts-accent: {{ st.accent_color }};{% endif %}
+    {% if st.card_background != blank %}--ts-card-bg: {{ st.card_background }};{% endif %}
+    {% if st.check_color != blank %}--ts-check-color: {{ st.check_color }};{% endif %}
+    {% if st.cross_color != blank %}--ts-cross-color: {{ st.cross_color }};{% endif %}
+    {% if st.star_color != blank %}--ts-star-color: {{ st.star_color }};{% endif %}
+    {% if st.note_color != blank %}--ts-note-color: {{ st.note_color }};{% endif %}
+
+    {% if st.button_background != blank %}--ts-btn-bg: {{ st.button_background }};{% endif %}
+    {% if st.button_background_hover != blank %}--ts-btn-bg-hover: {{ st.button_background_hover }};{% endif %}
+    {% if st.button_text_color != blank %}--ts-btn-text: {{ st.button_text_color }};{% endif %}
+    {% if st.button_radius != blank %}--ts-btn-radius: {{ st.button_radius }}px;{% endif %}
+
+    {% if st.padding_top != blank %}--ts-pad-top: {{ st.padding_top }}px;{% endif %}
+    {% if st.padding_bottom != blank %}--ts-pad-bottom: {{ st.padding_bottom }}px;{% endif %}
+    {% if st.padding_top_mobile != blank %}--ts-pad-top-mobile: {{ st.padding_top_mobile }}px;{% endif %}
+    {% if st.padding_bottom_mobile != blank %}--ts-pad-bottom-mobile: {{ st.padding_bottom_mobile }}px;{% endif %}
+
+    {% if st.content_width != blank %}--ts-content-width: {{ st.content_width }}px;{% endif %}
+    {% if st.grid_gap != blank %}--ts-gap: {{ st.grid_gap }}px;{% endif %}
+    {% comment %}
+      Never emit --ts-cols itself: this block is ID-scoped and would outrank the
+      breakpoint rules in terrastrike.css, pinning every screen size to the desktop
+      column count. The stylesheet resolves --ts-cols from these three.
+    {% endcomment %}
+    {% if st.columns != blank %}--ts-cols-desktop: {{ st.columns }};{% endif %}
+    {% if st.columns_tablet != blank %}--ts-cols-tablet: {{ st.columns_tablet }};{% endif %}
+    {% if st.columns_mobile != blank %}--ts-cols-mobile: {{ st.columns_mobile }};{% endif %}
+    {% if st.corner_radius != blank %}--ts-radius: {{ st.corner_radius }}px;{% endif %}
+    {% if st.text_alignment != blank %}--ts-align: {{ st.text_alignment }};{% endif %}
+
+    {% comment %}
+      Scales every font size at once while keeping them fluid, so text stays
+      responsive no matter what the merchant picks.
+    {% endcomment %}
+    {% if st.type_scale != blank %}--ts-type-scale: {{ st.type_scale | divided_by: 100.0 }};{% endif %}
+    {% if st.font_family != blank and st.font_family != 'theme' %}--ts-font: {{ st.font_family }};{% endif %}
+
+    {% comment %} Section-specific knobs {% endcomment %}
+    {% if st.media_width != blank %}--ts-media-width: {{ st.media_width }}px;{% endif %}
+    {% if st.media_fit != blank %}--ts-media-fit: {{ st.media_fit }};{% endif %}
+    {% if st.image_ratio != blank %}--ts-slider-ratio: {{ st.image_ratio }};{% endif %}
+    {% if st.icon_size != blank %}--ts-icon-size: {{ st.icon_size }}px;{% endif %}
+    {% if st.card_ratio != blank %}--ts-card-ratio: {{ st.card_ratio }};{% endif %}
+    {% if st.card_image_radius != blank %}--ts-card-image-radius: {{ st.card_image_radius }}%;{% endif %}
+    {% if st.card_image_width != blank %}--ts-risk-image-width: {{ st.card_image_width }}px;{% endif %}
+    {% if st.risk_card_background != blank %}--ts-risk-bg: {{ st.risk_card_background }};{% endif %}
+    {% if st.risk_card_padding != blank %}--ts-risk-padding: {{ st.risk_card_padding }}px;{% endif %}
+    {% if st.panel_padding != blank %}--ts-panel-padding: {{ st.panel_padding }}px;{% endif %}
+    {% if st.avatar_size != blank %}--ts-avatar-size: {{ st.avatar_size }}px;{% endif %}
+    {% if st.verified_color != blank %}--ts-verified-color: {{ st.verified_color }};{% endif %}
+    {% if st.review_divider_width != blank %}--ts-review-divider-width: {{ st.review_divider_width }}px;{% endif %}
+    {% if st.review_divider_color != blank %}--ts-review-divider-color: {{ st.review_divider_color }};{% endif %}
+    {% if st.badge_width != blank %}--ts-badge-width: {{ st.badge_width }}px;{% endif %}
+    {% if st.faq_width != blank %}--ts-faq-width: {{ st.faq_width }}px;{% endif %}
+    {% if st.faq_divider_color != blank %}--ts-faq-divider: {{ st.faq_divider_color }};{% endif %}
+    {% if st.faq_divider_width != blank %}--ts-faq-divider-width: {{ st.faq_divider_width }}px;{% endif %}
+    {% if st.faq_background != blank %}--ts-faq-bg: {{ st.faq_background }};{% endif %}
+    {% if st.faq_gap != blank %}--ts-faq-gap: {{ st.faq_gap }}px;{% endif %}
+    {% if st.faq_radius != blank %}--ts-faq-radius: {{ st.faq_radius }}px;{% endif %}
+    {% if st.faq_pad_y != blank %}--ts-faq-pad-y: {{ st.faq_pad_y }}px;{% endif %}
+    {% if st.faq_pad_x != blank %}--ts-faq-pad-x: {{ st.faq_pad_x }}px;{% endif %}
+    {% if st.lead_color != blank %}--ts-lead-color: {{ st.lead_color }};{% endif %}
+    {% if st.card_border_color != blank %}--ts-card-border-color: {{ st.card_border_color }};{% endif %}
+    {% if st.card_border_width != blank %}--ts-card-border-width: {{ st.card_border_width }}px;{% endif %}
+    {% if st.card_border_style != blank %}--ts-card-border-style: {{ st.card_border_style }};{% endif %}
+    {% if st.table_head_text != blank %}--ts-table-head-text: {{ st.table_head_text }};{% endif %}
+    {% if st.table_min_width != blank %}--ts-table-min-width: {{ st.table_min_width }}px;{% endif %}
+    {% if st.table_divider_color != blank %}--ts-table-divider: {{ st.table_divider_color }};{% endif %}
+    {% if st.table_featured_background != blank %}--ts-table-featured-bg: {{ st.table_featured_background }};{% endif %}
+    {% if st.table_featured_border != blank %}--ts-table-featured-border: {{ st.table_featured_border }};{% endif %}
+    {% if st.featured_border_width != blank %}--ts-featured-border-width: {{ st.featured_border_width }}px;{% endif %}
+    {% if st.featured_radius != blank %}--ts-featured-radius: {{ st.featured_radius }}px;{% endif %}
+    {% if st.featured_image_width != blank %}--ts-featured-image-width: {{ st.featured_image_width }}px;{% endif %}
+    {% if st.image_radius != blank %}--ts-tcard-image-radius: {{ st.image_radius }}px;{% endif %}
+    {% if st.highlight_color != blank %}--ts-highlight: {{ st.highlight_color }};{% endif %}
+    {% if st.check_gap != blank %}--ts-check-gap: {{ st.check_gap }}px;{% endif %}
+    {% if st.guarantee_media_col != blank %}--ts-guarantee-media-col: {{ st.guarantee_media_col }}%;{% endif %}
+    {% if st.guarantee_width != blank %}--ts-guarantee-width: {{ st.guarantee_width }}px;{% endif %}
+    {% if st.cta_panel_background != blank %}--ts-cta-panel-bg: {{ st.cta_panel_background }};{% endif %}
+    {% if st.cta_border_color != blank %}--ts-cta-border-color: {{ st.cta_border_color }};{% endif %}
+    {% if st.cta_border_width != blank %}--ts-cta-border-width: {{ st.cta_border_width }}px;{% endif %}
+    {% if st.cta_border_style != blank %}--ts-cta-border-style: {{ st.cta_border_style }};{% endif %}
+    {% if st.cta_radius != blank %}--ts-cta-radius: {{ st.cta_radius }}px;{% endif %}
+    {% if st.cta_padding != blank %}--ts-cta-padding: {{ st.cta_padding }}px;{% endif %}
+    {% if st.choice_image_width != blank %}--ts-choice-image-width: {{ st.choice_image_width }}px;{% endif %}
+    {% if st.title_size != blank %}--ts-g-title-size: {{ st.title_size }}px;{% endif %}
+    {% if st.body_size != blank %}--ts-g-body-size: {{ st.body_size }}px;{% endif %}
+    {% if st.intro_size != blank %}--ts-g-intro-size: {{ st.intro_size }}px;{% endif %}
+    {% if st.checklist_size != blank %}--ts-g-check-size: {{ st.checklist_size }}px;{% endif %}
+    {% if st.outro_size != blank %}--ts-g-outro-size: {{ st.outro_size }}px;{% endif %}
+    {% if st.offer_panel_background != blank %}--ts-offer-panel-bg: {{ st.offer_panel_background }};{% endif %}
+    {% if st.offer_border_color != blank %}--ts-offer-border-color: {{ st.offer_border_color }};{% endif %}
+    {% if st.offer_border_width != blank %}--ts-offer-border-width: {{ st.offer_border_width }}px;{% endif %}
+    {% if st.offer_border_style != blank %}--ts-offer-border-style: {{ st.offer_border_style }};{% endif %}
+    {% if st.offer_radius != blank %}--ts-offer-radius: {{ st.offer_radius }}px;{% endif %}
+    {% if st.offer_padding != blank %}--ts-offer-padding: {{ st.offer_padding }}px;{% endif %}
+    {% if st.offer_image_width != blank %}--ts-offer-image-width: {{ st.offer_image_width }}px;{% endif %}
+    {% if st.payment_icon_height != blank %}--ts-payment-icon-height: {{ st.payment_icon_height }}px;{% endif %}
+  }
+{% endstyle %}

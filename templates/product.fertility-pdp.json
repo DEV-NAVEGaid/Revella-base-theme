@@ -1,0 +1,2550 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "star_rating_custom_wmfWgE": {
+          "type": "star_rating_custom",
+          "settings": {
+            "rating": 5,
+            "star_size": 14,
+            "star_gap": 0,
+            "stroke_width": 0,
+            "stroke_color": "#e0a800",
+            "star_color": "#ffcc00",
+            "star_empty_color": "#ececec",
+            "meta_text": "<p>Rated <strong>4.8 Excellent</strong> over <strong>50,312+ Reviews</strong></p>",
+            "text_size": 12,
+            "text_color": "#444444",
+            "margin_bottom": 6
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size_mobile": 22,
+            "font_size_desktop": 32,
+            "font_weight": "500",
+            "text_color": "#8c3a3a",
+            "letter_spacing": 1,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "icon_with_content_BgtaqU": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/ia_200000003.svg",
+            "icon_color": "#7b2020",
+            "icon_size": 18,
+            "icon_gap": 10,
+            "item_gap": 0,
+            "item_1": "Protects sperm at the cell level, where oxidative damage starts",
+            "item_2": "92% reported noticeable energy and drive within 2 weeks",
+            "item_3": "12mg - clinical dose, zero filler",
+            "item_4": "60-day money-back guarantee",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 14,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "left",
+            "margin_bottom": 16
+          }
+        },
+        "text_nJn6ye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The daily softgel your future family deserves.",
+            "text_style": "body",
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#121212",
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "benefit_icon_grid_hHGThf": {
+          "type": "benefit_icon_grid",
+          "disabled": true,
+          "settings": {
+            "icon_1": "shopify://shop_images/antioxidant_788f2cb0-3752-4578-8587-9f099a0ce387.webp",
+            "label_1": "Cellular & Antioxidant Defense*",
+            "icon_2": "shopify://shop_images/inflammation_1_2a6fbc43-428f-4b30-9073-947b187d19d8.webp",
+            "label_2": "Reproductive Cell Support*",
+            "icon_3": "shopify://shop_images/molecule_18415b65-796b-4bb5-8228-131c4fe76e20.webp",
+            "label_3": "Oxidative Stress Support*",
+            "icon_4": "shopify://shop_images/cardiology_ba2d75a4-6652-4a09-8194-74bd6ffb8ccf.webp",
+            "label_4": "Cardiovascular Support*",
+            "icon_5": "shopify://shop_images/wellness_111611e0-21cd-45c8-a9de-55b5c779b715.webp",
+            "label_5": "Daily Energy & Vitality*",
+            "icon_6": "shopify://shop_images/skin_ec9a8b96-b001-4a78-8db4-1b8cea76cd36.webp",
+            "label_6": "Skin & Healthy Aging*",
+            "col_gap": 24,
+            "row_gap": 16,
+            "icon_gap": 10,
+            "icon_size": 32,
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#1a1a1a",
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "urgency_bar_63dMd4": {
+          "type": "urgency_bar",
+          "disabled": true,
+          "settings": {
+            "percentage": 95,
+            "label_after": "% Sold Out",
+            "label_position": "right",
+            "bg_color": "#f9efef",
+            "fill_color": "#8c3a3a",
+            "track_color": "#d5c8c8",
+            "label_color": "#8c3a3a",
+            "bar_height": 8,
+            "bar_radius": 10,
+            "wrap_radius": 12,
+            "wrap_padding": 2,
+            "gap": 12,
+            "label_size": 13,
+            "margin_bottom": 0
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_custom_price": true,
+            "price_size": 20,
+            "price_color": "#121212",
+            "compare_size": 14,
+            "compare_color": "#6b6b6b",
+            "badge_text": "Save 50% - Ends Tonight!",
+            "badge_bg": "#288b75",
+            "badge_text_color": "#cee9e2",
+            "badge_font_size": 13,
+            "badge_radius": 20,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "margin_top": 0,
+            "margin_bottom": 8,
+            "btn_bg_color": "#8c3a3a",
+            "btn_text_color": "#ffffff",
+            "btn_font_size": 20,
+            "btn_font_weight": "600",
+            "btn_radius": 6,
+            "btn_padding_v": 16,
+            "btn_text_transform": "uppercase",
+            "btn_letter_spacing": 1,
+            "btn_hover_bg_color": "#3a3a3a",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_lift": true
+          }
+        },
+        "icon_with_content_3wypNV": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/fluent_premium-28-filled.svg",
+            "icon_color": "#8c3a3a",
+            "icon_size": 18,
+            "icon_gap": 4,
+            "item_gap": 0,
+            "item_1": "60-day Money-Back Guarantee",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 16,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "center",
+            "margin_bottom": 8
+          }
+        },
+        "payment_badges_bkKpJn": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, paypal, stripe, visa",
+            "alignment": "center",
+            "badge_size": 24,
+            "badge_gap": 0,
+            "margin_top": 9,
+            "margin_bottom": 15
+          }
+        },
+        "social_proof_bar_zn4Pjg": {
+          "type": "social_proof_bar",
+          "settings": {
+            "avatar_1": "shopify://shop_images/m14_d6ea4bd0-a08a-4f57-a225-52c5eaa5372d.png",
+            "avatar_2": "shopify://shop_images/w2_930a5aca-699e-4bb6-a38e-796621e343ff.png",
+            "avatar_3": "shopify://shop_images/m5_d3a9b9a5-f7f8-4316-95e8-933c3ee4a4e9.png",
+            "avatar_size": 32,
+            "avatar_overlap": 12,
+            "heading": "Trusted by 100K+ customers",
+            "heading_size": 12,
+            "heading_weight": "700",
+            "subtext": "Who choose Revella when they’re serious about giving themselves the best shot.",
+            "subtext_size": 11,
+            "heading_line_height": 1.4,
+            "subtext_line_height": 1.4,
+            "bg_color": "#f2f2f2",
+            "heading_color": "#1a1a1a",
+            "subtext_color": "#666666",
+            "radius": 40,
+            "padding_v": 6,
+            "padding_h": 6,
+            "margin_bottom": 8
+          }
+        },
+        "collapsible_row_custom_aagMJW": {
+          "type": "collapsible_row_custom",
+          "settings": {
+            "icon_1": "shopify://shop_images/ant-design_product-filled.svg",
+            "q_1": "Natural Astaxanthin 12mg",
+            "a_1": "<p><strong>Natural Astaxanthin 12mg</strong> from Haematococcus pluvialis microalgae. Sunflower oil for absorption. Softgel capsule (gelatin, purified water). That's it.</p><p>No fillers. No synthetic astaxanthin. No artificial anything. 30 softgels per bag, full 1-month supply. Non-GMO, gluten-free, soy-free.</p>",
+            "icon_2": "shopify://shop_images/mingcute_question-fill.svg",
+            "q_2": "Clean & Trusted",
+            "a_2": "<p>cGMP certified, FDA-registered facility. 3rd party lab tested every batch. Oil-based softgel for real absorption, not powder capsules that pass right through you. We sell direct only. No Amazon, no middlemen.</p>",
+            "icon_3": "shopify://shop_images/mingcute_bug-fill.svg",
+            "q_3": "How Does It Work for Fertility?",
+            "a_3": "<p>Declining sperm health isn't just a numbers problem. The real damage happens inside the cell membrane, where oxidative stress silently breaks down developing sperm before they ever make it onto a lab report. That's why a normal-looking lifestyle doesn't always mean normal numbers.</p><p>Most things marketed for fertility float in your bloodstream. They never actually get inside the cell where the damage is happening.</p><p>Astaxanthin is one of the only compounds on earth that's both fat-soluble and water-soluble at the same time. That's what lets it physically cross into the cell membrane where developing sperm are made and protect them while they mature. Once inside, it neutralizes the free radicals driving the breakdown and shields the cell from further oxidative damage.</p><p>It doesn't force a number up overnight. It protects the next generation of sperm your body is already making, every single day.</p>",
+            "icon_4": "shopify://shop_images/mdi_thunder-circle.svg",
+            "q_4": "How Long Before I See Results?",
+            "a_4": "<p>Most people notice a shift in how they feel well before any lab number moves, because sperm takes time to mature — that part isn’t optional, it’s biology.</p><p><strong>First few days:</strong> Energy and drive start to shift. A lot of guys say this is the first time in a while they’ve felt like they’re actually doing something about it.</p><p><strong>Week 2–4:</strong> Astaxanthin is building up in your tissue. It doesn’t flush out like other supplements. Your body is protecting the sperm currently developing right now.</p><p><strong>Week 6–8:</strong> The sperm that were forming when you started are now maturing inside a protected environment. This is the generation that shows up on your next test.</p><p><strong>Day 90:</strong> A full sperm production cycle has completed. This is when a semen analysis actually reflects the difference — not before, because sperm made yesterday isn’t what gets tested today.</p><p>Cellular protection compounds. Don’t quit early. You’re protected by a 60-day guarantee either way.</p>",
+            "icon_5": "shopify://shop_images/Group.svg",
+            "q_5": "Recommended Use",
+            "a_5": "<p>One softgel a day. Take it with a meal that has fat (eggs, avocado, salmon, olive oil, peanut butter). Astaxanthin is fat-soluble, so it absorbs 3-4x better with food fats. Morning or night, doesn't matter. Pick a time you'll remember.</p><p>That's it. No stack. No timing tricks. One pill, one meal, every day.</p>",
+            "icon_6": "shopify://shop_images/Vector.svg",
+            "q_6": "Do You Offer a Guarantee?",
+            "a_6": "<p>30 days. Full refund. No questions. If you don't feel a difference, we refund every penny. Even if the bag is empty.<br/><br/></p>",
+            "q_7": "",
+            "a_7": "",
+            "q_8": "",
+            "a_8": "",
+            "q_9": "",
+            "a_9": "",
+            "q_10": "",
+            "a_10": "",
+            "heading_size": 16,
+            "heading_weight": "500",
+            "heading_color": "#8c3a3a",
+            "content_size": 14,
+            "content_color": "#8c3a3a",
+            "border_color": "#dddddd",
+            "border_style": "dashed",
+            "border_width": 1,
+            "header_bg": "#ffffff",
+            "content_bg": "#fefaff",
+            "padding_v": 14,
+            "padding_h": 10,
+            "content_padding_v": 10,
+            "margin_bottom": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "font_size_mobile": 14,
+            "font_size_desktop": 15,
+            "font_weight": "400",
+            "text_color": "#444444",
+            "line_height": 6,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_custom_wmfWgE",
+        "title",
+        "icon_with_content_BgtaqU",
+        "text_nJn6ye",
+        "benefit_icon_grid_hHGThf",
+        "urgency_bar_63dMd4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_content_3wypNV",
+        "payment_badges_bkKpJn",
+        "social_proof_bar_zn4Pjg",
+        "collapsible_row_custom_aagMJW",
+        "description"
+      ],
+      "custom_css": [
+        ".product__media-wrapper {margin-bottom: 15px;}",
+        ".product__info-container .product-form__buttons {margin: 0 !important;}",
+        ".product__info-container > div:has(> product-form),.product__info-container > div:has(> product-form) ~ div {margin: 0 0 6px !important; padding: 0 !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3b962a04-6631-4334-84ee-bc9afe663e22",
+        "media_size": "large",
+        "hide_image": false,
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "cfp_mobile_gallery_style": "dots",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12,
+        "enable_sticky_info": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "trust_banner_wXM4E4": {
+      "type": "trust-banner",
+      "blocks": {
+        "heading_RJVaij": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Trust Us as Your Wellness Partner",
+            "heading_tag": "h2"
+          }
+        },
+        "icon_text_TYnrhB": {
+          "type": "icon_text",
+          "settings": {
+            "text": "3rd-Party-Tested",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_pTbDwJ": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Non-GMO",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_qWYQdE": {
+          "type": "icon_text",
+          "settings": {
+            "text": "No Artificial Additives",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_H8Hf9N": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Gluten-Free",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_8D3yzp": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Gentle on the Stomach",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_N9Mek6": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Easy-to-Swallow Softgels",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "paragraph_q3pzTY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p><em>Clean, High-Quality Formula</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RJVaij",
+        "icon_text_TYnrhB",
+        "icon_text_pTbDwJ",
+        "icon_text_qWYQdE",
+        "icon_text_H8Hf9N",
+        "icon_text_8D3yzp",
+        "icon_text_N9Mek6",
+        "paragraph_q3pzTY"
+      ],
+      "name": "Trust Banner",
+      "settings": {
+        "background_color": "#5c2a1e",
+        "mobile_image": "shopify://shop_images/download.png",
+        "desktop_image": "shopify://shop_images/download.png",
+        "overlay_color": "#8c3a3a",
+        "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 1) 4%, rgba(140, 58, 58, 1) 50%, rgba(140, 58, 58, 1) 100%)",
+        "overlay_opacity": 55,
+        "banner_height_desktop": 0,
+        "banner_height_mobile": 0,
+        "border_radius": 12,
+        "max_width": 1000,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "icon_columns_tablet": "2",
+        "mobile_columns": 2,
+        "padding_top_desktop": 32,
+        "padding_bottom_desktop": 32,
+        "padding_x_desktop": 64,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "padding_x_mobile": 12,
+        "section_bg_color": "#ffffff",
+        "section_padding_top": 24,
+        "section_padding_bottom": 24,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 16,
+        "icon_color": "#ffffff",
+        "icon_size_desktop": 22,
+        "icon_size_mobile": 18,
+        "icon_text_gap": 10,
+        "icon_align": "center",
+        "icon_text_font": "system_ui_n4",
+        "icon_text_size_desktop": 16,
+        "icon_text_size_mobile": 14,
+        "icon_text_color": "#ffffff",
+        "icon_text_letter_spacing": 0,
+        "icon_col_gap_desktop": 32,
+        "icon_col_gap_mobile": 16,
+        "icon_row_gap_desktop": 20,
+        "icon_row_gap_mobile": 16,
+        "icon_grid_margin_bottom": 0,
+        "paragraph_font": "system_ui_n4",
+        "paragraph_size_desktop": 16,
+        "paragraph_size_mobile": 16,
+        "paragraph_color": "#ffffff",
+        "paragraph_style": "italic",
+        "paragraph_letter_spacing": 0,
+        "paragraph_line_height": 6,
+        "paragraph_margin_top": 20
+      }
+    },
+    "review_marquee_imQLUz": {
+      "type": "review-marquee",
+      "blocks": {
+        "star_rating_FQrP7C": {
+          "type": "star_rating",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd"
+          }
+        },
+        "heading_ExpxgB": {
+          "type": "heading",
+          "settings": {
+            "text_primary": "Join 120,000+",
+            "text_accent": "Happy Customers",
+            "heading_tag": "h2"
+          }
+        },
+        "paragraph_FQVnWz": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Experiences with our products"
+          }
+        },
+        "photo_marquee_tMxabP": {
+          "type": "photo_marquee",
+          "settings": {
+            "photo_2": "shopify://shop_images/m7_ea7157a1-f119-48de-8841-7a304877cee5.webp",
+            "photo_3": "shopify://shop_images/w6_06e96ecb-72db-46f5-a723-15210b30ede2.webp",
+            "photo_4": "shopify://shop_images/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.webp",
+            "photo_6": "shopify://shop_images/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.webp",
+            "photo_7": "shopify://shop_images/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.webp",
+            "scroll_speed": 35,
+            "scroll_direction": "left",
+            "marquee_margin_top": 16,
+            "marquee_margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_FQrP7C",
+        "heading_ExpxgB",
+        "paragraph_FQVnWz",
+        "photo_marquee_tMxabP"
+      ],
+      "custom_css": [
+        ".rm-heading__tag {font-weight: 500;}"
+      ],
+      "name": "Review Marquee",
+      "settings": {
+        "background_color": "#ffffff",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "text_align_desktop": "center",
+        "text_align_mobile": "center",
+        "content_gap_desktop": 12,
+        "content_gap_mobile": 8,
+        "text_marquee_gap_desktop": 24,
+        "text_marquee_gap_mobile": 16,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 0,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 0,
+        "padding_x_mobile": 20,
+        "star_size_desktop": 24,
+        "star_size_mobile": 20,
+        "star_gap": 3,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_accent_font_weight": "inherit",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color_primary": "#222222",
+        "heading_color_accent": "#8c3a3a",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "para_font": "poppins_n4",
+        "para_font_weight": "400",
+        "para_size_desktop": 15,
+        "para_size_mobile": 13,
+        "para_color": "#555555",
+        "para_style": "normal",
+        "para_letter_spacing": 0,
+        "para_line_height": 4,
+        "photo_shape": "rounded",
+        "photo_border_radius": 10,
+        "photo_ratio": "1:1",
+        "photo_height_desktop": 200,
+        "photo_height_mobile": 140,
+        "photo_fit": "fill",
+        "photo_gap": 12,
+        "photo_shadow": true,
+        "marquee_edge_fade": true,
+        "marquee_pause_hover": true
+      }
+    },
+    "review_card_3xCdjj": {
+      "type": "review-card",
+      "blocks": {
+        "card_pdp_01": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "we were trying for almost two years before i even got tested.",
+            "body": "I kept assuming it was just a matter of time. My wife finally convinced me to get a semen analysis and the number wasn't what I expected. Started taking this the same week. Three months later, my retest came back noticeably better. I wish I hadn't waited two years to find out it might have been me.",
+            "avatar": "shopify://shop_images/ia_100000036.png",
+            "name": "David L."
+          }
+        },
+        "card_pdp_02": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "got the call we'd been waiting 14 months for.",
+            "body": "We did everything the doctor suggested and I started taking this on top of it, mostly because I wanted to feel like I was doing something. Month 3 my wife called me at work crying. Good crying. I sat in my car in the parking lot for a while after we hung up. You don't realize how much you were holding until it's finally over.",
+            "avatar": "shopify://shop_images/hf_20260329_174611_ef3ba393-d6a9-41f0-9912-8236995a6049_1.png",
+            "name": "Marcus T."
+          }
+        },
+        "card_pdp_03": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "the diagnosis took my confidence. this helped me get it back.",
+            "body": "Urologist said my count was low and couldn't tell me why. \"Idiopathic\" is the word he used, which is doctor for \"we don't know.\" That was a hard appointment to sit through. Started taking this and by week 6 I at least felt like I was doing something proactive instead of just waiting around for the next test. On my third bag now.",
+            "avatar": "shopify://shop_images/hf_20260329_162015_c52d8648-921c-4bda-9e56-92515687f38f.png",
+            "name": "Susan K."
+          }
+        },
+        "card_pdp_04": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "6 months post varicocele surgery and this is the first thing that actually moved my numbers",
+            "body": "Surgery went fine but my numbers were still low at the 4-month follow-up, which my urologist said can happen. He mentioned astaxanthin as something with real research behind it for oxidative stress. Added it in and my retest at month 6 showed real improvement. Wish I'd started day one of recovery instead of waiting.",
+            "avatar": "shopify://shop_images/hf_20260329_171308_40615765-3db6-4568-8222-a35213fb8eb9_1.png",
+            "name": "Theresa M."
+          }
+        },
+        "card_pdp_05": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "was skeptical but my energy is noticeably different",
+            "body": "I got this because my numbers came back low and I wanted to try something before jumping straight to more invasive stuff. Didn't expect much honestly. Two weeks in my energy and drive are both up, and by month 3 my retest numbers had moved in the right direction. Already ordered another bottle.",
+            "avatar": "shopify://shop_images/hf_20260329_170109_0e8f7173-7f22-459b-ad59-ea02fa496af9_1.png",
+            "name": "Frank D."
+          }
+        },
+        "card_pdp_06": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "desk job, 45, and my numbers reflected it",
+            "body": "Sit at a computer 10 hours a day, barely move, drink too much coffee. Doctor said lifestyle plays a bigger role than most guys think. Started taking this alongside actually getting up and walking more. It took a little while, but my numbers at the 90-day retest were better than the doctor expected. I like that it's one pill and doesn't upset my stomach.",
+            "avatar": "shopify://shop_images/hf_20260329_162907_c758305f-d768-4315-961f-e35bfd3a9813_1.png",
+            "name": "Gloria S."
+          }
+        },
+        "card_pdp_07": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "nobody could tell me why. this is the first thing that actually helped.",
+            "body": "My numbers were low and every test they ran came back normal — hormones, thyroid, everything. Doctor said it happens in almost half of these cases and there's often no clear cause. Frustrating to hear when you just want an answer. Started taking this and by the 90-day retest my numbers had moved. Still don't have a \"why,\" but at least now I have a \"better.\"",
+            "avatar": "shopify://shop_images/hf_20260329_162012_a666136c-8662-4292-b699-9d8ae92e7f84_1.png",
+            "name": "Carol A."
+          }
+        },
+        "card_pdp_08": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "stopped taking zinc and folic acid and started taking this instead",
+            "body": "Was on the standard zinc and folic acid combo for almost a year with no real change on my retests. Read that a major trial actually found that exact combo doesn't move the needle for most guys. Switched to this instead. Retest three months later showed real movement for the first time. Wish I'd switched sooner.",
+            "avatar": "shopify://shop_images/hf_20260329_193309_f4a1f50e-238d-4359-a4ea-f0cfadd5567c_1.png",
+            "name": "Nancy K."
+          }
+        },
+        "card_pdp_09": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "i stopped dreading the \"so when are you guys having kids\" question",
+            "body": "We just stopped answering honestly after a while, easier to change the subject. Started taking this because I wanted to feel like I was actually doing something instead of just waiting on appointments. By month 2 I wasn't dreading the question the same way, because we finally had something moving in the right direction to hold onto.",
+            "avatar": "shopify://shop_images/hf_20260329_210524_28029ce1-6182-4dcc-a563-2805f9357556_1.png",
+            "name": "Patricia H."
+          }
+        },
+        "card_pdp_10": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "tried everything else first. this is what actually moved the number.",
+            "body": "Zinc, folic acid, cold showers, boxers instead of briefs, cutting alcohol completely — did all of it for months with barely any change on my retests. Added this in and my next semen analysis showed the biggest jump of any test I'd had. Wasn't the thing I expected to work. It's the thing that did.",
+            "avatar": "shopify://shop_images/hf_20260329_201518_a7ca0ee3-c070-412a-91eb-59ffb9ccdc9e_1.png",
+            "name": "Linda R."
+          }
+        }
+      },
+      "block_order": [
+        "card_pdp_01",
+        "card_pdp_02",
+        "card_pdp_03",
+        "card_pdp_04",
+        "card_pdp_05",
+        "card_pdp_06",
+        "card_pdp_07",
+        "card_pdp_08",
+        "card_pdp_09",
+        "card_pdp_10"
+      ],
+      "name": "Review Card",
+      "settings": {
+        "background_color": "#f8f8f8",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 1200,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 16,
+        "card_bg": "#ffffff",
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#e5e5e5",
+        "card_padding_desktop": 24,
+        "card_padding_mobile": 18,
+        "card_inner_gap": 12,
+        "card_gap_desktop": 24,
+        "card_gap_mobile": 16,
+        "star_size_desktop": 18,
+        "star_size_mobile": 16,
+        "star_gap": 2,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 16,
+        "heading_size_mobile": 15,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "body_font": "system_ui_n4",
+        "body_font_weight": "400",
+        "body_size_desktop": 14,
+        "body_size_mobile": 13,
+        "body_color": "#444444",
+        "body_letter_spacing": 0,
+        "body_line_height": 6,
+        "show_divider": true,
+        "divider_color": "#e5e5e5",
+        "avatar_size": 44,
+        "avatar_placeholder_color": "#cccccc",
+        "profile_gap": 10,
+        "name_font": "system_ui_n4",
+        "name_font_weight": "600",
+        "name_size": 14,
+        "name_color": "#111111",
+        "show_verified": true,
+        "verified_label": "Verified Customer",
+        "verified_size": 12,
+        "verified_color": "#2e8b57",
+        "pagination_margin_top": 32,
+        "pagination_gap": 16,
+        "arrow_size": 40,
+        "arrow_border_width": 1,
+        "arrow_bg": "#ffffff",
+        "arrow_color": "#444444",
+        "arrow_border_color": "#cccccc",
+        "dot_size": 8,
+        "dot_gap": 8,
+        "dot_color_active": "#444444",
+        "dot_color_inactive": "#cccccc",
+        "icon_card_font": "system_ui_n4",
+        "icon_card_font_weight": "500",
+        "icon_card_font_size_desktop": 16,
+        "icon_card_font_size_mobile": 14,
+        "icon_card_text_color": "#222222",
+        "icon_card_letter_spacing": 0,
+        "icon_card_icon_color": "#888888",
+        "icon_card_icon_size": 28,
+        "icon_card_gap": 14,
+        "icon_row_margin_top": 24
+      }
+    },
+    "proven_result_mdNYJ9": {
+      "type": "proven-result",
+      "blocks": {
+        "heading_text_mpVJqF": {
+          "type": "heading_text",
+          "settings": {
+            "heading": "Clinically Studied Haematococcus Pluvialis Astaxanthin",
+            "text": "Every batch is produced with attention to detail, ensuring a consistent research experience from start to finish. Built for those who value clarity, quality, and results-driven formulation.",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "stat_grid_w4nqHa": {
+          "type": "stat_grid",
+          "settings": {
+            "stat_1_number": "92%",
+            "stat_1_text": "Said their energy, drive and overall vitality noticeably improved within the first 30 days — without changing anything else.",
+            "stat_2_number": "87%",
+            "stat_2_text": "Said their semen analysis numbers improved by their 90-day retest.",
+            "stat_3_number": "83%",
+            "stat_3_text": "Stopped the generic zinc-and-folic-acid combo that wasn’t moving their numbers.",
+            "stat_4_number": "88%",
+            "stat_4_text": "Reordered within 60 days. Not from a reminder email. Not from a discount code. Because the results spoke for themselves.",
+            "cell_border_width": 1,
+            "cell_border_color": "#ffffff",
+            "cell_1_border_top": true,
+            "cell_1_border_right": false,
+            "cell_1_border_bottom": false,
+            "cell_1_border_left": false,
+            "cell_2_border_top": true,
+            "cell_2_border_right": false,
+            "cell_2_border_bottom": false,
+            "cell_2_border_left": false,
+            "cell_3_border_top": true,
+            "cell_3_border_right": false,
+            "cell_3_border_bottom": false,
+            "cell_3_border_left": false,
+            "cell_4_border_top": true,
+            "cell_4_border_right": false,
+            "cell_4_border_bottom": false,
+            "cell_4_border_left": false,
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "cta_cNMfkP": {
+          "type": "cta",
+          "settings": {
+            "btn_label": "Try Risk-Free Today",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "guarantee_text": "60-day money-back guarantee",
+            "guarantee_icon_type": "custom",
+            "guarantee_custom_svg": "",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_text_mpVJqF",
+        "stat_grid_w4nqHa",
+        "cta_cNMfkP"
+      ],
+      "name": "Proven Results",
+      "settings": {
+        "background_color": "#8c3a3a",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 700,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 20,
+        "block_padding_v_desktop": 20,
+        "block_padding_h_desktop": 0,
+        "block_padding_v_mobile": 16,
+        "block_padding_h_mobile": 0,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "600",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "heading_block_gap": 10,
+        "subtext_font": "system_ui_n4",
+        "subtext_font_weight": "400",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "subtext_color": "#ffffff",
+        "subtext_letter_spacing": 0,
+        "subtext_line_height": 6,
+        "stat_number_font": "system_ui_n4",
+        "stat_number_font_weight": "600",
+        "stat_number_size_desktop": 32,
+        "stat_number_size_mobile": 28,
+        "stat_number_color": "#ffffff",
+        "stat_number_letter_spacing": 0,
+        "stat_text_font": "system_ui_n4",
+        "stat_text_font_weight": "400",
+        "stat_text_size_desktop": 14,
+        "stat_text_size_mobile": 13,
+        "stat_text_color": "#ffffff",
+        "stat_text_letter_spacing": 0,
+        "stat_text_line_height": 5,
+        "stat_column_gap": 40,
+        "stat_inner_gap": 8,
+        "stat_padding_v_desktop": 20,
+        "stat_padding_h_desktop": 0,
+        "stat_padding_v_mobile": 16,
+        "stat_padding_h_mobile": 0,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 16,
+        "btn_text_color": "#222222",
+        "btn_bg_color": "#ffffff",
+        "btn_border_width": 4,
+        "btn_border_color": "#ffffff",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "guarantee_font": "system_ui_n4",
+        "guarantee_font_weight": "400",
+        "guarantee_size_desktop": 14,
+        "guarantee_size_mobile": 13,
+        "guarantee_color": "#ffffff",
+        "guarantee_letter_spacing": 0,
+        "guarantee_icon_size": 15,
+        "cta_gap": 12
+      }
+    },
+    "carousel_nPPaMB": {
+      "type": "carousel",
+      "blocks": {
+        "slide_rJL6aU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M1-Golf.png",
+            "caption": "Goals"
+          }
+        },
+        "slide_MtXF9a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W1-Sleep.png",
+            "caption": "Rest"
+          }
+        },
+        "slide_CUxHcV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M2-Football.png",
+            "caption": "Connection"
+          }
+        },
+        "slide_BzxM7i": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W2-Swim.png",
+            "caption": "Hobbies"
+          }
+        },
+        "slide_6LMz3q": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M3-Kid.png",
+            "caption": "Family"
+          }
+        },
+        "slide_exd6U7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W3-Yoga.png",
+            "caption": "Routine"
+          }
+        }
+      },
+      "block_order": [
+        "slide_rJL6aU",
+        "slide_MtXF9a",
+        "slide_CUxHcV",
+        "slide_BzxM7i",
+        "slide_6LMz3q",
+        "slide_exd6U7"
+      ],
+      "name": "Carousel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding_vertical": 16,
+        "heading_part1": "Give Yourself",
+        "heading_part2": "The Best Shot",
+        "heading_font_family": "inherit",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 22,
+        "heading_font_weight": "600",
+        "heading_letter_spacing": 0,
+        "heading_color_1": "#222222",
+        "heading_color_2": "#8c3a3a",
+        "heading_margin_bottom": 16,
+        "slide_width_desktop": 50,
+        "slide_width_mobile": 78,
+        "slide_height_desktop": 560,
+        "slide_height_mobile": 320,
+        "slide_gap_desktop": 20,
+        "slide_gap_mobile": 12,
+        "slide_border_radius": 4,
+        "infinite_scroll": true,
+        "autoplay": false,
+        "autoplay_speed": 10,
+        "caption_font_family": "inherit",
+        "caption_font_size": 14,
+        "caption_font_size_mobile": 12,
+        "caption_font_weight": "500",
+        "caption_letter_spacing": 1,
+        "caption_text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0.55)",
+        "caption_padding_vertical": 14,
+        "caption_padding_vertical_mobile": 10,
+        "caption_padding_horizontal": 20,
+        "show_arrows": true,
+        "hide_arrows_mobile": false,
+        "nav_btn_side_offset": 16,
+        "nav_btn_size": 48,
+        "nav_btn_bg": "#121212",
+        "nav_btn_border_color": "#121212",
+        "nav_btn_icon_color": "#ffffff",
+        "nav_btn_hover_bg": "#8c3a3a",
+        "nav_btn_hover_border": "#8c3a3a",
+        "show_dots": true,
+        "dots_margin_top": 20
+      }
+    },
+    "before_after_biiP9L": {
+      "type": "before-after",
+      "blocks": {
+        "dual_tone_heading_hrLdhb": {
+          "type": "dual_tone_heading",
+          "settings": {
+            "heading_before": "The Astaxanthin",
+            "heading_accent": "Difference",
+            "heading_tag": "2"
+          }
+        },
+        "paragraph_fLw4aY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>A look inside your body — what's happening now, and what changes with cellular protection.</p>"
+          }
+        },
+        "before_after_image_FCabrK": {
+          "type": "before_after_image",
+          "settings": {
+            "before_image": "shopify://shop_images/b1_e8605c06-59a8-4c93-acb9-8cbdd42e81aa.png",
+            "after_image": "shopify://shop_images/a2.png"
+          }
+        }
+      },
+      "block_order": [
+        "dual_tone_heading_hrLdhb",
+        "paragraph_fLw4aY",
+        "before_after_image_FCabrK"
+      ],
+      "name": "Before After",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "image_position": "right",
+        "mobile_image_position": "bottom",
+        "column_gap": 16,
+        "text_gap": 16,
+        "text_alignment": "center",
+        "container_max_width": 1200,
+        "stacked_max_width": 720,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "custom_gradient_background": "",
+        "accent_color": "#c0392b",
+        "heading_font_family": "",
+        "heading_size": "h1",
+        "custom_desktop_size": 33,
+        "custom_mobile_size": 22,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "heading_accent_color": "#8c3a3a",
+        "accent_font_style": "normal",
+        "heading_highlight": "none",
+        "highlight_color": "#6d388b",
+        "highlight_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_bg_color": "#f9efff",
+        "highlight_border_radius": 8,
+        "highlight_border_width": 0,
+        "highlight_border_style": "solid",
+        "highlight_border_color": "#6d388b",
+        "highlight_padding_block": 0.3,
+        "highlight_padding_inline": 0.3,
+        "highlight_underline_thickness": 2,
+        "highlight_underline_color": "#6d388b",
+        "highlight_underline_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_underline_position": 25,
+        "highlight_line_color": "#6d388b",
+        "highlight_line_stroke": 3,
+        "highlight_line_position": 60,
+        "paragraph_font_family": "system-ui, sans-serif",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.6",
+        "paragraph_color": "#555555",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "button_color": "#1a1a1a",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 8,
+        "show_labels": true,
+        "label_before": "Before",
+        "label_after": "After",
+        "label_background_color": "#8c3a3a",
+        "label_text_color": "#ffffff",
+        "label_font_family": "system-ui, sans-serif",
+        "label_font_size": 11,
+        "label_font_weight": "600",
+        "label_text_transform": "uppercase",
+        "label_letter_spacing": 1,
+        "label_padding_v": 5,
+        "label_padding_h": 10,
+        "label_border_radius": 4,
+        "label_offset_top": 12,
+        "label_offset_side": 12,
+        "arrows_style": "circle",
+        "handle_color": "#8c3a3a",
+        "handle_width": 2,
+        "handle_circle_size": 44,
+        "border_radius": 12,
+        "image_shadow": "0 8px 40px rgba(0,0,0,0.12)"
+      }
+    },
+    "four_column_badge_KkbnrX": {
+      "type": "four-column-badge",
+      "blocks": {
+        "badge_column_3HfJqe": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "shield_check",
+            "custom_icon": "shopify://shop_images/Frame.svg",
+            "heading": "Cellular Protection",
+            "heading_tag": "h3",
+            "text": "<p>Shields developing sperm from oxidative breakdown.</p>"
+          }
+        },
+        "badge_column_9TcGCc": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "cell",
+            "custom_icon": "shopify://shop_images/glyph.svg",
+            "heading": "Reaches the Cell",
+            "heading_tag": "h3",
+            "text": "<p>The only compound that crosses the cell membrane.</p>"
+          }
+        },
+        "badge_column_Xi9AJU": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "gear",
+            "custom_icon": "shopify://shop_images/Layer_1.svg",
+            "heading": "Source-Level Protection",
+            "heading_tag": "h3",
+            "text": "<p>Protects sperm while they’re still developing, before damage compounds.</p>"
+          }
+        },
+        "badge_column_mxaGkM": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "clock",
+            "custom_icon": "shopify://shop_images/Vector_7174b008-3c00-4d81-9e6e-08f0c6048a3f.svg",
+            "heading": "30+ Years of Research",
+            "heading_tag": "h3",
+            "text": "<p>Decades of studies on oxidative stress and cellular health.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "badge_column_3HfJqe",
+        "badge_column_9TcGCc",
+        "badge_column_Xi9AJU",
+        "badge_column_mxaGkM"
+      ],
+      "name": "Four Column Badge",
+      "settings": {
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": 2,
+        "content_alignment": "center",
+        "column_gap": 24,
+        "column_gap_h": 32,
+        "column_gap_mobile": 24,
+        "item_gap": 8,
+        "show_dividers": false,
+        "divider_style": "solid",
+        "divider_width": 1,
+        "divider_color": "#e5e5e5",
+        "container_max_width": 1200,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "icon_color": "#9b1c1c",
+        "icon_size": 32,
+        "heading_font_family": "system-ui, sans-serif",
+        "heading_font_size": 16,
+        "heading_font_size_mobile": 14,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "paragraph_font_family": "",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.5",
+        "paragraph_color": "#555555"
+      }
+    },
+    "animated_wave_divider_pbft83": {
+      "type": "animated-wave-divider",
+      "name": "Animated Wave",
+      "settings": {
+        "wave_color": "#7b2223",
+        "background_color": "#ffffff",
+        "fill_color": "#7b2223",
+        "fill_bottom": false,
+        "wave_speed": 5,
+        "wave_direction": "left",
+        "wave_amplitude": 20,
+        "wave_frequency": 1,
+        "wave_layers": 3,
+        "layer_1_opacity": 45,
+        "layer_2_opacity": 100,
+        "layer_3_opacity": 30,
+        "layer_4_opacity": 25,
+        "layer_5_opacity": 15,
+        "wave_height_mobile": 80,
+        "wave_height_desktop": 88
+      }
+    },
+    "information_card_igAJVJ": {
+      "type": "information-card",
+      "blocks": {
+        "card_9m7djb": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1.png",
+            "eyebrow": "",
+            "title": "Protects at the Source",
+            "text": "<p>Sperm health is a cellular problem. Developing sperm are vulnerable to oxidative damage for roughly 74–90 days before they ever show up on a lab report. Astaxanthin reaches inside the cell and shields them while they’re still forming.</p>"
+          }
+        },
+        "card_dTUAaG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_f3a0691d-e128-4bda-9344-a430b1cbe76a.png",
+            "eyebrow": "",
+            "title": "The Hidden Driver: Oxidative Stress",
+            "text": "<p>Global sperm counts have fallen an estimated 50–62% since 1973, and the decline has accelerated since 2000. Oxidative stress is one of the most consistently cited mechanisms behind it. Astaxanthin is one of the most powerful inflammation and oxidative-stress suppressors ever measured, with 30+ years of research backing it.</p>"
+          }
+        },
+        "card_hWhKrE": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
+            "eyebrow": "",
+            "title": "Backed by Earth's Longest-Living People",
+            "text": "<p>Astaxanthin is what gives salmon their pink color, flamingos their red, and the people of Okinawa, Japan their place as the longest-living humans on Earth. They get it daily through their seafood diet. They live longer than anyone.</p>"
+          }
+        },
+        "card_DLtUhH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4.png",
+            "eyebrow": "",
+            "title": "Reaches What Nothing Else Can",
+            "text": "<p>Zinc floats in your bloodstream. Folic acid gets processed and flushed. A major 2,300-couple clinical trial found the standard zinc-and-folic-acid combo did nothing for semen quality or live birth rates. Astaxanthin is fat-soluble and water-soluble — the only compound that physically crosses the cell membrane and works from the inside.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_9m7djb",
+        "card_dTUAaG",
+        "card_hWhKrE",
+        "card_DLtUhH"
+      ],
+      "name": "Information Card",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "title": "<strong>Clinically studied to reach and protect reproductive cells at the source</strong>",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "columns_desktop": 4,
+        "columns_mobile": 1.3,
+        "card_gap": 16,
+        "show_image": true,
+        "image_aspect_ratio": "1 / 1",
+        "card_height": 500,
+        "card_bg_color": "#f5f5f5",
+        "card_border_radius": 10,
+        "card_content_gap": 10,
+        "card_show_border": false,
+        "card_border_width": 1,
+        "card_border_color": "#f5f5f5",
+        "card_show_shadow": true,
+        "chevron_size": 36,
+        "chevron_opacity": 90,
+        "chevron_bg_color": "#8c3a3a",
+        "chevron_bg_opacity": 60,
+        "chevron_icon_color": "#ffffff",
+        "chevron_border_radius": 18,
+        "eyebrow_font_size": 12,
+        "eyebrow_font_weight": "600",
+        "eyebrow_color": "#888888",
+        "eyebrow_text_transform": "uppercase",
+        "title_font_size": 16,
+        "title_font_weight": "600",
+        "title_color": "#8c3a3a",
+        "text_font_size": 14,
+        "text_color": "#4a4a4a",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "research_card_fqgxnW": {
+      "type": "research-card",
+      "blocks": {
+        "card_TV4pEe": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_3.png",
+            "image_url": "",
+            "card_heading": "Fertility",
+            "card_subdesc": "Give yourself the best shot.",
+            "card_para": "Astaxanthin reaches the cells where oxidative damage to developing sperm starts. It shields the cell so your body can keep producing healthier sperm, cycle after cycle.",
+            "start_active": false
+          }
+        },
+        "card_TzRfd7": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637.png",
+            "image_url": "",
+            "card_heading": "Longevity",
+            "card_subdesc": "Slow aging at the cell level.",
+            "card_para": "Chronic inflammation drives nearly every major aging process. Astaxanthin is one of the most powerful inflammation suppressors ever measured, eaten daily by the longest-living people on Earth.",
+            "start_active": false
+          }
+        },
+        "card_4wTJU7": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_2.png",
+            "image_url": "",
+            "card_heading": "Skin",
+            "card_subdesc": "Brighter, tighter, naturally.",
+            "card_para": "Astaxanthin protects skin cells from oxidative damage and UV stress. Studies show it improves elasticity, reduces fine lines, and supports a more even tone from the inside.",
+            "start_active": false
+          }
+        },
+        "card_Qi4pLP": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_1.png",
+            "image_url": "",
+            "card_heading": "Eyes",
+            "card_subdesc": "Sharper focus, less strain.",
+            "card_para": "One of the few antioxidants that crosses into the eye. Astaxanthin protects against oxidative stress, supports sharper focus, and reduces digital screen fatigue.",
+            "start_active": false
+          }
+        },
+        "button_guarantee_eByYiP": {
+          "type": "button_guarantee",
+          "settings": {
+            "btn_text": "Try Risk-Free Today",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "btn_arrow": true,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "card_TV4pEe",
+        "card_TzRfd7",
+        "card_4wTJU7",
+        "card_Qi4pLP",
+        "button_guarantee_eByYiP"
+      ],
+      "name": "Research Card",
+      "settings": {
+        "section_h1": "Real Benefits.",
+        "section_h2": "Backed by Research.",
+        "section_desc": "One softgel. Whole-body cellular protection. The same compound the longest-living people on Earth eat every day.",
+        "heading_align": "center",
+        "h1_font_size": 32,
+        "h1_font_size_mobile": 22,
+        "h1_font_weight": "600",
+        "h1_color": "#8c3a3a",
+        "h1_font_family": "",
+        "h2_font_size": 32,
+        "h2_font_size_mobile": 22,
+        "h2_font_weight": "600",
+        "h2_color": "#1a1a1a",
+        "h2_font_family": "",
+        "desc_font_size": 14,
+        "desc_font_size_mobile": 13,
+        "desc_font_weight": "400",
+        "desc_color": "#555555",
+        "desc_font_family": "sans-serif",
+        "columns_desktop": "2",
+        "card_gap": 12,
+        "section_padding_v": 16,
+        "section_padding_h": 20,
+        "section_bg": "#fdf5f5",
+        "card_bg": "#ffffff",
+        "card_border_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#e8e0e0",
+        "card_padding": 14,
+        "card_min_height": 72,
+        "toggle_color": "#8b2020",
+        "card_img_size": 80,
+        "card_img_radius": 6,
+        "card_heading_font_size": 16,
+        "card_heading_font_weight": "600",
+        "card_heading_color": "#1a1a1a",
+        "card_heading_font_family": "sans-serif",
+        "card_subdesc_font_size": 14,
+        "card_subdesc_font_weight": "400",
+        "card_subdesc_color": "#777777",
+        "card_subdesc_font_family": "",
+        "card_para_font_size": 14,
+        "card_para_font_weight": "400",
+        "card_para_color": "#444444",
+        "card_para_font_family": "",
+        "btn_bg": "#8b2020",
+        "btn_color": "#ffffff",
+        "btn_font_size": 16,
+        "btn_font_weight": "600",
+        "btn_font_family": "",
+        "btn_border_radius": 8,
+        "btn_padding_v": 10,
+        "btn_padding_h": 80,
+        "guarantee_font_size": 14,
+        "guarantee_font_weight": "400",
+        "guarantee_color": "#777777",
+        "guarantee_font_family": "sans-serif"
+      }
+    },
+    "running_marquee_k3qnar": {
+      "type": "running-marquee",
+      "blocks": {
+        "item_ERyYFb": {
+          "type": "item",
+          "settings": {
+            "icon": "gluten_free",
+            "text": "Gluten-Free"
+          }
+        },
+        "item_eJxcdx": {
+          "type": "item",
+          "settings": {
+            "icon": "no_additives",
+            "text": "No Additives"
+          }
+        },
+        "item_8zceJH": {
+          "type": "item",
+          "settings": {
+            "icon": "cgmp",
+            "text": "cGMP Certified"
+          }
+        },
+        "item_7UgHmH": {
+          "type": "item",
+          "settings": {
+            "icon": "non_gmo",
+            "text": "Non-GMO"
+          }
+        }
+      },
+      "block_order": [
+        "item_ERyYFb",
+        "item_eJxcdx",
+        "item_8zceJH",
+        "item_7UgHmH"
+      ],
+      "name": "Running Marquee Banner",
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "section_bg": "#7b2223",
+        "speed": 10,
+        "direction": "left",
+        "pause_on_hover": false,
+        "show_fade": false,
+        "fade_width": 60,
+        "item_gap": 50,
+        "icon_text_gap": 8,
+        "show_separator": false,
+        "separator_char": "·",
+        "separator_margin": 8,
+        "separator_color": "#ffffff",
+        "icon_size": 16,
+        "icon_color": "#ffffff",
+        "text_size": 14,
+        "text_weight": "500",
+        "text_color": "#ffffff",
+        "text_font_family": "sans-serif",
+        "text_letter_spacing": 2
+      }
+    },
+    "journey_MWkCz7": {
+      "type": "journey",
+      "blocks": {
+        "timeline_step_AcYDaC": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "First Few Days: Energy Starts Shifting",
+            "items": "Energy and drive begin to pick up\nYou start feeling like you're doing something instead of just waiting\nThe things you chalked up to stress start feeling less permanent"
+          }
+        },
+        "timeline_step_7gtap8": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Week 2–4: Building Cellular Reserves",
+            "items": "Astaxanthin accumulates in your tissue — it doesn't flush out like other supplements\nThe sperm currently developing are maturing inside a protected environment\nMost guys stop thinking about “what else can I try” during this window"
+          }
+        },
+        "timeline_step_VxgqNb": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Week 6–8: The Buildup Continues",
+            "items": "Cellular protection keeps compounding — it doesn't reset each day\nThe generation of sperm that will show up on your next test is being protected right now\nThis is the phase people are most tempted to quit. Don't."
+          }
+        },
+        "timeline_step_D9RqdY": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Day 90: The Number You’ve Been Waiting For",
+            "items": "A full sperm production cycle has completed\nThis is when a semen analysis actually reflects the difference — not before\nThis is the retest that matters"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_step_AcYDaC",
+        "timeline_step_7gtap8",
+        "timeline_step_VxgqNb",
+        "timeline_step_D9RqdY"
+      ],
+      "name": "Journey",
+      "settings": {
+        "max_width": 1000,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "hero_image": "shopify://shop_images/Family_106ad093-4981-4b69-8fc8-55d96d6f0d42.png",
+        "hero_image_height": 100,
+        "hero_text": "Revella",
+        "hero_text_font_size": 20,
+        "hero_text_color": "#ffffff",
+        "hero_overlay_color": "#000000",
+        "hero_overlay_gradient": "",
+        "hero_overlay_opacity": 30,
+        "hero_border_radius": 16,
+        "hero_margin_bottom": 0,
+        "desktop_image": "shopify://shop_images/Family_beedf692-d51d-4802-b245-786d1667d3d5.png",
+        "desktop_image_position": "right",
+        "desktop_image_width": 40,
+        "hide_image_on_desktop": true,
+        "desktop_content_max_width": 700,
+        "desktop_col_gap": 48,
+        "desktop_image_sticky_top": 80,
+        "image_border_radius": 16,
+        "header_alignment": "center",
+        "header_margin_top": 24,
+        "header_margin_bottom": 24,
+        "eyebrow": "Your Fertility",
+        "eyebrow_font_size": 22,
+        "eyebrow_font_weight": "600",
+        "heading": "Journey With Revella®",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "subtext": "Revella® is built for daily use. Here's how things tend to shift once it's part of your day — and why the 90-day mark matters more than any other.",
+        "subtext_font_size": 14,
+        "line_width": 2,
+        "dot_size": 14,
+        "dot_gap": 12,
+        "step_gap": 20,
+        "label_font_size": 14,
+        "label_font_weight": "700",
+        "label_border_radius": 6,
+        "label_padding_vertical": 8,
+        "label_padding_horizontal": 14,
+        "label_margin_bottom": 0,
+        "item_font_size": 14,
+        "items_padding_top": 10,
+        "items_padding_bottom": 2,
+        "tagline": "Sperm takes 74–90 days to mature. Don't quit early.",
+        "tagline_font_size": 14,
+        "tagline_font_style": "normal",
+        "tagline_margin_top": 16,
+        "button_label": "Start My Journey",
+        "button_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+        "button_show_arrow": true,
+        "button_font_size": 16,
+        "button_font_weight": "700",
+        "button_padding_vertical": 12,
+        "button_padding_horizontal": 24,
+        "button_border_radius": 8,
+        "cta_margin_top": 24,
+        "guarantee_text": "60-day money-back guarantee",
+        "guarantee_font_size": 14,
+        "guarantee_margin_top": 12,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#8c3a3a",
+        "heading_color": "#1a1a1a",
+        "subtext_color": "#555555",
+        "line_color": "#d0d0d0",
+        "dot_color": "#8c3a3a",
+        "label_background": "#8c3a3a",
+        "label_text_color": "#ffffff",
+        "item_text_color": "#333333",
+        "checkmark_color": "#8c3a3a",
+        "tagline_color": "#777777",
+        "button_background": "#8c3a3a",
+        "button_text_color": "#ffffff",
+        "guarantee_color": "#777777"
+      }
+    },
+    "comparison_table_hH8TLN": {
+      "type": "comparison-table",
+      "blocks": {
+        "heading_button_WfmXAh": {
+          "type": "heading_button",
+          "settings": {
+            "heading_tag": "h2",
+            "heading": "Revella vs. Other Brands",
+            "subtext": "",
+            "button_label": "Try Risk-Free Today",
+            "button_link": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "button_new_tab": false,
+            "show_button_arrow": true,
+            "guarantee_icon_size": 18,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        },
+        "product_image_Wd8tQJ": {
+          "type": "product_image",
+          "settings": {
+            "product_image": "shopify://shop_images/StockCake-Memories-in-light_1758294898_1-removebg-preview_1_1.png",
+            "show_image": true,
+            "product_name": "Revella",
+            "header_style": "separate"
+          }
+        },
+        "product_image_XFA8gp": {
+          "type": "product_image",
+          "settings": {
+            "product_image": "shopify://shop_images/white-plastic-medicine-bottle-with-blank-label-ribbed-cap_1.png",
+            "show_image": true,
+            "product_name": "Other Brands",
+            "header_style": "separate"
+          }
+        },
+        "comparison_table_Pj6Tak": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "1",
+            "row_1_icon": "shield",
+            "row_1_custom_icon": "shopify://shop_images/ia_100000078.svg",
+            "row_1_label": "Clinical Dose — 12mg",
+            "row_2_icon": "flask",
+            "row_2_custom_icon": "shopify://shop_images/ia_100000079.svg",
+            "row_2_label": "3rd-Party Lab Tested",
+            "row_3_icon": "globe",
+            "row_3_custom_icon": "shopify://shop_images/ia_100000080.svg",
+            "row_3_label": "No Fillers or Additives",
+            "row_4_icon": "leaf",
+            "row_4_custom_icon": "shopify://shop_images/ia_100000081.png",
+            "row_4_label": "GMP-Certified Facility",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        },
+        "comparison_table_RehzWn": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "2",
+            "row_1_icon": "cross",
+            "row_1_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_1_label": "Underdosed (4–6mg)",
+            "row_2_icon": "cross",
+            "row_2_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_2_label": "No Transparent Testing",
+            "row_3_icon": "cross",
+            "row_3_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_3_label": "Fillers & Additives",
+            "row_4_icon": "cross",
+            "row_4_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_4_label": "Synthetic or Undisclosed Source",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_button_WfmXAh",
+        "product_image_Wd8tQJ",
+        "product_image_XFA8gp",
+        "comparison_table_Pj6Tak",
+        "comparison_table_RehzWn"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.ct-section-template--20958960713914__comparison_table_hH8TLN .ct-cta--mobile {gap: 8px; }}"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "layout_order": "info_first",
+        "info_col_width": 30,
+        "info_alignment": "left",
+        "column_gap": 48,
+        "info_gap": 20,
+        "table_col_gap": 12,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "horizontal_padding": 16,
+        "background_type": "color",
+        "background_color": "#b07a85",
+        "background_gradient": "",
+        "bg_image_size": "cover",
+        "bg_image_position": "center center",
+        "bg_image_repeat": "no-repeat",
+        "font_family": "system_ui_n4",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 22,
+        "heading_color": "#ffffff",
+        "heading_font_weight": "600",
+        "subtext_font_size": 14,
+        "subtext_color": "#f0e8e8",
+        "button_full_width": false,
+        "button_background_color": "#8c3a3a",
+        "button_text_color": "#ffffff",
+        "button_font_size": 16,
+        "button_font_weight": "600",
+        "button_border_radius": 6,
+        "button_padding_v": 12,
+        "button_padding_h": 24,
+        "guarantee_font_size": 14,
+        "guarantee_color": "#f0e8e8",
+        "richtext_font_size": 16,
+        "richtext_font_size_mobile": 15,
+        "richtext_font_weight": "400",
+        "richtext_font_style": "normal",
+        "richtext_color": "#f0e8e8",
+        "richtext_line_height": 1.6,
+        "richtext_letter_spacing": 0,
+        "richtext_text_transform": "none",
+        "richtext_margin_top": 0,
+        "richtext_margin_bottom": 16,
+        "richtext_highlight_color": "#ffffff",
+        "richtext_highlight_weight": "inherit",
+        "richtext_highlight_style": "italic",
+        "richtext_highlight_underline": false,
+        "richtext_list_marker_color": "#ffffff",
+        "richtext_list_marker_size": 18,
+        "richtext_list_marker_gap": 12,
+        "richtext_list_gap": 16,
+        "column1_top_offset": 0,
+        "column2_top_offset": 0,
+        "merged_image_overlap": 32,
+        "product_image_size": 180,
+        "mobile_product_image_size": 120,
+        "product_image_gap": 8,
+        "product_header_gap": 12,
+        "product_name_font_size": 14,
+        "product_name_font_weight": "600",
+        "product1_name_color": "#8c3a3a",
+        "product2_name_color": "#333333",
+        "col1_table_bg_color": "#8c3a3a",
+        "col1_table_text_color": "#ffffff",
+        "col1_icon_color": "#ffffff",
+        "col1_row_divider_color": "#ffffff26",
+        "col2_table_bg_color": "#ffffff",
+        "col2_table_text_color": "#333333",
+        "col2_icon_color": "#333333",
+        "col2_row_divider_color": "#e8e8e8",
+        "row_font_size": 16,
+        "mobile_row_font_size": 14,
+        "row_vertical_padding": 20,
+        "row_min_height": 0,
+        "mobile_row_padding": 14,
+        "icon_size": 32,
+        "table_border_radius": 12,
+        "mobile_info_alignment": "center",
+        "mobile_section_gap": 32,
+        "mobile_cta_margin_top": 24
+      }
+    },
+    "free_trial_rgzqta": {
+      "type": "free-trial",
+      "blocks": {
+        "badge_tnKKap": {
+          "type": "badge",
+          "settings": {
+            "number": "30",
+            "label": "Days",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "eyebrow_Fm7pWK": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Feel the Difference",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "heading_nNyJNC": {
+          "type": "heading",
+          "settings": {
+            "text": "60-day Risk-Free Trial",
+            "heading_tag": "h2",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "description_dQtpVD": {
+          "type": "description",
+          "settings": {
+            "text": "If you're not completely satisfied in your first 30 days, simply return your order for a full refund - no questions asked.",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "button_hEPpnB": {
+          "type": "button",
+          "settings": {
+            "label": "Try Risk-Free Today",
+            "url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "badge_tnKKap",
+        "eyebrow_Fm7pWK",
+        "heading_nNyJNC",
+        "description_dQtpVD",
+        "button_hEPpnB"
+      ],
+      "custom_css": [
+        ".ft-page-width-template--21111456202938__free_trial_rgzqta {padding-bottom: 0px;}"
+      ],
+      "name": "Free Trial",
+      "settings": {
+        "background_color": "#f0edea",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "section_padding_y_desktop": 0,
+        "section_padding_x_desktop": 20,
+        "section_padding_y_mobile": 16,
+        "section_padding_x_mobile": 0,
+        "col1_width": 1,
+        "col2_width": 1,
+        "col_valign": "center",
+        "min_height_desktop": 460,
+        "min_height_mobile": 0,
+        "col1_is_image": false,
+        "col1_order_mobile": "first",
+        "col2_is_image": true,
+        "col2_image": "shopify://shop_images/Product_Images.webp",
+        "col2_order_mobile": "last",
+        "img_fit": "contain",
+        "img_position": "center center",
+        "img_col_min_height_mobile": 300,
+        "placeholder_bg_color": "#e8e4e0",
+        "placeholder_icon_color": "#666666",
+        "content_padding_top_desktop": 60,
+        "content_padding_bottom_desktop": 60,
+        "content_padding_x_desktop": 60,
+        "content_padding_top_mobile": 16,
+        "content_padding_bottom_mobile": 0,
+        "content_padding_x_mobile": 24,
+        "content_max_width": 500,
+        "badge_font": "system_ui_n4",
+        "badge_size": 64,
+        "badge_bg_color": "#8c3a3a",
+        "badge_text_color": "#ffffff",
+        "badge_number_weight": "700",
+        "badge_number_size": 22,
+        "badge_label_weight": "400",
+        "badge_label_size": 14,
+        "badge_margin_bottom": 20,
+        "eyebrow_font": "system_ui_n4",
+        "eyebrow_font_weight": "600",
+        "eyebrow_size_desktop": 13,
+        "eyebrow_size_mobile": 12,
+        "eyebrow_color": "#8c3a3a",
+        "eyebrow_letter_spacing": 2,
+        "eyebrow_transform": "uppercase",
+        "eyebrow_margin_bottom": 8,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 26,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 12,
+        "description_font": "system_ui_n4",
+        "description_font_weight": "400",
+        "description_size_desktop": 15,
+        "description_size_mobile": 14,
+        "description_color": "#444444",
+        "description_letter_spacing": 0,
+        "description_line_height": 6,
+        "description_margin_bottom": 24,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 15,
+        "btn_text_color": "#ffffff",
+        "btn_bg_color": "#8c3a3a",
+        "btn_border_width": 0,
+        "btn_border_color": "#8c3a3a",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "btn_display": "block",
+        "button_margin_bottom": 0
+      }
+    },
+    "nvgd_review_grid_VfVdcT": {
+      "type": "nvgd-review-grid",
+      "blocks": {
+        "review_group_UPBFta": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Lorraine W.",
+            "rating_1": 5,
+            "text_1": "started this after our urologist said my husband's motility was low. we'd tried zinc and folic acid for 8 months with basically no change on his retests. switched to this alongside it and his 90-day semen analysis showed real improvement. nobody told us motility could actually change this much. this supplement told us.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w11_7056f3bb-dc97-4fa9-8f2a-9467dde3d22f.png?v=1776370450",
+            "name_2": "Tammy R.",
+            "rating_2": 5,
+            "text_2": "my husband's count came back at 8 million after we'd been trying for over a year. i read about oxidative stress and sperm dna fragmentation and asked him to try this. about 3 months in his retest came back at 22 million. i cried in the car after the appointment because i forgot what hope felt like.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w15.png?v=1776370450",
+            "name_3": "Earl R.",
+            "rating_3": 5,
+            "text_3": "retired at 60, been trying to have a second kid with my younger wife for 2 years. doctor said age plays a role but so does everything else. 3 months in and my retest numbers moved more than the doctor expected. first good news we've had in a while.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m9_087d5b1c-48d6-4842-b8c2-f1d92a1ddeb6.png?v=1776370450",
+            "name_4": "Colleen M.",
+            "rating_4": 5,
+            "text_4": "my husband's varicocele surgery didn't fix the numbers like we hoped. his urologist recommended this alongside recovery. 90 days in and his retest showed real improvement. my husband said watching those follow-up appointments used to make him nervous. not anymore.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w7_b42d7f54-6003-4189-a0f9-fd34e4427f02.png?v=1776370450",
+            "name_5": "Marlene H.",
+            "rating_5": 5,
+            "text_5": "the worst part of this whole process wasn't the tests. it was every negative pregnancy test after. we tried zinc for months. folic acid for a year. nothing moved the needle. this was different. by month 3 his numbers had actually changed.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w8_0fa9eeb2-e605-4cdc-9aa4-a569f2aed024.png?v=1776370451"
+          }
+        },
+        "review_group_aepe6i": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Steve K.",
+            "rating_1": 5,
+            "text_1": "my count came back low about 4 months ago. added this and by week 6 my energy was noticeably up. by month 3 my retest showed real movement. my urologist asked what changed because the jump was bigger than expected.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m10_804de057-76fa-4ad9-b698-e5e40ed2a3e5.png?v=1776370450",
+            "name_2": "Irene P.",
+            "rating_2": 5,
+            "text_2": "my husband's motility numbers were so low the doctor mentioned iui as our likely next step. started this and the numbers on his 90-day retest went up enough that we're trying naturally a bit longer first. the little wins hit different when you've lost hope.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w17.png?v=1776370450",
+            "name_3": "Annette M.",
+            "rating_3": 5,
+            "text_3": "every appointment for a year felt like bad news. tried zinc for a year. folic acid for 6 months. nothing. started this and by month 3 the retest numbers were meaningfully better. my husband noticed the shift before i did.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w16.png?v=1776370451",
+            "name_4": "Ray D.",
+            "rating_4": 5,
+            "text_4": "both my count and motility were flagged low at our first workup. getting through each appointment took a toll. around week 8 i had more energy day to day. by the 90-day retest, both numbers had moved in the right direction.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m14.png?v=1776370450",
+            "name_5": "Susan T.",
+            "rating_5": 5,
+            "text_5": "my husband's count dropped out of nowhere after years of normal results. doctor said it happens, gave us general lifestyle advice. that advice didn't move anything for two cycles. started this and by month 3 the numbers started climbing. i actually laughed with relief.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w13.png?v=1776370450"
+          }
+        },
+        "review_group_YDE7Jn": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Loretta A.",
+            "rating_1": 5,
+            "text_1": "his sperm dna fragmentation came back high some mornings we just sat in silence after appointments. by week 6 his energy was up. by the 90-day retest the fragmentation numbers had improved. his urologist asked what changed.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w9_b40890a1-698d-4e7d-9880-f75b3020ea78.png?v=1776370450",
+            "name_2": "Wayne L.",
+            "rating_2": 5,
+            "text_2": "we'd been trying for over a year and a half. started this and nothing felt different for weeks. by month 3 his retest numbers had moved more than either of us expected. you don't realize what you'd given up hoping for until you get some of it back.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m11.png?v=1776370450",
+            "name_3": "Faye J.",
+            "rating_3": 5,
+            "text_3": "52 and trying for our first with a younger partner. my doctor kept saying age matters but so does everything else. started this and 90 days in my numbers had actually improved. 10 weeks after that we got the call we'd been hoping for.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w5_022bb544-74b1-46ae-919f-fd9889915afb.png?v=1776370450",
+            "name_4": "Craig T.",
+            "rating_4": 5,
+            "text_4": "had a vasectomy reversal years ago and it never fully worked like we hoped. constant low numbers, limited options. this is the first thing where i actually saw a difference. around week 8 my energy picked up. by the 90-day retest my count had moved.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m3_a8e72f00-65d5-4550-bf4c-294e6bd8da01.png?v=1776370450",
+            "name_5": "Gail W.",
+            "rating_5": 5,
+            "text_5": "my husband's numbers from the fertility clinic were so bad we were bracing for ivf. i have never written a review in my life but this one i had to. 90 days later his retest was dramatically better. not perfect but manageable, and that was all we needed.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w4_c6edae75-76c5-4a17-84bc-add1e9c5876f.png?v=1776370450"
+          }
+        },
+        "review_group_T8RAiD": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Wanda K.",
+            "rating_1": 5,
+            "text_1": "my husband's motility was so low the doctor mentioned donor sperm as an option. by week 5 his energy was noticeably up. by the 90-day retest his motility had improved enough that we're not having that conversation anymore, at least for now.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w3_c2ba75e1-c21c-4992-abab-07a64d3ddec2.png?v=1776370450",
+            "name_2": "Dale H.",
+            "rating_2": 5,
+            "text_2": "both of us were so anxious about every appointment we could barely talk about it. my husband's urologist actually suggested astaxanthin for the oxidative stress angle. 90 days in and his retest numbers improved noticeably. talking about appointments doesn't make me flinch anymore.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m6_ae62afa2-4061-4673-a24d-0a560be7b1ad.png?v=1776370450",
+            "name_3": "Donna M.",
+            "rating_3": 5,
+            "text_3": "retired 2 years ago and figured our fertility struggles were just part of getting older. both of us just accepted it. my daughter kept sending me links and i kept ignoring her. finally tried it for my husband. 90 days in and his numbers that i'd braced myself to accept just started improving. wish we hadn't waited so long.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w12.png?v=1776370450",
+            "name_4": "Hal P.",
+            "rating_4": 5,
+            "text_4": "48 years old. my numbers are nowhere near what they were in my 20s. this stuff doesn't reverse age obviously but the retest numbers moved by week 8. i went from dreading appointments to actually looking forward to the next one. that's a win at my age.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m15.png?v=1776370450",
+            "name_5": "Margaret L.",
+            "rating_5": 5,
+            "text_5": "my husband's numbers had been stuck low for 5 months. his doctor said it could take a year or more to improve on its own. started this and the improvement happened faster than anyone expected. week 4 his energy started picking up. week 8 his retest showed real movement. his urologist was genuinely surprised at the timeline.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w18.png?v=1776370450"
+          }
+        },
+        "review_group_QHcHcT": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Dennis J.",
+            "rating_1": 5,
+            "text_1": "my doctor put me on a blood pressure medication that's known to affect fertility. tried a generic multivitamin for 4 months. nothing. started this and by week 5 my energy started lifting. by the 90-day retest my numbers had actually moved.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m2_2556b9bb-26bf-4190-b10e-3b564db33c58.png?v=1776370450",
+            "name_2": "Arlene D.",
+            "rating_2": 5,
+            "text_2": "my husband's count was so low he stopped wanting to talk about it — his hobby of even discussing kids for 30 years shut down completely. by 90 days his retest numbers went up enough that we're talking about trying again. im hopeful for the first time in a while.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w2_cef21a0f-60dc-4493-a4a5-5305548c27e5.png?v=1776370450",
+            "name_3": "Pamela C.",
+            "rating_3": 5,
+            "text_3": "fertility struggles are real and i am tired of doctors acting like there's nothing to be done. my husband's numbers, our timeline, our stress — none of them said anything helpful beyond 'keep trying.' this supplement does what our doctor couldn't. 90 days in and the difference is undeniable.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w1_6793d2d5-118e-4cbb-98cf-c627587795cb.png?v=1776370450",
+            "name_4": "Keith T.",
+            "rating_4": 5,
+            "text_4": "low motility for over a year. couldn't get a straight answer on next steps. week 4 my energy started picking up. by the 90-day retest i was seeing real movement. slow comeback but its a comeback.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m1_ef2b7eef-fcf2-4962-9baa-8b8203d7d541.png?v=1776370450",
+            "name_5": "Cynthia R.",
+            "rating_5": 5,
+            "text_5": "we were popping ovulation tests and stressing every single cycle. my stomach was a mess from the anxiety. by week 6 my husband's energy was up. by week 10 his retest numbers were genuinely better. this replaced a cycle of dread that was destroying us.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.png?v=1776370450"
+          }
+        },
+        "review_group_tdz3wF": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Brenda S.",
+            "rating_1": 5,
+            "text_1": "bought this for my husband because he was waking up at 3am every night stressing about our numbers. 4 weeks in his energy leveled out and he slept through the night. i know because i did too. best purchase ive made in years.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w6_06e96ecb-72db-46f5-a723-15210b30ede2.png?v=1776370450",
+            "name_2": "Trevor S.",
+            "rating_2": 5,
+            "text_2": "gym guy. 44 years old. started getting flagged low on semen analysis out of nowhere. week 3 my energy was noticeably up. by week 6 the anxiety around appointments was mostly gone. easiest addition to my stack.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m13.png?v=1776370450",
+            "name_3": "Debra K.",
+            "rating_3": 5,
+            "text_3": "my husband's numbers were unbearable to talk about. couldnt bring it up without one of us getting upset. 6 weeks in and we can talk about it without wanting to cry. not perfectly comfortable but progress i didnt think was possible.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w14.png?v=1776370450",
+            "name_4": "Renee R.",
+            "rating_4": 5,
+            "text_4": "57, trying for a second with my younger husband, his numbers were so low every appointment felt like a countdown. tried everything. thousands of dollars. this is the only thing that actually moved his retest. by month 2 we were just moving forward. no bracing. just moving forward.",
+            "image_url_4": "",
+            "name_5": "Curt A.",
+            "rating_5": 5,
+            "text_5": "i dont write reviews. ever. but this one earned it. low count for 6 months. couldnt get a straight answer from anyone. added this and the progress accelerated noticeably starting week 4. by week 10 my retest showed real movement. thats all i have to say.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m7_ea7157a1-f119-48de-8841-7a304877cee5.png?v=1776370450"
+          }
+        },
+        "review_group_V8gcJa": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Marie B.",
+            "rating_1": 5,
+            "text_1": "58 years old and my husband's fertility appointments woke us both up with dread every time one was scheduled. took about 5 weeks but his energy picked up dramatically. i actually feel hopeful now.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b2.png?v=1776370450",
+            "name_2": "Penny B.",
+            "rating_2": 5,
+            "text_2": "my husband's numbers were frozen solid, no movement for 8 months. getting through appointments was a nightmare, i had to hold his hand through every one. within a month things started shifting. his urologist kept saying she was surprised how fast the numbers were moving. by month 3 his retest was the best it had been in years. i get emotional thinking about it because i really thought we'd lost that window.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b3.png?v=1776370450",
+            "name_3": "Hank D.",
+            "rating_3": 5,
+            "text_3": "55 years old. low numbers from decades of stress and bad habits. by week 5 my energy was up. by week 8 my retest showed the first real movement in years. something changed and i can feel it.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.png?v=1776370450",
+            "name_4": "Martha T.",
+            "rating_4": 5,
+            "text_4": "everything about our fertility journey hurt. every appointment, every test, every negative result. my gp said its normal at our age. im 51. thats not that old. 7 weeks in and the anxiety is probably 60% reduced. not gone but i feel human again.",
+            "image_url_4": "",
+            "name_5": "Vince B.",
+            "rating_5": 5,
+            "text_5": "had a failed ivf cycle 10 years ago and gave up trying. this is the first supplement that actually kept the retests from disappointing us. 3 months in and ive had zero bad appointments. not fewer. zero. thats never happened.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.png?v=1776370450"
+          }
+        },
+        "review_group_Ab4xEx": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Bonnie W.",
+            "rating_1": 5,
+            "text_1": "ignored my daughter's link three times for my husband. finally ordered because she wouldnt stop. 6 weeks later i called her and said you were right. his retest numbers are genuinely better. kids should push their parents more.",
+            "image_url_1": "",
+            "name_2": "Joyce P.",
+            "rating_2": 5,
+            "text_2": "my husband's count dropped 8 months ago. then his motility started dropping too. the count started improving faster than expected and the motility never fully cratered. i genuinely believe this prevented the second problem from getting as bad.",
+            "image_url_2": "",
+            "name_3": "Glen F.",
+            "rating_3": 5,
+            "text_3": "61. both count and motility low. my doctor wanted to move straight to ivf. i wanted to try something else first. 8 weeks in my numbers improved enough that my doctor agreed to hold off. still improving at week 12.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m5_28e1614e-c265-42d9-b9bf-33fd207ebc80.png?v=1776370450",
+            "name_4": "Elaine D.",
+            "rating_4": 5,
+            "text_4": "our fertility struggles gave me anxiety i didnt even know was possible. tried turmeric. cold showers. cutting sugar. nothing helped enough. this is the first thing that actually moved my husband's retest numbers enough that we could function normally. week 6 was when we felt the shift.",
+            "image_url_4": "",
+            "name_5": "Phil M.",
+            "rating_5": 5,
+            "text_5": "my wife begged me to try this after my numbers came back low. i resisted because i dont believe in supplements. she ordered it anyway. 5 weeks in my energy was better and by 90 days my retest had moved. i still wont admit she was right to her face.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m12.png?v=1776370450"
+          }
+        },
+        "review_group_nr3dGW": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Connie L.",
+            "rating_1": 5,
+            "text_1": "the anxiety went from a constant 7 to maybe a 3. its not perfect but going from 7 to 3 gave us our life back.",
+            "image_url_1": "",
+            "name_2": "Dorothy V.",
+            "rating_2": 5,
+            "text_2": "my husband stopped taking it after 2 months because he felt fine. within 10 days everything felt like it was sliding back. the energy dip, the stress, the dread before appointments. reordered immediately. we will never stop taking this again. lesson learned.",
+            "image_url_2": "",
+            "name_3": "Valerie C.",
+            "rating_3": 5,
+            "text_3": "we couldnt talk about it without falling apart. couldnt bring it up at family dinners. couldnt hold each other's hand through another negative test without breaking. by week 8 my husband's retest came back better than either of us expected. that was worth more than i can explain here.",
+            "image_url_3": "",
+            "name_4": "Marilyn A.",
+            "rating_4": 5,
+            "text_4": "trying to conceive for 14 months before we found this. by week 4 my husband's energy improved. by week 8 his retest showed real movement. we're at maybe 80% of where we want to be and 80% is a miracle compared to where we started.",
+            "image_url_4": "",
+            "name_5": "Shirley F.",
+            "rating_5": 5,
+            "text_5": "i tried SO many things for my husband. zinc. folic acid. maca root. cold showers. cutting caffeine. literally everything. none of them did what this does. week 6 i understood the difference.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_QqgX4N": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Todd L.",
+            "rating_1": 5,
+            "text_1": "low numbers from stress and years of desk work. 10 weeks in and my energy is noticeably up. i started exercising again twice a week. my urologist said whatever im doing keep doing it because the retest numbers moved.",
+            "image_url_1": "",
+            "name_2": "Cheryl N.",
+            "rating_2": 5,
+            "text_2": "my husband's count and motility both tanked around the same time. we went from talking about baby names to barely talking about it at all. 8 weeks later his retest showed real movement. i cried. he cried. first time in 2 years.",
+            "image_url_2": "",
+            "name_3": "Jean M.",
+            "rating_3": 5,
+            "text_3": "my husband's doctor said his numbers would probably improve on their own over 1-2 years. he said we cant wait 2 years we have a life to live. hes at about 90% of target range at month 4. his doctor said some people just improve faster. we didnt tell him about the supplement.",
+            "image_url_3": "",
+            "name_4": "Rick H.",
+            "rating_4": 5,
+            "text_4": "construction worker. 52 years old. numbers were low, energy was low, everything felt heavy all the time. by month 2 the baseline anxiety just dropped. the constant background dread is gone. thats the difference between functioning and suffering.",
+            "image_url_4": "",
+            "name_5": "Judith A.",
+            "rating_5": 5,
+            "text_5": "i am 61 and trying with my younger husband. my friend had been telling her husband to take this for 3 months and he looked like a different person. more energy, more hope. 7 weeks in and i understand now. the dread just quiets down. thats the only way i can describe it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_6TJfcy": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carolyn E.",
+            "rating_1": 5,
+            "text_1": "our fertility struggles took my hope. i used to believe it would just happen. by month 3 my husband's retest was back to a range we could work with. by month 4 we were almost back to feeling normal about the whole process. i lost a year of my life to that anxiety and im angry nobody told us sooner.",
+            "image_url_1": "",
+            "name_2": "Virginia R.",
+            "rating_2": 5,
+            "text_2": "i bought every fertility supplement on amazon for my husband over 2 years. spent hundreds. this helped a lot. the difference is it goes somewhere the others physically cannot. i wish id found it first and saved myself 2 years.",
+            "image_url_2": "",
+            "name_3": "Joe P.",
+            "rating_3": 5,
+            "text_3": "my wife ordered this for me because she was tired of hearing me stress about our numbers. week 5 i realized i hadnt brought it up in a while. she pointed that out too. she doesnt need to know she was right though.",
+            "image_url_3": "",
+            "name_4": "Ruth S.",
+            "rating_4": 5,
+            "text_4": "54 and trying again, my husband's numbers were so bad the doctor mentioned donor sperm. that was the lowest point. 8 weeks in his numbers are controlled. not where we want yet but close.",
+            "image_url_4": "",
+            "name_5": "Beverly H.",
+            "rating_5": 5,
+            "text_5": "i almost gave up at week 3 because nothing felt different. so glad i didnt. week 5 is when the shift happened. by week 8 my husband's energy was noticeably up. if youre reading this and thinking about quitting early — dont.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_FFMpiX": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Paul D.",
+            "rating_1": 5,
+            "text_1": "low count plus low motility plus high dna fragmentation. added this and the background anxiety dropped enough that i could actually sleep. my next semen analysis improved too. doctor was pleased but wouldnt credit the supplement. thats fine. i know.",
+            "image_url_1": "",
+            "name_2": "Janice H.",
+            "rating_2": 5,
+            "text_2": "im a nurse. long shifts, high stress, barely eating right. the fertility stress from all of it was threatening our whole plan. by week 6 i was making it through a full shift without the dread. we werent ready to give up. this kept us going.",
+            "image_url_2": "",
+            "name_3": "Evelyn W.",
+            "rating_3": 5,
+            "text_3": "finishing bag 2 now. my husband's numbers from the stress of trying are about 70% better. appointments dont burn like they used to. tests dont lock us up with anxiety. the improvement was gradual enough that i didnt notice until i realized i stopped dreading the mailbox.",
+            "image_url_3": "",
+            "name_4": "Brent T.",
+            "rating_4": 5,
+            "text_4": "i read the actual studies before ordering. astaxanthin at 12mg has peer reviewed clinical data for oxidative stress. results matched the literature. my numbers improved measurably by week 6. the evidence base is solid and my retest agrees.",
+            "image_url_4": "",
+            "name_5": "Norma J.",
+            "rating_5": 5,
+            "text_5": "this is my third bag for my husband. the last time we ran low we stretched it out to every other day and within a week his energy started dropping again. every single day. no skipping.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_UkqjWA": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Rose M.",
+            "rating_1": 5,
+            "text_1": "started trying at 48. numbers flagged low at 49. by 50 i felt like i was 70. week 6 was the turning point. the anxiety just started calming and it hasnt come back.",
+            "image_url_1": "",
+            "name_2": "Kayla S.",
+            "rating_2": 4,
+            "text_2": "genuinely noticing improvement in my husband's energy and drive. giving 4 stars only because his retest took about 5 weeks to show up. if youre patient it delivers.",
+            "image_url_2": "",
+            "name_3": "Paige W.",
+            "rating_3": 4,
+            "text_3": "product works great for my husband's oxidative stress numbers. his energy feels significantly better. knocking one star because i wish they had a bigger size so i didnt have to reorder as often.",
+            "image_url_3": "",
+            "name_4": "Joanne T.",
+            "rating_4": 4,
+            "text_4": "my husband's energy improved noticeably, morning fatigue much shorter. taking off one star because the softgel is a bit large for him — he manages fine but worth knowing.",
+            "image_url_4": "",
+            "name_5": "Scott R.",
+            "rating_5": 4,
+            "text_5": "energy improved around week 5. numbers not fully where we want yet but significantly better. would give 5 but i think the price could be a bit lower for what you get.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_G9zbdE": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Teri H.",
+            "rating_1": 4,
+            "text_1": "bought this for my husband. month 2 he said his energy feels better and asked what changed. he reordered himself. giving 4 stars because it took a full 6 weeks to see results.",
+            "image_url_1": "",
+            "name_2": "Diane M.",
+            "rating_2": 4,
+            "text_2": "was skeptical a supplement could help with my husband's low motility, but after two weeks i could tell a difference in his energy, and after four weeks his numbers were almost where we wanted. only 4 stars because i wish there was a subscription option.",
+            "image_url_2": "",
+            "name_3": "Shari L.",
+            "rating_3": 4,
+            "text_3": "i was very surprised this helped my husband's stress levels around our fertility timeline. couldnt sleep through the night, very anxious, but it actually worked. only thing holding back the 5th star is the price.",
+            "image_url_3": "",
+            "name_4": "Nadia T.",
+            "rating_4": 3,
+            "text_4": "only 3 weeks in so probably too early to judge. energy might be slightly better but nothing dramatic yet. giving it the full 90 days before deciding.",
+            "image_url_4": "",
+            "name_5": "Wendy F.",
+            "rating_5": 3,
+            "text_5": "mixed so far. energy seems a bit better but no major change on the numbers yet. only 4 weeks in so i know thats probably early. sticking with it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_iMdCKz": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Holly H.",
+            "rating_1": 3,
+            "text_1": "took about 12 days to arrive which is annoying when youre anxious to start something. product itself seems fine once i got started.",
+            "image_url_1": "",
+            "name_2": "Vera P.",
+            "rating_2": 2,
+            "text_2": "delivery took about 10 days. not a deal breaker but worth knowing if timing matters to you.",
+            "image_url_2": "",
+            "name_3": "Beth T.",
+            "rating_3": 2,
+            "text_3": "softgel is bigger than expected. i manage but if you have trouble swallowing pills its worth knowing before you order.",
+            "image_url_3": "",
+            "name_4": "Julie S.",
+            "rating_4": 1,
+            "text_4": "expected something different from the photos. product is just softgels in a bag.",
+            "image_url_4": "",
+            "name_5": "Nikki P.",
+            "rating_5": 1,
+            "text_5": "sale ended before i could order. they wouldnt honor it. frustrating.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_AFyBcx": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carly M.",
+            "rating_1": 1,
+            "text_1": "shipping took longer than expected. annoying when youre anxious and trying to start consistently.",
+            "image_url_1": "",
+            "name_2": "Maya R.",
+            "rating_2": 1,
+            "text_2": "3 days in. nothing to report yet. leaving this to track my start date.",
+            "image_url_2": "",
+            "name_3": "",
+            "rating_3": 5,
+            "text_3": "",
+            "image_url_3": "",
+            "name_4": "",
+            "rating_4": 5,
+            "text_4": "",
+            "image_url_4": "",
+            "name_5": "",
+            "rating_5": 5,
+            "text_5": "",
+            "image_url_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_group_UPBFta",
+        "review_group_aepe6i",
+        "review_group_YDE7Jn",
+        "review_group_T8RAiD",
+        "review_group_QHcHcT",
+        "review_group_tdz3wF",
+        "review_group_V8gcJa",
+        "review_group_Ab4xEx",
+        "review_group_nr3dGW",
+        "review_group_QqgX4N",
+        "review_group_6TJfcy",
+        "review_group_FFMpiX",
+        "review_group_UkqjWA",
+        "review_group_G9zbdE",
+        "review_group_iMdCKz",
+        "review_group_AFyBcx"
+      ],
+      "name": "Reviews grid",
+      "settings": {
+        "average_rating": "4.84",
+        "total_reviews": "50,312",
+        "pct_5": 88,
+        "count_5": "44,863",
+        "pct_4": 7,
+        "count_4": "3,979",
+        "pct_3": 2,
+        "count_3": "758",
+        "pct_2": 1,
+        "count_2": "293",
+        "pct_1": 2,
+        "count_1": "419",
+        "columns_desktop": 3,
+        "reviews_per_page": 9,
+        "button_color": "#8c3a3a"
+      }
+    },
+    "nvgd_faq_yXeVbA": {
+      "type": "nvgd-faq",
+      "blocks": {
+        "faq_item_mPtaqq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "I've Tried Everything. What Makes This Different?",
+            "answer": "<p>Astaxanthin works at the cellular level — it's not a generic multivitamin or a one-size-fits-all stack. It targets the oxidative stress that damages sperm while they're still developing, and builds protection over time.</p>"
+          }
+        },
+        "faq_item_idPTLU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does This Work If My Numbers Are Already Low?",
+            "answer": "<p>Yes. Many customers with low count, low motility or unexplained diagnoses report meaningful movement on their retests within 90 days of consistent use — the length of one full sperm production cycle.</p>"
+          }
+        },
+        "faq_item_8DqNVU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are There Any Side Effects?",
+            "answer": "<p>Astaxanthin is well-tolerated by most people. It's a natural carotenoid with no known serious side effects at clinical doses.</p>"
+          }
+        },
+        "faq_item_EMrJUj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is It Safe For Daily Use?",
+            "answer": "<p>Yes — it's designed for daily use. Consistent daily dosing is what allows the compound to build up and protect sperm through their full development cycle.</p>"
+          }
+        },
+        "faq_item_ctyrmU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where Is It Made?",
+            "answer": "<p>Revella is manufactured in a GMP-certified facility in the United States, with third-party lab testing on every batch.</p>"
+          }
+        },
+        "faq_item_zm9mVx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What If It Doesn't Work For Me?",
+            "answer": "<p>We offer a full 60-day money-back guarantee. If you're not satisfied for any reason, contact us and we'll refund you — no questions asked.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_mPtaqq",
+        "faq_item_idPTLU",
+        "faq_item_8DqNVU",
+        "faq_item_EMrJUj",
+        "faq_item_ctyrmU",
+        "faq_item_zm9mVx"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "layout": "stacked",
+        "split_header_width": 35,
+        "split_column_gap": 64,
+        "max_width": 700,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "header_alignment": "center",
+        "header_margin_bottom": 32,
+        "eyebrow": "Frequently Asked Questions",
+        "eyebrow_font_size": 14,
+        "eyebrow_font_weight": "400",
+        "heading": "Your Questions, Answered!",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "item_gap": 12,
+        "item_border_radius": 16,
+        "item_border_width": 1,
+        "item_padding_vertical": 18,
+        "item_padding_horizontal": 20,
+        "question_font_size": 16,
+        "question_font_weight": "400",
+        "answer_font_size": 15,
+        "icon_size": 22,
+        "accordion_mode": false,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#777777",
+        "heading_color": "#8c3a3a",
+        "item_background": "#f5eeee",
+        "item_border_color": "#8c3a3a",
+        "question_color": "#1a1a1a",
+        "answer_color": "#555555",
+        "icon_color": "#555555"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "trust_banner_wXM4E4",
+    "review_marquee_imQLUz",
+    "review_card_3xCdjj",
+    "proven_result_mdNYJ9",
+    "carousel_nPPaMB",
+    "before_after_biiP9L",
+    "four_column_badge_KkbnrX",
+    "animated_wave_divider_pbft83",
+    "information_card_igAJVJ",
+    "research_card_fqgxnW",
+    "running_marquee_k3qnar",
+    "journey_MWkCz7",
+    "comparison_table_hH8TLN",
+    "free_trial_rgzqta",
+    "nvgd_review_grid_VfVdcT",
+    "nvgd_faq_yXeVbA"
+  ]
+}

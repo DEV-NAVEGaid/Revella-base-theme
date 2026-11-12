@@ -1,0 +1,64 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign per_row = s.per_row_mobile -%}
+<div class="lm">
+  <section class="press" aria-label="{{ s.aria_label | escape }}"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="press-m">
+      {%- for block in section.blocks -%}
+        {%- assign mod = forloop.index0 | modulo: per_row -%}
+        {%- if mod == 0 %}<div class="press-row">{% endif -%}
+        {%- if block.settings.image != blank -%}
+          <img
+            class="pimg"
+            src="{{ block.settings.image | image_url: height: 120 }}"
+            alt="{{ block.settings.image.alt | default: block.settings.label | escape }}"
+            style="height: {{ block.settings.height }}px; max-width: {{ block.settings.width | default: 115 }}px"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            {{ block.shopify_attributes }}
+          >
+        {%- else -%}
+          <div class="ph" style="width: {{ block.settings.width | default: 115 }}px{% if block.settings.height != 30 %}; height: {{ block.settings.height }}px{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label }}</div>
+        {%- endif -%}
+        {%- assign last_in_row = per_row | minus: 1 -%}
+        {%- if mod == last_in_row or forloop.last %}</div>{% endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Press logos",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Accessible label", "default": "Press" },
+    { "type": "range", "id": "per_row_mobile", "label": "Logos per row", "min": 1, "max": 6, "step": 1, "default": 2, "info": "Rows stack on mobile and sit side by side on desktop." },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #0D1E39." }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo image", "info": "Use a white/transparent logo." },
+        { "type": "text", "id": "label", "label": "Placeholder text / alt", "default": "[Press logo]" },
+        { "type": "number", "id": "width", "label": "Width (px)", "default": 115, "info": "Logo width on mobile, e.g. 115." },
+        { "type": "range", "id": "height", "label": "Height (px)", "min": 16, "max": 60, "step": 1, "default": 30 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Press logos",
+      "blocks": [
+        { "type": "logo", "settings": { "width": 115 } },
+        { "type": "logo", "settings": { "width": 167 } },
+        { "type": "logo", "settings": { "width": 153 } },
+        { "type": "logo", "settings": { "width": 52, "height": 40, "label": "[Logo]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

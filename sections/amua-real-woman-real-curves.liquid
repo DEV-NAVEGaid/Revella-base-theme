@@ -1,0 +1,769 @@
+{% style %}
+/* ================================
+   Amua: Real Women Real Curves
+   ================================ */
+
+.amua-rwrc {
+  background: var(--amua-bg);
+  padding-top: var(--amua-pad-top);
+  padding-bottom: var(--amua-pad-bottom);
+  overflow: hidden;
+}
+
+.amua-rwrc__inner {
+  max-width: var(--amua-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.amua-rwrc__header {
+  text-align: center;
+}
+
+/* ---------- Badge ---------- */
+.amua-rwrc__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--amua-badge-bg);
+  border: 1px solid var(--amua-badge-border);
+  color: var(--amua-badge-text);
+  font-size: var(--amua-badge-fs);
+  font-weight: 600;
+  padding: var(--amua-badge-pad-v) var(--amua-badge-pad-h);
+  border-radius: var(--amua-badge-radius);
+  margin-bottom: 16px;
+}
+
+.amua-rwrc__badge-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.amua-rwrc__badge-stars .amua-rwrc__star-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--amua-badge-star);
+}
+
+/* ---------- Heading ---------- */
+.amua-rwrc__heading {
+  font-size: var(--amua-heading-fs-mobile);
+  font-weight: var(--amua-heading-weight);
+  line-height: 1.05;
+  margin: 0 0 var(--amua-heading-mb);
+  letter-spacing: -0.02em;
+}
+
+.amua-rwrc__heading-line1 {
+  color: var(--amua-heading-line1-color);
+}
+
+.amua-rwrc__heading-highlight {
+  background-image: linear-gradient(135deg, var(--amua-heading-highlight-gradient-start), var(--amua-heading-highlight-gradient-end));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@media screen and (min-width: 990px) {
+  .amua-rwrc__heading {
+    font-size: var(--amua-heading-fs-desktop);
+  }
+}
+
+/* ---------- Carousel viewport / track ---------- */
+.amua-rwrc__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.amua-rwrc__track {
+  display: flex;
+  gap: var(--amua-card-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.amua-rwrc__track:active {
+  cursor: grabbing;
+}
+
+.amua-rwrc__track::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+
+/* ---------- Card ---------- */
+.amua-rwrc__card {
+  flex: 0 0 var(--amua-card-width-mobile);
+  scroll-snap-align: start;
+  background: var(--amua-card-bg);
+  border: var(--amua-card-border-width) solid var(--amua-card-border-color);
+  border-radius: var(--amua-card-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 990px) {
+  .amua-rwrc__card {
+    flex-basis: calc((100% - (var(--amua-cards-desktop) - 1) * var(--amua-card-gap)) / var(--amua-cards-desktop));
+  }
+}
+
+.amua-rwrc__card-image {
+  width: 100%;
+  aspect-ratio: var(--amua-card-image-ratio);
+  overflow: hidden;
+  background: #eee;
+}
+
+.amua-rwrc__card-image img,
+.amua-rwrc__card-image svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.amua-rwrc__card-body {
+  padding: var(--amua-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- Stars (per card) ---------- */
+.amua-rwrc__stars {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.amua-rwrc__stars .amua-rwrc__star-icon {
+  width: var(--amua-star-size);
+  height: var(--amua-star-size);
+  fill: var(--amua-star-color);
+}
+
+.amua-rwrc__stars .amua-rwrc__star-icon.is-empty {
+  fill: var(--amua-star-empty);
+}
+
+/* ---------- Reviewer pill ---------- */
+.amua-rwrc__reviewer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--amua-verified-border);
+  background: var(--amua-verified-bg);
+  border-radius: 10px;
+  padding: 2px 5px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.amua-rwrc__reviewer-name {
+  color: var(--amua-name-color);
+  font-size: var(--amua-name-fs);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.amua-rwrc__verified-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: var(--amua-verified-icon);
+}
+
+.amua-rwrc__verified-text {
+  color: var(--amua-verified-text);
+  font-size: var(--amua-verified-fs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Review text ---------- */
+.amua-rwrc__review-text {
+  color: var(--amua-review-color);
+  font-size: var(--amua-review-fs);
+  line-height: var(--amua-review-lh);
+  margin: 0;
+}
+
+/* ---------- Product mini card ---------- */
+.amua-rwrc__product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--amua-product-bg);
+  border-radius: var(--amua-product-radius);
+  padding: 10px;
+  margin-top: auto;
+}
+
+.amua-rwrc__product-image {
+  width: var(--amua-product-img-size);
+  height: var(--amua-product-img-size);
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.amua-rwrc__product-image img,
+.amua-rwrc__product-image svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.amua-rwrc__product-info {
+  min-width: 0;
+}
+
+.amua-rwrc__product-name {
+  color: var(--amua-product-name-color);
+  font-size: var(--amua-product-name-fs);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.amua-rwrc__product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.amua-rwrc__price {
+  color: var(--amua-price-color);
+  font-size: var(--amua-price-fs);
+  font-weight: 700;
+}
+
+.amua-rwrc__compare-price {
+  color: var(--amua-compare-color);
+  font-size: calc(var(--amua-price-fs) - 2px);
+  text-decoration: line-through;
+}
+
+.amua-rwrc__purchase-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--amua-date-color);
+  font-size: var(--amua-date-fs);
+}
+
+.amua-rwrc__date-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--amua-date-color);
+  stroke-width: 1.5;
+}
+
+/* ---------- Nav arrows ---------- */
+.amua-rwrc__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--amua-nav-gap);
+  margin-top: var(--amua-nav-margin-top);
+}
+
+.amua-rwrc__nav-btn {
+  width: var(--amua-nav-size);
+  height: var(--amua-nav-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.amua-rwrc__nav-btn:active {
+  transform: scale(0.92);
+}
+
+.amua-rwrc__nav-btn svg {
+  width: 40%;
+  height: 40%;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.amua-rwrc__nav-btn--prev {
+  background: var(--amua-nav-prev-bg);
+  border: 1.5px solid var(--amua-nav-prev-border);
+}
+
+.amua-rwrc__nav-btn--prev svg {
+  stroke: var(--amua-nav-prev-icon);
+}
+
+.amua-rwrc__nav-btn--next {
+  background: var(--amua-nav-next-bg);
+  border: none;
+}
+
+.amua-rwrc__nav-btn--next svg {
+  stroke: var(--amua-nav-next-icon);
+}
+
+/* ---------- Placeholder svg sizing ---------- */
+.amua-rwrc__placeholder {
+  width: 100%;
+  height: 100%;
+}
+{% endstyle %}
+
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+-%}
+
+<section
+  id="amua-rwrc-{{ sid }}"
+  class="amua-rwrc"
+  style="
+    --amua-bg: {{ s.bg_color }};
+    --amua-max-width: {{ s.content_max_width }}px;
+    --amua-pad-top: {{ s.padding_top }}px;
+    --amua-pad-bottom: {{ s.padding_bottom }}px;
+
+    --amua-badge-bg: {{ s.badge_bg_color }};
+    --amua-badge-border: {{ s.badge_border_color }};
+    --amua-badge-text: {{ s.badge_text_color }};
+    --amua-badge-star: {{ s.badge_star_color }};
+    --amua-badge-fs: {{ s.badge_font_size }}px;
+    --amua-badge-pad-v: {{ s.badge_padding_v }}px;
+    --amua-badge-pad-h: {{ s.badge_padding_h }}px;
+    --amua-badge-radius: {{ s.badge_radius }}px;
+
+    --amua-heading-line1-color: {{ s.heading_line1_color }};
+    --amua-heading-highlight-gradient-start: {{ s.heading_highlight_gradient_start }};
+    --amua-heading-highlight-gradient-end: {{ s.heading_highlight_gradient_end }};
+    --amua-heading-fs-mobile: {{ s.heading_font_size_mobile }}px;
+    --amua-heading-fs-desktop: {{ s.heading_font_size_desktop }}px;
+    --amua-heading-weight: {{ s.heading_font_weight }};
+    --amua-heading-mb: {{ s.heading_margin_bottom }}px;
+
+    --amua-card-bg: {{ s.card_bg_color }};
+    --amua-card-border-color: {{ s.card_border_color }};
+    --amua-card-border-width: {{ s.card_border_width }}px;
+    --amua-card-radius: {{ s.card_radius }}px;
+    --amua-card-padding: {{ s.card_padding }}px;
+    --amua-card-width-mobile: {{ s.card_width_mobile }}%;
+    --amua-cards-desktop: {{ s.cards_per_view_desktop }};
+    --amua-card-gap: {{ s.card_gap }}px;
+    --amua-card-image-ratio: {{ s.card_image_ratio }};
+
+    --amua-star-color: {{ s.star_color }};
+    --amua-star-empty: {{ s.star_empty_color }};
+    --amua-star-size: {{ s.star_size }}px;
+
+    --amua-name-color: {{ s.name_color }};
+    --amua-name-fs: {{ s.name_font_size }}px;
+    --amua-verified-bg: {{ s.verified_bg_color }};
+    --amua-verified-border: {{ s.verified_border_color }};
+    --amua-verified-text: {{ s.verified_text_color }};
+    --amua-verified-icon: {{ s.verified_icon_color }};
+    --amua-verified-fs: {{ s.verified_font_size }}px;
+
+    --amua-review-color: {{ s.review_text_color }};
+    --amua-review-fs: {{ s.review_font_size }}px;
+    --amua-review-lh: {{ s.review_line_height }}%;
+
+    --amua-product-bg: {{ s.product_card_bg }};
+    --amua-product-radius: {{ s.product_card_radius }}px;
+    --amua-product-img-size: {{ s.product_image_size }}px;
+    --amua-product-name-color: {{ s.product_name_color }};
+    --amua-product-name-fs: {{ s.product_name_font_size }}px;
+    --amua-price-color: {{ s.price_color }};
+    --amua-price-fs: {{ s.price_font_size }}px;
+    --amua-compare-color: {{ s.compare_price_color }};
+    --amua-date-color: {{ s.date_color }};
+    --amua-date-fs: {{ s.date_font_size }}px;
+
+    --amua-nav-size: {{ s.nav_button_size }}px;
+    --amua-nav-gap: {{ s.nav_gap }}px;
+    --amua-nav-margin-top: {{ s.nav_margin_top }}px;
+    --amua-nav-prev-bg: {{ s.nav_prev_bg }};
+    --amua-nav-prev-border: {{ s.nav_prev_border }};
+    --amua-nav-prev-icon: {{ s.nav_prev_icon_color }};
+    --amua-nav-next-bg: {{ s.nav_next_bg }};
+    --amua-nav-next-icon: {{ s.nav_next_icon_color }};
+  "
+>
+  <div class="amua-rwrc__inner">
+
+    <div class="amua-rwrc__header">
+      {%- if s.show_badge -%}
+        <div class="amua-rwrc__badge">
+          <span class="amua-rwrc__badge-stars" aria-hidden="true">
+            {%- for i in (1..5) -%}
+              <svg viewBox="0 0 24 24" class="amua-rwrc__star-icon"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"/></svg>
+            {%- endfor -%}
+          </span>
+          <span class="amua-rwrc__badge-text">{{ s.badge_text }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if s.heading_line1 != blank or s.heading_highlight != blank -%}
+        <h2 class="amua-rwrc__heading">{%- if s.heading_line1 != blank -%}<span class="amua-rwrc__heading-line1">{{ s.heading_line1 }}</span>{%- endif -%}{%- if s.heading_highlight != blank -%}<span class="amua-rwrc__heading-highlight">{{ s.heading_highlight }}</span>{%- endif -%}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="amua-rwrc__viewport">
+      <div class="amua-rwrc__track" data-amua-track>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'testimonial' -%}
+            {%- liquid
+              assign rating = block.settings.rating
+            -%}
+            <div class="amua-rwrc__card" {{ block.shopify_attributes }} data-amua-slide>
+              <div class="amua-rwrc__card-image">
+                {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 900 }}"
+                    alt="{{ block.settings.customer_name | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'amua-rwrc__placeholder' }}
+                {%- endif -%}
+              </div>
+
+              <div class="amua-rwrc__card-body">
+                <div class="amua-rwrc__stars" aria-hidden="true">
+                  {%- for i in (1..5) -%}
+                    <svg viewBox="0 0 24 24" class="amua-rwrc__star-icon {% if i > rating %}is-empty{% endif %}"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"/></svg>
+                  {%- endfor -%}
+                </div>
+
+                <div class="amua-rwrc__reviewer-pill">
+                  <span class="amua-rwrc__reviewer-name">{{ block.settings.customer_name }},</span>
+                  <svg viewBox="0 0 24 24" class="amua-rwrc__verified-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="amua-rwrc__verified-text">{{ block.settings.verified_text }}</span>
+                </div>
+
+                <p class="amua-rwrc__review-text">{{ block.settings.review_text }}</p>
+
+                <div class="amua-rwrc__product">
+                  <div class="amua-rwrc__product-image">
+                    {%- if block.settings.product_image != blank -%}
+                      <img
+                        src="{{ block.settings.product_image | image_url: width: 200 }}"
+                        alt="{{ block.settings.product_name | escape }}"
+                        width="{{ block.settings.product_image.width }}"
+                        height="{{ block.settings.product_image.height }}"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'amua-rwrc__placeholder' }}
+                    {%- endif -%}
+                  </div>
+                  <div class="amua-rwrc__product-info">
+                    <div class="amua-rwrc__product-name">{{ block.settings.product_name }}</div>
+                    <div class="amua-rwrc__product-price">
+                      <span class="amua-rwrc__price">{{ block.settings.price }}</span>
+                      {%- if block.settings.compare_at_price != blank -%}
+                        <span class="amua-rwrc__compare-price">{{ block.settings.compare_at_price }}</span>
+                      {%- endif -%}
+                    </div>
+                    <div class="amua-rwrc__purchase-date">
+                      <svg viewBox="0 0 24 24" class="amua-rwrc__date-icon" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                      {{ block.settings.purchase_date }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if s.show_nav and section.blocks.size > 1 -%}
+      <div class="amua-rwrc__nav">
+        <button type="button" class="amua-rwrc__nav-btn amua-rwrc__nav-btn--prev" data-amua-prev aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="amua-rwrc__nav-btn amua-rwrc__nav-btn--next" data-amua-next aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+/* ================================
+   Amua: Real Women Real Curves
+   Infinite-loop carousel controller
+   ================================ */
+
+window.AmuaRealWomenRealCurves = (function () {
+  var instances = {};
+
+  function initInstance(rootId) {
+    var root = document.getElementById(rootId);
+    if (!root) return;
+
+    // Avoid double-initializing the same DOM node
+    if (root.dataset.amuaInitialized === 'true') return;
+    root.dataset.amuaInitialized = 'true';
+
+    var track = root.querySelector('[data-amua-track]');
+    var prevBtn = root.querySelector('[data-amua-prev]');
+    var nextBtn = root.querySelector('[data-amua-next]');
+    if (!track) return;
+
+    var originalSlides = Array.prototype.slice.call(track.children);
+    var slideCount = originalSlides.length;
+    if (slideCount === 0) return;
+
+    // Only enable infinite-loop cloning when there is more than one slide
+    if (slideCount > 1) {
+      // Clone full set after
+      originalSlides.forEach(function (slide) {
+        var clone = slide.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.removeAttribute('data-amua-slide');
+        track.appendChild(clone);
+      });
+      // Clone full set before
+      originalSlides.slice().reverse().forEach(function (slide) {
+        var clone = slide.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.removeAttribute('data-amua-slide');
+        track.insertBefore(clone, track.firstChild);
+      });
+    }
+
+    var isAdjusting = false;
+    var resizeTimeout;
+
+    function getSlideStep() {
+      var first = track.children[0];
+      if (!first) return 0;
+      var rect = first.getBoundingClientRect();
+      var style = getComputedStyle(track);
+      var gap = parseFloat(style.columnGap || style.gap || 0) || 0;
+      return rect.width + gap;
+    }
+
+    function setScrollLeftInstant(value) {
+      isAdjusting = true;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = value;
+      // force reflow so the browser applies the jump before re-enabling smooth scroll
+      void track.offsetHeight;
+      track.style.scrollBehavior = 'smooth';
+      isAdjusting = false;
+    }
+
+    function goToStart() {
+      if (slideCount <= 1) return;
+      var step = getSlideStep();
+      setScrollLeftInstant(step * slideCount);
+    }
+
+    function handleScroll() {
+      if (isAdjusting || slideCount <= 1) return;
+      var step = getSlideStep();
+      if (!step) return;
+      var totalOriginal = step * slideCount;
+      var lowerBound = totalOriginal - step / 2;
+      var upperBound = totalOriginal * 2 + step / 2;
+
+      if (track.scrollLeft >= upperBound) {
+        setScrollLeftInstant(track.scrollLeft - totalOriginal);
+      } else if (track.scrollLeft <= lowerBound - totalOriginal) {
+        setScrollLeftInstant(track.scrollLeft + totalOriginal);
+      }
+    }
+
+    function scrollByOneSlide(direction) {
+      var step = getSlideStep();
+      track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        scrollByOneSlide(-1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        scrollByOneSlide(1);
+      });
+    }
+
+    track.addEventListener('scroll', handleScroll, { passive: true });
+
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(goToStart, 150);
+    });
+
+    // Position at the start of the middle (original) slide set
+    requestAnimationFrame(function () {
+      goToStart();
+    });
+
+    instances[rootId] = { root: root, track: track };
+  }
+
+  return {
+    init: function (rootId) {
+      initInstance(rootId);
+    }
+  };
+})();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.AmuaRealWomenRealCurves) { window.AmuaRealWomenRealCurves.init('amua-rwrc-{{ sid }}'); }
+  });
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.detail.sectionId === '{{ sid }}' && window.AmuaRealWomenRealCurves) {
+      window.AmuaRealWomenRealCurves.init('amua-rwrc-{{ sid }}');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Amua: Real Curves",
+  "tag": "section",
+  "class": "amua-section-real-women-real-curves",
+  "settings": [
+    { "type": "header", "content": "General" },
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#FFFFFF" },
+    { "type": "range", "id": "content_max_width", "label": "Max content width", "min": 900, "max": 1400, "step": 10, "unit": "px", "default": 1200 },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+
+    { "type": "header", "content": "Rating badge" },
+    { "type": "checkbox", "id": "show_badge", "label": "Show rating badge", "default": true },
+    { "type": "text", "id": "badge_text", "label": "Badge text", "default": "Rated 4.8/5 based on 954++ reviews" },
+    { "type": "color", "id": "badge_bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "badge_border_color", "label": "Border", "default": "#E5C15A" },
+    { "type": "color", "id": "badge_text_color", "label": "Text color", "default": "#1A1A1A" },
+    { "type": "color", "id": "badge_star_color", "label": "Star color", "default": "#F5C518" },
+    { "type": "range", "id": "badge_font_size", "label": "Font size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "badge_padding_v", "label": "Vertical padding", "min": 4, "max": 20, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "badge_padding_h", "label": "Horizontal padding", "min": 8, "max": 32, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "badge_radius", "label": "Corner radius", "min": 0, "max": 50, "step": 1, "unit": "px", "default": 50 },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading_line1", "label": "Heading (line 1, default color)", "default": "Real Women" },
+    { "type": "color", "id": "heading_line1_color", "label": "Line 1 color", "default": "#111111" },
+    { "type": "text", "id": "heading_highlight", "label": "Heading (highlight)", "default": "Real Curves" },
+    { "type": "color", "id": "heading_highlight_gradient_start", "label": "Highlight gradient start", "default": "#FCE38A" },
+    { "type": "color", "id": "heading_highlight_gradient_end", "label": "Highlight gradient end", "default": "#F5A623" },
+    { "type": "range", "id": "heading_font_size_mobile", "label": "Font size (mobile)", "min": 24, "max": 56, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "heading_font_size_desktop", "label": "Font size (desktop)", "min": 32, "max": 80, "step": 1, "unit": "px", "default": 52 },
+    { "type": "select", "id": "heading_font_weight", "label": "Font weight", "options": [ { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra bold" }, { "value": "900", "label": "Black" } ], "default": "800" },
+    { "type": "range", "id": "heading_margin_bottom", "label": "Space below heading", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
+
+    { "type": "header", "content": "Card" },
+    { "type": "color", "id": "card_bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_border_color", "label": "Border color", "default": "#111111" },
+    { "type": "range", "id": "card_border_width", "label": "Border width", "min": 0, "max": 4, "step": 0.5, "unit": "px", "default": 1.5 },
+    { "type": "range", "id": "card_radius", "label": "Corner radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "card_padding", "label": "Inner padding", "min": 8, "max": 32, "step": 1, "unit": "px", "default": 20 },
+    { "type": "range", "id": "card_width_mobile", "label": "Card width (mobile)", "min": 70, "max": 100, "step": 1, "unit": "%", "default": 88 },
+    { "type": "select", "id": "cards_per_view_desktop", "label": "Cards per view (desktop)", "options": [ { "value": "1", "label": "1" }, { "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" } ], "default": "3" },
+    { "type": "range", "id": "card_gap", "label": "Gap between cards", "min": 8, "max": 32, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "card_image_ratio", "label": "Card image ratio", "options": [ { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "5/4", "label": "Landscape (5:4)" } ], "default": "1/1" },
+
+    { "type": "header", "content": "Rating stars (per review)" },
+    { "type": "color", "id": "star_color", "label": "Filled star color", "default": "#F5C518" },
+    { "type": "color", "id": "star_empty_color", "label": "Empty star color", "default": "#E0E0E0" },
+    { "type": "range", "id": "star_size", "label": "Star size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 18 },
+
+    { "type": "header", "content": "Reviewer info" },
+    { "type": "color", "id": "name_color", "label": "Name color", "default": "#111111" },
+    { "type": "range", "id": "name_font_size", "label": "Name font size", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "verified_bg_color", "label": "Verified pill background", "default": "#FFFFFF" },
+    { "type": "color", "id": "verified_border_color", "label": "Verified pill border", "default": "#111111" },
+    { "type": "color", "id": "verified_text_color", "label": "Verified text color", "default": "#111111" },
+    { "type": "color", "id": "verified_icon_color", "label": "Verified icon color", "default": "#111111" },
+    { "type": "range", "id": "verified_font_size", "label": "Verified text font size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+
+    { "type": "header", "content": "Review text" },
+    { "type": "color", "id": "review_text_color", "label": "Text color", "default": "#333333" },
+    { "type": "range", "id": "review_font_size", "label": "Font size", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 15 },
+    { "type": "range", "id": "review_line_height", "label": "Line height", "min": 120, "max": 180, "step": 5, "unit": "%", "default": 150 },
+
+    { "type": "header", "content": "Product mini card" },
+    { "type": "color", "id": "product_card_bg", "label": "Background", "default": "#F5F5F5" },
+    { "type": "range", "id": "product_card_radius", "label": "Corner radius", "min": 0, "max": 20, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "product_image_size", "label": "Product image size", "min": 40, "max": 100, "step": 2, "unit": "px", "default": 64 },
+    { "type": "color", "id": "product_name_color", "label": "Product name color", "default": "#111111" },
+    { "type": "range", "id": "product_name_font_size", "label": "Product name font size", "min": 12, "max": 18, "step": 1, "unit": "px", "default": 14 },
+    { "type": "color", "id": "price_color", "label": "Price color", "default": "#111111" },
+    { "type": "range", "id": "price_font_size", "label": "Price font size", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "compare_price_color", "label": "Compare-at price color", "default": "#999999" },
+    { "type": "color", "id": "date_color", "label": "Purchase date color", "default": "#666666" },
+    { "type": "range", "id": "date_font_size", "label": "Purchase date font size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+
+    { "type": "header", "content": "Navigation arrows" },
+    { "type": "checkbox", "id": "show_nav", "label": "Show prev/next arrows", "default": true },
+    { "type": "range", "id": "nav_button_size", "label": "Button size", "min": 32, "max": 64, "step": 2, "unit": "px", "default": 44 },
+    { "type": "range", "id": "nav_gap", "label": "Gap between buttons", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "nav_margin_top", "label": "Space above arrows", "min": 0, "max": 48, "step": 2, "unit": "px", "default": 24 },
+    { "type": "color", "id": "nav_prev_bg", "label": "Prev button background", "default": "#FFFFFF" },
+    { "type": "color", "id": "nav_prev_border", "label": "Prev button border", "default": "#D9C48A" },
+    { "type": "color", "id": "nav_prev_icon_color", "label": "Prev icon color", "default": "#999999" },
+    { "type": "color", "id": "nav_next_bg", "label": "Next button background", "default": "#F5C518" },
+    { "type": "color", "id": "nav_next_icon_color", "label": "Next icon color", "default": "#111111" }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Customer photo" },
+        { "type": "range", "id": "rating", "label": "Star rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "customer_name", "label": "Customer name", "default": "Monalisa M" },
+        { "type": "text", "id": "verified_text", "label": "Verified badge text", "default": "Verified Buyer" },
+        { "type": "textarea", "id": "review_text", "label": "Review text", "default": "I almost didn't buy because I've literally tried EVERYTHING. This is the first thing that's actually made a difference." },
+        { "type": "image_picker", "id": "product_image", "label": "Product image" },
+        { "type": "text", "id": "product_name", "label": "Product name", "default": "Amua Vitaldrops™" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$39.99" },
+        { "type": "text", "id": "compare_at_price", "label": "Compare-at price", "default": "$59.99" },
+        { "type": "text", "id": "purchase_date", "label": "Purchase date label", "default": "Purchased on November 23th, 2025" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Real Curves",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

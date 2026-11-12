@@ -1,0 +1,118 @@
+{%- comment -%} How To Use — icon + label list (Dawn 16) {%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }}{
+    background:{{ section.settings.section_bg }};
+    margin-top:0 !important;
+    --bio-htu-fs:{{ section.settings.font_scale }};
+  }
+  .bio-htu{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .bio-htu *,.bio-htu *::before,.bio-htu *::after{ box-sizing:border-box; min-width:0; }
+  .bio-htu img{ max-width:100%; display:block; }
+
+  .bio-htu__head{ text-align:{{ section.settings.text_align }}; margin-bottom:{{ section.settings.head_gap }}px; }
+  .bio-htu__title{ margin:0 0 10px; font-size:calc({{ section.settings.heading_size }}rem * var(--bio-htu-fs)); line-height:1.15; font-weight:800; letter-spacing:-.02em; }
+  .bio-htu__intro{ margin:0 auto; max-width:620px; font-size:calc({{ section.settings.intro_size }}rem * var(--bio-htu-fs)); line-height:1.5; }
+  .bio-htu__intro p{ margin:0; }
+
+  .bio-htu__list{ display:grid; grid-template-columns:minmax(0,1fr); gap:{{ section.settings.row_gap }}px;
+    max-width:{{ section.settings.list_max_width }}px; margin:0 auto; }
+  .bio-htu__row{ display:flex; align-items:center; gap:{{ section.settings.icon_gap }}px; }
+  .bio-htu__ico{ flex:0 0 {{ section.settings.icon_size }}px; height:{{ section.settings.icon_size }}px;
+    display:flex; align-items:center; justify-content:center; }
+  .bio-htu__ico img,.bio-htu__ico svg{ width:100%; height:100%; object-fit:contain; color:{{ section.settings.icon_color }}; }
+  .bio-htu__ico--empty{ border:1px dashed rgba(0,0,0,.2); border-radius:6px; }
+  .bio-htu__txt h3{ margin:0; font-size:calc({{ section.settings.item_size }}rem * var(--bio-htu-fs)); line-height:1.25; font-weight:800; }
+  .bio-htu__txt p{ margin:4px 0 0; font-size:calc({{ section.settings.item_text_size }}rem * var(--bio-htu-fs)); line-height:1.45; opacity:.8; }
+
+  @media screen and (min-width:750px){
+    .bio-htu{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+    .bio-htu__list{ grid-template-columns:repeat({{ section.settings.columns }},minmax(0,1fr)); }
+  }
+  .bio-htu__ico img {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(20%) saturate(1500%) hue-rotate(194deg) brightness(92%) contrast(92%);
+}
+</style>
+
+<div class="bio-htu color-{{ section.settings.color_scheme }}" id="bio-htu-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+      <div class="bio-htu__head">
+        {%- if section.settings.heading != blank -%}<h2 class="bio-htu__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.intro != blank -%}<div class="bio-htu__intro rte">{{ section.settings.intro }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="bio-htu__list">
+      {%- for block in section.blocks -%}
+        <div class="bio-htu__row" {{ block.shopify_attributes }}>
+          <div class="bio-htu__ico{% unless block.settings.icon %} bio-htu__ico--empty{% endunless %}">
+            {%- if block.settings.icon != blank -%}
+              {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.heading | escape }}
+            {%- endif -%}
+          </div>
+          <div class="bio-htu__txt">
+            {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bio: How To Use",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "range", "id": "font_scale", "min": 0.6, "max": 1.2, "step": 0.1, "label": "Font scale", "default": 1 },
+
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How To Use" },
+    { "type": "richtext", "id": "intro", "label": "Intro text" },
+    { "type": "select", "id": "text_align", "label": "Header alignment", "default": "center",
+      "options": [ {"value":"left","label":"Left"},{"value":"center","label":"Center"} ] },
+    { "type": "range", "id": "heading_size", "min": 2.0, "max": 5.0, "step": 0.1, "unit": "rem", "label": "Heading size", "default": 3.2 },
+    { "type": "range", "id": "intro_size", "min": 1.2, "max": 2.2, "step": 0.1, "unit": "rem", "label": "Intro size", "default": 1.5 },
+    { "type": "range", "id": "head_gap", "min": 8, "max": 80, "step": 4, "unit": "px", "label": "Space below header", "default": 32 },
+
+    { "type": "header", "content": "List" },
+    { "type": "range", "id": "columns", "min": 1, "max": 3, "step": 1, "label": "Columns (desktop)", "default": 1 },
+    { "type": "range", "id": "list_max_width", "min": 400, "max": 1200, "step": 20, "unit": "px", "label": "List max width", "default": 700 },
+    { "type": "range", "id": "row_gap", "min": 8, "max": 60, "step": 2, "unit": "px", "label": "Space between rows", "default": 26 },
+    { "type": "range", "id": "icon_gap", "min": 6, "max": 40, "step": 2, "unit": "px", "label": "Space icon to text", "default": 16 },
+    { "type": "range", "id": "icon_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Icon size", "default": 34 },
+    { "type": "color", "id": "icon_color", "label": "Icon color (SVG only)", "default": "#0F5132" },
+    { "type": "range", "id": "item_size", "min": 1.4, "max": 3.0, "step": 0.1, "unit": "rem", "label": "Item heading size", "default": 1.9 },
+    { "type": "range", "id": "item_text_size", "min": 1.1, "max": 2.0, "step": 0.1, "unit": "rem", "label": "Item text size", "default": 1.4 },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "image_picker", "id": "icon", "label": "Icon" },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Take 3 Capsules Daily" },
+      { "type": "text", "id": "text", "label": "Text (optional)" } ] }
+  ],
+  "presets": [
+    { "name": "Bio: How To Use",
+      "settings": {
+        "heading": "How To Use",
+        "intro": "<p>Taking our turmeric supplement is simple, hassle-free, and designed to integrate seamlessly into your daily wellness routine.</p>"
+      },
+      "blocks": [
+        { "type": "step", "settings": { "heading": "Take 3 Capsules Daily" } },
+        { "type": "step", "settings": { "heading": "Take With Food" } },
+        { "type": "step", "settings": { "heading": "Morning Or Evening" } },
+        { "type": "step", "settings": { "heading": "Use Consistently for 4–8 Weeks" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

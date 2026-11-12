@@ -1,0 +1,110 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+<div class="lm">
+  <section class="wrap off"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="hd">
+        {%- if s.eyebrow != blank %}<span class="eb">{{ s.eyebrow }}</span>{% endif -%}
+        {%- if s.heading != blank %}<h2 class="h2">{{ s.heading }}</h2>{% endif -%}
+      </div>
+      <div class="off-card"{% if s.card_background != blank %} style="background: {{ s.card_background }}"{% endif %}>
+        <div class="off-l">
+          <div class="off-s">
+            {%- if s.tag != blank %}<span class="tag">{{ s.tag }}</span>{% endif -%}
+            {%- if s.title != blank %}<h3>{{ s.title }}</h3>{% endif -%}
+            {%- if s.description != blank %}<p class="off-d">{{ s.description }}</p>{% endif -%}
+          </div>
+          <div class="oprice">
+            {%- if s.price != blank -%}
+              <p class="pr">{{ s.price }}{% if s.price_suffix != blank %}<small>{{ s.price_suffix }}</small>{% endif %}</p>
+            {%- endif -%}
+            {%- if s.discount != blank or s.per_day != blank -%}
+              <div class="prow">
+                {%- if s.discount != blank %}<span class="disc">{{ s.discount }}</span>{% endif -%}
+                {%- if s.per_day != blank %}<p class="perday">{{ s.per_day }}</p>{% endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+          {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon %}
+        </div>
+        <div class="off-r">
+          <div class="off-img">
+            {%- if s.image != blank -%}
+              {{ s.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '375, 600, 900, 1200', sizes: '(min-width: 990px) 560px, 100vw', alt: s.image.alt }}
+            {%- else -%}
+              {% render 'oc-pouch', brand: s.pouch_brand, title: s.pouch_title, tag1: s.pouch_tag_1, tag2: s.pouch_tag_2 %}
+            {%- endif -%}
+          </div>
+          {%- if section.blocks.size > 0 -%}
+            <div class="why">
+              {%- if s.why_label != blank %}<p class="lb">{{ s.why_label }}</p>{% endif -%}
+              <ul>
+                {%- for block in section.blocks -%}
+                  <li {{ block.shopify_attributes }}>{% if s.why_icon != blank %}{{ s.why_icon | image_url: width: 72 | image_tag: loading: 'lazy', class: 'why-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'check-green-18' %}{% endif %}<span>{{ block.settings.text }}</span></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Offer",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "The offer" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "[$X.XX]/day for a Full <em>Science-Backed Formula</em>", "info": "Italic text is shown in the blue accent color." },
+    { "type": "header", "content": "Offer card" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Best deal" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Lymphgem Lymphatic Drainage" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Comes in two flavors. Each gummy is made to be gentle on your stomach, without the bloating some people get from powders and heavy mixes. Simple ingredients, a good taste, and easy to take every day." },
+    { "type": "text", "id": "price", "label": "Price", "default": "From [$XX]" },
+    { "type": "text", "id": "price_suffix", "label": "Price suffix", "default": "/mo" },
+    { "type": "text", "id": "discount", "label": "Discount pill", "default": "[XX]% Off" },
+    { "type": "text", "id": "per_day", "label": "Per-day text", "default": "= [$X.XX]/day for a full daily dose of creatine" },
+    { "type": "text", "id": "why_label", "label": "List label", "default": "Why Lymphgem" },
+    { "type": "image_picker", "id": "why_icon", "label": "List check icon", "info": "Optional. One icon used for every list item. Square PNG/SVG, shown at 18x18px. Empty = green check." },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Square. Empty = illustrated pouch." },
+    { "type": "text", "id": "pouch_brand", "label": "Pouch placeholder: brand", "default": "Lymphgem" },
+    { "type": "text", "id": "pouch_title", "label": "Pouch placeholder: title", "default": "Creatine Monohydrate Gummies" },
+    { "type": "text", "id": "pouch_tag_1", "label": "Pouch placeholder: flavor tag", "default": "Watermelon" },
+    { "type": "text", "id": "pouch_tag_2", "label": "Pouch placeholder: second tag", "default": "Low calorie" },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Section background override", "info": "Empty = #E2E8F0." },
+    { "type": "color_background", "id": "card_background", "label": "Card background override", "info": "Empty = design gradient (#0D1E39 → #193B68)." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "List item",
+      "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "A full daily dose of creatine monohydrate" } ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Offer",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item", "settings": { "text": "One of the most researched supplements" } },
+        { "type": "item", "settings": { "text": "No chalky powder, no shaker bottle" } },
+        { "type": "item", "settings": { "text": "Made in a cGMP-certified facility" } },
+        { "type": "item", "settings": { "text": "60-day money-back guarantee*" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

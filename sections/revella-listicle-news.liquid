@@ -1,0 +1,1154 @@
+{% comment %}
+  REVELLA · 7 Warning Signs · native-news / advertorial skin.
+  Same content model as revella-listicle.liquid (blocks: sign, faq; shared
+  setting ids) so page content and images port 1:1 between the two skins.
+  All CSS scoped under .rvnw. Pair with templates/page.revella-listicle-2.json
+  and layout/landing-news.liquid.
+
+  UPDATED: previously-hardcoded copy in the "reveal", "why we built it",
+  "product", "identity", "fit", and "urgency" sections has been converted
+  to schema settings so different market pages (joint, fertility, etc.)
+  can override this copy per-template instead of sharing one fixed version.
+  Defaults below match the original joint-pain copy exactly, so any
+  existing page/template that doesn't set these new fields renders
+  identically to before.
+{% endcomment %}
+
+{% style %}
+.rvnw{
+  --paper:#ffffff;
+  --paper-2:#f4f4f2;
+  --ink:#16171a;
+  --ink-soft:#3f434b;
+  --ink-faint:#71757e;
+  --accent:#c1332a;
+  --accent-deep:#9f2820;
+  --accent-soft:#f7e7e3;
+  --on-accent:#ffffff;
+  --warn:#c1332a;
+  --navy:#0d1f3c;
+  --rust:#b5542a;
+  --line:#e3e3e0;
+  --line-soft:#efefec;
+
+  --serif:Georgia,"Times New Roman",Times,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+  --measure:44rem;
+  --shadow-sm:0 1px 2px rgba(13,31,60,.05),0 6px 20px rgba(13,31,60,.06);
+  --shadow-md:0 12px 40px rgba(13,31,60,.14);
+  --section-y:clamp(2rem,1.5rem + 2.5vw,3.5rem);
+
+  font-family:var(--serif);
+  font-size:1.18rem;
+  line-height:1.7;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+
+.rvnw *,.rvnw *::before,.rvnw *::after{box-sizing:border-box}
+.rvnw *{margin:0}
+.rvnw img,.rvnw svg{display:block;max-width:100%}
+.rvnw a{color:var(--accent-deep)}
+.rvnw :focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px;border-radius:4px}
+.rvnw .vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.rvnw .wrap{width:min(100% - 2.5rem, var(--measure));margin-inline:auto}
+.rvnw .skip{position:absolute;left:-999px;top:0;background:var(--accent-deep);color:#fff;padding:.75rem 1.25rem;z-index:80;font-family:var(--sans);font-weight:700;font-size:.9rem}
+.rvnw .skip:focus{left:0}
+
+.rvnw .mast{background:var(--navy);color:#fff}
+.rvnw .mast__row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem}
+.rvnw .nameplate{font-family:var(--serif);font-weight:700;line-height:.9;letter-spacing:.005em}
+.rvnw .np__l1{display:block;font-size:clamp(1.45rem,1.15rem + 1.7vw,2.15rem);text-transform:uppercase}
+.rvnw .np__l2{display:flex;align-items:center;gap:.55rem;font-size:clamp(1.45rem,1.15rem + 1.7vw,2.15rem);text-transform:uppercase}
+.rvnw .np__sq{width:1.6em;height:.48em;background:var(--accent);display:inline-block}
+.rvnw .mast__meta{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;text-align:right}
+.rvnw .mast__date{font-family:var(--sans);font-size:.7rem;letter-spacing:.09em;color:rgba(255,255,255,.72)}
+.rvnw .badge-breaking{font-family:var(--sans);font-weight:800;font-size:.68rem;letter-spacing:.06em;background:var(--accent);color:#fff;padding:.36rem .6rem;text-transform:uppercase;white-space:nowrap}
+.rvnw .mast__rule{height:3px;background:var(--accent)}
+@media(max-width:520px){
+  .rvnw .mast__row{align-items:flex-end}
+  .rvnw .mast__date{font-size:.62rem}
+  .rvnw .badge-breaking{font-size:.6rem;padding:.3rem .45rem}
+}
+
+.rvnw .art__head{padding-top:clamp(1.4rem,1rem + 2vw,2.25rem)}
+.rvnw .kicker{font-family:var(--sans);font-weight:800;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.rvnw .dek{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.05rem + .5vw,1.4rem);color:var(--ink-soft);margin-top:.5rem;line-height:1.4}
+.rvnw .headline{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,1.5rem + 2.4vw,3rem);line-height:1.13;letter-spacing:-.012em;margin-top:.65rem;color:var(--ink)}
+.rvnw .headline em{font-style:normal;color:var(--accent)}
+.rvnw .byline{font-family:var(--sans);font-size:.85rem;color:var(--ink-faint);margin-top:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+
+.rvnw .media{position:relative;margin:1.3rem 0}
+.rvnw .media img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.rvnw .media__ph{position:relative;aspect-ratio:16/9;border:1px solid var(--line);background:var(--paper-2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem;padding:1.5rem}
+.rvnw .media__ph svg{width:44px;height:44px;color:var(--ink-faint)}
+.rvnw .media__ph p{font-family:var(--sans);font-size:.82rem;color:var(--ink-faint)}
+.rvnw .watch{position:absolute;right:.6rem;bottom:.6rem;font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.04em;color:#fff;background:rgba(13,31,60,.86);padding:.32rem .55rem;display:inline-flex;align-items:center;gap:.35rem}
+.rvnw .watch svg{width:12px;height:12px}
+
+.rvnw .lede p{font-size:clamp(1.15rem,1.08rem + .35vw,1.28rem);line-height:1.7;color:var(--ink);margin-top:1rem}
+.rvnw .lede p:first-child{margin-top:.4rem}
+.rvnw .lede .turn{font-weight:700}
+
+.rvnw .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--sans);font-weight:700;font-size:1rem;line-height:1;padding:1rem 1.6rem;min-height:54px;border:2px solid transparent;border-radius:6px;cursor:pointer;text-decoration:none;text-align:center;transition:background-color .2s,transform .2s,box-shadow .2s}
+.rvnw .btn--primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+.rvnw .btn--primary:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.rvnw .btn--lg{font-size:1.12rem;padding:1.1rem 1.9rem;min-height:58px}
+.rvnw .btn svg{flex:none;transition:transform .2s}
+.rvnw .btn--primary:hover svg{transform:translateX(3px)}
+.rvnw .cta-row{margin:1.7rem 0 .5rem;display:flex;flex-wrap:wrap;gap:.9rem 1.2rem;align-items:center}
+.rvnw .microtrust{font-family:var(--sans);font-size:.85rem;color:var(--ink-faint)}
+
+.rvnw .signs{margin-top:.5rem}
+.rvnw .sign{padding-top:clamp(1.75rem,1.25rem + 2vw,2.75rem);margin-top:clamp(1.75rem,1.25rem + 2vw,2.75rem);border-top:1px solid var(--line)}
+.rvnw .sign:first-child{border-top:0;margin-top:0}
+.rvnw .sign .sign__k{font-family:var(--sans);font-weight:800;font-size:2rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;color:var(--accent);display:inline-flex;align-items:center;gap:.45rem}
+.rvnw .sign .sign__k svg{width:18px;height:18px}
+.rvnw .sign__k svg{width:15px;height:15px;flex:none}
+.rvnw .sign h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,1.2rem + 1.4vw,2.1rem);line-height:1.2;margin-top:.55rem;color:var(--ink)}
+.rvnw .sign p{font-family:var(--serif);font-size:1.18rem;line-height:1.7;color:var(--ink);margin-top:1rem}
+.rvnw .sign p strong,.rvnw .sign p b{font-weight:700}
+.rvnw .sign__close{font-family:var(--serif);font-weight:700;font-style:italic;color:var(--ink);border-left:3px solid var(--accent);padding-left:1.1rem;margin-top:1.3rem}
+
+.rvnw .figph{margin:1.3rem 0}
+.rvnw .figph__img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.rvnw .figph__link{display:block;text-decoration:none;transition:opacity .2s}
+.rvnw .figph__link:hover{opacity:.96}
+.rvnw .figph__box{position:relative;aspect-ratio:16/9;border:1px dashed var(--line);background:var(--paper-2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.5rem;padding:1.4rem}
+.rvnw .figph__box svg{width:38px;height:38px;color:var(--ink-faint)}
+.rvnw .figph__note{font-family:var(--sans);font-size:.78rem;color:var(--ink-faint)}
+.rvnw .figph__scene{font-family:var(--sans);font-size:.85rem;font-weight:700;color:var(--ink-soft);max-width:30rem}
+
+.rvnw .callout{margin:1.3rem 0;background:var(--paper-2);border-left:4px solid var(--accent);padding:1.1rem 1.3rem}
+.rvnw .callout__k{font-family:var(--sans);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.45rem}
+.rvnw .callout p{font-family:var(--serif);font-weight:700;font-size:1.22rem;line-height:1.5;color:var(--ink)}
+
+.rvnw .tmi{margin:1.4rem 0;border-left:3px solid var(--line);padding-left:1.25rem}
+.rvnw .tmi__q{font-family:var(--serif);font-style:italic;font-size:1.28rem;line-height:1.5;color:var(--ink)}
+.rvnw .tmi__by{font-family:var(--sans);font-size:.85rem;color:var(--ink-faint);margin-top:.55rem;font-weight:700}
+
+.rvnw .inlinecta{margin:1.6rem 0 0;background:var(--accent-soft);border:1px solid var(--line);padding:1.2rem 1.35rem;display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;justify-content:space-between}
+.rvnw .inlinecta p{font-family:var(--serif);font-weight:700;font-size:1.12rem;max-width:30rem}
+
+.rvnw .band{background:var(--paper-2);border-block:1px solid var(--line);margin-top:var(--section-y)}
+.rvnw .band__in{padding-block:var(--section-y)}
+.rvnw .sec{padding-block:var(--section-y)}
+.rvnw .eyebrow{font-family:var(--sans);font-weight:800;font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.rvnw h2.sech{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,1.3rem + 1.5vw,2.25rem);line-height:1.18;margin-top:.6rem;color:var(--ink)}
+.rvnw .sec p,.rvnw .band p{font-family:var(--serif);font-size:1.15rem;line-height:1.65;color:var(--ink-soft);margin-top:1rem}
+.rvnw .sec p b,.rvnw .band p b{color:var(--ink)}
+.rvnw .kick{font-family:var(--serif);font-weight:700;font-size:clamp(1.35rem,1.15rem + .9vw,1.7rem);color:var(--ink);margin-top:1.3rem;line-height:1.35}
+.rvnw .kick .hl{color:var(--accent-deep)}
+.rvnw .dimlist{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.rvnw .dimlist span{font-family:var(--sans);font-weight:700;font-size:.85rem;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:.32rem .7rem}
+
+.rvnw .diagram{margin-top:1.6rem}
+.rvnw .diagram__cap{font-family:var(--sans);font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+.rvnw .mechmedia video,.rvnw .mechmedia img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.rvnw .medialink{display:block;text-decoration:none;transition:opacity .2s}
+.rvnw .medialink:hover{opacity:.96}
+.rvnw .videoph{aspect-ratio:16/9;border:1px dashed var(--line);background:var(--paper);display:grid;place-items:center}
+.rvnw .videoph svg{width:56px;height:56px;color:var(--accent)}
+
+.rvnw .diff{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.85rem}
+.rvnw .diff li{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;font-family:var(--serif);font-size:1.12rem;line-height:1.45;color:var(--ink);font-weight:700}
+.rvnw .diff .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;margin-top:.15rem}
+.rvnw .diff .ck svg{width:15px;height:15px}
+.rvnw .price{font-family:var(--serif);font-weight:700;font-size:clamp(1.2rem,1.05rem + .5vw,1.45rem);color:var(--ink);margin-top:1.5rem}
+.rvnw .deny{font-family:var(--serif);color:var(--ink-soft);margin-top:.55rem}
+
+.rvnw .identity{background:var(--navy);color:#fff;margin-top:var(--section-y)}
+.rvnw .identity__in{padding-block:var(--section-y)}
+.rvnw .identity h2{color:#fff;font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,1.3rem + 1.5vw,2.25rem);line-height:1.2;margin-bottom:1.1rem}
+.rvnw .identity p{font-family:var(--serif);font-size:1.2rem;line-height:1.6;color:rgba(255,255,255,.9);margin-top:1rem}
+.rvnw .identity p:first-of-type{margin-top:0}
+.rvnw .identity p b{color:#fff}
+
+.rvnw .fit__lead{font-family:var(--serif);font-size:1.15rem;color:var(--ink-soft);margin-top:.6rem}
+.rvnw .fit__grid{display:grid;gap:1.1rem;margin-top:1.5rem}
+@media(min-width:720px){.rvnw .fit__grid{grid-template-columns:1fr 1fr;gap:1.25rem}}
+.rvnw .fit__col{border:1px solid var(--line);padding:1.3rem 1.4rem;background:var(--paper)}
+.rvnw .fit__col--yes{background:var(--paper-2)}
+.rvnw .fit__h{font-family:var(--sans);font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;color:var(--ink)}
+.rvnw .fit__h .badge{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none}
+.rvnw .fit__h .badge--yes{background:var(--accent)}
+.rvnw .fit__h .badge--no{background:var(--ink-faint)}
+.rvnw .fit__h .badge svg{width:16px;height:16px;color:#fff}
+.rvnw .fit__list{list-style:none;padding:0;margin:0;display:grid;gap:.8rem}
+.rvnw .fit__list li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start;font-family:var(--serif);font-size:1.05rem;line-height:1.4;color:var(--ink-soft)}
+.rvnw .fit__list li svg{width:20px;height:20px;flex:none;margin-top:.15rem}
+.rvnw .fit__list--yes li svg{color:var(--accent)}
+.rvnw .fit__list--no li svg{color:var(--ink-faint)}
+
+.rvnw .stock{margin-top:1.3rem;background:var(--accent-soft);border-left:4px solid var(--accent);padding:1.1rem 1.35rem;font-family:var(--serif);font-weight:700;color:var(--ink)}
+.rvnw .guarantee{font-family:var(--sans);font-size:.85rem;color:var(--ink-faint);margin-top:1rem}
+
+.rvnw .faq h2{font-family:var(--serif);text-align:center;font-weight:700;font-size:clamp(1.6rem,1.3rem + 1.5vw,2.25rem);margin-bottom:clamp(1.5rem,1rem + 2vw,2.5rem)}
+.rvnw .acc__item{border-bottom:1px solid var(--line)}
+.rvnw .acc__item:first-child{border-top:1px solid var(--line)}
+.rvnw .acc__btn{width:100%;display:flex;gap:1rem;align-items:center;justify-content:space-between;background:none;border:0;cursor:pointer;text-align:left;font-family:var(--serif);font-weight:700;font-size:1.18rem;color:var(--ink);padding:1.2rem 0;min-height:58px}
+.rvnw .acc__btn:hover{color:var(--accent-deep)}
+.rvnw .acc__icon{flex:none;width:1.1rem;height:1.1rem;position:relative;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.rvnw .acc__icon::before,.rvnw .acc__icon::after{content:"";position:absolute;inset:0;margin:auto;background:var(--accent)}
+.rvnw .acc__icon::before{width:100%;height:2.5px;border-radius:2px}
+.rvnw .acc__icon::after{width:2.5px;height:100%;border-radius:2px}
+.rvnw .acc__btn[aria-expanded="true"] .acc__icon{transform:rotate(135deg)}
+.rvnw .acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.22,1,.36,1)}
+.rvnw .acc__btn[aria-expanded="true"] + .acc__panel{grid-template-rows:1fr}
+.rvnw .acc__inner{overflow:hidden}
+.rvnw .acc__inner p{font-family:var(--serif);color:var(--ink-soft);padding-bottom:1.2rem}
+
+.rvnw .endcta{text-align:center}
+.rvnw .endcta h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,1.3rem + 1.5vw,2.25rem);max-width:30rem;margin:0 auto .8rem}
+.rvnw .endcta p{margin:0 auto 1.6rem;max-width:34rem}
+.rvnw .endcta .fine{font-family:var(--sans);font-size:.85rem;color:var(--ink-faint);margin-top:1.1rem}
+
+.rvnw .trustbar{background:var(--navy);color:#fff;margin-top:var(--section-y)}
+.rvnw .trustbar__in{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem 1.3rem;padding-block:1.1rem;text-align:center;font-family:var(--sans);font-weight:700;font-size:.85rem;letter-spacing:.02em}
+.rvnw .trustbar__in .dot{opacity:.5}
+.rvnw .trustbar__in .risk{background:var(--accent);padding:.2rem .7rem;border-radius:3px}
+
+.rvnw .foot{background:var(--paper-2);border-top:1px solid var(--line)}
+.rvnw .foot__in{padding-block:2.4rem 3rem}
+.rvnw .foot__brand{font-family:var(--serif);font-weight:700;font-size:1.2rem;letter-spacing:.03em;color:var(--ink);margin-bottom:1rem}
+.rvnw .foot__links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-bottom:1.4rem}
+.rvnw .foot__links a{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;padding-block:.4rem}
+.rvnw .foot__links a:hover{color:var(--accent-deep)}
+.rvnw .foot__fine{font-family:var(--sans);font-size:.78rem;color:var(--ink-faint);line-height:1.65;max-width:54rem}
+.rvnw .foot__fine p+p{margin-top:.7rem}
+.rvnw .foot__fine .disc{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.68rem;color:var(--ink-soft)}
+
+.rvnw .scta{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--navy);color:#fff;box-shadow:0 -8px 30px rgba(13,31,60,.18);padding:.8rem clamp(1rem,5vw,1.5rem);padding-bottom:max(.8rem,env(safe-area-inset-bottom));transform:translateY(120%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.rvnw .scta.is-visible{transform:translateY(0)}
+.rvnw .scta__txt{font-family:var(--sans);font-size:.85rem;line-height:1.25}
+.rvnw .scta__txt b{display:block;font-weight:800;font-size:1rem}
+.rvnw .scta__txt span{font-size:.72rem;color:rgba(255,255,255,.7)}
+.rvnw .scta .btn{white-space:nowrap}
+@media(min-width:880px){.rvnw .scta{display:none}}
+
+.rvnw .stockcheck{position:fixed;inset:0;z-index:100;background:var(--paper);overflow-y:auto}
+.rvnw .stockcheck[hidden]{display:none}
+.rvnw .sc__in{min-height:100%;width:min(100% - 2.5rem, 30rem);margin-inline:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-block:3.5rem;text-align:center}
+.rvnw .sc__brand{font-family:var(--serif);font-weight:700;font-size:1.3rem;letter-spacing:.02em;color:var(--navy);margin-bottom:2.25rem}
+.rvnw .sc__ring{position:relative;width:150px;height:150px;margin-bottom:1.6rem}
+.rvnw .sc__ring > svg{width:100%;height:100%;transform:rotate(-90deg)}
+.rvnw .sc__track{fill:none;stroke:var(--accent-soft);stroke-width:10}
+.rvnw .sc__bar{fill:none;stroke:var(--accent);stroke-width:10;stroke-linecap:round;stroke-dasharray:439.82;stroke-dashoffset:439.82}
+.rvnw .sc__pct{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--sans);font-weight:700;font-size:2.1rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.rvnw .sc__checkwrap{position:absolute;inset:0;display:grid;place-items:center}
+.rvnw .sc__checkwrap[hidden]{display:none}
+.rvnw .sc__checkwrap::before{content:"";position:absolute;top:50%;left:50%;width:124px;height:124px;margin:-62px 0 0 -62px;border-radius:50%;background:var(--paper-2)}
+.rvnw .sc__checkwrap svg{position:relative;width:64px;height:64px;color:var(--accent);animation:rvnw-scpop .45s cubic-bezier(.22,1,.36,1)}
+.rvnw .sc__redirect{font-family:var(--sans);display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:.9rem;color:var(--ink-soft)}
+.rvnw .sc__dot--sm{width:15px;height:15px;border-width:2.5px}
+.rvnw .sc__title{font-family:var(--serif);font-weight:700;font-size:clamp(1.45rem,1.2rem + 1vw,1.8rem);margin-bottom:.45rem;color:var(--ink)}
+.rvnw .sc__sub{font-family:var(--sans);color:var(--ink-soft);margin-bottom:1.6rem;min-height:1.7em}
+.rvnw .sc__steps{list-style:none;padding:0;margin:0;width:100%;text-align:left}
+.rvnw .sc__step{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding-block:.9rem;border-top:1px solid var(--line-soft);min-height:56px}
+.rvnw .sc__step:first-child{border-top:0}
+.rvnw .sc__mark{width:24px;height:24px;display:grid;place-items:center}
+.rvnw .sc__dot{display:block;width:20px;height:20px;border-radius:50%;border:2.5px solid var(--line)}
+.rvnw .sc__dot--spin{border-color:var(--accent-soft);border-top-color:var(--accent);animation:rvnw-scspin .8s linear infinite}
+.rvnw .sc__badge{width:24px;height:24px;border-radius:50%;display:grid;place-items:center}
+.rvnw .sc__badge svg{width:14px;height:14px}
+.rvnw .sc__badge--muted{background:var(--paper-2);border:1.5px solid var(--line);color:var(--ink-faint)}
+.rvnw .sc__badge--warn{background:var(--warn);color:#fff}
+.rvnw .sc__badge--ok{background:var(--accent);color:#fff}
+.rvnw .sc__lbl{font-family:var(--sans);font-weight:700;color:var(--ink-soft)}
+.rvnw .sc__step.is-active .sc__lbl{color:var(--ink)}
+.rvnw .sc__res{font-family:var(--sans);font-size:.85rem;font-weight:700;border-radius:3px;padding:.28rem .8rem;white-space:nowrap}
+.rvnw .sc__res:empty{display:none}
+.rvnw .sc__res--out{background:var(--paper-2);border:1px solid var(--line);color:var(--ink-soft)}
+.rvnw .sc__res--low{background:var(--warn);color:#fff}
+.rvnw .sc__res--offer{background:var(--accent);color:#fff}
+.rvnw .sc__done{display:flex;flex-direction:column;align-items:center;gap:.9rem;margin-top:2rem}
+.rvnw .sc__done[hidden]{display:none}
+@keyframes rvnw-scspin{to{transform:rotate(360deg)}}
+@keyframes rvnw-scpop{from{transform:scale(.4)}to{transform:scale(1)}}
+
+.rvnw.is-js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.rvnw.is-js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rvnw *{transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .rvnw.is-js .reveal{opacity:1;transform:none}
+  .rvnw .sc__dot--spin{animation:none}
+  .rvnw .sc__checkwrap svg{animation:none}
+}
+@media (max-width:560px){
+  .rvnw .inlinecta{flex-direction:column;align-items:flex-start}
+  .rvnw .inlinecta .btn{width:100%}
+}
+{% endstyle %}
+
+{%- liquid
+  assign cta_url = section.settings.cta_url | default: 'https://shoprevella.com/products/astaxanthin-softgels'
+  assign sign_blocks = section.blocks | where: 'type', 'sign'
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign now_title = 'now' | date: '%B %-d, %Y'
+  assign now_upper = now_title | upcase
+-%}
+
+{%- capture arrow_svg -%}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>{%- endcapture -%}
+{%- capture warn_svg -%}<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 L3 20 H21 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.5" r="1.2" fill="currentColor"/></svg>{%- endcapture -%}
+{%- capture check_svg -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>{%- endcapture -%}
+{%- capture x_svg -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>{%- endcapture -%}
+{%- capture camera_svg -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg>{%- endcapture -%}
+{%- capture play_svg -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>{%- endcapture -%}
+
+<div class="rvnw" id="rvnw-{{ section.id }}">
+
+<a class="skip" href="#signs">Skip to the 7 warning signs</a>
+
+<header class="mast">
+  <div class="wrap mast__row">
+    <div class="nameplate">
+      <span class="np__l1">{{ section.settings.pub_line_1 | escape }}</span>
+      <span class="np__l2">{{ section.settings.pub_line_2 | escape }} <i class="np__sq" aria-hidden="true"></i></span>
+    </div>
+    <div class="mast__meta">
+      {% if section.settings.report_date != blank %}<span class="mast__date">{{ section.settings.report_date | escape }}</span>{% else %}<span class="mast__date" data-today="upper">{{ now_upper }}</span>{% endif %}
+      {% if section.settings.breaking_text != blank %}<span class="badge-breaking">{{ section.settings.breaking_text | escape }}</span>{% endif %}
+    </div>
+  </div>
+</header>
+<div class="mast__rule" aria-hidden="true"></div>
+
+<main id="top">
+  <article class="wrap article">
+    <header class="art__head">
+      {% if section.settings.report_kicker != blank %}<p class="kicker">{{ section.settings.report_kicker | escape }}</p>{% endif %}
+      {% if section.settings.hero_eyebrow != blank %}<p class="dek">{{ section.settings.hero_eyebrow | escape }}</p>{% endif %}
+      <h1 class="headline">{{ section.settings.hero_heading }}</h1>
+      {% if section.settings.byline != blank %}<p class="byline">{{ section.settings.byline | escape }}{% if section.settings.byline_show_updated %}&nbsp;&nbsp;|&nbsp;&nbsp;Updated <span data-today="title">{{ now_title }}</span>{% endif %}</p>{% endif %}
+    </header>
+
+    <figure class="media hero reveal">
+      {% if section.settings.hero_image %}
+        {{ section.settings.hero_image | image_url: width: 1800 | image_tag: widths: '600, 900, 1200, 1800', sizes: '(min-width: 720px) 704px, 100vw', loading: 'eager', fetchpriority: 'high' }}
+      {% else %}
+        <div class="media__ph">
+          {{ camera_svg }}
+          <p>Hero image slot: pick the news-clip still (16:9) in the theme editor.</p>
+        </div>
+      {% endif %}
+      {% if section.settings.show_watch and section.settings.watch_label != blank %}
+        <span class="watch">{{ play_svg }} {{ section.settings.watch_label | escape }}</span>
+      {% endif %}
+    </figure>
+
+    <div class="lede">
+      {{ section.settings.hero_lede }}
+      {% if section.settings.hero_turn != blank %}<p class="turn">{{ section.settings.hero_turn | escape }}</p>{% endif %}
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn--primary btn--lg" href="#offer">{{ section.settings.hero_cta_label | escape }} {{ arrow_svg }}</a>
+      {% if section.settings.hero_microtrust != blank %}<span class="microtrust">{{ section.settings.hero_microtrust | escape }}</span>{% endif %}
+    </div>
+
+    <section id="signs" class="signs" aria-label="The seven warning signs">
+      {% for block in sign_blocks %}
+      <div class="sign reveal" {{ block.shopify_attributes }}>
+        <p class="sign__k">Warning Sign {{ forloop.index }}</p>
+        <h2>{{ block.settings.heading | escape }}</h2>
+        {%- assign sign_link = block.settings.image_link | default: cta_url -%}
+        <figure class="figph reveal">
+          {% if block.settings.image %}
+            <a class="figph__link" href="{{ sign_link }}" data-stockcheck aria-label="See what actually reaches the damage">
+              {{ block.settings.image | image_url: width: 1440 | image_tag: widths: '600, 900, 1440', sizes: '(min-width: 720px) 704px, 100vw', class: 'figph__img', loading: 'lazy' }}
+            </a>
+          {% else %}
+            <div class="figph__box">
+              {{ camera_svg }}
+              <p class="figph__note">Pick this sign's image in the theme editor (16:9).</p>
+            </div>
+          {% endif %}
+        </figure>
+        <div class="sign__body">{{ block.settings.body_top }}</div>
+        {% if block.settings.callout_text != blank %}
+        <div class="callout reveal">
+          {% if block.settings.callout_kicker != blank %}<span class="callout__k">{{ block.settings.callout_kicker | escape }}</span>{% endif %}
+          <p>{{ block.settings.callout_text | escape }}</p>
+        </div>
+        {% endif %}
+        {% if block.settings.quote != blank %}
+        <blockquote class="tmi reveal">
+          <p class="tmi__q">"{{ block.settings.quote | escape }}"</p>
+          {% if block.settings.quote_by != blank %}<p class="tmi__by">{{ block.settings.quote_by | escape }}</p>{% endif %}
+        </blockquote>
+        {% endif %}
+        {% if block.settings.body_bottom != blank %}<div class="sign__body">{{ block.settings.body_bottom }}</div>{% endif %}
+        {% if block.settings.show_inline_cta %}
+        <div class="inlinecta reveal">
+          <p>{{ block.settings.inline_cta_text | escape }}</p>
+          <a class="btn btn--primary" href="{{ cta_url }}" data-stockcheck>See what actually reaches the damage {{ arrow_svg }}</a>
+        </div>
+        {% endif %}
+        {% if block.settings.close_text != blank %}<p class="sign__close">{{ block.settings.close_text | escape }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </section>
+  </article>
+
+  <section class="band" aria-labelledby="reveal-h">
+    <div class="wrap band__in">
+      <p class="eyebrow">Here's what nobody told you</p>
+      <h2 class="sech" id="reveal-h">{{ section.settings.reveal_heading | escape }}</h2>
+      <p>{{ section.settings.reveal_body | escape }}</p>
+      <div class="dimlist" aria-hidden="true">
+        <span>{{ section.settings.reveal_tag_1 | escape }}</span><span>{{ section.settings.reveal_tag_2 | escape }}</span><span>{{ section.settings.reveal_tag_3 | escape }}</span><span>{{ section.settings.reveal_tag_4 | escape }}</span>
+      </div>
+      <p class="kick">That's why <span class="hl">REVELLA</span> was made.</p>
+      <div class="diagram reveal">
+        <p class="diagram__cap">Why nothing else worked, in one picture</p>
+        {%- assign mech_link = section.settings.mechanism_link | default: cta_url -%}
+        {% if section.settings.mechanism_video %}
+          <div class="mechmedia"><a class="medialink" href="{{ mech_link }}" data-stockcheck aria-label="See what actually reaches the damage">{{ section.settings.mechanism_video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}</a></div>
+        {% elsif section.settings.mechanism_image %}
+          <div class="mechmedia"><a class="medialink" href="{{ mech_link }}" data-stockcheck aria-label="See what actually reaches the damage">{{ section.settings.mechanism_image | image_url: width: 1520 | image_tag: widths: '760, 1140, 1520', sizes: '(min-width: 720px) 704px, 100vw', loading: 'lazy' }}</a></div>
+        {% else %}
+          <div class="videoph" role="img" aria-label="Placeholder for the mechanism animation. Pick the video or image in the theme editor.">{{ play_svg }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="note-h">
+    <p class="eyebrow">Why we built it</p>
+    <h2 class="sech" id="note-h">We didn't start with a formula. We started with one question.</h2>
+    <p>{{ section.settings.why_body_1 }}</p>
+    <p>So instead of copying them, we asked one question: what actually gets inside the cell? The answer was astaxanthin, the deep red pigment that gives salmon the strength to fight upstream and flamingos their color. It's one of the few antioxidants shaped to slot into the cell wall itself.</p>
+    <p>Then we refused to cut the dose. Most brands sell 4 to 6mg because it's cheaper and the algae harvest can't be rushed. We put the <b>full 12mg clinical dose</b> in every softgel anyway. No fillers. No synthetic astaxanthin. One softgel, one job.</p>
+    <p>We'd rather show you how it works and let you decide than shout a miracle at you. If it isn't right for you, the 60-day guarantee means you are out nothing but a few minutes.</p>
+    <p class="kick" style="font-size:1.15rem">The team at REVELLA</p>
+    {%- assign team_link = section.settings.team_image_link | default: cta_url -%}
+    {% if section.settings.team_image %}
+    <figure class="figph reveal">
+      <a class="figph__link" href="{{ team_link }}" data-stockcheck aria-label="Get REVELLA today">
+        {{ section.settings.team_image | image_url: width: 1440 | image_tag: widths: '600, 900, 1440', sizes: '(min-width: 720px) 704px, 100vw', class: 'figph__img', loading: 'lazy' }}
+      </a>
+    </figure>
+    {% endif %}
+  </section>
+
+  <section class="wrap sec" id="offer" aria-labelledby="product-h">
+    <p class="eyebrow">The compound that gets inside the cell</p>
+    <h2 class="sech" id="product-h">The compound that gets inside the cell where nothing else can</h2>
+    <p>REVELLA delivers natural astaxanthin, the most powerful antioxidant ever measured, at the full 12mg clinical dose.</p>
+    <p>{{ section.settings.product_body_2 }}</p>
+
+    {%- assign product_link = section.settings.product_image_link | default: cta_url -%}
+    <figure class="figph reveal">
+      {% if section.settings.product_image %}
+        <a class="figph__link" href="{{ product_link }}" data-stockcheck aria-label="Get REVELLA today">
+          {{ section.settings.product_image | image_url: width: 1440 | image_tag: widths: '600, 900, 1440', sizes: '(min-width: 720px) 704px, 100vw', class: 'figph__img', loading: 'lazy' }}
+        </a>
+      {% else %}
+        <div class="figph__box">
+          {{ camera_svg }}
+          <p class="figph__scene">REVELLA bottle with a softgel capsule, clean product shot against a dark background.</p>
+          <p class="figph__note">Pick the product image in the theme editor (16:9).</p>
+        </div>
+      {% endif %}
+    </figure>
+
+    <p><b>What makes it different:</b></p>
+    <ul class="diff reveal">
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> The only antioxidant that locks into the cell wall from both sides at once, right where the damage forms</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> 6,000x stronger than Vitamin C at neutralizing the free radicals behind the damage</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> Backed by over 700 peer-reviewed clinical trials</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> {{ section.settings.product_bullet_4 | escape }}</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> {{ section.settings.product_bullet_5 | escape }}</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> A full 12mg clinical dose, not the underpowered 4mg most brands sell</li>
+      <li><span class="ck" aria-hidden="true">{{ check_svg }}</span> FDA GRAS status, and zero side effects in any clinical trial</li>
+    </ul>
+
+    <p class="price">{{ section.settings.product_price_line | escape }}</p>
+    <p class="deny">{{ section.settings.product_deny_line | escape }}</p>
+
+    <div class="cta-row">
+      <a class="btn btn--primary btn--lg" href="{{ cta_url }}" data-stockcheck aria-label="Start your REVELLA order">Get REVELLA today {{ arrow_svg }}</a>
+      <span class="microtrust">Up to 70% off &middot; Free shipping &middot; 60-day money-back guarantee</span>
+    </div>
+  </section>
+
+  <section class="identity" aria-labelledby="identity-h">
+    <div class="wrap identity__in">
+      <h2 id="identity-h">{{ section.settings.identity_heading | escape }}</h2>
+      <p>{{ section.settings.identity_body_1 }}</p>
+      <p>It's about {{ section.settings.identity_body_2 }}</p>
+      <p>{{ section.settings.identity_body_3 }}</p>
+      <p>It's about being the guy who doesn't quit, because his body finally stopped quitting on him.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec fit" aria-labelledby="fit-h">
+    <p class="eyebrow">Straight talk</p>
+    <h2 class="sech" id="fit-h">REVELLA isn't for everyone</h2>
+    <p class="fit__lead">A quick gut check before you order. The wrong expectations help nobody, and we would rather you skip it than feel misled.</p>
+    <div class="fit__grid">
+      <div class="fit__col fit__col--yes">
+        <div class="fit__h"><span class="badge badge--yes">{{ check_svg }}</span> This is for you if</div>
+        <ul class="fit__list fit__list--yes">
+          <li>{{ check_svg }} {{ section.settings.fit_yes_1 | escape }}</li>
+          <li>{{ check_svg }} {{ section.settings.fit_yes_2 | escape }}</li>
+          <li>{{ check_svg }} {{ section.settings.fit_yes_3 | escape }}</li>
+          <li>{{ check_svg }} {{ section.settings.fit_yes_4 | escape }}</li>
+        </ul>
+      </div>
+      <div class="fit__col fit__col--no">
+        <div class="fit__h"><span class="badge badge--no">{{ x_svg }}</span> It's not for you if</div>
+        <ul class="fit__list fit__list--no">
+          <li>{{ x_svg }} {{ section.settings.fit_no_1 | escape }}</li>
+          <li>{{ x_svg }} {{ section.settings.fit_no_2 | escape }}</li>
+          <li>{{ x_svg }} {{ section.settings.fit_no_3 | escape }}</li>
+          <li>{{ x_svg }} {{ section.settings.fit_no_4 | escape }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="urgent-h">
+    <div class="wrap band__in">
+      {%- assign urgency_link = section.settings.urgency_image_link | default: cta_url -%}
+      {% if section.settings.urgency_image %}
+      <figure class="figph reveal">
+        <a class="figph__link" href="{{ urgency_link }}" data-stockcheck aria-label="Stop the damage before more is done">
+          {{ section.settings.urgency_image | image_url: width: 1440 | image_tag: widths: '600, 900, 1440', sizes: '(min-width: 720px) 704px, 100vw', class: 'figph__img', loading: 'lazy' }}
+        </a>
+      </figure>
+      {% endif %}
+      <p class="eyebrow">Every day you wait, the damage spreads</p>
+      <h2 class="sech" id="urgent-h">{{ section.settings.urgency_heading | escape }}</h2>
+      <p>{{ section.settings.urgency_body_1 }}</p>
+      <p>{{ section.settings.urgency_body_2 }}</p>
+      <p>That's the cruelty of it. By the time you feel it, the damage is already deep.</p>
+      <p>And it accelerates. Every year it spreads a little faster, because every year your body fights back a little less.</p>
+      {% if section.settings.stock_note != blank %}<p class="stock">{{ section.settings.stock_note | escape }}</p>{% endif %}
+      <p><b>Every day you wait is another day of damage that didn't have to spread.</b></p>
+      <div class="cta-row">
+        <a class="btn btn--primary btn--lg" href="{{ cta_url }}" data-stockcheck aria-label="Order REVELLA now">{{ section.settings.urgency_cta_label | escape }} {{ arrow_svg }}</a>
+      </div>
+      <p class="guarantee">60-day money-back guarantee &middot; Full refund, even if the bag is empty</p>
+    </div>
+  </section>
+
+  {% if faq_blocks.size > 0 %}
+  <section class="wrap sec faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Your questions, answered</h2>
+    <div class="acc">
+      {% for block in faq_blocks %}
+      <div class="acc__item" {{ block.shopify_attributes }}>
+        <button class="acc__btn" aria-expanded="false" aria-controls="faq-{{ block.id }}"><span>{{ block.settings.question | escape }}</span><span class="acc__icon" aria-hidden="true"></span></button>
+        <div class="acc__panel" id="faq-{{ block.id }}"><div class="acc__inner">{{ block.settings.answer }}</div></div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="wrap sec endcta" aria-labelledby="endcta-h">
+    <p class="eyebrow">Reach the damage at the source</p>
+    <h2 id="endcta-h">Check if REVELLA is still in stock</h2>
+    <p>Supply runs on the algae harvest, so selling out mid-sale is normal here. If you can still see this page, there's stock left.</p>
+    <a class="btn btn--primary btn--lg" href="{{ cta_url }}" data-stockcheck aria-label="Check REVELLA availability">Check if REVELLA is still in stock {{ arrow_svg }}</a>
+    <p class="fine">One softgel a day &middot; Up to 70% off &middot; 60-day money-back guarantee, even if the bag is empty</p>
+  </section>
+</main>
+
+<section class="trustbar" aria-label="Offer highlights">
+  <div class="wrap trustbar__in">
+    <span class="risk">Sell-out risk: High</span>
+    <span class="dot" aria-hidden="true">&bull;</span>
+    <span>Free shipping</span>
+    <span class="dot" aria-hidden="true">&bull;</span>
+    <span>60-day money-back guarantee</span>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">REVELLA</div>
+    {% if section.settings.footer_menu != blank %}
+    <nav class="foot__links" aria-label="Footer">
+      {% for link in section.settings.footer_menu.links %}
+      <a href="{{ link.url }}">{{ link.title | escape }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+    <div class="foot__fine">
+      {% if section.settings.show_ad_label and section.settings.ad_label_text != blank %}<p class="disc">{{ section.settings.ad_label_text | escape }}. This page is a paid promotion, not independent editorial content.</p>{% endif %}
+      <p>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results vary. Consult a qualified healthcare professional before starting any supplement, especially if you are pregnant, nursing, or taking medication.</p>
+      <p>Testimonials reflect individual experiences and are not a guarantee of results.</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} REVELLA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+{% if section.settings.enable_stock_check %}
+<div class="stockcheck" id="stockcheck" role="dialog" aria-modal="true" aria-labelledby="sc-title" hidden>
+  <div class="sc__in">
+    <div class="sc__brand" aria-hidden="true">REVELLA</div>
+    <div class="sc__ring" aria-hidden="true">
+      <svg viewBox="0 0 160 160"><circle class="sc__track" cx="80" cy="80" r="70"/><circle class="sc__bar" id="sc-bar" cx="80" cy="80" r="70"/></svg>
+      <div class="sc__pct" id="sc-pct">0%</div>
+      <div class="sc__checkwrap" id="sc-check" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    </div>
+    <h2 class="sc__title" id="sc-title" tabindex="-1">Checking REVELLA availability</h2>
+    <p class="sc__sub" id="sc-sub">Hold on, this takes a few seconds.</p>
+    <ol class="sc__steps" id="sc-steps">
+      <li class="sc__step"><span class="sc__mark"><span class="sc__dot"></span></span><span class="sc__lbl">West Coast warehouse</span><span class="sc__res"></span></li>
+      <li class="sc__step"><span class="sc__mark"><span class="sc__dot"></span></span><span class="sc__lbl">Central warehouse</span><span class="sc__res"></span></li>
+      <li class="sc__step"><span class="sc__mark"><span class="sc__dot"></span></span><span class="sc__lbl">East Coast warehouse</span><span class="sc__res"></span></li>
+      <li class="sc__step"><span class="sc__mark"><span class="sc__dot"></span></span><span class="sc__lbl">Current promotions</span><span class="sc__res"></span></li>
+    </ol>
+    <div class="sc__done" id="sc-done" hidden>
+      <p class="sc__redirect"><span class="sc__dot sc__dot--spin sc__dot--sm" aria-hidden="true"></span> Redirecting to the special offer&hellip;</p>
+    </div>
+    <p class="vh" aria-live="polite" id="sc-live"></p>
+  </div>
+</div>
+{% endif %}
+
+{% if section.settings.enable_sticky_cta %}
+<div class="scta" id="scta" aria-hidden="true" inert>
+  <div class="scta__txt"><b>REVELLA &middot; 12mg astaxanthin</b><span>Up to 70% off &middot; 60-day guarantee</span></div>
+  <a class="btn btn--primary" href="{{ cta_url }}" data-stockcheck aria-label="Check REVELLA stock">Check stock</a>
+</div>
+{% endif %}
+
+<script>
+(function(){
+  var lp=document.getElementById('rvnw-{{ section.id }}');
+  if(!lp)return;
+  lp.classList.add('is-js');
+
+  (function(){
+    var MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var d=new Date();
+    var s=MO[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+    lp.querySelectorAll('[data-today]').forEach(function(el){
+      el.textContent=el.getAttribute('data-today')==='upper'?s.toUpperCase():s;
+    });
+  })();
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var reveals=lp.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('is-in');});
+  } else {
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0.2});
+    reveals.forEach(function(el){io.observe(el);});
+  }
+
+  var scta=lp.querySelector('.scta');
+  var hero=lp.querySelector('.hero');
+  if(scta&&hero&&'IntersectionObserver' in window){
+    var s=new IntersectionObserver(function(entries){
+      var past=!entries[0].isIntersecting;
+      scta.classList.toggle('is-visible',past);
+      scta.setAttribute('aria-hidden',past?'false':'true');
+      scta.toggleAttribute('inert',!past);
+    },{threshold:0});
+    s.observe(hero);
+  }
+
+  lp.querySelectorAll('.acc__btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      btn.setAttribute('aria-expanded',String(btn.getAttribute('aria-expanded')!=='true'));
+    });
+  });
+
+  var sc=lp.querySelector('.stockcheck');
+  if(sc){
+    var CIRC=2*Math.PI*70, DURATION=12000, REDIRECT_DELAY=2600;
+    var bar=sc.querySelector('#sc-bar'), pct=sc.querySelector('#sc-pct');
+    var check=sc.querySelector('#sc-check'), title=sc.querySelector('#sc-title');
+    var sub=sc.querySelector('#sc-sub'), done=sc.querySelector('#sc-done');
+    var live=sc.querySelector('#sc-live');
+    var stepEls=sc.querySelectorAll('.sc__step');
+    var STEPS=[
+      {at:2600,checking:'Checking West Coast warehouse',res:'Out of stock',cls:'out',badge:'muted',icon:'x',say:'West Coast warehouse: out of stock.'},
+      {at:5400,checking:'Checking Central warehouse',res:'Out of stock',cls:'out',badge:'muted',icon:'x',say:'Central warehouse: out of stock.'},
+      {at:8200,checking:'Checking East Coast warehouse',res:'In stock · running low',cls:'low',badge:'warn',icon:'check',say:'East Coast warehouse: in stock, running low.'},
+      {at:11000,checking:'Verifying current promotions',res:'70% off active',cls:'offer',badge:'ok',icon:'check',say:'Current promotions: 70% off is active.'}
+    ];
+    var ICONS={
+      x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+      check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>'
+    };
+    var timer=null, redirTimer=null, trigger=null, redirectTarget='#';
+
+    function setMark(i,html){stepEls[i].querySelector('.sc__mark').innerHTML=html;}
+    function reset(){
+      title.textContent='Checking REVELLA availability';
+      sub.textContent='Hold on, this takes a few seconds.';
+      pct.textContent='0%'; pct.hidden=false; check.hidden=true; done.hidden=true; live.textContent='';
+      bar.style.strokeDashoffset=CIRC;
+      stepEls.forEach(function(el,i){
+        el.classList.remove('is-active');
+        setMark(i,'<span class="sc__dot"></span>');
+        var r=el.querySelector('.sc__res'); r.textContent=''; r.className='sc__res';
+      });
+    }
+    function activate(i){
+      stepEls[i].classList.add('is-active');
+      setMark(i,'<span class="sc__dot sc__dot--spin"></span>');
+      sub.textContent=STEPS[i].checking+'…';
+    }
+    function resolveStep(i){
+      var s=STEPS[i];
+      stepEls[i].classList.remove('is-active');
+      setMark(i,'<span class="sc__badge sc__badge--'+s.badge+'">'+ICONS[s.icon]+'</span>');
+      var r=stepEls[i].querySelector('.sc__res');
+      r.textContent=s.res; r.className='sc__res sc__res--'+s.cls;
+      live.textContent=s.say;
+    }
+    function complete(){
+      pct.hidden=true; check.hidden=false;
+      title.textContent="You're in time.";
+      sub.textContent='East Coast warehouse has stock and the 70% off offer is active.';
+      done.hidden=false;
+      live.textContent='Check complete. One warehouse has stock and the 70% off offer is active. Redirecting to the special offer.';
+      try{sessionStorage.setItem('revella-sc','1');}catch(e){}
+      redirTimer=setTimeout(function(){
+        window.location.assign(redirectTarget);
+      },REDIRECT_DELAY);
+    }
+    function closeSC(){
+      if(timer){clearInterval(timer);timer=null;}
+      if(redirTimer){clearTimeout(redirTimer);redirTimer=null;}
+      sc.hidden=true;
+      document.documentElement.style.overflow='';
+      document.removeEventListener('keydown',onKey);
+      if(trigger){trigger.focus();trigger=null;}
+    }
+    function onKey(e){if(e.key==='Escape'){closeSC();}}
+    function openSC(fromEl){
+      trigger=fromEl;
+      redirectTarget=fromEl.getAttribute('href')||'#';
+      reset();
+      sc.hidden=false;
+      document.documentElement.style.overflow='hidden';
+      document.addEventListener('keydown',onKey);
+      title.focus();
+      var start=performance.now(), next=0;
+      var curve=[{t:0,p:0}];
+      (function(){
+        var segs=11+Math.floor(Math.random()*6),tw=[],pw=[],i,ts=0,ps=0,ct=0,cp=0;
+        for(i=0;i<segs;i++){tw.push(.35+Math.random()*Math.random());pw.push(.2+Math.random());}
+        for(i=0;i<segs;i++){ts+=tw[i];ps+=pw[i];}
+        for(i=0;i<segs;i++){ct+=tw[i]/ts;cp+=pw[i]/ps;curve.push({t:ct*DURATION,p:cp});}
+        curve[curve.length-1]={t:DURATION,p:1};
+      })();
+      function progAt(t){
+        if(t<=0)return 0;
+        for(var i=1;i<curve.length;i++){
+          if(t<=curve[i].t){var a=curve[i-1],b=curve[i];return a.p+(b.p-a.p)*((t-a.t)/((b.t-a.t)||1));}
+        }
+        return 1;
+      }
+      activate(0);
+      function tick(){
+        var t=performance.now()-start;
+        var resolved=0;
+        while(next<STEPS.length&&t>=STEPS[next].at){
+          resolveStep(next); next++;
+          if(next<STEPS.length){activate(next);}
+        }
+        for(var i=0;i<STEPS.length;i++){if(t>=STEPS[i].at)resolved++;}
+        var frac=reduce?resolved/STEPS.length:progAt(t);
+        bar.style.strokeDashoffset=String(CIRC*(1-frac));
+        pct.textContent=Math.round(frac*100)+'%';
+        if(t>=DURATION){clearInterval(timer);timer=null;complete();}
+      }
+      timer=setInterval(tick,50);
+    }
+    lp.querySelectorAll('[data-stockcheck]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var seen=false;
+        try{seen=sessionStorage.getItem('revella-sc')==='1';}catch(err){}
+        if(seen)return;
+        e.preventDefault();
+        openSC(a);
+      });
+    });
+  }
+})();
+</script>
+
+</div>
+
+{% schema %}
+{
+  "name": "REVELLA news lander",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "max_blocks": 16,
+  "settings": [
+    { "type": "header", "content": "Offer" },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Checkout / offer URL",
+      "info": "Every buy button and clickable image points here. Leave empty to use the REVELLA product page."
+    },
+    { "type": "header", "content": "Publication chrome" },
+    {
+      "type": "checkbox",
+      "id": "show_ad_label",
+      "label": "Show paid-promotion disclosure in footer",
+      "info": "Recommended. Prints a short 'this is a paid promotion' line in the footer. The masthead badge already labels the page.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ad_label_text",
+      "label": "Disclosure label",
+      "default": "Advertisement"
+    },
+    {
+      "type": "text",
+      "id": "pub_line_1",
+      "label": "Nameplate line 1",
+      "default": "REVELLA"
+    },
+    {
+      "type": "text",
+      "id": "pub_line_2",
+      "label": "Nameplate line 2",
+      "default": "DAILY"
+    },
+    {
+      "type": "text",
+      "id": "report_date",
+      "label": "Masthead date",
+      "info": "Leave empty to show today's date automatically (updates to each visitor's current date)."
+    },
+    {
+      "type": "text",
+      "id": "breaking_text",
+      "label": "Masthead badge",
+      "default": "ADVERTORIAL"
+    },
+    { "type": "header", "content": "Article header" },
+    {
+      "type": "text",
+      "id": "report_kicker",
+      "label": "Kicker",
+      "default": "SPECIAL HEALTH REPORT"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Dek (italic line under kicker)",
+      "default": "The real reason nothing you've tried has worked"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "hero_heading",
+      "label": "Headline",
+      "info": "Italic text renders in the rust accent color.",
+      "default": "7 Warning Signs Your Joints Are <em>\"Rusting Out\"</em> From the Inside (And Why Your Doctor Keeps Missing It)"
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "Byline (author and credential)",
+      "info": "The \"Updated [today]\" date is appended automatically.",
+      "default": "By James Wallace, Senior Health Correspondent"
+    },
+    {
+      "type": "checkbox",
+      "id": "byline_show_updated",
+      "label": "Append \"Updated [today]\" to the byline",
+      "default": true
+    },
+    { "type": "header", "content": "Hero media" },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "The news-clip still (16:9)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_watch",
+      "label": "Show WATCH badge on hero",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "watch_label",
+      "label": "WATCH badge label",
+      "default": "WATCH 2:14"
+    },
+    { "type": "header", "content": "Lede" },
+    {
+      "type": "richtext",
+      "id": "hero_lede",
+      "label": "Lede",
+      "default": "<p>You know the sound. That grinding when you stand. The stiffness that takes 20 minutes to shake every morning. The shoulder that wakes you at 3AM.</p><p>You've been told it's \"just aging.\" Your doctor shrugged. The supplements didn't work. The cortisone wore off in six weeks.</p>"
+    },
+    {
+      "type": "text",
+      "id": "hero_turn",
+      "label": "Turn line (bold)",
+      "default": "But what if nothing worked because nothing ever reached where the damage actually lives?"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_label",
+      "label": "Lede button label",
+      "default": "See what actually reaches the damage"
+    },
+    {
+      "type": "text",
+      "id": "hero_microtrust",
+      "label": "Microtrust line",
+      "default": "One softgel a day · 12mg clinical dose · 60-day money-back guarantee"
+    },
+    { "type": "header", "content": "Mechanism media" },
+    {
+      "type": "video",
+      "id": "mechanism_video",
+      "label": "Mechanism video",
+      "info": "Autoplays muted on loop. Takes priority over the image."
+    },
+    {
+      "type": "image_picker",
+      "id": "mechanism_image",
+      "label": "Mechanism image (fallback)"
+    },
+    {
+      "type": "url",
+      "id": "mechanism_link",
+      "label": "Mechanism media link",
+      "info": "Where the mechanism video or image links to. Leave empty to use the checkout / offer URL."
+    },
+    { "type": "header", "content": "Reveal section (\"Here's what nobody told you\")" },
+    {
+      "type": "text",
+      "id": "reveal_heading",
+      "label": "Heading",
+      "default": "Not your doctor. Not the supplement brands. Not the guy at the vitamin shop."
+    },
+    {
+      "type": "textarea",
+      "id": "reveal_body",
+      "label": "Body",
+      "default": "The damage isn't happening ON your joints. It's happening INSIDE the cells of your joints. And until something crosses into those cells and clears the rust at the source, nothing changes."
+    },
+    { "type": "text", "id": "reveal_tag_1", "label": "Tag 1", "default": "Not ibuprofen" },
+    { "type": "text", "id": "reveal_tag_2", "label": "Tag 2", "default": "Not cortisone" },
+    { "type": "text", "id": "reveal_tag_3", "label": "Tag 3", "default": "Not turmeric" },
+    { "type": "text", "id": "reveal_tag_4", "label": "Tag 4", "default": "Not glucosamine" },
+    { "type": "header", "content": "Why we built it" },
+    {
+      "type": "textarea",
+      "id": "why_body_1",
+      "label": "Opening paragraph",
+      "default": "Every joint product on the shelf works in the same place: your bloodstream. That's the problem. The oxidative damage that wears joints down doesn't build up in your blood. It builds up inside the cell, behind a wall those supplements never cross."
+    },
+    { "type": "header", "content": "Founder note" },
+    {
+      "type": "image_picker",
+      "id": "team_image",
+      "label": "Founder note image",
+      "info": "Optional. Shows under the \"The team at REVELLA\" sign-off (16:9). Leave empty to hide."
+    },
+    {
+      "type": "url",
+      "id": "team_image_link",
+      "label": "Founder note image link",
+      "info": "Where the founder-note image links to. Leave empty to use the checkout / offer URL."
+    },
+    { "type": "header", "content": "Product" },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "url",
+      "id": "product_image_link",
+      "label": "Product image link",
+      "info": "Where the product image links to. Leave empty to use the checkout / offer URL."
+    },
+    {
+      "type": "textarea",
+      "id": "product_body_2",
+      "label": "Product mechanism paragraph",
+      "default": "Unlike anything else you've tried, astaxanthin doesn't break down in your stomach. Doesn't float uselessly in your bloodstream. It crosses directly into your joint cells, locks into the cell wall from BOTH sides, and clears the oxidative damage where it actually lives."
+    },
+    {
+      "type": "text",
+      "id": "product_bullet_4",
+      "label": "Bullet 4 (proof point)",
+      "default": "55% less pain in 8 weeks, in a randomized controlled trial (Dohnalek, 2023)"
+    },
+    {
+      "type": "text",
+      "id": "product_bullet_5",
+      "label": "Bullet 5 (proof point)",
+      "default": "The same compound NASA studied for astronaut joint protection"
+    },
+    {
+      "type": "text",
+      "id": "product_price_line",
+      "label": "Price line",
+      "default": "One softgel a day. About 50 cents, less than the coffee you take your ibuprofen with."
+    },
+    {
+      "type": "text",
+      "id": "product_deny_line",
+      "label": "\"No more of this\" line",
+      "default": "No $400 prescriptions. No conveyor belt of injections. No pretending your joints are fine while they quietly get worse."
+    },
+    { "type": "header", "content": "Identity section" },
+    {
+      "type": "text",
+      "id": "identity_heading",
+      "label": "Heading",
+      "default": "This isn't about \"managing pain.\" It's about getting the man back."
+    },
+    {
+      "type": "textarea",
+      "id": "identity_body_1",
+      "label": "Body paragraph 1",
+      "default": "This is about swinging full strength on the 8th tee without negotiating with your shoulder first. Scooping up your granddaughter without calculating whether you can handle it. Showing up to help your son with a project, unasked, and working all day without reaching for a bottle."
+    },
+    {
+      "type": "text",
+      "id": "identity_body_2",
+      "label": "Body paragraph 2 (wife quote, wrapped in \"It's about ...\")",
+      "default": "your wife saying, \"You seem like yourself again. I missed you.\""
+    },
+    {
+      "type": "text",
+      "id": "identity_body_3",
+      "label": "Body paragraph 3 (buddy quote)",
+      "default": "Your buddy asking, \"What the hell are you doing differently?\" after you outdrive him for the first time in two years."
+    },
+    { "type": "header", "content": "Fit section (\"REVELLA isn't for everyone\")" },
+    { "type": "text", "id": "fit_yes_1", "label": "\"This is for you if\" #1", "default": "You're 55 or older and stiffness has started quietly editing what you do" },
+    { "type": "text", "id": "fit_yes_2", "label": "\"This is for you if\" #2", "default": "You've tried glucosamine, turmeric, or fish oil and felt nothing" },
+    { "type": "text", "id": "fit_yes_3", "label": "\"This is for you if\" #3", "default": "You're tired of masking it with a daily painkiller your stomach is paying for" },
+    { "type": "text", "id": "fit_yes_4", "label": "\"This is for you if\" #4", "default": "You'd rather understand why something works before you swallow it" },
+    { "type": "text", "id": "fit_no_1", "label": "\"It's not for you if\" #1", "default": "You want an overnight fix that numbs the pain in an hour (astaxanthin builds over weeks)" },
+    { "type": "text", "id": "fit_no_2", "label": "\"It's not for you if\" #2", "default": "You won't take one softgel a day, with a meal, for at least a few weeks" },
+    { "type": "text", "id": "fit_no_3", "label": "\"It's not for you if\" #3", "default": "You've decided it's \"just age\" and there is nothing to be done" },
+    { "type": "text", "id": "fit_no_4", "label": "\"It's not for you if\" #4", "default": "You're happy with the prescription, the $400, and the side effects" },
+    { "type": "header", "content": "Urgency" },
+    {
+      "type": "image_picker",
+      "id": "urgency_image",
+      "label": "Urgency image",
+      "info": "Optional. Shows above the urgency section (16:9). Leave empty to hide."
+    },
+    {
+      "type": "url",
+      "id": "urgency_image_link",
+      "label": "Urgency image link",
+      "info": "Where the urgency image links to. Leave empty to use the checkout / offer URL."
+    },
+    {
+      "type": "textarea",
+      "id": "stock_note",
+      "label": "Stock note",
+      "default": "REVELLA is currently up to 70% off, but supply is limited by algae harvest cycles. When this batch is gone, restocking takes weeks."
+    },
+    {
+      "type": "text",
+      "id": "urgency_heading",
+      "label": "Urgency heading",
+      "default": "Rust doesn't sit still. It eats outward."
+    },
+    {
+      "type": "textarea",
+      "id": "urgency_body_1",
+      "label": "Urgency body paragraph 1",
+      "default": "One patch of cartilage corrodes, and that patch turns on the next. Then that one goes. Spreading joint to joint, wearing the surface thinner while you sleep, while you sit, while you wait for the right time to deal with it."
+    },
+    {
+      "type": "textarea",
+      "id": "urgency_body_2",
+      "label": "Urgency body paragraph 2",
+      "default": "And you don't feel today's damage. You feel it months from now: the knee that won't take the stairs, the shoulder that quit reaching the top shelf, the morning that takes forever to loosen."
+    },
+    {
+      "type": "text",
+      "id": "urgency_cta_label",
+      "label": "Urgency CTA label",
+      "default": "Stop the rust before more damage is done"
+    },
+    { "type": "header", "content": "Behavior" },
+    {
+      "type": "checkbox",
+      "id": "enable_stock_check",
+      "label": "Stock-check interstitial on CTA click",
+      "info": "The 12-second warehouse check before redirecting to the offer.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_cta",
+      "label": "Sticky mobile CTA bar",
+      "default": true
+    },
+    { "type": "header", "content": "Footer" },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer menu",
+      "info": "Optional. Hidden when no menu is selected."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sign",
+      "name": "Warning sign",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "16:9. Set alt text on the file in Content > Files." },
+        { "type": "url", "id": "image_link", "label": "Image link", "info": "Where this sign's image links to. Leave empty to use the checkout / offer URL." },
+        { "type": "richtext", "id": "body_top", "label": "Body (before callout or quote)" },
+        { "type": "text", "id": "callout_kicker", "label": "Callout kicker" },
+        { "type": "textarea", "id": "callout_text", "label": "Callout text", "info": "Leave empty to hide the callout box." },
+        { "type": "textarea", "id": "quote", "label": "Testimonial quote", "info": "Leave empty to hide the testimonial. Quotation marks are added automatically." },
+        { "type": "text", "id": "quote_by", "label": "Testimonial attribution" },
+        { "type": "text", "id": "quote_initial", "label": "Avatar character", "info": "Not shown in this skin. Kept for content compatibility with the other template." },
+        { "type": "richtext", "id": "body_bottom", "label": "Body (after callout or quote)" },
+        { "type": "checkbox", "id": "show_inline_cta", "label": "Show inline CTA box", "default": false },
+        { "type": "text", "id": "inline_cta_text", "label": "Inline CTA text" },
+        { "type": "textarea", "id": "close_text", "label": "Closing line", "info": "Italic line with the rust accent rule. Leave empty to hide." }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "REVELLA news lander",
+      "blocks": [
+        { "type": "sign" },
+        { "type": "sign" },
+        { "type": "sign" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

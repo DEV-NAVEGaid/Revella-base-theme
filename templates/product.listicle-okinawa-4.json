@@ -1,0 +1,864 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "landing",
+  "sections": {
+    "revella_listicle_ok4_top": {
+      "type": "revella-listicle-sebi",
+      "blocks": {
+        "sign_ok4r01": {
+          "type": "sign",
+          "settings": {
+            "heading": "Okinawa Did Not Find The Fountain Of Youth. They Put It On The Dinner Table.",
+            "image": "shopify://shop_images/red-algae-chopsticks.jpg",
+            "image_alt": "Older Okinawan adults preparing a traditional seafood meal",
+            "body": "<p>Okinawa has four times more people living past 100 than anywhere else in the world.</p><p>That kind of number is not explained by one lucky grandmother. It points to a culture that has been doing something differently for generations.</p><p>Their traditional meals are rich in salmon, shrimp, shellfish, seaweed, and other foods that carry astaxanthin, the red survival compound made by microalgae. Long before the rest of the world could pronounce it, Okinawans were eating it as part of daily life.</p><p>They did not swallow a cabinet full of pills. They kept feeding their cells a natural shield the modern Western diet quietly removed.</p>",
+            "close_text": "When an entire island produces four times more 100-year-olds, it is worth asking what is on their plate that is missing from yours.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r02": {
+          "type": "sign",
+          "settings": {
+            "heading": "Scientists Call Astaxanthin The King Of Antioxidants For A Reason",
+            "image": "shopify://shop_images/red-algae-lab.jpg",
+            "image_alt": "Astaxanthin research dating back to 1938",
+            "body": "<p>Astaxanthin was discovered in 1938 by Nobel Prize-winning chemist Richard Kuhn. It has been studied for nearly 90 years and appears across more than 700 peer-reviewed clinical trials.</p><p>Then come the numbers that make ordinary antioxidants look tiny:</p><ul><li><strong>Up to 6,000 times stronger than vitamin C</strong></li><li><strong>800 times stronger than CoQ10</strong></li><li><strong>550 times stronger than vitamin E</strong></li><li><strong>50 times more absorbable than turmeric</strong></li></ul><p>It has also recorded the highest oxygen radical absorbance capacity measured in an antioxidant.</p><p>This is not another fashionable berry powder with a celebrity attached to it. Scientists have been pulling this molecule apart since before World War II.</p>",
+            "close_text": "Vitamin C had the fame. CoQ10 had the doctors. Turmeric had the hype. Astaxanthin had the raw power all along.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r03": {
+          "type": "sign",
+          "settings": {
+            "heading": "You Are Not Aging One Body Part At A Time",
+            "image": "shopify://shop_images/joint-rot-spread-1x1.gif",
+            "image_alt": "Oxidative stress affecting the skin, eyes, heart, muscles, and joints",
+            "body": "<p>The medical term is oxidative stress. The plain-English term is internal rot. Yes, rot.</p><p>It is the chemical damage created when oxygen, sunlight, stress, pollution, processed food, and normal metabolism produce more free radicals than your body can neutralize.</p><p>That damage does not pick one target and stop. It shows up as skin that looks older than it should. Energy that disappears by mid-afternoon. Eyes that tire after a screen. A heart working against damaged blood vessels. Joints that complain every time you stand.</p><p>Most people chase each symptom with a different bottle because nobody told them the same cellular fire may be burning underneath all of them.</p>",
+            "close_text": "You do not need seven disconnected answers for seven aging complaints. You need to protect the cells they all have in common.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r04": {
+          "type": "sign",
+          "settings": {
+            "heading": "Every \"Solution\" You Tried Was Working on the Wrong Side of the Wall",
+            "image": "shopify://shop_images/cant-get-through-1x1.gif",
+            "image_alt": "Supplements and painkillers stopped by an invisible wall around the cell",
+            "body": "<p>Open the cabinet. Glucosamine. Turmeric. Fish oil. Ibuprofen. Maybe a brace, a compression sleeve, a $3,000 mattress, or a shot that helped until it did not.</p><p>You did not choose badly. Every one of them ran into the same invisible wall.</p><ul><li><strong>Ibuprofen</strong> blocks the pain signal for a few hours. The joint rot keeps spreading.</li><li><strong>Glucosamine</strong> works outside the cell. The damage lives inside it.</li><li><strong>Turmeric</strong> breaks down before enough of it reaches the membrane.</li><li><strong>Cortisone</strong> silences inflammation for a window. It does not rebuild the shield.</li><li><strong>Braces, pillows, and physical therapy</strong> work around the joint. They do not stop the chain inside the cell.</li></ul>",
+            "close_text": "For years, you were fighting an inside problem with outside tools. That was never a willpower failure. Those products failed you.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r05": {
+          "type": "sign",
+          "settings": {
+            "heading": "It Is The Only Antioxidant Built To Guard Both Sides Of The Cell Wall",
+            "image": "shopify://shop_images/molecule-transmembrane-1x1.gif",
+            "image_alt": "Astaxanthin molecule spanning both sides of a cell membrane",
+            "body": "<p>Vitamin C works in watery areas outside the cell. Vitamin E works in the fatty parts of the membrane. Most antioxidants guard one zone and leave the rest exposed.</p><p>Astaxanthin is shaped differently.</p><p>Its long molecule threads through the entire cell membrane. One end faces out. One end faces in. The protective chain locks across the wall between them.</p><p>That lets astaxanthin intercept damage from both directions while physically reinforcing the membrane itself. It can also cross the blood-brain barrier and travel to the brain, heart, eyes, joints, skin, and muscle tissue other compounds struggle to reach.</p>",
+            "close_text": "Other antioxidants float past the wall. Astaxanthin moves in and stands guard.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r06": {
+          "type": "sign",
+          "settings": {
+            "heading": "Your Mirror Is One Of The First Places Oxidative Damage Shows Up",
+            "image": "shopify://shop_images/wrinkles-uv.jpg",
+            "image_alt": "Astaxanthin protecting skin cells beneath the surface",
+            "body": "<p>Fine lines do not begin on the surface. Dryness does not begin in the moisturizer aisle. The visible signs of aging start deeper, when UV exposure and oxidative stress damage the cells responsible for hydration, elasticity, and repair.</p><p>Astaxanthin began as nature's answer to brutal sunlight. Microalgae make it when UV stress becomes so intense that survival is on the line.</p><p>Inside human skin, the same antioxidant has been studied for crow's feet, elasticity, hydration, and protection from UV-driven damage. Research reports visible crow's-feet reduction in as little as six weeks at 6mg per day.</p><p><strong>REVELLA delivers 12mg.</strong></p>",
+            "close_text": "Creams sit on top of yesterday's damage. Astaxanthin helps defend the living cells creating tomorrow's skin.",
+            "show_inline_cta": true,
+            "inline_cta_text": "Your skin, heart, eyes, energy, and joints all depend on the same cellular walls.",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r07": {
+          "type": "sign",
+          "settings": {
+            "heading": "Inflammation Is The Slow Fire Behind Stiff Mornings And Aching Joints",
+            "image": "shopify://shop_images/inflamation-vs-astaxanthin.jpg",
+            "image_alt": "Inflammation cooling inside knee and shoulder cells",
+            "body": "<p>Inflammation is supposed to be an emergency crew. But when oxidative stress keeps pulling the alarm, the crew never leaves.</p><p>That low, constant fire can touch everything from how your hands feel in the morning to how your knees handle stairs and how your shoulders let you sleep.</p><p>In a 2023 randomized controlled trial, participants reported a <strong>55% reduction in pain at eight weeks.</strong></p><p>That helps explain why the joint story is bigger than numbing one sore spot. The goal is to turn down the cellular alarm that keeps calling inflammation back.</p>",
+            "close_text": "You are not weak, lazy, or simply old. Your cells may be stuck in an emergency that never ends.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_image": "shopify://shop_images/m.jpg",
+            "testimonial_1_initial": "G",
+            "testimonial_1_text": "I got my husband back.",
+            "testimonial_1_by": "Gary's wife, outside Nashville",
+            "testimonial_2_image": "shopify://shop_images/s.jpg",
+            "testimonial_2_initial": "S",
+            "testimonial_2_text": "I'd done the collagen, the turmeric, two different creams. Nothing. About three weeks in, I got down on the floor with my grandson and got right back up. My husband said I seemed like me again.",
+            "testimonial_2_by": "Sarah B, 55, Orange, CA",
+            "testimonial_3_image": "shopify://shop_images/g.jpg",
+            "testimonial_3_initial": "M",
+            "testimonial_3_text": "I'd done glucosamine, turmeric, even cortisone shots. Two and a half weeks in, I was sleeping through the night for the first time in months. My wife noticed before I did.",
+            "testimonial_3_by": "Mike D, 54",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r08": {
+          "type": "sign",
+          "settings": {
+            "heading": "Your Heart Never Gets A Day Off From Oxidative Stress",
+            "image": "shopify://shop_images/heart.jpg",
+            "image_alt": "Astaxanthin supporting heart cells and microcirculation",
+            "body": "<p>Your heart beats roughly 100,000 times a day. Every beat depends on healthy muscle cells, flexible blood vessels, and blood that can move freely through the smallest channels.</p><p>Oxidative stress attacks all three.</p><p>Astaxanthin has been studied for triglycerides, HDL cholesterol, blood flow, microcirculation, and the oxidation of LDL particles involved in plaque formation. The Okinawa story becomes even harder to ignore when you learn Okinawans experience <strong>80% less heart disease than Americans.</strong></p><p>You can feel a sore knee. You cannot feel oxidative damage accumulating in a blood vessel. That is exactly why daily protection matters.</p>",
+            "close_text": "The organ working hardest to keep you alive should not be the last one you decide to protect.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r09": {
+          "type": "sign",
+          "settings": {
+            "heading": "Astaxanthin Reaches The Tiny Eye Muscles Screens Exhaust Every Day",
+            "image": "shopify://shop_images/eye-cross-section.jpg",
+            "image_alt": "Astaxanthin supporting tired eyes after screen use",
+            "body": "<p>Your eyes were not designed for ten straight hours of phones, laptops, LED light, and close-up focus.</p><p>That strain hits the tiny muscles that help your eyes shift focus. It also piles oxidative stress onto some of the most delicate, light-exposed tissue in your body.</p><p>Astaxanthin crosses barriers most antioxidants cannot and accumulates in eye tissue. Multiple randomized trials report improvements in eye fatigue, visual acuity, and the ability to refocus at different distances.</p><p>That means fewer evenings rubbing tired eyes, fewer moments waiting for the page to sharpen, and less of that heavy, gritty feeling after another full day on a screen.</p>",
+            "close_text": "Your screen time keeps climbing. Your cellular eye protection should climb with it.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ok4r10": {
+          "type": "sign",
+          "settings": {
+            "heading": "REVELLA Turns Okinawa's Daily Red Shield Into One Full-Strength Softgel",
+            "image": "shopify://shop_images/12mg-once-daily-grandma.jpg",
+            "image_alt": "REVELLA astaxanthin softgel with microalgae and astaxanthin-rich foods",
+            "body": "<p>You could try to eat wild salmon, shrimp, shellfish, and sea vegetables every day.</p><p>Or you could take one softgel with a meal.</p><p>REVELLA uses natural astaxanthin grown from <em>Haematococcus pluvialis</em> microalgae, the original source beneath the food chain. Every softgel delivers a full <strong>12mg</strong>, not the 4mg label-dressing dose found in many competing products.</p><p>One natural ingredient. One softgel a day. Third-party tested. No filler parade. No proprietary blend hiding how little you are actually getting.</p><p>The benefit is not another bottle in the cabinet. It is waking up with more left in the tank. Seeing a face in the mirror that looks closer to how you feel inside. Finishing a screen-heavy day without rubbing your eyes raw. Moving without negotiating with every joint first.</p>",
+            "close_text": "Okinawans built this red antioxidant into daily life. REVELLA makes it possible to do the same before breakfast is over.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "faq_ok4q1": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "What is astaxanthin?",
+            "answer": "<p>Astaxanthin is the deep red antioxidant made by microalgae under extreme stress. It is the pigment that gives wild salmon, shrimp, and flamingos their color. Its unusual shape lets it span both sides of the cell membrane.</p>"
+          }
+        },
+        "faq_ok4q2": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "What benefits can I expect?",
+            "answer": "<p>Astaxanthin has been studied for oxidative stress, inflammation, skin hydration and elasticity, daily energy and endurance, cardiovascular markers, eye fatigue, and joint comfort. Individual results and timing vary.</p>"
+          }
+        },
+        "faq_ok4q3": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "How many do I take a day?",
+            "answer": "<p>One softgel, once a day, with a meal that contains some fat. Breakfast works well for most people.</p>"
+          }
+        },
+        "faq_ok4q4": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "How long until I notice something?",
+            "answer": "<p>Give it a full 30 days. This is daily cellular protection, not a stimulant or temporary numbing agent. Some benefits may be noticed sooner while others can take longer.</p>"
+          }
+        },
+        "faq_ok4q5": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "Why not just eat salmon?",
+            "answer": "<p>You can, but you would need to eat astaxanthin-rich seafood consistently. REVELLA puts 12mg of natural microalgae-sourced astaxanthin into one daily softgel.</p>"
+          }
+        },
+        "faq_ok4q6": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "Why does the 12mg dose matter?",
+            "answer": "<p>Many competing brands stop at 4 to 6mg. REVELLA delivers a full 12mg in one softgel, matching the top end of the ongoing-use level cited in the research.</p>"
+          }
+        },
+        "faq_ok4q7": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "<p>Take it for 30 days. If you do not feel a meaningful difference, use the money-back guarantee, even if the bottle is empty.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "sign_ok4r01",
+        "sign_ok4r02",
+        "sign_ok4r03",
+        "sign_ok4r04",
+        "sign_ok4r05",
+        "sign_ok4r06",
+        "sign_ok4r07",
+        "sign_ok4r08",
+        "sign_ok4r09",
+        "sign_ok4r10",
+        "faq_ok4q1",
+        "faq_ok4q2",
+        "faq_ok4q3",
+        "faq_ok4q4",
+        "faq_ok4q5",
+        "faq_ok4q6",
+        "faq_ok4q7"
+      ],
+      "custom_css": [
+        ".faq,.endcta,.foot {display: none;}"
+      ],
+      "settings": {
+        "product": "astaxanthin-softgels",
+        "show_announcement": true,
+        "announcement_text": "Up to 70% off · Supply limited by algae harvest cycles",
+        "top_cta_label": "Check availability",
+        "hero_heading": "10 Reasons Okinawa Has 4X More 100-Year-Olds, And Why Their Daily \"King Of Antioxidants\" Is Finally Available Here",
+        "hero_subhead": "(6,000X Stronger Than Vitamin C And Built To Protect Your Skin, Heart, Eyes, Joints And Daily Energy From The Inside)",
+        "byline": "the REVELLA team",
+        "hero_image": "shopify://shop_images/okinawan1.jpg",
+        "intro_top": "<p>On a chain of islands south of mainland Japan, people do something that looks almost impossible to the rest of the world.</p><p><strong>They keep living.</strong></p><p>Okinawa has four times more people living past 100 than anywhere else. Men and women in their 80s and 90s still garden, walk, work, and pull food from the sea while millions of Americans half their age wake up tired, stiff, inflamed, and wondering why their body suddenly feels older than they do.</p>",
+        "intro_image": "shopify://shop_images/okinawan-split-4x3.jpg",
+        "intro_bottom": "<p>Their traditional diet contains something most Western diets barely deliver at all: astaxanthin, the deep red antioxidant found in salmon, shrimp, shellfish, sea vegetables, and the microalgae beneath the entire food chain.</p><p>Scientists call it the King of Antioxidants. It has been studied for nearly 90 years, and its molecular shape lets it protect both sides of every cell membrane in your body.</p>",
+        "intro_turn": "You do not age in one place. The same oxidative stress shows up in your mirror, your energy, your heart, your eyes, and the joints that decide how freely you get to live.",
+        "buybox_eyebrow": "Choose your supply",
+        "buybox_rating": "Rated 4.8 Excellent by REVELLA customers",
+        "buybox_benefit_1": "12mg natural astaxanthin per softgel",
+        "buybox_benefit_2": "One softgel a day with a meal",
+        "buybox_benefit_3": "Third-party tested",
+        "buybox_benefit_4": "60-day money-back guarantee",
+        "buybox_button_label": "Add to cart",
+        "buybox_note": "Secure checkout · 60-day money-back guarantee",
+        "promo_countdown_label": "deal ending in",
+        "promo_hours": "11",
+        "promo_minutes": "51",
+        "promo_seconds": "58",
+        "promo_heading": "BACK IN STOCK + 15% OFF!",
+        "promo_subtext": "We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again.",
+        "promo_button_text": "GET 15% OFF NOW",
+        "promo_badge_1": "60-day Money-Back Guarantee",
+        "promo_badge_2": "fast + free shipping",
+        "offer_gif": "shopify://shop_images/red_algae_ocean_rocks.gif",
+        "offer_badge": "Back in stock after the ninth sellout",
+        "offer_heading": "The Current Astaxanthin Batch Is Live. When the Algae Harvest Runs Out, So Does REVELLA.",
+        "offer_body": "<p>Natural astaxanthin is grown, not stamped out of a petrochemical factory. REVELLA can only bottle what the microalgae harvest produces. When a batch is gone, it is gone until the next harvest.</p>",
+        "stock_note": "The current batch is available now, and the biggest sale of the year is live: up to 70% off.",
+        "offer_close": "You can keep buying a different product for every new sign of aging. Or you can spend the next 30 days putting one whole-body antioxidant shield on guard inside your cells.",
+        "show_offer_proofs": false,
+        "proof_1": "12mg natural astaxanthin from real microalgae",
+        "proof_2": "One ingredient. No fillers or synthetic dye",
+        "proof_3": "Up to 6,000x stronger than vitamin C",
+        "proof_4": "Third-party tested",
+        "proof_5": "60-day money-back guarantee",
+        "end_heading": "Your Cells Do Not Get A Day Off From Aging",
+        "end_body": "Supply runs on the algae harvest, so selling out mid-sale is normal. If the button is still active, the current batch is still available.",
+        "end_cta_label": "Check stock and put the King of Antioxidants on guard",
+        "enable_sticky_cta": true,
+        "sticky_label": "Check stock",
+        "sticky_note": "Up to 70% off · 60-day guarantee",
+        "footer_disclaimer": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "star_rating_custom_wmfWgE": {
+          "type": "star_rating_custom",
+          "settings": {
+            "rating": 5,
+            "star_size": 14,
+            "star_gap": 0,
+            "stroke_width": 0,
+            "stroke_color": "#e0a800",
+            "star_color": "#ffcc00",
+            "star_empty_color": "#ececec",
+            "meta_text": "<p>Rated <strong>4.8 Excellent</strong> over <strong>50,312+ Reviews</strong></p>",
+            "text_size": 12,
+            "text_color": "#444444",
+            "margin_bottom": 6
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size_mobile": 22,
+            "font_size_desktop": 32,
+            "font_weight": "500",
+            "text_color": "#8c3a3a",
+            "letter_spacing": 1,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "icon_with_content_BgtaqU": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/ia_200000003.svg",
+            "icon_color": "#7b2020",
+            "icon_size": 18,
+            "icon_gap": 10,
+            "item_gap": 0,
+            "item_1": "Heals joint inflammation at the cell level",
+            "item_2": "94% felt relief in under 4 weeks",
+            "item_3": "12mg - clincal dose, zero filler",
+            "item_4": "60-day money-back guarantee",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 14,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "left",
+            "margin_bottom": 16
+          }
+        },
+        "text_nJn6ye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The daily softgel your whole-body wellness deserves.",
+            "text_style": "body",
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#121212",
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "benefit_icon_grid_hHGThf": {
+          "type": "benefit_icon_grid",
+          "disabled": true,
+          "settings": {
+            "icon_1": "shopify://shop_images/antioxidant_788f2cb0-3752-4578-8587-9f099a0ce387.webp",
+            "label_1": "Cellular & Antioxidant Defense*",
+            "icon_2": "shopify://shop_images/inflammation_1_2a6fbc43-428f-4b30-9073-947b187d19d8.webp",
+            "label_2": "Inflammation Support*",
+            "icon_3": "shopify://shop_images/molecule_18415b65-796b-4bb5-8228-131c4fe76e20.webp",
+            "label_3": "Oxidative Stress Support*",
+            "icon_4": "shopify://shop_images/cardiology_ba2d75a4-6652-4a09-8194-74bd6ffb8ccf.webp",
+            "label_4": "Cardiovascular Support*",
+            "icon_5": "shopify://shop_images/wellness_111611e0-21cd-45c8-a9de-55b5c779b715.webp",
+            "label_5": "Daily Energy & Vitality*",
+            "icon_6": "shopify://shop_images/skin_ec9a8b96-b001-4a78-8db4-1b8cea76cd36.webp",
+            "label_6": "Skin & Healthy Aging*",
+            "col_gap": 24,
+            "row_gap": 16,
+            "icon_gap": 10,
+            "icon_size": 32,
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#1a1a1a",
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "urgency_bar_63dMd4": {
+          "type": "urgency_bar",
+          "disabled": true,
+          "settings": {
+            "percentage": 95,
+            "label_after": "% Sold Out",
+            "label_position": "right",
+            "bg_color": "#f9efef",
+            "fill_color": "#8c3a3a",
+            "track_color": "#d5c8c8",
+            "label_color": "#8c3a3a",
+            "bar_height": 8,
+            "bar_radius": 10,
+            "wrap_radius": 12,
+            "wrap_padding": 2,
+            "gap": 12,
+            "label_size": 13,
+            "margin_bottom": 0
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_custom_price": true,
+            "price_size": 20,
+            "price_color": "#121212",
+            "compare_size": 14,
+            "compare_color": "#6b6b6b",
+            "badge_text": "Save 50% - Ends Tonight!",
+            "badge_bg": "#288b75",
+            "badge_text_color": "#cee9e2",
+            "badge_font_size": 13,
+            "badge_radius": 20,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "margin_top": 0,
+            "margin_bottom": 8,
+            "btn_bg_color": "#8c3a3a",
+            "btn_text_color": "#ffffff",
+            "btn_font_size": 20,
+            "btn_font_weight": "600",
+            "btn_radius": 6,
+            "btn_padding_v": 16,
+            "btn_text_transform": "uppercase",
+            "btn_letter_spacing": 1,
+            "btn_hover_bg_color": "#3a3a3a",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_lift": true
+          }
+        },
+        "icon_with_content_3wypNV": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/fluent_premium-28-filled.svg",
+            "icon_color": "#8c3a3a",
+            "icon_size": 18,
+            "icon_gap": 4,
+            "item_gap": 0,
+            "item_1": "60-day Money-Back Guarantee",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 16,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "center",
+            "margin_bottom": 8
+          }
+        },
+        "payment_badges_bkKpJn": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, paypal, stripe, visa",
+            "alignment": "center",
+            "badge_size": 24,
+            "badge_gap": 0,
+            "margin_top": 9,
+            "margin_bottom": 15
+          }
+        },
+        "social_proof_bar_zn4Pjg": {
+          "type": "social_proof_bar",
+          "settings": {
+            "avatar_1": "shopify://shop_images/m14_d6ea4bd0-a08a-4f57-a225-52c5eaa5372d.png",
+            "avatar_2": "shopify://shop_images/w2_930a5aca-699e-4bb6-a38e-796621e343ff.png",
+            "avatar_3": "shopify://shop_images/m5_d3a9b9a5-f7f8-4316-95e8-933c3ee4a4e9.png",
+            "avatar_size": 32,
+            "avatar_overlap": 12,
+            "heading": "Trusted by 100K+ customers",
+            "heading_size": 12,
+            "heading_weight": "700",
+            "subtext": "Who choose Revella for consistent, long-term wellness support.",
+            "subtext_size": 11,
+            "heading_line_height": 1.4,
+            "subtext_line_height": 1.4,
+            "bg_color": "#f2f2f2",
+            "heading_color": "#1a1a1a",
+            "subtext_color": "#666666",
+            "radius": 40,
+            "padding_v": 6,
+            "padding_h": 6,
+            "margin_bottom": 8
+          }
+        },
+        "collapsible_row_custom_aagMJW": {
+          "type": "collapsible_row_custom",
+          "settings": {
+            "icon_1": "shopify://shop_images/ant-design_product-filled.svg",
+            "q_1": "Natural Astaxanthin 12mg",
+            "a_1": "<p><strong>Natural Astaxanthin 12mg</strong> from Haematococcus pluvialis microalgae. Sunflower oil for absorption. Softgel capsule (gelatin, purified water). That's it.</p><p>No fillers. No synthetic astaxanthin. No artificial anything. 30 softgels per bag, full 1-month supply. Non-GMO, gluten-free, soy-free.</p>",
+            "icon_2": "shopify://shop_images/mingcute_question-fill.svg",
+            "q_2": "Clean & Trusted",
+            "a_2": "<p>cGMP certified, FDA-registered facility. 3rd party lab tested every batch. Oil-based softgel for real absorption, not powder capsules that pass right through you. We sell direct only. No Amazon, no middlemen.</p>",
+            "icon_3": "shopify://shop_images/mingcute_bug-fill.svg",
+            "q_3": "How Does It Work on Joints?",
+            "a_3": "<p>Joint pain isn't surface soreness. The real damage happens inside the cell membrane of your cartilage and tendon, where oxidative stress silently breaks down the tissue from within. That's why the pain keeps coming back. Nothing you've put on or swallowed has reached it.</p><p>Most solutions work on the surface. They mute the signal without touching the source. The moment they wear off, the destruction picks right back up.</p><p>Astaxanthin is one of the only compounds on earth that's both fat-soluble and water-soluble at the same time. That's what lets it physically cross into the cartilage and tendon cells where the damage is actually happening. Once inside, it neutralizes the free radicals driving the breakdown, halts the inflammation at the source, and protects the tissue from further damage.</p><p>It doesn't mask the pain. It removes the reason the pain exists.</p>",
+            "icon_4": "shopify://shop_images/mdi_thunder-circle.svg",
+            "q_4": "How Long Before I See Results?",
+            "a_4": "<p>Most people feel a shift within days, because astaxanthin reaches the cells nothing else has.</p><p><strong>First few days:</strong> Stiffness begins to ease. Joints feel less locked when you wake up. A lot of people start realizing the things they blamed on \"just getting older\" weren't age at all.</p><p><strong>Week 1–2:</strong> Mobility increases substantially. Daily pain calms. Nighttime aching settles. People who haven't slept through the night in months start getting real rest.</p><p><strong>Week 3–4:</strong> Astaxanthin keeps building in your joint tissue. It doesn't flush out like other supplements. Movement gets noticeably easier. Activities you'd quietly given up start coming back on their own.</p><p><strong>Week 5–6+:</strong> The inflammation cycle is broken. Most people stop thinking about their joints entirely. They're just living again.</p><p>Cellular protection compounds. Don't quit early. You're protected by a 60-day guarantee either way.</p>",
+            "icon_5": "shopify://shop_images/Group.svg",
+            "q_5": "Recommended Use",
+            "a_5": "<p>One softgel a day. Take it with a meal that has fat (eggs, avocado, salmon, olive oil, peanut butter). Astaxanthin is fat-soluble, so it absorbs 3-4x better with food fats. Morning or night, doesn't matter. Pick a time you'll remember.</p><p>That's it. No stack. No timing tricks. One pill, one meal, every day.</p>",
+            "icon_6": "shopify://shop_images/Vector.svg",
+            "q_6": "Do You Offer a Guarantee?",
+            "a_6": "<p>30 days. Full refund. No questions. If your joints don't move easier, your stiffness doesn't ease, or your pain doesn't calm, we refund every penny. Even if the bag is empty.<br/><br/></p>",
+            "q_7": "",
+            "a_7": "",
+            "q_8": "",
+            "a_8": "",
+            "q_9": "",
+            "a_9": "",
+            "q_10": "",
+            "a_10": "",
+            "heading_size": 16,
+            "heading_weight": "500",
+            "heading_color": "#8c3a3a",
+            "content_size": 14,
+            "content_color": "#8c3a3a",
+            "border_color": "#dddddd",
+            "border_style": "dashed",
+            "border_width": 1,
+            "header_bg": "#ffffff",
+            "content_bg": "#fefaff",
+            "padding_v": 14,
+            "padding_h": 10,
+            "content_padding_v": 10,
+            "margin_bottom": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "font_size_mobile": 14,
+            "font_size_desktop": 15,
+            "font_weight": "400",
+            "text_color": "#444444",
+            "line_height": 6,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_custom_wmfWgE",
+        "title",
+        "icon_with_content_BgtaqU",
+        "text_nJn6ye",
+        "benefit_icon_grid_hHGThf",
+        "urgency_bar_63dMd4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_content_3wypNV",
+        "payment_badges_bkKpJn",
+        "social_proof_bar_zn4Pjg",
+        "collapsible_row_custom_aagMJW",
+        "description"
+      ],
+      "custom_css": [
+        ".product__media-wrapper {margin-bottom: 15px;}",
+        ".product__info-container .product-form__buttons {margin: 0 !important;}",
+        ".product__info-container > div:has(> product-form),.product__info-container > div:has(> product-form) ~ div {margin: 0 0 6px !important; padding: 0 !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3b962a04-6631-4334-84ee-bc9afe663e22",
+        "media_size": "large",
+        "hide_image": false,
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "cfp_mobile_gallery_style": "dots",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12,
+        "enable_sticky_info": true
+      }
+    },
+    "revella_listicle_ok4_faq": {
+      "type": "revella-listicle-sebi",
+      "blocks": {
+        "sign_ok4b01": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "Okinawa Did Not Find The Fountain Of Youth. They Put It On The Dinner Table.",
+            "image": "shopify://shop_images/red-algae-chopsticks.jpg",
+            "image_alt": "Older Okinawan adults preparing a traditional seafood meal",
+            "body": "<p>Okinawa has four times more people living past 100 than anywhere else in the world.</p>",
+            "close_text": "When an entire island produces four times more 100-year-olds, it is worth asking what is on their plate that is missing from yours.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "Put the King of Antioxidants on guard",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "faq_ok4b1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is astaxanthin?",
+            "answer": "<p>Astaxanthin is the deep red antioxidant made by microalgae under extreme stress. It is the pigment that gives wild salmon, shrimp, and flamingos their color. Its unusual shape lets it span both sides of the cell membrane.</p>"
+          }
+        },
+        "faq_ok4b2": {
+          "type": "faq",
+          "settings": {
+            "question": "What benefits can I expect?",
+            "answer": "<p>Astaxanthin has been studied for oxidative stress, inflammation, skin hydration and elasticity, daily energy and endurance, cardiovascular markers, eye fatigue, and joint comfort. Individual results and timing vary.</p>"
+          }
+        },
+        "faq_ok4b3": {
+          "type": "faq",
+          "settings": {
+            "question": "How many do I take a day?",
+            "answer": "<p>One softgel, once a day, with a meal that contains some fat. Breakfast works well for most people.</p>"
+          }
+        },
+        "faq_ok4b4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I notice something?",
+            "answer": "<p>Give it a full 30 days. This is daily cellular protection, not a stimulant or temporary numbing agent. Some benefits may be noticed sooner while others can take longer.</p>"
+          }
+        },
+        "faq_ok4b5": {
+          "type": "faq",
+          "settings": {
+            "question": "Why not just eat salmon?",
+            "answer": "<p>You can, but you would need to eat astaxanthin-rich seafood consistently. REVELLA puts 12mg of natural microalgae-sourced astaxanthin into one daily softgel.</p>"
+          }
+        },
+        "faq_ok4b6": {
+          "type": "faq",
+          "settings": {
+            "question": "Why does the 12mg dose matter?",
+            "answer": "<p>Many competing brands stop at 4 to 6mg. REVELLA delivers a full 12mg in one softgel, matching the top end of the ongoing-use level cited in the research.</p>"
+          }
+        },
+        "faq_ok4b7": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "<p>Take it for 30 days. If you do not feel a meaningful difference, use the money-back guarantee, even if the bottle is empty.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "sign_ok4b01",
+        "faq_ok4b1",
+        "faq_ok4b2",
+        "faq_ok4b3",
+        "faq_ok4b4",
+        "faq_ok4b5",
+        "faq_ok4b6",
+        "faq_ok4b7"
+      ],
+      "custom_css": [
+        ".masthead,.intro,.hero,.offer {display: none;}"
+      ],
+      "settings": {
+        "product": "astaxanthin-softgels",
+        "show_announcement": false,
+        "announcement_text": "Up to 70% off · Supply limited by algae harvest cycles",
+        "top_cta_label": "Check availability",
+        "hero_heading": "10 Reasons Okinawa Has 4X More 100-Year-Olds, And Why Their Daily \"King Of Antioxidants\" Is Finally Available Here",
+        "hero_subhead": "(6,000X Stronger Than Vitamin C And Built To Protect Your Skin, Heart, Eyes, Joints And Daily Energy From The Inside)",
+        "byline": "the REVELLA team",
+        "hero_image": "shopify://shop_images/okinawan1.jpg",
+        "intro_top": "<p>On a chain of islands south of mainland Japan, people do something that looks almost impossible to the rest of the world.</p>",
+        "intro_image": "shopify://shop_images/okinawan-split-4x3.jpg",
+        "intro_bottom": "<p>Scientists call it the King of Antioxidants. It has been studied for nearly 90 years, and its molecular shape lets it protect both sides of every cell membrane in your body.</p>",
+        "intro_turn": "You do not age in one place. The same oxidative stress shows up in your mirror, your energy, your heart, your eyes, and the joints that decide how freely you get to live.",
+        "buybox_eyebrow": "Choose your supply",
+        "buybox_rating": "Rated 4.8 Excellent by REVELLA customers",
+        "buybox_benefit_1": "12mg natural astaxanthin per softgel",
+        "buybox_benefit_2": "One softgel a day with a meal",
+        "buybox_benefit_3": "Third-party tested",
+        "buybox_benefit_4": "60-day money-back guarantee",
+        "buybox_button_label": "Add to cart",
+        "buybox_note": "Secure checkout · 60-day money-back guarantee",
+        "promo_countdown_label": "deal ending in",
+        "promo_hours": "11",
+        "promo_minutes": "51",
+        "promo_seconds": "58",
+        "promo_heading": "BACK IN STOCK + 15% OFF!",
+        "promo_subtext": "We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again.",
+        "promo_button_text": "GET 15% OFF NOW",
+        "promo_badge_1": "60-day Money-Back Guarantee",
+        "promo_badge_2": "fast + free shipping",
+        "offer_gif": "shopify://shop_images/red_algae_ocean_rocks.gif",
+        "offer_badge": "Back in stock after the ninth sellout",
+        "offer_heading": "The Current Astaxanthin Batch Is Live. When the Algae Harvest Runs Out, So Does REVELLA.",
+        "offer_body": "<p>Natural astaxanthin is grown, not stamped out of a petrochemical factory. REVELLA can only bottle what the microalgae harvest produces. When a batch is gone, it is gone until the next harvest.</p>",
+        "stock_note": "The current batch is available now, and the biggest sale of the year is live: up to 70% off.",
+        "offer_close": "You can keep buying a different product for every new sign of aging. Or you can spend the next 30 days putting one whole-body antioxidant shield on guard inside your cells.",
+        "show_offer_proofs": false,
+        "proof_1": "12mg natural astaxanthin from real microalgae",
+        "proof_2": "One ingredient. No fillers or synthetic dye",
+        "proof_3": "Up to 6,000x stronger than vitamin C",
+        "proof_4": "Third-party tested",
+        "proof_5": "60-day money-back guarantee",
+        "end_heading": "Your Cells Do Not Get A Day Off From Aging",
+        "end_body": "Supply runs on the algae harvest, so selling out mid-sale is normal. If the button is still active, the current batch is still available.",
+        "end_cta_label": "Check stock and put the King of Antioxidants on guard",
+        "enable_sticky_cta": true,
+        "sticky_label": "Check stock",
+        "sticky_note": "Up to 70% off · 60-day guarantee",
+        "footer_disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results vary. Consult a qualified healthcare professional before starting any supplement, especially if you are pregnant, nursing, or taking medication. Testimonials reflect individual experiences and are not a guarantee of results."
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "revella_listicle_ok4_top",
+    "main",
+    "revella_listicle_ok4_faq",
+    "related-products"
+  ]
+}

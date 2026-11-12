@@ -1,0 +1,622 @@
+{% render 'oc-assets' %}
+{%- liquid
+  assign s = section.settings
+  assign p = s.product
+  assign points = section.blocks | where: 'type', 'point'
+  assign packs = section.blocks | where: 'type', 'pack'
+  assign perks = section.blocks | where: 'type', 'perk'
+  assign init_qty = 1
+  assign init_plan = ''
+  if p != blank
+    assign cur = p.selected_or_first_available_variant
+    assign title = s.title | default: p.title
+    assign main = cur.featured_media | default: p.featured_media
+  else
+    assign title = s.title | default: 'Lymphgem Lymphatic Drainage'
+  endif
+-%}
+{%- capture check_icon -%}
+  {%- if s.check_icon != blank -%}
+    {{ s.check_icon | image_url: width: 64 | image_tag: loading: 'lazy', class: 'ck-img', alt: '' }}
+  {%- else -%}
+    {% render 'oc-icon', icon: s.check_style %}
+  {%- endif -%}
+{%- endcapture -%}
+<div class="lm{% if s.bf_accents %} lm-bf{% endif %}">
+  <section class="prod" id="{{ s.anchor | default: 'product' | handle }}"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <lm-product class="prod-i">
+      {%- if p != blank -%}
+        <script type="application/json" data-lm-json>
+          {
+            "moneyFormat": {{ shop.money_format | strip_html | json }},
+            "variants": [
+              {%- for v in p.variants -%}
+                {
+                  "id": {{ v.id }},
+                  "option1": {{ v.option1 | json }},
+                  "price": {{ v.price }},
+                  "compare": {{ v.compare_at_price | default: 0 }},
+                  "available": {{ v.available | json }},
+                  "mediaId": {{ v.featured_media.id | default: 0 }},
+                  "image": {% if v.featured_media %}{{ v.featured_media | image_url: width: 1400 | json }}{% else %}null{% endif %},
+                  "plans": {
+                    {%- for a in v.selling_plan_allocations -%}
+                      "{{ a.selling_plan.id }}": {{ a.price }}{% unless forloop.last %},{% endunless %}
+                    {%- endfor -%}
+                  }
+                }{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            ]
+          }
+        </script>
+      {%- endif -%}
+
+      <div class="pmedia">
+        <div class="main-img">
+          {%- if s.bf_accents and s.bf_callout != blank %}<span class="bf-tag">{{ s.bf_callout }}</span>{% endif -%}
+          {%- if p != blank and main != blank -%}
+            <img
+              data-main-img
+              src="{{ main | image_url: width: 1100 }}"
+              srcset="{{ main | image_url: width: 550 }} 550w, {{ main | image_url: width: 800 }} 800w, {{ main | image_url: width: 1100 }} 1100w, {{ main | image_url: width: 1400 }} 1400w"
+              sizes="(min-width: 990px) 55vw, 100vw"
+              alt="{{ main.alt | default: title | escape }}"
+              width="{{ main.preview_image.width }}"
+              height="{{ main.preview_image.height }}"
+              {% if section.index == 1 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+            >
+          {%- else -%}
+            {%- assign pouch_flavor = s.pouch_tag_1 -%}
+            {%- if p != blank and p.has_only_default_variant == false %}{% assign pouch_flavor = cur.option1 %}{% endif -%}
+            {% render 'oc-pouch', brand: s.pouch_brand, title: s.pouch_title, tag1: pouch_flavor, tag2: s.pouch_tag_2 %}
+          {%- endif -%}
+          {%- if s.show_arrows and s.show_thumbs and p != blank and p.media.size > 1 -%}
+            <button type="button" class="m-nav prev" data-media-dir="-1" aria-label="Previous image">{% if s.prev_icon != blank %}{{ s.prev_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'nv-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'chev-left' %}{% endif %}</button>
+            <button type="button" class="m-nav next" data-media-dir="1" aria-label="Next image">{% if s.next_icon != blank %}{{ s.next_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'nv-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'chev-right' %}{% endif %}</button>
+          {%- endif -%}
+        </div>
+        {%- if s.show_thumbs -%}
+          <div class="thumbs">
+            {%- if p != blank and p.media.size > 1 -%}
+              {%- for m in p.media limit: s.thumb_limit -%}
+                <button type="button" class="thumb{% if m.id == main.id %} on{% endif %}" data-src="{{ m | image_url: width: 1400 }}" data-media-id="{{ m.id }}" aria-label="Show image {{ forloop.index }}">
+                  {{- m | image_url: width: 120 | image_tag: loading: 'lazy', width: 59, height: 59, alt: '' -}}
+                </button>
+              {%- endfor -%}
+            {%- elsif p == blank -%}
+              {%- for i in (1..6) -%}
+                <button type="button" class="thumb{% if forloop.first %} on{% endif %}" aria-label="Show image {{ i }}">{{ i }}</button>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="info">
+        <div class="ph-head">
+          <div class="ph-top">
+            {%- if s.show_rating -%}
+              <div class="ph-rate">{% render 'oc-stars' %}<span>{{ s.rating_text }}</span></div>
+            {%- endif -%}
+            <h2 class="ph-title">{{ title }}</h2>
+          </div>
+          {%- if s.description != blank -%}
+            <div class="ph-desc">{{ s.description }}</div>
+          {%- elsif p != blank and p.description != blank -%}
+            <div class="ph-desc">{{ p.description }}</div>
+          {%- endif -%}
+          {%- if s.highlight != blank %}<p class="ph-hl">{{ s.highlight }}</p>{% endif -%}
+        </div>
+
+        {%- if points.size > 0 -%}
+          <ul class="tps">
+            {%- for block in points -%}
+              <li {{ block.shopify_attributes }}>{% if block.settings.icon != blank %}{{ block.settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', class: 'ck-img', alt: '' }}{% else %}{{ check_icon }}{% endif %}<span>{{ block.settings.text }}</span></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="bundle">
+          {%- comment -%} Flavor = first product option {%- endcomment -%}
+          {%- if s.show_flavors -%}
+            {%- if p != blank -%}
+              {%- unless p.has_only_default_variant -%}
+                {%- if s.flavor_label != blank %}<p class="lbl3">{{ s.flavor_label }}</p>{% endif -%}
+                <div class="flv">
+                  {%- for value in p.options_with_values.first.values -%}
+                    {%- assign vname = value.name | default: value -%}
+                    {%- assign fv = nil -%}
+                    {%- for v in p.variants -%}
+                      {%- if fv == nil and v.option1 == vname %}{% assign fv = v %}{% endif -%}
+                    {%- endfor -%}
+                    <button type="button" class="fo{% if vname == cur.option1 %} on{% endif %}" data-value="{{ vname | escape }}" aria-pressed="{% if vname == cur.option1 %}true{% else %}false{% endif %}">
+                      <span class="fm">
+                        {%- if s.swatch_style == 'image' and fv.featured_media != blank -%}
+                          {{ fv.featured_media | image_url: width: 200 | image_tag: loading: 'lazy', width: 84, height: 84, alt: '' }}
+                        {%- else -%}
+                          <span class="mini{% if forloop.index == 2 %} pe{% endif %}"></span>
+                        {%- endif -%}
+                      </span>
+                      <span class="fn">{{ vname }}</span>
+                      {%- if forloop.index == s.bestseller_position and s.bestseller_text != blank %}<span class="fbadge">{{ s.bestseller_text }}</span>{% endif -%}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+            {%- else -%}
+              {%- if s.flavor_label != blank %}<p class="lbl3">{{ s.flavor_label }}</p>{% endif -%}
+              <div class="flv">
+                <button type="button" class="fo on" aria-pressed="true"><span class="fm"><span class="mini"></span></span><span class="fn">Watermelon</span>{% if s.bestseller_position == 1 and s.bestseller_text != blank %}<span class="fbadge">{{ s.bestseller_text }}</span>{% endif %}</button>
+                <button type="button" class="fo" aria-pressed="false"><span class="fm"><span class="mini pe"></span></span><span class="fn">Peach</span>{% if s.bestseller_position == 2 and s.bestseller_text != blank %}<span class="fbadge">{{ s.bestseller_text }}</span>{% endif %}</button>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if packs.size > 0 -%}
+            {%- if s.packs_label != blank %}<p class="lbl3" style="color: rgba(13,30,57,.8)">{{ s.packs_label }}</p>{% endif -%}
+            {%- if s.bf_callout != blank -%}
+              <p class="bf-call"><b>{{ s.bf_callout }}</b>{% if s.bf_callout_note != blank %}<span>{{ s.bf_callout_note }}</span>{% endif %}</p>
+            {%- endif -%}
+            <div class="packs">
+              {%- for block in packs -%}
+                {%- liquid
+                  assign b = block.settings
+                  assign is_on = false
+                  if forloop.index == s.default_pack
+                    assign is_on = true
+                  endif
+                  if p != blank
+                    assign qty = b.quantity
+                    assign unit = cur.price
+                    assign plan_ok = false
+                    if b.selling_plan_id != blank
+                      for a in cur.selling_plan_allocations
+                        assign aid = a.selling_plan.id | append: ''
+                        if aid == b.selling_plan_id
+                          assign unit = a.price
+                          assign plan_ok = true
+                        endif
+                      endfor
+                    endif
+                    assign free = b.free | default: 0
+                    assign paid = qty | minus: free | at_least: 1
+                    assign total = unit | times: paid
+                    assign cmp_unit = cur.price
+                    if cur.compare_at_price > cur.price
+                      assign cmp_unit = cur.compare_at_price
+                    endif
+                    assign cmpt = cmp_unit | times: qty
+                    assign day_count = b.days | times: qty
+                    assign perday = total | times: 1.0 | divided_by: day_count | round
+                    assign pct = 0
+                    if cmpt > 0
+                      assign pct = cmpt | minus: total | times: 100.0 | divided_by: cmpt | round
+                    endif
+                    if is_on
+                      assign init_qty = qty
+                      if plan_ok
+                        assign init_plan = b.selling_plan_id
+                      endif
+                    endif
+                  endif
+                  assign ben_lines = b.benefits | newline_to_br | split: '<br />'
+                -%}
+                <button
+                  type="button"
+                  class="pk{% if is_on %} on{% endif %}"
+                  aria-pressed="{{ is_on }}"
+                  data-qty="{{ b.quantity }}"
+                  data-free="{{ b.free | default: 0 }}"
+                  data-plan="{{ b.selling_plan_id | strip }}"
+                  data-days="{{ b.days }}"
+                  data-perday-label="{{ b.per_day_label | escape }}"
+                  data-off-suffix="{{ b.off_suffix | escape }}"
+                  {% if b.off_text != blank %}data-off-text="1"{% endif %}
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if b.badge != blank %}<span class="lmx-rib">{{ b.badge }}</span>{% endif -%}
+                  <div class="pk-row">
+                    <div class="pk-main">
+                      <span class="radio"><i></i></span>
+                      <div class="pk-t">
+                        <b>{{ b.title }}</b>
+                        {%- unless b.hide_per_day -%}
+                          <span data-perday>{% if p != blank %}{{ perday | money }} {{ b.per_day_label }}{% else %}[$X.XX] {{ b.per_day_label }}{% endif %}</span>
+                        {%- endunless -%}
+                      </div>
+                    </div>
+                    {%- if b.off_text != blank -%}
+                      <span class="pk-off" data-off>{{ b.off_text }}</span>
+                    {%- elsif p != blank -%}
+                      <span class="pk-off" data-off{% if pct <= 0 %} style="visibility: hidden"{% endif %}>{{ pct }}{{ b.off_suffix }}</span>
+                    {%- else -%}
+                      <span class="pk-off" data-off>[XX]{{ b.off_suffix }}</span>
+                    {%- endif -%}
+                    <div class="pk-pr">
+                      {%- if p != blank -%}
+                        <s data-compare{% if cmpt <= total %} hidden{% endif %}>{{ cmpt | money }}</s><b data-total>{{ total | money }}</b>
+                      {%- else -%}
+                        <s>[$XX]</s><b>[$XX]</b>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                  {%- if b.benefits != blank -%}
+                    <ul class="pk-ben">
+                      {%- for line in ben_lines -%}
+                        {%- assign l = line | strip -%}
+                        {%- if l != blank %}<li>{{ check_icon }}<span>{{ l }}</span></li>{% endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                  {%- if b.callout_text != blank -%}
+                <span class="pk-call"><span>{{ b.callout_text }}</span>{%- if b.callout_compare != blank -%}<s>{{ b.callout_compare }}</s>{%- endif -%}</span>
+              {%- endif -%}
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- if s.show_otp -%}
+            <div class="otp">
+              <a href="{% if p != blank %}#{% else %}#product{% endif %}"{% if p != blank %} data-otp{% endif %}>
+                {{- s.otp_label }} <span data-otp-price>{% if p != blank %}{{ cur.price | money }}{% else %}[$XX]{% endif %}</span>
+              </a>
+            </div>
+          {%- endif -%}
+
+          {%- if p != blank -%}
+            {%- form 'product', p, class: 'lm-form', novalidate: 'novalidate' -%}
+              <input type="hidden" name="id" value="{{ cur.id }}">
+              <input type="hidden" name="quantity" value="{{ init_qty }}">
+              <input type="hidden" name="selling_plan" value="{{ init_plan }}"{% if init_plan == '' %} disabled{% endif %}>
+              {%- if s.after_add == 'checkout' %}<input type="hidden" name="return_to" value="/checkout">{% endif -%}
+              <button type="submit" class="buy" data-label="{{ s.buy_label | escape }}" data-soldout="{{ s.soldout_label | escape }}"{% unless cur.available %} disabled{% endunless %}>
+                <span data-buy-text>{% if cur.available %}{{ s.buy_label }}{% else %}{{ s.soldout_label }}{% endif %}</span>
+                {%- if s.show_buy_icon -%}
+                  {%- if s.buy_icon != blank %}{{ s.buy_icon | image_url: width: 96 | image_tag: loading: 'lazy', class: 'ar ar-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'arrow' %}{% endif -%}
+                {%- endif -%}
+              </button>
+            {%- endform -%}
+          {%- else -%}
+            <a class="buy" href="{{ s.fallback_link | default: '#product' }}">
+              <span>{{ s.buy_label }}</span>
+              {%- if s.show_buy_icon -%}
+                {%- if s.buy_icon != blank %}{{ s.buy_icon | image_url: width: 96 | image_tag: loading: 'lazy', class: 'ar ar-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'arrow' %}{% endif -%}
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+
+          {%- if s.guarantee != blank and s.show_guarantee -%}
+            <div class="gtee dk">
+              {%- if s.guarantee_icon != blank -%}
+                {{ s.guarantee_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'gtee-img', alt: '' }}
+              {%- else -%}
+                {% render 'oc-icon', icon: 'shield' %}
+              {%- endif -%}
+              <p>{{ s.guarantee }}</p>
+            </div>
+          {%- endif -%}
+
+          {%- if perks.size > 0 -%}
+            <div class="perks">
+              {%- for block in perks -%}
+                <div class="perk" {{ block.shopify_attributes }}>
+                  {%- if block.settings.image != blank -%}
+                    {{ block.settings.image | image_url: width: 72 | image_tag: loading: 'lazy', class: 'pk-img', alt: '' }}
+                  {%- else -%}
+                    {% render 'oc-icon', icon: block.settings.icon %}
+                  {%- endif -%}
+                  <span>{{ block.settings.text }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- assign accs = section.blocks | where: 'type', 'accordion' -%}
+          {%- if accs.size > 0 -%}
+            <div class="fl pacc" data-pacc>
+              {%- for block in accs -%}
+                <details class="qi" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+                  <summary><span>{{ block.settings.title }}</span><span class="ic">{% render 'oc-icon', icon: 'faq' %}</span></summary>
+                  <div class="an">{{ block.settings.content }}</div>
+                </details>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </lm-product>
+    {%- if p != blank -%}
+      <div class="lm-sticky" data-lm-sticky="{{ section.id }}" aria-hidden="true">
+        <button type="button" class="buy lm-sticky-btn" tabindex="-1"{% unless cur.available %} disabled{% endunless %}>
+          <span data-sticky-text>{% if cur.available %}{{ s.buy_label }}{% else %}{{ s.soldout_label }}{% endif %}</span>
+          {%- if s.show_buy_icon -%}
+            {%- if s.buy_icon != blank %}{{ s.buy_icon | image_url: width: 96 | image_tag: loading: 'lazy', class: 'ar ar-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'arrow' %}{% endif -%}
+          {%- endif -%}
+        </button>
+      </div>
+      <style>
+        .lm .pacc { margin-top: 24px; }
+        .lm .pacc .an { overflow: hidden; }
+        .lm .pk { position: relative; }
+        .lm .pk:has(.lmx-rib) { margin-top: 10px; padding-top: 18px; }
+        .lm .pk .lmx-rib { position: absolute; top: -11px; left: 46px; display: inline-block; width: auto; height: auto; padding: 4px 10px; border-radius: 999px; background: #265392; color: #fff; font-size: 11px; line-height: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 14px -6px rgba(13, 30, 57, .5); }
+        .lm .pk.on .lmx-rib { background: #0D1E39; }
+        .lm .pk-t b { white-space: nowrap; }
+      .lm .pk-call { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px -18px -10px; padding: 9px 18px; border-top: 1px solid #E2E8F0; border-radius: 0 0 19px 19px; background: #F1F5F9; color: #0D1E39; font-size: 14px; font-weight: 700; line-height: 1.3; text-align: left; }
+    .lm .pk-call s { flex-shrink: 0; color: #64748B; font-weight: 400; }
+    .lm .pk.on .pk-call { background: #C9D8EA; border-top-color: #B4C8E0; }
+    @media (max-width: 749px) { .lm .pk-call { font-size: 13px; padding: 8px 16px; margin: 10px -18px -10px; } }
+        .lm .bundle p.bf-call { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 12px; padding: 10px 18px; border-radius: 12px; background: #0b0b0b; color: #fff; font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+        .lm .bf-call b { font-weight: 800; color: #f2c14e; }
+        .lm .bf-call b, .lm .bf-call span { white-space: nowrap; }
+        @media (max-width: 374px) { .lm .bundle p.bf-call { padding: 10px 14px; font-size: 12px; letter-spacing: .02em; } }
+        @media (max-width: 389px) { .lm .prod .pk-row { column-gap: 6px; } .lm .prod .pk-t b { font-size: 16px; line-height: 20px; } .lm .prod .pk-off { height: 24px; padding: 0 7px; font-size: 12px; line-height: 12px; } }
+        @media (max-width: 349px) { .lm .prod .pk { padding-left: 12px; padding-right: 12px; } .lm .prod .pk-main { gap: 8px; } .lm .prod .pk-t b { font-size: 15px; } .lm .prod .pk-pr b { font-size: 18px; line-height: 22px; } .lm .prod .pk-pr s { font-size: 14px; line-height: 20px; } .lm .prod .pk-call { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; } }
+        .lm .bf-tag { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 7px 12px; border-radius: 4px; background: #0b0b0b; color: #f2c14e; font-size: 12px; line-height: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; pointer-events: none; }
+        .lm.lm-bf .pk-off { background: #0b0b0b; color: #f2c14e; }
+        .lm.lm-bf .pk .lmx-rib, .lm.lm-bf .pk.on .lmx-rib { background: #0b0b0b; color: #f2c14e; }
+        .lm .main-img { cursor: grab; user-select: none; -webkit-user-select: none; }
+        .lm .main-img:active { cursor: grabbing; }
+        .lm .lm-sticky { display: none; }
+        @media (max-width: 749px) {
+          .lm .lm-sticky {
+            display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+            padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+            background: transparent; box-shadow: none;
+            transform: translateY(110%); transition: transform .28s ease; pointer-events: none;
+          }
+          .lm .lm-sticky.is-on { transform: translateY(0); pointer-events: auto; }
+          .lm .lm-sticky .lm-sticky-btn { width: 100%; margin: 0; box-shadow: 0 6px 18px rgba(13, 30, 57, .22); }
+        }
+      </style>
+      <script>
+        (function () {
+          var bar = document.querySelector('[data-lm-sticky="{{ section.id }}"]');
+          if (!bar) return;
+          var root = bar.closest('.prod');
+          var main = root && root.querySelector('form.lm-form button.buy');
+          var btn = bar.querySelector('button');
+          var label = bar.querySelector('[data-sticky-text]');
+          if (!main || !btn) return;
+          var mq = window.matchMedia('(max-width: 749px)');
+          var hidden = false;
+          function render() {
+            var on = mq.matches && hidden;
+            bar.classList.toggle('is-on', on);
+            bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+            btn.tabIndex = on ? 0 : -1;
+          }
+          function sync() {
+            btn.disabled = main.disabled;
+            var t = main.querySelector('[data-buy-text]');
+            if (t && label) label.textContent = t.textContent;
+          }
+          new IntersectionObserver(function (entries) {
+            var e = entries[0]; hidden = !e.isIntersecting && e.boundingClientRect.top < 0;
+            render();
+          }).observe(main);
+          new MutationObserver(sync).observe(main, { attributes: true, attributeFilter: ['disabled'], childList: true, subtree: true, characterData: true });
+          if (mq.addEventListener) mq.addEventListener('change', render);
+          btn.addEventListener('click', function () { if (!main.disabled) main.click(); });
+          sync();
+        })();
+      </script>
+      <script>
+          (function () {
+            var root = document.querySelector('#shopify-section-{{ section.id }} [data-pacc]');
+            if (!root) return;
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            root.querySelectorAll('.qi').forEach(function (d) {
+              var sum = d.querySelector('summary');
+              var body = d.querySelector('.an');
+              var anim = null;
+              function run(from, to, done) {
+                if (anim) anim.cancel();
+                anim = body.animate([{ height: from + 'px', opacity: from ? 1 : 0 }, { height: to + 'px', opacity: to ? 1 : 0 }], { duration: 320, easing: 'cubic-bezier(.4, 0, .2, 1)' });
+                anim.onfinish = function () { anim = null; done && done(); };
+              }
+              sum.addEventListener('click', function (e) {
+                if (reduce || !body.animate) return;
+                e.preventDefault();
+                if (d.open && !d.classList.contains('closing')) {
+                  d.classList.add('closing');
+                  run(body.offsetHeight, 0, function () { d.open = false; d.classList.remove('closing'); });
+                } else {
+                  d.classList.remove('closing');
+                  d.open = true;
+                  run(0, body.offsetHeight);
+                }
+              });
+            });
+          })();
+        </script>
+      <script>
+        (function () {
+          var box = document.querySelector('#shopify-section-{{ section.id }} .main-img');
+          if (!box) return;
+          var img = box.querySelector('[data-main-img]');
+          var next = box.querySelector('.m-nav.next');
+          var prev = box.querySelector('.m-nav.prev');
+          if (!img || !next || !prev) return;
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var EASE = 'transform .32s cubic-bezier(.4, 0, .2, 1), opacity .32s ease';
+          var sx = 0, sy = 0, dx = 0, active = false, axis = null, pid = null, suppressClick = false;
+          box.style.touchAction = 'pan-y';
+          img.draggable = false;
+          box.addEventListener('pointerdown', function (e) {
+            if (e.target.closest('.m-nav') || (e.pointerType === 'mouse' && e.button !== 0)) return;
+            active = true; axis = null; dx = 0; sx = e.clientX; sy = e.clientY; pid = e.pointerId;
+            img.style.transition = 'none';
+          });
+          box.addEventListener('pointermove', function (e) {
+            if (!active || e.pointerId !== pid) return;
+            dx = e.clientX - sx;
+            var dy = e.clientY - sy;
+            if (axis === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+              axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+              if (axis === 'x') { try { box.setPointerCapture(pid); } catch (err) {} }
+            }
+            if (axis === 'x') img.style.transform = 'translateX(' + dx * 0.6 + 'px)';
+          });
+          function end() {
+            if (!active) return;
+            active = false;
+            var moved = dx;
+            var swiped = axis === 'x' && Math.abs(moved) > 6;
+            var go = axis === 'x' && Math.abs(moved) > 45;
+            /* Reset drag state so later arrow taps are not treated as part of this swipe */
+            axis = null; dx = 0;
+            /* Only block the one native click the browser fires right after a drag */
+            if (swiped) { suppressClick = true; setTimeout(function () { suppressClick = false; }, 0); }
+            img.style.transition = reduce ? 'none' : EASE;
+            if (!go) { img.style.transform = ''; return; }
+            var dir = moved < 0 ? 1 : -1;
+            if (reduce) { img.style.transform = ''; (dir > 0 ? next : prev).click(); return; }
+            img.style.transform = 'translateX(' + (-dir * 60) + 'px)';
+            img.style.opacity = '0';
+            setTimeout(function () {
+              (dir > 0 ? next : prev).click();
+              img.style.transition = 'none';
+              img.style.transform = 'translateX(' + (dir * 60) + 'px)';
+              requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                  img.style.transition = EASE;
+                  img.style.transform = '';
+                  img.style.opacity = '1';
+                });
+              });
+            }, 200);
+          }
+          box.addEventListener('pointerup', end);
+          box.addEventListener('pointercancel', end);
+          box.addEventListener('click', function (e) {
+            /* Let the swipe's own next/prev click through (it is not a trusted user click) */
+            if (!suppressClick || !e.isTrusted) return;
+            suppressClick = false;
+            e.preventDefault(); e.stopPropagation();
+          }, true);
+        })();
+      </script>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Featured product",
+  "tag": "div",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Flavors = values of the product's first option. Empty = design preview with placeholder prices." },
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "product", "info": "All 'Try Lymphgem Today' buttons with an empty link scroll to #product." },
+    { "type": "header", "content": "Gallery" },
+    { "type": "checkbox", "id": "show_thumbs", "label": "Show thumbnails", "default": true },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows on main image", "default": true, "info": "Needs thumbnails on and 2+ product images." },
+    { "type": "image_picker", "id": "prev_icon", "label": "Previous arrow icon", "info": "Optional. Replaces the default left arrow. Square PNG/SVG." },
+    { "type": "image_picker", "id": "next_icon", "label": "Next arrow icon", "info": "Optional. Replaces the default right arrow. Square PNG/SVG." },
+    { "type": "range", "id": "thumb_limit", "label": "Max thumbnails", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "text", "id": "pouch_brand", "label": "Pouch placeholder: brand", "default": "Lymphgem", "info": "The illustrated pouch is shown when the product has no image." },
+    { "type": "text", "id": "pouch_title", "label": "Pouch placeholder: title", "default": "Creatine Monohydrate Gummies" },
+    { "type": "text", "id": "pouch_tag_1", "label": "Pouch placeholder: flavor tag", "default": "Watermelon" },
+    { "type": "text", "id": "pouch_tag_2", "label": "Pouch placeholder: second tag", "default": "Low calorie" },
+    { "type": "header", "content": "Info" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "Excellent [4.8]" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Lymphgem Lymphatic Drainage", "info": "Empty = product title." },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Comes in Watermelon and Peach. Each gummy is made to be gentle on your stomach, without the bloating some people get from powders and heavy mixes. Simple ingredients, a good taste, and easy to take every day.</p>", "info": "Empty = product description." },
+    { "type": "text", "id": "highlight", "label": "Highlight", "default": "Limited-time Fall Sale! Up to [XX]% off + free shipping" },
+    { "type": "header", "content": "Checklist icons" },
+    { "type": "select", "id": "check_style", "label": "Checklist icon", "default": "circle-check-20", "options": [ { "value": "circle-check-20", "label": "Outline circle check" }, { "value": "check-green-18", "label": "Green filled check" }, { "value": "check-16", "label": "Plain check" } ], "info": "Used for check points and pack benefits." },
+    { "type": "image_picker", "id": "check_icon", "label": "Custom checklist icon (optional)", "info": "Square PNG/SVG, shown 20 px. Replaces the icon above." },
+    { "type": "header", "content": "Flavor picker" },
+    { "type": "checkbox", "id": "show_flavors", "label": "Show flavor picker", "default": true },
+    { "type": "text", "id": "flavor_label", "label": "Label", "default": "Choose Flavor:" },
+    { "type": "select", "id": "swatch_style", "label": "Swatch", "default": "image", "options": [ { "value": "image", "label": "Variant image (falls back to pouch)" }, { "value": "pouch", "label": "Illustrated mini pouch" } ] },
+    { "type": "range", "id": "bestseller_position", "label": "Bestseller badge on flavor #", "min": 0, "max": 6, "step": 1, "default": 1, "info": "0 = no badge." },
+    { "type": "text", "id": "bestseller_text", "label": "Badge text", "default": "Bestseller" },
+    { "type": "header", "content": "Packs" },
+    { "type": "text", "id": "packs_label", "label": "Label", "default": "Subscribe & Save:" },
+    { "type": "text", "id": "bf_callout", "label": "Campaign callout above packs", "info": "e.g. Black Friday Offer. Empty = hidden." },
+    { "type": "text", "id": "bf_callout_note", "label": "Campaign callout: right-side text", "info": "e.g. Up to 50% off. Empty = hidden." },
+    { "type": "checkbox", "id": "bf_accents", "label": "Black Friday accents", "default": false, "info": "Black and gold discount pills and pack ribbon, plus a tag on the main image (uses the callout text)." },
+    { "type": "range", "id": "default_pack", "label": "Selected pack by default", "min": 1, "max": 5, "step": 1, "default": 1 },
+    { "type": "checkbox", "id": "show_otp", "label": "Show one-time purchase link", "default": true, "info": "Adds 1 unit without a subscription plan." },
+    { "type": "text", "id": "otp_label", "label": "One-time purchase label", "default": "One Time Purchase" },
+    { "type": "header", "content": "Buy button" },
+    { "type": "text", "id": "buy_label", "label": "Label", "default": "Get started now" },
+    { "type": "checkbox", "id": "show_buy_icon", "label": "Show button icon", "default": true },
+    { "type": "image_picker", "id": "buy_icon", "label": "Button icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 24x24px." },
+    { "type": "text", "id": "soldout_label", "label": "Sold out label", "default": "Sold out" },
+    { "type": "select", "id": "after_add", "label": "After adding to cart", "default": "cart", "options": [ { "value": "cart", "label": "Open cart drawer" }, { "value": "checkout", "label": "Go to checkout" } ], "info": "Cart drawer needs Theme settings > Cart > Type = Drawer; otherwise it goes to the cart page." },
+    { "type": "url", "id": "fallback_link", "label": "Button link when no product is selected" },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = white." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Check point",
+      "settings": [ { "type": "image_picker", "id": "icon", "label": "Icon (optional)", "info": "Empty = section checklist icon." }, { "type": "text", "id": "text", "label": "Text", "default": "60-day money-back guarantee" } ]
+    },
+    {
+      "type": "pack",
+      "name": "Pack option",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "1x Pack" },
+        { "type": "range", "id": "quantity", "label": "Quantity added to cart", "min": 1, "max": 10, "step": 1, "default": 1 },
+        { "type": "range", "id": "free", "label": "Free units (BOGO)", "min": 0, "max": 5, "step": 1, "default": 0, "info": "Units given free by your automatic discount. Price shown = (quantity - free) x unit price." },
+        { "type": "text", "id": "badge", "label": "Badge (optional)", "info": "Small pill next to the title, e.g. Most Popular." },
+        { "type": "text", "id": "selling_plan_id", "label": "Selling plan ID (optional)", "info": "Subscription plan ID from your subscriptions app. When set, the plan price is shown and used at checkout." },
+        { "type": "range", "id": "days", "label": "Days per unit (for per-day price)", "min": 1, "max": 90, "step": 1, "default": 30 },
+        { "type": "checkbox", "id": "hide_per_day", "label": "Hide per-day price", "default": false },
+        { "type": "text", "id": "per_day_label", "label": "Per-day suffix", "default": "Per Day" },
+        { "type": "text", "id": "off_text", "label": "Discount pill text (optional)", "info": "Empty = calculated automatically from compare-at / plan price." },
+        { "type": "text", "id": "off_suffix", "label": "Auto discount suffix", "default": "% Off" },
+        { "type": "text", "id": "callout_text", "label": "Bottom callout text (optional)", "info": "Strip at the bottom of the card, e.g. +FREE Shipping. Empty = hidden." },
+        { "type": "text", "id": "callout_compare", "label": "Bottom callout crossed-out value (optional)", "info": "e.g. $4.99" },
+        { "type": "textarea", "id": "benefits", "label": "Benefits (one per line)", "info": "Shown when this pack is selected.", "default": "FREE shipping on 1st order\nBiggest savings, lowest price per serving\nFree gift — [Gift name]\n60-day money-back guarantee\nPause or cancel anytime" }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 8,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Description" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Accordion content.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "perk",
+      "name": "Perk",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Icon image (optional)", "info": "Square PNG/SVG, shown 18 px. Replaces the built-in icon." },
+        { "type": "select", "id": "icon", "label": "Built-in icon", "default": "calendar", "options": [ { "value": "calendar", "label": "Calendar" }, { "value": "box", "label": "Box" }, { "value": "repeat", "label": "Repeat" }, { "value": "refresh", "label": "Refill" }, { "value": "truck", "label": "Truck" }, { "value": "pause", "label": "Pause" }, { "value": "shield-perk", "label": "Shield" }, { "value": "gift", "label": "Gift" } ] },
+        { "type": "text", "id": "text", "label": "Text", "default": "Refills Every 4 Weeks" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Featured product",
+      "blocks": [
+        { "type": "point" },
+        { "type": "point", "settings": { "text": "FREE shipping on 1st order" } },
+        { "type": "point", "settings": { "text": "FREE gift" } },
+        { "type": "point", "settings": { "text": "Up to [XX]% OFF" } },
+        { "type": "pack" },
+        { "type": "pack", "settings": { "title": "2x Packs", "quantity": 2 } },
+        { "type": "pack", "settings": { "title": "3x Packs", "quantity": 3 } },
+        { "type": "perk" },
+        { "type": "perk", "settings": { "icon": "box", "text": "Free Shipping Today" } },
+        { "type": "perk", "settings": { "icon": "repeat", "text": "Pause or Cancel Anytime" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

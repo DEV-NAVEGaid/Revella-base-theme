@@ -1,0 +1,247 @@
+{%- comment -%} Ingredients cards + swipeable popup — Dawn 16 {%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }}{
+    background: {{ section.settings.section_bg }};
+    margin-top: 0 !important;
+    --bio-ig-card-bg: {{ section.settings.card_bg }};
+    --bio-ig-r: {{ section.settings.card_radius }}px;
+    --bio-ig-plus-bg: {{ section.settings.plus_bg }};
+    --bio-ig-plus-tx: {{ section.settings.plus_text }};
+    --bio-ig-img-w: {{ section.settings.image_width }}%;
+    --bio-ig-fs: {{ section.settings.font_scale }};
+  }
+  .bio-ig{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .bio-ig *,.bio-ig *::before,.bio-ig *::after{ box-sizing:border-box; min-width:0; }
+  .bio-ig img{ max-width:100%; display:block; }
+
+  .bio-ig__head{ text-align:{{ section.settings.text_align }}; margin-bottom:18px; }
+  .bio-ig__title{ margin:0 0 10px; font-size:calc({{ section.settings.heading_size }}rem * var(--bio-ig-fs)); line-height:1.15; font-weight:800; letter-spacing:-.02em; }
+  .bio-ig__intro{ margin:0 auto; max-width:640px; font-size:calc(1.1rem * var(--bio-ig-fs)); line-height:1.5; }
+  .bio-ig__intro p{ margin:0; }
+
+  .bio-ig__list{ display:grid; grid-template-columns:minmax(0,1fr); gap:{{ section.settings.card_gap }}px; }
+  .bio-ig__card{ position:relative; display:flex; align-items:center; gap:10px; background:var(--bio-ig-card-bg);
+    border-radius:var(--bio-ig-r); overflow:hidden; min-height:{{ section.settings.card_height }}px; }
+  .bio-ig__txt{ flex:1 1 auto; padding:16px 0 16px 18px; }
+  .bio-ig__name{ margin:0; font-size:calc({{ section.settings.name_size }}rem * var(--bio-ig-fs)); font-weight:400; line-height:1.2; }
+  .bio-ig__sub{ margin:5px 0 0; font-size:calc({{ section.settings.sub_size }}rem * var(--bio-ig-fs)); line-height:1.3; opacity:.85; }
+  .bio-ig__img{ flex:0 0 var(--bio-ig-img-w); align-self:stretch; position:relative; }
+  .bio-ig__img img{ width:100%; height:100%; object-fit:{{ section.settings.image_fit }}; object-position:center; }
+  .bio-ig__img--empty{ background:rgba(0,0,0,.05); }
+  .bio-ig__plus{ position:absolute; right:10px; bottom:10px; z-index:2; width:{{ section.settings.plus_size }}px; height:{{ section.settings.plus_size }}px;
+    border:0; border-radius:50%; background:var(--bio-ig-plus-bg); color:var(--bio-ig-plus-tx); cursor:pointer; padding:0;
+    display:flex; align-items:center; justify-content:center; font-size:calc({{ section.settings.plus_size }}px * .6); line-height:1; }
+  .bio-ig__plus:hover{ filter:brightness(.92); }
+  .bio-ig__data{ display:none; }
+
+  /* ---- POPUP CAROUSEL ---- */
+  .bio-ig__modal{ position:fixed; inset:0; z-index:100; display:none; align-items:center; }
+  .bio-ig__modal.is-open{ display:flex; }
+  .bio-ig__overlay{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
+  .bio-ig__track{ --bio-ig-mw:min({{ section.settings.modal_width }}px, 86vw);
+    position:relative; z-index:2; width:100%; display:flex; gap:16px;
+    overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+    scrollbar-width:none; -ms-overflow-style:none; padding:0 calc(50% - var(--bio-ig-mw)/2); cursor:grab; }
+  .bio-ig__track::-webkit-scrollbar{ display:none; }
+  .bio-ig__track.is-drag{ cursor:grabbing; scroll-behavior:auto; }
+  .bio-ig__slide{ position:relative; flex:0 0 var(--bio-ig-mw); scroll-snap-align:center; max-height:78vh; overflow-y:auto;
+    background:{{ section.settings.modal_bg }}; color:{{ section.settings.modal_text }};
+    border-radius:{{ section.settings.modal_radius }}px; padding:26px 24px 28px; }
+  .bio-ig__close{ position:absolute; top:10px; right:12px; width:34px; height:34px; border:0; background:none;
+    cursor:pointer; font-size:2.6rem; line-height:1; color:inherit; }
+  .bio-ig__m-title{ margin:0 0 12px; font-size:calc(2.6rem * var(--bio-ig-fs)); font-weight:600; line-height:1.2; padding-right:34px; }
+  .bio-ig__m-body{ font-size:calc(1.7rem * var(--bio-ig-fs)); line-height:1.45; }
+  .bio-ig__m-body p{ margin:0 0 10px; } .bio-ig__m-body p:last-child{ margin:0; }
+  .bio-ig__nav{ position:absolute; left:0; right:0; bottom:8%; z-index:3; display:flex; align-items:center; justify-content:center; gap:18px; color:#fff; pointer-events:none; }
+  .bio-ig__nav button{ pointer-events:auto; border:0; background:none; color:#fff; cursor:pointer; font-size:2.4rem; line-height:1; padding:4px 10px; }
+  .bio-ig__count{ font-size:calc(1.5rem * var(--bio-ig-fs)); letter-spacing:.06em; }
+  body.bio-ig-lock{ overflow:hidden; }
+
+  @media screen and (min-width:750px){
+    .bio-ig{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+    .bio-ig__list{ grid-template-columns:repeat({{ section.settings.columns }},minmax(0,1fr)); }
+  }
+</style>
+
+<div class="bio-ig color-{{ section.settings.color_scheme }}" id="bio-ig-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+      <div class="bio-ig__head">
+        {%- if section.settings.heading != blank -%}<h2 class="bio-ig__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.intro != blank -%}<div class="bio-ig__intro rte">{{ section.settings.intro }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="bio-ig__list">
+      {%- for block in section.blocks -%}
+        <article class="bio-ig__card" {{ block.shopify_attributes }}>
+          <div class="bio-ig__txt">
+            <h3 class="bio-ig__name">{{ block.settings.name }}</h3>
+            {%- if block.settings.subheading != blank -%}<p class="bio-ig__sub">{{ block.settings.subheading }}</p>{%- endif -%}
+          </div>
+          <div class="bio-ig__img{% unless block.settings.image %} bio-ig__img--empty{% endunless %}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '200,400,700', sizes: '(min-width:750px) 300px, 45vw', alt: block.settings.name | escape }}
+            {%- endif -%}
+            {%- if block.settings.content != blank -%}
+              <button type="button" class="bio-ig__plus" data-bio-ig-open="{{ forloop.index0 }}" aria-label="More about {{ block.settings.name | escape }}">+</button>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.content != blank -%}
+            <template class="bio-ig__data" data-bio-ig-item="{{ forloop.index0 }}"
+              data-title="{{ block.settings.popup_title | default: block.settings.name | escape }}">{{ block.settings.content }}</template>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="bio-ig__modal" data-bio-ig-modal role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="bio-ig__overlay" data-bio-ig-close></div>
+    <div class="bio-ig__track" data-bio-ig-track>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.content != blank -%}
+          <div class="bio-ig__slide" data-bio-ig-slide="{{ forloop.index0 }}">
+            <button type="button" class="bio-ig__close" data-bio-ig-close aria-label="Close">&times;</button>
+            <h3 class="bio-ig__m-title">{{ block.settings.popup_title | default: block.settings.name }}</h3>
+            <div class="bio-ig__m-body rte">{{ block.settings.content }}</div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="bio-ig__nav">
+      <button type="button" data-bio-ig-nav="prev" aria-label="Previous">&#8592;</button>
+      <span class="bio-ig__count"><span data-bio-ig-index>1</span> {{ section.settings.of_text }} <span data-bio-ig-total>0</span></span>
+      <button type="button" data-bio-ig-nav="next" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var id='{{ section.id }}';
+  function init(){
+    var root=document.getElementById('bio-ig-'+id); if(!root||root.dataset.init)return; root.dataset.init='1';
+    var modal=root.querySelector('[data-bio-ig-modal]'), track=root.querySelector('[data-bio-ig-track]');
+    if(!modal||!track)return;
+    var slides=[].slice.call(track.querySelectorAll('[data-bio-ig-slide]'));
+    if(!slides.length)return;
+    var elI=root.querySelector('[data-bio-ig-index]'), elN=root.querySelector('[data-bio-ig-total]'), cur=0;
+    if(elN)elN.textContent=slides.length;
+
+    function center(el){ return el.offsetLeft - (track.clientWidth-el.clientWidth)/2; }
+    function goTo(i,instant){
+      cur=Math.max(0,Math.min(slides.length-1,i));
+      track.scrollTo({left:center(slides[cur]),behavior:instant?'auto':'smooth'});
+      if(elI)elI.textContent=cur+1;
+    }
+    function sync(){
+      var mid=track.scrollLeft+track.clientWidth/2, best=0, dist=Infinity;
+      slides.forEach(function(s,n){ var d=Math.abs(s.offsetLeft+s.clientWidth/2-mid); if(d<dist){dist=d;best=n;} });
+      cur=best; if(elI)elI.textContent=cur+1;
+    }
+    function open(blockIndex){
+      var i=slides.findIndex(function(s){ return s.dataset.bioIgSlide===String(blockIndex); });
+      modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('bio-ig-lock');
+      requestAnimationFrame(function(){ goTo(i<0?0:i,true); });
+    }
+    function close(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('bio-ig-lock'); }
+
+    root.querySelectorAll('[data-bio-ig-open]').forEach(function(b){
+      b.addEventListener('click',function(){ open(parseInt(b.dataset.bioIgOpen,10)); }); });
+    root.querySelectorAll('[data-bio-ig-close]').forEach(function(b){ b.addEventListener('click',close); });
+    root.querySelectorAll('[data-bio-ig-nav]').forEach(function(b){
+      b.addEventListener('click',function(){ goTo(cur+(b.dataset.bioIgNav==='next'?1:-1)); }); });
+
+    var tk; track.addEventListener('scroll',function(){ clearTimeout(tk); tk=setTimeout(sync,90); });
+
+    document.addEventListener('keydown',function(e){
+      if(!modal.classList.contains('is-open'))return;
+      if(e.key==='Escape')close();
+      if(e.key==='ArrowRight')goTo(cur+1);
+      if(e.key==='ArrowLeft')goTo(cur-1);
+    });
+
+    /* drag mouse (desktop) — touch pakai native scroll-snap */
+    var down=false,sx=0,sl=0,moved=false;
+    track.addEventListener('mousedown',function(e){ down=true;moved=false;sx=e.pageX;sl=track.scrollLeft;track.classList.add('is-drag'); });
+    window.addEventListener('mousemove',function(e){ if(!down)return; var d=e.pageX-sx; if(Math.abs(d)>4)moved=true; track.scrollLeft=sl-d; });
+    window.addEventListener('mouseup',function(){ if(!down)return; down=false; track.classList.remove('is-drag');
+      if(moved){ sync(); goTo(cur); } });
+    track.addEventListener('click',function(e){ if(moved)e.preventDefault(); },true);
+
+    window.addEventListener('resize',function(){ if(modal.classList.contains('is-open'))goTo(cur,true); });
+  }
+  init();
+  document.addEventListener('shopify:section:load',function(e){ if(e.detail&&e.detail.sectionId===id)init(); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bio: Ingredients Cards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#F4F2EF" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Every Ingredient Carefully Chosen" },
+    { "type": "richtext", "id": "intro", "label": "Intro text" },
+    { "type": "select", "id": "text_align", "label": "Header alignment", "default": "center",
+      "options": [ {"value":"left","label":"Left"},{"value":"center","label":"Center"} ] },
+    { "type": "range", "id": "heading_size", "min": 2.0, "max": 5.0, "step": 0.1, "unit": "rem", "label": "Heading size", "default": 3.2 },
+    { "type": "range", "id": "font_scale", "min": 0.6, "max": 1.2, "step": 0.1, "label": "Font scale", "default": 1 },
+
+    { "type": "header", "content": "Cards" },
+    { "type": "color", "id": "card_bg", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Card radius", "default": 12 },
+    { "type": "range", "id": "card_gap", "min": 4, "max": 32, "step": 2, "unit": "px", "label": "Gap between cards", "default": 12 },
+    { "type": "range", "id": "card_height", "min": 80, "max": 200, "step": 5, "unit": "px", "label": "Card min height", "default": 105 },
+    { "type": "range", "id": "columns", "min": 1, "max": 3, "step": 1, "label": "Columns (desktop)", "default": 2 },
+    { "type": "range", "id": "name_size", "min": 1.4, "max": 3.2, "step": 0.1, "unit": "rem", "label": "Name size", "default": 2.0 },
+    { "type": "range", "id": "sub_size", "min": 1.1, "max": 2.0, "step": 0.1, "unit": "rem", "label": "Subheading size", "default": 1.4 },
+    { "type": "range", "id": "image_width", "min": 25, "max": 60, "step": 1, "unit": "%", "label": "Image width", "default": 45 },
+    { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover",
+      "options": [ {"value":"cover","label":"Cover"},{"value":"contain","label":"Contain"} ] },
+    { "type": "color", "id": "plus_bg", "label": "Plus button background", "default": "#9A9A9A" },
+    { "type": "color", "id": "plus_text", "label": "Plus button icon", "default": "#FFFFFF" },
+    { "type": "range", "id": "plus_size", "min": 22, "max": 48, "step": 2, "unit": "px", "label": "Plus button size", "default": 30 },
+
+    { "type": "header", "content": "Popup" },
+    { "type": "color", "id": "modal_bg", "label": "Popup background", "default": "#FFFFFF" },
+    { "type": "color", "id": "modal_text", "label": "Popup text", "default": "#121212" },
+    { "type": "range", "id": "modal_width", "min": 320, "max": 720, "step": 10, "unit": "px", "label": "Popup max width", "default": 520 },
+    { "type": "range", "id": "modal_radius", "min": 0, "max": 24, "step": 1, "unit": "px", "label": "Popup radius", "default": 4 },
+    { "type": "text", "id": "of_text", "label": "Counter word", "default": "OF" },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "ingredient", "name": "Ingredient", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "name", "label": "Name", "default": "Turmeric" },
+      { "type": "text", "id": "subheading", "label": "Subheading", "default": "Anti-Inflammatory" },
+      { "type": "text", "id": "popup_title", "label": "Popup title (empty = name)" },
+      { "type": "richtext", "id": "content", "label": "Popup content", "info": "Kosongkan kalau tidak mau tombol +" } ] }
+  ],
+  "presets": [
+    { "name": "Bio: Ingredients Cards",
+      "settings": {
+        "heading": "Every Ingredient Carefully Chosen",
+        "intro": "<p>Every ingredient in our formula is there for a reason—and backed by <strong>peer-reviewed research</strong>, not marketing fluff. We don't hide behind \"proprietary blends\" or vague labels. You get a clear, transparent list of clinically supported ingredients—each included at a meaningful dose.</p>"
+      },
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Turmeric", "subheading": "Anti-Inflammatory", "content": "<p>Turmeric provides curcuminoids, including curcumin — the compounds responsible for its well-known anti-inflammatory properties. By helping support a healthy inflammatory response, curcumin can help reduce joint discomfort, stiffness and support easier everyday movement.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Black Pepper", "subheading": "Improves Absorption", "content": "<p>Black pepper extract (piperine) dramatically increases how much curcumin your body actually absorbs. Without it, most curcumin passes straight through — which is why we include it in every serving.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Bee Propolis", "subheading": "Immune Support", "content": "<p>Bee propolis is rich in flavonoids and polyphenols that support the immune system and add antioxidant protection alongside curcumin's anti-inflammatory action.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Ginger", "subheading": "Digestive Support", "content": "<p>Ginger works alongside turmeric as a traditional root for comfort and mobility, while supporting healthy digestion so the formula sits easily on the stomach.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Coconut Oil", "subheading": "Lipid Carrier", "content": "<p>Curcumin is fat-soluble. Coconut-derived MCT oil acts as a lipid carrier, helping curcumin dissolve and transport more efficiently into the bloodstream.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Vitamin C", "subheading": "Cartilage Support", "content": "<p>Vitamin C contributes to normal collagen formation — a key building block of cartilage — and adds antioxidant support for joints under daily stress.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

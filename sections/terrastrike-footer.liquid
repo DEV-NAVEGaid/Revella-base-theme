@@ -1,0 +1,217 @@
+{%- comment -%}
+  Safety/legal disclaimers, policy links and company info. Every paragraph is a
+  block, so the legal copy can be edited, reordered and extended in the editor.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    <div class="ts-footer-body">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'text' -%}
+            <div {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+
+          {%- when 'copyright' -%}
+            <div {{ block.shopify_attributes }}>
+              © {{ 'now' | date: '%Y' }} {{ block.settings.text }}
+            </div>
+
+          {%- when 'policy_links' -%}
+            {%- liquid
+              assign bs = block.settings
+              assign separator = bs.separator | default: '-'
+            -%}
+            <div class="ts-footer__policy-links" {{ block.shopify_attributes }}>
+              {%- if bs.show_terms and shop.terms_of_service.url != blank -%}
+                <a href="{{ shop.terms_of_service.url }}">{{ 'Terms of Service' }}</a>{{ separator }}
+              {%- endif -%}
+              {%- if bs.show_privacy and shop.privacy_policy.url != blank -%}
+                <a href="{{ shop.privacy_policy.url }}">{{ 'Privacy Policy' }}</a>{{ separator }}
+              {%- endif -%}
+              {%- if bs.show_refund and shop.refund_policy.url != blank -%}
+                <a href="{{ shop.refund_policy.url }}">{{ 'Return Policy' }}</a>{{ separator }}
+              {%- endif -%}
+              {%- if bs.show_shipping and shop.shipping_policy.url != blank -%}
+                <a href="{{ shop.shipping_policy.url }}">{{ 'Shipping Policy' }}</a>{{ separator }}
+              {%- endif -%}
+
+              {%- comment -%}
+                Custom links only render once they have a real URL, so the page never
+                ships a dead "#" link.
+              {%- endcomment -%}
+              {%- for i in (1..4) -%}
+                {%- liquid
+                  assign label_key = 'custom_' | append: i | append: '_label'
+                  assign url_key = 'custom_' | append: i | append: '_url'
+                  assign custom_label = bs[label_key]
+                  assign custom_url = bs[url_key]
+                -%}
+                {%- if custom_label != blank and custom_url != blank -%}
+                  <a href="{{ custom_url }}">{{ custom_label }}</a>{{ separator }}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- if bs.show_contact and pages.contact.url != blank -%}
+                <a href="{{ pages.contact.url }}">{{ 'Contact Us' }}</a>
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Footer / disclaimer",
+  "tag": "section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#1a4b8c" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Paragraph",
+      "settings": [{ "type": "richtext", "id": "text", "label": "Text" }]
+    },
+    {
+      "type": "policy_links",
+      "name": "Policy links",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "separator", "label": "Separator", "default": "-" },
+        { "type": "checkbox", "id": "show_terms", "label": "Terms of Service", "default": true },
+        { "type": "checkbox", "id": "show_privacy", "label": "Privacy Policy", "default": true },
+        { "type": "checkbox", "id": "show_refund", "label": "Return Policy", "default": true },
+        { "type": "checkbox", "id": "show_shipping", "label": "Shipping Policy", "default": true },
+        { "type": "checkbox", "id": "show_contact", "label": "Contact page", "default": true },
+        { "type": "header", "content": "Custom links" },
+        { "type": "text", "id": "custom_1_label", "label": "Link 1 label" },
+        { "type": "url", "id": "custom_1_url", "label": "Link 1 URL" },
+        { "type": "text", "id": "custom_2_label", "label": "Link 2 label" },
+        { "type": "url", "id": "custom_2_url", "label": "Link 2 URL" },
+        { "type": "text", "id": "custom_3_label", "label": "Link 3 label" },
+        { "type": "url", "id": "custom_3_url", "label": "Link 3 URL" },
+        { "type": "text", "id": "custom_4_label", "label": "Link 4 label" },
+        { "type": "url", "id": "custom_4_url", "label": "Link 4 URL" }
+      ]
+    },
+    {
+      "type": "copyright",
+      "name": "Copyright",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text after the year",
+          "info": "The current year is added automatically."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Footer / disclaimer",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>SAFETY DISCLAIMER</strong>: TerraStrike is designed as a vehicle emergency escape tool for breaking tempered auto glass and cutting seatbelt webbing. While the manufacturer rates it for tempered, film-mounted, and laminated glass, performance on laminated glass may vary. Always strike the corner of the window for maximum effectiveness. Check your vehicle window stamps for glass type.</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>PRODUCT LIABILITY NOTICE:</strong> Emergency use only. Liability is limited to replacement value. We are not responsible for failure in scenarios exceeding the product's stated design parameters. Use at your own risk. Full terms apply.</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>TerraStrike is not a substitute for professional emergency rescue equipment. Always call 911 in an emergency. Do not rely solely on any single device for emergency escape. TerraStrike contains a concealed blade - keep out of reach of small children. Not intended as a weapon. Do not use for any unlawful purpose.</p>"
+          }
+        },
+        { "type": "policy_links" },
+        { "type": "copyright", "settings": { "text": "All Rights Reserved." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+{% doc %}
+  Renders one feature card: image, title, description.
+
+  @param {object} block - A section block of type "feature"
+  @example
+  {% render 'terrastrike-feature-item', block: block %}
+{% enddoc %}
+
+<div class="ts-feature-item" {{ block.shopify_attributes }}>
+  {% render 'terrastrike-image',
+    image: block.settings.image,
+    alt: block.settings.title,
+    width: 440,
+    lazy: true
+  %}
+  {%- if block.settings.title != blank -%}
+    <div class="ts-feature-item__title">{{ block.settings.title }}</div>
+  {%- endif -%}
+  {%- if block.settings.description != blank -%}
+    <div class="ts-feature-item__body">{{ block.settings.description }}</div>
+  {%- endif -%}
+</div>

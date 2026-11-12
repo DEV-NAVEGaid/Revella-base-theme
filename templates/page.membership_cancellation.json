@@ -1,0 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_EEc8XW": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_VhfYan": {
+          "type": "heading",
+          "settings": {
+            "heading": "Membership Cancellation",
+            "heading_size": "h1"
+          }
+        },
+        "text_HGyJ7Y": {
+          "type": "text",
+          "settings": {
+            "text": "<p>VIP Club membership? Fill out the simple form below and write “Cancel My Membership” in the Message area and a member of our team will cancel your membership before your next billing.<br/><br/></p>"
+          }
+        },
+        "button_MbJh7b": {
+          "type": "button",
+          "settings": {
+            "button_label": "Cancel Membership",
+            "button_link": "https://cancel.lymphgem.com/login",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_VhfYan",
+        "text_HGyJ7Y",
+        "button_MbJh7b"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_EEc8XW"
+  ]
+}

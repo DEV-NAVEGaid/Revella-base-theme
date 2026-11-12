@@ -1,0 +1,90 @@
+{% doc %}
+  Renders the comparison table from schema settings.
+
+  Column headings come from a newline-separated section setting, and each row is a
+  block whose "values" setting holds one line per column. A line of `yes`, `no` or
+  `na` becomes the check / cross / N-A cell; anything else is printed as-is, so a
+  row can say "Varies" or "20+".
+
+  @param {string} [column_headings] - One competitor/column name per line
+  @param {string} [row_label_heading] - Header shown above the row-label column
+  @param {object} blocks - `section.blocks`; blocks of type "row" become table rows
+  @param {number} [highlight_column] - 1-based column to emphasize (0 = none)
+  @param {object} [featured_image] - Shown in place of the highlighted column's heading
+  @example
+  {% render 'terrastrike-comparison-table',
+    column_headings: section.settings.column_headings,
+    blocks: section.blocks %}
+{% enddoc %}
+
+{%- liquid
+  assign columns = column_headings | strip | newline_to_br | strip_newlines | split: '<br />'
+  assign rows = blocks | where: 'type', 'row'
+  assign highlight = highlight_column | default: 0
+-%}
+
+{%- if columns.size > 0 and rows.size > 0 -%}
+  <div class="ts-comparison__scroll" tabindex="0" role="region" aria-label="{{ row_label_heading | default: 'Comparison' | escape }}">
+    <table class="ts-comparison__table">
+      <thead>
+        <tr>
+          <th scope="col">{{ row_label_heading }}</th>
+          {%- for column in columns -%}
+            {%- liquid
+              assign is_featured = false
+              if forloop.index == highlight
+                assign is_featured = true
+              endif
+            -%}
+            <th scope="col" {% if is_featured %}class="is-featured"{% endif %}>
+              {%- if is_featured and featured_image != blank -%}
+                {% render 'terrastrike-image',
+                  image: featured_image,
+                  alt: column,
+                  width: 240,
+                  class: 'ts-comparison__featured-image'
+                %}
+              {%- else -%}
+                <span class="ts-comparison__label">{{ column | strip }}</span>
+              {%- endif -%}
+            </th>
+          {%- endfor -%}
+        </tr>
+      </thead>
+      <tbody>
+        {%- for row in rows -%}
+          {%- assign values = row.settings.values | strip | newline_to_br | strip_newlines | split: '<br />' -%}
+          <tr {{ row.shopify_attributes }}>
+            <th scope="row">{{ row.settings.label }}</th>
+            {%- for column in columns -%}
+              {%- liquid
+                assign value = values[forloop.index0] | strip
+                assign token = value | downcase | replace: '/', '' | replace: '.', ''
+                assign cell_class = ''
+                if forloop.index == highlight
+                  assign cell_class = ' is-featured'
+                endif
+              -%}
+              {%- case token -%}
+                {%- when 'yes', 'y', 'true', 'check' -%}
+                  <td class="is-yes{{ cell_class }}">
+                    {% render 'terrastrike-icon', name: 'check' %}
+                    <span class="visually-hidden">Yes</span>
+                  </td>
+                {%- when 'no', 'n', 'false', 'cross' -%}
+                  <td class="is-no{{ cell_class }}">
+                    {% render 'terrastrike-icon', name: 'cross' %}
+                    <span class="visually-hidden">No</span>
+                  </td>
+                {%- when 'na', '-', '' -%}
+                  <td class="is-na{{ cell_class }}">N/A</td>
+                {%- else -%}
+                  <td class="is-na{{ cell_class }}">{{ value }}</td>
+              {%- endcase -%}
+            {%- endfor -%}
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+{%- endif -%}

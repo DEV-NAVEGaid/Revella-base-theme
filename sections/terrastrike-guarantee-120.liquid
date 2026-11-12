@@ -1,0 +1,320 @@
+{%- comment -%}
+  Guarantee panel: badge image, title, body and a checklist of promise lines
+  (block-driven so lines can be added, edited and reordered).
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- liquid
+  assign st = section.settings
+  assign grid_class = 'ts-guarantee-120__grid'
+  if st.media_position == 'right'
+    assign grid_class = grid_class | append: ' media-right'
+  endif
+-%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    <div class="{{ grid_class }}">
+      <div class="ts-guarantee-120__media">
+        {% render 'terrastrike-image', image: st.image, alt: st.title, width: 900, lazy: true %}
+
+        {%- if st.title != blank -%}
+          <h2 class="ts-guarantee-120__title">{{ st.title }}</h2>
+        {%- endif -%}
+
+        <div class="ts-body">{{ st.body }}</div>
+      </div>
+
+      <div class="ts-guarantee-120__copy">
+        {%- if st.checklist_intro != blank or section.blocks.size > 0 or st.checklist_outro != blank -%}
+          <div class="ts-guarantee-120__checklist">
+            {%- if st.checklist_intro != blank -%}
+              <div class="ts-guarantee-120__intro">{{ st.checklist_intro }}</div>
+            {%- endif -%}
+
+            {%- for block in section.blocks -%}
+              <div {{ block.shopify_attributes }}>
+                {{- block.settings.prefix }} {{ block.settings.text -}}
+              </div>
+            {%- endfor -%}
+
+            {%- if st.checklist_outro != blank -%}
+              <div class="ts-guarantee-120__outro">{{ st.checklist_outro }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: 120-day guarantee",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "image_picker", "id": "image", "label": "Badge image" },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Badge position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "text", "id": "title", "label": "Title", "default": "120-Day \"Get Out Alive\" Guarantee" },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Order your TerraStrikes today. Keep one in every keychain or car you drive. Give one to your partner, your teenager, your parents who still drive alone. Hold it in your hand. Feel the weight. Press the spring. Know that it works.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "checklist_intro",
+      "label": "Checklist intro",
+      "default": "<p><strong>If for ANY reason in the next 120 days you don't feel:</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "checklist_outro",
+      "label": "Checklist outro",
+      "default": "<p><strong>Just send it back, and we'll refund every penny.</strong> No questions asked.</p>"
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#e0f0f6" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Closing line emphasis",
+      "info": "Colors the bold text in the checklist outro.",
+      "default": "#f39c12"
+    },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size (everything)",
+      "default": 100
+    },
+    { "type": "header", "content": "Text sizes" },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Title",
+      "default": 33
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Intro paragraph",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Checklist heading",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "checklist_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Checklist lines",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "outro_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Closing line",
+      "default": 17
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "badge_width",
+      "min": 120,
+      "max": 640,
+      "step": 10,
+      "unit": "px",
+      "label": "Badge width",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "guarantee_media_col",
+      "min": 25,
+      "max": 65,
+      "step": 1,
+      "unit": "%",
+      "label": "Badge column width",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "check_gap",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between checklist lines",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between columns",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "guarantee_width",
+      "min": 700,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Panel width",
+      "default": 1100
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "check",
+      "name": "Checklist line",
+      "settings": [
+        { "type": "text", "id": "prefix", "label": "Prefix", "default": "✓" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: 120-day guarantee",
+      "blocks": [
+        {
+          "type": "check",
+          "settings": {
+            "prefix": "✓",
+            "text": "<p><strong>Relieved</strong> that everyone in your family finally has a way out if a door will not open...</p>"
+          }
+        },
+        {
+          "type": "check",
+          "settings": {
+            "prefix": "✓",
+            "text": "<p><strong>Confident</strong> in the build quality and the spring mechanism...</p>"
+          }
+        },
+        {
+          "type": "check",
+          "settings": {
+            "prefix": "✓",
+            "text": "<p><strong>Calm</strong> knowing one tool breaks the side window and cuts a jammed belt after a crash...</p>"
+          }
+        },
+        {
+          "type": "check",
+          "settings": {
+            "prefix": "✓",
+            "text": "<p><strong>Certain</strong> this was one of the smartest decisions you've made for your family's safety...</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

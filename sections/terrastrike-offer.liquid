@@ -1,0 +1,364 @@
+{%- comment -%}
+  Limited offer card: image, eyebrow, heading, bonus bullets (blocks), CTA,
+  shipping badge, warranty notice and closing note.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+{%- liquid
+  assign grid_class = 'ts-offer__grid'
+  if st.media_position == 'right'
+    assign grid_class = grid_class | append: ' media-right'
+  endif
+-%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    <div class="ts-offer__panel">
+      <div class="{{ grid_class }}">
+        <div class="ts-offer__media">
+          {% render 'terrastrike-image', image: st.image, alt: '', width: 1000, lazy: true %}
+        </div>
+
+        <div class="ts-offer__content">
+          {%- if st.eyebrow != blank -%}
+            <div class="ts-offer__eyebrow">{{ st.eyebrow }}</div>
+          {%- endif -%}
+
+          {%- if st.heading != blank -%}
+            <div class="ts-heading-md">{{ st.heading }}</div>
+          {%- endif -%}
+
+          {%- if section.blocks.size > 0 -%}
+            <ul class="ts-bullet-list">
+              {%- for block in section.blocks -%}
+                {%- assign bullet_icon_class = 'ts-bullet-icon is-' | append: block.settings.icon -%}
+                <li class="ts-bullet-row" {{ block.shopify_attributes }}>
+                  {% render 'terrastrike-icon', name: block.settings.icon, class: bullet_icon_class %}
+                  <div class="ts-bullet-content">{{ block.settings.text }}</div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {% render 'terrastrike-promo-banner',
+            product: st.featured_product,
+            button_text: st.button_text,
+            button_link: st.button_link,
+            image: st.button_image,
+            full_width: true
+          %}
+
+          {%- if st.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+            <div class="ts-offer__payments">
+              <span class="visually-hidden">{{ 'blocks.payment_methods' | t }}</span>
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- if st.shipping_text != blank -%}
+            <div class="ts-shipping-badge">
+              {% render 'terrastrike-image',
+                image: st.shipping_image,
+                alt: '',
+                width: 120,
+                lazy: true,
+                placeholder: 'none'
+              %}
+              <div>{{ st.shipping_text }}</div>
+            </div>
+          {%- endif -%}
+
+          {% render 'terrastrike-warranty-notice', text: st.notice_text, icon: st.notice_icon %}
+
+          {%- if st.note != blank -%}
+            <div class="ts-note">{{ st.note }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Limited offer",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "image_picker", "id": "image", "label": "Product image" },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Image position (desktop)",
+      "info": "On mobile the image always comes first.",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Back-to-School Limited Offer!" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Protect Your Family Now and You'll Get:" },
+
+    { "type": "header", "content": "Button" },
+    { "type": "product", "id": "featured_product", "label": "Product to add to cart" },
+    { "type": "url", "id": "button_link", "label": "Custom link", "info": "Overrides the add-to-cart button." },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "SAVE UP TO 55% 👉" },
+    { "type": "image_picker", "id": "button_image", "label": "Image under the button" },
+
+    { "type": "header", "content": "Badges" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true },
+    {
+      "type": "range",
+      "id": "payment_icon_height",
+      "min": 16,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Payment icon height",
+      "default": 32
+    },
+    { "type": "image_picker", "id": "shipping_image", "label": "Shipping badge image" },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Shipping badge text",
+      "default": "<p><strong>FREE Shipping Today!</strong></p>"
+    },
+    { "type": "text", "id": "notice_text", "label": "Warranty notice", "default": "120 Day Money-Back • 2 Yr Warranty" },
+    {
+      "type": "select",
+      "id": "notice_icon",
+      "label": "Warranty notice icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "lock", "label": "Lock" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" }
+      ],
+      "default": "lock"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Closing note",
+      "default": "<p><em>Note: <strong>Not Available on Amazon or eBay</strong></em></p>"
+    },
+
+    { "type": "header", "content": "Panel" },
+    { "type": "color", "id": "offer_panel_background", "label": "Panel background", "default": "#eef4fd" },
+    { "type": "color", "id": "offer_border_color", "label": "Panel border", "default": "#1f3b5c" },
+    {
+      "type": "range",
+      "id": "offer_border_width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "Panel border width",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "offer_border_style",
+      "label": "Panel border style",
+      "options": [
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "dashed"
+    },
+    {
+      "type": "range",
+      "id": "offer_radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel corner radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "offer_padding",
+      "min": 8,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "offer_image_width",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Product image width",
+      "default": 520
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "accent_color", "label": "Eyebrow", "default": "#f39c12" },
+    { "type": "color", "id": "check_color", "label": "Bullet icon", "default": "#16a34a" },
+    { "type": "color", "id": "note_color", "label": "Note text", "default": "#e8733a" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#e8733a" },
+    { "type": "color", "id": "button_background_hover", "label": "Button background (hover)", "default": "#d4622c" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#ffffff" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between columns",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 10
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bonus bullet",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Check" },
+            { "value": "star", "label": "Star" },
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "heart", "label": "Heart" }
+          ],
+          "default": "check"
+        },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Limited offer",
+      "blocks": [
+        {
+          "type": "bullet",
+          "settings": { "text": "<p><strong>55% OFF</strong> - Save Up to $120 on Family Pack</p>", "icon": "check" }
+        },
+        {
+          "type": "bullet",
+          "settings": { "text": "<p><strong>120-Day Money-Back Guarantee</strong></p>", "icon": "check" }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "text": "<p><strong>BONUS!</strong> FREE \"Vehicle Emergency Escape Guide\" ($29 Value)</p>",
+            "icon": "check"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "text": "<p><strong>BONUS!</strong> FREE Crash Survival Checklist PDF ($12 Value)</p>",
+            "icon": "check"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

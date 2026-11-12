@@ -1,0 +1,46 @@
+{% doc %}
+  Renders the hero vturb-smartplayer video embed. This is a hosted third-party player (ConvertAI/vturb) - the loader script that turns the custom element into a working player is NOT included in this repo and must be added separately (typically a <script src="https://scripts.converteai.net/..."> tag) for the video to actually play. Without it, this renders as a static poster image only.
+  @example
+  {% render 'terrastrike-video-player' %}
+{% enddoc %}
+
+<vturb-smartplayer
+  id="vid-6a4d201fa0e0589c86e6c263"
+  style="display:block;margin:0px auto;width:100%;max-width:var(--player-vertical-width,400px);"
+>
+  <template shadowrootmode="closed">
+    <vturb-player tabindex="-1" height="625" width="500">
+      <pre style="display:none">
+{
+  "id": "6a4d201fa0e0589c86e6c263",
+  "name": "TK_4WAYSOUT_H3.1_KI_TK_4WAYSOUT_KI",
+  "oid": "e606b626-7e0a-4ecd-bcdb-d430dd58005b",
+  "cdn": "cdn.converteai.net",
+  "playerVersion": "v4",
+  "playerInit": { "aspectRatio": 125, "verticalVideo": true },
+  "video": {
+    "id": "6a4d1ffba0e0589c86e6c24e",
+    "aspectRatio": 1.25,
+    "width": 1080,
+    "height": 1350,
+    "cover": "https://images.converteai.net/e606b626-7e0a-4ecd-bcdb-d430dd58005b/players/6a4d201fa0e0589c86e6c263/cover.jpg",
+    "poster": "https://cdn.converteai.net/e606b626-7e0a-4ecd-bcdb-d430dd58005b/6a4d1ffba0e0589c86e6c24e/poster.jpg",
+    "startQuality": "auto"
+  },
+  "resume": {
+    "active": true,
+    "title": "You have already started watching this video",
+    "play": "Continue watching?",
+    "replay": "Start from beginning?"
+  },
+  "smartAutoPlay": { "active": true },
+  "style": { "background": "#1890FF", "foreground": "#FFFFFF", "smallPlay": true }
+}
+      </pre>
+      <slot name="before-player" style="position:absolute;width:100%;height:0px;z-index:10;display:block;"></slot>
+    </vturb-player>
+  </template>
+  <div class="thumbnail" style="position:relative;width:100%;padding:125% 0 0;z-index:0;">
+    {% render 'terrastrike-image', file: 'terrastrike-hero.webp', alt: 'Video preview' %}
+  </div>
+</vturb-smartplayer>

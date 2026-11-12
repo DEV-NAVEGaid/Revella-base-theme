@@ -1,0 +1,254 @@
+{%- comment -%}
+  Compact testimonial grid (block-driven).
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+    {%- endif -%}
+    {%- if st.subheading != blank -%}
+      <div class="ts-subheading ts-center">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-grid">
+      {%- for block in section.blocks -%}
+        {% render 'terrastrike-review-card', block: block %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Testimonials",
+  "tag": "section",
+  "max_blocks": 24,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "subheading", "label": "Subheading" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#ffffff" },
+    { "type": "color", "id": "star_color", "label": "Stars", "default": "#f39c12" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Photos" },
+    {
+      "type": "select",
+      "id": "card_ratio",
+      "label": "Photo shape",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" },
+        { "value": "auto", "label": "Original" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Photo corner radius",
+      "default": 12
+    },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "min": 1, "max": 4, "step": 1, "label": "Columns (desktop)", "default": 3 },
+    { "type": "range", "id": "columns_tablet", "min": 1, "max": 3, "step": 1, "label": "Columns (tablet)", "default": 2 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 20 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "range", "id": "rating", "label": "Star rating", "min": 0, "max": 5, "step": 1, "default": 5 },
+        { "type": "richtext", "id": "text", "label": "Quote" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Testimonials",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Angela M.",
+            "rating": 5,
+            "text": "<p>\"Bought these for my parents after the Tesla door story scared me. My dad is 74, my mom is 71. Neither of them could punch through a car window. Neither of them should have to. This spring does the work. Best $25 I have spent in years.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Kevin B.",
+            "rating": 5,
+            "text": "<p>\"Was skeptical. Figured a tool this small would be cheap junk. The aluminum body changed my mind the second I picked it up. Pressed the spring against an old car window at the junkyard - one press, corner of the glass, and it blew apart. Believer.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Mark O.",
+            "rating": 5,
+            "text": "<p>\"Held this in my hand for about three seconds and immediately ordered four more. The spring mechanism has real force behind it - you can feel it. This is not a toy. Smaller than the fob on my truck keys, and I forget it's even there. Exactly what I wanted.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Ben W.",
+            "rating": 5,
+            "text": "<p>\"My daughter just started driving. She is 16. I cannot be in the car with her every time. But I can make sure she has a way out if something happens. Clipped it to her visor before she left for school this morning. She said it was 'kind of cool.' I said it is non-negotiable.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Eva A.",
+            "rating": 5,
+            "text": "<p>\"Fleet manager. Ordered a batch after reading about those Tesla fires. Half my guys drive EVs now - electronic doors, electronic windows, electronic everything. One dead battery after a crash and every exit shuts down. Each driver keeps one in the cab. No training, no setup.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Maria S.",
+            "rating": 5,
+            "text": "<p>\"I commute 40 minutes each way through hill country. Two-lane roads, no guardrails, creeks on both sides. I used to think about what happens if I go off the road into the water. Now I do not have to. TerraStrike sits in my door pocket and keys. Every drive.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "William J.",
+            "rating": 5,
+            "text": "<p>\"Retired law enforcement. Carried a window punch on my belt for 22 years. Off duty I carried nothing. This fixes that. Sits by my seat, has the belt cutter the old punches never had, and nobody notices it's there. Should have existed ten years ago.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Karen W.",
+            "rating": 5,
+            "text": "<p>\"Got the family pack. One for me, one for my husband, one for my son at college, one for my mother-in-law who drives alone to her dialysis appointments three times a week. She is the one I worry about most. Now she has a way out if her car ever ends up in a ditch. I sleep better.\"</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Rose M.",
+            "rating": 5,
+            "text": "<p>\"Got mine today. Ordered three more for my teenage sons and my wife. Ten seconds to place one in each car or keychain and done. Feels better than any insurance policy I have ever paid for. Thank you.\"</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

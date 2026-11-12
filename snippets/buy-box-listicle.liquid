@@ -1,0 +1,1340 @@
+{% comment %}
+  Snippet: buy-box-listicle.liquid
+  ─────────────────────────────────────────────────────────────
+  Pass variables via {% render %}. All have sensible defaults.
+  Content: countdown_label, hours, minutes, seconds,
+           bb_image, bb_heading, bb_subtext,
+           bb_button_text, bb_button_link,
+           bb_badge_1, bb_badge_2
+  Colors:  bb_countdown_bg, bb_countdown_text,
+           bb_card_bg, bb_heading_color, bb_subtext_color,
+           bb_btn_bg, bb_btn_hover, bb_btn_text,
+           bb_badge_icon_bg, bb_badge_text_color
+  Fonts:   bb_font_heading, bb_font_body, bb_font_button
+  Sizes:   bb_fs_countdown, bb_fs_heading, bb_fs_subtext,
+           bb_fs_button, bb_fs_badge
+
+  Featured-product variables:
+  Content: fp_product_handle, fp_coupon_text,
+           fp_offer_label, fp_offer_title,
+           fp_sub_heading,
+           fp_original_price, fp_sale_price, fp_discount_pct, fp_per_day,
+           fp_benefit_1 … fp_benefit_7,
+           fp_cart_text,
+           fp_trust_1, fp_trust_2,
+           fp_review_stars, fp_review_count, fp_title
+  Colors:  fp_accent, fp_accent_hover, fp_card_border,
+           fp_discount_bg, fp_discount_text
+{% endcomment %}
+
+{%- liquid
+  assign _label   = countdown_label | default: 'deal ending in'
+  assign _hours   = hours           | default: '11'
+  assign _minutes = minutes         | default: '51'
+  assign _seconds = seconds         | default: '58'
+  assign _heading = bb_heading      | default: 'BACK IN STOCK + 15% OFF!'
+  assign _subtext = bb_subtext      | default: 'We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again.'
+  assign _btn_txt = bb_button_text  | default: 'GET 15% OFF NOW'
+  assign _btn_url = bb_button_link  | default: '#'
+  assign _badge1  = bb_badge_1      | default: '60-day Money-Back Guarantee'
+  assign _badge2  = bb_badge_2      | default: 'fast + free shipping'
+
+  assign _countdown_bg    = bb_countdown_bg    | default: '#e20000'
+  assign _countdown_text  = bb_countdown_text  | default: '#ffffff'
+  assign _card_bg         = bb_card_bg         | default: '#d6f1ce'
+  assign _heading_color   = bb_heading_color   | default: '#112c21'
+  assign _subtext_color   = bb_subtext_color   | default: '#000000'
+  assign _btn_bg          = bb_btn_bg          | default: '#8C3A3A'
+  assign _btn_hover       = bb_btn_hover       | default: '#1e8a00'
+  assign _btn_text        = bb_btn_text        | default: '#ffffff'
+  assign _badge_icon_bg   = bb_badge_icon_bg   | default: '#8C3A3A'
+  assign _badge_text_color = bb_badge_text_color | default: '#000000'
+  assign _font_heading    = bb_font_heading    | default: 'Inter'
+  assign _font_body       = bb_font_body       | default: 'Inter'
+  assign _font_button     = bb_font_button     | default: 'Lato'
+
+  assign _fs_countdown = bb_fs_countdown | default: 33
+  assign _fs_heading   = bb_fs_heading   | default: 35
+  assign _fs_subtext   = bb_fs_subtext   | default: 20
+  assign _fs_button    = bb_fs_button    | default: 20
+  assign _fs_badge     = bb_fs_badge     | default: 16
+
+  comment
+    Featured-product: resolve product from handle
+  endcomment
+  assign fp_product = all_products[fp_product_handle]
+  assign _fp_coupon     = fp_coupon_text   | default: 'Click to apply 1 time discount'
+  assign _fp_offer_lbl  = fp_offer_label   | default: 'Choose Offer:'
+  assign _fp_offer_ttl  = fp_offer_title   | default: '1-Month Supply'
+  assign _fp_sub_head   = fp_sub_heading   | default: 'AutoShip & Save:'
+
+  assign _fp_variant = fp_product.selected_or_first_available_variant
+  if _fp_variant
+    assign _fp_sale_price = _fp_variant.price | money
+    if _fp_variant.compare_at_price > _fp_variant.price
+      assign _fp_orig_price = _fp_variant.compare_at_price | money
+      assign _save_amount = _fp_variant.compare_at_price | minus: _fp_variant.price
+      assign _save_pct = _save_amount | times: 100 | divided_by: _fp_variant.compare_at_price
+      assign _fp_discount = _save_pct | append: '% OFF'
+    else
+      assign _fp_orig_price = ''
+      assign _fp_discount = ''
+    endif
+    assign _price_cents = _fp_variant.price | plus: 0
+    assign _daily_cents = _price_cents | divided_by: 30
+    assign _fp_per_day = _daily_cents | money | prepend: '' | append: ' per day'
+  else
+    assign _fp_orig_price = fp_original_price | default: '$39.99'
+    assign _fp_sale_price = fp_sale_price     | default: '$33.99'
+    assign _fp_discount   = fp_discount_pct   | default: '15% OFF'
+    assign _fp_per_day    = fp_per_day         | default: '$1.41 per day'
+  endif
+
+  assign _fp_cart_txt   = fp_cart_text       | default: 'ADD TO CART'
+
+  assign _fp_b1 = fp_benefit_1 | default: '15% Off Monthly Delivery'
+  assign _fp_b2 = fp_benefit_2 | default: 'Free priority shipping in the continental US'
+  assign _fp_b3 = fp_benefit_3 | default: 'No commitment, Pause or cancel anytime'
+  assign _fp_b4 = fp_benefit_4 | default: '60-day Money Back Guarantee'
+  assign _fp_b5 = fp_benefit_5 | default: 'Lock in promotional pricing'
+  assign _fp_b6 = fp_benefit_6 | default: 'Free ebook <s>$29</s>'
+  assign _fp_b7 = fp_benefit_7 | default: 'Free mystery gift <s>$29</s>'
+
+  assign _fp_trust1 = fp_trust_1 | default: '60-day Money Back Guarantee'
+  assign _fp_trust2 = fp_trust_2 | default: 'Free Priority Shipping'
+
+  assign _fp_accent       = fp_accent       | default: '#8C3A3A'
+  assign _fp_accent_hover = fp_accent_hover | default: '#6E2C2C'
+  assign _fp_card_border  = fp_card_border  | default: '#6E2C2C'
+  assign _fp_discount_bg  = fp_discount_bg  | default: '#6E2C2C'
+  assign _fp_discount_text = fp_discount_text | default: '#ffffff'
+
+  assign _fp_review_stars = fp_review_stars | default: 5
+  assign _fp_review_count = fp_review_count | default: '572'
+  assign _fp_title        = fp_title        | default: 'Astaxanthin 12mg Softgels – Triple Strength from Microalgae'
+
+  assign _otp_heading     = otp_heading      | default: '👉 TRY IT ONCE - NO AUTOSHIP'
+  assign _otp_rec_text    = otp_rec_text     | default: 'We recommend a subscription as most results tend to come after one month of daily use'
+  assign _otp_label       = otp_label        | default: 'One-time purchase'
+  assign _otp_orig_price  = otp_orig_price   | default: '$59.99'
+  assign _otp_sale_price  = otp_sale_price   | default: '$39.99'
+  assign _otp_note        = otp_note         | default: 'Does not include discounts or free shipping'
+  assign _otp_per_day     = otp_per_day      | default: '$1.67 per day'
+  assign _otp_cart_txt    = otp_cart_text     | default: 'ADD TO CART'
+  assign _otp_payments_img = otp_payments_img
+  assign _otp_tagline     = otp_tagline      | default: '100% Natural • Cruelty-Free • Ethically Sourced'
+
+  assign _rv_avatar_img   = rv_avatar_img
+  assign _rv_name         = rv_name          | default: 'Rawl L.'
+  assign _rv_text         = rv_text          | default: "I've been taking these astaxanthin softgels for three weeks now and I can already feel a difference in my joints. Less stiffness in the morning and more energy throughout the day. Very happy with the quality."
+-%}
+
+{{ 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@700;900&display=swap' | stylesheet_tag }}
+
+<style>
+  /* ── Reset inherited colours from parent sections ── */
+  .bbls,
+  .bbls h2,
+  .bbls p,
+  .bbls a,
+  .bbls span {
+    color: unset;
+  }
+
+  .bbls {
+    --bbls-countdown-bg: {{ _countdown_bg }};
+    --bbls-countdown-text: {{ _countdown_text }};
+    --bbls-card-bg: {{ _card_bg }};
+    --bbls-heading-color: {{ _heading_color }};
+    --bbls-subtext-color: {{ _subtext_color }};
+    --bbls-btn-bg: {{ _btn_bg }};
+    --bbls-btn-hover: {{ _btn_hover }};
+    --bbls-btn-text: {{ _btn_text }};
+    --bbls-badge-icon-bg: {{ _badge_icon_bg }};
+    --bbls-badge-text-color: {{ _badge_text_color }};
+    --bbls-font-heading: '{{ _font_heading }}', sans-serif;
+    --bbls-font-body: '{{ _font_body }}', sans-serif;
+    --bbls-font-button: '{{ _font_button }}', sans-serif;
+    --bbls-fs-countdown: {{ _fs_countdown }}px;
+    --bbls-fs-heading: {{ _fs_heading }}px;
+    --bbls-fs-subtext: {{ _fs_subtext }}px;
+    --bbls-fs-button: {{ _fs_button }}px;
+    --bbls-fs-badge: {{ _fs_badge }}px;
+
+    --bbls-fp-accent: {{ _fp_accent }};
+    --bbls-fp-accent-hover: {{ _fp_accent_hover }};
+    --bbls-fp-card-border: {{ _fp_card_border }};
+    --bbls-fp-discount-bg: {{ _fp_discount_bg }};
+    --bbls-fp-discount-text: {{ _fp_discount_text }};
+  }
+
+  .bbls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── Countdown banner ── */
+  .bbls__countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: var(--bbls-countdown-bg) !important;
+    color: var(--bbls-countdown-text) !important;
+    font-family: var(--bbls-font-heading) !important;
+    font-weight: 800 !important;
+    font-size: var(--bbls-fs-countdown) !important;
+    line-height: 1.55 !important;
+    text-transform: uppercase;
+    padding: 10px 25px;
+    border-radius: 13px;
+    margin-bottom: -30px;
+    z-index: 1;
+    position: relative;
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .bbls__countdown .bbls__countdown-label {
+    font-size: var(--bbls-fs-countdown) !important;
+    text-align: center;
+    color: inherit !important;
+  }
+
+  .bbls__countdown .bbls__timer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: var(--bbls-fs-countdown) !important;
+    font-weight: 800 !important;
+    line-height: 1.2;
+    color: inherit !important;
+  }
+
+  .bbls__countdown .bbls__timer span {
+    font-variant-numeric: tabular-nums;
+    color: inherit !important;
+  }
+
+  /* ── Main card ── */
+  .bbls__card {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: var(--bbls-card-bg) !important;
+    border-radius: 26px;
+    padding: 40px 40px 30px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .bbls__image {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  .bbls__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .bbls__content {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  .bbls__heading {
+    font-family: var(--bbls-font-heading) !important;
+    font-weight: 800 !important;
+    font-size: var(--bbls-fs-heading) !important;
+    line-height: 1.35 !important;
+    color: var(--bbls-heading-color) !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  .bbls__subtext {
+    font-family: var(--bbls-font-body) !important;
+    font-weight: 400 !important;
+    font-size: var(--bbls-fs-subtext) !important;
+    line-height: 1.4 !important;
+    color: var(--bbls-subtext-color) !important;
+    margin: 0 !important;
+  }
+
+  /* ── CTA button ── */
+  .bbls__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bbls-btn-bg) !important;
+    border: 2px solid var(--bbls-btn-bg) !important;
+    border-radius: 52px;
+    padding: 20px 32px;
+    color: var(--bbls-btn-text) !important;
+    font-family: var(--bbls-font-button) !important;
+    font-weight: 900 !important;
+    font-size: var(--bbls-fs-button) !important;
+    letter-spacing: 2px;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bbls__cta:hover {
+    background: var(--bbls-btn-hover) !important;
+    border-color: var(--bbls-btn-hover) !important;
+    color: var(--bbls-btn-text) !important;
+    transform: scale(1.02);
+  }
+
+  /* ── Trust badges ── */
+  .bbls__badges {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .bbls__badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--bbls-font-body) !important;
+    font-weight: 500 !important;
+    font-size: var(--bbls-fs-badge) !important;
+    line-height: 24px;
+    color: var(--bbls-badge-text-color) !important;
+  }
+
+  .bbls__badge span {
+    color: var(--bbls-badge-text-color) !important;
+  }
+
+  .bbls__badge-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--bbls-badge-icon-bg) !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bbls__badge-icon svg {
+    width: 100%;
+    height: 100%;
+    color: #fff !important;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     Featured Product Section
+     ══════════════════════════════════════════════════════════ */
+
+  .bbls__fp {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: var(--bbls-font-body);
+  }
+
+  .bbls__fp-left {
+    display: contents;
+  }
+
+  .bbls__fp-right {
+    display: contents;
+  }
+
+  /* ── Desktop two-column layout ── */
+  @media (min-width: 860px) {
+    .bbls__fp {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 960px;
+      align-items: start;
+    }
+
+    .bbls__fp-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .bbls__fp-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  /* ── Review stars + product title ── */
+  .bbls__fp-reviews {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--bbls-font-body);
+    font-size: 15px;
+    color: #333;
+  }
+
+  @media (min-width: 860px) {
+    .bbls__fp-reviews {
+      justify-content: flex-start;
+    }
+
+    .bbls__fp-product-title {
+      text-align: left !important;
+    }
+  }
+
+  .bbls .bbls__fp-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #d4a017 !important;
+  }
+
+  .bbls__fp-stars svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bbls__fp-reviews span {
+    color: #333 !important;
+  }
+
+  .bbls__fp-product-title {
+    font-family: var(--bbls-font-heading) !important;
+    font-weight: 800 !important;
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    color: #111 !important;
+    text-align: center;
+    margin: 0 0 4px !important;
+  }
+
+  /* ── Media gallery ── */
+  .bbls__fp-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bbls__fp-main-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .bbls__fp-main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .bbls__fp-thumbs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .bbls__fp-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: #f5f5f5;
+    transition: border-color 0.2s;
+    padding: 0;
+  }
+
+  .bbls__fp-thumb.is-active {
+    border-color: var(--bbls-fp-card-border);
+  }
+
+  .bbls__fp-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Coupon bar ── */
+  .bbls__fp-coupon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--bbls-fp-accent) !important;
+    color: #fff !important;
+    font-family: var(--bbls-font-body) !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+    border: none;
+    width: 100%;
+  }
+
+  .bbls__fp-coupon:hover {
+    background: var(--bbls-fp-accent-hover) !important;
+  }
+
+  .bbls__fp-coupon svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ── Offer selector ── */
+  .bbls__fp-offer-label {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #333 !important;
+    margin: 0 !important;
+  }
+
+  .bbls__fp-offers {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .bbls__fp-offer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: #fff;
+    min-width: 100px;
+  }
+
+  .bbls__fp-offer-card.is-active {
+    border-color: var(--bbls-fp-card-border);
+  }
+
+  .bbls__fp-offer-card span {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #333 !important;
+  }
+
+  .bbls__fp-offer-card img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+  }
+
+  /* ── Subscription box ── */
+  .bbls__fp-sub {
+    border: 2px solid var(--bbls-fp-card-border);
+    border-radius: 16px;
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .bbls__fp-sub-heading {
+    font-family: var(--bbls-font-heading) !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    font-style: italic !important;
+    color: #000 !important;
+    margin: 0 !important;
+  }
+
+  .bbls__fp-price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 2px solid var(--bbls-fp-accent);
+    cursor: pointer;
+    flex-wrap: wrap;
+  }
+
+  .bbls__fp-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bbls__fp-radio.is-checked {
+    border-color: var(--bbls-fp-card-border);
+  }
+
+  .bbls__fp-radio.is-checked::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--bbls-fp-card-border);
+    border-radius: 50%;
+  }
+
+  .bbls__fp-price-orig {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 16px !important;
+    color: #999 !important;
+    text-decoration: line-through !important;
+  }
+
+  .bbls__fp-price-sale {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+  }
+
+  .bbls__fp-discount-tag {
+    background: var(--bbls-fp-discount-bg) !important;
+    color: var(--bbls-fp-discount-text) !important;
+    font-family: var(--bbls-font-body) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .bbls__fp-per-day {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--bbls-fp-accent) !important;
+    margin-left: 34px;
+    margin-top: -4px;
+    text-align: left;
+  }
+
+  /* ── Benefits list ── */
+  .bbls__fp-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bbls__fp-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--bbls-font-body) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #222 !important;
+    line-height: 1.4 !important;
+  }
+
+  .bbls__fp-benefits li s {
+    color: #999 !important;
+  }
+
+  .bbls__fp-check {
+    width: 22px;
+    height: 22px;
+    background: var(--bbls-fp-accent) !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .bbls__fp-check svg {
+    width: 13px;
+    height: 13px;
+    color: #fff !important;
+  }
+
+  /* ── Add-to-cart button ── */
+  .bbls__fp-atc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bbls-fp-accent) !important;
+    border: none;
+    border-radius: 52px;
+    padding: 18px 32px;
+    color: #fff !important;
+    font-family: var(--bbls-font-button) !important;
+    font-weight: 900 !important;
+    font-size: 18px !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    width: 100%;
+    text-align: center;
+    text-decoration: none !important;
+  }
+
+  .bbls__fp-atc:hover {
+    background: var(--bbls-fp-accent-hover) !important;
+    transform: scale(1.02);
+  }
+
+  /* ── Bottom trust badges ── */
+  .bbls__fp-trust {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .bbls__fp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--bbls-font-body) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #444 !important;
+  }
+
+  .bbls__fp-trust-item svg {
+    width: 18px;
+    height: 18px;
+    color: #444 !important;
+    flex-shrink: 0;
+  }
+
+  /* ── One-time purchase box ── */
+  .bbls__otp {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .bbls__otp-card {
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+
+  .bbls__otp-header {
+    background: transparent;
+    color: #1a1a1a;
+    font-family: var(--bbls-font-heading) !important;
+    font-weight: 800 !important;
+    font-size: 17px !important;
+    text-align: center;
+    padding: 24px 20px 16px;
+    line-height: 1.3;
+    border: none;
+    width: 100%;
+  }
+
+  .bbls__otp-divider {
+    width: calc(100% - 40px);
+    height: 1px;
+    background: #ddd;
+    margin: 0 auto;
+  }
+
+  .bbls__otp-rec {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 15px !important;
+    color: #333 !important;
+    text-align: center;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+    padding: 18px 24px 24px;
+    font-style: italic;
+  }
+
+  .bbls__otp-payments {
+    text-align: center;
+  }
+
+  .bbls__otp-payments img {
+    max-width: 340px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .bbls .bbls__otp-tagline {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+    text-align: center;
+    margin: 0 !important;
+    letter-spacing: .02em;
+  }
+
+  /* ── Review card ── */
+  .bbls__review {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #fff;
+  }
+
+  .bbls__review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bbls__review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .bbls__review-avatar-fallback {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 18px;
+    color: #888;
+    flex-shrink: 0;
+  }
+
+  .bbls__review-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bbls__review-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .bbls .bbls__review-name {
+    font-family: var(--bbls-font-body) !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    color: #111 !important;
+    margin: 0 !important;
+  }
+
+  .bbls .bbls__review-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #6FA088;
+  }
+
+  .bbls .bbls__review-stars svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .bbls__review-verified {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--bbls-font-body) !important;
+    font-size: 13px !important;
+    color: #666 !important;
+  }
+
+  .bbls .bbls__review-verified svg {
+    width: 16px;
+    height: 16px;
+    color: #6FA088;
+  }
+
+  .bbls .bbls__review-text {
+    font-family: var(--bbls-font-body) !important;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    color: #222 !important;
+    margin: 0 !important;
+  }
+
+  /* ── Mobile element ordering (when wrappers use display:contents) ── */
+  @media (max-width: 859px) {
+    .bbls__fp-reviews   { order: 1; }
+    .bbls__fp-product-title { order: 2; }
+    .bbls__fp-gallery   { order: 3; }
+    .bbls__fp-coupon    { order: 4; }
+    .bbls__fp-offer-label { order: 5; }
+    .bbls__fp-offers    { order: 6; }
+    .bbls__fp-sub       { order: 7; }
+    .bbls__otp          { order: 8; }
+    .bbls__review       { order: 9; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .bbls {
+      padding: 30px 0px;
+    }
+
+    .bbls__countdown {
+      font-size: calc(var(--bbls-fs-countdown) * 0.6) !important;
+      gap: 10px;
+      padding: 5px 15px;
+      border-radius: 5px;
+      max-width: 320px;
+    }
+
+    .bbls__countdown .bbls__countdown-label {
+      font-size: calc(var(--bbls-fs-countdown) * 0.6) !important;
+    }
+
+    .bbls__countdown .bbls__timer {
+      gap: 5px;
+      font-size: calc(var(--bbls-fs-countdown) * 0.6) !important;
+    }
+
+    .bbls__card {
+      flex-direction: column-reverse;
+      gap: 15px;
+      padding: 50px 0 0;
+      border-radius: 14px;
+    }
+
+    .bbls__image {
+      flex: 1 1 auto;
+    }
+
+    .bbls__content {
+      padding: 0 15px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .bbls__heading {
+      font-size: calc(var(--bbls-fs-heading) * 0.9) !important;
+    }
+
+    .bbls__subtext {
+      font-size: calc(var(--bbls-fs-subtext) * 0.9) !important;
+    }
+
+    .bbls__cta {
+      padding: 10px 32px;
+      font-size: calc(var(--bbls-fs-button) * 0.9) !important;
+    }
+
+    .bbls__badges {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bbls__badge {
+      font-size: calc(var(--bbls-fs-badge) * 0.94) !important;
+    }
+
+    .bbls__fp {
+      margin-top: 60px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .bbls__card {
+      flex-direction: column;
+      gap: 25px;
+      padding: 50px 20px 30px;
+    }
+
+    .bbls__content {
+      padding-top: 0;
+      align-items: center;
+      text-align: center;
+    }
+
+    .bbls__heading {
+      font-size: calc(var(--bbls-fs-heading) * 0.74) !important;
+    }
+
+    .bbls__countdown .bbls__countdown-label,
+    .bbls__countdown .bbls__timer,
+    .bbls__countdown {
+      font-size: calc(var(--bbls-fs-countdown) * 0.73) !important;
+    }
+  }
+</style>
+
+<div class="bbls">
+  <!-- ════════════════════════════════════════════
+       Countdown
+       ════════════════════════════════════════════ -->
+  <div class="bbls__countdown" id="bbls-countdown">
+    <span class="bbls__countdown-label">{{ _label }}</span>
+    <div class="bbls__timer">
+      <span id="bbls-hours">{{ _hours }}</span>
+      <span>:</span>
+      <span id="bbls-minutes">{{ _minutes }}</span>
+      <span>:</span>
+      <span id="bbls-seconds">{{ _seconds }}</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       Main promo card
+       ════════════════════════════════════════════ -->
+  <div class="bbls__card">
+    <div class="bbls__image">
+      {% if bb_image %}
+        {{ bb_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+      {% else %}
+        <img
+          src="https://assets.replocdn.com/projects/b100737d-ed48-4b5c-88aa-103744873e96/b91257d9-046d-4e9b-a889-632a43e1ac6c?width=820"
+          alt="{{ _heading }}"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <div class="bbls__content">
+      <h2 class="bbls__heading">{{ _heading }}</h2>
+      <p class="bbls__subtext">{{ _subtext }}</p>
+
+      <a href="{{ _btn_url }}" class="bbls__cta">
+        {{ _btn_txt }}
+      </a>
+
+      <div class="bbls__badges">
+        <div class="bbls__badge">
+          <span class="bbls__badge-icon">
+            <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+            </svg>
+          </span>
+          <span>{{ _badge1 }}</span>
+        </div>
+        <div class="bbls__badge">
+          <span class="bbls__badge-icon">
+            <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+            </svg>
+          </span>
+          <span>{{ _badge2 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       Featured Product
+       ════════════════════════════════════════════ -->
+  <div class="bbls__fp">
+
+    <!-- ═══ Left column: gallery + review ═══ -->
+    <div class="bbls__fp-left">
+
+      <!-- Media gallery -->
+      <div class="bbls__fp-gallery">
+      <div class="bbls__fp-main-img" id="bbls-fp-main">
+        {% if fp_product and fp_product.featured_image %}
+          {{ fp_product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', id: 'bbls-fp-hero' }}
+        {% else %}
+          <img id="bbls-fp-hero" src="https://placehold.co/520x520/f5f5f5/aaa?text=Product+Image" alt="Product" loading="lazy">
+        {% endif %}
+      </div>
+
+      <div class="bbls__fp-thumbs">
+        {% if fp_product %}
+          {% for image in fp_product.images limit: 5 %}
+            <button
+              class="bbls__fp-thumb{% if forloop.first %} is-active{% endif %}"
+              data-bbls-src="{{ image | image_url: width: 800 }}"
+              type="button"
+              aria-label="View image {{ forloop.index }}"
+            >
+              {{ image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+            </button>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..4) %}
+            <button
+              class="bbls__fp-thumb{% if forloop.first %} is-active{% endif %}"
+              data-bbls-src="https://placehold.co/520x520/f5f5f5/aaa?text=Image+{{ i }}"
+              type="button"
+              aria-label="View image {{ i }}"
+            >
+              <img src="https://placehold.co/120x120/f5f5f5/aaa?text={{ i }}" alt="Thumb {{ i }}" loading="lazy">
+            </button>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+      <!-- Review card (in left column on desktop) -->
+      <div class="bbls__review">
+        <div class="bbls__review-header">
+          {% if _rv_avatar_img %}
+            {{ _rv_avatar_img | image_url: width: 100 | image_tag: class: 'bbls__review-avatar', loading: 'lazy', alt: _rv_name }}
+          {% else %}
+            <div class="bbls__review-avatar-fallback">{{ _rv_name | slice: 0 }}</div>
+          {% endif %}
+          <div class="bbls__review-info">
+            <div class="bbls__review-top">
+              <p class="bbls__review-name">{{ _rv_name }}</p>
+              <span class="bbls__review-stars">
+                {% for i in (1..5) %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
+                {% endfor %}
+              </span>
+            </div>
+            <div class="bbls__review-verified">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+              <span>Verified Customer</span>
+            </div>
+          </div>
+        </div>
+        <p class="bbls__review-text">"{{ _rv_text }}"</p>
+      </div>
+
+    </div><!-- /.bbls__fp-left -->
+
+    <!-- ═══ Right column: details + purchase ═══ -->
+    <div class="bbls__fp-right">
+
+      <!-- Reviews + product title -->
+      <div class="bbls__fp-reviews">
+        <span class="bbls__fp-stars">
+          {% for i in (1..5) %}
+            {% if i <= _fp_review_stars %}
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            {% else %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            {% endif %}
+          {% endfor %}
+        </span>
+        <span>({{ _fp_review_count }}) Reviews</span>
+      </div>
+      <h2 class="bbls__fp-product-title">{{ _fp_title }}</h2>
+
+    <!-- Coupon bar -->
+    <button class="bbls__fp-coupon" type="button" id="bbls-fp-coupon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+        <line x1="7" y1="7" x2="7.01" y2="7"/>
+      </svg>
+      {{ _fp_coupon }}
+    </button>
+
+    <!-- Choose offer -->
+    <p class="bbls__fp-offer-label">{{ _fp_offer_lbl }}</p>
+    <div class="bbls__fp-offers">
+      <div class="bbls__fp-offer-card is-active">
+        <span>{{ _fp_offer_ttl }}</span>
+        {% if fp_product and fp_product.featured_image %}
+          {{ fp_product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <img src="https://placehold.co/120x120/f5f5f5/aaa?text=Product" alt="{{ _fp_offer_ttl }}" loading="lazy">
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- AutoShip & Save box -->
+    <div class="bbls__fp-sub" id="autoship">
+      <p class="bbls__fp-sub-heading">{{ _fp_sub_head }}</p>
+
+      <div class="bbls__fp-price-row">
+        <span class="bbls__fp-radio is-checked"></span>
+        {% if _fp_orig_price != blank %}<span class="bbls__fp-price-orig">{{ _fp_orig_price }}</span>{% endif %}
+        <span class="bbls__fp-price-sale">{{ _fp_sale_price }}</span>
+        {% if _fp_discount != blank %}<span class="bbls__fp-discount-tag">{{ _fp_discount }}</span>{% endif %}
+      </div>
+      <span class="bbls__fp-per-day">{{ _fp_per_day }}</span>
+
+      <ul class="bbls__fp-benefits">
+        {% assign _benefits = _fp_b1 | append: '|||' | append: _fp_b2 | append: '|||' | append: _fp_b3 | append: '|||' | append: _fp_b4 | append: '|||' | append: _fp_b5 | append: '|||' | append: _fp_b6 | append: '|||' | append: _fp_b7 %}
+        {% assign _benefits_arr = _benefits | split: '|||' %}
+        {% for b in _benefits_arr %}
+          {% if b != blank %}
+            <li>
+              <span class="bbls__fp-check">
+                <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                </svg>
+              </span>
+              <span>{{ b }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      <!-- Add to cart (inside sub box) -->
+      {% if fp_product %}
+        {%- assign fp_variant = fp_product.selected_or_first_available_variant -%}
+        {%- assign fp_form_id = 'bbls-fp-form-' | append: fp_product.id -%}
+        {%- form 'product', fp_product, id: fp_form_id, novalidate: 'novalidate' -%}
+          <input type="hidden" name="id" value="{{ fp_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button
+            type="submit"
+            name="add"
+            class="bbls__fp-atc"
+            {% if fp_variant.available == false %}disabled{% endif %}>
+            {%- if fp_variant.available -%}
+              {{ _fp_cart_txt }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        {%- endform -%}
+      {% else %}
+        <a href="{{ _btn_url }}" class="bbls__fp-atc">
+          {{ _fp_cart_txt }}
+        </a>
+      {% endif %}
+
+      <!-- Trust line (inside sub box) -->
+      <div class="bbls__fp-trust">
+        <span class="bbls__fp-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          {{ _fp_trust1 }}
+        </span>
+        <span class="bbls__fp-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          {{ _fp_trust2 }}
+        </span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         One-time purchase box
+         ════════════════════════════════════════════ -->
+    <div class="bbls__otp">
+      <div class="bbls__otp-card">
+        <div class="bbls__otp-header">
+          {{ _otp_heading }} ( {{ _otp_sale_price }} )
+        </div>
+        <div class="bbls__otp-divider"></div>
+        <p class="bbls__otp-rec">{{ _otp_rec_text }}</p>
+      </div>
+
+      {% if _otp_payments_img %}
+        <div class="bbls__otp-payments">
+          {{ _otp_payments_img | image_url: width: 560 | image_tag: loading: 'lazy', alt: 'Accepted payment methods' }}
+        </div>
+      {% else %}
+        <div class="bbls__otp-payments">
+          <img src="https://cdn.shopify.com/s/files/1/0689/4220/1126/files/screenshot_2024_11_26_at_2_16_09_pm_1.webp?v=1732794264&width=560" alt="Accepted payment methods" loading="lazy">
+        </div>
+      {% endif %}
+
+      <p class="bbls__otp-tagline">{{ _otp_tagline }}</p>
+    </div>
+
+    </div><!-- /.bbls__fp-right -->
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    /* ── Countdown timer ── */
+    var h = parseInt({{ _hours | json }}, 10);
+    var m = parseInt({{ _minutes | json }}, 10);
+    var s = parseInt({{ _seconds | json }}, 10);
+    var total = h * 3600 + m * 60 + s;
+
+    var stored = sessionStorage.getItem('bbls_countdown');
+    if (stored) total = parseInt(stored, 10);
+
+    function tick() {
+      if (total <= 0) return;
+      total--;
+      sessionStorage.setItem('bbls_countdown', total);
+      var hh = Math.floor(total / 3600);
+      var mm = Math.floor((total % 3600) / 60);
+      var ss = total % 60;
+      document.getElementById('bbls-hours').textContent = String(hh).padStart(2, '0');
+      document.getElementById('bbls-minutes').textContent = String(mm).padStart(2, '0');
+      document.getElementById('bbls-seconds').textContent = String(ss).padStart(2, '0');
+    }
+    setInterval(tick, 1000);
+
+    /* ── Thumbnail gallery switcher ── */
+    var thumbs = document.querySelectorAll('.bbls__fp-thumb');
+    var hero = document.getElementById('bbls-fp-hero');
+    thumbs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        thumbs.forEach(function(t) { t.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        if (hero && btn.dataset.bblsSrc) {
+          hero.src = btn.dataset.bblsSrc;
+        }
+      });
+    });
+
+
+  })();
+</script>

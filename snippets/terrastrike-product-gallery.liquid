@@ -1,0 +1,109 @@
+{% doc %}
+  Renders the main image slider with a synced thumbnail strip, driven by the
+  `<terrastrike-slider>` custom element in assets/terrastrike-slider.js.
+
+  Images come from, in order of priority: the section's "Slider image" blocks, then
+  the selected product's images, then a single placeholder so the section always has
+  something to show in the theme editor.
+
+  @param {object} [product] - Product whose images fill the gallery
+  @param {object} [blocks] - `section.blocks`; any block of type "slide" is used as a slide
+  @param {boolean} [show_arrows] - Render the prev/next arrows (default true)
+  @param {boolean} [show_thumbs] - Render the thumbnail strip (default true)
+  @example
+  {% render 'terrastrike-product-gallery',
+    product: gallery_product,
+    blocks: section.blocks,
+    show_arrows: true,
+    show_thumbs: true %}
+{% enddoc %}
+
+{%- liquid
+  assign slide_blocks = blocks | where: 'type', 'slide'
+  assign product_images = product.images
+
+  assign source = 'placeholder'
+  assign image_count = 1
+
+  if slide_blocks.size > 0
+    assign source = 'blocks'
+    assign image_count = slide_blocks.size
+  elsif product_images.size > 0
+    assign source = 'product'
+    assign image_count = product_images.size
+  endif
+
+  assign show_controls = false
+  if image_count > 1
+    assign show_controls = true
+  endif
+-%}
+
+<terrastrike-slider tabindex="-1">
+  <div class="ts-slider">
+    <div class="ts-slider__track">
+      {%- for i in (1..image_count) -%}
+        {%- liquid
+          assign index = forloop.index0
+          assign slide_image = null
+          assign slide_alt = ''
+
+          case source
+            when 'blocks'
+              assign slide_block = slide_blocks[index]
+              assign slide_image = slide_block.settings.image
+              assign slide_alt = slide_block.settings.alt
+            when 'product'
+              assign slide_image = product_images[index]
+              assign slide_alt = slide_image.alt | default: product.title
+          endcase
+
+          comment
+            Only the first slide is eager — the rest are below the fold of the track.
+          endcomment
+          assign slide_lazy = true
+          if forloop.first
+            assign slide_lazy = false
+          endif
+        -%}
+        <div class="ts-slider__slide" {% if source == 'blocks' %}{{ slide_blocks[index].shopify_attributes }}{% endif %}>
+          {% render 'terrastrike-image', image: slide_image, alt: slide_alt, width: 1200, lazy: slide_lazy %}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if show_controls and show_arrows != false -%}
+      <button type="button" class="ts-slider__arrow prev" aria-label="Previous image">
+        {% render 'terrastrike-icon', name: 'chevron-left' %}
+      </button>
+      <button type="button" class="ts-slider__arrow next" aria-label="Next image">
+        {% render 'terrastrike-icon', name: 'chevron-right' %}
+      </button>
+    {%- endif -%}
+  </div>
+
+  {%- if show_controls and show_thumbs != false -%}
+    <div class="ts-thumbs">
+      {%- for i in (1..image_count) -%}
+        {%- liquid
+          assign index = forloop.index0
+          assign thumb_image = null
+
+          case source
+            when 'blocks'
+              assign thumb_image = slide_blocks[index].settings.image
+            when 'product'
+              assign thumb_image = product_images[index]
+          endcase
+        -%}
+        <button
+          type="button"
+          class="ts-thumb{% if forloop.first %} is-active{% endif %}"
+          aria-label="Show image {{ forloop.index }}"
+        >
+          {% render 'terrastrike-image', image: thumb_image, alt: '', width: 160, lazy: true %}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</terrastrike-slider>

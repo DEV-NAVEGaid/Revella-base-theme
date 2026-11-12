@@ -1,0 +1,55 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+<div class="lm">
+  <section class="wrap let"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="let-row">
+        <div class="let-l">
+          {%- if s.heading != blank %}<h2>{{ s.heading }}</h2>{% endif -%}
+          {%- if s.body != blank %}<div class="let-body">{{ s.body }}</div>{% endif -%}
+          <div class="sig">
+            {%- if s.signature != blank -%}
+              {{ s.signature | image_url: width: 400 | image_tag: loading: 'lazy', style: 'height:48px;width:auto;margin-bottom:6px', alt: s.name }}
+            {%- endif -%}
+            {%- if s.name != blank %}<p class="sn">{{ s.name }}</p>{% endif -%}
+            {%- if s.role != blank %}<p class="sr">{{ s.role }}</p>{% endif -%}
+          </div>
+        </div>
+        {%- if s.image != blank -%}
+          <div class="let-r">{{ s.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '375, 600, 900, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', alt: s.image.alt }}</div>
+        {%- else -%}
+          <div class="let-r ph">{{ s.image_placeholder }}</div>
+        {%- endif -%}
+      </div>
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Founder letter",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A Note from Our Founder" },
+    { "type": "richtext", "id": "body", "label": "Letter", "default": "<p>[Founder's opening — who they are and why they care about strength and healthy ageing.]</p><p>[Why creatine — what drew them to it and what the research says, in their own words.]</p><p>[The promise — how Lymphgem is made, tested and dosed, and the standard they hold it to.]</p>" },
+    { "type": "image_picker", "id": "signature", "label": "Signature image (optional)" },
+    { "type": "text", "id": "name", "label": "Founder name", "default": "[Founder name]" },
+    { "type": "text", "id": "role", "label": "Founder title", "default": "[Founder title]" },
+    { "type": "image_picker", "id": "image", "label": "Founder photo", "info": "Mobile 400 px tall, desktop 863 px tall." },
+    { "type": "text", "id": "image_placeholder", "label": "Photo placeholder text", "default": "[Founder photo]" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = design gradient (#193B68 → #0D1E39)." }
+  ],
+  "presets": [ { "name": "OC: Founder letter" } ]
+}
+{% endschema %}

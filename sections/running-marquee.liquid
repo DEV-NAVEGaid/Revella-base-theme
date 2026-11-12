@@ -1,0 +1,562 @@
+{% comment %}
+  Marquee Banner Section for Shopify
+  Name: Marquee Banner
+  - Infinite scrolling ticker with icon + text blocks
+  - Pure CSS animation — no JS dependency for motion
+  - JS only for: duplicating track for seamless loop + pause-on-hover
+  - Full speed, typography, color, icon, spacing customization
+  - Mobile-first responsive
+{% endcomment %}
+
+{%- liquid
+  assign sid        = section.id
+  assign item_gap   = section.settings.item_gap
+  assign icon_size  = section.settings.icon_size
+  assign icon_color = section.settings.icon_color
+-%}
+
+<style>
+  /* ── Outer section ── */
+  .mb-section-{{ sid }} {
+    background-color: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* ── Optional fade edges ── */
+  {% if section.settings.show_fade %}
+  .mb-section-{{ sid }}::before,
+  .mb-section-{{ sid }}::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: {{ section.settings.fade_width }}px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .mb-section-{{ sid }}::before {
+    left: 0;
+    background: linear-gradient(to right, {{ section.settings.section_bg }}, transparent);
+  }
+  .mb-section-{{ sid }}::after {
+    right: 0;
+    background: linear-gradient(to left, {{ section.settings.section_bg }}, transparent);
+  }
+  {% endif %}
+
+  /* ── Scrolling viewport ── */
+  .mb-track-wrap-{{ sid }} {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* ── The moving track ── */
+  /* Spacing lives on each item as padding-right, NOT as flex gap.            */
+  /* This ensures translateX(-50%) always lands exactly at the seam.          */
+  .mb-track-{{ sid }} {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    animation: mb-scroll-{{ sid }} linear infinite;
+    animation-duration: {{ section.settings.speed }}s;
+    {% if section.settings.direction == 'right' %}
+    animation-direction: reverse;
+    {% endif %}
+    will-change: transform;
+  }
+
+  .mb-track-wrap-{{ sid }}:hover .mb-track-{{ sid }} {
+    {% if section.settings.pause_on_hover %}
+    animation-play-state: paused;
+    {% endif %}
+  }
+
+  @keyframes mb-scroll-{{ sid }} {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-1 * var(--mb-set-w, 50%))); }
+  }
+
+  /* ── Each item ── */
+  /* padding-right = item_gap: this bakes spacing into each item's width so  */
+  /* the -50% translateX seam is always gapless, even with few items.        */
+  .mb-item-{{ sid }} {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.icon_text_gap }}px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: {{ item_gap }}px;
+  }
+  /* Separator also carries the gap via padding-right when shown */
+  .mb-sep-{{ sid }} + .mb-item-{{ sid }} {
+    padding-right: {{ item_gap }}px;
+  }
+
+  /* ── Separator (optional) ── */
+  /* When separator is shown, it carries the full inter-item gap.             */
+  /* The item's own padding-right is reset to just icon-text gap.             */
+  .mb-sep-{{ sid }} {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: {{ section.settings.separator_color }};
+    font-size: {{ section.settings.text_size }}px;
+    opacity: 0.5;
+    {% if section.settings.show_separator %}
+    padding: 0 {{ section.settings.separator_margin }}px;
+    {% else %}
+    display: none;
+    {% endif %}
+  }
+  {% if section.settings.show_separator %}
+  /* When separator is present, items don't need their own right-padding */
+  .mb-sep-{{ sid }} ~ .mb-item-{{ sid }},
+  .mb-item-{{ sid }}:has(+ .mb-sep-{{ sid }}) {
+    padding-right: 0;
+  }
+  {% endif %}
+
+  /* ── Icon ── */
+  .mb-icon-{{ sid }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: {{ icon_size }}px;
+    height: {{ icon_size }}px;
+    color: {{ icon_color }};
+    fill: {{ icon_color }};
+  }
+
+  .mb-icon-{{ sid }} svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .mb-icon-{{ sid }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Text ── */
+  .mb-text-{{ sid }} {
+    font-family: {{ section.settings.text_font_family }}, sans-serif;
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
+    color: {{ section.settings.text_color }};
+    line-height: 1;
+    letter-spacing: {{ section.settings.text_letter_spacing | divided_by: 100.0 }}em;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 767px) {
+    .mb-text-{{ sid }} {
+      font-size: {{ section.settings.text_size | times: 0.88 | ceil }}px;
+    }
+    .mb-icon-{{ sid }} {
+      width: {{ icon_size | times: 0.88 | ceil }}px;
+      height: {{ icon_size | times: 0.88 | ceil }}px;
+    }
+    .mb-section-{{ sid }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | ceil }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | ceil }}px;
+    }
+  }
+</style>
+
+<div class="mb-section-{{ sid }}" role="marquee" aria-label="Scrolling banner">
+  <div class="mb-track-wrap-{{ sid }}">
+    <div class="mb-track-{{ sid }}" id="mb-track-{{ sid }}" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'item' -%}
+          {%- unless forloop.first -%}
+            {%- if section.settings.show_separator -%}
+              <span class="mb-sep-{{ sid }}">{{ section.settings.separator_char }}</span>
+            {%- endif -%}
+          {%- endunless -%}
+
+          <span class="mb-item-{{ sid }}" {{ block.shopify_attributes }}>
+            {%- comment %} Icon rendering ─ custom upload takes priority ─ {%- endcomment %}
+            {%- if block.settings.custom_icon != blank -%}
+              <span class="mb-icon-{{ sid }}">
+                <img
+                  src="{{ block.settings.custom_icon | image_url: width: 80 }}"
+                  alt=""
+                  loading="lazy"
+                  aria-hidden="true"
+                >
+              </span>
+            {%- elsif block.settings.icon != 'none' -%}
+              <span class="mb-icon-{{ sid }}">
+                {%- case block.settings.icon -%}
+                  {%- when 'gluten_free' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                  {%- when 'no_additives' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+                  {%- when 'cgmp' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                  {%- when 'non_gmo' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20c8 0 10-8 10-8-3 2-6 2.5-9 1.5 1-3.5 5.5-6 8-6z"/></svg>
+                  {%- when 'star' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  {%- when 'heart' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  {%- when 'check' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  {%- when 'leaf' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20c8 0 10-8 10-8-3 2-6 2.5-9 1.5 1-3.5 5.5-6 8-6z"/></svg>
+                  {%- when 'lab' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19.8 18.4L14 10.67V6h1V4H9v2h1v4.67l-5.8 7.73C3.71 19.06 4.42 20 5.42 20h13.17c.99 0 1.71-.94 1.21-1.6zM11 10.67V6h2v4.67l1.43 1.9A8.8 8.8 0 0012 12a8.8 8.8 0 00-2.43.57L11 10.67z"/></svg>
+                  {%- when 'sun' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                  {%- when 'bolt' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                  {%- when 'drop' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/></svg>
+                  {%- when 'award' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                  {%- when 'recycle' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.05 8.5L4 5 1 9.5h3.2c-.09.5-.14 1-.14 1.5 0 4.42 3.58 8 8 8 1.92 0 3.67-.68 5.04-1.8l-1.58-1.58A5.93 5.93 0 0112 17c-3.31 0-6-2.69-6-6 0-.52.07-1.02.19-1.5H9.5L6.05 8.5zM23 10.5h-3.2c.09.5.14 1 .14 1.5 0-4.42-3.58-8-8-8-1.92 0-3.67.68-5.04 1.8l1.58 1.58A5.93 5.93 0 0112 7c3.31 0 6 2.69 6 6 0 .52-.07 1.02-.19 1.5H14.5L18 15.5l3-5z"/></svg>
+                {%- endcase -%}
+              </span>
+            {%- endif -%}
+
+            {%- if block.settings.text != blank -%}
+              <span class="mb-text-{{ sid }}">{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var trackId = 'mb-track-{{ sid }}';
+  var track = document.getElementById(trackId);
+  if (!track) return;
+
+  // Strategy: clone the original set of items until the track is at least
+  // 2× the viewport width. Then the animation slides exactly one "set" width
+  // (half the total) and snaps back — no blank space, no seam, ever.
+  var original = track.innerHTML;
+
+  // Build until we have enough copies to always overflow the screen twice
+  var copies = 2;
+  track.innerHTML = original + original;
+
+  // After paint, measure and add more copies if needed
+  requestAnimationFrame(function() {
+    var setWidth = track.scrollWidth / copies;
+    var needed = Math.ceil((window.innerWidth * 2) / setWidth) + 1;
+    if (needed > copies) {
+      var extra = '';
+      for (var i = copies; i < needed; i++) extra += original;
+      track.innerHTML = original.repeat(needed);
+    }
+    // Animate exactly one set width: use CSS custom property
+    var finalSetWidth = track.scrollWidth / needed;
+    track.style.setProperty('--mb-set-w', finalSetWidth + 'px');
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Marquee Banner",
+  "tag": "section",
+  "class": "section-marquee-banner",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Banner Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Built-in Icon",
+          "options": [
+            { "value": "none",        "label": "None" },
+            { "value": "gluten_free", "label": "Gluten-Free (circle-info)" },
+            { "value": "no_additives","label": "No Additives (X circle)" },
+            { "value": "cgmp",        "label": "cGMP Certified (shield-check)" },
+            { "value": "non_gmo",     "label": "Non-GMO (leaf)" },
+            { "value": "check",       "label": "Checkmark" },
+            { "value": "star",        "label": "Star" },
+            { "value": "heart",       "label": "Heart" },
+            { "value": "leaf",        "label": "Leaf" },
+            { "value": "lab",         "label": "Lab / Science" },
+            { "value": "sun",         "label": "Sun" },
+            { "value": "bolt",        "label": "Lightning Bolt" },
+            { "value": "drop",        "label": "Water Drop" },
+            { "value": "award",       "label": "Award / Badge" },
+            { "value": "recycle",     "label": "Recycle" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (overrides built-in)",
+          "info": "Upload SVG or PNG. Custom icons do not respond to the icon color setting."
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Label",
+          "default": "Gluten-Free"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background Color",
+      "default": "#7B2223"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed (seconds per loop)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 20,
+      "info": "Lower = faster. E.g. 10 = fast, 30 = slow"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        { "value": "left",  "label": "Right to Left (default)" },
+        { "value": "right", "label": "Left to Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Edge Fade"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_fade",
+      "label": "Show Fade Edges",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "fade_width",
+      "label": "Fade Width (px)",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Item Spacing"
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap Between Items (px)",
+      "min": 8,
+      "max": 80,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "label": "Gap Between Icon and Text (px)",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Separator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Separator Between Items",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "separator_char",
+      "label": "Separator Character",
+      "default": "·",
+      "info": "e.g. · | • / —"
+    },
+    {
+      "type": "range",
+      "id": "separator_margin",
+      "label": "Separator Side Margin (px)",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size (px)",
+      "min": 10,
+      "max": 48,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color (built-in icons only)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Text Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Font Size (px)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-Bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text_font_family",
+      "label": "Font Family",
+      "default": "sans-serif",
+      "info": "e.g. sans-serif, Georgia, 'Helvetica Neue'"
+    },
+    {
+      "type": "range",
+      "id": "text_letter_spacing",
+      "label": "Letter Spacing (em × 100)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 2,
+      "info": "Value is divided by 100. E.g. 5 = 0.05em"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Banner",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "gluten_free", "text": "Gluten-Free" } },
+        { "type": "item", "settings": { "icon": "no_additives","text": "No Additives" } },
+        { "type": "item", "settings": { "icon": "cgmp",        "text": "cGMP Certified" } },
+        { "type": "item", "settings": { "icon": "non_gmo",     "text": "Non-GMO" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

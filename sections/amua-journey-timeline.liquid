@@ -1,0 +1,341 @@
+<div
+  class="amua-journey"
+  style="
+    --aj-bg: {{ section.settings.background_color }};
+    --aj-heading-color: {{ section.settings.heading_color }};
+    --aj-heading-gradient-start: {{ section.settings.heading_gradient_start }};
+    --aj-heading-gradient-end: {{ section.settings.heading_gradient_end }};
+    --aj-subheading-color: {{ section.settings.subheading_color }};
+    --aj-line-color: {{ section.settings.line_color }};
+    --aj-dot-ring: {{ section.settings.dot_ring_color }};
+    --aj-dot-center: {{ section.settings.dot_center_color }};
+    --aj-badge-bg: {{ section.settings.badge_bg_color }};
+    --aj-badge-text: {{ section.settings.badge_text_color }};
+    --aj-step-heading-color: {{ section.settings.step_heading_color }};
+    --aj-step-text-color: {{ section.settings.step_text_color }};
+    --aj-heading-size: {{ section.settings.heading_font_size }}px;
+    --aj-subheading-size: {{ section.settings.subheading_font_size }}px;
+    --aj-badge-size: {{ section.settings.badge_font_size }}px;
+    --aj-step-heading-size: {{ section.settings.step_heading_font_size }}px;
+    --aj-step-text-size: {{ section.settings.step_text_font_size }}px;
+    --aj-padding-top: {{ section.settings.padding_top }}px;
+    --aj-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --aj-item-gap: {{ section.settings.item_gap }}px;
+    --aj-content-gap: {{ section.settings.content_gap }}px;
+    --aj-dot-size: {{ section.settings.dot_size }}px;
+    --aj-dot-ring-width: {{ section.settings.dot_ring_width }}px;
+    --aj-line-width: {{ section.settings.line_width }}px;
+    --aj-badge-padding-v: {{ section.settings.badge_padding_vertical }}px;
+    --aj-badge-padding-h: {{ section.settings.badge_padding_horizontal }}px;
+  "
+>
+  <div class="page-width amua-journey__inner">
+    <h2 class="amua-journey__heading">
+      {{ section.settings.heading }}
+      <span class="amua-journey__heading-accent">{{ section.settings.heading_accent }}</span>
+    </h2>
+
+    {% if section.settings.subheading != blank %}
+      <div class="amua-journey__subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <ol class="amua-journey__timeline" data-aj-timeline>
+        <span class="amua-journey__line" data-aj-line aria-hidden="true"></span>
+        {% for block in section.blocks %}
+          <li class="amua-journey__item" data-aj-item {{ block.shopify_attributes }}>
+            <span class="amua-journey__marker">
+              <span class="amua-journey__dot" data-aj-dot aria-hidden="true"></span>
+            </span>
+            <div class="amua-journey__content">
+              {% if block.settings.badge_label != blank %}
+                <span class="amua-journey__badge">{{ block.settings.badge_label }}</span>
+              {% endif %}
+              {% if block.settings.heading != blank %}
+                <h3 class="amua-journey__item-heading">{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <div class="amua-journey__item-text">{{ block.settings.text }}</div>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .amua-journey {
+    background: var(--aj-bg);
+    padding-top: var(--aj-padding-top);
+    padding-bottom: var(--aj-padding-bottom);
+    overflow: hidden;
+  }
+
+  .amua-journey__heading {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(36px, 8vw, var(--aj-heading-size));
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--aj-heading-color);
+  }
+
+  .amua-journey__heading-accent {
+    display: block;
+    background: linear-gradient(90deg, var(--aj-heading-gradient-start), var(--aj-heading-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .amua-journey__subheading {
+    max-width: 520px;
+    margin: 16px auto 0;
+    text-align: center;
+    font-size: var(--aj-subheading-size);
+    line-height: 1.5;
+    color: var(--aj-subheading-color);
+  }
+
+  .amua-journey__subheading p {
+    margin: 0;
+  }
+
+  .amua-journey__timeline {
+    position: relative;
+    list-style: none;
+    max-width: 640px;
+    margin: 40px auto 0;
+    padding: 0;
+  }
+
+  .amua-journey__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--aj-dot-size) / 2 - var(--aj-line-width) / 2);
+    width: var(--aj-line-width);
+    background: var(--aj-line-color);
+    z-index: 0;
+  }
+
+  .amua-journey__item {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: var(--aj-dot-size) 1fr;
+    column-gap: var(--aj-content-gap);
+    padding-bottom: var(--aj-item-gap);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .amua-journey__item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .amua-journey__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .amua-journey__marker {
+    display: flex;
+    justify-content: center;
+  }
+
+  .amua-journey__dot {
+    width: var(--aj-dot-size);
+    height: var(--aj-dot-size);
+    margin-top: 3px;
+    border-radius: 50%;
+    background: var(--aj-dot-center);
+    border: var(--aj-dot-ring-width) solid var(--aj-dot-ring);
+    box-sizing: border-box;
+  }
+
+  .amua-journey__badge {
+    display: inline-block;
+    background: var(--aj-badge-bg);
+    color: var(--aj-badge-text);
+    font-size: var(--aj-badge-size);
+    font-weight: 700;
+    padding: var(--aj-badge-padding-v) var(--aj-badge-padding-h);
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+
+  .amua-journey__item-heading {
+    margin: 0 0 8px;
+    font-size: var(--aj-step-heading-size);
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--aj-step-heading-color);
+  }
+
+  .amua-journey__item-text {
+    margin: 0;
+    font-size: var(--aj-step-text-size);
+    line-height: 1.6;
+    color: var(--aj-step-text-color);
+  }
+
+  .amua-journey__item-text p {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .amua-journey__item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function initAmuaJourney(root) {
+    if (!root || root.dataset.ajInit) return;
+    root.dataset.ajInit = 'true';
+
+    var items = root.querySelectorAll('[data-aj-item]');
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+      );
+
+      items.forEach(function (item) {
+        observer.observe(item);
+      });
+    } else {
+      items.forEach(function (item) {
+        item.classList.add('is-visible');
+      });
+    }
+  }
+
+  document.querySelectorAll('.amua-journey').forEach(initAmuaJourney);
+
+  document.addEventListener('shopify:section:load', function (event) {
+    var root = event.target.querySelector('.amua-journey');
+    initAmuaJourney(root);
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Amua: Journey Timeline",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your Journey to" },
+    { "type": "text", "id": "heading_accent", "label": "Heading highlighted line", "default": "Natural Curves" },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>What you can expect with consistent daily use of VitalDrops' plant-based formula.</p>"
+    },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF9F7" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#111111" },
+    { "type": "color", "id": "heading_gradient_start", "label": "Heading highlight gradient — left", "default": "#F6D387" },
+    { "type": "color", "id": "heading_gradient_end", "label": "Heading highlight gradient — right", "default": "#EFAF3E" },
+    { "type": "color", "id": "subheading_color", "label": "Subheading", "default": "#5C5C5C" },
+    { "type": "color", "id": "line_color", "label": "Timeline line", "default": "#F0C36A" },
+    { "type": "color", "id": "dot_ring_color", "label": "Dot ring", "default": "#F0C36A" },
+    { "type": "color", "id": "dot_center_color", "label": "Dot center", "default": "#FFFFFF" },
+    { "type": "color", "id": "badge_bg_color", "label": "Badge background", "default": "#F0C36A" },
+    { "type": "color", "id": "badge_text_color", "label": "Badge text", "default": "#111111" },
+    { "type": "color", "id": "step_heading_color", "label": "Step heading", "default": "#111111" },
+    { "type": "color", "id": "step_text_color", "label": "Step text", "default": "#4A4A4A" },
+    { "type": "header", "content": "Font size" },
+    { "type": "range", "id": "heading_font_size", "min": 24, "max": 60, "step": 1, "unit": "px", "label": "Heading size", "default": 42 },
+    { "type": "range", "id": "subheading_font_size", "min": 12, "max": 22, "step": 1, "unit": "px", "label": "Subheading size", "default": 17 },
+    { "type": "range", "id": "badge_font_size", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Badge text size", "default": 13 },
+    { "type": "range", "id": "step_heading_font_size", "min": 18, "max": 34, "step": 1, "unit": "px", "label": "Step heading size", "default": 23 },
+    { "type": "range", "id": "step_text_font_size", "min": 13, "max": 20, "step": 1, "unit": "px", "label": "Step text size", "default": 16 },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 48 },
+    { "type": "range", "id": "item_gap", "min": 20, "max": 80, "step": 2, "unit": "px", "label": "Gap between steps", "default": 44 },
+    { "type": "range", "id": "content_gap", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Gap between line & text", "default": 20 },
+    { "type": "header", "content": "Timeline dot & line" },
+    { "type": "range", "id": "dot_size", "min": 14, "max": 40, "step": 1, "unit": "px", "label": "Dot size", "default": 24 },
+    { "type": "range", "id": "dot_ring_width", "min": 2, "max": 8, "step": 1, "unit": "px", "label": "Dot ring thickness", "default": 5 },
+    { "type": "range", "id": "line_width", "min": 1, "max": 6, "step": 1, "unit": "px", "label": "Line thickness", "default": 3 },
+    { "type": "header", "content": "Badge" },
+    { "type": "range", "id": "badge_padding_vertical", "min": 2, "max": 14, "step": 1, "unit": "px", "label": "Badge vertical padding", "default": 6 },
+    { "type": "range", "id": "badge_padding_horizontal", "min": 6, "max": 26, "step": 1, "unit": "px", "label": "Badge horizontal padding", "default": 14 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "badge_label", "label": "Badge label", "default": "Week 1" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Milestone" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Describe what happens at this stage.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Journey Timeline",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "badge_label": "1 Week",
+            "heading": "Your Body Wakes Up",
+            "text": "<p>You start noticing a natural increase in appetite and a subtle feeling that something is shifting. That's your body beginning to respond, the first sign the signal is working.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "badge_label": "2-3 Weeks",
+            "heading": "The Signal Gets Stronger",
+            "text": "<p>Weight that used to go straight to your belly starts finding its way to your hips, thighs, and booty instead. The foundation for your curves is being built.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "badge_label": "1 Month",
+            "heading": "Curves Become Visible",
+            "text": "<p>Your jeans fit tighter around your hips and thighs. You notice fullness in the mirror. Friends ask if you've been working out. Your feminine shape is coming back.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "badge_label": "3 Months",
+            "heading": "The Woman You've Always Been",
+            "text": "<p>Your curves are sustainable. You walk with confidence, dress how you want, and feel at home in your body. This isn't temporary—this is your new normal.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

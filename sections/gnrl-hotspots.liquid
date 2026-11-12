@@ -1,0 +1,583 @@
+{% comment %}
+  GNRL Hotspots — gnrl-hotspots.liquid
+  Single image with one clickable hotspot pin that reveals a content card on tap.
+  Cloned/reimplemented from a native theme "hotspots" block as a standalone section.
+{% endcomment %}
+
+<section
+  id="GnrlHotspots-{{ section.id }}"
+  class="gnrl-hotspots"
+  style="
+    background: {{ section.settings.background_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="gnrl-hotspots__inner" style="max-width: {{ section.settings.max_width }}px; margin: 0 auto;">
+    <div class="gnrl-hotspots__image-wrap" style="--max-width: {{ section.settings.image_max_width }}rem;">
+
+      {%- if section.settings.image != blank -%}
+        <div class="gnrl-hotspots__image">
+          <img
+            src="{{ section.settings.image | image_url: width: 1500 }}"
+            srcset="
+              {{ section.settings.image | image_url: width: 375 }} 375w,
+              {{ section.settings.image | image_url: width: 750 }} 750w,
+              {{ section.settings.image | image_url: width: 1100 }} 1100w,
+              {{ section.settings.image | image_url: width: 1500 }} 1500w
+            "
+            sizes="(min-width: 750px) {{ section.settings.image_max_width }}rem, 100vw"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy"
+            style="border-radius: {{ section.settings.image_border_radius }}px;"
+          >
+        </div>
+      {%- else -%}
+        <div class="gnrl-hotspots__image gnrl-hotspots__image--placeholder" style="border-radius: {{ section.settings.image_border_radius }}px;">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.hotspot_title != blank or section.settings.hotspot_text != blank -%}
+        <div
+          class="gnrl-hotspots__pin"
+          data-gnrl-hotspot
+          style="
+            --offset-x: {{ section.settings.offset_x }}%;
+            --offset-y: {{ section.settings.offset_y }}%;
+            --mobile-offset-x: {{ section.settings.mobile_offset_x }}%;
+            --mobile-offset-y: {{ section.settings.mobile_offset_y }}%;
+          "
+        >
+          <button
+            type="button"
+            class="gnrl-hotspots__btn"
+            aria-expanded="false"
+            aria-label="{{ section.settings.hotspot_title | default: 'More information' | escape }}"
+          ></button>
+
+          <div class="gnrl-hotspots__card" role="dialog" aria-hidden="true">
+            <button type="button" class="gnrl-hotspots__card-close" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            {%- if section.settings.hotspot_title != blank -%}
+              <h3 class="gnrl-hotspots__card-title">{{ section.settings.hotspot_title }}</h3>
+            {%- endif -%}
+            {%- if section.settings.hotspot_text != blank -%}
+              <div class="gnrl-hotspots__card-text">{{ section.settings.hotspot_text }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<style>
+#GnrlHotspots-{{ section.id }} {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__image {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__image--placeholder svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ── Pin position ── */
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__pin {
+  position: absolute;
+  left: var(--mobile-offset-x);
+  top: var(--mobile-offset-y);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+@media screen and (min-width: 750px) {
+  #GnrlHotspots-{{ section.id }} .gnrl-hotspots__pin {
+    left: var(--offset-x);
+    top: var(--offset-y);
+  }
+}
+
+/* ── Pin button ── */
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__btn {
+  width: {{ section.settings.pin_size }}px;
+  height: {{ section.settings.pin_size }}px;
+  border-radius: 50%;
+  border: none;
+  background: {{ section.settings.pin_background }};
+  color: {{ section.settings.pin_icon_color }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__pin.is-open .gnrl-hotspots__btn {
+  transform: rotate(45deg);
+}
+
+/* Static outer ring (matches reference: soft halo around solid center dot) */
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__btn::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * {{ section.settings.pin_size | times: 0.55 }}px);
+  border-radius: 50%;
+  background: {{ section.settings.pin_background }};
+  opacity: {{ section.settings.pin_ring_opacity | divided_by: 100.0 }};
+  z-index: -1;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__pin.is-open .gnrl-hotspots__btn::before {
+  display: none;
+}
+
+/* ── Content card ── */
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: {{ section.settings.card_width }}px;
+  max-width: 80vw;
+  background: {{ section.settings.card_background }};
+  border-radius: {{ section.settings.card_border_radius }}px;
+  padding: {{ section.settings.card_padding }}px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  text-align: {{ section.settings.card_text_align }};
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__pin.is-open .gnrl-hotspots__card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: {{ section.settings.card_title_color }};
+  opacity: 0.5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-close:hover {
+  opacity: 1;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-title {
+  font-family: var(--font-heading-family);
+  font-size: {{ section.settings.card_title_size }}px;
+  font-weight: 700;
+  color: {{ section.settings.card_title_color }};
+  margin: 0 0 8px;
+  line-height: 1.3;
+  padding-right: 18px;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-text {
+  font-family: var(--font-body-family);
+  font-size: {{ section.settings.card_text_size }}px;
+  color: {{ section.settings.card_text_color }};
+  line-height: 1.55;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-text p {
+  margin: 0 0 8px;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-text p:last-child {
+  margin-bottom: 0;
+}
+
+#GnrlHotspots-{{ section.id }} .gnrl-hotspots__card-text strong {
+  color: {{ section.settings.card_text_strong_color }};
+  font-weight: 700;
+}
+
+/* Mobile: card anchored more safely within viewport */
+@media screen and (max-width: 749px) {
+  #GnrlHotspots-{{ section.id }} .gnrl-hotspots__card {
+    width: min({{ section.settings.card_width }}px, 78vw);
+  }
+}
+</style>
+
+<script>
+(function () {
+  function initGnrlHotspots() {
+    var section = document.getElementById('GnrlHotspots-{{ section.id }}');
+    if (!section) return;
+
+    var pins = Array.from(section.querySelectorAll('[data-gnrl-hotspot]'));
+    if (!pins.length) return;
+
+    function closeAll(except) {
+      pins.forEach(function (pin) {
+        if (pin === except) return;
+        pin.classList.remove('is-open');
+        var btn = pin.querySelector('.gnrl-hotspots__btn');
+        var card = pin.querySelector('.gnrl-hotspots__card');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (card) card.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    pins.forEach(function (pin) {
+      var btn = pin.querySelector('.gnrl-hotspots__btn');
+      var card = pin.querySelector('.gnrl-hotspots__card');
+      var closeBtn = pin.querySelector('.gnrl-hotspots__card-close');
+
+      if (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = pin.classList.contains('is-open');
+          closeAll(pin);
+          if (isOpen) {
+            pin.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            if (card) card.setAttribute('aria-hidden', 'true');
+          } else {
+            pin.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            if (card) card.setAttribute('aria-hidden', 'false');
+          }
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          pin.classList.remove('is-open');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+          if (card) card.setAttribute('aria-hidden', 'true');
+        });
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!section.contains(e.target)) closeAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGnrlHotspots);
+  } else {
+    initGnrlHotspots();
+  }
+
+  document.addEventListener('shopify:section:load', function (e) {
+    if (e.target.querySelector('#GnrlHotspots-{{ section.id }}')) {
+      initGnrlHotspots();
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GNRL Hotspots",
+  "tag": "section",
+  "class": "gnrl-hotspots-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Section max width (px)",
+      "min": 400,
+      "max": 1600,
+      "step": 20,
+      "default": 1100
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "Image max width (rem)",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding left/right (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Hotspot position"
+    },
+    {
+      "type": "range",
+      "id": "offset_x",
+      "label": "Desktop horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 66
+    },
+    {
+      "type": "range",
+      "id": "offset_y",
+      "label": "Desktop vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 57
+    },
+    {
+      "type": "range",
+      "id": "mobile_offset_x",
+      "label": "Mobile horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_offset_y",
+      "label": "Mobile vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Hotspot pin"
+    },
+    {
+      "type": "range",
+      "id": "pin_size",
+      "label": "Pin size (px)",
+      "min": 0,
+      "max": 56,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "pin_background",
+      "label": "Pin background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pin_icon_color",
+      "label": "Pin icon color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "pin_ring_opacity",
+      "label": "Outer ring opacity (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 35
+    },
+    {
+      "type": "header",
+      "content": "Hotspot content"
+    },
+    {
+      "type": "text",
+      "id": "hotspot_title",
+      "label": "Title",
+      "default": "Clinically Verified"
+    },
+    {
+      "type": "richtext",
+      "id": "hotspot_text",
+      "label": "Text",
+      "default": "<p>Every batch is made using a carefully controlled process and third-party tested to verify purity and potency.</p>"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width (px)",
+      "min": 200,
+      "max": 420,
+      "step": 10,
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding (px)",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius (px)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "card_text_align",
+      "label": "Card text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card title font size (px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "label": "Card text font size (px)",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "card_text_strong_color",
+      "label": "Card bold text color",
+      "default": "#1a1a1a"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GNRL Hotspots"
+    }
+  ]
+}
+{% endschema %}

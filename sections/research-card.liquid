@@ -1,0 +1,970 @@
+{% comment %}
+  Research Card Section for Shopify
+  Name: Research Card
+  - Section: H1, H2, description
+  - Blocks: card (image + heading + description ↔ paragraph toggle), button+guarantee
+  - Cards toggle between inactive (image/heading/desc) and active (paragraph) on + / - click
+  - Max 3 cols desktop, 2 cols mobile via select (no step)
+  - Full typography/color customization
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign cols_desk = section.settings.columns_desktop
+-%}
+
+<style>
+  /* ── Section wrapper — full width bg only ── */
+  .rc-section-{{ sid }} {
+    background-color: {{ section.settings.section_bg }};
+    padding: {{ section.settings.section_padding_v }}px 0;
+  }
+
+  /* ── Page-width inner container ── */
+  .rc-section-{{ sid }} .rc-inner {
+    max-width: var(--page-width, 1200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: {{ section.settings.section_padding_h }}px;
+    padding-right: {{ section.settings.section_padding_h }}px;
+    box-sizing: border-box;
+  }
+
+  /* ── Section headings ── */
+  .rc-section-{{ sid }} .rc-h1 {
+    text-align: {{ section.settings.heading_align }};
+    margin: 0 0 4px;
+    font-family: {{ section.settings.h1_font_family }}, serif;
+    font-size: {{ section.settings.h1_font_size }}px;
+    font-weight: {{ section.settings.h1_font_weight }};
+    color: {{ section.settings.h1_color }};
+    line-height: 1.2;
+  }
+
+  .rc-section-{{ sid }} .rc-h2 {
+    text-align: {{ section.settings.heading_align }};
+    margin: 0 0 12px;
+    font-family: {{ section.settings.h2_font_family }}, serif;
+    font-size: {{ section.settings.h2_font_size }}px;
+    font-weight: {{ section.settings.h2_font_weight }};
+    color: {{ section.settings.h2_color }};
+    line-height: 1.2;
+  }
+
+  .rc-section-{{ sid }} .rc-desc {
+    text-align: {{ section.settings.heading_align }};
+    margin: 0 0 32px;
+    font-family: {{ section.settings.desc_font_family }}, sans-serif;
+    font-size: {{ section.settings.desc_font_size }}px;
+    font-weight: {{ section.settings.desc_font_weight }};
+    color: {{ section.settings.desc_color }};
+    line-height: 1.6;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Card grid ── */
+  .rc-grid-{{ sid }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: {{ section.settings.card_gap }}px;
+    list-style: none;
+    margin: 0 0 {{ section.settings.card_gap }}px;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .rc-grid-{{ sid }} {
+      grid-template-columns: repeat({{ cols_desk }}, 1fr);
+    }
+  }
+
+  /* ── Card shell ── */
+  .rc-card-{{ sid }} {
+    background-color: {{ section.settings.card_bg }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    box-sizing: border-box;
+    min-height: {{ section.settings.card_min_height }}px;
+  }
+
+  .rc-card-{{ sid }}:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+
+  /* ── Toggle button ── */
+  .rc-toggle-{{ sid }} {
+    position: absolute;
+    top: 50%;
+    right: {{ section.settings.card_padding }}px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid {{ section.settings.toggle_color }};
+    background: transparent;
+    color: {{ section.settings.toggle_color }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.18s, color 0.18s;
+    font-family: sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .rc-toggle-{{ sid }}:hover {
+    background: {{ section.settings.toggle_color }};
+    color: #fff;
+  }
+
+  /* ── Inactive state: image + text side by side ── */
+  .rc-card-{{ sid }} .rc-inactive {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    padding-right: 28px;
+  }
+
+  .rc-card-{{ sid }} .rc-card-img {
+    width: {{ section.settings.card_img_size }}px;
+    height: {{ section.settings.card_img_size }}px;
+    border-radius: {{ section.settings.card_img_radius }}px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .rc-card-{{ sid }} .rc-card-info {
+    min-width: 0;
+  }
+
+  .rc-card-{{ sid }} .rc-card-heading {
+    margin: 0 0 2px;
+    font-family: {{ section.settings.card_heading_font_family }}, sans-serif;
+    font-size: {{ section.settings.card_heading_font_size }}px;
+    font-weight: {{ section.settings.card_heading_font_weight }};
+    color: {{ section.settings.card_heading_color }};
+    line-height: 1.2;
+  }
+
+  .rc-card-{{ sid }} .rc-card-subdesc {
+    margin: 0;
+    font-family: {{ section.settings.card_subdesc_font_family }}, sans-serif;
+    font-size: {{ section.settings.card_subdesc_font_size }}px;
+    font-weight: {{ section.settings.card_subdesc_font_weight }};
+    color: {{ section.settings.card_subdesc_color }};
+    line-height: 1.4;
+  }
+
+  /* ── Active state: paragraph ── */
+  .rc-card-{{ sid }} .rc-active {
+    display: none;
+    flex: 1;
+    min-width: 0;
+    padding-right: 28px;
+  }
+
+  .rc-card-{{ sid }} .rc-card-para {
+    margin: 0;
+    font-family: {{ section.settings.card_para_font_family }}, sans-serif;
+    font-size: {{ section.settings.card_para_font_size }}px;
+    font-weight: {{ section.settings.card_para_font_weight }};
+    color: {{ section.settings.card_para_color }};
+    line-height: 1.6;
+  }
+
+  /* ── Active card ── */
+  .rc-card-{{ sid }}.is-active .rc-inactive { display: none; }
+  .rc-card-{{ sid }}.is-active .rc-active   { display: flex; }
+
+  /* ── Button block ── */
+  .rc-btn-block-{{ sid }} {
+    text-align: center;
+  }
+
+  .rc-cta-btn-{{ sid }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: {{ section.settings.btn_padding_v }}px {{ section.settings.btn_padding_h }}px;
+    background-color: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+    font-family: {{ section.settings.btn_font_family }}, sans-serif;
+    font-size: {{ section.settings.btn_font_size }}px;
+    font-weight: {{ section.settings.btn_font_weight }};
+    border-radius: {{ section.settings.btn_border_radius }}px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.18s, transform 0.15s;
+    box-sizing: border-box;
+  }
+
+  .rc-cta-btn-{{ sid }}:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .rc-guarantee-{{ sid }} {
+    margin: 10px 0 0;
+    font-family: {{ section.settings.guarantee_font_family }}, sans-serif;
+    font-size: {{ section.settings.guarantee_font_size }}px;
+    font-weight: {{ section.settings.guarantee_font_weight }};
+    color: {{ section.settings.guarantee_color }};
+    text-align: center;
+  }
+
+  /* ── Mobile tweaks ── */
+  @media (max-width: 768px) {
+    .rc-section-{{ sid }} .rc-h1   { font-size: {{ section.settings.h1_font_size_mobile }}px; }
+    .rc-section-{{ sid }} .rc-h2   { font-size: {{ section.settings.h2_font_size_mobile }}px; }
+    .rc-section-{{ sid }} .rc-desc { font-size: {{ section.settings.desc_font_size_mobile }}px; margin-bottom: 20px; }
+    .rc-card-{{ sid }} .rc-card-heading { font-size: {{ section.settings.card_heading_font_size | times: 0.88 | ceil }}px; }
+    .rc-card-{{ sid }} .rc-card-subdesc { font-size: {{ section.settings.card_subdesc_font_size | times: 0.88 | ceil }}px; }
+    .rc-card-{{ sid }} .rc-card-para    { font-size: {{ section.settings.card_para_font_size | times: 0.9 | ceil }}px; }
+    .rc-card-{{ sid }} .rc-card-img { width: {{ section.settings.card_img_size | times: 0.78 | ceil }}px; height: {{ section.settings.card_img_size | times: 0.78 | ceil }}px; }
+    .rc-section-{{ sid }} {
+      padding-top: {{ section.settings.section_padding_v | times: 0.65 | ceil }}px;
+      padding-bottom: {{ section.settings.section_padding_v | times: 0.65 | ceil }}px;
+    }
+    .rc-section-{{ sid }} .rc-inner {
+      padding-left: {{ section.settings.section_padding_h | times: 0.65 | ceil }}px;
+      padding-right: {{ section.settings.section_padding_h | times: 0.65 | ceil }}px;
+    }
+    .rc-grid-{{ sid }} {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+  }
+</style>
+
+<section class="rc-section-{{ sid }}">
+  <div class="rc-inner">
+
+  {%- comment %} Section headings + desc {%- endcomment %}
+  {%- if section.settings.section_h1 != blank -%}
+    <h1 class="rc-h1">{{ section.settings.section_h1 | escape }}</h1>
+  {%- endif -%}
+  {%- if section.settings.section_h2 != blank -%}
+    <h2 class="rc-h2">{{ section.settings.section_h2 | escape }}</h2>
+  {%- endif -%}
+  {%- if section.settings.section_desc != blank -%}
+    <p class="rc-desc">{{ section.settings.section_desc | escape }}</p>
+  {%- endif -%}
+
+  {%- comment %} Build card blocks and button block separately {%- endcomment %}
+  {%- assign has_cards = false -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'card' -%}{%- assign has_cards = true -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- if has_cards -%}
+  <ul class="rc-grid-{{ sid }}" role="list">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'card' -%}
+        <li
+          class="rc-card-{{ sid }}{% if block.settings.start_active %} is-active{% endif %}"
+          {{ block.shopify_attributes }}
+          data-rc-card
+        >
+          {%- comment %} Inactive: image + heading + subdesc {%- endcomment %}
+          <div class="rc-inactive">
+            {%- if block.settings.image != blank -%}
+              <img
+                class="rc-card-img"
+                src="{{ block.settings.image | image_url: width: 160 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.card_heading | escape }}"
+                loading="lazy"
+                width="{{ section.settings.card_img_size }}"
+                height="{{ section.settings.card_img_size }}"
+              >
+            {%- elsif block.settings.image_url != blank -%}
+              <img
+                class="rc-card-img"
+                src="{{ block.settings.image_url }}"
+                alt="{{ block.settings.card_heading | escape }}"
+                loading="lazy"
+                width="{{ section.settings.card_img_size }}"
+                height="{{ section.settings.card_img_size }}"
+              >
+            {%- endif -%}
+            <div class="rc-card-info">
+              {%- if block.settings.card_heading != blank -%}
+                <p class="rc-card-heading">{{ block.settings.card_heading | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.card_subdesc != blank -%}
+                <p class="rc-card-subdesc">{{ block.settings.card_subdesc | escape }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+
+          {%- comment %} Active: paragraph only {%- endcomment %}
+          <div class="rc-active">
+            {%- if block.settings.card_para != blank -%}
+              <p class="rc-card-para">{{ block.settings.card_para }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- comment %} Toggle button {%- endcomment %}
+          <button
+            class="rc-toggle-{{ sid }}"
+            aria-label="Toggle card detail"
+            data-rc-toggle
+          >
+            <span data-rc-icon aria-hidden="true">+</span>
+          </button>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+
+  {%- comment %} Button + guarantee blocks {%- endcomment %}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'button_guarantee' -%}
+      <div class="rc-btn-block-{{ sid }}" {{ block.shopify_attributes }}>
+        {%- if block.settings.btn_text != blank -%}
+          <a
+            href="{{ block.settings.btn_url | default: '#' }}"
+            class="rc-cta-btn-{{ sid }}"
+          >
+            {{ block.settings.btn_text | escape }}
+            {%- if block.settings.btn_arrow %} →{%- endif -%}
+          </a>
+        {%- endif -%}
+        {%- if block.settings.guarantee_text != blank -%}
+          <p class="rc-guarantee-{{ sid }}">{{ block.settings.guarantee_text | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var section = document.querySelector('.rc-section-{{ sid }}');
+  if (!section) return;
+
+  section.querySelectorAll('[data-rc-card]').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var isActive = card.classList.toggle('is-active');
+      var icon = card.querySelector('[data-rc-icon]');
+      var btn = card.querySelector('[data-rc-toggle]');
+      if (icon) icon.textContent = isActive ? '−' : '+';
+      if (btn) btn.setAttribute('aria-label', isActive ? 'Collapse card' : 'Expand card');
+    });
+  });
+
+  // Set icons for any pre-active cards
+  section.querySelectorAll('[data-rc-card].is-active [data-rc-icon]').forEach(function(icon) {
+    icon.textContent = '−';
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Research Card",
+  "tag": "section",
+  "class": "section-research-card",
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Research Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL (fallback)",
+          "placeholder": "https://..."
+        },
+        {
+          "type": "header",
+          "content": "Inactive State (image + heading + description)"
+        },
+        {
+          "type": "text",
+          "id": "card_heading",
+          "label": "Card Heading",
+          "default": "Joints"
+        },
+        {
+          "type": "text",
+          "id": "card_subdesc",
+          "label": "Card Short Description",
+          "default": "Move without thinking again."
+        },
+        {
+          "type": "header",
+          "content": "Active State (paragraph shown on expand)"
+        },
+        {
+          "type": "textarea",
+          "id": "card_para",
+          "label": "Expanded Paragraph",
+          "default": "Astaxanthin reaches the cells where cartilage and tendon damage starts. It stops the breakdown cycle so your body can repair the tissue from the inside out."
+        },
+        {
+          "type": "checkbox",
+          "id": "start_active",
+          "label": "Start in expanded (active) state",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "button_guarantee",
+      "name": "Button + Guarantee",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Try Risk-Free Today"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn_arrow",
+          "label": "Show → arrow",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "guarantee_text",
+          "label": "Guarantee Text",
+          "default": "60-day money-back guarantee"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Headings"
+    },
+    {
+      "type": "text",
+      "id": "section_h1",
+      "label": "Heading 1",
+      "default": "Real Benefits."
+    },
+    {
+      "type": "text",
+      "id": "section_h2",
+      "label": "Heading 2",
+      "default": "Backed by Research."
+    },
+    {
+      "type": "textarea",
+      "id": "section_desc",
+      "label": "Description",
+      "default": "One softgel. Whole-body cellular protection. The same compound the longest-living people on Earth eat every day."
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Heading & Description Alignment",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Heading 1 Typography"
+    },
+    {
+      "type": "range",
+      "id": "h1_font_size",
+      "label": "Font size — Desktop (px)",
+      "min": 12, "max": 60, "step": 1, "default": 22
+    },
+    {
+      "type": "range",
+      "id": "h1_font_size_mobile",
+      "label": "Font size — Mobile (px)",
+      "min": 12, "max": 48, "step": 1, "default": 18
+    },
+    {
+      "type": "select",
+      "id": "h1_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "h1_color",
+      "label": "Color",
+      "default": "#8B2020"
+    },
+    {
+      "type": "text",
+      "id": "h1_font_family",
+      "label": "Font Family",
+      "default": "Georgia",
+      "info": "e.g. Georgia, 'Playfair Display', serif"
+    },
+    {
+      "type": "header",
+      "content": "Heading 2 Typography"
+    },
+    {
+      "type": "range",
+      "id": "h2_font_size",
+      "label": "Font size — Desktop (px)",
+      "min": 12, "max": 60, "step": 1, "default": 22
+    },
+    {
+      "type": "range",
+      "id": "h2_font_size_mobile",
+      "label": "Font size — Mobile (px)",
+      "min": 12, "max": 48, "step": 1, "default": 18
+    },
+    {
+      "type": "select",
+      "id": "h2_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "h2_color",
+      "label": "Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "text",
+      "id": "h2_font_family",
+      "label": "Font Family",
+      "default": "Georgia",
+      "info": "e.g. Georgia, 'Playfair Display', serif"
+    },
+    {
+      "type": "header",
+      "content": "Description Typography"
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size",
+      "label": "Font size — Desktop (px)",
+      "min": 10, "max": 28, "step": 1, "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size_mobile",
+      "label": "Font size — Mobile (px)",
+      "min": 10, "max": 24, "step": 1, "default": 13
+    },
+    {
+      "type": "select",
+      "id": "desc_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Color",
+      "default": "#555555"
+    },
+    {
+      "type": "text",
+      "id": "desc_font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Cards per Row (Desktop)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2",
+      "info": "Mobile is always 1 card per row"
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap Between Cards (px)",
+      "min": 4, "max": 40, "step": 2, "default": 12
+    },
+    {
+      "type": "range",
+      "id": "section_padding_v",
+      "label": "Section Vertical Padding (px)",
+      "min": 0, "max": 120, "step": 4, "default": 48
+    },
+    {
+      "type": "range",
+      "id": "section_padding_h",
+      "label": "Section Horizontal Padding (px)",
+      "min": 0, "max": 80, "step": 4, "default": 20
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#fdf5f5"
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius (px)",
+      "min": 0, "max": 32, "step": 1, "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Card Border Width (px)",
+      "min": 0, "max": 4, "step": 1, "default": 1
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#e8e0e0"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Inner Padding (px)",
+      "min": 8, "max": 32, "step": 2, "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_min_height",
+      "label": "Card Min Height (px)",
+      "min": 40, "max": 200, "step": 4, "default": 72
+    },
+    {
+      "type": "color",
+      "id": "toggle_color",
+      "label": "Toggle Icon Color (+/−)",
+      "default": "#8B2020"
+    },
+    {
+      "type": "header",
+      "content": "Card Image"
+    },
+    {
+      "type": "range",
+      "id": "card_img_size",
+      "label": "Image Size (px, square)",
+      "min": 32, "max": 120, "step": 4, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "card_img_radius",
+      "label": "Image Border Radius (px)",
+      "min": 0, "max": 40, "step": 2, "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Card Heading (Inactive State)"
+    },
+    {
+      "type": "range",
+      "id": "card_heading_font_size",
+      "label": "Font Size (px)",
+      "min": 10, "max": 32, "step": 1, "default": 15
+    },
+    {
+      "type": "select",
+      "id": "card_heading_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "card_heading_color",
+      "label": "Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "text",
+      "id": "card_heading_font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Card Short Description (Inactive State)"
+    },
+    {
+      "type": "range",
+      "id": "card_subdesc_font_size",
+      "label": "Font Size (px)",
+      "min": 10, "max": 24, "step": 1, "default": 12
+    },
+    {
+      "type": "select",
+      "id": "card_subdesc_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "card_subdesc_color",
+      "label": "Color",
+      "default": "#777777"
+    },
+    {
+      "type": "text",
+      "id": "card_subdesc_font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Card Paragraph (Active/Expanded State)"
+    },
+    {
+      "type": "range",
+      "id": "card_para_font_size",
+      "label": "Font Size (px)",
+      "min": 10, "max": 24, "step": 1, "default": 13
+    },
+    {
+      "type": "select",
+      "id": "card_para_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "card_para_color",
+      "label": "Color",
+      "default": "#444444"
+    },
+    {
+      "type": "text",
+      "id": "card_para_font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Button Style"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button Background",
+      "default": "#8B2020"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "label": "Button Font Size (px)",
+      "min": 12, "max": 28, "step": 1, "default": 15
+    },
+    {
+      "type": "select",
+      "id": "btn_font_weight",
+      "label": "Button Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "btn_font_family",
+      "label": "Button Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "btn_border_radius",
+      "label": "Button Border Radius (px)",
+      "min": 0, "max": 60, "step": 2, "default": 6
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_v",
+      "label": "Button Vertical Padding (px)",
+      "min": 8, "max": 32, "step": 2, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_h",
+      "label": "Button Horizontal Padding (px)",
+      "min": 16, "max": 80, "step": 4, "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Guarantee Text"
+    },
+    {
+      "type": "range",
+      "id": "guarantee_font_size",
+      "label": "Font Size (px)",
+      "min": 10, "max": 20, "step": 1, "default": 13
+    },
+    {
+      "type": "select",
+      "id": "guarantee_font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_color",
+      "label": "Color",
+      "default": "#777777"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Research Card",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "card_heading": "Joints",
+            "card_subdesc": "Move without thinking again.",
+            "card_para": "Astaxanthin reaches the cells where cartilage and tendon damage starts. It stops the breakdown cycle so your body can repair the tissue from the inside out."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_heading": "Longevity",
+            "card_subdesc": "Slow aging at the cell level.",
+            "card_para": "Cellular aging is driven by oxidative stress. Astaxanthin is 6,000× stronger than vitamin C at neutralizing the free radicals that accelerate this process — helping your cells last longer."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_heading": "Skin",
+            "card_subdesc": "Brighter, tighter, naturally.",
+            "card_para": "UV radiation and inflammation break down collagen faster than your skin can replace it. Astaxanthin protects collagen at the cellular level and supports elasticity from within."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "card_heading": "Eyes",
+            "card_subdesc": "Sharper focus, less strain.",
+            "card_para": "Your retina is one of the most metabolically active tissues in the body. Astaxanthin is one of the few antioxidants that crosses the blood-retinal barrier and protects photoreceptors from oxidative damage."
+          }
+        },
+        {
+          "type": "button_guarantee",
+          "settings": {
+            "btn_text": "Try Risk-Free Today",
+            "btn_arrow": true,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

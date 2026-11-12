@@ -1,0 +1,533 @@
+{%- style -%}
+  #amua-ts-{{ section.id }},
+  #amua-ts-{{ section.id }} * { box-sizing: border-box; }
+
+  #amua-ts-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: linear-gradient(180deg, {{ section.settings.bg_from }}, {{ section.settings.bg_to }});
+    overflow: hidden;
+  }
+
+  .amua-ts { max-width: 900px; margin: 0 auto; }
+
+  /* ── Heading ── */
+  .amua-ts__heading {
+    text-align: center;
+    margin: 0 0 {{ section.settings.heading_gap }}px;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.heading_color }};
+    line-height: 1.15;
+    padding: 0 20px;
+  }
+
+  /* ── Subtitle ── */
+  .amua-ts__subtitle {
+    text-align: center;
+    margin: 0 0 {{ section.settings.subtitle_gap }}px;
+    font-size: {{ section.settings.subtitle_size }}px;
+    color: {{ section.settings.subtitle_color }};
+    line-height: 1.5;
+    padding: 0 20px;
+  }
+
+  /* ── Rating Bar ── */
+  .amua-ts__rating-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: {{ section.settings.rating_gap }}px;
+    padding: 0 20px;
+  }
+  .amua-ts__rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 40px;
+    padding: 0px 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .amua-ts__tp-stars {
+    display: flex;
+    gap: 3px;
+  }
+  .amua-ts__tp-star {
+    width: 12px; height: 12px;
+    background: {{ section.settings.tp_star_color }};
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .amua-ts__tp-star svg { width: 9px; height: 9px; }
+  .amua-ts__rating-text {
+    font-size: {{ section.settings.rating_text_size }}px;
+    color: {{ section.settings.rating_text_color }};
+  }
+  .amua-ts__rating-text strong { font-weight: 700; }
+
+  /* ── Carousel ── */
+  .amua-ts__carousel {
+    position: relative;
+    padding: 0 {{ section.settings.peek_size }}px;
+  }
+  .amua-ts__track {
+    display: flex;
+    align-items: stretch;
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+  .amua-ts__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  /* ── Card ── */
+  .amua-ts__card {
+    background: {{ section.settings.card_bg }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Card Stars ── */
+  .amua-ts__card-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 12px;
+  }
+  .amua-ts__card-star {
+    width: 13px; height: 13px;
+    background: {{ section.settings.tp_star_color }};
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .amua-ts__card-star svg { width: 10px; height: 10px; }
+
+  /* ── Card Content ── */
+  .amua-ts__card-title {
+    margin: 0 0 8px;
+    font-size: {{ section.settings.card_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.card_title_color }};
+    line-height: 1.3;
+  }
+  .amua-ts__card-text {
+    margin: 0 0 16px;
+    font-size: {{ section.settings.card_text_size }}px;
+    color: {{ section.settings.card_text_color }};
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  /* ── Fade edges ── */
+  .amua-ts__carousel {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black {{ section.settings.peek_size }}px, black calc(100% - {{ section.settings.peek_size }}px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black {{ section.settings.peek_size }}px, black calc(100% - {{ section.settings.peek_size }}px), transparent 100%);
+  }
+
+  /* ── Card Author ── */
+  .amua-ts__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .amua-ts__avatar {
+    width: {{ section.settings.avatar_size }}px;
+    height: {{ section.settings.avatar_size }}px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .amua-ts__author-info { display: flex; flex-direction: column; gap: 3px; }
+  .amua-ts__author-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .amua-ts__author-name {
+    font-size: {{ section.settings.author_name_size }}px;
+    font-weight: 600;
+    color: {{ section.settings.card_title_color }};
+    margin: 0;
+  }
+  .amua-ts__verified {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: {{ section.settings.verified_color }};
+    font-weight: 500;
+  }
+  .amua-ts__purchase {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: #777;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* ── Nav Buttons ── */
+  .amua-ts__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .amua-ts__btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .amua-ts__btn:active {
+    transform: translateY(-2px);
+  }
+  .amua-ts__btn--prev {
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    color: #222;
+  }
+  .amua-ts__btn--next {
+    background: transparent;
+    border: 2px solid #222222;
+    color: #222222;
+  }
+  .amua-ts__btn svg { width: 20px; height: 20px; }
+
+  /* ── Dots ── */
+  .amua-ts__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .amua-ts__dot {
+    width: 20px; height: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.25s;
+  }
+  .amua-ts__dot.is-active { background: #ffffff; }
+
+  @media (min-width: 990px) {
+    .amua-ts__carousel { padding: 0 80px; }
+  }
+{%- endstyle -%}
+
+<section id="amua-ts-{{ section.id }}">
+  <div class="amua-ts">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="amua-ts__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="amua-ts__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.show_rating_bar -%}
+      <div class="amua-ts__rating-bar">
+        <div class="amua-ts__rating-pill">
+          <div class="amua-ts__tp-stars">
+            {%- for i in (1..5) -%}
+              <span class="amua-ts__tp-star">
+                <svg viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
+            {%- endfor -%}
+          </div>
+          <span class="amua-ts__rating-text"><strong>Excellent</strong> {{ section.settings.rating_value }} | {{ section.settings.review_count_text }}</span>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- assign total = section.blocks.size -%}
+    {%- if total > 0 -%}
+      <div class="amua-ts__carousel" id="amua-ts-car-{{ section.id }}">
+        <div class="amua-ts__track" id="amua-ts-track-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            <div class="amua-ts__slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <div class="amua-ts__card">
+
+                {%- assign stars = block.settings.stars | default: 5 -%}
+                <div class="amua-ts__card-stars">
+                  {%- for i in (1..stars) -%}
+                    <span class="amua-ts__card-star">
+                      <svg viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </span>
+                  {%- endfor -%}
+                </div>
+
+                {%- if block.settings.title != blank -%}
+                  <h3 class="amua-ts__card-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  <p class="amua-ts__card-text">{{ block.settings.text }}</p>
+                {%- endif -%}
+
+                <div class="amua-ts__author">
+                  {%- assign initial = block.settings.name | slice: 0 -%}
+                  <div class="amua-ts__avatar" style="background:{{ block.settings.avatar_color }};color:{{ block.settings.avatar_text_color }};font-size:{{ section.settings.avatar_font_size }}px;">
+                    {{ initial }}
+                  </div>
+                  <div class="amua-ts__author-info">
+                    <div class="amua-ts__author-row">
+                      <p class="amua-ts__author-name">{{ block.settings.name }}</p>
+                      {%- if block.settings.verified -%}
+                        <span class="amua-ts__verified">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="{{ section.settings.verified_color }}"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          Verified customer
+                        </span>
+                      {%- endif -%}
+                    </div>
+                    {%- if block.settings.purchase_date != blank -%}
+                      <span class="amua-ts__purchase">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Purchased on {{ block.settings.purchase_date }}
+                      </span>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="amua-ts__nav">
+        <button class="amua-ts__btn amua-ts__btn--prev" id="amua-ts-prev-{{ section.id }}" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="amua-ts__btn amua-ts__btn--next" id="amua-ts-next-{{ section.id }}" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      </div>
+
+      <div class="amua-ts__dots" id="amua-ts-dots-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          <button class="amua-ts__dot{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}" type="button" aria-label="Review {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var sid = '{{ section.id }}';
+  var track = document.getElementById('amua-ts-track-' + sid);
+  var dotsWrap = document.getElementById('amua-ts-dots-' + sid);
+  var prev = document.getElementById('amua-ts-prev-' + sid);
+  var next = document.getElementById('amua-ts-next-' + sid);
+  var car = document.getElementById('amua-ts-car-' + sid);
+  if (!track) return;
+
+  var origSlides = track.querySelectorAll('.amua-ts__slide');
+  var total = origSlides.length;
+  if (total < 1) return;
+
+  /* Clone first and last for infinite loop */
+  var cloneLast = origSlides[total - 1].cloneNode(true);
+  var cloneFirst = origSlides[0].cloneNode(true);
+  cloneLast.removeAttribute('data-shopify-editor-block');
+  cloneFirst.removeAttribute('data-shopify-editor-block');
+  cloneLast.classList.add('is-clone');
+  cloneFirst.classList.add('is-clone');
+  track.insertBefore(cloneLast, origSlides[0]);
+  track.appendChild(cloneFirst);
+
+  /* index 0 = clone of last, 1..total = real slides, total+1 = clone of first */
+  var pos = 1;
+  var transitioning = false;
+
+  function jumpTo(p, animate) {
+    if (!animate) {
+      track.style.transition = 'none';
+      track.offsetHeight; /* force reflow */
+    }
+    track.style.transform = 'translateX(-' + (p * 100) + '%)';
+    if (!animate) {
+      track.offsetHeight;
+      track.style.transition = '';
+    }
+  }
+
+  function updateDots() {
+    if (!dotsWrap) return;
+    var real = pos - 1; /* 0-based real index */
+    if (real < 0) real = total - 1;
+    if (real >= total) real = 0;
+    dotsWrap.querySelectorAll('.amua-ts__dot').forEach(function(d) {
+      d.classList.toggle('is-active', parseInt(d.dataset.index) === real);
+    });
+  }
+
+  function go(dir) {
+    if (transitioning) return;
+    transitioning = true;
+    pos += dir;
+    jumpTo(pos, true);
+    updateDots();
+  }
+
+  /* After transition, snap to real slide if on a clone */
+  track.addEventListener('transitionend', function() {
+    transitioning = false;
+    if (pos <= 0) {
+      pos = total;
+      jumpTo(pos, false);
+    } else if (pos > total) {
+      pos = 1;
+      jumpTo(pos, false);
+    }
+  });
+
+  /* Set initial position */
+  jumpTo(pos, false);
+  updateDots();
+
+  if (prev) prev.addEventListener('click', function() { go(-1); });
+  if (next) next.addEventListener('click', function() { go(1); });
+  if (dotsWrap) dotsWrap.addEventListener('click', function(e) {
+    var dot = e.target.closest('.amua-ts__dot');
+    if (!dot || transitioning) return;
+    var target = parseInt(dot.dataset.index) + 1; /* +1 because of prepended clone */
+    var dir = target - pos;
+    if (dir === 0) return;
+    transitioning = true;
+    pos = target;
+    jumpTo(pos, true);
+    updateDots();
+  });
+
+  /* Touch swipe */
+  if (car && total > 1) {
+    var sx = 0, sy = 0, isH = null, drag = false;
+    car.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; isH = null; drag = true; }, { passive: true });
+    car.addEventListener('touchmove', function(e) {
+      if (!drag) return;
+      var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
+      if (isH === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) isH = Math.abs(dx) > Math.abs(dy);
+      if (isH) e.preventDefault();
+    }, { passive: false });
+    car.addEventListener('touchend', function(e) {
+      if (!drag || !isH) return; drag = false;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) < 40) return;
+      go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    car.addEventListener('touchcancel', function() { drag = false; });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Amua: Testimonials",
+  "tag": "section",
+  "class": "amua-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Loved By 80,000+ Confident Women" },
+    { "type": "range", "id": "heading_size", "label": "Size (px)", "min": 24, "max": 44, "step": 1, "default": 32 },
+    { "type": "select", "id": "heading_weight", "label": "Weight", "options": [{ "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" }, { "value": "900", "label": "Black" }], "default": "900" },
+    { "type": "color", "id": "heading_color", "label": "Color", "default": "#121212" },
+    { "type": "range", "id": "heading_gap", "label": "Gap (px)", "min": 4, "max": 30, "step": 2, "default": 14 },
+
+    { "type": "header", "content": "Subtitle" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Real experiences from customers who gained real confidence" },
+    { "type": "range", "id": "subtitle_size", "label": "Size (px)", "min": 14, "max": 22, "step": 1, "default": 17 },
+    { "type": "color", "id": "subtitle_color", "label": "Color", "default": "#333333" },
+    { "type": "range", "id": "subtitle_gap", "label": "Gap (px)", "min": 8, "max": 30, "step": 2, "default": 18 },
+
+    { "type": "header", "content": "Rating Bar" },
+    { "type": "checkbox", "id": "show_rating_bar", "label": "Show rating bar", "default": true },
+    { "type": "text", "id": "rating_value", "label": "Rating value", "default": "4.8/5" },
+    { "type": "text", "id": "review_count_text", "label": "Review count text", "default": "1,422+ reviews" },
+    { "type": "color", "id": "tp_star_color", "label": "Star background", "default": "#00B67A" },
+    { "type": "range", "id": "rating_text_size", "label": "Text size (px)", "min": 13, "max": 18, "step": 1, "default": 15 },
+    { "type": "color", "id": "rating_text_color", "label": "Text color", "default": "#222222" },
+    { "type": "range", "id": "rating_gap", "label": "Gap below (px)", "min": 10, "max": 40, "step": 2, "default": 24 },
+
+    { "type": "header", "content": "Cards" },
+    { "type": "color", "id": "card_bg", "label": "Card background", "default": "#ffffff" },
+    { "type": "color", "id": "card_border_color", "label": "Card border color", "default": "#ddd" },
+    { "type": "range", "id": "card_border_width", "label": "Border width (px)", "min": 0, "max": 3, "step": 1, "default": 1 },
+    { "type": "range", "id": "card_radius", "label": "Radius (px)", "min": 0, "max": 20, "step": 2, "default": 10 },
+    { "type": "range", "id": "card_padding", "label": "Padding (px)", "min": 14, "max": 32, "step": 2, "default": 22 },
+    { "type": "range", "id": "card_title_size", "label": "Title size (px)", "min": 16, "max": 24, "step": 1, "default": 18 },
+    { "type": "color", "id": "card_title_color", "label": "Title color", "default": "#121212" },
+    { "type": "range", "id": "card_text_size", "label": "Text size (px)", "min": 13, "max": 18, "step": 1, "default": 15 },
+    { "type": "color", "id": "card_text_color", "label": "Text color", "default": "#444444" },
+    { "type": "range", "id": "peek_size", "label": "Peek / side padding (px)", "min": 20, "max": 60, "step": 2, "default": 30 },
+
+    { "type": "header", "content": "Avatar" },
+    { "type": "range", "id": "avatar_size", "label": "Size (px)", "min": 32, "max": 56, "step": 2, "default": 44 },
+    { "type": "range", "id": "avatar_font_size", "label": "Initial font size (px)", "min": 14, "max": 24, "step": 1, "default": 18 },
+    { "type": "range", "id": "author_name_size", "label": "Name size (px)", "min": 13, "max": 18, "step": 1, "default": 15 },
+    { "type": "color", "id": "verified_color", "label": "Verified color", "default": "#00B67A" },
+
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_from", "label": "Background top", "default": "#F0C94D" },
+    { "type": "color", "id": "bg_to", "label": "Background bottom", "default": "#F5D87A" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Title", "default": "Amazing Results!" },
+        { "type": "textarea", "id": "text", "label": "Review text" },
+        { "type": "text", "id": "name", "label": "Reviewer name", "default": "Jasmine W." },
+        { "type": "color", "id": "avatar_color", "label": "Avatar color", "default": "#D4E8A0" },
+        { "type": "color", "id": "avatar_text_color", "label": "Avatar text", "default": "#3a5a10" },
+        { "type": "checkbox", "id": "verified", "label": "Verified customer", "default": true },
+        { "type": "text", "id": "purchase_date", "label": "Purchase date", "default": "March 8th, 2025" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Testimonials",
+      "blocks": [
+        { "type": "review", "settings": { "title": "Finally Got My Body Back", "text": "After two babies, I thought my curves were gone forever. I tried everything: protein shakes, forcing myself to eat but nothing worked. VitalDrops changed that. Within 3 weeks, I noticed my appetite coming back naturally, and by week 6, my jeans were fitting differently. My hips and booty are filling out again, and I don't feel invisible anymore. This gave me my confidence back.", "name": "Jasmine W.", "avatar_color": "#D4E8A0", "avatar_text_color": "#3a5a10", "purchase_date": "March 8th, 2025" } },
+        { "type": "review", "settings": { "title": "I Was Skeptical But Wow", "text": "I've bought so many supplements that didn't work so I almost didn't try this. But my best friend kept talking about it so I gave in. I'm on month 2 and I can already see my thighs getting thicker and my hips wider. My boyfriend noticed before I did lol. Worth every penny.", "name": "Tasha M.", "avatar_color": "#A8D8F0", "avatar_text_color": "#1a4a6a", "purchase_date": "February 14th, 2025" } },
+        { "type": "review", "settings": { "title": "Better Than Any Pill I've Tried", "text": "I used to take capsules for curves and never saw results. Switched to VitalDrops because it's liquid and absorbs faster. I'm 5 weeks in and my waist looks smaller because my hips are actually filling out. The drops taste fine and it's so easy to take. Highly recommend.", "name": "Keisha L.", "avatar_color": "#F0D0E0", "avatar_text_color": "#6a2a4a", "purchase_date": "January 22nd, 2025" } },
+        { "type": "review", "settings": { "title": "My Jeans Fit Different Now", "text": "I noticed my jeans fitting tighter around my hips and thighs after about a month. I've always been straight up and down so this is a big deal for me. Still taking it daily and excited to see where I'll be at 90 days.", "name": "Brittany S.", "avatar_color": "#FFE0A0", "avatar_text_color": "#6a4a10", "purchase_date": "April 3rd, 2025" } },
+        { "type": "review", "settings": { "title": "Consistency Is Key", "text": "Didn't see much the first 2 weeks and almost gave up. But I kept going and around week 4 things started changing. My booty is rounder, my thighs have more shape. I take it every morning without fail now. Trust the process ladies!", "name": "Danielle R.", "avatar_color": "#C8D0F0", "avatar_text_color": "#2a2a6a", "purchase_date": "March 19th, 2025" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

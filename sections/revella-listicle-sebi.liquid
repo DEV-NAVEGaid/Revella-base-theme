@@ -1,0 +1,560 @@
+{%- liquid
+  assign sign_blocks = section.blocks | where: 'type', 'sign'
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign selected_product = section.settings.product
+  if selected_product == blank
+    assign selected_product = all_products['astaxanthin-softgels']
+  endif
+  assign current_variant = selected_product.selected_or_first_available_variant
+  assign product_form_id = 'revella-sebi-product-form-' | append: section.id
+-%}
+
+<section class="rvls" data-section-id="{{ section.id }}">
+  <style>
+    .rvls{
+      --brand:#8c3a3a;
+      --brand-dark:#6e2c2c;
+      --band:#3b1b1b;
+      --accent-pink:#e5b0b0;
+      --tint:#f6e7e7;
+      --cream:#f7f4ef;
+      --pillbg:#f4f4f4;
+      --ink:#231f20;
+      --ink-soft:#3d3839;
+      --ink-faint:#6b6465;
+      --line:#e5e1dc;
+      --on-band:#fff;
+      --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+      --display:Georgia,"Times New Roman",serif;
+      --measure:68ch;
+      color:var(--ink);
+      background:#fff;
+      font-family:var(--font);
+      font-size:17px;
+      line-height:1.62;
+      -webkit-font-smoothing:antialiased;
+    }
+    .rvls *{box-sizing:border-box}
+    /* ── Specificity shield: override theme globals ── */
+    .rvls,.rvls *,.rvls *::before,.rvls *::after{font-feature-settings:normal}
+    .rvls h1,.rvls h2,.rvls h3,.rvls h4,.rvls h5,.rvls h6,.rvls p,.rvls li,.rvls span,.rvls div,.rvls a,.rvls button,.rvls label,.rvls select,.rvls input,.rvls figure,.rvls blockquote,.rvls ul,.rvls ol{font-family:var(--font);font-size:inherit;line-height:inherit;letter-spacing:normal;font-weight:inherit;text-transform:none}
+    .rvls button,.rvls select,.rvls input{display:revert;width:revert;text-align:revert;padding:revert;margin:revert;border:revert}
+    .rvls .container{padding:0!important;max-width:none}
+    .rvls img{display:block;max-width:100%}
+    .rvls a{color:inherit}
+    .rvls h1,.rvls h2,.rvls h3,.rvls p{margin-top:0}
+    .rvls .container{width:min(100% - 2.25rem,1120px);margin-inline:auto}
+    .rvls .section{padding-block:clamp(3rem,2rem + 4vw,6rem)}
+    .rvls .vh{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .rvls .announce{background:var(--band);color:#fff;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:700;letter-spacing:.03em}
+    .rvls .masthead{background:#fff;border-bottom:1px solid var(--line)}
+    .rvls .masthead__row{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .rvls .wordmark{font-size:1.28rem;font-weight:800;letter-spacing:.08em;text-decoration:none}
+    .rvls .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:54px;border:0;border-radius:999px;padding:.92rem 1.55rem;background:var(--brand);color:#fff;text-decoration:none;text-transform:uppercase;font-family:var(--font);font-size:.86rem;font-weight:800;letter-spacing:.035em;cursor:pointer;transition:background-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)}
+    .rvls .btn:hover{background:var(--brand-dark);transform:translateY(-1px)}
+    .rvls .btn:focus-visible,.rvls button:focus-visible,.rvls select:focus-visible,.rvls input:focus-visible{outline:3px solid var(--accent-pink);outline-offset:3px}
+    .rvls .btn[disabled]{cursor:not-allowed;opacity:.55;transform:none}
+    .rvls .btn--wide{width:100%}
+    .rvls .hero{background:var(--band);color:#fff;padding-block:clamp(2.5rem,1.5rem + 4vw,5rem)}
+    .rvls .hero__grid{display:grid;gap:2rem;align-items:center}
+    .rvls .hero h1{font-size:clamp(2rem,1.35rem + 2.8vw,3.35rem);line-height:1.08;font-weight:800;color:#fff;margin-bottom:.7rem}
+    .rvls .hero h1 em{font-style:normal;color:var(--accent-pink)}
+    .rvls .hero__subbox{display:inline-block;background:#fff;color:var(--ink);font-weight:700;font-size:clamp(1.05rem,.95rem + .55vw,1.35rem);padding:.65rem 1rem;margin-top:.8rem;line-height:1.35}
+    .rvls .byline{font-size:.85rem;color:var(--accent-pink);margin-top:1.1rem;margin-bottom:0}
+    .rvls .byline b{color:#fff}
+    .rvls .hero__media{aspect-ratio:1/1.04;min-width:0;overflow:hidden}
+    .rvls .hero__media img{width:100%;height:100%;object-fit:cover;border:1px solid rgba(255,255,255,.25)}
+    .rvls .media-placeholder{min-height:320px;border:2px dashed rgba(255,255,255,.4);display:grid;place-items:center;text-align:center;padding:2rem;color:var(--accent-pink)}
+    .rvls .intro{padding-block:clamp(2.2rem,1.7rem + 2vw,3.5rem)}
+    .rvls .intro__in{max-width:760px}
+    .rvls .intro__in>div>*+*{margin-top:1rem}
+    .rvls .intro__media{margin:1.5rem auto;max-width:620px}
+    .rvls .intro__media img{width:100%;height:auto}
+    .rvls .intro__turn{font-weight:700;color:var(--ink)}
+    .rvls .rows{display:grid}
+    .rvls .row{padding-block:clamp(2.5rem,1.8rem + 3vw,4.5rem)}
+    .rvls .row:nth-of-type(even){background:var(--cream)}
+    .rvls .row__grid{display:grid;gap:1.7rem;align-items:start}
+    .rvls .row__media img{width:100%;height:auto;border:1px solid var(--line)}
+    .rvls .row h3{font-size:clamp(1.45rem,1.2rem + .9vw,2rem);line-height:1.18;font-weight:700;color:var(--ink);margin-bottom:1rem}
+    .rvls .row__body{color:var(--ink-soft);max-width:var(--measure)}
+    .rvls .row__body>*+*{margin-top:1rem}
+    .rvls .row__body ul{padding-left:1.2rem}
+    .rvls .row__body li+li{margin-top:.6rem}
+    .rvls .row__close{font-weight:700;color:var(--ink);margin-top:1.2rem;max-width:var(--measure)}
+    .rvls .tmi{margin:1.35rem 0;background:#fff;border:1px solid var(--line);padding:1.35rem 1.45rem;display:grid;grid-template-columns:auto 1fr;gap:.25rem 1.1rem;align-items:start;max-width:var(--measure)}
+    .rvls .row:nth-of-type(even) .tmi{background:var(--cream)}
+    .rvls .tmi__av{grid-row:1/3;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--line);background:var(--tint)}
+    .rvls .tmi__fallback{grid-row:1/3;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--line);background:var(--tint);color:var(--brand);font-weight:800}
+    .rvls .tmi__q{grid-column:2;color:var(--ink);font-weight:700;font-size:clamp(1.05rem,.98rem + .3vw,1.22rem);line-height:1.45;font-style:italic;margin-bottom:0}
+    .rvls .tmi__by{grid-column:2;font-size:.84rem;color:var(--ink-soft);font-weight:600;margin-bottom:0}
+    .rvls .midcta{background:var(--tint);padding-block:clamp(2.2rem,1.7rem + 2vw,3.25rem);text-align:center}
+    .rvls .midcta p{font-weight:700;font-size:clamp(1.05rem,.95rem + .5vw,1.3rem);max-width:38rem;margin:0 auto 1.35rem}
+    .rvls .offer{background:var(--tint);padding-block:clamp(2.5rem,1.8rem + 3vw,4.5rem)}
+    .rvls .offer__in{padding-block:clamp(3rem,2rem + 4vw,6rem);text-align:center}
+    .rvls .offer__gif{max-width:480px;margin:0 auto 1.5rem}.rvls .offer__gif img{width:100%;height:auto;border-radius:12px}
+    .rvls .offer__badge{display:inline-block;background:var(--brand);color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:999px;margin-bottom:1.1rem}
+    .rvls .offer h2{font-size:clamp(1.7rem,1.3rem + 1.6vw,2.6rem);line-height:1.15;max-width:42rem;margin:0 auto 1rem}
+    .rvls .offer__body{max-width:42rem;margin-inline:auto}
+    .rvls .offer__body p{color:var(--ink-soft)}
+    .rvls .offer__body p+p{margin-top:1rem}
+    .rvls .buybox{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(1.5rem,1rem + 2vw,3rem);align-items:center;max-width:900px;margin:0 auto clamp(3rem,2rem + 3vw,5rem);padding:clamp(1.25rem,1rem + 2vw,2.25rem);background:#fff;border:1px solid var(--line);box-shadow:0 18px 50px rgba(59,27,27,.1);text-align:left}
+    .rvls .buybox__media{background:var(--cream);align-self:stretch;display:grid;place-items:center;min-height:320px}
+    .rvls .buybox__media img{width:100%;height:100%;max-height:520px;object-fit:contain}
+    .rvls .buybox__eyebrow{color:var(--brand);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.45rem}
+    .rvls .buybox h3{font-size:clamp(1.5rem,1.2rem + 1vw,2rem);line-height:1.15;margin-bottom:.65rem}
+    .rvls .buybox__rating{font-size:.9rem;font-weight:700;color:var(--ink-soft);margin-bottom:.8rem}
+    .rvls .buybox__price{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:1.15rem}
+    .rvls .buybox__price-current{font-size:1.65rem;font-weight:800;color:var(--ink)}
+    .rvls .buybox__price-compare{text-decoration:line-through;color:var(--ink-faint)}
+    .rvls .buybox__save{display:none;background:var(--tint);color:var(--brand-dark);font-size:.76rem;font-weight:800;padding:.25rem .55rem;border-radius:999px;text-transform:uppercase}
+    .rvls .buybox__save.is-visible{display:inline-block}
+    .rvls .buybox__benefits{list-style:none;padding:0;margin:0 0 1.2rem;display:grid;gap:.45rem}
+    .rvls .buybox__benefits li{display:grid;grid-template-columns:auto 1fr;gap:.55rem;color:var(--ink-soft);font-size:.94rem}
+    .rvls .buybox__benefits li::before{content:"✓";color:var(--brand);font-weight:900}
+    .rvls .buybox__field{margin-bottom:1rem}
+    .rvls .buybox__field label{display:block;font-weight:800;font-size:.83rem;margin-bottom:.35rem;color:var(--ink)}
+    .rvls .buybox select,.rvls .buybox input[type="number"]{width:100%;min-height:54px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit;padding:.75rem .9rem}
+    .rvls .buybox__actions{display:grid;grid-template-columns:92px 1fr;gap:.75rem}
+    .rvls .buybox__note{text-align:center;color:var(--ink-faint);font-size:.8rem;margin:.7rem 0 0}
+    .rvls .buybox__empty{text-align:center;grid-column:1/-1;padding:2rem;color:var(--ink-soft)}
+    .rvls .diff{list-style:none;padding:0;margin:1.75rem auto 0;display:grid;gap:.75rem;max-width:36rem;text-align:left}
+    .rvls .diff li{display:grid;grid-template-columns:auto 1fr;gap:.75rem;color:var(--ink);font-weight:650}
+    .rvls .diff li::before{content:"✓";width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:900}
+    .rvls .stockline{margin:1.4rem auto 0;background:#fff;border:1px solid var(--line);padding:1.1rem 1.3rem;color:var(--ink);font-weight:700;max-width:38rem;text-align:left}
+    .rvls .faq{max-width:760px;margin-inline:auto}
+    .rvls .faq__kicker{text-align:center;color:var(--ink-soft);font-size:.85rem;margin-bottom:.5rem}
+    .rvls .faq h2{font-family:var(--display);font-size:clamp(1.9rem,1.5rem + 1.5vw,2.7rem);text-align:center;color:var(--band);margin-bottom:2rem}
+    .rvls .acc__item{background:var(--pillbg);border-radius:2rem;margin-bottom:.9rem;padding-inline:1.4rem}
+    .rvls .acc__btn{width:100%;display:flex;gap:1rem;align-items:center;justify-content:space-between;background:none;border:0;cursor:pointer;text-align:left;font:700 1.03rem/1.35 var(--font);color:var(--ink);padding:1.15rem 0;min-height:58px}
+    .rvls .acc__icon{flex:none;width:1rem;height:1rem;position:relative;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+    .rvls .acc__icon::before,.rvls .acc__icon::after{content:"";position:absolute;inset:0;margin:auto;background:var(--brand)}
+    .rvls .acc__icon::before{width:100%;height:2px}.rvls .acc__icon::after{width:2px;height:100%}
+    .rvls .acc__btn[aria-expanded="true"] .acc__icon{transform:rotate(135deg)}
+    .rvls .acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.22,1,.36,1)}
+    .rvls .acc__btn[aria-expanded="true"]+.acc__panel{grid-template-rows:1fr}
+    .rvls .acc__inner{overflow:hidden}.rvls .acc__inner>div{padding:0 0 1.25rem;color:var(--ink-soft)}
+    .rvls .endcta{text-align:center;background:#fff}
+    .rvls .endcta h2{font-size:clamp(1.7rem,1.3rem + 1.5vw,2.5rem);margin-bottom:.75rem}
+    .rvls .endcta p{max-width:40rem;margin:0 auto 1.4rem;color:var(--ink-soft)}
+    .rvls .foot{background:var(--band);color:#fff;padding-block:2.5rem}
+    .rvls .foot__in{text-align:center}.rvls .foot__fine{max-width:58rem;margin:1rem auto 0;color:rgba(255,255,255,.7);font-size:.76rem}
+    .rvls .scta{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:#fff;border-top:2px solid var(--line);box-shadow:0 -8px 30px rgba(35,31,32,.12);padding:.75rem max(1rem,env(safe-area-inset-right)) max(.75rem,env(safe-area-inset-bottom)) max(1rem,env(safe-area-inset-left));transform:translateY(120%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+    .rvls .scta.is-visible{transform:translateY(0)}
+    .rvls .scta__txt{font-size:.8rem;line-height:1.25}.rvls .scta__txt b{display:block;font-size:.94rem}.rvls .scta__txt span{color:var(--ink-faint)}
+    .rvls .scta .btn{min-height:50px;padding:.75rem 1.25rem;white-space:nowrap}
+
+    /* ── Promo buy box (green card) ── */
+    .rvls .promo-wrap{display:flex;flex-direction:column;align-items:center;margin-top:1.5rem}
+    .rvls .promo-countdown{display:flex;align-items:center;justify-content:center;gap:15px;background:#e20000;color:#fff;font-family:var(--font);font-weight:700;font-size:clamp(1.2rem,1rem + 1vw,2rem);line-height:1.55;text-transform:uppercase;padding:10px 25px;border-radius:13px;margin-bottom:-30px;z-index:1;position:relative;max-width:550px;width:100%}
+    .rvls .promo-countdown .timer{display:flex;align-items:center;gap:15px;font-variant-numeric:tabular-nums}
+    .rvls .promo-card{display:flex;align-items:center;gap:clamp(15px,.5rem + 3vw,50px);background:#d6f1ce;border-radius:26px;padding:40px;overflow:hidden;width:100%}
+    .rvls .promo-card__img{flex:1 1 0;min-width:0;border-radius:9px;overflow:hidden}
+    .rvls .promo-card__img img{width:100%;height:auto;display:block;object-fit:cover}
+    .rvls .promo-card__body{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:15px;padding-top:20px}
+    .rvls .promo-card__heading{font-family:var(--font);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1.2vw,2.2rem);line-height:1.55;color:#112c21;margin:0}
+    .rvls .promo-card__sub{font-family:var(--font);font-weight:400;font-size:clamp(1rem,.9rem + .4vw,1.25rem);line-height:24px;color:#000;margin:0}
+    .rvls .promo-cta{display:flex;align-items:center;justify-content:center;background:#26a100;border:2px solid #26a100;border-radius:52px;padding:20px 32px;color:#fff;font-family:'Lato',var(--font);font-weight:900;font-size:clamp(1rem,.9rem + .4vw,1.25rem);letter-spacing:2px;line-height:1;text-decoration:none;cursor:pointer;transition:background .3s,transform .3s;width:100%;text-align:center;text-transform:uppercase}
+    .rvls .promo-cta:hover{background:#1e8a00;transform:scale(1.02)}
+    .rvls .promo-badges{display:flex;align-items:center;gap:15px;justify-content:center}
+    .rvls .promo-badge{display:flex;align-items:center;gap:5px;font-family:var(--font);font-weight:500;font-size:1rem;line-height:24px}
+    .rvls .promo-badge__ico{width:16px;height:16px;background:#26a100;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+    .rvls .promo-badge__ico svg{width:100%;height:100%}
+    @media(max-width:700px){
+      .rvls .promo-countdown{font-size:1.1rem;gap:8px;padding:5px 15px;border-radius:5px;max-width:320px}
+      .rvls .promo-countdown .timer{gap:5px}
+      .rvls .promo-card{flex-direction:column-reverse;gap:15px;padding:50px 0 0;border-radius:14px}
+      .rvls .promo-card__body{padding:0 15px;align-items:center;text-align:center}
+      .rvls .promo-cta{padding:10px 32px}
+      .rvls .promo-badges{flex-direction:column;gap:8px}
+      .rvls .promo-badge{font-size:.94rem}
+    }
+    @media(min-width:701px) and (max-width:1024px){
+      .rvls .promo-card{flex-direction:column;gap:25px;padding:50px 20px 30px}
+      .rvls .promo-card__body{padding-top:0;align-items:center;text-align:center}
+    }
+
+    @media(min-width:768px){.rvls .hero__grid{grid-template-columns:1.08fr .92fr;gap:3rem}.rvls .row__grid{grid-template-columns:minmax(280px,44%) 1fr;gap:2.75rem;align-items:center}}
+    @media(max-width:879px){.rvls .announce,.rvls .masthead{display:none}}
+    @media(min-width:880px){.rvls .scta{display:none}}
+    @media(max-width:700px){.rvls .buybox{grid-template-columns:1fr}.rvls .buybox__media{min-height:240px}.rvls .buybox__actions{grid-template-columns:84px 1fr}}
+    @media(max-width:560px){.rvls .tmi{grid-template-columns:auto 1fr}.rvls .container{width:min(100% - 1.4rem,1120px)}.rvls .buybox{padding:1rem}.rvls .scta__txt span{display:none}}
+    @media(prefers-reduced-motion:reduce){.rvls *{scroll-behavior:auto!important;transition-duration:.001ms!important}}
+  </style>
+
+  {% if section.settings.show_announcement %}
+    <div class="announce">{{ section.settings.announcement_text }}</div>
+  {% endif %}
+
+  <header class="masthead">
+    <div class="container masthead__row">
+      <a class="wordmark" href="#rvls-top-{{ section.id }}" aria-label="REVELLA home">REVELLA</a>
+      <a class="btn" href="#buy-box-{{ section.id }}">{{ section.settings.top_cta_label }}</a>
+    </div>
+  </header>
+
+  <main id="rvls-top-{{ section.id }}">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <h1>{{ section.settings.hero_heading }}</h1>
+          <span class="hero__subbox">{{ section.settings.hero_subhead }}</span>
+          <p class="byline">By <b>{{ section.settings.byline }}</b> &middot; Updated <span data-local-date>{{ 'now' | date: '%B %-d, %Y' }}</span></p>
+        </div>
+        <div class="hero__media">
+          {% if section.settings.hero_image %}
+            {{ section.settings.hero_image | image_url: width: 1400 | image_tag: widths: '560, 840, 1100, 1400', sizes: '(min-width: 768px) 42vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_image.alt }}
+          {% else %}
+            <div class="media-placeholder">Select the approved Dr. Sebi hero image in the theme editor.</div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="container intro__in">
+        <div>{{ section.settings.intro_top }}</div>
+        {% if section.settings.intro_image %}
+          <figure class="intro__media">
+            {{ section.settings.intro_image | image_url: width: 1200 | image_tag: widths: '560, 840, 1200', sizes: '(min-width: 768px) 720px, 100vw', loading: 'lazy', alt: section.settings.intro_image.alt }}
+          </figure>
+        {% endif %}
+        <div>{{ section.settings.intro_bottom }}</div>
+        {% if section.settings.intro_turn != blank %}<p class="intro__turn">{{ section.settings.intro_turn }}</p>{% endif %}
+      </div>
+    </section>
+
+    <section aria-labelledby="rvls-reasons-{{ section.id }}">
+      <h2 class="vh" id="rvls-reasons-{{ section.id }}">The ten reasons</h2>
+      <div class="rows">
+        {% for block in sign_blocks %}
+          <article class="row" {% if forloop.index == 5 %}id="reason-5-{{ section.id }}"{% endif %} {{ block.shopify_attributes }}>
+            <div class="container row__grid">
+              <figure class="row__media">
+                {% if block.settings.image %}
+                  {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '480, 720, 960, 1200', sizes: '(min-width: 768px) 44vw, 100vw', loading: 'lazy', alt: block.settings.image_alt }}
+                {% else %}
+                  <div class="media-placeholder" style="color:var(--brand);border-color:var(--line)">Select reason {{ forloop.index }} media.</div>
+                {% endif %}
+              </figure>
+              <div>
+                <h3>{{ forloop.index }}. {{ block.settings.heading }}</h3>
+                <div class="row__body">{{ block.settings.body }}</div>
+
+                {% if block.settings.testimonial_1_text != blank %}
+                  <div class="tmi">
+                    {% if block.settings.testimonial_1_image %}
+                      {{ block.settings.testimonial_1_image | image_url: width: 160 | image_tag: widths: '80, 120, 160', sizes: '52px', class: 'tmi__av', loading: 'lazy', alt: '' }}
+                    {% else %}<div class="tmi__fallback" aria-hidden="true">{{ block.settings.testimonial_1_initial }}</div>{% endif %}
+                    <p class="tmi__q">&ldquo;{{ block.settings.testimonial_1_text }}&rdquo;</p>
+                    <p class="tmi__by">{{ block.settings.testimonial_1_by }}</p>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.testimonial_2_text != blank %}
+                  <div class="tmi">
+                    {% if block.settings.testimonial_2_image %}
+                      {{ block.settings.testimonial_2_image | image_url: width: 160 | image_tag: widths: '80, 120, 160', sizes: '52px', class: 'tmi__av', loading: 'lazy', alt: '' }}
+                    {% else %}<div class="tmi__fallback" aria-hidden="true">{{ block.settings.testimonial_2_initial }}</div>{% endif %}
+                    <p class="tmi__q">&ldquo;{{ block.settings.testimonial_2_text }}&rdquo;</p>
+                    <p class="tmi__by">{{ block.settings.testimonial_2_by }}</p>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.testimonial_3_text != blank %}
+                  <div class="tmi">
+                    {% if block.settings.testimonial_3_image %}
+                      {{ block.settings.testimonial_3_image | image_url: width: 160 | image_tag: widths: '80, 120, 160', sizes: '52px', class: 'tmi__av', loading: 'lazy', alt: '' }}
+                    {% else %}<div class="tmi__fallback" aria-hidden="true">{{ block.settings.testimonial_3_initial }}</div>{% endif %}
+                    <p class="tmi__q">&ldquo;{{ block.settings.testimonial_3_text }}&rdquo;</p>
+                    <p class="tmi__by">{{ block.settings.testimonial_3_by }}</p>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.body_after_testimonials != blank %}<div class="row__body">{{ block.settings.body_after_testimonials }}</div>{% endif %}
+                {% if block.settings.close_text != blank %}<p class="row__close">{{ block.settings.close_text }}</p>{% endif %}
+              </div>
+            </div>
+          </article>
+
+          {% if block.settings.show_inline_cta %}
+            <div class="midcta">
+              <div class="container">
+                <p>{{ block.settings.inline_cta_text }}</p>
+                <a class="btn" href="#buy-box-{{ section.id }}">{{ block.settings.inline_cta_label }}</a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="offer" id="offer-{{ section.id }}" aria-labelledby="offer-heading-{{ section.id }}">
+      <div class="container offer__in">
+
+        {% if section.settings.offer_gif %}
+          <div class="offer__gif">
+            {{ section.settings.offer_gif | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.offer_gif.alt | default: '' }}
+          </div>
+        {% endif %}
+        <span class="offer__badge">{{ section.settings.offer_badge }}</span>
+        <h2 id="offer-heading-{{ section.id }}">{{ section.settings.offer_heading }}</h2>
+        <div class="offer__body">
+          {{ section.settings.offer_body }}
+          <p class="stockline">{{ section.settings.stock_note }}</p>
+          {% if section.settings.offer_close != blank %}<p>{{ section.settings.offer_close }}</p>{% endif %}
+          {% if section.settings.show_offer_proofs %}
+            <ul class="diff">
+              <li>{{ section.settings.proof_1 }}</li>
+              <li>{{ section.settings.proof_2 }}</li>
+              <li>{{ section.settings.proof_3 }}</li>
+              <li>{{ section.settings.proof_4 }}</li>
+              <li>{{ section.settings.proof_5 }}</li>
+            </ul>
+          {% endif %}
+        </div>
+
+        {% comment %} ── Buybox disabled: using main-product section from the product template instead ── {% endcomment %}
+        <div id="buy-box-{{ section.id }}"></div>
+      </div>
+    </section>
+
+    <section class="section faq" aria-labelledby="faq-heading-{{ section.id }}">
+      <p class="faq__kicker">Frequently Asked Questions</p>
+      <h2 id="faq-heading-{{ section.id }}">Your Questions, Answered</h2>
+      <div>
+        {% for block in faq_blocks %}
+          <div class="acc__item" {{ block.shopify_attributes }}>
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-{{ section.id }}-{{ block.id }}">
+              <span>{{ block.settings.question }}</span><span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" id="faq-{{ section.id }}-{{ block.id }}"><div class="acc__inner"><div>{{ block.settings.answer }}</div></div></div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section endcta">
+      <div class="container">
+        <h2>{{ section.settings.end_heading }}</h2>
+        <p>{{ section.settings.end_body }}</p>
+        <a class="btn" href="#buy-box-{{ section.id }}">{{ section.settings.end_cta_label }}</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container foot__in">
+      <strong>REVELLA</strong>
+      <p class="foot__fine">{{ section.settings.footer_disclaimer }}</p>
+    </div>
+  </footer>
+
+  {% if section.settings.enable_sticky_cta %}
+    <div class="scta" data-sticky-cta aria-hidden="true" inert>
+      <div class="scta__txt"><b>REVELLA &middot; 12mg astaxanthin</b><span>{{ section.settings.sticky_note }}</span></div>
+      <a class="btn" href="#buy-box-{{ section.id }}" data-scroll-to-product>{{ section.settings.sticky_label }}</a>
+    </div>
+  {% endif %}
+
+  <script>
+    (function(){
+      var root=document.querySelector('.rvls[data-section-id="{{ section.id }}"]');
+      if(!root){return;}
+
+      var dl=root.querySelector('[data-local-date]');
+      if(dl){try{dl.textContent=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}catch(e){}}
+
+      root.querySelectorAll('.acc__btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var open=btn.getAttribute('aria-expanded')==='true';
+          btn.setAttribute('aria-expanded',open?'false':'true');
+        });
+      });
+
+      var variantSelect=root.querySelector('[data-variant-select]');
+      var price=root.querySelector('[data-buybox-price]');
+      var compare=root.querySelector('[data-buybox-compare]');
+      var save=root.querySelector('[data-buybox-save]');
+      var addButton=root.querySelector('[data-add-button]');
+      var addLabel=root.querySelector('[data-add-label]');
+      if(variantSelect){
+        variantSelect.addEventListener('change',function(){
+          var option=variantSelect.options[variantSelect.selectedIndex];
+          var available=option.dataset.available==='true';
+          if(price){price.textContent=option.dataset.price||'';}
+          if(compare){compare.textContent=option.dataset.compare||'';compare.hidden=!option.dataset.compare;}
+          if(save){save.textContent=option.dataset.save||'';save.classList.toggle('is-visible',!!option.dataset.save);}
+          if(addButton){addButton.disabled=!available;}
+          if(addLabel){addLabel.textContent=available?{{ section.settings.promo_button_text | json }}:'Sold out';}
+        });
+      }
+
+      /* ── Promo countdown timer ── */
+      (function(){
+        var hEl=root.querySelector('[data-promo-h]');
+        var mEl=root.querySelector('[data-promo-m]');
+        var sEl=root.querySelector('[data-promo-s]');
+        if(!hEl||!mEl||!sEl) return;
+        var h=parseInt(hEl.textContent,10)||0;
+        var m=parseInt(mEl.textContent,10)||0;
+        var s=parseInt(sEl.textContent,10)||0;
+        var total=h*3600+m*60+s;
+        var key='rvls_promo_cd_{{ section.id }}';
+        var stored=sessionStorage.getItem(key);
+        if(stored!==null) total=parseInt(stored,10);
+        function tick(){
+          if(total<=0) return;
+          total--;
+          sessionStorage.setItem(key,total);
+          hEl.textContent=String(Math.floor(total/3600)).padStart(2,'0');
+          mEl.textContent=String(Math.floor((total%3600)/60)).padStart(2,'0');
+          sEl.textContent=String(total%60).padStart(2,'0');
+        }
+        setInterval(tick,1000);
+      })();
+
+      var sticky=root.querySelector('[data-sticky-cta]');
+      var reason5=document.getElementById('reason-5-{{ section.id }}');
+
+      /* Scroll all #buy-box links to the actual product section (lazy lookup — product DOM loads after listicle) */
+      function findBuyTarget(){
+        return document.querySelector('.product') || document.querySelector('[id^="ProductInfo"]') || document.querySelector('.shopify-section-main-product') || document.querySelector('product-info') || document.getElementById('buy-box-{{ section.id }}');
+      }
+      root.querySelectorAll('a[href="#buy-box-{{ section.id }}"], [data-scroll-to-product]').forEach(function(link){
+        link.addEventListener('click',function(e){
+          var t=findBuyTarget();
+          if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+        });
+      });
+
+      if(sticky&&reason5){
+        var ticking=false;
+        var update=function(){
+          var past=reason5.getBoundingClientRect().bottom<=0;
+          sticky.classList.toggle('is-visible',past);
+          sticky.setAttribute('aria-hidden',past?'false':'true');
+          sticky.toggleAttribute('inert',!past);
+        };
+        var queue=function(){if(ticking){return;}ticking=true;window.requestAnimationFrame(function(){update();ticking=false;});};
+        update();
+        window.addEventListener('scroll',queue,{passive:true});
+        window.addEventListener('resize',queue);
+      }
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "REVELLA Sebi listicle",
+  "tag": "section",
+  "class": "revella-sebi-section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "product", "id": "product", "label": "Buy box product" },
+    { "type": "checkbox", "id": "show_announcement", "label": "Show announcement", "default": true },
+    { "type": "text", "id": "announcement_text", "label": "Announcement", "default": "Up to 70% off · Supply limited by algae harvest cycles" },
+    { "type": "text", "id": "top_cta_label", "label": "Top button", "default": "Check availability" },
+    { "type": "html", "id": "hero_heading", "label": "Hero heading", "default": "10 Reasons Dr. Sebi's Most Explosive Warning About Modern Food Explains Your Aching Joints" },
+    { "type": "text", "id": "hero_subhead", "label": "Hero subhead", "default": "(The \"Wear and Tear\" Story Kept You Treating the Pain While Joint Rot Spreads Through Your Cells)" },
+    { "type": "text", "id": "byline", "label": "Byline", "default": "the REVELLA team" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "richtext", "id": "intro_top", "label": "Intro top", "default": "<p>Your joint pain is not proof that you are old. It is proof that your defenses are losing.</p><p>The medical name is oxidative stress. The plain-English name is joint rot. It is the same process that browns an apple and eats through bare metal, except it is happening inside the cells of your knees, shoulders, hips, and hands.</p>" },
+    { "type": "image_picker", "id": "intro_image", "label": "Intro media" },
+    { "type": "richtext", "id": "intro_bottom", "label": "Intro bottom", "default": "<p>Dr. Sebi spent his life warning that modern food had been stripped of the natural compounds the body needs to protect and rebuild itself. He was pointing at the root while the rest of the world kept selling temporary relief.</p>" },
+    { "type": "text", "id": "intro_turn", "label": "Intro turn", "default": "You cannot stop aging. You cannot stop breathing. Unless you replace the shield your body is losing, the cellular corrosion keeps spreading every hour of every day." },
+    { "type": "header", "content": "Buy box" },
+    { "type": "text", "id": "buybox_eyebrow", "label": "Eyebrow", "default": "Choose your supply" },
+    { "type": "text", "id": "buybox_rating", "label": "Rating line", "default": "Rated 4.8 Excellent by REVELLA customers" },
+    { "type": "text", "id": "buybox_benefit_1", "label": "Benefit 1", "default": "12mg natural astaxanthin per softgel" },
+    { "type": "text", "id": "buybox_benefit_2", "label": "Benefit 2", "default": "One softgel a day with a meal" },
+    { "type": "text", "id": "buybox_benefit_3", "label": "Benefit 3", "default": "Third-party tested" },
+    { "type": "text", "id": "buybox_benefit_4", "label": "Benefit 4", "default": "60-day money-back guarantee" },
+    { "type": "text", "id": "buybox_button_label", "label": "Button (legacy)", "default": "Add to cart" },
+    { "type": "text", "id": "buybox_note", "label": "Under-button note", "default": "Secure checkout · 60-day money-back guarantee" },
+    { "type": "header", "content": "Promo buy box (green card)" },
+    { "type": "text", "id": "promo_countdown_label", "label": "Countdown label", "default": "deal ending in" },
+    { "type": "text", "id": "promo_hours", "label": "Start hours", "default": "11" },
+    { "type": "text", "id": "promo_minutes", "label": "Start minutes", "default": "51" },
+    { "type": "text", "id": "promo_seconds", "label": "Start seconds", "default": "58" },
+    { "type": "image_picker", "id": "promo_image", "label": "Promo product image" },
+    { "type": "text", "id": "promo_heading", "label": "Promo heading", "default": "BACK IN STOCK + 15% OFF!" },
+    { "type": "textarea", "id": "promo_subtext", "label": "Promo description", "default": "We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again." },
+    { "type": "text", "id": "promo_button_text", "label": "Promo button text", "default": "GET 15% OFF NOW" },
+    { "type": "text", "id": "promo_badge_1", "label": "Promo badge 1", "default": "60-day Money-Back Guarantee" },
+    { "type": "text", "id": "promo_badge_2", "label": "Promo badge 2", "default": "fast + free shipping" },
+    { "type": "header", "content": "Offer section" },
+    { "type": "image_picker", "id": "offer_gif", "label": "Offer GIF / image (above badge)" },
+    { "type": "text", "id": "offer_badge", "label": "Badge", "default": "Back in stock after the ninth sellout" },
+    { "type": "text", "id": "offer_heading", "label": "Heading", "default": "The Current Astaxanthin Batch Is Live. When the Algae Harvest Runs Out, So Does REVELLA." },
+    { "type": "richtext", "id": "offer_body", "label": "Body", "default": "<p>Natural astaxanthin is grown, not stamped out of a petrochemical factory. REVELLA can only bottle what the algae harvest produces. When a batch is gone, it is gone until the next harvest.</p>" },
+    { "type": "text", "id": "stock_note", "label": "Stock note", "default": "The current batch is available now, and the biggest sale of the year is live: up to 70% off." },
+    { "type": "textarea", "id": "offer_close", "label": "Closing paragraph", "default": "You can keep numbing the signal while the joint rot spreads underneath. Or you can spend the next 30 days giving your cells the shield modern life took away." },
+    { "type": "checkbox", "id": "show_offer_proofs", "label": "Show proof list", "default": false },
+    { "type": "text", "id": "proof_1", "label": "Proof 1", "default": "12mg natural astaxanthin from real microalgae" },
+    { "type": "text", "id": "proof_2", "label": "Proof 2", "default": "One ingredient. No fillers or synthetic dye" },
+    { "type": "text", "id": "proof_3", "label": "Proof 3", "default": "Up to 6,000x stronger than vitamin C" },
+    { "type": "text", "id": "proof_4", "label": "Proof 4", "default": "Third-party tested" },
+    { "type": "text", "id": "proof_5", "label": "Proof 5", "default": "60-day money-back guarantee" },
+    { "type": "header", "content": "Closing" },
+    { "type": "text", "id": "end_heading", "label": "Closing heading", "default": "Every Day You Wait Gives the Rust Another Day" },
+    { "type": "text", "id": "end_body", "label": "Closing body", "default": "Supply runs on the algae harvest, so selling out mid-sale is normal. If the button is still active, the current batch is still available." },
+    { "type": "text", "id": "end_cta_label", "label": "Closing button", "default": "Check stock and put the shield back on" },
+    { "type": "checkbox", "id": "enable_sticky_cta", "label": "Enable mobile sticky CTA", "default": true },
+    { "type": "text", "id": "sticky_label", "label": "Sticky button", "default": "Check stock" },
+    { "type": "text", "id": "sticky_note", "label": "Sticky note", "default": "Up to 70% off · 60-day guarantee" },
+    { "type": "textarea", "id": "footer_disclaimer", "label": "Footer disclaimer", "default": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary." }
+  ],
+  "blocks": [
+    {
+      "type": "sign",
+      "name": "Reason",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "image_picker", "id": "image", "label": "Media" },
+        { "type": "text", "id": "image_alt", "label": "Media alt text" },
+        { "type": "richtext", "id": "body", "label": "Body" },
+        { "type": "textarea", "id": "close_text", "label": "Closing line" },
+        { "type": "checkbox", "id": "show_inline_cta", "label": "Show CTA after this reason", "default": false },
+        { "type": "text", "id": "inline_cta_text", "label": "CTA lead" },
+        { "type": "text", "id": "inline_cta_label", "label": "CTA button", "default": "See the one thing built to get in" },
+        { "type": "header", "content": "Testimonial 1" },
+        { "type": "image_picker", "id": "testimonial_1_image", "label": "Portrait" },
+        { "type": "text", "id": "testimonial_1_initial", "label": "Fallback initial" },
+        { "type": "textarea", "id": "testimonial_1_text", "label": "Quote" },
+        { "type": "text", "id": "testimonial_1_by", "label": "Attribution" },
+        { "type": "header", "content": "Testimonial 2" },
+        { "type": "image_picker", "id": "testimonial_2_image", "label": "Portrait" },
+        { "type": "text", "id": "testimonial_2_initial", "label": "Fallback initial" },
+        { "type": "textarea", "id": "testimonial_2_text", "label": "Quote" },
+        { "type": "text", "id": "testimonial_2_by", "label": "Attribution" },
+        { "type": "header", "content": "Testimonial 3" },
+        { "type": "image_picker", "id": "testimonial_3_image", "label": "Portrait" },
+        { "type": "text", "id": "testimonial_3_initial", "label": "Fallback initial" },
+        { "type": "textarea", "id": "testimonial_3_text", "label": "Quote" },
+        { "type": "text", "id": "testimonial_3_by", "label": "Attribution" },
+        { "type": "richtext", "id": "body_after_testimonials", "label": "Body after testimonials" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "REVELLA Sebi listicle",
+      "blocks": [
+        { "type": "sign" }, { "type": "sign" }, { "type": "sign" }, { "type": "sign" }, { "type": "sign" },
+        { "type": "sign" }, { "type": "sign" }, { "type": "sign" }, { "type": "sign" }, { "type": "sign" },
+        { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

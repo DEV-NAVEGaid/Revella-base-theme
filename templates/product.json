@@ -1,0 +1,2550 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "star_rating_custom_wmfWgE": {
+          "type": "star_rating_custom",
+          "settings": {
+            "rating": 5,
+            "star_size": 14,
+            "star_gap": 0,
+            "stroke_width": 0,
+            "stroke_color": "#e0a800",
+            "star_color": "#ffcc00",
+            "star_empty_color": "#ececec",
+            "meta_text": "<p>Rated <strong>4.8 Excellent</strong> over <strong>50,312+ Reviews</strong></p>",
+            "text_size": 12,
+            "text_color": "#444444",
+            "margin_bottom": 6
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size_mobile": 22,
+            "font_size_desktop": 32,
+            "font_weight": "500",
+            "text_color": "#8c3a3a",
+            "letter_spacing": 1,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "icon_with_content_BgtaqU": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/ia_200000003.svg",
+            "icon_color": "#7b2020",
+            "icon_size": 18,
+            "icon_gap": 10,
+            "item_gap": 0,
+            "item_1": "Heals joint inflammation at the cell level",
+            "item_2": "94% felt relief in under 4 weeks",
+            "item_3": "12mg - clincal dose, zero filler",
+            "item_4": "60-day money-back guarantee",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 14,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "left",
+            "margin_bottom": 16
+          }
+        },
+        "text_nJn6ye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The daily softgel your whole-body wellness deserves.",
+            "text_style": "body",
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#121212",
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "benefit_icon_grid_hHGThf": {
+          "type": "benefit_icon_grid",
+          "disabled": true,
+          "settings": {
+            "icon_1": "shopify://shop_images/antioxidant_788f2cb0-3752-4578-8587-9f099a0ce387.webp",
+            "label_1": "Cellular & Antioxidant Defense*",
+            "icon_2": "shopify://shop_images/inflammation_1_2a6fbc43-428f-4b30-9073-947b187d19d8.webp",
+            "label_2": "Inflammation Support*",
+            "icon_3": "shopify://shop_images/molecule_18415b65-796b-4bb5-8228-131c4fe76e20.webp",
+            "label_3": "Oxidative Stress Support*",
+            "icon_4": "shopify://shop_images/cardiology_ba2d75a4-6652-4a09-8194-74bd6ffb8ccf.webp",
+            "label_4": "Cardiovascular Support*",
+            "icon_5": "shopify://shop_images/wellness_111611e0-21cd-45c8-a9de-55b5c779b715.webp",
+            "label_5": "Daily Energy & Vitality*",
+            "icon_6": "shopify://shop_images/skin_ec9a8b96-b001-4a78-8db4-1b8cea76cd36.webp",
+            "label_6": "Skin & Healthy Aging*",
+            "col_gap": 24,
+            "row_gap": 16,
+            "icon_gap": 10,
+            "icon_size": 32,
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#1a1a1a",
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "urgency_bar_63dMd4": {
+          "type": "urgency_bar",
+          "disabled": true,
+          "settings": {
+            "percentage": 95,
+            "label_after": "% Sold Out",
+            "label_position": "right",
+            "bg_color": "#f9efef",
+            "fill_color": "#8c3a3a",
+            "track_color": "#d5c8c8",
+            "label_color": "#8c3a3a",
+            "bar_height": 8,
+            "bar_radius": 10,
+            "wrap_radius": 12,
+            "wrap_padding": 2,
+            "gap": 12,
+            "label_size": 13,
+            "margin_bottom": 0
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_custom_price": true,
+            "price_size": 20,
+            "price_color": "#121212",
+            "compare_size": 14,
+            "compare_color": "#6b6b6b",
+            "badge_text": "Save 50% - Ends Tonight!",
+            "badge_bg": "#288b75",
+            "badge_text_color": "#cee9e2",
+            "badge_font_size": 13,
+            "badge_radius": 20,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "margin_top": 0,
+            "margin_bottom": 8,
+            "btn_bg_color": "#8c3a3a",
+            "btn_text_color": "#ffffff",
+            "btn_font_size": 20,
+            "btn_font_weight": "600",
+            "btn_radius": 6,
+            "btn_padding_v": 16,
+            "btn_text_transform": "uppercase",
+            "btn_letter_spacing": 1,
+            "btn_hover_bg_color": "#3a3a3a",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_lift": true
+          }
+        },
+        "icon_with_content_3wypNV": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/fluent_premium-28-filled.svg",
+            "icon_color": "#8c3a3a",
+            "icon_size": 18,
+            "icon_gap": 4,
+            "item_gap": 0,
+            "item_1": "60-day Money-Back Guarantee",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 16,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "center",
+            "margin_bottom": 8
+          }
+        },
+        "payment_badges_bkKpJn": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, paypal, stripe, visa",
+            "alignment": "center",
+            "badge_size": 24,
+            "badge_gap": 0,
+            "margin_top": 9,
+            "margin_bottom": 15
+          }
+        },
+        "social_proof_bar_zn4Pjg": {
+          "type": "social_proof_bar",
+          "settings": {
+            "avatar_1": "shopify://shop_images/m14_d6ea4bd0-a08a-4f57-a225-52c5eaa5372d.png",
+            "avatar_2": "shopify://shop_images/w2_930a5aca-699e-4bb6-a38e-796621e343ff.png",
+            "avatar_3": "shopify://shop_images/m5_d3a9b9a5-f7f8-4316-95e8-933c3ee4a4e9.png",
+            "avatar_size": 32,
+            "avatar_overlap": 12,
+            "heading": "Trusted by 100K+ customers",
+            "heading_size": 12,
+            "heading_weight": "700",
+            "subtext": "Who choose Revella for consistent, long-term wellness support.",
+            "subtext_size": 11,
+            "heading_line_height": 1.4,
+            "subtext_line_height": 1.4,
+            "bg_color": "#f2f2f2",
+            "heading_color": "#1a1a1a",
+            "subtext_color": "#666666",
+            "radius": 40,
+            "padding_v": 6,
+            "padding_h": 6,
+            "margin_bottom": 8
+          }
+        },
+        "collapsible_row_custom_aagMJW": {
+          "type": "collapsible_row_custom",
+          "settings": {
+            "icon_1": "shopify://shop_images/ant-design_product-filled.svg",
+            "q_1": "Natural Astaxanthin 12mg",
+            "a_1": "<p><strong>Natural Astaxanthin 12mg</strong> from Haematococcus pluvialis microalgae. Sunflower oil for absorption. Softgel capsule (gelatin, purified water). That's it.</p><p>No fillers. No synthetic astaxanthin. No artificial anything. 30 softgels per bag, full 1-month supply. Non-GMO, gluten-free, soy-free.</p>",
+            "icon_2": "shopify://shop_images/mingcute_question-fill.svg",
+            "q_2": "Clean & Trusted",
+            "a_2": "<p>cGMP certified, FDA-registered facility. 3rd party lab tested every batch. Oil-based softgel for real absorption, not powder capsules that pass right through you. We sell direct only. No Amazon, no middlemen.</p>",
+            "icon_3": "shopify://shop_images/mingcute_bug-fill.svg",
+            "q_3": "How Does It Work on Joints?",
+            "a_3": "<p>Joint pain isn't surface soreness. The real damage happens inside the cell membrane of your cartilage and tendon, where oxidative stress silently breaks down the tissue from within. That's why the pain keeps coming back. Nothing you've put on or swallowed has reached it.</p><p>Most solutions work on the surface. They mute the signal without touching the source. The moment they wear off, the destruction picks right back up.</p><p>Astaxanthin is one of the only compounds on earth that's both fat-soluble and water-soluble at the same time. That's what lets it physically cross into the cartilage and tendon cells where the damage is actually happening. Once inside, it neutralizes the free radicals driving the breakdown, halts the inflammation at the source, and protects the tissue from further damage.</p><p>It doesn't mask the pain. It removes the reason the pain exists.</p>",
+            "icon_4": "shopify://shop_images/mdi_thunder-circle.svg",
+            "q_4": "How Long Before I See Results?",
+            "a_4": "<p>Most people feel a shift within days, because astaxanthin reaches the cells nothing else has.</p><p><strong>First few days:</strong> Stiffness begins to ease. Joints feel less locked when you wake up. A lot of people start realizing the things they blamed on \"just getting older\" weren't age at all.</p><p><strong>Week 1–2:</strong> Mobility increases substantially. Daily pain calms. Nighttime aching settles. People who haven't slept through the night in months start getting real rest.</p><p><strong>Week 3–4:</strong> Astaxanthin keeps building in your joint tissue. It doesn't flush out like other supplements. Movement gets noticeably easier. Activities you'd quietly given up start coming back on their own.</p><p><strong>Week 5–6+:</strong> The inflammation cycle is broken. Most people stop thinking about their joints entirely. They're just living again.</p><p>Cellular protection compounds. Don't quit early. You're protected by a 60-day guarantee either way.</p>",
+            "icon_5": "shopify://shop_images/Group.svg",
+            "q_5": "Recommended Use",
+            "a_5": "<p>One softgel a day. Take it with a meal that has fat (eggs, avocado, salmon, olive oil, peanut butter). Astaxanthin is fat-soluble, so it absorbs 3-4x better with food fats. Morning or night, doesn't matter. Pick a time you'll remember.</p><p>That's it. No stack. No timing tricks. One pill, one meal, every day.</p>",
+            "icon_6": "shopify://shop_images/Vector.svg",
+            "q_6": "Do You Offer a Guarantee?",
+            "a_6": "<p>30 days. Full refund. No questions. If your joints don't move easier, your stiffness doesn't ease, or your pain doesn't calm, we refund every penny. Even if the bag is empty.<br/><br/></p>",
+            "q_7": "",
+            "a_7": "",
+            "q_8": "",
+            "a_8": "",
+            "q_9": "",
+            "a_9": "",
+            "q_10": "",
+            "a_10": "",
+            "heading_size": 16,
+            "heading_weight": "500",
+            "heading_color": "#8c3a3a",
+            "content_size": 14,
+            "content_color": "#8c3a3a",
+            "border_color": "#dddddd",
+            "border_style": "dashed",
+            "border_width": 1,
+            "header_bg": "#ffffff",
+            "content_bg": "#fefaff",
+            "padding_v": 14,
+            "padding_h": 10,
+            "content_padding_v": 10,
+            "margin_bottom": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "font_size_mobile": 14,
+            "font_size_desktop": 15,
+            "font_weight": "400",
+            "text_color": "#444444",
+            "line_height": 6,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_custom_wmfWgE",
+        "title",
+        "icon_with_content_BgtaqU",
+        "text_nJn6ye",
+        "benefit_icon_grid_hHGThf",
+        "urgency_bar_63dMd4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_content_3wypNV",
+        "payment_badges_bkKpJn",
+        "social_proof_bar_zn4Pjg",
+        "collapsible_row_custom_aagMJW",
+        "description"
+      ],
+      "custom_css": [
+        ".product__media-wrapper {margin-bottom: 15px;}",
+        ".product__info-container .product-form__buttons {margin: 0 !important;}",
+        ".product__info-container > div:has(> product-form),.product__info-container > div:has(> product-form) ~ div {margin: 0 0 6px !important; padding: 0 !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3b962a04-6631-4334-84ee-bc9afe663e22",
+        "media_size": "large",
+        "hide_image": false,
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "cfp_mobile_gallery_style": "dots",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12,
+        "enable_sticky_info": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "trust_banner_wXM4E4": {
+      "type": "trust-banner",
+      "blocks": {
+        "heading_RJVaij": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Trust Us as Your Wellness Partner",
+            "heading_tag": "h2"
+          }
+        },
+        "icon_text_TYnrhB": {
+          "type": "icon_text",
+          "settings": {
+            "text": "3rd-Party-Tested",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_pTbDwJ": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Non-GMO",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_qWYQdE": {
+          "type": "icon_text",
+          "settings": {
+            "text": "No Artificial Additives",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_H8Hf9N": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Gluten-Free",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_8D3yzp": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Gentle on the Stomach",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "icon_text_N9Mek6": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Easy-to-Swallow Softgels",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/revella-checklist.svg"
+          }
+        },
+        "paragraph_q3pzTY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p><em>Clean, High-Quality Formula</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RJVaij",
+        "icon_text_TYnrhB",
+        "icon_text_pTbDwJ",
+        "icon_text_qWYQdE",
+        "icon_text_H8Hf9N",
+        "icon_text_8D3yzp",
+        "icon_text_N9Mek6",
+        "paragraph_q3pzTY"
+      ],
+      "name": "Trust Banner",
+      "settings": {
+        "background_color": "#5c2a1e",
+        "mobile_image": "shopify://shop_images/download.png",
+        "desktop_image": "shopify://shop_images/download.png",
+        "overlay_color": "#8c3a3a",
+        "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 1) 4%, rgba(140, 58, 58, 1) 50%, rgba(140, 58, 58, 1) 100%)",
+        "overlay_opacity": 55,
+        "banner_height_desktop": 0,
+        "banner_height_mobile": 0,
+        "border_radius": 12,
+        "max_width": 1000,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "icon_columns_tablet": "2",
+        "mobile_columns": 2,
+        "padding_top_desktop": 32,
+        "padding_bottom_desktop": 32,
+        "padding_x_desktop": 64,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "padding_x_mobile": 12,
+        "section_bg_color": "#ffffff",
+        "section_padding_top": 24,
+        "section_padding_bottom": 24,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 16,
+        "icon_color": "#ffffff",
+        "icon_size_desktop": 22,
+        "icon_size_mobile": 18,
+        "icon_text_gap": 10,
+        "icon_align": "center",
+        "icon_text_font": "system_ui_n4",
+        "icon_text_size_desktop": 16,
+        "icon_text_size_mobile": 14,
+        "icon_text_color": "#ffffff",
+        "icon_text_letter_spacing": 0,
+        "icon_col_gap_desktop": 32,
+        "icon_col_gap_mobile": 16,
+        "icon_row_gap_desktop": 20,
+        "icon_row_gap_mobile": 16,
+        "icon_grid_margin_bottom": 0,
+        "paragraph_font": "system_ui_n4",
+        "paragraph_size_desktop": 16,
+        "paragraph_size_mobile": 16,
+        "paragraph_color": "#ffffff",
+        "paragraph_style": "italic",
+        "paragraph_letter_spacing": 0,
+        "paragraph_line_height": 6,
+        "paragraph_margin_top": 20
+      }
+    },
+    "review_marquee_imQLUz": {
+      "type": "review-marquee",
+      "blocks": {
+        "star_rating_FQrP7C": {
+          "type": "star_rating",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd"
+          }
+        },
+        "heading_ExpxgB": {
+          "type": "heading",
+          "settings": {
+            "text_primary": "Join 120,000+",
+            "text_accent": "Happy Customers",
+            "heading_tag": "h2"
+          }
+        },
+        "paragraph_FQVnWz": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Experiences with our products"
+          }
+        },
+        "photo_marquee_tMxabP": {
+          "type": "photo_marquee",
+          "settings": {
+            "photo_2": "shopify://shop_images/m7_ea7157a1-f119-48de-8841-7a304877cee5.webp",
+            "photo_3": "shopify://shop_images/w6_06e96ecb-72db-46f5-a723-15210b30ede2.webp",
+            "photo_4": "shopify://shop_images/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.webp",
+            "photo_6": "shopify://shop_images/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.webp",
+            "photo_7": "shopify://shop_images/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.webp",
+            "scroll_speed": 35,
+            "scroll_direction": "left",
+            "marquee_margin_top": 16,
+            "marquee_margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_FQrP7C",
+        "heading_ExpxgB",
+        "paragraph_FQVnWz",
+        "photo_marquee_tMxabP"
+      ],
+      "custom_css": [
+        ".rm-heading__tag {font-weight: 500;}"
+      ],
+      "name": "Review Marquee",
+      "settings": {
+        "background_color": "#ffffff",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "text_align_desktop": "center",
+        "text_align_mobile": "center",
+        "content_gap_desktop": 12,
+        "content_gap_mobile": 8,
+        "text_marquee_gap_desktop": 24,
+        "text_marquee_gap_mobile": 16,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 0,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 0,
+        "padding_x_mobile": 20,
+        "star_size_desktop": 24,
+        "star_size_mobile": 20,
+        "star_gap": 3,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_accent_font_weight": "inherit",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color_primary": "#222222",
+        "heading_color_accent": "#8c3a3a",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "para_font": "poppins_n4",
+        "para_font_weight": "400",
+        "para_size_desktop": 15,
+        "para_size_mobile": 13,
+        "para_color": "#555555",
+        "para_style": "normal",
+        "para_letter_spacing": 0,
+        "para_line_height": 4,
+        "photo_shape": "rounded",
+        "photo_border_radius": 10,
+        "photo_ratio": "1:1",
+        "photo_height_desktop": 200,
+        "photo_height_mobile": 140,
+        "photo_fit": "fill",
+        "photo_gap": 12,
+        "photo_shadow": true,
+        "marquee_edge_fade": true,
+        "marquee_pause_hover": true
+      }
+    },
+    "review_card_3xCdjj": {
+      "type": "review-card",
+      "blocks": {
+        "card_pdp_01": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "my shoulder had been locking up for two years.",
+            "body": "My shoulder pain was the worst at night. I could deal with it during the day, but if I rolled onto it in my sleep I’d wake up immediately. I’ve been taking this a little over a month and I’m finally sleeping longer without constantly adjusting pillows. That alone is worth it for me.",
+            "avatar": "shopify://shop_images/ia_100000036.png",
+            "name": "Linda R."
+          }
+        },
+        "card_pdp_02": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "ran my first 5k since my knee swelled up two years ago",
+            "body": "I used to run 4 days a week. Then my right knee swelled up and never fully went back down. Started astaxanthin and the swelling slowly came down over 3 weeks. I ran a full 5k last month. Slow but i finished. I sat in my car after and just sat there for a while. You dont realize what you lost until you get a piece of it back.",
+            "avatar": "shopify://shop_images/hf_20260329_174611_ef3ba393-d6a9-41f0-9912-8236995a6049_1.png",
+            "name": "David L."
+          }
+        },
+        "card_pdp_03": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "menopause took my sleep. Revella gave it back.",
+            "body": "my hips burned so bad at night i hadnt slept on my side in over a year. doctor said its just menopause!!! started taking revella and and i began seeing a change within a couple of days - minor but there! I tracked my progress around week 7 i slept on my side through the whole night. thank you revella and team! on my third bag now.",
+            "avatar": "shopify://shop_images/hf_20260329_162015_c52d8648-921c-4bda-9e56-92515687f38f.png",
+            "name": "Susan K."
+          }
+        },
+        "card_pdp_04": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "6 months post ACL surgery and this is the first thing that actually reduced the swelling",
+            "body": "tore my ACL playing basketball. surgery went fine but the inflammation after never fully went away. knee stayed puffy and stiff for months. PT helped with range of motion but the swelling just lingered. my physical therapist mentioned astaxanthin for the anti-inflammatory research. wish i started this day one of recovery - its the only thing that moved the needle enough to give me back mobility.",
+            "avatar": "shopify://shop_images/hf_20260329_171308_40615765-3db6-4568-8222-a35213fb8eb9_1.png",
+            "name": "Marcus T."
+          }
+        },
+        "card_pdp_05": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "was skeptical but my shoulder is noticeably better",
+            "body": "I got this because my shoulder has been bothering me for a long time, especially at night. I couldn’t sleep on that side and reaching behind me was awful. Im definitely moving better and sleeping with less pain. I already ordered another bottle.",
+            "avatar": "shopify://shop_images/hf_20260329_170109_0e8f7173-7f22-459b-ad59-ea02fa496af9_1.png",
+            "name": "Theresa M."
+          }
+        },
+        "card_pdp_06": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "helped with neck stiffness from desk work",
+            "body": "I have neck and shoulder tightness from being on the computer all day. I bought this mostly for inflammation. It took a little while, but my neck doesn’t feel as tense at night and I’m sleeping better. I like that it’s easy to take and doesn’t upset my stomach like some other supplements have.",
+            "avatar": "shopify://shop_images/hf_20260329_162907_c758305f-d768-4315-961f-e35bfd3a9813_1.png",
+            "name": "Frank D."
+          }
+        },
+        "card_pdp_07": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "my hands were so swollen i couldnt wear my wedding ring.",
+            "body": "Perimenopause hit and my fingers blew up. Swollen, stiff, aching. Couldnt wear my wedding ring. Doctor tested me for rheumatoid arthritis — came back negative. Nobody could tell me why. Then I found Revella, started taking it and about  6 weeks in  the swelling went down enough to wear my ring again. It was the minor things for me... but i feel better on it everyday.",
+            "avatar": "shopify://shop_images/hf_20260329_162012_a666136c-8662-4292-b699-9d8ae92e7f84_1.png",
+            "name": "Carol A."
+          }
+        },
+        "card_pdp_08": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "less achy overall",
+            "body": "I’m in my 50s and lately everything has just felt achy — knees, hands, back, shoulders. I didn’t want to keep taking ibuprofen all the time. This took about 3-4 weeks before I really noticed anything, but I do feel less stiff overall. The biggest difference is getting up in the morning. I don’t feel 25 again, but I feel better.",
+            "avatar": "shopify://shop_images/hf_20260329_193309_f4a1f50e-238d-4359-a4ea-f0cfadd5567c_1.png",
+            "name": "Gloria S."
+          }
+        },
+        "card_pdp_09": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "i reorganized my entire kitchen around my shoulder pain.",
+            "body": "plates in the bottom drawer. cereal where the pots used to go. i moved everything to waist level so i would never have to reach up. ordered Revella because i had nothing left to try. week 2 the morning stiffness was gone. week 4 i put the coffee back where it belongs. my husband noticed and asked what changed. Revella changed!",
+            "avatar": "shopify://shop_images/hf_20260329_210524_28029ce1-6182-4dcc-a563-2805f9357556_1.png",
+            "name": "Nancy K."
+          }
+        },
+        "card_pdp_10": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "i stopped waking up with a yelp every time i rolled over",
+            "body": "I would be up nightly, don't think I would sleep for more than 1 hour at a time unless i forced myself with pillows to stay on my back... heating pads, ibuprofen, nothing helped like Revella did. It was not just the sleep quality and pain that went away during the night, but the daily mobility i regained. I just felt looser after about a month of taking it - can't really put it any other way.",
+            "avatar": "shopify://shop_images/hf_20260329_201518_a7ca0ee3-c070-412a-91eb-59ffb9ccdc9e_1.png",
+            "name": "Patricia H."
+          }
+        }
+      },
+      "block_order": [
+        "card_pdp_01",
+        "card_pdp_02",
+        "card_pdp_03",
+        "card_pdp_04",
+        "card_pdp_05",
+        "card_pdp_06",
+        "card_pdp_07",
+        "card_pdp_08",
+        "card_pdp_09",
+        "card_pdp_10"
+      ],
+      "name": "Review Card",
+      "settings": {
+        "background_color": "#f8f8f8",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 1200,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 16,
+        "card_bg": "#ffffff",
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#e5e5e5",
+        "card_padding_desktop": 24,
+        "card_padding_mobile": 18,
+        "card_inner_gap": 12,
+        "card_gap_desktop": 24,
+        "card_gap_mobile": 16,
+        "star_size_desktop": 18,
+        "star_size_mobile": 16,
+        "star_gap": 2,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 16,
+        "heading_size_mobile": 15,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "body_font": "system_ui_n4",
+        "body_font_weight": "400",
+        "body_size_desktop": 14,
+        "body_size_mobile": 13,
+        "body_color": "#444444",
+        "body_letter_spacing": 0,
+        "body_line_height": 6,
+        "show_divider": true,
+        "divider_color": "#e5e5e5",
+        "avatar_size": 44,
+        "avatar_placeholder_color": "#cccccc",
+        "profile_gap": 10,
+        "name_font": "system_ui_n4",
+        "name_font_weight": "600",
+        "name_size": 14,
+        "name_color": "#111111",
+        "show_verified": true,
+        "verified_label": "Verified Customer",
+        "verified_size": 12,
+        "verified_color": "#2e8b57",
+        "pagination_margin_top": 32,
+        "pagination_gap": 16,
+        "arrow_size": 40,
+        "arrow_border_width": 1,
+        "arrow_bg": "#ffffff",
+        "arrow_color": "#444444",
+        "arrow_border_color": "#cccccc",
+        "dot_size": 8,
+        "dot_gap": 8,
+        "dot_color_active": "#444444",
+        "dot_color_inactive": "#cccccc",
+        "icon_card_font": "system_ui_n4",
+        "icon_card_font_weight": "500",
+        "icon_card_font_size_desktop": 16,
+        "icon_card_font_size_mobile": 14,
+        "icon_card_text_color": "#222222",
+        "icon_card_letter_spacing": 0,
+        "icon_card_icon_color": "#888888",
+        "icon_card_icon_size": 28,
+        "icon_card_gap": 14,
+        "icon_row_margin_top": 24
+      }
+    },
+    "proven_result_mdNYJ9": {
+      "type": "proven-result",
+      "blocks": {
+        "heading_text_mpVJqF": {
+          "type": "heading_text",
+          "settings": {
+            "heading": "Clinically Studied Haematococcus Pluvialis Astaxanthin",
+            "text": "Every batch is produced with attention to detail, ensuring a consistent research experience from start to finish. Built for those who value clarity, quality, and results-driven formulation.",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "stat_grid_w4nqHa": {
+          "type": "stat_grid",
+          "settings": {
+            "stat_1_number": "94%",
+            "stat_1_text": "Said their joint stiffness, swelling or daily pain noticeably improved within the first 30 days - without changing anything else.",
+            "stat_2_number": "87%",
+            "stat_2_text": "Said they could move their shoulder, knees or hips more freely than they had in months.",
+            "stat_3_number": "83%",
+            "stat_3_text": "Reduced or stopped using ibuprofen, heating pads or OTC pain medicines within 30 days.",
+            "stat_4_number": "88%",
+            "stat_4_text": "Reordered within 60 days. Not from a reminder email. Not from a discount code. Because the results spoke for themselves.",
+            "cell_border_width": 1,
+            "cell_border_color": "#ffffff",
+            "cell_1_border_top": true,
+            "cell_1_border_right": false,
+            "cell_1_border_bottom": false,
+            "cell_1_border_left": false,
+            "cell_2_border_top": true,
+            "cell_2_border_right": false,
+            "cell_2_border_bottom": false,
+            "cell_2_border_left": false,
+            "cell_3_border_top": true,
+            "cell_3_border_right": false,
+            "cell_3_border_bottom": false,
+            "cell_3_border_left": false,
+            "cell_4_border_top": true,
+            "cell_4_border_right": false,
+            "cell_4_border_bottom": false,
+            "cell_4_border_left": false,
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "cta_cNMfkP": {
+          "type": "cta",
+          "settings": {
+            "btn_label": "Try Risk-Free Today",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "guarantee_text": "60-day money-back guarantee",
+            "guarantee_icon_type": "custom",
+            "guarantee_custom_svg": "",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_text_mpVJqF",
+        "stat_grid_w4nqHa",
+        "cta_cNMfkP"
+      ],
+      "name": "Proven Results",
+      "settings": {
+        "background_color": "#8c3a3a",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 700,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 20,
+        "block_padding_v_desktop": 20,
+        "block_padding_h_desktop": 0,
+        "block_padding_v_mobile": 16,
+        "block_padding_h_mobile": 0,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "600",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "heading_block_gap": 10,
+        "subtext_font": "system_ui_n4",
+        "subtext_font_weight": "400",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "subtext_color": "#ffffff",
+        "subtext_letter_spacing": 0,
+        "subtext_line_height": 6,
+        "stat_number_font": "system_ui_n4",
+        "stat_number_font_weight": "600",
+        "stat_number_size_desktop": 32,
+        "stat_number_size_mobile": 28,
+        "stat_number_color": "#ffffff",
+        "stat_number_letter_spacing": 0,
+        "stat_text_font": "system_ui_n4",
+        "stat_text_font_weight": "400",
+        "stat_text_size_desktop": 14,
+        "stat_text_size_mobile": 13,
+        "stat_text_color": "#ffffff",
+        "stat_text_letter_spacing": 0,
+        "stat_text_line_height": 5,
+        "stat_column_gap": 40,
+        "stat_inner_gap": 8,
+        "stat_padding_v_desktop": 20,
+        "stat_padding_h_desktop": 0,
+        "stat_padding_v_mobile": 16,
+        "stat_padding_h_mobile": 0,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 16,
+        "btn_text_color": "#222222",
+        "btn_bg_color": "#ffffff",
+        "btn_border_width": 4,
+        "btn_border_color": "#ffffff",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "guarantee_font": "system_ui_n4",
+        "guarantee_font_weight": "400",
+        "guarantee_size_desktop": 14,
+        "guarantee_size_mobile": 13,
+        "guarantee_color": "#ffffff",
+        "guarantee_letter_spacing": 0,
+        "guarantee_icon_size": 15,
+        "cta_gap": 12
+      }
+    },
+    "carousel_nPPaMB": {
+      "type": "carousel",
+      "blocks": {
+        "slide_rJL6aU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M1-Golf.png",
+            "caption": "Goals"
+          }
+        },
+        "slide_MtXF9a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W1-Sleep.png",
+            "caption": "Rest"
+          }
+        },
+        "slide_CUxHcV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M2-Football.png",
+            "caption": "Connection"
+          }
+        },
+        "slide_BzxM7i": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W2-Swim.png",
+            "caption": "Hobbies"
+          }
+        },
+        "slide_6LMz3q": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M3-Kid.png",
+            "caption": "Family"
+          }
+        },
+        "slide_exd6U7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/W3-Yoga.png",
+            "caption": "Routine"
+          }
+        }
+      },
+      "block_order": [
+        "slide_rJL6aU",
+        "slide_MtXF9a",
+        "slide_CUxHcV",
+        "slide_BzxM7i",
+        "slide_6LMz3q",
+        "slide_exd6U7"
+      ],
+      "name": "Carousel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding_vertical": 16,
+        "heading_part1": "Move Without",
+        "heading_part2": "Thinking Again",
+        "heading_font_family": "inherit",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 22,
+        "heading_font_weight": "600",
+        "heading_letter_spacing": 0,
+        "heading_color_1": "#222222",
+        "heading_color_2": "#8c3a3a",
+        "heading_margin_bottom": 16,
+        "slide_width_desktop": 50,
+        "slide_width_mobile": 78,
+        "slide_height_desktop": 560,
+        "slide_height_mobile": 320,
+        "slide_gap_desktop": 20,
+        "slide_gap_mobile": 12,
+        "slide_border_radius": 4,
+        "infinite_scroll": true,
+        "autoplay": false,
+        "autoplay_speed": 10,
+        "caption_font_family": "inherit",
+        "caption_font_size": 14,
+        "caption_font_size_mobile": 12,
+        "caption_font_weight": "500",
+        "caption_letter_spacing": 1,
+        "caption_text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0.55)",
+        "caption_padding_vertical": 14,
+        "caption_padding_vertical_mobile": 10,
+        "caption_padding_horizontal": 20,
+        "show_arrows": true,
+        "hide_arrows_mobile": false,
+        "nav_btn_side_offset": 16,
+        "nav_btn_size": 48,
+        "nav_btn_bg": "#121212",
+        "nav_btn_border_color": "#121212",
+        "nav_btn_icon_color": "#ffffff",
+        "nav_btn_hover_bg": "#8c3a3a",
+        "nav_btn_hover_border": "#8c3a3a",
+        "show_dots": true,
+        "dots_margin_top": 20
+      }
+    },
+    "before_after_biiP9L": {
+      "type": "before-after",
+      "blocks": {
+        "dual_tone_heading_hrLdhb": {
+          "type": "dual_tone_heading",
+          "settings": {
+            "heading_before": "The Astaxanthin",
+            "heading_accent": "Difference",
+            "heading_tag": "2"
+          }
+        },
+        "paragraph_fLw4aY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>A look inside your body — what's happening now, and what changes with cellular protection.</p>"
+          }
+        },
+        "before_after_image_FCabrK": {
+          "type": "before_after_image",
+          "settings": {
+            "before_image": "shopify://shop_images/b1_e8605c06-59a8-4c93-acb9-8cbdd42e81aa.png",
+            "after_image": "shopify://shop_images/a2.png"
+          }
+        }
+      },
+      "block_order": [
+        "dual_tone_heading_hrLdhb",
+        "paragraph_fLw4aY",
+        "before_after_image_FCabrK"
+      ],
+      "name": "Before After",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "image_position": "right",
+        "mobile_image_position": "bottom",
+        "column_gap": 16,
+        "text_gap": 16,
+        "text_alignment": "center",
+        "container_max_width": 1200,
+        "stacked_max_width": 720,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "custom_gradient_background": "",
+        "accent_color": "#c0392b",
+        "heading_font_family": "",
+        "heading_size": "h1",
+        "custom_desktop_size": 33,
+        "custom_mobile_size": 22,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "heading_accent_color": "#8c3a3a",
+        "accent_font_style": "normal",
+        "heading_highlight": "none",
+        "highlight_color": "#6d388b",
+        "highlight_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_bg_color": "#f9efff",
+        "highlight_border_radius": 8,
+        "highlight_border_width": 0,
+        "highlight_border_style": "solid",
+        "highlight_border_color": "#6d388b",
+        "highlight_padding_block": 0.3,
+        "highlight_padding_inline": 0.3,
+        "highlight_underline_thickness": 2,
+        "highlight_underline_color": "#6d388b",
+        "highlight_underline_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_underline_position": 25,
+        "highlight_line_color": "#6d388b",
+        "highlight_line_stroke": 3,
+        "highlight_line_position": 60,
+        "paragraph_font_family": "system-ui, sans-serif",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.6",
+        "paragraph_color": "#555555",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "button_color": "#1a1a1a",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 8,
+        "show_labels": true,
+        "label_before": "Before",
+        "label_after": "After",
+        "label_background_color": "#8c3a3a",
+        "label_text_color": "#ffffff",
+        "label_font_family": "system-ui, sans-serif",
+        "label_font_size": 11,
+        "label_font_weight": "600",
+        "label_text_transform": "uppercase",
+        "label_letter_spacing": 1,
+        "label_padding_v": 5,
+        "label_padding_h": 10,
+        "label_border_radius": 4,
+        "label_offset_top": 12,
+        "label_offset_side": 12,
+        "arrows_style": "circle",
+        "handle_color": "#8c3a3a",
+        "handle_width": 2,
+        "handle_circle_size": 44,
+        "border_radius": 12,
+        "image_shadow": "0 8px 40px rgba(0,0,0,0.12)"
+      }
+    },
+    "four_column_badge_KkbnrX": {
+      "type": "four-column-badge",
+      "blocks": {
+        "badge_column_3HfJqe": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "shield_check",
+            "custom_icon": "shopify://shop_images/Frame.svg",
+            "heading": "Cellular Protection",
+            "heading_tag": "h3",
+            "text": "<p>Shields cells from joint-damaging breakdown.</p>"
+          }
+        },
+        "badge_column_9TcGCc": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "cell",
+            "custom_icon": "shopify://shop_images/glyph.svg",
+            "heading": "Reaches the Cell",
+            "heading_tag": "h3",
+            "text": "<p>The only compound that crosses the cell membrane.</p>"
+          }
+        },
+        "badge_column_Xi9AJU": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "gear",
+            "custom_icon": "shopify://shop_images/Layer_1.svg",
+            "heading": "Source-Level Repair",
+            "heading_tag": "h3",
+            "text": "<p>Stops breakdown faster than your body can.</p>"
+          }
+        },
+        "badge_column_mxaGkM": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "clock",
+            "custom_icon": "shopify://shop_images/Vector_7174b008-3c00-4d81-9e6e-08f0c6048a3f.svg",
+            "heading": "30+ Years of Research",
+            "heading_tag": "h3",
+            "text": "<p>Decades of studies on joints and longevity.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "badge_column_3HfJqe",
+        "badge_column_9TcGCc",
+        "badge_column_Xi9AJU",
+        "badge_column_mxaGkM"
+      ],
+      "name": "Four Column Badge",
+      "settings": {
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": 2,
+        "content_alignment": "center",
+        "column_gap": 24,
+        "column_gap_h": 32,
+        "column_gap_mobile": 24,
+        "item_gap": 8,
+        "show_dividers": false,
+        "divider_style": "solid",
+        "divider_width": 1,
+        "divider_color": "#e5e5e5",
+        "container_max_width": 1200,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "icon_color": "#9b1c1c",
+        "icon_size": 32,
+        "heading_font_family": "system-ui, sans-serif",
+        "heading_font_size": 16,
+        "heading_font_size_mobile": 14,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "paragraph_font_family": "",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.5",
+        "paragraph_color": "#555555"
+      }
+    },
+    "animated_wave_divider_pbft83": {
+      "type": "animated-wave-divider",
+      "name": "Animated Wave",
+      "settings": {
+        "wave_color": "#7b2223",
+        "background_color": "#ffffff",
+        "fill_color": "#7b2223",
+        "fill_bottom": false,
+        "wave_speed": 5,
+        "wave_direction": "left",
+        "wave_amplitude": 20,
+        "wave_frequency": 1,
+        "wave_layers": 3,
+        "layer_1_opacity": 45,
+        "layer_2_opacity": 100,
+        "layer_3_opacity": 30,
+        "layer_4_opacity": 25,
+        "layer_5_opacity": 15,
+        "wave_height_mobile": 80,
+        "wave_height_desktop": 88
+      }
+    },
+    "information_card_igAJVJ": {
+      "type": "information-card",
+      "blocks": {
+        "card_9m7djb": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1.png",
+            "eyebrow": "",
+            "title": "Repairs at the Source",
+            "text": "<p>Joint pain is a cellular problem. Cartilage and tendons break down from the inside, faster than your body can rebuild them. Astaxanthin reaches inside the cell and stops the damage where it actually starts. </p>"
+          }
+        },
+        "card_dTUAaG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_f3a0691d-e128-4bda-9344-a430b1cbe76a.png",
+            "eyebrow": "",
+            "title": "Driver of Aging: Inflammation",
+            "text": "<p>Chronic inflammation is what scientists now call \"inflammaging.\" It's the root cause behind heart disease, joint breakdown, declining brain function, and how fast you age overall. Astaxanthin is one of the most powerful inflammation suppressors ever measured, with 30+ years of research backing it.</p>"
+          }
+        },
+        "card_hWhKrE": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
+            "eyebrow": "",
+            "title": "Backed by Earth's Longest-Living People",
+            "text": "<p>Astaxanthin is what gives salmon their pink color, flamingos their red, and the people of Okinawa, Japan their place as the longest-living humans on Earth. They get it daily through their seafood diet. They live longer than anyone.</p>"
+          }
+        },
+        "card_DLtUhH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4.png",
+            "eyebrow": "",
+            "title": "Reaches What Nothing Else Can",
+            "text": "<p>Turmeric breaks apart in your stomach. Glucosamine floats in your bloodstream. Ibuprofen masks the signal. None of them get inside the cell. Astaxanthin is fat-soluble and water-soluble, the only compound that physically crosses the cell membrane and works from the inside.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_9m7djb",
+        "card_dTUAaG",
+        "card_hWhKrE",
+        "card_DLtUhH"
+      ],
+      "name": "Information Card",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "title": "<strong>Clinically studied to reach, protect, and repair joints at the cell level</strong>",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "columns_desktop": 4,
+        "columns_mobile": 1.3,
+        "card_gap": 16,
+        "show_image": true,
+        "image_aspect_ratio": "1 / 1",
+        "card_height": 500,
+        "card_bg_color": "#f5f5f5",
+        "card_border_radius": 10,
+        "card_content_gap": 10,
+        "card_show_border": false,
+        "card_border_width": 1,
+        "card_border_color": "#f5f5f5",
+        "card_show_shadow": true,
+        "chevron_size": 36,
+        "chevron_opacity": 90,
+        "chevron_bg_color": "#8c3a3a",
+        "chevron_bg_opacity": 60,
+        "chevron_icon_color": "#ffffff",
+        "chevron_border_radius": 18,
+        "eyebrow_font_size": 12,
+        "eyebrow_font_weight": "600",
+        "eyebrow_color": "#888888",
+        "eyebrow_text_transform": "uppercase",
+        "title_font_size": 16,
+        "title_font_weight": "600",
+        "title_color": "#8c3a3a",
+        "text_font_size": 14,
+        "text_color": "#4a4a4a",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "research_card_fqgxnW": {
+      "type": "research-card",
+      "blocks": {
+        "card_TV4pEe": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_3.png",
+            "image_url": "",
+            "card_heading": "Joints",
+            "card_subdesc": "Move without thinking again.",
+            "card_para": "Astaxanthin reaches the cells where cartilage and tendon damage starts. It stops the breakdown cycle so your body can repair the tissue from the inside out.",
+            "start_active": false
+          }
+        },
+        "card_TzRfd7": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637.png",
+            "image_url": "",
+            "card_heading": "Longevity",
+            "card_subdesc": "Slow aging at the cell level.",
+            "card_para": "Chronic inflammation drives nearly every major aging process. Astaxanthin is one of the most powerful inflammation suppressors ever measured, eaten daily by the longest-living people on Earth.",
+            "start_active": false
+          }
+        },
+        "card_4wTJU7": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_2.png",
+            "image_url": "",
+            "card_heading": "Skin",
+            "card_subdesc": "Brighter, tighter, naturally.",
+            "card_para": "Astaxanthin protects skin cells froms oxidative damage and UV stress. Studies show it improves elasticity, reduces fine lines, and supports a more even tone from the inside.",
+            "start_active": false
+          }
+        },
+        "card_Qi4pLP": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_34626637_1.png",
+            "image_url": "",
+            "card_heading": "Eyes",
+            "card_subdesc": "Sharper focus, less strain.",
+            "card_para": "One of the few antioxidants that crosses into the eye. Astaxanthin protects against oxidative stress, supports sharper focus, and reduces digital screen fatigue.",
+            "start_active": false
+          }
+        },
+        "button_guarantee_eByYiP": {
+          "type": "button_guarantee",
+          "settings": {
+            "btn_text": "Try Risk-Free Today",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "btn_arrow": true,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "card_TV4pEe",
+        "card_TzRfd7",
+        "card_4wTJU7",
+        "card_Qi4pLP",
+        "button_guarantee_eByYiP"
+      ],
+      "name": "Research Card",
+      "settings": {
+        "section_h1": "Real Benefits.",
+        "section_h2": "Backed by Research.",
+        "section_desc": "One softgel. Whole-body cellular protection. The same compound the longest-living people on Earth eat every day.",
+        "heading_align": "center",
+        "h1_font_size": 32,
+        "h1_font_size_mobile": 22,
+        "h1_font_weight": "600",
+        "h1_color": "#8c3a3a",
+        "h1_font_family": "",
+        "h2_font_size": 32,
+        "h2_font_size_mobile": 22,
+        "h2_font_weight": "600",
+        "h2_color": "#1a1a1a",
+        "h2_font_family": "",
+        "desc_font_size": 14,
+        "desc_font_size_mobile": 13,
+        "desc_font_weight": "400",
+        "desc_color": "#555555",
+        "desc_font_family": "sans-serif",
+        "columns_desktop": "2",
+        "card_gap": 12,
+        "section_padding_v": 16,
+        "section_padding_h": 20,
+        "section_bg": "#fdf5f5",
+        "card_bg": "#ffffff",
+        "card_border_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#e8e0e0",
+        "card_padding": 14,
+        "card_min_height": 72,
+        "toggle_color": "#8b2020",
+        "card_img_size": 80,
+        "card_img_radius": 6,
+        "card_heading_font_size": 16,
+        "card_heading_font_weight": "600",
+        "card_heading_color": "#1a1a1a",
+        "card_heading_font_family": "sans-serif",
+        "card_subdesc_font_size": 14,
+        "card_subdesc_font_weight": "400",
+        "card_subdesc_color": "#777777",
+        "card_subdesc_font_family": "",
+        "card_para_font_size": 14,
+        "card_para_font_weight": "400",
+        "card_para_color": "#444444",
+        "card_para_font_family": "",
+        "btn_bg": "#8b2020",
+        "btn_color": "#ffffff",
+        "btn_font_size": 16,
+        "btn_font_weight": "600",
+        "btn_font_family": "",
+        "btn_border_radius": 8,
+        "btn_padding_v": 10,
+        "btn_padding_h": 80,
+        "guarantee_font_size": 14,
+        "guarantee_font_weight": "400",
+        "guarantee_color": "#777777",
+        "guarantee_font_family": "sans-serif"
+      }
+    },
+    "running_marquee_k3qnar": {
+      "type": "running-marquee",
+      "blocks": {
+        "item_ERyYFb": {
+          "type": "item",
+          "settings": {
+            "icon": "gluten_free",
+            "text": "Gluten-Free"
+          }
+        },
+        "item_eJxcdx": {
+          "type": "item",
+          "settings": {
+            "icon": "no_additives",
+            "text": "No Additives"
+          }
+        },
+        "item_8zceJH": {
+          "type": "item",
+          "settings": {
+            "icon": "cgmp",
+            "text": "cGMP Certified"
+          }
+        },
+        "item_7UgHmH": {
+          "type": "item",
+          "settings": {
+            "icon": "non_gmo",
+            "text": "Non-GMO"
+          }
+        }
+      },
+      "block_order": [
+        "item_ERyYFb",
+        "item_eJxcdx",
+        "item_8zceJH",
+        "item_7UgHmH"
+      ],
+      "name": "Running Marquee Banner",
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "section_bg": "#7b2223",
+        "speed": 10,
+        "direction": "left",
+        "pause_on_hover": false,
+        "show_fade": false,
+        "fade_width": 60,
+        "item_gap": 50,
+        "icon_text_gap": 8,
+        "show_separator": false,
+        "separator_char": "·",
+        "separator_margin": 8,
+        "separator_color": "#ffffff",
+        "icon_size": 16,
+        "icon_color": "#ffffff",
+        "text_size": 14,
+        "text_weight": "500",
+        "text_color": "#ffffff",
+        "text_font_family": "sans-serif",
+        "text_letter_spacing": 2
+      }
+    },
+    "journey_MWkCz7": {
+      "type": "journey",
+      "blocks": {
+        "timeline_step_AcYDaC": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "First Few Days: Stiffness Starts Lifting",
+            "items": "Stiffness begins to ease\nJoints feel less locked when you wake up\nThings you blamed on aging start fading"
+          }
+        },
+        "timeline_step_7gtap8": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Week 1–2: Movement Gets Easier",
+            "items": "Mobility increases substantially\nDaily pain calms\nPeople who haven't slept in months start getting real rest"
+          }
+        },
+        "timeline_step_VxgqNb": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Week 3–4: The Turning Point",
+            "items": "Astaxanthin keeps building in your joint tissue\nMovement gets noticeably easier\nActivities you'd quietly given up start coming back"
+          }
+        },
+        "timeline_step_D9RqdY": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Week 3–4: The Turning Point",
+            "items": "Astaxanthin keeps building in your joint tissue\nMovement gets noticeably easier\nActivities you'd quietly given up start coming back"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_step_AcYDaC",
+        "timeline_step_7gtap8",
+        "timeline_step_VxgqNb",
+        "timeline_step_D9RqdY"
+      ],
+      "name": "Journey",
+      "settings": {
+        "max_width": 1000,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "hero_image": "shopify://shop_images/Family_106ad093-4981-4b69-8fc8-55d96d6f0d42.png",
+        "hero_image_height": 100,
+        "hero_text": "Revella",
+        "hero_text_font_size": 20,
+        "hero_text_color": "#ffffff",
+        "hero_overlay_color": "#000000",
+        "hero_overlay_gradient": "",
+        "hero_overlay_opacity": 30,
+        "hero_border_radius": 16,
+        "hero_margin_bottom": 0,
+        "desktop_image": "shopify://shop_images/Family_beedf692-d51d-4802-b245-786d1667d3d5.png",
+        "desktop_image_position": "right",
+        "desktop_image_width": 40,
+        "hide_image_on_desktop": true,
+        "desktop_content_max_width": 700,
+        "desktop_col_gap": 48,
+        "desktop_image_sticky_top": 80,
+        "image_border_radius": 16,
+        "header_alignment": "center",
+        "header_margin_top": 24,
+        "header_margin_bottom": 24,
+        "eyebrow": "Your Wellness",
+        "eyebrow_font_size": 22,
+        "eyebrow_font_weight": "600",
+        "heading": "Journey With Revella®",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "subtext": "Revella® is built for daily use. Here's how things tend to shift once it's part of your day.",
+        "subtext_font_size": 14,
+        "line_width": 2,
+        "dot_size": 14,
+        "dot_gap": 12,
+        "step_gap": 20,
+        "label_font_size": 14,
+        "label_font_weight": "700",
+        "label_border_radius": 6,
+        "label_padding_vertical": 8,
+        "label_padding_horizontal": 14,
+        "label_margin_bottom": 0,
+        "item_font_size": 14,
+        "items_padding_top": 10,
+        "items_padding_bottom": 2,
+        "tagline": "Cellular protection compounds. Don't quit early.",
+        "tagline_font_size": 14,
+        "tagline_font_style": "normal",
+        "tagline_margin_top": 16,
+        "button_label": "Start My Journey",
+        "button_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+        "button_show_arrow": true,
+        "button_font_size": 16,
+        "button_font_weight": "700",
+        "button_padding_vertical": 12,
+        "button_padding_horizontal": 24,
+        "button_border_radius": 8,
+        "cta_margin_top": 24,
+        "guarantee_text": "60-day money-back guarantee",
+        "guarantee_font_size": 14,
+        "guarantee_margin_top": 12,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#8c3a3a",
+        "heading_color": "#1a1a1a",
+        "subtext_color": "#555555",
+        "line_color": "#d0d0d0",
+        "dot_color": "#8c3a3a",
+        "label_background": "#8c3a3a",
+        "label_text_color": "#ffffff",
+        "item_text_color": "#333333",
+        "checkmark_color": "#8c3a3a",
+        "tagline_color": "#777777",
+        "button_background": "#8c3a3a",
+        "button_text_color": "#ffffff",
+        "guarantee_color": "#777777"
+      }
+    },
+    "comparison_table_hH8TLN": {
+      "type": "comparison-table",
+      "blocks": {
+        "heading_button_WfmXAh": {
+          "type": "heading_button",
+          "settings": {
+            "heading_tag": "h2",
+            "heading": "Revella vs. Other Brands",
+            "subtext": "",
+            "button_label": "Try Risk-Free Today",
+            "button_link": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "button_new_tab": false,
+            "show_button_arrow": true,
+            "guarantee_icon_size": 18,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        },
+        "product_image_Wd8tQJ": {
+          "type": "product_image",
+          "settings": {
+            "product_image": "shopify://shop_images/StockCake-Memories-in-light_1758294898_1-removebg-preview_1_1.png",
+            "show_image": true,
+            "product_name": "Revella",
+            "header_style": "separate"
+          }
+        },
+        "product_image_XFA8gp": {
+          "type": "product_image",
+          "settings": {
+            "product_image": "shopify://shop_images/white-plastic-medicine-bottle-with-blank-label-ribbed-cap_1.png",
+            "show_image": true,
+            "product_name": "Other Brands",
+            "header_style": "separate"
+          }
+        },
+        "comparison_table_Pj6Tak": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "1",
+            "row_1_icon": "shield",
+            "row_1_custom_icon": "shopify://shop_images/ia_100000078.svg",
+            "row_1_label": "Clinical Dose — 12mg",
+            "row_2_icon": "flask",
+            "row_2_custom_icon": "shopify://shop_images/ia_100000079.svg",
+            "row_2_label": "3rd-Party Lab Tested",
+            "row_3_icon": "globe",
+            "row_3_custom_icon": "shopify://shop_images/ia_100000080.svg",
+            "row_3_label": "No Fillers or Additives",
+            "row_4_icon": "leaf",
+            "row_4_custom_icon": "shopify://shop_images/ia_100000081.png",
+            "row_4_label": "GMP-Certified Facility",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        },
+        "comparison_table_RehzWn": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "2",
+            "row_1_icon": "cross",
+            "row_1_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_1_label": "Underdosed (4–6mg)",
+            "row_2_icon": "cross",
+            "row_2_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_2_label": "No Transparent Testing",
+            "row_3_icon": "cross",
+            "row_3_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_3_label": "Fillers & Additives",
+            "row_4_icon": "cross",
+            "row_4_custom_icon": "shopify://shop_images/ia_100000085.svg",
+            "row_4_label": "Synthetic or Undisclosed Source",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_button_WfmXAh",
+        "product_image_Wd8tQJ",
+        "product_image_XFA8gp",
+        "comparison_table_Pj6Tak",
+        "comparison_table_RehzWn"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.ct-section-template--20958960713914__comparison_table_hH8TLN .ct-cta--mobile {gap: 8px; }}"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "layout_order": "info_first",
+        "info_col_width": 30,
+        "info_alignment": "left",
+        "column_gap": 48,
+        "info_gap": 20,
+        "table_col_gap": 12,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "horizontal_padding": 16,
+        "background_type": "color",
+        "background_color": "#b07a85",
+        "background_gradient": "",
+        "bg_image_size": "cover",
+        "bg_image_position": "center center",
+        "bg_image_repeat": "no-repeat",
+        "font_family": "system_ui_n4",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 22,
+        "heading_color": "#ffffff",
+        "heading_font_weight": "600",
+        "subtext_font_size": 14,
+        "subtext_color": "#f0e8e8",
+        "button_full_width": false,
+        "button_background_color": "#8c3a3a",
+        "button_text_color": "#ffffff",
+        "button_font_size": 16,
+        "button_font_weight": "600",
+        "button_border_radius": 6,
+        "button_padding_v": 12,
+        "button_padding_h": 24,
+        "guarantee_font_size": 14,
+        "guarantee_color": "#f0e8e8",
+        "richtext_font_size": 16,
+        "richtext_font_size_mobile": 15,
+        "richtext_font_weight": "400",
+        "richtext_font_style": "normal",
+        "richtext_color": "#f0e8e8",
+        "richtext_line_height": 1.6,
+        "richtext_letter_spacing": 0,
+        "richtext_text_transform": "none",
+        "richtext_margin_top": 0,
+        "richtext_margin_bottom": 16,
+        "richtext_highlight_color": "#ffffff",
+        "richtext_highlight_weight": "inherit",
+        "richtext_highlight_style": "italic",
+        "richtext_highlight_underline": false,
+        "richtext_list_marker_color": "#ffffff",
+        "richtext_list_marker_size": 18,
+        "richtext_list_marker_gap": 12,
+        "richtext_list_gap": 16,
+        "column1_top_offset": 0,
+        "column2_top_offset": 0,
+        "merged_image_overlap": 32,
+        "product_image_size": 180,
+        "mobile_product_image_size": 120,
+        "product_image_gap": 8,
+        "product_header_gap": 12,
+        "product_name_font_size": 14,
+        "product_name_font_weight": "600",
+        "product1_name_color": "#8c3a3a",
+        "product2_name_color": "#333333",
+        "col1_table_bg_color": "#8c3a3a",
+        "col1_table_text_color": "#ffffff",
+        "col1_icon_color": "#ffffff",
+        "col1_row_divider_color": "#ffffff26",
+        "col2_table_bg_color": "#ffffff",
+        "col2_table_text_color": "#333333",
+        "col2_icon_color": "#333333",
+        "col2_row_divider_color": "#e8e8e8",
+        "row_font_size": 16,
+        "mobile_row_font_size": 14,
+        "row_vertical_padding": 20,
+        "row_min_height": 0,
+        "mobile_row_padding": 14,
+        "icon_size": 32,
+        "table_border_radius": 12,
+        "mobile_info_alignment": "center",
+        "mobile_section_gap": 32,
+        "mobile_cta_margin_top": 24
+      }
+    },
+    "free_trial_rgzqta": {
+      "type": "free-trial",
+      "blocks": {
+        "badge_tnKKap": {
+          "type": "badge",
+          "settings": {
+            "number": "30",
+            "label": "Days",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "eyebrow_Fm7pWK": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Feel the Difference",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "heading_nNyJNC": {
+          "type": "heading",
+          "settings": {
+            "text": "60-day Risk-Free Trial",
+            "heading_tag": "h2",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "description_dQtpVD": {
+          "type": "description",
+          "settings": {
+            "text": "If you're not completely satisfied in your first 30 days, simply return your order for a full refund - no questions asked.",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "button_hEPpnB": {
+          "type": "button",
+          "settings": {
+            "label": "Try Risk-Free Today",
+            "url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "badge_tnKKap",
+        "eyebrow_Fm7pWK",
+        "heading_nNyJNC",
+        "description_dQtpVD",
+        "button_hEPpnB"
+      ],
+      "custom_css": [
+        ".ft-page-width-template--21111456202938__free_trial_rgzqta {padding-bottom: 0px;}"
+      ],
+      "name": "Free Trial",
+      "settings": {
+        "background_color": "#f0edea",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "section_padding_y_desktop": 0,
+        "section_padding_x_desktop": 20,
+        "section_padding_y_mobile": 16,
+        "section_padding_x_mobile": 0,
+        "col1_width": 1,
+        "col2_width": 1,
+        "col_valign": "center",
+        "min_height_desktop": 460,
+        "min_height_mobile": 0,
+        "col1_is_image": false,
+        "col1_order_mobile": "first",
+        "col2_is_image": true,
+        "col2_image": "shopify://shop_images/Product_Images.webp",
+        "col2_order_mobile": "last",
+        "img_fit": "contain",
+        "img_position": "center center",
+        "img_col_min_height_mobile": 300,
+        "placeholder_bg_color": "#e8e4e0",
+        "placeholder_icon_color": "#666666",
+        "content_padding_top_desktop": 60,
+        "content_padding_bottom_desktop": 60,
+        "content_padding_x_desktop": 60,
+        "content_padding_top_mobile": 16,
+        "content_padding_bottom_mobile": 0,
+        "content_padding_x_mobile": 24,
+        "content_max_width": 500,
+        "badge_font": "system_ui_n4",
+        "badge_size": 64,
+        "badge_bg_color": "#8c3a3a",
+        "badge_text_color": "#ffffff",
+        "badge_number_weight": "700",
+        "badge_number_size": 22,
+        "badge_label_weight": "400",
+        "badge_label_size": 14,
+        "badge_margin_bottom": 20,
+        "eyebrow_font": "system_ui_n4",
+        "eyebrow_font_weight": "600",
+        "eyebrow_size_desktop": 13,
+        "eyebrow_size_mobile": 12,
+        "eyebrow_color": "#8c3a3a",
+        "eyebrow_letter_spacing": 2,
+        "eyebrow_transform": "uppercase",
+        "eyebrow_margin_bottom": 8,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 26,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 12,
+        "description_font": "system_ui_n4",
+        "description_font_weight": "400",
+        "description_size_desktop": 15,
+        "description_size_mobile": 14,
+        "description_color": "#444444",
+        "description_letter_spacing": 0,
+        "description_line_height": 6,
+        "description_margin_bottom": 24,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 15,
+        "btn_text_color": "#ffffff",
+        "btn_bg_color": "#8c3a3a",
+        "btn_border_width": 0,
+        "btn_border_color": "#8c3a3a",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "btn_display": "block",
+        "button_margin_bottom": 0
+      }
+    },
+    "nvgd_review_grid_VfVdcT": {
+      "type": "nvgd-review-grid",
+      "blocks": {
+        "review_group_UPBFta": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Lorraine W.",
+            "rating_1": 5,
+            "text_1": "menopause started and within 6 months my hips my knees my fingers everything hurt. doctor tested me for arthritis lupus lyme — all negative. nobody could figure it out. then i read that estrogen protects your joints and when it drops the inflammation takes over. started this and by week 5 the morning stiffness shortened from over an hour to maybe 20 minutes. by week 9 i was walking my dog again without stopping. nobody told me this was menopause. this supplement told me.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w11_7056f3bb-dc97-4fa9-8f2a-9467dde3d22f.png?v=1776370450",
+            "name_2": "Tammy R.",
+            "rating_2": 5,
+            "text_2": "my hip pain was so bad at night i hadnt slept more than 3 hours straight in a year. every time i rolled onto my side it was like a knife. started this because i read it about its effects inside the body... about a month in i slept 6 hours straight. i cried in the morning because i forgot what that felt like.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w15.png?v=1776370450",
+            "name_3": "Earl R.",
+            "rating_3": 5,
+            "text_3": "retired carpenter. 40 years of kneeling on job sites destroyed my knees. doctor said the cartilage was just gone. 8 weeks in and the daily grinding pain dropped by at least half. went from needing to sit down every 20 minutes to walking the full farmers market with my wife last saturday. first time in years.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m9_087d5b1c-48d6-4842-b8c2-f1d92a1ddeb6.png?v=1776370450",
+            "name_4": "Colleen M.",
+            "rating_4": 5,
+            "text_4": "both knees swelled up during perimenopause. couldnt bend them fully. stairs were a nightmare. 8 weeks in and the swelling went down enough that i could kneel in my garden again. my husband said watching me get up and down used to make him nervous. not anymore.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w7_b42d7f54-6003-4189-a0f9-fd34e4427f02.png?v=1776370450",
+            "name_5": "Marlene H.",
+            "rating_5": 5,
+            "text_5": "the worst part of menopause wasnt the hot flashes. it was waking up every morning feeling like i aged 20 years overnight. stiff hands. locked knees. hips that burned. i tried turmeric for months. glucosamine for a year. nothing reached the actual pain. this was different. by week 4 something shifted. the stiffness started releasing. by week 8 i was getting out of bed like a normal person again.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w8_0fa9eeb2-e605-4cdc-9aa4-a569f2aed024.png?v=1776370451"
+          }
+        },
+        "review_group_aepe6i": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Steve K.",
+            "rating_1": 5,
+            "text_1": "my shoulder froze up about 4 months ago. couldnt lift my arm past my chest. added this and within 3 weeks the range of motion started opening up faster. by week 6 i reached overhead for a plate without thinking about it. my PT asked what changed because the progress jumped.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m10_804de057-76fa-4ad9-b698-e5e40ed2a3e5.png?v=1776370450",
+            "name_2": "Irene P.",
+            "rating_2": 5,
+            "text_2": "my fingers were so swollen from menopause i switched to front-close bras because i couldnt reach behind my back. started this and the swelling in my hands slowly went down over 6 weeks. i hooked my own necklace last tuesday and just stood there for a second. the little things hit different when youve lost them.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w17.png?v=1776370450",
+            "name_3": "Annette M.",
+            "rating_3": 5,
+            "text_3": "every single morning my knees sounded like bubble wrap. getting out of bed was a whole production. stairs were the worst. tried glucosamine for a year. turmeric for 6 months. nothing. started this and by week 4 the grinding was quieter. by week 8 i walked downstairs without thinking about it. my husband noticed before i did.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w16.png?v=1776370451",
+            "name_4": "Ray D.",
+            "rating_4": 5,
+            "text_4": "both hips were so stiff in the morning i had to roll out of bed sideways. getting dressed took 15 minutes because bending hurt. around week 5 the morning stiffness shortened from an hour to maybe 15 minutes. by week 10 i was getting dressed normally.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m14.png?v=1776370450",
+            "name_5": "Susan T.",
+            "rating_5": 5,
+            "text_5": "my shoulder locked up out of nowhere last fall. doctor said frozen shoulder, gave me cortisone, told me to stretch. cortisone wore off in two weeks. started this and by week 5 the shoulder started loosening. week 8 i put on my coat like a normal person. i actually laughed.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w13.png?v=1776370450"
+          }
+        },
+        "review_group_YDE7Jn": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Loretta A.",
+            "rating_1": 5,
+            "text_1": "my hands were so swollen some mornings i couldnt close them into a fist. rings didnt fit. typing at work was painful by noon. by week 6 the swelling reduced enough to wear my wedding ring again. by week 10 i was typing all day without pain. my rheumatologist asked what changed.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w9_b40890a1-698d-4e7d-9880-f75b3020ea78.png?v=1776370450",
+            "name_2": "Wayne L.",
+            "rating_2": 5,
+            "text_2": "i used to run 4 days a week. then my right knee swelled up and never fully went back down. started this and the swelling slowly came down over 6 weeks. i ran a full 5k last month. slow but i finished. i sat in my car after and just sat there for a while. you dont realize what you lost until you get a piece of it back.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m11.png?v=1776370450",
+            "name_3": "Faye J.",
+            "rating_3": 5,
+            "text_3": "52 and everything hurt. my doctor kept saying its just aging. the joint pain started right when my periods stopped. started this and 6 weeks in my knees stopped burning on the stairs. 10 weeks in and i feel like myself again.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w5_022bb544-74b1-46ae-919f-fd9889915afb.png?v=1776370450",
+            "name_4": "Craig T.",
+            "rating_4": 5,
+            "text_4": "tore my rotator cuff years ago and it never fully healed. constant dull ache, limited range. this is the first supplement where i actually felt a difference. around week 4 the ache dialed down. by week 8 i was throwing a ball with my kid again.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m3_a8e72f00-65d5-4550-bf4c-294e6bd8da01.png?v=1776370450",
+            "name_5": "Gail W.",
+            "rating_5": 5,
+            "text_5": "i have never written a review in my life. but this one i had to. my hip pain from menopause was so bad i was limping by 3pm every day. 6 weeks later im walking normally. the pain isnt zero but its manageable and thats all i needed. thank you Revella.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w4_c6edae75-76c5-4a17-84bc-add1e9c5876f.png?v=1776370450"
+          }
+        },
+        "review_group_T8RAiD": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Wanda K.",
+            "rating_1": 5,
+            "text_1": "my ankles were so swollen by the end of every day i could barely see the bones. by week 5 the swelling was noticeably less. by week 9 my ankles looked normal at 8pm for the first time in i dont know how long.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w3_c2ba75e1-c21c-4992-abab-07a64d3ddec2.png?v=1776370450",
+            "name_2": "Dale H.",
+            "rating_2": 5,
+            "text_2": "both shoulders were so inflamed i couldnt reach the top shelf. my PT actually suggested astaxanthin for the inflammation. 6 weeks in and my range of motion improved noticeably. reaching overhead doesnt make me flinch anymore.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m6_ae62afa2-4061-4673-a24d-0a560be7b1ad.png?v=1776370450",
+            "name_3": "Donna M.",
+            "rating_3": 5,
+            "text_3": "retired 2 years ago and figured the joint pain was just part of getting older. both knees, both hips, hands in the morning — i just accepted it. my daughter kept sending me links and i kept ignoring her. finally tried it. 8 weeks in and the morning stiffness that i'd lived with for years just started lifting. i'm moving better at 60 than i was at 55. wish i hadn't waited so long.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w12.png?v=1776370450",
+            "name_4": "Hal P.",
+            "rating_4": 5,
+            "text_4": "48 years old. knees are bone on bone. this stuff doesnt regrow cartilage obviously but the inflammation around the joint calmed down significantly by week 6. i went from 4 advil a day to maybe 1. some days none. thats a win at my age.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m15.png?v=1776370450",
+            "name_5": "Margaret L.",
+            "rating_5": 5,
+            "text_5": "frozen shoulder for 5 months. my doctor said it could take a year or more to resolve on its own. started this and the thawing happened faster than anyone expected. week 4 the stiffness started breaking. week 8 i could reach behind my back. my physical therapist was genuinely surprised at the timeline.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w18.png?v=1776370450"
+          }
+        },
+        "review_group_QHcHcT": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Dennis J.",
+            "rating_1": 5,
+            "text_1": "my doctor put me on a statin and within 3 months my legs felt like concrete. took CoQ10 for 4 months. nothing. started this and by week 5 the heaviness in my legs started lifting. i can actually walk up a flight of stairs without my thighs screaming.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m2_2556b9bb-26bf-4190-b10e-3b564db33c58.png?v=1776370450",
+            "name_2": "Arlene D.",
+            "rating_2": 5,
+            "text_2": "my wrists and fingers were so inflamed i had to stop knitting — my hobby for 30 years. by week 7 the swelling in my fingers went down enough to hold needles again. im knitting a blanket for my new grandbaby right now. wouldnt be happening without this.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w2_cef21a0f-60dc-4493-a4a5-5305548c27e5.png?v=1776370450",
+            "name_3": "Pamela C.",
+            "rating_3": 5,
+            "text_3": "joint pain is real and i am tired of doctors acting like its not. my knees, my hips, my hands — all started hurting within months of my last period. none of them said your estrogen dropped and your joints lost their protection. this supplement does what estrogen used to do. 6 weeks in and the difference is undeniable.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w1_6793d2d5-118e-4cbb-98cf-c627587795cb.png?v=1776370450",
+            "name_4": "Keith T.",
+            "rating_4": 5,
+            "text_4": "shoulder impingement for over a year. couldnt bench press. couldnt do overhead work. week 4 the inflammation started calming. by week 8 i was pressing again at lighter weight. slow comeback but its a comeback.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m1_ef2b7eef-fcf2-4962-9baa-8b8203d7d541.png?v=1776370450",
+            "name_5": "Cynthia R.",
+            "rating_5": 5,
+            "text_5": "i was popping advil like candy. 4-6 a day just to get through work. my stomach was a mess. by week 6 i was down to 1 advil. by week 10 some days i dont need any. this replaced a habit that was destroying me.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.png?v=1776370450"
+          }
+        },
+        "review_group_tdz3wF": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Brenda S.",
+            "rating_1": 5,
+            "text_1": "bought this for my husband because he was waking up at 3am every night from shoulder pain. 4 weeks in he slept through the night. i know because i did too. best purchase ive made in years.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w6_06e96ecb-72db-46f5-a723-15210b30ede2.png?v=1776370450",
+            "name_2": "Trevor S.",
+            "rating_2": 5,
+            "text_2": "gym guy. 44 years old. started getting joint inflammation that wouldnt quit. knees after squats, shoulders after pressing, even my elbows were angry. week 3 i noticed recovery was faster. by week 6 the chronic ache was mostly gone. easiest addition to my stack.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m13.png?v=1776370450",
+            "name_3": "Debra K.",
+            "rating_3": 5,
+            "text_3": "my outer hip pain was unbearable. couldnt lie on either side. 6 weeks in and i can lie on my side again. not perfectly comfortable but i can do it without wanting to cry. thats progress i didnt think was possible.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w14.png?v=1776370450",
+            "name_4": "Renee R.",
+            "rating_4": 5,
+            "text_4": "57, postmenopausal, both knees were so stiff every morning i would sit on the edge of the bed for 10 minutes just working up the courage to stand. tried everything. thousands of dollars. this is the only thing that actually reached the pain. by month 2 i was standing up and just walking. no warmup. no bracing. just walking.",
+            "image_url_4": "",
+            "name_5": "Curt A.",
+            "rating_5": 5,
+            "text_5": "i dont write reviews. ever. but this one earned it. frozen shoulder for 6 months. couldnt lift my arm. added this and the progress accelerated noticeably starting week 4. by week 10 i had most of my range back. thats all i have to say.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m7_ea7157a1-f119-48de-8841-7a304877cee5.png?v=1776370450"
+          }
+        },
+        "review_group_V8gcJa": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Marie B.",
+            "rating_1": 5,
+            "text_1": "58 years old and my joints woke me up every night. took about 5 weeks but the nighttime pain dropped dramatically. i actually sleep now.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b2.png?v=1776370450",
+            "name_2": "Penny B.",
+            "rating_2": 5,
+            "text_2": "my shoulder was frozen solid. getting dressed was a nightmare, my wife had to help. within a month the thawing accelerated. my PT kept saying she was surprised how fast things were moving. by month 3 i was reaching overhead. i get emotional thinking about it because i really thought i lost that arm.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b3.png?v=1776370450",
+            "name_3": "Hank D.",
+            "rating_3": 5,
+            "text_3": "55 years old. both knees from decades of basketball. by week 5 i was getting out of bed easier. by week 8 i played a half court game with my nephews for the first time in 3 years. something changed inside the joint and i can feel it.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.png?v=1776370450",
+            "name_4": "Martha T.",
+            "rating_4": 5,
+            "text_4": "everything hurt after menopause. elbows, wrists, knees, ankles. my gp said its normal aging. im 51. thats not old. 7 weeks in and the pain is probably 60% reduced. not gone but i feel human again.",
+            "image_url_4": "",
+            "name_5": "Vince B.",
+            "rating_5": 5,
+            "text_5": "tore my meniscus 10 years ago. knee was never the same. this is the first supplement that actually kept the flare-ups from happening. 3 months in and ive had zero bad days. not fewer bad days. zero. thats never happened.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.png?v=1776370450"
+          }
+        },
+        "review_group_Ab4xEx": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Bonnie W.",
+            "rating_1": 5,
+            "text_1": "ignored my daughters link three times. finally ordered because she wouldnt stop. 6 weeks later i called her and said you were right. my hip pain is genuinely better. moms should listen to their daughters more.",
+            "image_url_1": "",
+            "name_2": "Joyce P.",
+            "rating_2": 5,
+            "text_2": "my right shoulder froze 8 months ago. then my left started going too. the right shoulder started thawing faster than expected and the left one never fully froze. i genuinely believe this prevented the second one from getting as bad.",
+            "image_url_2": "",
+            "name_3": "Glen F.",
+            "rating_3": 5,
+            "text_3": "61. both shoulders stiff and painful. my doctor wanted to do cortisone in both shoulders. i wanted to try something else first. 8 weeks in my range improved enough that my doctor agreed to hold off on the shots. still improving at week 12.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m5_28e1614e-c265-42d9-b9bf-33fd207ebc80.png?v=1776370450",
+            "name_4": "Elaine D.",
+            "rating_4": 5,
+            "text_4": "menopause gave me joint pain i didnt even know was possible. tried turmeric. collagen. glucosamine. cutting sugar. nothing helped enough. this is the first thing that actually reduced the inflammation to where i could function normally. week 6 was when i felt the shift.",
+            "image_url_4": "",
+            "name_5": "Phil M.",
+            "rating_5": 5,
+            "text_5": "my wife begged me to try this for my shoulder. i resisted because i dont believe in supplements. she ordered it anyway. 5 weeks in my shoulder felt better. i still wont admit she was right to her face.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m12.png?v=1776370450"
+          }
+        },
+        "review_group_nr3dGW": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Connie L.",
+            "rating_1": 5,
+            "text_1": "the hip pain went from a constant 7 to maybe a 3. its not perfect but going from 7 to 3 gave me my life back.",
+            "image_url_1": "",
+            "name_2": "Dorothy V.",
+            "rating_2": 5,
+            "text_2": "I stopped taking it after 2 months because i felt fine. within 10 days everything came back. the stiffness, the swelling, the pain getting out of bed. reordered immediately. i will never stop taking this again. lesson learned.",
+            "image_url_2": "",
+            "name_3": "Valerie C.",
+            "rating_3": 5,
+            "text_3": "i couldnt open a water bottle. couldnt grip a pen. couldnt hold my grandsons hand without pain. by week 8 i held my grandsons hand on a walk and squeezed it. he squeezed back. that was worth more than i can explain here.",
+            "image_url_3": "",
+            "name_4": "Marilyn A.",
+            "rating_4": 5,
+            "text_4": "frozen shoulder club. mine lasted 14 months before i found this. by week 4 the pain at night reduced. by week 8 i could reach behind my back. im at 80% and 80% is a miracle compared to where i was.",
+            "image_url_4": "",
+            "name_5": "Shirley F.",
+            "rating_5": 5,
+            "text_5": "i tried SO many things. turmeric. glucosamine. boswellia. collagen. fish oil. literally everything. none of them did what this does. week 6 i understood the difference.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_QqgX4N": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Todd L.",
+            "rating_1": 5,
+            "text_1": "bad knees from running for 20 years. 10 weeks in and the daily ache is noticeably less. i started running again twice a week. my orthopedic said whatever youre doing keep doing it because the inflammation markers in my blood dropped.",
+            "image_url_1": "",
+            "name_2": "Cheryl N.",
+            "rating_2": 5,
+            "text_2": "both hips. both knees. menopause hit and my lower body just fell apart. i went from hiking on weekends to barely making it through a grocery store. 8 weeks later i did a short hike with my daughter. she cried. i cried. first time in 2 years.",
+            "image_url_2": "",
+            "name_3": "Jean M.",
+            "rating_3": 5,
+            "text_3": "my doctor said the shoulder will unfreeze on its own in 1-2 years. i said i cant wait 2 years i have a life to live. i am at about 90% range of motion at month 4. my doctor said some people just heal faster. i didnt tell him about the supplement.",
+            "image_url_3": "",
+            "name_4": "Rick H.",
+            "rating_4": 5,
+            "text_4": "construction worker. 52 years old. knees shoulders lower back — all inflamed all the time. by month 2 the baseline inflammation just dropped. the constant burning background pain is gone. thats the difference between functioning and suffering.",
+            "image_url_4": "",
+            "name_5": "Judith A.",
+            "rating_5": 5,
+            "text_5": "I am 61 and postmenopausal. my friend had been on this for 3 months and looked like a different person. she moved differently. 7 weeks in and i understand now. the inflammation just quiets down. thats the only way i can describe it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_6TJfcy": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carolyn E.",
+            "rating_1": 5,
+            "text_1": "menopause took my flexibility. i used to do yoga 4 times a week. by week 6 i was back on the mat. by week 12 i was almost back to my normal practice. i lost a year of my life to that inflammation and im angry nobody told me sooner.",
+            "image_url_1": "",
+            "name_2": "Virginia R.",
+            "rating_2": 5,
+            "text_2": "i bought every joint supplement on amazon over 2 years. spent hundreds. this helped a lot. the difference is it goes somewhere the others physically cannot. i wish id found it first and saved myself 2 years.",
+            "image_url_2": "",
+            "name_3": "Joe P.",
+            "rating_3": 5,
+            "text_3": "my wife ordered this for me because she was tired of hearing me complain about my knees. week 5 i realized i hadnt complained in a while. she pointed that out too. she doesnt need to know she was right though.",
+            "image_url_3": "",
+            "name_4": "Ruth S.",
+            "rating_4": 5,
+            "text_4": "54 and my hands swelled up so bad i had to cut my wedding ring off. that was the lowest point. 8 weeks in the swelling is controlled. not wearing my ring yet but my fingers are close.",
+            "image_url_4": "",
+            "name_5": "Beverly H.",
+            "rating_5": 5,
+            "text_5": "i almost gave up at week 3 because nothing felt different. so glad i didnt. week 5 is when the shift happened. by week 8 i was up and moving within 15 minutes of waking up. if youre reading this and thinking about quitting early — dont.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_FFMpiX": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Paul D.",
+            "rating_1": 5,
+            "text_1": "herniated disc plus knee arthritis plus shoulder impingement. added this and the background inflammation dropped enough that i could cut the NSAIDs in half. my liver enzymes improved at my next blood test too. doctor was pleased but wouldnt credit the supplement. thats fine. i know.",
+            "image_url_1": "",
+            "name_2": "Janice H.",
+            "rating_2": 5,
+            "text_2": "i work as a hairdresser. standing all day, arms overhead for 8 hours. the shoulder pain from menopause was threatening my career. by week 6 i was making it through a full day without the burning. im 58 and i wasnt ready to retire. this kept me working.",
+            "image_url_2": "",
+            "name_3": "Evelyn W.",
+            "rating_3": 5,
+            "text_3": "finishing bag 2 now. the joint pain from menopause is about 70% better. hips dont burn at night. knees dont lock on the stairs. the improvement was gradual enough that i didnt notice until i realized i stopped reaching for the ibuprofen bottle.",
+            "image_url_3": "",
+            "name_4": "Brent T.",
+            "rating_4": 5,
+            "text_4": "i read the actual studies before ordering. astaxanthin at 12mg has peer reviewed clinical data for inflammation and joint function. results matched the literature. joint pain reduced measurably by week 6. the evidence base is solid and my knees agree.",
+            "image_url_4": "",
+            "name_5": "Norma J.",
+            "rating_5": 5,
+            "text_5": "this is my third bag. the last time i ran low i stretched it out to every other day and within a week my hips started aching again. every single day. no skipping.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_UkqjWA": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Rose M.",
+            "rating_1": 5,
+            "text_1": "menopause at 48. joint pain at 49. by 50 i felt like i was 70. week 6 was the turning point. the inflammation just started calming and it hasnt come back.",
+            "image_url_1": "",
+            "name_2": "Kayla S.",
+            "rating_2": 4,
+            "text_2": "genuinely noticing improvement in my knee and hip pain. giving 4 stars only because results took about 5 weeks to show up. if youre patient it delivers.",
+            "image_url_2": "",
+            "name_3": "Paige W.",
+            "rating_3": 4,
+            "text_3": "product works great for my joint inflammation. my shoulders feel significantly better. knocking one star because i wish they had a bigger size so i didnt have to reorder as often.",
+            "image_url_3": "",
+            "name_4": "Joanne T.",
+            "rating_4": 4,
+            "text_4": "joint pain improved noticeably, morning stiffness much shorter. taking off one star because the softgel is a bit large for me — i manage fine but worth knowing.",
+            "image_url_4": "",
+            "name_5": "Scott R.",
+            "rating_5": 4,
+            "text_5": "shoulder pain improved around week 5. not completely gone but significantly better. would give 5 but i think the price could be a bit lower for what you get.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_G9zbdE": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Teri H.",
+            "rating_1": 4,
+            "text_1": "bought this for my husband. month 2 he said his knees feel better and asked what changed. he reordered himself. giving 4 stars because it took a full 6 weeks to see results.",
+            "image_url_1": "",
+            "name_2": "Diane M.",
+            "rating_2": 4,
+            "text_2": "was skeptical a supplement could help with my hip tendinitis, but after two weeks i could tell a difference, and after four weeks i was almost pain free. only 4 stars because i wish there was a subscription option.",
+            "image_url_2": "",
+            "name_3": "Shari L.",
+            "rating_3": 4,
+            "text_3": "i was very surprised this helped my hip pain. wasnt able to sleep on my sides, very painful, but it actually worked. only thing holding back the 5th star is the price.",
+            "image_url_3": "",
+            "name_4": "Nadia T.",
+            "rating_4": 3,
+            "text_4": "only 3 weeks in so probably too early to judge. joint pain might be slightly better but nothing dramatic yet. giving it the full 8 weeks before deciding.",
+            "image_url_4": "",
+            "name_5": "Wendy F.",
+            "rating_5": 3,
+            "text_5": "mixed so far. shoulder seems a bit better but no major change yet. only 4 weeks in so i know thats probably early. sticking with it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_iMdCKz": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Holly H.",
+            "rating_1": 3,
+            "text_1": "took about 12 days to arrive which is annoying when youre in pain and trying to start something. product itself seems fine once i got started.",
+            "image_url_1": "",
+            "name_2": "Vera P.",
+            "rating_2": 2,
+            "text_2": "delivery took about 10 days. not a deal breaker but worth knowing if timing matters to you.",
+            "image_url_2": "",
+            "name_3": "Beth T.",
+            "rating_3": 2,
+            "text_3": "softgel is bigger than expected. i manage but if you have trouble swallowing pills its worth knowing before you order.",
+            "image_url_3": "",
+            "name_4": "Julie S.",
+            "rating_4": 1,
+            "text_4": "expected something different from the photos. product is just softgels in a bag.",
+            "image_url_4": "",
+            "name_5": "Nikki P.",
+            "rating_5": 1,
+            "text_5": "sale ended before i could order. they wouldnt honor it. frustrating.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_AFyBcx": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carly M.",
+            "rating_1": 1,
+            "text_1": "shipping took longer than expected. annoying when youre in pain and trying to start consistently.",
+            "image_url_1": "",
+            "name_2": "Maya R.",
+            "rating_2": 1,
+            "text_2": "3 days in. nothing to report yet. leaving this to track my start date.",
+            "image_url_2": "",
+            "name_3": "",
+            "rating_3": 5,
+            "text_3": "",
+            "image_url_3": "",
+            "name_4": "",
+            "rating_4": 5,
+            "text_4": "",
+            "image_url_4": "",
+            "name_5": "",
+            "rating_5": 5,
+            "text_5": "",
+            "image_url_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_group_UPBFta",
+        "review_group_aepe6i",
+        "review_group_YDE7Jn",
+        "review_group_T8RAiD",
+        "review_group_QHcHcT",
+        "review_group_tdz3wF",
+        "review_group_V8gcJa",
+        "review_group_Ab4xEx",
+        "review_group_nr3dGW",
+        "review_group_QqgX4N",
+        "review_group_6TJfcy",
+        "review_group_FFMpiX",
+        "review_group_UkqjWA",
+        "review_group_G9zbdE",
+        "review_group_iMdCKz",
+        "review_group_AFyBcx"
+      ],
+      "name": "Reviews grid",
+      "settings": {
+        "average_rating": "4.84",
+        "total_reviews": "50,312",
+        "pct_5": 88,
+        "count_5": "44,863",
+        "pct_4": 7,
+        "count_4": "3,979",
+        "pct_3": 2,
+        "count_3": "758",
+        "pct_2": 1,
+        "count_2": "293",
+        "pct_1": 2,
+        "count_1": "419",
+        "columns_desktop": 3,
+        "reviews_per_page": 9,
+        "button_color": "#8c3a3a"
+      }
+    },
+    "nvgd_faq_yXeVbA": {
+      "type": "nvgd-faq",
+      "blocks": {
+        "faq_item_mPtaqq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "I've Tried Everything. What Makes This Different?",
+            "answer": "<p>Astaxanthin works at the cellular level — it's not a painkiller or a temporary fix. It targets the root cause of joint inflammation and builds protection over time.</p>"
+          }
+        },
+        "faq_item_idPTLU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does This Work If I Have Arthritis?",
+            "answer": "<p>Yes. Many customers with arthritis report significant improvement in stiffness and pain within 3–6 weeks of consistent use.</p>"
+          }
+        },
+        "faq_item_8DqNVU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are There Any Side Effects?",
+            "answer": "<p>Astaxanthin is well-tolerated by most people. It's a natural carotenoid with no known serious side effects at clinical doses.</p>"
+          }
+        },
+        "faq_item_EMrJUj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is It Safe For Daily Use?",
+            "answer": "<p>Yes — it's designed for daily use. Consistent daily dosing is what allows the compound to build up in your joint tissue over time.</p>"
+          }
+        },
+        "faq_item_ctyrmU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where Is It Made?",
+            "answer": "<p>Revella is manufactured in a GMP-certified facility in the United States, with third-party lab testing on every batch.</p>"
+          }
+        },
+        "faq_item_zm9mVx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What If It Doesn't Work For Me?",
+            "answer": "<p>We offer a full 60-day money-back guarantee. If you're not satisfied for any reason, contact us and we'll refund you — no questions asked.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_mPtaqq",
+        "faq_item_idPTLU",
+        "faq_item_8DqNVU",
+        "faq_item_EMrJUj",
+        "faq_item_ctyrmU",
+        "faq_item_zm9mVx"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "layout": "stacked",
+        "split_header_width": 35,
+        "split_column_gap": 64,
+        "max_width": 700,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "header_alignment": "center",
+        "header_margin_bottom": 32,
+        "eyebrow": "Frequently Asked Questions",
+        "eyebrow_font_size": 14,
+        "eyebrow_font_weight": "400",
+        "heading": "Your Questions, Answered!",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "item_gap": 12,
+        "item_border_radius": 16,
+        "item_border_width": 1,
+        "item_padding_vertical": 18,
+        "item_padding_horizontal": 20,
+        "question_font_size": 16,
+        "question_font_weight": "400",
+        "answer_font_size": 15,
+        "icon_size": 22,
+        "accordion_mode": false,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#777777",
+        "heading_color": "#8c3a3a",
+        "item_background": "#f5eeee",
+        "item_border_color": "#8c3a3a",
+        "question_color": "#1a1a1a",
+        "answer_color": "#555555",
+        "icon_color": "#555555"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "trust_banner_wXM4E4",
+    "review_marquee_imQLUz",
+    "review_card_3xCdjj",
+    "proven_result_mdNYJ9",
+    "carousel_nPPaMB",
+    "before_after_biiP9L",
+    "four_column_badge_KkbnrX",
+    "animated_wave_divider_pbft83",
+    "information_card_igAJVJ",
+    "research_card_fqgxnW",
+    "running_marquee_k3qnar",
+    "journey_MWkCz7",
+    "comparison_table_hH8TLN",
+    "free_trial_rgzqta",
+    "nvgd_review_grid_VfVdcT",
+    "nvgd_faq_yXeVbA"
+  ]
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title>
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% comment %}
+    News / advertorial skin. Uses system serif + sans stacks (Georgia,
+    Times, system UI) so there is no external font dependency and nothing
+    trips theme-check's RemoteAsset rule. White page background.
+  {% endcomment %}
+  <style>
+    html{-webkit-text-size-adjust:100%}
+    body{margin:0;background:#ffffff}
+  </style>
+  {{ content_for_header }}
+</head>
+<body>
+  {{ content_for_layout }}
+</body>
+</html>

@@ -1,0 +1,801 @@
+{% comment %}
+  GNRL-information-card.liquid  v4
+  ─────────────────────────────────────────────────────────────────────────────
+  Competitor clone — "Comprehensive Wellness Benefits" Splide carousel.
+
+  Structure
+  ──────────
+  .gnrl-ic                      section background + section padding
+    .gnrl-ic__heading           centred heading above the tray
+    .gnrl-ic__tray              ONE white rounded card (shadow lives here)
+      .splide / .splide__track  Splide carousel (overflow: hidden = clips slides)
+        .gnrl-ic-card           each slide — transparent, no shadow, no border
+      .gnrl-ic__nav             [‹] ● ● ● [›]  sits INSIDE tray, below slides
+
+  v4 change: nav moved inside .gnrl-ic__tray
+  ─────────────────────────────────────────────────────────────────────────────
+{% endcomment %}
+
+{%- style -%}
+
+/* ── Visibility ── */
+@media (max-width: 749px) {
+  #shopify-section-{{ section.id }}.sc-hide-mobile  { display: none !important; }
+}
+@media (min-width: 750px) {
+  #shopify-section-{{ section.id }}.sc-hide-desktop { display: none !important; }
+}
+
+/* ── Section ── */
+#shopify-section-{{ section.id }} .gnrl-ic {
+  padding-top:    {{ section.settings.padding_top    | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  background: {{ section.settings.section_bg }};
+}
+@media screen and (min-width: 750px) {
+  #shopify-section-{{ section.id }} .gnrl-ic {
+    padding-top:    {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+/* ── Section heading ── */
+#shopify-section-{{ section.id }} .gnrl-ic__heading {
+  text-align:  center;
+  color:       {{ section.settings.heading_color }};
+  font-size:   {{ section.settings.heading_font_size }}px;
+  font-weight: {{ section.settings.heading_font_weight }};
+  margin: 0 0 {{ section.settings.heading_gap }}px;
+  line-height: 1.25;
+}
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .gnrl-ic__heading {
+    font-size: {{ section.settings.heading_font_size | times: 0.82 | round: 0 }}px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   OUTER TRAY — the one white card with shadow.
+   overflow:hidden clips images/slides at the rounded corners.
+──────────────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .gnrl-ic__tray {
+  background:    {{ section.settings.card_bg }};
+  border-radius: {{ section.settings.tray_border_radius }}px;
+  overflow:      hidden;
+  {% if section.settings.tray_show_shadow %}
+    box-shadow: 2px 6px 24px rgba(0,0,0,0.15);
+  {% endif %}
+  {% if section.settings.tray_show_border %}
+    border: {{ section.settings.tray_border_width }}px solid {{ section.settings.tray_border_color }};
+  {% endif %}
+}
+
+/* Splide root — overflow visible so the nav below isn't clipped */
+#shopify-section-{{ section.id }} .gnrl-ic__splide {
+  overflow: visible;
+}
+
+/* Splide track — must clip slides */
+#shopify-section-{{ section.id }} .gnrl-ic__splide .splide__track {
+  overflow: hidden;
+  transition: padding 0.3s ease;
+}
+
+/* ── Individual card — transparent, no decoration ── */
+#shopify-section-{{ section.id }} .gnrl-ic-card {
+  background:     transparent;
+  padding:        {{ section.settings.card_padding_y }}px {{ section.settings.card_padding_x }}px;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  /* height:100% so equal-height slides work */
+  height:         100%;
+  box-sizing:     border-box;
+}
+
+/* ── Card image ── */
+#shopify-section-{{ section.id }} .gnrl-ic-card__image-wrap {
+  width:         100%;
+  border-radius: {{ section.settings.image_border_radius }}px;
+  overflow:      hidden;
+  flex-shrink:   0;
+  aspect-ratio:  1 / 1;
+  margin-bottom: {{ section.settings.card_content_gap }}px;
+}
+#shopify-section-{{ section.id }} .gnrl-ic-card__image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+#shopify-section-{{ section.id }} .gnrl-ic-card__image-placeholder {
+  width: 100%; height: 100%;
+  background: #f0f0f0;
+  display: flex; align-items: center; justify-content: center;
+}
+#shopify-section-{{ section.id }} .gnrl-ic-card__image-placeholder svg {
+  width: 64px; height: 64px; opacity: 0.25;
+}
+
+/* ── Card title ── */
+#shopify-section-{{ section.id }} .gnrl-ic-card__title {
+  font-size:   {{ section.settings.title_font_size }}px;
+  font-weight: {{ section.settings.title_font_weight }};
+  color:       {{ section.settings.title_color }};
+  text-align:  center;
+  margin: 0 0 {{ section.settings.card_content_gap }}px;
+  line-height: 1.3;
+}
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .gnrl-ic-card__title {
+    font-size: {{ section.settings.title_font_size | times: 0.85 | round: 0 }}px;
+  }
+}
+
+/* ── Card body ── */
+#shopify-section-{{ section.id }} .gnrl-ic-card__body {
+  font-size:   {{ section.settings.body_font_size }}px;
+  color:       {{ section.settings.body_color }};
+  text-align:  center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   NAV BAR — now lives INSIDE .gnrl-ic__tray, below the slides
+   [‹]  ● ● ●  [›]  centred on one row
+──────────────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .gnrl-ic__nav {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             14px;
+  padding:         16px 12px 20px;
+}
+
+/* Dot list — reset Splide's absolute positioning */
+#shopify-section-{{ section.id }} .gnrl-ic__dots {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+  display:    flex;
+  align-items: center;
+  gap:         12px;
+}
+#shopify-section-{{ section.id }} .gnrl-ic__dot {
+  width:         6px;
+  height:        6px;
+  border-radius: 50%;
+  border:        none;
+  padding:       0;
+  cursor:        pointer;
+  background:    {{ section.settings.dot_color }};
+  opacity:       0.35;
+  transition:    opacity 0.2s, transform 0.2s;
+}
+#shopify-section-{{ section.id }} .gnrl-ic__dot.is-active {
+  opacity:   1;
+  transform: scale(1.4);
+  background: {{ section.settings.dot_active_color }};
+}
+
+/* Arrow buttons */
+#shopify-section-{{ section.id }} .gnrl-ic__arrow {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  /* width:           36px; */
+  /* height:          36px; */
+  /* border-radius:   50%; */
+  border:          none;
+  cursor:          pointer;
+  background:      {{ section.settings.arrow_bg }};
+  opacity:         {{ section.settings.arrow_opacity | divided_by: 100.0 }};
+  padding:         0;
+  flex-shrink:     0;
+  transition:      opacity 0.2s;
+  /* box-shadow:      0 1px 4px rgba(0,0,0,0.12); */
+}
+#shopify-section-{{ section.id }} .gnrl-ic__arrow:hover   { opacity: 1; }
+#shopify-section-{{ section.id }} .gnrl-ic__arrow:disabled {
+  opacity: 0.25;
+  cursor:  default;
+}
+#shopify-section-{{ section.id }} .gnrl-ic__arrow svg {
+  fill:   {{ section.settings.arrow_icon_color }};
+  width:  15px;
+  height: 15px;
+  display: block;
+}
+/* Flip prev arrow to face left */
+#shopify-section-{{ section.id }} .gnrl-ic__arrow--prev svg {
+  transform: scaleX(-1);
+}
+
+/* Desktop nav visibility */
+@media screen and (min-width: 750px) {
+  {% unless section.settings.show_arrows_desktop %}
+    #shopify-section-{{ section.id }} .gnrl-ic__arrow { display: none !important; }
+  {% endunless %}
+  {% unless section.settings.show_dots_desktop %}
+    #shopify-section-{{ section.id }} .gnrl-ic__dots  { display: none !important; }
+  {% endunless %}
+  {% unless section.settings.show_arrows_desktop or section.settings.show_dots_desktop %}
+    #shopify-section-{{ section.id }} .gnrl-ic__nav   { display: none !important; }
+  {% endunless %}
+}
+
+{%- endstyle -%}
+
+{%- comment -%} Splide core CSS {%- endcomment -%}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css"
+  media="print"
+  onload="this.media='all'"
+>
+<noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css">
+</noscript>
+
+{%- assign visibility_class = '' -%}
+{%- if section.settings.visibility == 'mobile-only'  -%}{%- assign visibility_class = 'sc-hide-desktop' -%}{%- endif -%}
+{%- if section.settings.visibility == 'desktop-only' -%}{%- assign visibility_class = 'sc-hide-mobile'  -%}{%- endif -%}
+
+<div class="gnrl-ic color-{{ section.settings.color_scheme }} gradient {{ visibility_class }}">
+  <div class="page-width">
+
+    {%- unless section.settings.heading == blank -%}
+      <h2 class="gnrl-ic__heading {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endunless -%}
+
+    {%- if section.blocks.size > 0 -%}
+
+      {{- '<!-- ONE outer tray card -->' }}
+      <div class="gnrl-ic__tray">
+        <div
+          id="gnrl-ic-splide-{{ section.id }}"
+          class="splide gnrl-ic__splide"
+          aria-label="{{ section.settings.heading | escape }}"
+        >
+          <div class="splide__track">
+            <ul class="splide__list">
+              {%- for block in section.blocks -%}
+                <li class="splide__slide" {{ block.shopify_attributes }}>
+                  <div class="gnrl-ic-card">
+
+                    {%- if section.settings.show_image -%}
+                      <div class="gnrl-ic-card__image-wrap">
+                        {%- if block.settings.image != blank -%}
+                          {{
+                            block.settings.image
+                            | image_url: width: 800
+                            | image_tag: loading: 'lazy', alt: block.settings.title
+                          }}
+                        {%- else -%}
+                          <div class="gnrl-ic-card__image-placeholder">
+                            {{ 'image' | placeholder_svg_tag }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="gnrl-ic-card__title">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+
+                    {%- if block.settings.body != blank -%}
+                      <div class="gnrl-ic-card__body rte">{{ block.settings.body }}</div>
+                    {%- endif -%}
+
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+
+        {{- '<!-- Nav now lives INSIDE the tray card -->' }}
+        <div class="gnrl-ic__nav" id="gnrl-ic-nav-{{ section.id }}">
+
+          <button
+            class="gnrl-ic__arrow gnrl-ic__arrow--prev"
+            type="button"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"/>
+            </svg>
+          </button>
+
+          <ul class="gnrl-ic__dots" id="gnrl-ic-dots-{{ section.id }}" role="tablist" aria-label="{{ 'general.slider.of' | t }}"></ul>
+
+          <button
+            class="gnrl-ic__arrow gnrl-ic__arrow--next"
+            type="button"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"/>
+            </svg>
+          </button>
+
+        </div>
+
+      </div>{{- '<!-- /.gnrl-ic__tray -->' }}
+
+    {%- else -%}
+      <div class="gnrl-ic__empty" style="text-align:center;padding:2rem;">
+        <p>Click <strong>Add block</strong> in the theme editor to add cards.</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{{- '<!-- Splide JS loaded synchronously so inline init script can call it immediately -->' }}
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script>
+(function () {
+  var SECTION_ID   = 'gnrl-ic-splide-{{ section.id }}';
+  var DOTS_ID      = 'gnrl-ic-dots-{{ section.id }}';
+  var NAV_ID       = 'gnrl-ic-nav-{{ section.id }}';
+
+  var PER_DESKTOP  = {{ section.settings.columns_desktop }};
+  var PER_MOBILE   = {{ section.settings.columns_mobile }};
+  var GAP_DESKTOP  = {{ section.settings.gap_desktop }};
+  var GAP_MOBILE   = {{ section.settings.gap_mobile }};
+  var PEEK_MOBILE  = {{ section.settings.side_padding_mobile }};
+  var AUTOPLAY     = {{ section.settings.autoplay }};
+  var INTERVAL     = {{ section.settings.autoplay_speed | times: 1000 }};
+
+  function initGnrlIc() {
+    var splideEl = document.getElementById(SECTION_ID);
+    if (!splideEl) return;
+
+    var isMobile = window.innerWidth < 750;
+
+    var splide = new Splide(splideEl, {
+      type:         'slide',
+      perPage:      isMobile ? PER_MOBILE   : PER_DESKTOP,
+      perMove:      1,
+      gap:          isMobile ? GAP_MOBILE + 'px' : GAP_DESKTOP + 'px',
+      padding:      0,
+      pagination:   false,
+      arrows:       false,
+      autoplay:     AUTOPLAY,
+      interval:     INTERVAL,
+      pauseOnHover: true,
+      breakpoints: {
+        749:  { perPage: PER_MOBILE,  gap: GAP_MOBILE  + 'px', padding: 0 },
+        9999: { perPage: PER_DESKTOP, gap: GAP_DESKTOP + 'px', padding: 0 }
+      }
+    });
+
+    /* Build dots AFTER mount so splide.length is correct */
+    splide.on('ready', function () {
+      var dotsEl  = document.getElementById(DOTS_ID);
+      var navEl   = document.getElementById(NAV_ID);
+      var prevBtn = navEl ? navEl.querySelector('.gnrl-ic__arrow--prev') : null;
+      var nextBtn = navEl ? navEl.querySelector('.gnrl-ic__arrow--next') : null;
+      var total   = splide.length;
+      var pp      = splide.options.perPage;
+      var dots    = [];
+
+      /* Render dot buttons */
+      if (dotsEl) {
+        for (var i = 0; i < total; i++) {
+          var li  = document.createElement('li');
+          li.setAttribute('role', 'presentation');
+          var btn = document.createElement('button');
+          btn.className = 'gnrl-ic__dot' + (i === 0 ? ' is-active' : '');
+          btn.type      = 'button';
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          (function (idx) {
+            btn.addEventListener('click', function () { splide.go(idx); });
+          })(i);
+          li.appendChild(btn);
+          dotsEl.appendChild(li);
+          dots.push(btn);
+        }
+      }
+
+      /* Wire arrows */
+      if (prevBtn) {
+        prevBtn.disabled = true; /* starts at slide 0 */
+        prevBtn.addEventListener('click', function () { splide.go('<'); });
+      }
+      if (nextBtn) {
+        nextBtn.disabled = (total <= pp);
+        nextBtn.addEventListener('click', function () { splide.go('>'); });
+      }
+
+      /* Flip peek padding on last slide (mobile only) */
+      var trackEl = splideEl.querySelector('.splide__track');
+
+      function updatePeek(idx) {
+        if (window.innerWidth >= 750 || !trackEl) return;
+        var currentPP = splide.options.perPage;
+        var isLast = (idx >= total - currentPP);
+        trackEl.style.paddingLeft  = isLast ? PEEK_MOBILE + 'px' : '0px';
+        trackEl.style.paddingRight = isLast ? '0px' : PEEK_MOBILE + 'px';
+      }
+
+      /* Set initial peek */
+      updatePeek(0);
+
+      /* Sync on slide change */
+      splide.on('moved', function (newIdx) {
+        var currentPP = splide.options.perPage;
+        dots.forEach(function (d, i) {
+          var active = (i === newIdx);
+          d.classList.toggle('is-active', active);
+          d.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        if (prevBtn) prevBtn.disabled = (newIdx === 0);
+        if (nextBtn) nextBtn.disabled = (newIdx >= total - currentPP);
+        updatePeek(newIdx);
+      });
+    });
+
+    splide.mount();
+  }
+
+  /* Splide script is synchronous — DOM just needs to be ready */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGnrlIc);
+  } else {
+    initGnrlIc();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GNRL Information Cards",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Show on",
+      "options": [
+        { "value": "all",          "label": "All devices"   },
+        { "value": "mobile-only",  "label": "Mobile only"   },
+        { "value": "desktop-only", "label": "Desktop only"  }
+      ],
+      "default": "all"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "accent-1",     "label": "Accent 1"     },
+        { "value": "accent-2",     "label": "Accent 2"     },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse",      "label": "Inverse"      }
+      ],
+      "default": "background-1"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#F0F4FF"
+    },
+    { "type": "header", "content": "Section heading" },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Comprehensive Wellness Benefits"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h3", "label": "Extra small" },
+        { "value": "h2", "label": "Small"       },
+        { "value": "h1", "label": "Medium"      },
+        { "value": "h0", "label": "Large"       }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Font size (px)",
+      "min": 16, "max": 60, "step": 2, "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Regular"    },
+        { "value": "600", "label": "Semi-bold"  },
+        { "value": "700", "label": "Bold"       },
+        { "value": "800", "label": "Extra-bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space below heading (px)",
+      "min": 0, "max": 80, "step": 4, "default": 24
+    },
+    { "type": "header", "content": "Carousel layout" },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Slides visible — desktop",
+      "min": 1, "max": 5, "step": 1, "default": 3
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap between slides — desktop (px)",
+      "min": 0, "max": 60, "step": 4, "default": 28
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Slides visible — mobile",
+      "min": 1, "max": 3, "step": 1, "default": 1
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap between slides — mobile (px)",
+      "min": 0, "max": 40, "step": 4, "default": 8
+    },
+    {
+      "type": "range",
+      "id": "side_padding_mobile",
+      "label": "Peek padding — mobile (px)",
+      "min": 0, "max": 80, "step": 4, "default": 28,
+      "info": "Shows the edge of the next card on mobile."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed (seconds)",
+      "min": 2, "max": 10, "step": 1, "default": 4
+    },
+    { "type": "header", "content": "Navigation (dots + arrows)" },
+    {
+      "type": "checkbox",
+      "id": "show_arrows_desktop",
+      "label": "Show arrows on desktop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots_desktop",
+      "label": "Show dots on desktop",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#6d388b"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#6d388b"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "arrow_opacity",
+      "label": "Arrow opacity (%)",
+      "min": 10, "max": 100, "step": 5, "default": 90
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Arrow icon color",
+      "default": "#121212"
+    },
+    { "type": "header", "content": "Outer tray style" },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Tray background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "tray_border_radius",
+      "label": "Corner radius (px)",
+      "min": 0, "max": 30, "step": 2, "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "tray_show_shadow",
+      "label": "Show tray shadow",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tray_show_border",
+      "label": "Show tray border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "tray_border_width",
+      "label": "Border width (px)",
+      "min": 1, "max": 5, "step": 1, "default": 1
+    },
+    {
+      "type": "color",
+      "id": "tray_border_color",
+      "label": "Border color",
+      "default": "#6d388b"
+    },
+    { "type": "header", "content": "Slide content style" },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show images",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius (px)",
+      "min": 0, "max": 24, "step": 2, "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding_y",
+      "label": "Slide vertical padding (px)",
+      "min": 0, "max": 40, "step": 2, "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding_x",
+      "label": "Slide horizontal padding (px)",
+      "min": 0, "max": 40, "step": 2, "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_content_gap",
+      "label": "Gap between image / title / text (px)",
+      "min": 0, "max": 32, "step": 2, "default": 12
+    },
+    { "type": "header", "content": "Title typography" },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font size (px)",
+      "min": 14, "max": 36, "step": 1, "default": 22
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Regular"   },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold"      }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    { "type": "header", "content": "Body text typography" },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "label": "Font size (px)",
+      "min": 12, "max": 20, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Color",
+      "default": "#4a4a4a"
+    },
+    { "type": "header", "content": "Section padding" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top (px)",
+      "min": 0, "max": 100, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom (px)",
+      "min": 0, "max": 100, "step": 4, "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Natural Astaxanthin"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body text",
+          "default": "<p>Add a description or benefit highlight for this card.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GNRL Information Cards",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "Natural Astaxanthin",
+            "body": "<p>Sourced from Haematococcus pluvialis microalgae, this 12mg dose delivers one of nature's most potent antioxidants, designed for daily, long-term cellular support.*</p>"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Enhanced Absorption",
+            "body": "<p>Fat-soluble compounds require proper delivery. Our oil-based formula maximizes bioavailability so active ingredients reach your cells effectively.</p>"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Clean & Lab Tested Quality",
+            "body": "<p>Every batch is manufactured in a GMP-certified, FDA-registered facility. Non-GMO, gluten-free, soy-free, and made without synthetic ingredients, harsh additives, fillers, or artificial compounds.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

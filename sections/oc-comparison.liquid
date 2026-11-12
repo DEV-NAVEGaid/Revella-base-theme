@@ -1,0 +1,102 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+<div class="lm">
+  <section class="wrap cmp"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="cmp-h">
+        <div class="hd">
+          {%- if s.eyebrow != blank %}<span class="eb">{{ s.eyebrow }}</span>{% endif -%}
+          {%- if s.heading != blank %}<h2 class="h2 lh48">{{ s.heading }}</h2>{% endif -%}
+        </div>
+        {%- if s.subheading != blank %}<p class="cmp-sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+      <div class="shell">
+        <div class="ctb">
+          <div class="crow top">
+            <div class="cc"><span class="cl">{{ s.col_feature }}</span></div>
+            <div class="cc us">
+              <div class="cimg">
+                {%- if s.us_image != blank -%}
+                  {{ s.us_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: s.col_us }}
+                {%- else -%}
+                  <div class="mini"></div>
+                {%- endif -%}
+              </div>
+              <span class="cl us-l">{{ s.col_us }}</span>
+            </div>
+            <div class="cc">
+              <div class="cimg">
+                {%- if s.them_image != blank -%}
+                  {{ s.them_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: s.col_them }}
+                {%- else -%}
+                  <div class="tub"></div>
+                {%- endif -%}
+              </div>
+              <span class="cl th-l">{{ s.col_them }}</span>
+            </div>
+          </div>
+          {%- for block in section.blocks -%}
+            <div class="crow" {{ block.shopify_attributes }}>
+              <div class="cc"><span class="cf">{{ block.settings.feature }}</span></div>
+              <div class="cc us">{% render 'oc-icon', icon: block.settings.us_icon %}<span class="cf">{{ block.settings.us }}</span></div>
+              <div class="cc">{% render 'oc-icon', icon: block.settings.them_icon %}<span class="cf">{{ block.settings.them }}</span></div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon, dark: true %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Comparison",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "Us vs them" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "The New <em>Gold Standard</em>", "info": "Italic text is shown in the blue accent color." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "See how Lymphgem stacks up on dosing, testing and everyday ease." },
+    { "type": "header", "content": "Columns" },
+    { "type": "text", "id": "col_feature", "label": "Feature column", "default": "Feature" },
+    { "type": "text", "id": "col_us", "label": "Our column", "default": "Lymphgem" },
+    { "type": "image_picker", "id": "us_image", "label": "Our product image", "info": "84 × 104 px. Empty = mini pouch." },
+    { "type": "text", "id": "col_them", "label": "Their column", "default": "Other creatine" },
+    { "type": "image_picker", "id": "them_image", "label": "Their product image", "info": "84 × 104 px. Empty = generic tub." },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "dk", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #F1F5F9." }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature", "default": "Creatine per serving" },
+        { "type": "select", "id": "us_icon", "label": "Our icon", "default": "yes", "options": [ { "value": "yes", "label": "Check" }, { "value": "no", "label": "Cross" } ] },
+        { "type": "text", "id": "us", "label": "Our value", "default": "Full daily dose" },
+        { "type": "select", "id": "them_icon", "label": "Their icon", "default": "no", "options": [ { "value": "yes", "label": "Check" }, { "value": "no", "label": "Cross" } ] },
+        { "type": "text", "id": "them", "label": "Their value", "default": "[Lower dose]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Comparison",
+      "blocks": [
+        { "type": "row" },
+        { "type": "row", "settings": { "feature": "Dose independently tested", "us": "Third-party COA", "them": "Label only" } },
+        { "type": "row", "settings": { "feature": "Needs a shaker bottle", "us": "No", "them": "Yes" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

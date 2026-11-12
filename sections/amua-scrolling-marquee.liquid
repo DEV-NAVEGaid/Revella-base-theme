@@ -1,0 +1,366 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .amua-marquee {
+    --amua-mq-bg-start: {{ section.settings.bg_gradient_start }};
+    --amua-mq-bg-end: {{ section.settings.bg_gradient_end }};
+    --amua-mq-bg-angle: {{ section.settings.bg_gradient_angle }}deg;
+    --amua-mq-text-color: {{ section.settings.text_color }};
+    --amua-mq-icon-color: {{ section.settings.icon_color }};
+    --amua-mq-font-size-mobile: {{ section.settings.font_size_mobile }}px;
+    --amua-mq-font-size-desktop: {{ section.settings.font_size_desktop }}px;
+    --amua-mq-font-weight: {{ section.settings.font_weight }};
+    --amua-mq-height-mobile: {{ section.settings.bar_height_mobile }}px;
+    --amua-mq-height-desktop: {{ section.settings.bar_height_desktop }}px;
+    --amua-mq-icon-size: {{ section.settings.icon_size }}px;
+    --amua-mq-item-gap: {{ section.settings.item_gap }}px;
+    --amua-mq-speed: {{ section.settings.scroll_speed }}s;
+    --amua-mq-padding-top: {{ section.settings.padding_top }}px;
+    --amua-mq-padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    background: linear-gradient(
+      var(--amua-mq-bg-angle),
+      var(--amua-mq-bg-start),
+      var(--amua-mq-bg-end)
+    );
+    padding-top: var(--amua-mq-padding-top);
+    padding-bottom: var(--amua-mq-padding-bottom);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__track-wrap {
+    height: var(--amua-mq-height-mobile);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: amua-mq-scroll-{{ section.id }} var(--amua-mq-speed) linear infinite;
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee:hover .amua-marquee__track {
+    animation-play-state: {{ section.settings.pause_on_hover | default: false | ternary: 'paused', 'running' }};
+  }
+
+  @keyframes amua-mq-scroll-{{ section.id }} {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-25%, 0, 0); }
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 var(--amua-mq-item-gap);
+    color: var(--amua-mq-text-color);
+    font-size: var(--amua-mq-font-size-mobile);
+    font-weight: var(--amua-mq-font-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--amua-mq-icon-color);
+  }
+
+  #shopify-section-{{ section.id }} .amua-marquee__icon svg {
+    width: var(--amua-mq-icon-size);
+    height: var(--amua-mq-icon-size);
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .amua-marquee__track-wrap {
+      height: var(--amua-mq-height-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .amua-marquee__item {
+      font-size: var(--amua-mq-font-size-desktop);
+    }
+  }
+{%- endstyle -%}
+
+{%- assign feature_blocks = section.blocks | where: "type", "feature_item" -%}
+
+<div class="amua-marquee" id="amua-marquee-{{ section.id }}">
+  <div class="amua-marquee__track-wrap">
+    <div class="amua-marquee__track">
+      {%- comment -%} 4 duplicate groups for seamless loop {%- endcomment -%}
+      {%- for group in (1..4) -%}
+        <div class="amua-marquee__group" {% if group > 1 %}aria-hidden="true"{% endif %}>
+          {%- for block in feature_blocks -%}
+            <div class="amua-marquee__item" {{ block.shopify_attributes }}>
+              <span class="amua-marquee__icon">
+                {%- case block.settings.icon -%}
+                  {%- when 'shield' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="currentColor"/><path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {%- when 'truck' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3H16V16H1V3Z" fill="currentColor"/><path d="M16 8H20L23 11V16H16V8Z" fill="currentColor"/><circle cx="5.5" cy="18.5" r="2.5" fill="currentColor"/><circle cx="18.5" cy="18.5" r="2.5" fill="currentColor"/></svg>
+                  {%- when 'checkmark' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {%- when 'leaf' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22L6.66 19.7C7.14 19.87 7.64 20 8.17 20C12.18 20 15.13 17.05 16.69 14.62C18.5 11.83 19 8.59 19 6L17 8Z" fill="currentColor"/></svg>
+                  {%- when 'star' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/></svg>
+                  {%- when 'heart' -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61C20.33 4.1 19.73 3.69 19.07 3.42C18.41 3.15 17.7 3 16.99 3C16.28 3 15.57 3.15 14.91 3.42C14.25 3.69 13.65 4.1 13.14 4.61L12 5.76L10.86 4.61C9.84 3.59 8.46 3.01 7.01 3.01C5.56 3.01 4.18 3.59 3.16 4.61C2.14 5.63 1.56 7.01 1.56 8.46C1.56 9.91 2.14 11.29 3.16 12.31L12 21.16L20.84 12.31C21.35 11.8 21.76 11.2 22.03 10.54C22.3 9.88 22.45 9.17 22.45 8.46C22.45 7.75 22.3 7.04 22.03 6.38C21.76 5.72 21.35 5.12 20.84 4.61Z" fill="currentColor"/></svg>
+                  {%- when 'none' -%}
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="currentColor"/><path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {%- endcase -%}
+              </span>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Amua: Scrolling Marquee",
+  "tag": "section",
+  "class": "section-amua-marquee",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_start",
+      "label": "Gradient start color",
+      "default": "#F6D365"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_end",
+      "label": "Gradient end color",
+      "default": "#F0A830"
+    },
+    {
+      "type": "range",
+      "id": "bg_gradient_angle",
+      "label": "Gradient angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "°",
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (seconds)",
+      "info": "Lower = faster",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "bar_height_mobile",
+      "label": "Bar height (mobile)",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "bar_height_desktop",
+      "label": "Bar height (desktop)",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "100% NATURAL"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield checkmark" },
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "checkmark", "label": "Checkmark circle" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "star", "label": "Star" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "none", "label": "No icon" }
+          ],
+          "default": "shield"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Scrolling Marquee",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": {
+            "text": "100% NATURAL",
+            "icon": "shield"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "text": "FAST SHIPPING",
+            "icon": "truck"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "text": "SATISFACTION GUARANTEED",
+            "icon": "checkmark"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,213 @@
+{%- style -%}
+  #amua-faq-{{ section.id }},
+  #amua-faq-{{ section.id }} * { box-sizing: border-box; }
+
+  #amua-faq-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 16px {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  .amua-faq { max-width: 800px; margin: 0 auto; }
+
+  /* ── Heading ── */
+  .amua-faq__heading {
+    text-align: center;
+    margin: 0 0 {{ section.settings.heading_gap }}px;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.heading_color }};
+    line-height: 1.15;
+  }
+
+  /* ── Subtitle ── */
+  .amua-faq__subtitle {
+    text-align: center;
+    margin: 0 0 {{ section.settings.subtitle_gap }}px;
+    font-size: {{ section.settings.subtitle_size }}px;
+    color: {{ section.settings.subtitle_color }};
+    line-height: 1.55;
+  }
+
+  /* ── Container ── */
+  .amua-faq__list {
+    border: {{ section.settings.container_border_width }}px solid {{ section.settings.container_border_color }};
+    border-radius: {{ section.settings.container_radius }}px;
+    overflow: hidden;
+  }
+
+  /* ── Item ── */
+  .amua-faq__item {
+    border-bottom: 1px solid {{ section.settings.divider_color }};
+  }
+  .amua-faq__item:last-child { border-bottom: none; }
+
+  /* ── Question (summary) ── */
+  .amua-faq__q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: {{ section.settings.q_padding_v }}px {{ section.settings.q_padding_h }}px;
+    cursor: pointer;
+    gap: 12px;
+    list-style: none;
+    background: {{ section.settings.q_bg }};
+    font-size: {{ section.settings.q_size }}px;
+    font-weight: {{ section.settings.q_weight }};
+    color: {{ section.settings.q_color }};
+    line-height: 1.4;
+  }
+  .amua-faq__q::-webkit-details-marker { display: none; }
+  .amua-faq__q::marker { display: none; }
+
+  /* ── Toggle icon ── */
+  .amua-faq__toggle {
+    flex-shrink: 0;
+    font-size: {{ section.settings.toggle_size }}px;
+    font-weight: 300;
+    color: {{ section.settings.toggle_color }};
+    transition: transform 0.25s;
+    line-height: 1;
+    width: 24px;
+    text-align: center;
+  }
+  .amua-faq__item[open] .amua-faq__toggle { transform: rotate(45deg); }
+
+  /* ── Answer ── */
+  .amua-faq__a {
+    padding: 0 {{ section.settings.q_padding_h }}px {{ section.settings.a_padding_b }}px;
+    font-size: {{ section.settings.a_size }}px;
+    color: {{ section.settings.a_color }};
+    line-height: 1.6;
+    background: {{ section.settings.a_bg }};
+  }
+  .amua-faq__a p { margin: 0; }
+
+  @media (min-width: 990px) {
+    #amua-faq-{{ section.id }} { padding-left: 50px; padding-right: 50px; }
+  }
+{%- endstyle -%}
+
+<section id="amua-faq-{{ section.id }}">
+  <div class="amua-faq">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="amua-faq__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="amua-faq__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="amua-faq__list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'item' and block.settings.question != blank -%}
+          <details class="amua-faq__item" {{ block.shopify_attributes }}{% if section.settings.accordion_mode %} data-amua-accordion{% endif %}>
+            <summary class="amua-faq__q">
+              <span>{{ block.settings.question }}</span>
+              <span class="amua-faq__toggle">+</span>
+            </summary>
+            <div class="amua-faq__a rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{%- if section.settings.accordion_mode -%}
+<script>
+(function(){
+  var wrap = document.getElementById('amua-faq-{{ section.id }}');
+  if (!wrap) return;
+  wrap.addEventListener('toggle', function(e) {
+    if (!e.target.open) return;
+    wrap.querySelectorAll('details[data-amua-accordion]').forEach(function(d) {
+      if (d !== e.target) d.removeAttribute('open');
+    });
+  }, true);
+})();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Amua: FAQ",
+  "tag": "section",
+  "class": "amua-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (px)", "min": 24, "max": 48, "step": 1, "default": 36 },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight", "options": [{ "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" }, { "value": "900", "label": "Black" }], "default": "900" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#000000" },
+    { "type": "range", "id": "heading_gap", "label": "Heading gap (px)", "min": 4, "max": 30, "step": 2, "default": 12 },
+
+    { "type": "header", "content": "Subtitle" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Find answers to common questions about our products, shipping, returns, and more." },
+    { "type": "range", "id": "subtitle_size", "label": "Subtitle size (px)", "min": 13, "max": 20, "step": 1, "default": 16 },
+    { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#555555" },
+    { "type": "range", "id": "subtitle_gap", "label": "Subtitle gap (px)", "min": 10, "max": 50, "step": 2, "default": 24 },
+
+    { "type": "header", "content": "Container" },
+    { "type": "range", "id": "container_border_width", "label": "Border width (px)", "min": 0, "max": 3, "step": 1, "default": 1 },
+    { "type": "color", "id": "container_border_color", "label": "Border color", "default": "#E5E5E5" },
+    { "type": "range", "id": "container_radius", "label": "Border radius (px)", "min": 0, "max": 20, "step": 2, "default": 8 },
+    { "type": "color", "id": "divider_color", "label": "Row divider color", "default": "#E5E5E5" },
+
+    { "type": "header", "content": "Question" },
+    { "type": "range", "id": "q_size", "label": "Font size (px)", "min": 14, "max": 20, "step": 1, "default": 16 },
+    { "type": "select", "id": "q_weight", "label": "Font weight", "options": [{ "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi Bold" }], "default": "400" },
+    { "type": "color", "id": "q_color", "label": "Text color", "default": "#000000" },
+    { "type": "color", "id": "q_bg", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "q_padding_v", "label": "Padding vertical (px)", "min": 10, "max": 28, "step": 2, "default": 18 },
+    { "type": "range", "id": "q_padding_h", "label": "Padding horizontal (px)", "min": 10, "max": 28, "step": 2, "default": 20 },
+
+    { "type": "header", "content": "Answer" },
+    { "type": "range", "id": "a_size", "label": "Font size (px)", "min": 13, "max": 18, "step": 1, "default": 15 },
+    { "type": "color", "id": "a_color", "label": "Text color", "default": "#333333" },
+    { "type": "color", "id": "a_bg", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "a_padding_b", "label": "Padding bottom (px)", "min": 8, "max": 28, "step": 2, "default": 18 },
+
+    { "type": "header", "content": "Toggle Icon" },
+    { "type": "range", "id": "toggle_size", "label": "Size (px)", "min": 18, "max": 32, "step": 1, "default": 24 },
+    { "type": "color", "id": "toggle_color", "label": "Color", "default": "#333333" },
+
+    { "type": "header", "content": "Behavior" },
+    { "type": "checkbox", "id": "accordion_mode", "label": "One open at a time", "default": true },
+
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: FAQ",
+      "blocks": [
+        { "type": "item", "settings": { "question": "How Do I Use It?", "answer": "<p>Take 2ml of VitalDrops once daily. Place it under your tongue or mix it into your favorite drink. For best results, use consistently every day as part of your routine.</p>" } },
+        { "type": "item", "settings": { "question": "How Long Until I See Results?", "answer": "<p>Every body is different, but many customers report noticing early changes within the first few weeks. Most visible transformations happen with consistent daily use over 90 days.</p>" } },
+        { "type": "item", "settings": { "question": "I've Tried Other Products Before. Why Is VitalDrops Different?", "answer": "<p>Many women come to VitalDrops after trying pills, shakes, and other supplements that didn't give them the curves they wanted. VitalDrops was specifically designed to support fuller hips, thicker thighs, and a rounder booty using a plant-based formula and consistent daily use.</p>" } },
+        { "type": "item", "settings": { "question": "Will VitalDrops Work For My Age?", "answer": "<p>VitalDrops is used by adult women of different ages. While individual results vary, many customers in their 20s, 30s, 40s, and beyond have shared positive experiences with consistent use.</p>" } },
+        { "type": "item", "settings": { "question": "Will VitalDrops Work For My Body Type?", "answer": "<p>VitalDrops was created for women who struggle to build curves naturally. Whether you're naturally slim, lost your curves after pregnancy, or feel like your body stores weight in the wrong places, VitalDrops is designed to support your curve-building journey.</p>" } },
+        { "type": "item", "settings": { "question": "What Happens If I Stop Taking VitalDrops?", "answer": "<p>VitalDrops isn't designed as a quick fix. The customers who see the best results are typically those who stay consistent for at least 90 days. Many women notice early changes in the first few weeks, but fuller, more visible curves often take longer to develop. That's why we recommend completing the full 3-month journey before evaluating your results.</p>" } },
+        { "type": "item", "settings": { "question": "Are There Any Side Effects?", "answer": "<p>VitalDrops is made with plant-based ingredients and is generally well tolerated when used as directed. If you are pregnant, nursing, taking medication, or have a medical condition, consult your healthcare provider before use.</p>" } },
+        { "type": "item", "settings": { "question": "What's Inside VitalDrops?", "answer": "<p>VitalDrops contains a blend of plant-based ingredients including Maca Root, Fenugreek, Ashwagandha, Beet Root, and L-Arginine. Each ingredient was selected to support your body's natural curve-building process.</p>" } },
+        { "type": "item", "settings": { "question": "When Will I Receive My Order?", "answer": "<p>Orders are typically processed within 1-2 business days. Once shipped, delivery times vary depending on your location. You'll receive tracking information as soon as your order is on the way.</p>" } },
+        { "type": "item", "settings": { "question": "What is your guarantee?", "answer": "<p>We stand behind VitalDrops with a 90-day satisfaction guarantee. If you're not satisfied with your purchase, contact our support team and we'll help make it right.</p>" } },
+        { "type": "item", "settings": { "question": "How Do I Manage Or Cancel My Subscription?", "answer": "<p>You can pause, skip, modify, or cancel your subscription at any time through your customer account. There are no long-term commitments, and you're always in control of your subscription.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

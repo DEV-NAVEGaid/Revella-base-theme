@@ -1,0 +1,167 @@
+{%- comment -%} FAQ accordion — Dawn 16 {%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }}{
+    background:{{ section.settings.page_bg }};
+    margin-top:0 !important;
+    --bio-fq-fs:{{ section.settings.font_scale }};
+  }
+  .bio-fq{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .bio-fq *,.bio-fq *::before,.bio-fq *::after{ box-sizing:border-box; min-width:0; }
+
+  .bio-fq__box{ background:{{ section.settings.box_bg }}; border-radius:{{ section.settings.box_radius }}px;
+    padding:{{ section.settings.box_padding }}px {{ section.settings.box_padding_x }}px;
+    max-width:{{ section.settings.max_width }}px; margin:0 auto; }
+  .bio-fq__title{ margin:0 0 {{ section.settings.head_gap }}px; text-align:center; color:{{ section.settings.heading_color }};
+    font-size:calc({{ section.settings.heading_size }}rem * var(--bio-fq-fs)); line-height:1.2; font-weight:800; letter-spacing:-.02em; }
+
+  .bio-fq__item{ background:{{ section.settings.card_bg }}; border-radius:{{ section.settings.card_radius }}px;
+    padding:{{ section.settings.card_padding }}px; box-shadow: rgba(18, 18, 23, 0.08) 0px 6px 4px -1px; }
+  .bio-fq__item+.bio-fq__item{ margin-top:{{ section.settings.card_gap }}px; }
+  .bio-fq__q{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+    background:none; border:0; padding:0; cursor:pointer; text-align:left; color:{{ section.settings.question_color }};
+    font-size:calc({{ section.settings.question_size }}rem * var(--bio-fq-fs)); font-weight:700; line-height:1.35; }
+  .bio-fq__ico{ flex:0 0 {{ section.settings.icon_size }}px; height:{{ section.settings.icon_size }}px;
+    display:flex; align-items:center; justify-content:center; transition:transform .25s ease; }
+  .bio-fq__ico svg{ width:100%; height:auto; fill:{{ section.settings.icon_color }}; }
+  .bio-fq__item.is-open .bio-fq__ico{ transform:rotate(180deg); }
+  .bio-fq__a{ height:0; overflow:hidden; transition:height .3s ease; }
+  .bio-fq__inner{ padding-top:{{ section.settings.answer_gap }}px; color:{{ section.settings.answer_color }};
+    font-size:calc({{ section.settings.answer_size }}rem * var(--bio-fq-fs)); line-height:1.5; }
+  .bio-fq__inner p{ margin:0 0 8px; } .bio-fq__inner p:last-child{ margin:0; }
+
+  @media screen and (min-width:750px){
+    .bio-fq{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  }
+</style>
+
+<div class="bio-fq color-{{ section.settings.color_scheme }}" id="bio-fq-{{ section.id }}">
+  <div class="page-width">
+    <div class="bio-fq__box">
+      {%- if section.settings.heading != blank -%}<h2 class="bio-fq__title">{{ section.settings.heading }}</h2>{%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <div class="bio-fq__item{% if block.settings.open %} is-open{% endif %}" data-bio-fq-item {{ block.shopify_attributes }}>
+          <button type="button" class="bio-fq__q" data-bio-fq-toggle aria-expanded="{% if block.settings.open %}true{% else %}false{% endif %}">
+            <span>{{ block.settings.question }}</span>
+            <span class="bio-fq__ico">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143 83" aria-hidden="true">
+                <g transform="translate(0,83) scale(0.1,-0.1)" stroke="none">
+                  <path d="M57 772 l-57 -57 360 -360 360 -360 357 357 358 358 -63 62 -62 63 -298 -298 -297 -297 -295 295 c-162 162 -297 295 -300 295 -3 0 -31 -26 -63 -58z"></path>
+                </g>
+              </svg>
+            </span>
+          </button>
+          <div class="bio-fq__a" data-bio-fq-panel>
+            <div class="bio-fq__inner rte">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var id='{{ section.id }}';
+  function init(){
+    var root=document.getElementById('bio-fq-'+id); if(!root||root.dataset.init)return; root.dataset.init='1';
+    var items=[].slice.call(root.querySelectorAll('[data-bio-fq-item]'));
+    var single={{ section.settings.one_at_a_time | default: false }};
+
+    function panel(it){ return it.querySelector('[data-bio-fq-panel]'); }
+    function inner(it){ return it.querySelector('.bio-fq__inner'); }
+    function open(it){
+      it.classList.add('is-open');
+      it.querySelector('[data-bio-fq-toggle]').setAttribute('aria-expanded','true');
+      panel(it).style.height=inner(it).offsetHeight+'px';
+    }
+    function close(it){
+      var p=panel(it);
+      p.style.height=inner(it).offsetHeight+'px';
+      requestAnimationFrame(function(){ p.style.height='0px'; });
+      it.classList.remove('is-open');
+      it.querySelector('[data-bio-fq-toggle]').setAttribute('aria-expanded','false');
+    }
+
+    items.forEach(function(it){
+      if(it.classList.contains('is-open')) panel(it).style.height=inner(it).offsetHeight+'px';
+      it.querySelector('[data-bio-fq-toggle]').addEventListener('click',function(){
+        var isOpen=it.classList.contains('is-open');
+        if(single) items.forEach(function(o){ if(o!==it&&o.classList.contains('is-open'))close(o); });
+        isOpen?close(it):open(it);
+      });
+    });
+
+    window.addEventListener('resize',function(){
+      items.forEach(function(it){ if(it.classList.contains('is-open')) panel(it).style.height=inner(it).offsetHeight+'px'; });
+    });
+  }
+  init();
+  document.addEventListener('shopify:section:load',function(e){ if(e.detail&&e.detail.sectionId===id)init(); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bio: FAQ Accordion",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "page_bg", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "range", "id": "font_scale", "min": 0.6, "max": 1.2, "step": 0.1, "label": "Font scale", "default": 1 },
+
+    { "type": "header", "content": "Box" },
+    { "type": "color", "id": "box_bg", "label": "Box background", "default": "#F6F5F1" },
+    { "type": "range", "id": "box_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Box radius", "default": 24 },
+    { "type": "range", "id": "box_padding", "min": 12, "max": 100, "step": 4, "unit": "px", "label": "Box padding (vertical)", "default": 40 },
+    { "type": "range", "id": "box_padding_x", "min": 8, "max": 80, "step": 4, "unit": "px", "label": "Box padding (horizontal)", "default": 20 },
+    { "type": "range", "id": "max_width", "min": 500, "max": 1200, "step": 20, "unit": "px", "label": "Max width", "default": 860 },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Have Questions? We Have Answers." },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#1F5A4A" },
+    { "type": "range", "id": "heading_size", "min": 2.0, "max": 5.0, "step": 0.1, "unit": "rem", "label": "Heading size", "default": 3.0 },
+    { "type": "range", "id": "head_gap", "min": 8, "max": 60, "step": 2, "unit": "px", "label": "Space below heading", "default": 24 },
+
+    { "type": "header", "content": "Items" },
+    { "type": "checkbox", "id": "one_at_a_time", "label": "Only one open at a time", "default": true },
+    { "type": "color", "id": "card_bg", "label": "Item background", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Item radius", "default": 10 },
+    { "type": "range", "id": "card_padding", "min": 8, "max": 40, "step": 2, "unit": "px", "label": "Item padding", "default": 18 },
+    { "type": "range", "id": "card_gap", "min": 4, "max": 30, "step": 2, "unit": "px", "label": "Space between items", "default": 12 },
+    { "type": "color", "id": "question_color", "label": "Question color", "default": "#1F5A4A" },
+    { "type": "range", "id": "question_size", "min": 1.2, "max": 2.6, "step": 0.1, "unit": "rem", "label": "Question size", "default": 1.5 },
+    { "type": "color", "id": "answer_color", "label": "Answer color", "default": "#5C5C5C" },
+    { "type": "range", "id": "answer_size", "min": 1.1, "max": 2.2, "step": 0.1, "unit": "rem", "label": "Answer size", "default": 1.4 },
+    { "type": "range", "id": "answer_gap", "min": 4, "max": 30, "step": 2, "unit": "px", "label": "Space above answer", "default": 14 },
+    { "type": "color", "id": "icon_color", "label": "Icon color", "default": "#1F5A4A" },
+    { "type": "range", "id": "icon_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Icon size", "default": 16 },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "FAQ", "settings": [
+      { "type": "text", "id": "question", "label": "Question", "default": "What makes this turmeric supplement different?" },
+      { "type": "richtext", "id": "answer", "label": "Answer" },
+      { "type": "checkbox", "id": "open", "label": "Open by default", "default": false } ] }
+  ],
+  "presets": [
+    { "name": "Bio: FAQ Accordion",
+      "blocks": [
+        { "type": "faq", "settings": { "open": true, "question": "What makes this turmeric supplement different?", "answer": "<p>Unlike many brands that use weak powder, we use <strong>95% curcumin extract</strong>, include <strong>black pepper extract for absorption</strong>, and verify quality through <strong>rigorous third-party testing</strong>. No fillers, no fluff—just real results.</p>" } },
+        { "type": "faq", "settings": { "question": "Does turmeric curcumin really help with joint pain and inflammation?", "answer": "<p>Yes. Curcumin, the active compound in turmeric, has been shown in clinical studies to significantly reduce inflammation and joint pain. Many people experience relief similar to NSAIDs—without the harsh side effects.</p>" } },
+        { "type": "faq", "settings": { "question": "Why does this include black pepper extract?", "answer": "<p>Curcumin is poorly absorbed on its own. <strong>Black Pepper Extract boosts absorption by up to 2000%</strong>, helping your body make full use of each dose.</p>" } },
+        { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "<p>Most users report noticeable improvements within <strong>2 to 4 weeks</strong> of daily use—especially in joint stiffness and overall mobility. Some feel relief sooner, but consistent use is essential.</p>" } },
+        { "type": "faq", "settings": { "question": "What's the correct dosage and how should I take it?", "answer": "<p>Follow the label—typically <strong>3 capsules daily</strong>. For best results, take with food (ideally something with healthy fat) to improve absorption, since curcumin is fat-soluble.</p>" } },
+        { "type": "faq", "settings": { "question": "Are there any side effects?", "answer": "<p>Turmeric is safe for most people. A few may experience mild stomach upset—this can usually be avoided by taking it with food. High doses may cause issues, so always follow directions.</p>" } },
+        { "type": "faq", "settings": { "question": "Is it safe to take with medications?", "answer": "<p>If you're on <strong>blood thinners, diabetes medication</strong>, or have health concerns, speak with your doctor before using turmeric. It may enhance or interact with certain medications.</p>" } },
+        { "type": "faq", "settings": { "question": "How is this better than regular turmeric powder?", "answer": "<p>Most turmeric powders contain just <strong>2–6% curcumin</strong>, making them too weak to be effective. Our supplement uses a <strong>95% standardized extract</strong> and adds black pepper extract for superior results.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

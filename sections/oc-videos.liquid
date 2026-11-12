@@ -1,0 +1,97 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign videos = section.blocks | where: 'type', 'video' -%}
+{%- assign stats = section.blocks | where: 'type', 'stat' -%}
+<div class="lm">
+  <section class="wrap vid"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="vid-h">
+        <div class="hd">
+          {%- if s.eyebrow != blank %}<span class="eb">{{ s.eyebrow }}</span>{% endif -%}
+          {%- if s.heading != blank %}<h2 class="h2 wt">{{ s.heading }}</h2>{% endif -%}
+        </div>
+        {%- if s.subheading != blank %}<p class="vid-sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+      {%- if videos.size > 0 -%}
+        <div class="vid-wrap">
+          <lm-carousel data-start="1">
+            <div class="hscroll vid-list">
+              {%- for block in videos -%}
+                <lm-video class="vc" {{ block.shopify_attributes }}>
+                  {%- if block.settings.video != blank -%}
+                    {{ block.settings.video | video_tag: playsinline: true, preload: 'metadata', image_size: '760x' }}
+                  {%- endif -%}
+                  {%- if block.settings.poster != blank -%}
+                    {{ block.settings.poster | image_url: width: 760 | image_tag: class: 'poster', loading: 'lazy', alt: block.settings.label }}
+                  {%- endif -%}
+                  {%- if block.settings.label != blank %}<span class="ph lbl">{{ block.settings.label }}</span>{% endif -%}
+                  <button type="button" class="play" aria-label="Play video {{ forloop.index }}">{% render 'oc-icon', icon: 'play' %}</button>
+                </lm-video>
+              {%- endfor -%}
+            </div>
+            {%- if s.show_dots -%}
+              {% render 'oc-dots', count: videos.size, start: 1, white: true, prev_icon: s.prev_icon, next_icon: s.next_icon %}
+            {%- endif -%}
+          </lm-carousel>
+        </div>
+      {%- endif -%}
+      {%- if stats.size > 0 -%}
+        <div class="vstats">
+          {%- for block in stats -%}
+            {%- unless forloop.first %}<div class="st-div"></div>{% endunless -%}
+            <div class="st" {{ block.shopify_attributes }}><p class="num">{{ block.settings.number }}</p><p class="lbl">{{ block.settings.label }}</p></div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: UGC videos",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "Trusted by thousands" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Athletes, Coaches, Dietitians and [70K+] Customers." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Every ingredient and dose is checked by an independent lab, so you always know what you're taking." },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dots & arrows", "default": true },
+    { "type": "image_picker", "id": "prev_icon", "label": "Previous arrow icon", "info": "Optional. Replaces the default left arrow. Square PNG/SVG." },
+    { "type": "image_picker", "id": "next_icon", "label": "Next arrow icon", "info": "Optional. Replaces the default right arrow. Square PNG/SVG." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = design gradient (#0D1E39 → #193B68)." }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video", "info": "Vertical 9:16 works best." },
+        { "type": "image_picker", "id": "poster", "label": "Cover image (optional)" },
+        { "type": "text", "id": "label", "label": "Label / placeholder", "default": "[UGC video]" }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "[3K+]" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Verified Reviews" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: UGC videos",
+      "blocks": [
+        { "type": "video", "settings": { "label": "[UGC video 1]" } },
+        { "type": "video", "settings": { "label": "[UGC video 2]" } },
+        { "type": "video", "settings": { "label": "[UGC video 3]" } },
+        { "type": "stat" },
+        { "type": "stat", "settings": { "number": "[3M+]", "label": "Gummies served" } },
+        { "type": "stat", "settings": { "number": "[4.8/5]", "label": "Star Reviews" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

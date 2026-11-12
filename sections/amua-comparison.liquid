@@ -1,0 +1,632 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .amua-cmp {
+    --amua-cmp-bg: {{ section.settings.background_color }};
+    --amua-cmp-heading-color: {{ section.settings.heading_color }};
+    --amua-cmp-subtitle-color: {{ section.settings.subtitle_color }};
+    --amua-cmp-feature-color: {{ section.settings.feature_text_color }};
+    --amua-cmp-divider-color: {{ section.settings.divider_color }};
+    --amua-cmp-col-header-color: {{ section.settings.brand_header_color }};
+    --amua-cmp-other-header-color: {{ section.settings.other_header_color }};
+    --amua-cmp-brand-grad-start: {{ section.settings.brand_gradient_start }};
+    --amua-cmp-brand-grad-end: {{ section.settings.brand_gradient_end }};
+    --amua-cmp-brand-grad-angle: {{ section.settings.brand_gradient_angle }}deg;
+    --amua-cmp-badge-bg: {{ section.settings.badge_background }};
+    --amua-cmp-badge-color: {{ section.settings.badge_text_color }};
+    --amua-cmp-check-bg: {{ section.settings.check_background }};
+    --amua-cmp-check-color: {{ section.settings.check_icon_color }};
+    --amua-cmp-x-bg: {{ section.settings.x_background }};
+    --amua-cmp-x-color: {{ section.settings.x_icon_color }};
+    --amua-cmp-icon-size: {{ section.settings.icon_size }}px;
+    --amua-cmp-heading-size-m: {{ section.settings.heading_size_mobile }}px;
+    --amua-cmp-heading-size-d: {{ section.settings.heading_size_desktop }}px;
+    --amua-cmp-subtitle-size-m: {{ section.settings.subtitle_size_mobile }}px;
+    --amua-cmp-subtitle-size-d: {{ section.settings.subtitle_size_desktop }}px;
+    --amua-cmp-feature-size-m: {{ section.settings.feature_size_mobile }}px;
+    --amua-cmp-feature-size-d: {{ section.settings.feature_size_desktop }}px;
+    --amua-cmp-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --amua-cmp-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --amua-cmp-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --amua-cmp-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --amua-cmp-col-radius: {{ section.settings.brand_column_radius }}px;
+
+    background-color: var(--amua-cmp-bg);
+    padding-top: var(--amua-cmp-pt-m);
+    padding-bottom: var(--amua-cmp-pb-m);
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__heading {
+    color: var(--amua-cmp-heading-color);
+    font-size: var(--amua-cmp-heading-size-m);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin: 0 0 12px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__subtitle {
+    color: var(--amua-cmp-subtitle-color);
+    font-size: var(--amua-cmp-subtitle-size-m);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto 32px;
+    max-width: 480px;
+  }
+
+  /* Table */
+  #shopify-section-{{ section.id }} .amua-cmp__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__table td,
+  #shopify-section-{{ section.id }} .amua-cmp__table th {
+    padding: 18px 8px;
+    vertical-align: middle;
+    border: none;
+  }
+
+  /* Feature column */
+  #shopify-section-{{ section.id }} .amua-cmp__col-feature {
+    color: var(--amua-cmp-feature-color);
+    font-size: var(--amua-cmp-feature-size-m);
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    width: 45%;
+  }
+
+  /* Brand column — gradient */
+  #shopify-section-{{ section.id }} .amua-cmp__col-brand {
+    text-align: center;
+    width: 27.5%;
+    background: linear-gradient(var(--amua-cmp-brand-grad-angle), var(--amua-cmp-brand-grad-start), var(--amua-cmp-brand-grad-end));
+  }
+
+  /* Others column */
+  #shopify-section-{{ section.id }} .amua-cmp__col-other {
+    text-align: center;
+    width: 27.5%;
+  }
+
+  /* Row divider */
+  #shopify-section-{{ section.id }} .amua-cmp__row td,
+  #shopify-section-{{ section.id }} .amua-cmp__row th {
+    border-top: 1px solid var(--amua-cmp-divider-color);
+  }
+
+  /* Brand col: divider is semi-white instead */
+  #shopify-section-{{ section.id }} .amua-cmp__row .amua-cmp__col-brand {
+    border-top-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Top header: round top */
+  #shopify-section-{{ section.id }} .amua-cmp__header-row .amua-cmp__col-brand {
+    border-radius: var(--amua-cmp-col-radius) var(--amua-cmp-col-radius) 0 0;
+    padding: 20px 12px 16px;
+  }
+
+  /* Last row: round bottom */
+  #shopify-section-{{ section.id }} .amua-cmp__row:last-child .amua-cmp__col-brand {
+    border-radius: 0 0 var(--amua-cmp-col-radius) var(--amua-cmp-col-radius);
+  }
+
+  /* Brand header */
+  #shopify-section-{{ section.id }} .amua-cmp__brand-name {
+    display: block;
+    color: var(--amua-cmp-col-header-color);
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--amua-cmp-badge-bg);
+    color: var(--amua-cmp-badge-color);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__brand-badge svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* Others header */
+  #shopify-section-{{ section.id }} .amua-cmp__other-name {
+    display: block;
+    color: var(--amua-cmp-other-header-color);
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__other-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__other-badge svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* Check icon */
+  #shopify-section-{{ section.id }} .amua-cmp__check {
+    width: var(--amua-cmp-icon-size);
+    height: var(--amua-cmp-icon-size);
+    border-radius: 50%;
+    background: var(--amua-cmp-check-bg);
+    color: var(--amua-cmp-check-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__check svg {
+    width: 55%;
+    height: 55%;
+  }
+
+  /* X icon */
+  #shopify-section-{{ section.id }} .amua-cmp__x {
+    width: var(--amua-cmp-icon-size);
+    height: var(--amua-cmp-icon-size);
+    border-radius: 50%;
+    background: var(--amua-cmp-x-bg);
+    color: var(--amua-cmp-x-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .amua-cmp__x svg {
+    width: 45%;
+    height: 45%;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .amua-cmp {
+      padding-top: var(--amua-cmp-pt-d);
+      padding-bottom: var(--amua-cmp-pb-d);
+    }
+
+    #shopify-section-{{ section.id }} .amua-cmp__heading {
+      font-size: var(--amua-cmp-heading-size-d);
+    }
+
+    #shopify-section-{{ section.id }} .amua-cmp__subtitle {
+      font-size: var(--amua-cmp-subtitle-size-d);
+    }
+
+    #shopify-section-{{ section.id }} .amua-cmp__col-feature {
+      font-size: var(--amua-cmp-feature-size-d);
+    }
+
+    #shopify-section-{{ section.id }} .amua-cmp__brand-name,
+    #shopify-section-{{ section.id }} .amua-cmp__other-name {
+      font-size: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .amua-cmp__table td,
+    #shopify-section-{{ section.id }} .amua-cmp__table th {
+      padding: 20px 16px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign feature_blocks = section.blocks | where: "type", "feature_row" -%}
+
+<div class="amua-cmp">
+  <div class="amua-cmp__inner">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="amua-cmp__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="amua-cmp__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <table class="amua-cmp__table" role="table">
+      <thead>
+        <tr class="amua-cmp__header-row">
+          <th class="amua-cmp__col-feature"></th>
+          <th class="amua-cmp__col-brand">
+            <span class="amua-cmp__brand-name">{{ section.settings.brand_name }}</span>
+            <span class="amua-cmp__brand-badge">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ section.settings.brand_badge_text }}
+            </span>
+          </th>
+          <th class="amua-cmp__col-other">
+            <span class="amua-cmp__other-name">{{ section.settings.other_name }}</span>
+            <span class="amua-cmp__other-badge">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+              {{ section.settings.other_badge_text }}
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for block in feature_blocks -%}
+          <tr class="amua-cmp__row" {{ block.shopify_attributes }}>
+            <td class="amua-cmp__col-feature">{{ block.settings.feature_text }}</td>
+            <td class="amua-cmp__col-brand">
+              {%- if block.settings.brand_has -%}
+                <span class="amua-cmp__check">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              {%- else -%}
+                <span class="amua-cmp__x">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </span>
+              {%- endif -%}
+            </td>
+            <td class="amua-cmp__col-other">
+              {%- if block.settings.other_has -%}
+                <span class="amua-cmp__check">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              {%- else -%}
+                <span class="amua-cmp__x">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </span>
+              {%- endif -%}
+            </td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Amua: Comparison Table",
+  "tag": "section",
+  "class": "section-amua-cmp",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Finally, A Better Way"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The only drop designed to direct fat where you actually want it."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#4B5563"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 24,
+      "max": 52,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading size (desktop)",
+      "min": 28,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle size (mobile)",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Subtitle size (desktop)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Brand column"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Vitaldrops"
+    },
+    {
+      "type": "text",
+      "id": "brand_badge_text",
+      "label": "Brand badge text",
+      "default": "By Amua"
+    },
+    {
+      "type": "color",
+      "id": "brand_header_color",
+      "label": "Brand name color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "brand_gradient_start",
+      "label": "Column gradient start",
+      "default": "#F2CC52"
+    },
+    {
+      "type": "color",
+      "id": "brand_gradient_end",
+      "label": "Column gradient end",
+      "default": "#E8A317"
+    },
+    {
+      "type": "range",
+      "id": "brand_gradient_angle",
+      "label": "Gradient angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "°",
+      "default": 135
+    },
+    {
+      "type": "range",
+      "id": "brand_column_radius",
+      "label": "Column border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#ffffff4d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Others column"
+    },
+    {
+      "type": "text",
+      "id": "other_name",
+      "label": "Others label",
+      "default": "Others"
+    },
+    {
+      "type": "text",
+      "id": "other_badge_text",
+      "label": "Others badge text",
+      "default": "Knock-off"
+    },
+    {
+      "type": "color",
+      "id": "other_header_color",
+      "label": "Others name color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon circle size",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "color",
+      "id": "check_background",
+      "label": "Checkmark circle background",
+      "default": "#ffffff99"
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Checkmark icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "x_background",
+      "label": "X circle background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "x_icon_color",
+      "label": "X icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Feature rows"
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "feature_size_mobile",
+      "label": "Feature text size (mobile)",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "feature_size_desktop",
+      "label": "Feature text size (desktop)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Row divider color",
+      "default": "#E5E7EB"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_row",
+      "name": "Feature Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature text",
+          "default": "Targets Hips, Thighs & Booty"
+        },
+        {
+          "type": "checkbox",
+          "id": "brand_has",
+          "label": "Brand has this feature",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "other_has",
+          "label": "Others have this feature",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Comparison Table",
+      "blocks": [
+        { "type": "feature_row", "settings": { "feature_text": "Targets Hips, Thighs & Booty", "brand_has": true, "other_has": false } },
+        { "type": "feature_row", "settings": { "feature_text": "Promotes Curve Placement", "brand_has": true, "other_has": false } },
+        { "type": "feature_row", "settings": { "feature_text": "Fast-Absorbing Liquid Formula", "brand_has": true, "other_has": false } },
+        { "type": "feature_row", "settings": { "feature_text": "100% Natural Plant Ingredients", "brand_has": true, "other_has": false } },
+        { "type": "feature_row", "settings": { "feature_text": "No Harsh Side Effects", "brand_has": true, "other_has": false } },
+        { "type": "feature_row", "settings": { "feature_text": "Third-Party Tested", "brand_has": true, "other_has": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

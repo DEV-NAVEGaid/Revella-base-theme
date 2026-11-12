@@ -1,0 +1,256 @@
+{%- comment -%}
+  FAQ accordion (block-driven, native <details>/<summary>, no JS needed).
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+    {%- endif -%}
+    {%- if st.subheading != blank -%}
+      <div class="ts-subheading ts-center">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-faq__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign is_open = false
+          if st.open_first and forloop.first
+            assign is_open = true
+          endif
+        -%}
+        {% render 'terrastrike-faq-item', block: block, open: is_open %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: FAQ",
+  "tag": "section",
+  "max_blocks": 30,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "richtext", "id": "subheading", "label": "Subheading" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question by default", "default": false },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "faq_background", "label": "Question background", "default": "#eef4fd" },
+    { "type": "color", "id": "faq_divider_color", "label": "Divider", "default": "#dddddd" },
+    {
+      "type": "range",
+      "id": "faq_divider_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Divider width",
+      "info": "0 hides it — use it instead of a background for a plain list.",
+      "default": 0
+    },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "faq_width",
+      "min": 400,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Accordion width",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "faq_gap",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Space between questions",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "faq_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Question corner radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "faq_pad_y",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Question padding (vertical)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "faq_pad_x",
+      "min": 0,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Question padding (horizontal)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to be strong to use it?",
+            "answer": "<p>No - the spring does the work, not your arm. One easy press breaks the glass, and one easy swipe cuts the belt. It takes no strength, whether you're calm or panicking.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What types of glass does TerraStrike work on?",
+            "answer": "<p>TerraStrike's spring-loaded tungsten striker is designed to shatter tempered safety glass - the type used in most car side and rear windows. Some newer vehicles use laminated side windows, which are structurally different. The manufacturer rates the striker for tempered, film-mounted, and laminated glass. For best results, always strike the corner of the window, where glass is most vulnerable.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How does the seatbelt cutter work? Is the blade safe?",
+            "answer": "<p>The stainless steel blade is recessed inside the body - completely hidden. Your fingers physically cannot reach the cutting edge. To use it, pull off the protective cover and slide the seatbelt webbing into the slot. One firm swipe cuts through the belt. This design is deliberate: the recessed blade keeps fingers off the edge, so you can carry it every day.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Does the spring-loaded mechanism wear out?",
+            "answer": "<p>TerraStrike is rated for <strong>20+ uses before the spring mechanism requires inspection</strong>. For an emergency tool you hope to never use once, 20+ activations provides significant margin. The tungsten tip itself does not degrade - tungsten steel maintains its hardness indefinitely.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I take this through airport security?",
+            "answer": "<p><strong>Not recommended</strong>. TerraStrike contains a spring-loaded striker and a concealed blade, both of which may be flagged by TSA or equivalent security screening. Pack TerraStrike in checked luggage before you fly. It belongs in your car, not your carry-on.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How many TerraStrikes does my family need?",
+            "answer": "<p>Most families order 3 to 5 - one for your car, one for your partner's, one for each licensed teenager, and one for parents who still drive alone. Many of them clip TerraStrike to all their keychains, just to be sure.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use TerraStrike on a bus, train, or airplane window?",
+            "answer": "<p>TerraStrike is designed specifically for automotive tempered glass. Bus, train, and aircraft windows use different glass compositions and may not respond the same way. We recommend it exclusively for passenger vehicle emergencies.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Why is it so small? Does size affect performance?",
+            "answer": "<p>The spring-loaded mechanism does the work - not your arm. At 34.5 grams and 105mm, it's smaller than most key fobs. It clips to your keys or tucks in the car without adding bulk. The best rescue tool in the world is useless sitting in a drawer at home.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

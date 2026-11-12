@@ -1,0 +1,251 @@
+{%- comment -%}
+  "Why every backup plan fails" warning cards (block-driven) plus the closing
+  "what you actually need" blurb.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <div class="ts-glovebox__heading">{{ st.heading }}</div>
+    {%- endif -%}
+    {%- if st.subheading != blank -%}
+      <div class="ts-glovebox__sub">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-grid ts-warning-grid">
+      {%- for block in section.blocks -%}
+        {% render 'terrastrike-warning-item', block: block %}
+      {%- endfor -%}
+    </div>
+
+    {%- if st.solution_heading != blank or st.solution_body != blank -%}
+      <div class="ts-glovebox__solution">
+        {%- if st.solution_heading != blank -%}
+          <div class="ts-heading-lg">{{ st.solution_heading }}</div>
+        {%- endif -%}
+        <div class="ts-body">{{ st.solution_body }}</div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Warnings",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "\"But I Have a Tool in My Glove Box... That's Enough, Right?\""
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Why Every Backup Plan Fails When You're Actually Trapped"
+    },
+    { "type": "text", "id": "solution_heading", "label": "Closing heading", "default": "👉 What You Actually Need:" },
+    {
+      "type": "richtext",
+      "id": "solution_body",
+      "label": "Closing body",
+      "default": "<p>A simple tool you already keep in the car, or clipped to your keychain. One hand. One press. Glass shatters. One swipe. Belt is cut.</p><p>No reaching, no searching, no thinking.</p><p><strong>That's TerraStrike.</strong></p>"
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#34495e" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#f39c12" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#ffffff" },
+    { "type": "color", "id": "cross_color", "label": "Card icon & title", "default": "#c0392b" },
+    { "type": "color", "id": "card_border_color", "label": "Card border", "default": "#c0392b" },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "card_border_style",
+      "label": "Card border style",
+      "options": [
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "dashed"
+    },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "min": 1, "max": 6, "step": 1, "label": "Columns (desktop)", "default": 5 },
+    { "type": "range", "id": "columns_tablet", "min": 1, "max": 4, "step": 1, "label": "Columns (tablet)", "default": 2 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 48 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "warning",
+      "name": "Warning card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "cross", "label": "Cross" },
+            { "value": "alert", "label": "Alert" },
+            { "value": "info", "label": "Info" }
+          ],
+          "default": "cross"
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Warnings",
+      "blocks": [
+        {
+          "type": "warning",
+          "settings": {
+            "title": "Your Fist or Elbow",
+            "body": "<p>Tempered auto glass is made to take blunt hits. People end up with broken hands because the window held and their wrist didn't.</p>"
+          }
+        },
+        {
+          "type": "warning",
+          "settings": {
+            "title": "Waiting For Rescue",
+            "body": "<p>The average EMS response is 7+ minutes. That doesn't help much if the first minute is the one you have to get through yourself.</p>"
+          }
+        },
+        {
+          "type": "warning",
+          "settings": {
+            "title": "The Headrest Trick",
+            "body": "<p>It looks simple online. Then you're in a real car, yanking on a headrest that won't come out, with blunt metal posts that were never made for glass.</p>"
+          }
+        },
+        {
+          "type": "warning",
+          "settings": {
+            "title": "Spring-Loaded Punch",
+            "body": "<p>A glove-box punch sounds fine until the belt has you pinned back and the dashboard is crushed forward. Then that tool is impossible to reach.</p>"
+          }
+        },
+        {
+          "type": "warning",
+          "settings": {
+            "title": "Using a Knife on the Seatbelt",
+            "body": "<p>A knife sounds practical until you're upside down, hands shaking, trying to saw through tight belt webbing inches from your own neck.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

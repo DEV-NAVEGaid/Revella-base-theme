@@ -1,0 +1,1091 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "landing",
+  "sections": {
+    "revella_listicle_sebi_cqQryt": {
+      "type": "revella-listicle-sebi",
+      "blocks": {
+        "sign_9NpxTM": {
+          "type": "sign",
+          "settings": {
+            "heading": "Dr. Sebi Saw What Modern Food Was Doing Before Most People Felt It",
+            "image": "shopify://shop_images/sebi-knees-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Dr. Sebi's entire philosophy started with a simple warning: the body cannot defend or rebuild itself without the natural compounds it was designed to receive.</p><p>Then we industrialized the food supply. We processed it, sprayed it, stripped it, stored it, and filled the empty space with ingredients your grandparents never ate. The plate still looked full. The cells underneath it were running on fumes.</p>",
+            "close_text": "You cannot drug a starving cell back to health. You have to give it the protection modern life removed.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_ahQcpG": {
+          "type": "sign",
+          "settings": {
+            "heading": "You Are Living in the Most Fragile Skeleton in Human History",
+            "image": "shopify://shop_images/bone-mass.jpg",
+            "image_alt": "",
+            "body": "<p>Hunter-gatherers living 7,000 years ago carried roughly 20% more bone mass than modern humans. Their bones were as strong as an orangutan's. Bronze Age women had 5% to 10% more arm-bone strength than modern female athletes.</p><p>Every ancestor scientists have scanned, from early humans to Neanderthals, had denser bone than you. We did not evolve into stronger bodies. We civilized ourselves into weaker ones.</p>",
+            "close_text": "Your grandparents felt it at 60. Your parents felt it at 50. Now people negotiate with their knees in their 40s. If the line keeps dropping, what happens to your children?",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_km8QJC": {
+          "type": "sign",
+          "settings": {
+            "heading": "After 40, Your Antioxidant Shield Starts Coming Down",
+            "image": "shopify://shop_images/free-radicals.gif",
+            "image_alt": "",
+            "body": "<p>You did not get lazy. You did not \"let yourself go.\" When you were young, your body cleared oxidative waste almost as fast as you made it. After 40, that cleanup crew starts shrinking. Every birthday, fewer defenders are left to handle more damage.</p><p>Oxygen itself creates free radicals as your cells turn food into energy. The thing keeping you alive is also creating the spark. You cannot stop breathing. You cannot stop having birthdays.</p>",
+            "close_text": "The stiff hands, the knee on the stairs, the shoulder at 3 a.m. You did not suddenly fall apart. Your shield came down.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_K8Ud8t": {
+          "type": "sign",
+          "settings": {
+            "heading": "Joint Rot Does Not Damage One Cell and Stop",
+            "image": "shopify://shop_images/joint-rot-spread-1x1.gif",
+            "image_alt": "",
+            "body": "<p>This is the part that should light a fire under you. Oxidation attacks one joint cell, tears it open, and sets off the cell beside it. Then that cell attacks the next. The damage moves through healthy tissue one row at a time, like something with teeth.</p><p>It eats the fluid that cushions the joint. It weakens the tissue that holds everything in line. It turns morning stiffness into the handrail, the brace, the cane, and the list of things you quietly stopped doing.</p>",
+            "close_text": "You do not feel a single bite until enough damage has already been done. Every day you wait gives it another row of cells.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_U67EJQ": {
+          "type": "sign",
+          "settings": {
+            "heading": "Every \"Solution\" You Tried Was Working on the Wrong Side of the Wall",
+            "image": "shopify://shop_images/cant-get-through-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Open the cabinet. Glucosamine. Turmeric. Fish oil. Ibuprofen. Maybe a brace, a compression sleeve, a $3,000 mattress, or a shot that helped until it did not.</p><p>You did not choose badly. Every one of them ran into the same invisible wall.</p><ul><li><strong>Ibuprofen</strong> blocks the pain signal for a few hours. The joint rot keeps spreading.</li><li><strong>Glucosamine</strong> works outside the cell. The damage lives inside it.</li><li><strong>Turmeric</strong> breaks down before enough of it reaches the membrane.</li><li><strong>Cortisone</strong> silences inflammation for a window. It does not rebuild the shield.</li><li><strong>Braces, pillows, and physical therapy</strong> work around the joint. They do not stop the chain inside the cell.</li></ul>",
+            "close_text": "For years, you were fighting an inside problem with outside tools. That was never a willpower failure. Those products failed you.",
+            "show_inline_cta": true,
+            "inline_cta_text": "It was never a willpower failure. Your old products were built for the wrong side of the wall.",
+            "inline_cta_label": "Stop fighting an inside problem with outside tools",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_Qf7NKL": {
+          "type": "sign",
+          "settings": {
+            "heading": "One Red Molecule Is Shaped to Get Inside the Wall",
+            "image": "shopify://shop_images/molecule-transmembrane-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Its name is astaxanthin. It is the deep red pigment microalgae make when the sun turns brutal and their water begins to disappear. The algae flood their own cells with it so they do not burn up and die.</p><p>Most antioxidants guard one side of the cell membrane. Astaxanthin threads through the entire wall, with one end facing out and one end facing in. Scientists call it a transmembrane antioxidant.</p><p>In antioxidant assays, astaxanthin measures up to <strong>6,000 times stronger than vitamin C.</strong></p>",
+            "close_text": "Raw strength is not the most important part. It gets where joint rot lives and breaks the chain before the next cell falls.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_YEHdbT": {
+          "type": "sign",
+          "settings": {
+            "heading": "Nature Built Astaxanthin for Survival Under Extreme Stress",
+            "image": "shopify://shop_images/salmon.webp",
+            "image_alt": "",
+            "body": "<p>Wild salmon carry astaxanthin in their cells. They fight upstream against a current that should shred their muscles and joints. The pigment is what gives their flesh its deep red color.</p><p>Microalgae use the same compound to survive punishing sunlight, heat, and drying water. It is not a stimulant. It is not a numbing agent. It is a survival shield built by nature for cells under attack.</p>",
+            "close_text": "The body does not need another synthetic trick. It needs the natural protection the modern food supply stopped delivering.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_CQbnxx": {
+          "type": "sign",
+          "settings": {
+            "heading": "Most Brands Stop at 4 to 6mg. REVELLA Gives You the Full 12mg.",
+            "image": "shopify://shop_images/1-ingredient.jpg",
+            "image_alt": "",
+            "body": "<p>Most joint bottles hide behind complexity. Fifteen ingredients. Twenty ingredients. A label that looks powerful until you notice every ingredient is barely there.</p><p>REVELLA goes the opposite direction. One ingredient: natural astaxanthin from microalgae. A full <strong>12mg in every softgel.</strong> Most competing formulas stop at 4 to 6mg, just enough to print the name on the label and hope you never check.</p>",
+            "close_text": "One softgel. Full strength. Third-party tested. Taken with a meal so the fat-soluble astaxanthin absorbs properly.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_FTwAem": {
+          "type": "sign",
+          "settings": {
+            "heading": "The First Change Is That You Stop Negotiating With Your Own Body",
+            "image": "shopify://shop_images/doctor-noticed.jpg",
+            "image_alt": "",
+            "body": "<p>This is not a six-hour painkiller. The rot took years to build, so give your cells a full 30 days to start turning the fight around.</p><p>First, the morning move stops feeling like a negotiation. Then you reach for the top shelf without planning around the catch. You take the deck steps without doing the math. You get out of the car without the grunt.</p><p>Then a grandchild asks you to get on the floor and you just do it. No risk calculation. No looking for something sturdy to pull yourself back up.</p><p>In a customer survey, <strong>94% of REVELLA customers reported meaningful improvement within their first 30 days.</strong></p>",
+            "close_text": "Day one may feel like nothing. Feeling nothing is not the same as nothing happening. Day one is the day you stop leaving your cells unguarded.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_inNTac": {
+          "type": "sign",
+          "settings": {
+            "heading": "The Real Payoff Is Getting Your Life Back Before Joint Rot Takes More of It",
+            "image": "shopify://shop_images/payoff.jpg",
+            "image_alt": "",
+            "body": "<p>Gary, outside Nashville, spent three years standing up from dinner on stiff knees. His wife put it simply:</p>",
+            "close_text": "Your joints are not finished. They are under attack. Every day you wait gives joint rot one more day to spread.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_image": "shopify://shop_images/m.jpg",
+            "testimonial_1_initial": "G",
+            "testimonial_1_text": "I got my husband back.",
+            "testimonial_1_by": "Gary's wife, outside Nashville",
+            "testimonial_2_image": "shopify://shop_images/s.jpg",
+            "testimonial_2_initial": "S",
+            "testimonial_2_text": "I'd done the collagen, the turmeric, two different creams. Nothing. About three weeks in, I got down on the floor with my grandson and got right back up. My husband said I seemed like me again.",
+            "testimonial_2_by": "Sarah B, 55, Orange, CA",
+            "testimonial_3_image": "shopify://shop_images/g.jpg",
+            "testimonial_3_initial": "M",
+            "testimonial_3_text": "I'd done glucosamine, turmeric, even cortisone shots. Two and a half weeks in, I was sleeping through the night for the first time in months. My wife noticed before I did.",
+            "testimonial_3_by": "Mike D, 54",
+            "body_after_testimonials": "<p>That is what joint pain really steals. Not a number on a pain scale. It steals sleep, spontaneity, strength, and the version of you who did not have to calculate every movement.</p><p>In a shoulder study, 87% of patients reported near-full mobility returning within weeks and finally sleeping through the night.</p><p>REVELLA has sold out nine times this year. People do not fight over a softgel because they want another supplement in the cabinet. They fight for the mornings, stairs, sleep, and years they thought age had already taken.</p>"
+          }
+        },
+        "faq_aYAH7L": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "How many do I take a day?",
+            "answer": "<p>One softgel, once a day, with a meal that has some fat in it. Breakfast works best for most people.</p>"
+          }
+        },
+        "faq_67bYmb": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "How long until I notice something?",
+            "answer": "<p>Give it a full 30 days. In a customer survey, 94% of REVELLA customers reported meaningful improvement within their first 30 days. If you are not one of them, the guarantee covers you.</p>"
+          }
+        },
+        "faq_yD7p3Y": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "Why did my other joint supplements fail?",
+            "answer": "<p>Most of them work in the bloodstream or around the joint. Oxidative damage lives inside the cell membrane. Astaxanthin is shaped to span that wall and protect it from both sides.</p>"
+          }
+        },
+        "faq_mmkEQG": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "What exactly is in REVELLA?",
+            "answer": "<p>One ingredient: 12mg of natural astaxanthin from microalgae. No fillers, no additives, and no proprietary blend hiding the dose. It is third-party tested.</p>"
+          }
+        },
+        "faq_Vpzqa3": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "Why does the 12mg dose matter?",
+            "answer": "<p>Because most brands stop at 4 to 6mg. REVELLA delivers the full 12mg dose used in the campaign's research standard, in one softgel.</p>"
+          }
+        },
+        "faq_QUrF84": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "<p>Then it costs you nothing. Take it for 30 days. If you do not feel a meaningful difference, use the money-back guarantee, even if the bottle is empty.</p>"
+          }
+        },
+        "faq_wm6G9H": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "Is Dr. Sebi connected to REVELLA?",
+            "answer": "<p>No. Dr. Sebi did not formulate or endorse REVELLA. His philosophy about restoring natural, plant-based cellular protection inspired the root-cause frame used in this article. REVELLA's product claims stand on its own ingredient, dose, testing, and research.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "sign_9NpxTM",
+        "sign_ahQcpG",
+        "sign_km8QJC",
+        "sign_K8Ud8t",
+        "sign_U67EJQ",
+        "sign_Qf7NKL",
+        "sign_YEHdbT",
+        "sign_CQbnxx",
+        "sign_FTwAem",
+        "sign_inNTac",
+        "faq_aYAH7L",
+        "faq_67bYmb",
+        "faq_yD7p3Y",
+        "faq_mmkEQG",
+        "faq_Vpzqa3",
+        "faq_QUrF84",
+        "faq_wm6G9H"
+      ],
+      "custom_css": [
+        ".faq,.endcta,.foot {display: none;}"
+      ],
+      "settings": {
+        "product": "astaxanthin-softgels",
+        "show_announcement": true,
+        "announcement_text": "Up to 70% off · Supply limited by algae harvest cycles",
+        "top_cta_label": "Check availability",
+        "hero_heading": "10 Reasons Dr. Sebi's Most Explosive Warning About Modern Food Explains Your Aching Joints",
+        "hero_subhead": "(The \"Wear and Tear\" Story Kept You Treating the Pain While Joint Rot Spreads Through Your Cells)",
+        "byline": "the REVELLA team",
+        "hero_image": "shopify://shop_images/sebi-algae-hero.jpg",
+        "intro_top": "<p>Your joint pain is not proof that you are old. It is proof that your defenses are losing.</p><p>The medical name is oxidative stress. The plain-English name is joint rot. It is the same process that browns an apple and eats through bare metal, except it is happening inside the cells of your knees, shoulders, hips, and hands.</p>",
+        "intro_image": "shopify://shop_images/rust-rot.gif",
+        "intro_bottom": "<p>Dr. Sebi spent his life warning that modern food had been stripped of the natural compounds the body needs to protect and rebuild itself. He was pointing at the root while the rest of the world kept selling temporary relief.</p>",
+        "intro_turn": "You cannot stop aging. You cannot stop breathing. Unless you replace the shield your body is losing, the cellular corrosion keeps spreading every hour of every day.",
+        "buybox_eyebrow": "Choose your supply",
+        "buybox_rating": "Rated 4.8 Excellent by REVELLA customers",
+        "buybox_benefit_1": "12mg natural astaxanthin per softgel",
+        "buybox_benefit_2": "One softgel a day with a meal",
+        "buybox_benefit_3": "Third-party tested",
+        "buybox_benefit_4": "60-day money-back guarantee",
+        "buybox_button_label": "Add to cart",
+        "buybox_note": "Secure checkout · 60-day money-back guarantee",
+        "promo_countdown_label": "deal ending in",
+        "promo_hours": "11",
+        "promo_minutes": "51",
+        "promo_seconds": "58",
+        "promo_heading": "BACK IN STOCK + 15% OFF!",
+        "promo_subtext": "We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again.",
+        "promo_button_text": "GET 15% OFF NOW",
+        "promo_badge_1": "60-day Money-Back Guarantee",
+        "promo_badge_2": "fast + free shipping",
+        "offer_gif": "shopify://shop_images/red_algae_ocean_rocks.gif",
+        "offer_badge": "Back in stock after the ninth sellout",
+        "offer_heading": "The Current Astaxanthin Batch Is Live. When the Algae Harvest Runs Out, So Does REVELLA.",
+        "offer_body": "<p>Natural astaxanthin is grown, not stamped out of a petrochemical factory. REVELLA can only bottle what the algae harvest produces. When a batch is gone, it is gone until the next harvest.</p>",
+        "stock_note": "The current batch is available now, and the biggest sale of the year is live: up to 70% off.",
+        "offer_close": "You can keep numbing the signal while joint rot spreads underneath. Or you can spend the next 30 days giving your cells the shield modern life took away.",
+        "show_offer_proofs": false,
+        "proof_1": "12mg natural astaxanthin from real microalgae",
+        "proof_2": "One ingredient. No fillers or synthetic dye",
+        "proof_3": "Up to 6,000x stronger than vitamin C",
+        "proof_4": "Third-party tested",
+        "proof_5": "60-day money-back guarantee",
+        "end_heading": "Every Day You Wait Gives the Rust Another Day",
+        "end_body": "Supply runs on the algae harvest, so selling out mid-sale is normal. If the button is still active, the current batch is still available.",
+        "end_cta_label": "Check stock and put the shield back on",
+        "enable_sticky_cta": true,
+        "sticky_label": "Check stock",
+        "sticky_note": "Up to 70% off · 60-day guarantee",
+        "footer_disclaimer": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "star_rating_custom_wmfWgE": {
+          "type": "star_rating_custom",
+          "settings": {
+            "rating": 5,
+            "star_size": 14,
+            "star_gap": 0,
+            "stroke_width": 0,
+            "stroke_color": "#e0a800",
+            "star_color": "#ffcc00",
+            "star_empty_color": "#ececec",
+            "meta_text": "<p>Rated <strong>4.8 Excellent</strong> over <strong>50,312+ Reviews</strong></p>",
+            "text_size": 12,
+            "text_color": "#444444",
+            "margin_bottom": 6
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size_mobile": 22,
+            "font_size_desktop": 32,
+            "font_weight": "500",
+            "text_color": "#8c3a3a",
+            "letter_spacing": 1,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "icon_with_content_BgtaqU": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/ia_200000003.svg",
+            "icon_color": "#7b2020",
+            "icon_size": 18,
+            "icon_gap": 10,
+            "item_gap": 0,
+            "item_1": "Heals joint inflammation at the cell level",
+            "item_2": "94% felt relief in under 4 weeks",
+            "item_3": "12mg - clincal dose, zero filler",
+            "item_4": "60-day money-back guarantee",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 14,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "left",
+            "margin_bottom": 16
+          }
+        },
+        "text_nJn6ye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The daily softgel your whole-body wellness deserves.",
+            "text_style": "body",
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#121212",
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "benefit_icon_grid_hHGThf": {
+          "type": "benefit_icon_grid",
+          "disabled": true,
+          "settings": {
+            "icon_1": "shopify://shop_images/antioxidant_788f2cb0-3752-4578-8587-9f099a0ce387.webp",
+            "label_1": "Cellular & Antioxidant Defense*",
+            "icon_2": "shopify://shop_images/inflammation_1_2a6fbc43-428f-4b30-9073-947b187d19d8.webp",
+            "label_2": "Inflammation Support*",
+            "icon_3": "shopify://shop_images/molecule_18415b65-796b-4bb5-8228-131c4fe76e20.webp",
+            "label_3": "Oxidative Stress Support*",
+            "icon_4": "shopify://shop_images/cardiology_ba2d75a4-6652-4a09-8194-74bd6ffb8ccf.webp",
+            "label_4": "Cardiovascular Support*",
+            "icon_5": "shopify://shop_images/wellness_111611e0-21cd-45c8-a9de-55b5c779b715.webp",
+            "label_5": "Daily Energy & Vitality*",
+            "icon_6": "shopify://shop_images/skin_ec9a8b96-b001-4a78-8db4-1b8cea76cd36.webp",
+            "label_6": "Skin & Healthy Aging*",
+            "col_gap": 24,
+            "row_gap": 16,
+            "icon_gap": 10,
+            "icon_size": 32,
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#1a1a1a",
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "urgency_bar_63dMd4": {
+          "type": "urgency_bar",
+          "disabled": true,
+          "settings": {
+            "percentage": 95,
+            "label_after": "% Sold Out",
+            "label_position": "right",
+            "bg_color": "#f9efef",
+            "fill_color": "#8c3a3a",
+            "track_color": "#d5c8c8",
+            "label_color": "#8c3a3a",
+            "bar_height": 8,
+            "bar_radius": 10,
+            "wrap_radius": 12,
+            "wrap_padding": 2,
+            "gap": 12,
+            "label_size": 13,
+            "margin_bottom": 0
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_custom_price": true,
+            "price_size": 20,
+            "price_color": "#121212",
+            "compare_size": 14,
+            "compare_color": "#6b6b6b",
+            "badge_text": "Save 50% - Ends Tonight!",
+            "badge_bg": "#288b75",
+            "badge_text_color": "#cee9e2",
+            "badge_font_size": 13,
+            "badge_radius": 20,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "margin_top": 0,
+            "margin_bottom": 8,
+            "btn_bg_color": "#8c3a3a",
+            "btn_text_color": "#ffffff",
+            "btn_font_size": 20,
+            "btn_font_weight": "600",
+            "btn_radius": 6,
+            "btn_padding_v": 16,
+            "btn_text_transform": "uppercase",
+            "btn_letter_spacing": 1,
+            "btn_hover_bg_color": "#3a3a3a",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_lift": true
+          }
+        },
+        "icon_with_content_3wypNV": {
+          "type": "icon_with_content",
+          "settings": {
+            "custom_icon": "shopify://shop_images/fluent_premium-28-filled.svg",
+            "icon_color": "#8c3a3a",
+            "icon_size": 18,
+            "icon_gap": 4,
+            "item_gap": 0,
+            "item_1": "60-day Money-Back Guarantee",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 16,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "center",
+            "margin_bottom": 8
+          }
+        },
+        "payment_badges_bkKpJn": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, paypal, stripe, visa",
+            "alignment": "center",
+            "badge_size": 24,
+            "badge_gap": 0,
+            "margin_top": 9,
+            "margin_bottom": 15
+          }
+        },
+        "social_proof_bar_zn4Pjg": {
+          "type": "social_proof_bar",
+          "settings": {
+            "avatar_1": "shopify://shop_images/m14_d6ea4bd0-a08a-4f57-a225-52c5eaa5372d.png",
+            "avatar_2": "shopify://shop_images/w2_930a5aca-699e-4bb6-a38e-796621e343ff.png",
+            "avatar_3": "shopify://shop_images/m5_d3a9b9a5-f7f8-4316-95e8-933c3ee4a4e9.png",
+            "avatar_size": 32,
+            "avatar_overlap": 12,
+            "heading": "Trusted by 100K+ customers",
+            "heading_size": 12,
+            "heading_weight": "700",
+            "subtext": "Who choose Revella for consistent, long-term wellness support.",
+            "subtext_size": 11,
+            "heading_line_height": 1.4,
+            "subtext_line_height": 1.4,
+            "bg_color": "#f2f2f2",
+            "heading_color": "#1a1a1a",
+            "subtext_color": "#666666",
+            "radius": 40,
+            "padding_v": 6,
+            "padding_h": 6,
+            "margin_bottom": 8
+          }
+        },
+        "collapsible_row_custom_aagMJW": {
+          "type": "collapsible_row_custom",
+          "settings": {
+            "icon_1": "shopify://shop_images/ant-design_product-filled.svg",
+            "q_1": "Natural Astaxanthin 12mg",
+            "a_1": "<p><strong>Natural Astaxanthin 12mg</strong> from Haematococcus pluvialis microalgae. Sunflower oil for absorption. Softgel capsule (gelatin, purified water). That's it.</p><p>No fillers. No synthetic astaxanthin. No artificial anything. 30 softgels per bag, full 1-month supply. Non-GMO, gluten-free, soy-free.</p>",
+            "icon_2": "shopify://shop_images/mingcute_question-fill.svg",
+            "q_2": "Clean & Trusted",
+            "a_2": "<p>cGMP certified, FDA-registered facility. 3rd party lab tested every batch. Oil-based softgel for real absorption, not powder capsules that pass right through you. We sell direct only. No Amazon, no middlemen.</p>",
+            "icon_3": "shopify://shop_images/mingcute_bug-fill.svg",
+            "q_3": "How Does It Work on Joints?",
+            "a_3": "<p>Joint pain isn't surface soreness. The real damage happens inside the cell membrane of your cartilage and tendon, where oxidative stress silently breaks down the tissue from within. That's why the pain keeps coming back. Nothing you've put on or swallowed has reached it.</p><p>Most solutions work on the surface. They mute the signal without touching the source. The moment they wear off, the destruction picks right back up.</p><p>Astaxanthin is one of the only compounds on earth that's both fat-soluble and water-soluble at the same time. That's what lets it physically cross into the cartilage and tendon cells where the damage is actually happening. Once inside, it neutralizes the free radicals driving the breakdown, halts the inflammation at the source, and protects the tissue from further damage.</p><p>It doesn't mask the pain. It removes the reason the pain exists.</p>",
+            "icon_4": "shopify://shop_images/mdi_thunder-circle.svg",
+            "q_4": "How Long Before I See Results?",
+            "a_4": "<p>Most people feel a shift within days, because astaxanthin reaches the cells nothing else has.</p><p><strong>First few days:</strong> Stiffness begins to ease. Joints feel less locked when you wake up. A lot of people start realizing the things they blamed on \"just getting older\" weren't age at all.</p><p><strong>Week 1–2:</strong> Mobility increases substantially. Daily pain calms. Nighttime aching settles. People who haven't slept through the night in months start getting real rest.</p><p><strong>Week 3–4:</strong> Astaxanthin keeps building in your joint tissue. It doesn't flush out like other supplements. Movement gets noticeably easier. Activities you'd quietly given up start coming back on their own.</p><p><strong>Week 5–6+:</strong> The inflammation cycle is broken. Most people stop thinking about their joints entirely. They're just living again.</p><p>Cellular protection compounds. Don't quit early. You're protected by a 60-day guarantee either way.</p>",
+            "icon_5": "shopify://shop_images/Group.svg",
+            "q_5": "Recommended Use",
+            "a_5": "<p>One softgel a day. Take it with a meal that has fat (eggs, avocado, salmon, olive oil, peanut butter). Astaxanthin is fat-soluble, so it absorbs 3-4x better with food fats. Morning or night, doesn't matter. Pick a time you'll remember.</p><p>That's it. No stack. No timing tricks. One pill, one meal, every day.</p>",
+            "icon_6": "shopify://shop_images/Vector.svg",
+            "q_6": "Do You Offer a Guarantee?",
+            "a_6": "<p>30 days. Full refund. No questions. If your joints don't move easier, your stiffness doesn't ease, or your pain doesn't calm, we refund every penny. Even if the bag is empty.<br/><br/></p>",
+            "q_7": "",
+            "a_7": "",
+            "q_8": "",
+            "a_8": "",
+            "q_9": "",
+            "a_9": "",
+            "q_10": "",
+            "a_10": "",
+            "heading_size": 16,
+            "heading_weight": "500",
+            "heading_color": "#8c3a3a",
+            "content_size": 14,
+            "content_color": "#8c3a3a",
+            "border_color": "#dddddd",
+            "border_style": "dashed",
+            "border_width": 1,
+            "header_bg": "#ffffff",
+            "content_bg": "#fefaff",
+            "padding_v": 14,
+            "padding_h": 10,
+            "content_padding_v": 10,
+            "margin_bottom": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "font_size_mobile": 14,
+            "font_size_desktop": 15,
+            "font_weight": "400",
+            "text_color": "#444444",
+            "line_height": 6,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_custom_wmfWgE",
+        "title",
+        "icon_with_content_BgtaqU",
+        "text_nJn6ye",
+        "benefit_icon_grid_hHGThf",
+        "urgency_bar_63dMd4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_content_3wypNV",
+        "payment_badges_bkKpJn",
+        "social_proof_bar_zn4Pjg",
+        "collapsible_row_custom_aagMJW",
+        "description"
+      ],
+      "custom_css": [
+        ".product__media-wrapper {margin-bottom: 15px;}",
+        ".product__info-container .product-form__buttons {margin: 0 !important;}",
+        ".product__info-container > div:has(> product-form),.product__info-container > div:has(> product-form) ~ div {margin: 0 0 6px !important; padding: 0 !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3b962a04-6631-4334-84ee-bc9afe663e22",
+        "media_size": "large",
+        "hide_image": false,
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "cfp_mobile_gallery_style": "dots",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12,
+        "enable_sticky_info": true
+      }
+    },
+    "revella_listicle_sebi_R3zRXH": {
+      "type": "revella-listicle-sebi",
+      "blocks": {
+        "sign_aqmrfn": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "Dr. Sebi Saw What Modern Food Was Doing Before Most People Felt It",
+            "image": "shopify://shop_images/sebi-knees-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Dr. Sebi's entire philosophy started with a simple warning: the body cannot defend or rebuild itself without the natural compounds it was designed to receive.</p><p>Then we industrialized the food supply. We processed it, sprayed it, stripped it, stored it, and filled the empty space with ingredients your grandparents never ate. The plate still looked full. The cells underneath it were running on fumes.</p>",
+            "close_text": "You cannot drug a starving cell back to health. You have to give it the protection modern life removed.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_3GnxPw": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "You Are Living in the Most Fragile Skeleton in Human History",
+            "image": "shopify://shop_images/bone-mass.jpg",
+            "image_alt": "",
+            "body": "<p>Hunter-gatherers living 7,000 years ago carried roughly 20% more bone mass than modern humans. Their bones were as strong as an orangutan's. Bronze Age women had 5% to 10% more arm-bone strength than modern female athletes.</p><p>Every ancestor scientists have scanned, from early humans to Neanderthals, had denser bone than you. We did not evolve into stronger bodies. We civilized ourselves into weaker ones.</p>",
+            "close_text": "Your grandparents felt it at 60. Your parents felt it at 50. Now people negotiate with their knees in their 40s. If the line keeps dropping, what happens to your children?",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_Xmd4WR": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "After 40, Your Antioxidant Shield Starts Coming Down",
+            "image": "shopify://shop_images/free-radicals.gif",
+            "image_alt": "",
+            "body": "<p>You did not get lazy. You did not \"let yourself go.\" When you were young, your body cleared oxidative waste almost as fast as you made it. After 40, that cleanup crew starts shrinking. Every birthday, fewer defenders are left to handle more damage.</p><p>Oxygen itself creates free radicals as your cells turn food into energy. The thing keeping you alive is also creating the spark. You cannot stop breathing. You cannot stop having birthdays.</p>",
+            "close_text": "The stiff hands, the knee on the stairs, the shoulder at 3 a.m. You did not suddenly fall apart. Your shield came down.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_B873E7": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "Joint Rot Does Not Damage One Cell and Stop",
+            "image": "shopify://shop_images/joint-rot-spread-1x1.gif",
+            "image_alt": "",
+            "body": "<p>This is the part that should light a fire under you. Oxidation attacks one joint cell, tears it open, and sets off the cell beside it. Then that cell attacks the next. The damage moves through healthy tissue one row at a time, like something with teeth.</p><p>It eats the fluid that cushions the joint. It weakens the tissue that holds everything in line. It turns morning stiffness into the handrail, the brace, the cane, and the list of things you quietly stopped doing.</p>",
+            "close_text": "You do not feel a single bite until enough damage has already been done. Every day you wait gives it another row of cells.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_izTaKY": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "Every \"Solution\" You Tried Was Working on the Wrong Side of the Wall",
+            "image": "shopify://shop_images/cant-get-through-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Open the cabinet. Glucosamine. Turmeric. Fish oil. Ibuprofen. Maybe a brace, a compression sleeve, a $3,000 mattress, or a shot that helped until it did not.</p><p>You did not choose badly. Every one of them ran into the same invisible wall.</p><ul><li><strong>Ibuprofen</strong> blocks the pain signal for a few hours. The joint rot keeps spreading.</li><li><strong>Glucosamine</strong> works outside the cell. The damage lives inside it.</li><li><strong>Turmeric</strong> breaks down before enough of it reaches the membrane.</li><li><strong>Cortisone</strong> silences inflammation for a window. It does not rebuild the shield.</li><li><strong>Braces, pillows, and physical therapy</strong> work around the joint. They do not stop the chain inside the cell.</li></ul>",
+            "close_text": "For years, you were fighting an inside problem with outside tools. That was never a willpower failure. Those products failed you.",
+            "show_inline_cta": true,
+            "inline_cta_text": "It was never a willpower failure. Your old products were built for the wrong side of the wall.",
+            "inline_cta_label": "Stop fighting an inside problem with outside tools",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_pidKfp": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "One Red Molecule Is Shaped to Get Inside the Wall",
+            "image": "shopify://shop_images/molecule-transmembrane-1x1.gif",
+            "image_alt": "",
+            "body": "<p>Its name is astaxanthin. It is the deep red pigment microalgae make when the sun turns brutal and their water begins to disappear. The algae flood their own cells with it so they do not burn up and die.</p><p>Most antioxidants guard one side of the cell membrane. Astaxanthin threads through the entire wall, with one end facing out and one end facing in. Scientists call it a transmembrane antioxidant.</p><p>In antioxidant assays, astaxanthin measures up to <strong>6,000 times stronger than vitamin C.</strong></p>",
+            "close_text": "Raw strength is not the most important part. It gets where the joint rot lives and breaks the chain before the next cell falls.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_cyTfGU": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "Nature Built Astaxanthin for Survival Under Extreme Stress",
+            "image": "shopify://shop_images/salmon.webp",
+            "image_alt": "",
+            "body": "<p>Wild salmon carry astaxanthin in their cells. They fight upstream against a current that should shred their muscles and joints. The pigment is what gives their flesh its deep red color.</p><p>Microalgae use the same compound to survive punishing sunlight, heat, and drying water. It is not a stimulant. It is not a numbing agent. It is a survival shield built by nature for cells under attack.</p>",
+            "close_text": "The body does not need another synthetic trick. It needs the natural protection the modern food supply stopped delivering.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_bRwBEV": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "REVELLA Uses the Full 12mg Dose, Not a Label-Dressing Sprinkle",
+            "image": "shopify://shop_images/1-ingredient.jpg",
+            "image_alt": "",
+            "body": "<p>Most joint bottles hide behind complexity. Fifteen ingredients. Twenty ingredients. A label that looks powerful until you notice every ingredient is barely there.</p><p>REVELLA goes the opposite direction. One ingredient: natural astaxanthin from microalgae. A full <strong>12mg in every softgel.</strong> Most competing formulas stop at 4 to 6mg, just enough to print the name on the label and hope you never check.</p>",
+            "close_text": "One softgel. Full strength. Third-party tested. Taken with a meal so the fat-soluble astaxanthin absorbs properly.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_pDTBXU": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "The First Change Is That You Stop Negotiating With Your Own Body",
+            "image": "shopify://shop_images/doctor-noticed.jpg",
+            "image_alt": "",
+            "body": "<p>This is not a six-hour painkiller. The rot took years to build, so give your cells a full 30 days to start turning the fight around.</p><p>First, the morning move stops feeling like a negotiation. Then you reach for the top shelf without planning around the catch. You take the deck steps without doing the math. You get out of the car without the grunt.</p><p>Then a grandchild asks you to get on the floor and you just do it. No risk calculation. No looking for something sturdy to pull yourself back up.</p><p>In a customer survey, <strong>94% of REVELLA customers reported meaningful improvement within their first 30 days.</strong></p>",
+            "close_text": "Day one may feel like nothing. Feeling nothing is not the same as nothing happening. Day one is the day you stop leaving your cells unguarded.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_initial": "",
+            "testimonial_1_text": "",
+            "testimonial_1_by": "",
+            "testimonial_2_initial": "",
+            "testimonial_2_text": "",
+            "testimonial_2_by": "",
+            "testimonial_3_initial": "",
+            "testimonial_3_text": "",
+            "testimonial_3_by": "",
+            "body_after_testimonials": ""
+          }
+        },
+        "sign_3FfreL": {
+          "type": "sign",
+          "disabled": true,
+          "settings": {
+            "heading": "The Real Payoff Is Getting Your Life Back Before the Joint Rot Takes More of It",
+            "image": "shopify://shop_images/payoff.jpg",
+            "image_alt": "",
+            "body": "<p>Gary, outside Nashville, spent three years standing up from dinner on stiff knees. His wife put it simply:</p>",
+            "close_text": "Your joints are not finished. They are under attack. Every day you wait gives the joint rot one more day to spread.",
+            "show_inline_cta": false,
+            "inline_cta_text": "",
+            "inline_cta_label": "See the one thing built to get in",
+            "testimonial_1_image": "shopify://shop_images/m.jpg",
+            "testimonial_1_initial": "G",
+            "testimonial_1_text": "I got my husband back.",
+            "testimonial_1_by": "Gary's wife, outside Nashville",
+            "testimonial_2_image": "shopify://shop_images/s.jpg",
+            "testimonial_2_initial": "S",
+            "testimonial_2_text": "I'd done the collagen, the turmeric, two different creams. Nothing. About three weeks in, I got down on the floor with my grandson and got right back up. My husband said I seemed like me again.",
+            "testimonial_2_by": "Sarah B, 55, Orange, CA",
+            "testimonial_3_image": "shopify://shop_images/g.jpg",
+            "testimonial_3_initial": "M",
+            "testimonial_3_text": "I'd done glucosamine, turmeric, even cortisone shots. Two and a half weeks in, I was sleeping through the night for the first time in months. My wife noticed before I did.",
+            "testimonial_3_by": "Mike D, 54",
+            "body_after_testimonials": "<p>That is what joint pain really steals. Not a number on a pain scale. It steals sleep, spontaneity, strength, and the version of you who did not have to calculate every movement.</p><p>In the shoulder study population used in REVELLA's existing campaign materials, 87% of patients reported near-full mobility returning within weeks and finally sleeping through the night.</p><p>REVELLA has sold out nine times this year. People do not fight over a softgel because they want another supplement in the cabinet. They fight for the mornings, stairs, sleep, and years they thought age had already taken.</p>"
+          }
+        },
+        "faq_HRYYVe": {
+          "type": "faq",
+          "settings": {
+            "question": "How many do I take a day?",
+            "answer": "<p>One softgel, once a day, with a meal that has some fat in it. Breakfast works best for most people.</p>"
+          }
+        },
+        "faq_7KWQHd": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I notice something?",
+            "answer": "<p>Give it a full 30 days. In a customer survey, 94% of REVELLA customers reported meaningful improvement within their first 30 days. If you are not one of them, the guarantee covers you.</p>"
+          }
+        },
+        "faq_KP977f": {
+          "type": "faq",
+          "settings": {
+            "question": "Why did my other joint supplements fail?",
+            "answer": "<p>Most of them work in the bloodstream or around the joint. Oxidative damage lives inside the cell membrane. Astaxanthin is shaped to span that wall and protect it from both sides.</p>"
+          }
+        },
+        "faq_B7pjFz": {
+          "type": "faq",
+          "settings": {
+            "question": "What exactly is in REVELLA?",
+            "answer": "<p>One ingredient: 12mg of natural astaxanthin from microalgae. No fillers, no additives, and no proprietary blend hiding the dose. It is third-party tested.</p>"
+          }
+        },
+        "faq_tTkBnf": {
+          "type": "faq",
+          "settings": {
+            "question": "Why does the 12mg dose matter?",
+            "answer": "<p>Because most brands stop at 4 to 6mg. REVELLA delivers the full 12mg dose used in the campaign's research standard, in one softgel.</p>"
+          }
+        },
+        "faq_jziEy3": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "<p>Then it costs you nothing. Take it for 30 days. If you do not feel a meaningful difference, use the money-back guarantee, even if the bottle is empty.</p>"
+          }
+        },
+        "faq_reajrM": {
+          "type": "faq",
+          "settings": {
+            "question": "Is Dr. Sebi connected to REVELLA?",
+            "answer": "<p>No. Dr. Sebi did not formulate or endorse REVELLA. His philosophy about restoring natural, plant-based cellular protection inspired the root-cause frame used in this article. REVELLA's product claims stand on its own ingredient, dose, testing, and research.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "sign_aqmrfn",
+        "sign_3GnxPw",
+        "sign_Xmd4WR",
+        "sign_B873E7",
+        "sign_izTaKY",
+        "sign_pidKfp",
+        "sign_cyTfGU",
+        "sign_bRwBEV",
+        "sign_pDTBXU",
+        "sign_3FfreL",
+        "faq_HRYYVe",
+        "faq_7KWQHd",
+        "faq_KP977f",
+        "faq_B7pjFz",
+        "faq_tTkBnf",
+        "faq_jziEy3",
+        "faq_reajrM"
+      ],
+      "custom_css": [
+        ".masthead,.intro,.hero,.offer {display: none;}"
+      ],
+      "settings": {
+        "product": "astaxanthin-softgels",
+        "show_announcement": false,
+        "announcement_text": "Up to 70% off · Supply limited by algae harvest cycles",
+        "top_cta_label": "Check availability",
+        "hero_heading": "10 Reasons Dr. Sebi's Most Explosive Warning About Modern Food Explains Your Aching Joints",
+        "hero_subhead": "(The \"Wear and Tear\" Story Kept You Treating the Pain While Joint Rot Spreads Through Your Cells)",
+        "byline": "the REVELLA team",
+        "hero_image": "shopify://shop_images/sebi-algae-hero.jpg",
+        "intro_top": "<p>Your joint pain is not proof that you are old. It is proof that your defenses are losing.</p><p>The medical name is oxidative stress. The plain-English name is joint rot. It is the same process that browns an apple and eats through bare metal, except it is happening inside the cells of your knees, shoulders, hips, and hands.</p>",
+        "intro_image": "shopify://shop_images/rust-rot.gif",
+        "intro_bottom": "<p>Dr. Sebi spent his life warning that modern food had been stripped of the natural compounds the body needs to protect and rebuild itself. He was pointing at the root while the rest of the world kept selling temporary relief.</p>",
+        "intro_turn": "You cannot stop aging. You cannot stop breathing. Unless you replace the shield your body is losing, the cellular corrosion keeps spreading every hour of every day.",
+        "buybox_eyebrow": "Choose your supply",
+        "buybox_rating": "Rated 4.8 Excellent by REVELLA customers",
+        "buybox_benefit_1": "12mg natural astaxanthin per softgel",
+        "buybox_benefit_2": "One softgel a day with a meal",
+        "buybox_benefit_3": "Third-party tested",
+        "buybox_benefit_4": "60-day money-back guarantee",
+        "buybox_button_label": "Add to cart",
+        "buybox_note": "Secure checkout · 60-day money-back guarantee",
+        "promo_countdown_label": "deal ending in",
+        "promo_hours": "11",
+        "promo_minutes": "51",
+        "promo_seconds": "58",
+        "promo_heading": "BACK IN STOCK + 15% OFF!",
+        "promo_subtext": "We just restocked after selling out. Get 15% off for the next 24 hours, before inventory runs low again.",
+        "promo_button_text": "GET 15% OFF NOW",
+        "promo_badge_1": "60-day Money-Back Guarantee",
+        "promo_badge_2": "fast + free shipping",
+        "offer_badge": "Back in stock after the ninth sellout",
+        "offer_heading": "The Current Astaxanthin Batch Is Live. When the Algae Harvest Runs Out, So Does REVELLA.",
+        "offer_body": "<p>Natural astaxanthin is grown, not stamped out of a petrochemical factory. REVELLA can only bottle what the algae harvest produces. When a batch is gone, it is gone until the next harvest.</p>",
+        "stock_note": "The current batch is available now, and the biggest sale of the year is live: up to 70% off.",
+        "offer_close": "You can keep numbing the signal while the joint rot spreads underneath. Or you can spend the next 30 days giving your cells the shield modern life took away.",
+        "show_offer_proofs": false,
+        "proof_1": "12mg natural astaxanthin from real microalgae",
+        "proof_2": "One ingredient. No fillers or synthetic dye",
+        "proof_3": "Up to 6,000x stronger than vitamin C",
+        "proof_4": "Third-party tested",
+        "proof_5": "60-day money-back guarantee",
+        "end_heading": "Every Day You Wait Gives the Rust Another Day",
+        "end_body": "Supply runs on the algae harvest, so selling out mid-sale is normal. If the button is still active, the current batch is still available.",
+        "end_cta_label": "Check stock and put the shield back on",
+        "enable_sticky_cta": true,
+        "sticky_label": "Check stock",
+        "sticky_note": "Up to 70% off · 60-day guarantee",
+        "footer_disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results vary. Consult a qualified healthcare professional before starting any supplement, especially if you are pregnant, nursing, or taking medication. Testimonials reflect individual experiences and are not a guarantee of results."
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "revella_listicle_sebi_cqQryt",
+    "main",
+    "revella_listicle_sebi_R3zRXH",
+    "related-products"
+  ]
+}

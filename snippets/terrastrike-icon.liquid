@@ -1,0 +1,53 @@
+{% doc %}
+  Renders one of the inline SVG icons used across the TerraStrike landing page, in
+  place of the Font Awesome icon font the original page depended on.
+
+  @param {string} name - check, cross, star, chevron-left, chevron-right, lock, alert,
+                         thumbs-up, shield, truck, bolt, clock, heart, info, none
+  @param {string} [class] - Additional CSS class(es) to add to the svg element
+  @param {string} [style] - Inline CSS applied to the svg, for sizes that must beat
+                            the stylesheet (e.g. a per-block width override)
+  @example
+  {% render 'terrastrike-icon', name: 'check', class: 'ts-bullet-icon is-check' %}
+{% enddoc %}
+
+{%- unless name == blank or name == 'none' -%}
+  <svg
+    class="ts-icon{% if class %} {{ class }}{% endif %}"
+    {% if style != blank %}style="{{ style }}"{% endif %}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    focusable="false"
+  >
+    {%- case name -%}
+      {%- when 'check' -%}
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm-1.2 14.4-4.2-4.2 1.4-1.4 2.8 2.8 6-6 1.4 1.4Z"></path>
+      {%- when 'cross' -%}
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm3.5 12.1-1.4 1.4L12 13.4l-2.1 2.1-1.4-1.4L10.6 12l-2.1-2.1 1.4-1.4L12 10.6l2.1-2.1 1.4 1.4L13.4 12Z"></path>
+      {%- when 'star' -%}
+        <path d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8l-6.3 3.3 1.2-6.9-5-4.9 7-1Z"></path>
+      {%- when 'chevron-left' -%}
+        <path d="M15.5 3.5 7 12l8.5 8.5 1.4-1.4L9.8 12l7.1-7.1Z"></path>
+      {%- when 'chevron-right' -%}
+        <path d="M8.5 3.5 17 12l-8.5 8.5-1.4-1.4L14.2 12 7.1 4.9Z"></path>
+      {%- when 'lock' -%}
+        <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5V10H6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1h-1.5V6.5A4.5 4.5 0 0 0 12 2Zm0 2a2.5 2.5 0 0 1 2.5 2.5V10h-5V6.5A2.5 2.5 0 0 1 12 4Z"></path>
+      {%- when 'alert' -%}
+        <path d="M12 2 1 21h22Zm0 6a1.2 1.2 0 0 1 1.2 1.2v5.1a1.2 1.2 0 0 1-2.4 0V9.2A1.2 1.2 0 0 1 12 8Zm0 9.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Z"></path>
+      {%- when 'thumbs-up' -%}
+        <path d="M2 21h3V10H2Zm19-9.5a2 2 0 0 0-2-2h-5.4l.8-3.9V5.3a1.8 1.8 0 0 0-1.8-1.8c-.4 0-.8.2-1 .5L7 10.4V21h11a2 2 0 0 0 1.9-1.4l1.9-6.4a2 2 0 0 0 .1-.6Z"></path>
+      {%- when 'shield' -%}
+        <path d="M12 2 3.5 5.6v6.2c0 4.9 3.6 9.5 8.5 10.6 4.9-1.1 8.5-5.7 8.5-10.6V5.6Zm-1.2 14.1-3.9-3.9 1.4-1.4 2.5 2.5 5.5-5.5 1.4 1.4Z"></path>
+      {%- when 'truck' -%}
+        <path d="M3 5h11a1 1 0 0 1 1 1v2h3.1a1 1 0 0 1 .8.4l2.9 3.8a1 1 0 0 1 .2.6V17a1 1 0 0 1-1 1h-1.2a3 3 0 0 1-5.6 0H9.8a3 3 0 0 1-5.6 0H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm14 5v2.5h3.4L18.6 10ZM7 15.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm10 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"></path>
+      {%- when 'bolt' -%}
+        <path d="M13.5 2 4 13.5h6L9.5 22 20 10.5h-6.5Z"></path>
+      {%- when 'clock' -%}
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 10.6-.6-.4V6h-1.8v6.6l4 2.9 1.1-1.5Z"></path>
+      {%- when 'heart' -%}
+        <path d="M12 21S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8C20.5 15 12 21 12 21Z"></path>
+      {%- when 'info' -%}
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1.2 15.5h-2.4v-7h2.4Zm0-8.7h-2.4V6.4h2.4Z"></path>
+    {%- endcase -%}
+  </svg>
+{%- endunless -%}

@@ -1,0 +1,25 @@
+{% doc %}
+  Renders one trust-strip item: an image (or a built-in icon when no image is set),
+  a title and a line of supporting text.
+
+  @param {object} block - A section block of type "item"
+  @example
+  {% render 'terrastrike-trio-item', block: block %}
+{% enddoc %}
+
+<div class="ts-trio__item" {{ block.shopify_attributes }}>
+  {%- if block.settings.image != blank -%}
+    {% render 'terrastrike-image', image: block.settings.image, alt: '', width: 200, lazy: true %}
+  {%- else -%}
+    {% render 'terrastrike-icon', name: block.settings.icon %}
+  {%- endif -%}
+
+  <div>
+    {%- if block.settings.title != blank -%}
+      <div class="ts-trio__item-title">{{ block.settings.title }}</div>
+    {%- endif -%}
+    {%- if block.settings.text != blank -%}
+      <div class="ts-trio__item-text">{{ block.settings.text }}</div>
+    {%- endif -%}
+  </div>
+</div>

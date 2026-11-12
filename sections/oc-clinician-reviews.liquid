@@ -1,0 +1,459 @@
+{{ 'oc.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign s = section.settings
+  capture ocr_style
+    echo '--ocr-pt:' | append: s.padding_top_mobile | append: 'px;--ocr-pb:' | append: s.padding_bottom_mobile | append: 'px;'
+    echo '--ocr-pt-d:' | append: s.padding_top | append: 'px;--ocr-pb-d:' | append: s.padding_bottom | append: 'px;'
+    echo '--ocr-clamp:' | append: s.clamp_lines | append: ';'
+    if s.background != blank
+      echo '--ocr-bg:' | append: s.background | append: ';'
+    endif
+    if s.text_color != blank
+      echo '--ocr-text:' | append: s.text_color | append: ';'
+    endif
+  endcapture
+-%}
+<oc-clinician-reviews class="ocr" style="display: block; {{ ocr_style }}"{% if s.anchor != blank %} id="{{ s.anchor | handle }}"{% endif %}>
+  {%- if s.mode == 'embed' and s.frontrow_product_id != blank -%}
+    <div class="ocr-c" style="padding-top: 0; padding-bottom: 0">
+      <script async src="https://app.thefrontrowhealth.com/api/widgets/script?presentation_type=qual&product_id={{ s.frontrow_product_id | url_encode }}"></script>
+      <iframe
+        id="frontrow-testimonials"
+        class="ocr-embed iframe-frontrow-testimonials"
+        title="{{ s.title | default: 'Clinician reviews' | escape }}"
+        src="https://app.thefrontrowhealth.com/api/widgets?presentation_type=qual&product_id={{ s.frontrow_product_id | url_encode }}"
+        loading="lazy"
+      ></iframe>
+      <style>iframe.iframe-frontrow-testimonials { width: 100%; } iframe.iframe-modal-testimonials { z-index: 99999998; }</style>
+    </div>
+  {%- else -%}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <div class="ocr-c">
+      <div class="ocr-h">
+        {%- if s.show_label_row -%}
+          <div class="ocr-row">
+            <div class="ocr-div l"></div>
+            {%- if s.show_laurels -%}
+              <span class="ocr-laurel l">{% render 'oc-icon', icon: 'fr-laurel-l' %}</span>
+            {%- endif -%}
+            <span class="ocr-ico">
+              {%- if s.label_icon != blank -%}
+                {{ s.label_icon | image_url: width: 116 | image_tag: loading: 'lazy', alt: '' }}
+              {%- else -%}
+                {% render 'oc-icon', icon: 'caduceus' %}
+              {%- endif -%}
+            </span>
+            <p class="ocr-label">{{ s.label }}</p>
+            {%- if s.show_laurels -%}
+              <span class="ocr-laurel r">{% render 'oc-icon', icon: 'fr-laurel-r' %}</span>
+            {%- endif -%}
+            <div class="ocr-div r"></div>
+          </div>
+        {%- endif -%}
+        {%- if s.title != blank %}<h2 class="ocr-title">{{ s.title }}</h2>{% endif -%}
+        {%- if s.subtitle != blank -%}
+          <div class="ocr-sub">
+            {{ s.subtitle }}
+            {%- if s.learn_more_label != blank -%}
+              {%- if s.learn_more_link != blank %} <a class="ocr-more-l" href="{{ s.learn_more_link }}">{{ s.learn_more_label }}</a>
+              {%- else %} <button type="button" class="ocr-more-l" data-open-modal>{{ s.learn_more_label }}</button>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="ocr-list">
+          {%- for block in section.blocks -%}
+            {%- assign b = block.settings -%}
+            <div class="ocr-note" {{ block.shopify_attributes }}>
+              <div class="ocr-prov">
+                <div class="ocr-ps">
+                  {%- if b.image != blank -%}
+                    {{ b.image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'ocr-img', width: 48, height: 48, alt: b.name }}
+                  {%- else -%}
+                    <span class="ocr-img">{{ b.name | remove: 'Dr. ' | remove: '[' | slice: 0 }}</span>
+                  {%- endif -%}
+                  <div class="ocr-pn">
+                    {%- if b.link != blank -%}
+                      <a class="ocr-name" href="{{ b.link }}" target="_blank" rel="noopener">{{ b.name }}</a>
+                    {%- else -%}
+                      <span class="ocr-name">{{ b.name }}</span>
+                    {%- endif -%}
+                    {%- if b.verified_label != blank -%}
+                      <div class="ocr-ver">
+                        {{ b.verified_label }}
+                        {%- if s.verified_icon != blank -%}
+                          {{ s.verified_icon | image_url: width: 48 | image_tag: loading: 'lazy', alt: '' }}
+                        {%- else -%}
+                          {% render 'oc-icon', icon: 'verified-badge' %}
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+                {%- if b.info_1_label != blank or b.info_2_label != blank -%}
+                  <div class="ocr-info">
+                    {%- if b.info_1_label != blank -%}
+                      <div class="dd">{{ b.info_1_label }}</div>
+                      <div class="dt">{{ b.info_1_value }}</div>
+                    {%- endif -%}
+                    {%- if b.info_1_label != blank and b.info_2_label != blank %}<hr>{% endif -%}
+                    {%- if b.info_2_label != blank -%}
+                      <div class="dd">{{ b.info_2_label }}</div>
+                      <div class="dt">{{ b.info_2_value }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="ocr-body">
+                {%- if b.summary != blank %}<p class="ocr-sum">{{ b.summary }}</p>{% endif -%}
+                {%- if b.message != blank -%}
+                  <div class="ocr-msg clamp" data-msg>{{ b.message }}{% if b.dagger %}<sup>†</sup>{% endif %}</div>
+                {%- endif -%}
+
+                {%- assign source_lines = b.sources | newline_to_br | split: '<br />' -%}
+                {%- assign source_count = 0 -%}
+                {%- assign first_journal = '' -%}
+                {%- for line in source_lines -%}
+                  {%- assign l = line | strip -%}
+                  {%- if l != blank -%}
+                    {%- assign source_count = source_count | plus: 1 -%}
+                    {%- if first_journal == '' -%}
+                      {%- assign parts = l | split: '|' -%}
+                      {%- assign first_journal = parts.last | strip -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if source_count > 0 -%}
+                  {%- assign extra = source_count | minus: 1 -%}
+                  <div class="ocr-cite" data-cite>
+                    <button type="button" class="ocr-pill" aria-expanded="false">
+                      {% render 'oc-icon', icon: 'book' %}
+                      <span class="t">{{ b.citation_label | default: first_journal }}</span>
+                      {%- if extra > 0 %}<span class="n">+{{ extra }}</span>{% endif -%}
+                    </button>
+                    <div class="ocr-tip" role="dialog">
+                      <div class="ocr-tip-h">{{ source_count }} {% if source_count == 1 %}{{ s.source_singular }}{% else %}{{ s.source_plural }}{% endif %}</div>
+                      <div class="ocr-tip-l">
+                        {%- for line in source_lines -%}
+                          {%- assign l = line | strip -%}
+                          {%- if l != blank -%}
+                            {%- assign parts = l | split: '|' -%}
+                            <div class="ocr-tip-i">
+                              <div class="tt">{{ parts.first | strip }}</div>
+                              {%- if parts.size > 1 %}<div class="ta">{{ parts.last | strip }}</div>{% endif -%}
+                            </div>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                {%- if b.message != blank and s.show_more_label != blank -%}
+                  <button type="button" class="ocr-toggle" data-toggle>{{ s.show_more_label }}</button>
+                {%- endif -%}
+
+                {%- assign hl_lines = b.highlights | newline_to_br | split: '<br />' -%}
+                {%- if b.highlights != blank -%}
+                  <div class="ocr-hl">
+                    {%- if s.highlights_label != blank %}<span class="ocr-hl-h">{{ s.highlights_label }}</span>{% endif -%}
+                    {%- for line in hl_lines -%}
+                      {%- assign l = line | strip -%}
+                      {%- if l != blank -%}
+                        <span class="ocr-hl-i">
+                          {%- if s.highlight_icon != blank -%}
+                            {{ s.highlight_icon | image_url: width: 40 | image_tag: loading: 'lazy', alt: '' }}
+                          {%- else -%}
+                            {% render 'oc-icon', icon: 'shield-outline' %}
+                          {%- endif -%}
+                          <span>{{ l }}</span>
+                        </span>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- assign has_logo = false -%}
+      {%- if s.footer_logo != blank or s.show_frontrow_logo -%}{%- assign has_logo = true -%}{%- endif -%}
+      {%- if s.button_label != blank or s.footer_text != blank or has_logo -%}
+        <div class="ocr-f">
+          {%- if s.button_label != blank -%}
+            {%- if s.button_link != blank -%}
+              <a class="ocr-btn" href="{{ s.button_link }}">{{ s.button_label }}</a>
+            {%- else -%}
+              <button type="button" class="ocr-btn" data-open-modal>{{ s.button_label }}</button>
+            {%- endif -%}
+          {%- endif -%}
+          {%- if s.footer_text != blank or has_logo -%}
+            <span class="ocr-ft">
+              {%- if s.footer_text != blank %}<span>{{ s.footer_text }}</span>{% endif -%}
+              {%- capture logo -%}
+                {%- if s.footer_logo != blank -%}
+                  {{ s.footer_logo | image_url: height: 40 | image_tag: loading: 'lazy', alt: s.footer_logo.alt }}
+                {%- elsif s.show_frontrow_logo -%}
+                  {% render 'oc-icon', icon: 'frontrow-logo' %}
+                {%- endif -%}
+              {%- endcapture -%}
+              {%- if logo != blank -%}
+                {%- if s.footer_logo_link != blank -%}
+                  <a class="ocr-fl" href="{{ s.footer_logo_link }}" target="_blank" rel="noopener">{{ logo }}</a>
+                {%- else -%}
+                  <span class="ocr-fl">{{ logo }}</span>
+                {%- endif -%}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- if s.disclaimer != blank %}<div class="ocr-disc">{{ s.disclaimer }}</div>{% endif -%}
+    </div>
+
+    <div class="ocr ocrm" data-modal hidden>
+      <div class="ocrm-m" role="dialog" aria-modal="true" aria-label="{{ s.label | default: s.title | escape }}">
+        <div class="ocrm-h">
+          <button type="button" class="ocrm-back" data-close aria-label="Close">
+            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M22.5 15L17.5 20L22.5 25" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+          {%- capture modal_logo -%}
+            {%- if s.modal_logo != blank -%}
+              {{ s.modal_logo | image_url: height: 48 | image_tag: loading: 'lazy', alt: s.modal_logo.alt | default: s.label }}
+            {%- else -%}
+              <span class="ocr-ico">{% render 'oc-icon', icon: 'caduceus' %}</span><span>{{ s.label }}</span>
+            {%- endif -%}
+          {%- endcapture -%}
+          {%- if s.modal_logo_link != blank -%}
+            <a class="ocrm-logo" href="{{ s.modal_logo_link }}" target="_blank" rel="noopener">{{ modal_logo }}</a>
+          {%- else -%}
+            <span class="ocrm-logo">{{ modal_logo }}</span>
+          {%- endif -%}
+          <button type="button" class="ocrm-x" data-close aria-label="Close">
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M1 1L11 11" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+        </div>
+        <div class="ocrm-c" data-modal-content>
+          {%- capture faq -%}
+            {%- for i in (1..3) -%}
+              {%- assign q_key = 'modal_q' | append: i -%}
+              {%- assign a_key = 'modal_a' | append: i -%}
+              {%- if s[q_key] != blank -%}
+                <details class="ocrm-qi">
+                  <summary>
+                    <span>{{ s[q_key] }}</span>
+                    <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M12 1.5552L6 7.5L0 1.5552L1.065 0.5L6 5.3896L10.935 0.5L12 1.5552Z" fill="currentColor"/></svg>
+                  </summary>
+                  <div class="ocrm-qa">{{ s[a_key] }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if faq != blank %}<div class="ocrm-q">{{ faq }}</div>{% endif -%}
+          <div class="ocrm-list" data-modal-list></div>
+          {%- if s.disclaimer != blank %}<div class="ocrm-disc">{{ s.disclaimer }}</div>{% endif -%}
+          {%- if s.modal_footer_text != blank or s.modal_link_label != blank -%}
+            <div class="ocrm-f">
+              {%- if s.modal_footer_text != blank %}<div class="ocrm-fd">{{ s.modal_footer_text }}</div>{% endif -%}
+              {%- if s.modal_link_label != blank and s.modal_link != blank -%}
+                <a class="ocrm-lm" href="{{ s.modal_link }}" target="_blank" rel="nofollow noopener noreferrer">
+                  {{- s.modal_link_label -}}
+                  <span><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5.625 1.5H2.875C2.51033 1.5 2.16059 1.64487 1.90273 1.90273C1.64487 2.16059 1.5 2.51033 1.5 2.875V11.125C1.5 11.4897 1.64487 11.8394 1.90273 12.0973C2.16059 12.3551 2.51033 12.5 2.875 12.5H11.125C11.4897 12.5 11.8394 12.3551 12.0973 12.0973C12.3551 11.8394 12.5 11.4897 12.5 11.125V8.375M7 7L12.5 1.5M12.5 1.5V4.9375M12.5 1.5H9.0625" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/></svg></span>
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</oc-clinician-reviews>
+
+<script>
+  (function () {
+    if (customElements.get('oc-clinician-reviews')) return;
+    class OcClinicianReviews extends HTMLElement {
+      connectedCallback() {
+        const notes = [...this.querySelectorAll('.ocr-list .ocr-note')];
+        this.modal = this.querySelector('[data-modal]');
+        if (this.modal) {
+          const list = this.modal.querySelector('[data-modal-list]');
+          notes.forEach((note) => {
+            const copy = note.cloneNode(true);
+            copy.removeAttribute('data-shopify-editor-block');
+            copy.querySelectorAll('[data-toggle]').forEach((b) => b.remove());
+            copy.querySelectorAll('[data-msg]').forEach((m) => m.classList.remove('clamp'));
+            list.appendChild(copy);
+          });
+          // Moved to <body> so no section stacking context or transform can trap the fixed overlay.
+          document.body.appendChild(this.modal);
+          this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal || e.target.closest('[data-close]')) this.closeModal();
+          });
+          this.modal.querySelectorAll('details').forEach((d) => {
+            d.addEventListener('toggle', () => {
+              if (d.open) this.modal.querySelectorAll('details[open]').forEach((o) => o !== d && (o.open = false));
+            });
+          });
+          this.onKey = (e) => {
+            if (this.modal.hidden) return;
+            if (e.key === 'Escape') this.closeModal();
+            if (e.key !== 'Tab') return;
+            const f = [...this.modal.querySelectorAll('button, a[href], summary')].filter((el) => el.offsetParent);
+            if (!f.length) return;
+            const first = f[0];
+            const last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && (document.activeElement === last || !this.modal.contains(document.activeElement))) {
+              e.preventDefault();
+              first.focus();
+            }
+          };
+          document.addEventListener('keydown', this.onKey);
+        }
+
+        notes.forEach((note, i) => {
+          const msg = note.querySelector('[data-msg]');
+          const btn = note.querySelector('[data-toggle]');
+          if (!msg || !btn) return;
+          requestAnimationFrame(() => {
+            if (msg.scrollHeight <= msg.clientHeight + 1) btn.hidden = true;
+          });
+          btn.addEventListener('click', () => this.openModal(i, btn));
+        });
+        this.querySelectorAll('[data-open-modal]').forEach((b) => b.addEventListener('click', () => this.openModal(-1, b)));
+
+        this.onCite = (e) => {
+          const pill = e.target.closest('.ocr-pill');
+          const cite = pill && pill.closest('[data-cite]');
+          const mine = cite && (this.contains(cite) || (this.modal && this.modal.contains(cite)));
+          [this, this.modal].forEach((root) => {
+            if (root) root.querySelectorAll('[data-cite].open').forEach((c) => c !== cite && c.classList.remove('open'));
+          });
+          if (!mine) return;
+          const open = cite.classList.toggle('open');
+          pill.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        document.addEventListener('click', this.onCite);
+      }
+      disconnectedCallback() {
+        document.removeEventListener('click', this.onCite);
+        if (this.onKey) document.removeEventListener('keydown', this.onKey);
+        if (this.modal) {
+          if (!this.modal.hidden) this.closeModal();
+          this.modal.remove();
+        }
+      }
+      openModal(index, trigger) {
+        if (!this.modal) return;
+        this.trigger = trigger;
+        this.modal.hidden = false;
+        document.documentElement.style.overflow = 'hidden';
+        const content = this.modal.querySelector('[data-modal-content]');
+        const note = index >= 0 ? this.modal.querySelectorAll('.ocr-note')[index] : null;
+        content.scrollTop = 0;
+        if (note) setTimeout(() => content.scrollTo({ top: note.offsetTop, behavior: 'smooth' }), 100);
+        this.modal.querySelector('.ocrm-x').focus({ preventScroll: true });
+      }
+      closeModal() {
+        this.modal.hidden = true;
+        document.documentElement.style.overflow = '';
+        if (this.trigger) this.trigger.focus({ preventScroll: true });
+      }
+    }
+    customElements.define('oc-clinician-reviews', OcClinicianReviews);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "OC: Clinician reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "select", "id": "mode", "label": "Mode", "default": "native", "options": [ { "value": "native", "label": "Native (editable design)" }, { "value": "embed", "label": "Frontrow Health widget (embed)" } ] },
+    { "type": "text", "id": "frontrow_product_id", "label": "Frontrow product ID", "info": "Only for embed mode, e.g. 4931." },
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "info": "Optional, e.g. clinician-reviews." },
+    { "type": "header", "content": "Header" },
+    { "type": "checkbox", "id": "show_label_row", "label": "Show label row", "default": true },
+    { "type": "checkbox", "id": "show_laurels", "label": "Show laurels", "default": true },
+    { "type": "image_picker", "id": "label_icon", "label": "Label icon", "info": "Empty = medical icon." },
+    { "type": "text", "id": "label", "label": "Label", "default": "Clinician Reviews" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Independent Clinician Evaluations" },
+    { "type": "richtext", "id": "subtitle", "label": "Subtitle", "default": "<p>Clinicians can receive product samples and are <em>never compensated</em> to submit evaluations.</p>" },
+    { "type": "text", "id": "learn_more_label", "label": "Subtitle link label", "default": "Learn more" },
+    { "type": "url", "id": "learn_more_link", "label": "Subtitle link", "info": "Empty = the link opens the reviews popup." },
+    { "type": "header", "content": "Reviews" },
+    { "type": "range", "id": "clamp_lines", "label": "Lines shown before \"Show more\"", "min": 2, "max": 10, "step": 1, "default": 3 },
+    { "type": "text", "id": "show_more_label", "label": "Show more label", "info": "Opens the reviews popup at that review.", "default": "Show more" },
+    { "type": "image_picker", "id": "verified_icon", "label": "Verified icon", "info": "Empty = grey check badge." },
+    { "type": "text", "id": "highlights_label", "label": "Highlights label", "default": "Highlights:" },
+    { "type": "image_picker", "id": "highlight_icon", "label": "Highlight icon", "info": "Empty = shield outline." },
+    { "type": "text", "id": "source_singular", "label": "Sources popup: singular", "default": "Source" },
+    { "type": "text", "id": "source_plural", "label": "Sources popup: plural", "default": "Sources" },
+    { "type": "header", "content": "Footer" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn more" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = the button opens the reviews popup." },
+    { "type": "text", "id": "footer_text", "label": "Footer text", "default": "Clinician reviews powered by" },
+    { "type": "image_picker", "id": "footer_logo", "label": "Footer logo", "info": "Shown 20 px high." },
+    { "type": "checkbox", "id": "show_frontrow_logo", "label": "Use FrontrowMD logo", "info": "Only when the reviews really come from FrontrowMD. An uploaded footer logo takes priority.", "default": false },
+    { "type": "url", "id": "footer_logo_link", "label": "Footer logo link" },
+    { "type": "richtext", "id": "disclaimer", "label": "Disclaimer", "default": "<p>†This clinician wants to clarify that larger-scale research to support their product claims is still developing. These statements have not been reviewed by the FDA and are not intended to be medical advice.</p>" },
+    { "type": "header", "content": "Reviews popup" },
+    { "type": "image_picker", "id": "modal_logo", "label": "Popup logo", "info": "Shown 24 px high. Empty = medical icon + label." },
+    { "type": "url", "id": "modal_logo_link", "label": "Popup logo link" },
+    { "type": "text", "id": "modal_q1", "label": "Question 1", "default": "What are \"Clinician Reviews\"?" },
+    { "type": "richtext", "id": "modal_a1", "label": "Answer 1", "default": "<p>[Explain how the clinician reviews were collected and who collected them.]</p>" },
+    { "type": "text", "id": "modal_q2", "label": "Question 2", "default": "Who is [review partner]?" },
+    { "type": "richtext", "id": "modal_a2", "label": "Answer 2", "default": "<p>[Short description of the independent review partner.]</p>" },
+    { "type": "text", "id": "modal_q3", "label": "Question 3", "default": "Are clinicians paid to do this?" },
+    { "type": "richtext", "id": "modal_a3", "label": "Answer 3", "default": "<p>[State whether clinicians are compensated.]</p>" },
+    { "type": "richtext", "id": "modal_footer_text", "label": "Popup footer text", "default": "<p>[Disclaimer, e.g. reviews are informational only and not medical advice. Always consult your provider.]</p>" },
+    { "type": "text", "id": "modal_link_label", "label": "Popup footer link label", "default": "Learn more" },
+    { "type": "url", "id": "modal_link", "label": "Popup footer link" },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#F5F8FF" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#212121" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 30 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 38 },
+    { "type": "range", "id": "padding_top", "label": "Top padding desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 52 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Clinician review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Square, shown 48 px round. Empty = initial." },
+        { "type": "text", "id": "name", "label": "Name", "default": "[Clinician name], MD" },
+        { "type": "url", "id": "link", "label": "Name link (optional)" },
+        { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified clinician" },
+        { "type": "text", "id": "info_1_label", "label": "Info row 1 label", "default": "Specialty" },
+        { "type": "text", "id": "info_1_value", "label": "Info row 1 value", "default": "[Specialty]" },
+        { "type": "text", "id": "info_2_label", "label": "Info row 2 label", "default": "Years in practice" },
+        { "type": "text", "id": "info_2_value", "label": "Info row 2 value", "default": "[XX]" },
+        { "type": "text", "id": "summary", "label": "Review title", "default": "[Short review title]" },
+        { "type": "richtext", "id": "message", "label": "Review text", "default": "<p>[Clinician evaluation — what they think about the product, the research behind the ingredient and who it may suit. This text is cut to a few lines with a Show more button.]</p>" },
+        { "type": "checkbox", "id": "dagger", "label": "Add † after the text", "default": true },
+        { "type": "textarea", "id": "sources", "label": "Sources (one per line)", "info": "Format: Study title | Journal, Year", "default": "[Study title] | [Journal], [Year]\n[Study title] | [Journal], [Year]" },
+        { "type": "text", "id": "citation_label", "label": "Citation pill label (optional)", "info": "Empty = journal of the first source." },
+        { "type": "textarea", "id": "highlights", "label": "Highlights (one per line)", "default": "[Highlight 1]\n[Highlight 2]\n[Highlight 3]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Clinician reviews",
+      "blocks": [ { "type": "review" }, { "type": "review" } ]
+    }
+  ]
+}
+{% endschema %}

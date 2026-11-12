@@ -1,0 +1,77 @@
+{% comment %}
+  GNRL_Icon With Text Grid
+  Renders a 2-column grid of icon + text items.
+  Each item uses a raw SVG textarea input.
+
+  Accepts:
+  - block: {Object} passes in the block information.
+
+  Usage:
+  {% render 'icon-with-text-gnrl', block: block %}
+{% endcomment %}
+
+<style>
+  .gnrl-icon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.row_gap }}px {{ block.settings.col_gap }}px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gnrl-icon-grid__item {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.icon_gap }}px;
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.3;
+  }
+
+  .gnrl-icon-grid__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+  }
+
+  .gnrl-icon-grid__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<ul class="gnrl-icon-grid" {{ block.shopify_attributes }}>
+  {%- for i in (1..6) -%}
+    {%- assign svg_key = 'svg_' | append: i -%}
+    {%- assign image_key = 'image_' | append: i -%}
+    {%- assign label_key = 'label_' | append: i -%}
+    {%- assign label = block.settings[label_key] -%}
+    {%- unless label == blank -%}
+      <li class="gnrl-icon-grid__item">
+        {%- if block.settings[svg_key] != blank -%}
+          <span class="gnrl-icon-grid__icon" aria-hidden="true">
+            {{ block.settings[svg_key] }}
+          </span>
+        {%- elsif block.settings[image_key] != null -%}
+          <span class="gnrl-icon-grid__icon" aria-hidden="true">
+            <img
+              src="{{ block.settings[image_key] | image_url }}"
+              {% if block.settings[image_key].alt != blank %}
+                alt="{{ block.settings[image_key].alt | escape }}"
+              {% else %}
+                role="presentation"
+              {% endif %}
+              width="{{ block.settings.icon_size }}"
+              height="{{ block.settings.icon_size }}"
+              loading="lazy"
+            >
+          </span>
+        {%- endif -%}
+        <span>{{ label }}</span>
+      </li>
+    {%- endunless -%}
+  {%- endfor -%}
+</ul>

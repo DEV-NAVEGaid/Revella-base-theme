@@ -1,0 +1,1733 @@
+{% comment %}
+  Custom Feature Product Section
+  Category: Template
+  Two-column: product gallery left, content blocks right
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign selected_product = section.settings.product
+  assign overlay_dir = section.settings.overlay_direction
+  assign image_col = section.settings.image_column
+  assign hide_image = section.settings.hide_image
+  if selected_product != blank and selected_product.images.size == 0
+    assign hide_image = true
+  endif
+-%}
+
+<style>
+  /* ── Section ── */
+  .cfp-section-{{ sid }} {
+    position: relative;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.background_image != blank %}
+    background-image: url('{{ section.settings.background_image | image_url: width: 1800 }}');
+    background-size: {{ section.settings.bg_size }};
+    background-position: {{ section.settings.bg_position }};
+    background-repeat: no-repeat;
+    {% endif %}
+    overflow: clip; /* was hidden — hidden on this ancestor killed sticky content */
+  }
+
+  /* ── Overlay ── */
+  .cfp-overlay-{{ sid }} {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    {%- assign oc = section.settings.overlay_color -%}
+    {%- assign oo = section.settings.overlay_opacity | times: 0.01 -%}
+    {%- if overlay_dir == 'left' -%}
+      background: linear-gradient(to right, {{ oc }}, transparent); opacity: {{ oo }};
+    {%- elsif overlay_dir == 'right' -%}
+      background: linear-gradient(to left, {{ oc }}, transparent); opacity: {{ oo }};
+    {%- elsif overlay_dir == 'top' -%}
+      background: linear-gradient(to bottom, {{ oc }}, transparent); opacity: {{ oo }};
+    {%- elsif overlay_dir == 'bottom' -%}
+      background: linear-gradient(to top, {{ oc }}, transparent); opacity: {{ oo }};
+    {%- elsif overlay_dir == 'full' -%}
+      background: {{ oc }}; opacity: {{ oo }};
+    {%- endif -%}
+  }
+
+  /* ── Page-width wrapper ── */
+  .cfp-page-width-{{ sid }} {
+    max-width: var(--page-width, 1200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: {{ section.settings.section_padding_x_mobile }}px;
+    padding-right: {{ section.settings.section_padding_x_mobile }}px;
+    padding-top: {{ section.settings.section_padding_y_mobile }}px;
+    padding-bottom: {{ section.settings.section_padding_y_mobile }}px;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-page-width-{{ sid }} {
+      padding-left: {{ section.settings.section_padding_x_desktop }}px;
+      padding-right: {{ section.settings.section_padding_x_desktop }}px;
+      padding-top: {{ section.settings.section_padding_y_desktop }}px;
+      padding-bottom: {{ section.settings.section_padding_y_desktop }}px;
+    }
+  }
+
+  /* ── Grid ── */
+  .cfp-grid-{{ sid }} {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-grid-{{ sid }} {
+      grid-template-columns: {% if hide_image %}1fr{% else %}{{ section.settings.col_image_width }}fr {{ section.settings.col_content_width }}fr{% endif %};
+      min-height: {{ section.settings.min_height_desktop }}px;
+      align-items: start;
+    }
+  }
+
+  /* Mobile ordering */
+  @media (max-width: 767px) {
+    .cfp-image-side-{{ sid }}  { order: {{ section.settings.gallery_order_mobile }}; }
+    .cfp-content-side-{{ sid }} { order: {{ section.settings.content_order_mobile }}; }
+  }
+
+  /* ── Sticky content ── */
+  @media (min-width: 768px) {
+    .cfp-sticky-{{ sid }} {
+      position: sticky;
+      top: {{ section.settings.sticky_top_offset }}px;
+    }
+  }
+
+  /* ── Gallery column ── */
+  .cfp-image-side-{{ sid }} {
+    padding: {{ section.settings.gallery_padding_mobile }}px;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-image-side-{{ sid }} {
+      padding: {{ section.settings.gallery_padding_desktop }}px;
+    }
+  }
+
+  /* ── Main image (desktop) ── */
+  .cfp-main-img-wrap-{{ sid }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ section.settings.img_radius }}px;
+    background-color: {{ section.settings.img_bg_color }};
+    aspect-ratio: {{ section.settings.img_ratio }};
+  }
+
+  .cfp-main-img-wrap-{{ sid }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.img_fit }};
+    object-position: center;
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+  /* ── Thumbnails (desktop) ── */
+  .cfp-thumbs-{{ sid }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: {{ section.settings.thumb_margin_top }}px;
+  }
+
+  .cfp-thumbs-track-{{ sid }} {
+    display: flex;
+    gap: {{ section.settings.thumb_gap }}px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    max-width: 100%;
+    padding: 2px;
+  }
+
+  .cfp-thumb-{{ sid }} {
+    width: {{ section.settings.thumb_size }}px;
+    height: {{ section.settings.thumb_size }}px;
+    border-radius: {{ section.settings.thumb_radius }}px;
+    overflow: hidden;
+    cursor: pointer;
+    border: {{ section.settings.thumb_border_width }}px solid transparent;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+    background-color: {{ section.settings.img_bg_color }};
+  }
+
+  .cfp-thumb-{{ sid }}.is-active {
+    border-color: {{ section.settings.thumb_active_color }};
+  }
+
+  .cfp-thumb-{{ sid }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cfp-thumb-arrow-{{ sid }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .cfp-thumb-arrow-{{ sid }}:hover { opacity: 1; }
+  .cfp-thumb-arrow-{{ sid }}.hidden { visibility: hidden; }
+
+  /* ── Mobile swiper ── */
+  .cfp-swiper-{{ sid }} {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  border-radius: 0;
+  aspect-ratio: {{ section.settings.img_ratio }};
+  background-color: {{ section.settings.img_bg_color }};
+  width: 100%;
+  max-width: 100%;
+}
+
+.cfp-swiper-track-{{ sid }} {
+  display: flex;
+  height: 100%;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.cfp-swiper-slide-{{ sid }} {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+  .cfp-swiper-slide-{{ sid }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.img_fit }};
+    object-position: center;
+    display: block;
+  }
+
+  .cfp-dots-{{ sid }} {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+.cfp-dot-{{ sid }} {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #999999;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.cfp-dot-{{ sid }}.is-active {
+  background: #121212;
+}
+
+  /* ── Show/hide desktop vs mobile gallery ── */
+  .cfp-gallery-desktop-{{ sid }} { display: none; }
+  .cfp-gallery-mobile-{{ sid }}  { display: block; }
+
+  @media (min-width: 768px) {
+    .cfp-gallery-desktop-{{ sid }} { display: block; }
+    .cfp-gallery-mobile-{{ sid }}  { display: none; }
+  }
+
+  /* ── Mobile: remove gallery padding so image is edge-to-edge ── */
+  @media (max-width: 767px) {
+    .cfp-image-side-{{ sid }} {
+      padding: 0 !important;
+    }
+  }
+
+  /* ── Content column ── */
+  .cfp-content-side-{{ sid }} {
+    padding-top: {{ section.settings.content_padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.content_padding_bottom_mobile }}px;
+    padding-left: {{ section.settings.content_padding_x_mobile }}px;
+    padding-right: {{ section.settings.content_padding_x_mobile }}px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-content-side-{{ sid }} {
+      padding-top: {{ section.settings.content_padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.content_padding_bottom_desktop }}px;
+      padding-left: {{ section.settings.content_padding_x_desktop }}px;
+      padding-right: {{ section.settings.content_padding_x_desktop }}px;
+    }
+  }
+
+  .cfp-content-inner-{{ sid }} {
+    max-width: {{ section.settings.content_max_width }}px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 767px) {
+    .cfp-content-inner-{{ sid }} {
+      max-width: 100%;
+    }
+  }
+
+  /* ── Star rating block ── */
+  .cfp-stars-{{ sid }} {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.star_item_gap }}px;
+    margin-bottom: {{ section.settings.stars_margin_bottom }}px;
+    flex-wrap: wrap;
+  }
+
+  .cfp-stars-row-{{ sid }} {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.star_gap }}px;
+  }
+
+  .cfp-stars-row-{{ sid }} svg {
+    width: {{ section.settings.star_size_mobile }}px;
+    height: {{ section.settings.star_size_mobile }}px;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-stars-row-{{ sid }} svg {
+      width: {{ section.settings.star_size_desktop }}px;
+      height: {{ section.settings.star_size_desktop }}px;
+    }
+  }
+
+  .cfp-stars-meta-{{ sid }} {
+    font-family: {{ section.settings.stars_meta_font.family }}, {{ section.settings.stars_meta_font.fallback_families }};
+    font-size: {{ section.settings.stars_meta_size }}px;
+    color: {{ section.settings.stars_meta_color }};
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .cfp-stars-meta-{{ sid }} strong {
+    font-weight: {{ section.settings.stars_meta_bold_weight }};
+    color: {{ section.settings.stars_meta_bold_color }};
+  }
+
+  /* ── Product title block ── */
+  .cfp-title-{{ sid }} {
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+
+  .cfp-title-{{ sid }} .cfp-title-tag {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-weight: {{ section.settings.title_font_weight }};
+    font-size: {{ section.settings.title_size_mobile }}px;
+    color: {{ section.settings.title_color }};
+    letter-spacing: {{ section.settings.title_letter_spacing }}px;
+    line-height: {{ section.settings.title_line_height | times: 0.1 | plus: 1.0 }};
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-title-{{ sid }} .cfp-title-tag {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+  }
+
+  /* ── Product subtitle ── */
+  .cfp-subtitle-{{ sid }} {
+    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
+  }
+
+  .cfp-subtitle-{{ sid }} p {
+    font-family: {{ section.settings.subtitle_font.family }}, {{ section.settings.subtitle_font.fallback_families }};
+    font-weight: {{ section.settings.subtitle_font_weight }};
+    font-size: {{ section.settings.subtitle_size_mobile }}px;
+    color: {{ section.settings.subtitle_color }};
+    letter-spacing: {{ section.settings.subtitle_letter_spacing }}px;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-subtitle-{{ sid }} p {
+      font-size: {{ section.settings.subtitle_size_desktop }}px;
+    }
+  }
+
+  /* ── Product description ── */
+  .cfp-description-{{ sid }} {
+    margin-bottom: {{ section.settings.description_margin_bottom }}px;
+  }
+
+  .cfp-description-{{ sid }} p,
+  .cfp-description-{{ sid }} .cfp-desc-text {
+    font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
+    font-weight: {{ section.settings.description_font_weight }};
+    font-size: {{ section.settings.description_size_mobile }}px;
+    color: {{ section.settings.description_color }};
+    letter-spacing: {{ section.settings.description_letter_spacing }}px;
+    line-height: {{ section.settings.description_line_height | times: 0.1 | plus: 1.0 }};
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .cfp-description-{{ sid }} p,
+    .cfp-description-{{ sid }} .cfp-desc-text {
+      font-size: {{ section.settings.description_size_desktop }}px;
+    }
+  }
+
+  .cfp-description-{{ sid }} strong {
+    font-weight: {{ section.settings.description_bold_weight }};
+    color: {{ section.settings.description_bold_color }};
+  }
+
+  /* ── CTA ── */
+  .cfp-cta-{{ sid }} {
+    margin-bottom: {{ section.settings.cta_margin_bottom }}px;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.cta_gap }}px;
+  }
+
+  .cfp-btn-{{ sid }} {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-family: {{ section.settings.btn_font.family }}, {{ section.settings.btn_font.fallback_families }};
+    font-weight: {{ section.settings.btn_font_weight }};
+    font-size: {{ section.settings.btn_size_mobile }}px;
+    color: {{ section.settings.btn_text_color }};
+    background-color: {{ section.settings.btn_bg_color }};
+    border: {{ section.settings.btn_border_width }}px solid {{ section.settings.btn_border_color }};
+    border-radius: {{ section.settings.btn_radius }}px;
+    padding: {{ section.settings.btn_padding_v }}px {{ section.settings.btn_padding_h }}px;
+    letter-spacing: {{ section.settings.btn_letter_spacing }}px;
+    text-transform: {{ section.settings.btn_transform }};
+    transition: opacity 0.2s;
+    cursor: pointer;
+  }
+
+  .cfp-btn-{{ sid }}:hover { opacity: 0.88; }
+
+  @media (min-width: 768px) {
+    .cfp-btn-{{ sid }} { font-size: {{ section.settings.btn_size_desktop }}px; }
+  }
+
+  .cfp-guarantee-{{ sid }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: {{ section.settings.guarantee_font.family }}, {{ section.settings.guarantee_font.fallback_families }};
+    font-weight: {{ section.settings.guarantee_font_weight }};
+    font-size: {{ section.settings.guarantee_size }}px;
+    color: {{ section.settings.guarantee_color }};
+    margin: 0;
+  }
+
+  .cfp-guarantee-{{ sid }} svg {
+    width: {{ section.settings.guarantee_icon_size }}px;
+    height: {{ section.settings.guarantee_icon_size }}px;
+    stroke: {{ section.settings.guarantee_color }};
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  product-form,
+product-form .form,
+.product-form__buttons,
+.product-form__submit {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+</style>
+
+<div class="cfp-section-{{ sid }}">
+  {% if overlay_dir != 'none' %}
+    <div class="cfp-overlay-{{ sid }}"></div>
+  {% endif %}
+
+  <div class="cfp-page-width-{{ sid }}">
+    <div class="cfp-grid-{{ sid }}">
+
+      {%- unless hide_image -%}
+      {%- comment -%} ── Gallery Column ── {%- endcomment -%}
+      {%- if image_col == 'left' -%}
+      <div class="cfp-image-side-{{ sid }}">
+      {%- else -%}
+      <div class="cfp-image-side-{{ sid }}" style="order: 2;">
+      {%- endif -%}
+
+        {%- if selected_product != blank -%}
+          {%- assign product_images = selected_product.images -%}
+          {%- assign first_image = product_images | first -%}
+
+          {% comment %} {{-- DESKTOP gallery --}} {% endcomment %}
+          <div class="cfp-gallery-desktop-{{ sid }}">
+            <div class="cfp-main-img-wrap-{{ sid }}">
+              {%- if first_image != blank -%}
+                <img id="cfp-main-img-el-{{ sid }}"
+                     src="{{ first_image | image_url: width: 1200 }}"
+                     alt="{{ first_image.alt | escape | default: selected_product.title }}"
+                     loading="eager" width="1200" height="1200" fetchpriority="high">
+              {%- endif -%}
+            </div>
+
+            {%- if product_images.size > 1 -%}
+              <div class="cfp-thumbs-{{ sid }}">
+                <button class="cfp-thumb-arrow-{{ sid }} hidden" id="cfp-arr-prev-{{ sid }}" aria-label="Previous">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="cfp-thumbs-track-{{ sid }}" id="cfp-thumbs-track-{{ sid }}">
+                  {%- for img in product_images -%}
+                    <div class="cfp-thumb-{{ sid }}{% if forloop.first %} is-active{% endif %}"
+     data-src="{{ img | image_url: width: 1200 }}"
+     data-alt="{{ img.alt | escape | default: selected_product.title }}">
+                      <img src="{{ img | image_url: width: 200 }}"
+                           alt="{{ img.alt | escape | default: selected_product.title }}"
+                           loading="lazy" width="200" height="200">
+                    </div>
+                  {%- endfor -%}
+                </div>
+                <button class="cfp-thumb-arrow-{{ sid }}" id="cfp-arr-next-{{ sid }}" aria-label="Next">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            {%- endif -%}
+          </div>
+
+          {% comment %} {{-- MOBILE gallery --}} {% endcomment %}
+          <div class="cfp-gallery-mobile-{{ sid }}">
+            <div class="cfp-swiper-{{ sid }}" id="cfp-swiper-{{ sid }}">
+              <div class="cfp-swiper-track-{{ sid }}" id="cfp-swiper-track-{{ sid }}">
+                {%- for img in product_images -%}
+                  <div class="cfp-swiper-slide-{{ sid }}">
+                    <img src="{{ img | image_url: width: 800 }}"
+                        alt="{{ img.alt | escape | default: selected_product.title }}"
+                        loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                        {% if forloop.first %}fetchpriority="high"{% endif %}
+                        width="800" height="800">
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              {%- if product_images.size > 1 -%}
+                <div class="cfp-dots-{{ sid }}" id="cfp-dots-{{ sid }}">
+                  {%- for img in product_images -%}
+                    <button class="cfp-dot-{{ sid }}{% if forloop.first %} is-active{% endif %}"
+                            data-index="{{ forloop.index0 }}"
+                            aria-label="Image {{ forloop.index }}"></button>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+
+
+        {%- elsif section.settings.fallback_image != blank -%}
+          <div class="cfp-gallery-desktop-{{ sid }}">
+            <div class="cfp-main-img-wrap-{{ sid }}">
+              <img src="{{ section.settings.fallback_image | image_url: width: 1200 }}"
+                   alt="{{ section.settings.fallback_image.alt | escape }}"
+                   loading="eager" width="1200" height="1200">
+            </div>
+          </div>
+          <div class="cfp-gallery-mobile-{{ sid }}">
+            <div class="cfp-swiper-{{ sid }}">
+              <div class="cfp-swiper-track-{{ sid }}">
+                <div class="cfp-swiper-slide-{{ sid }}">
+                  <img src="{{ section.settings.fallback_image | image_url: width: 800 }}"
+                       alt="{{ section.settings.fallback_image.alt | escape }}"
+                       loading="eager" width="800" height="800">
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div>
+      {%- endunless -%}
+
+      {%- comment -%} ── Content Column ── {%- endcomment -%}
+      {%- if section.settings.enable_sticky_info -%}{%- assign cfp_sticky_class = ' cfp-sticky-' | append: sid -%}{%- else -%}{%- assign cfp_sticky_class = '' -%}{%- endif -%}
+      {%- if image_col == 'left' -%}
+      <div class="cfp-content-side-{{ sid }}{{ cfp_sticky_class }}">
+      {%- else -%}
+      <div class="cfp-content-side-{{ sid }}{{ cfp_sticky_class }}" style="order: 1;">
+      {%- endif -%}
+        <div class="cfp-content-inner-{{ sid }}">
+
+          {%- for block in section.blocks -%}
+
+            {%- if block.type == 'star_rating' -%}
+              {%- assign rating = block.settings.rating -%}
+              {%- assign filled = rating | round -%}
+              <div class="cfp-stars-{{ sid }}" {{ block.shopify_attributes }}>
+                <div class="cfp-stars-row-{{ sid }}">
+                  {%- for i in (1..5) -%}
+                    {%- if i <= filled -%}
+                      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="{{ section.settings.star_color_filled }}" stroke="none"/></svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="{{ section.settings.star_color_empty }}" stroke="none"/></svg>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                {%- if block.settings.meta_text != blank -%}
+                  <p class="cfp-stars-meta-{{ sid }}">{{ block.settings.meta_text }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- elsif block.type == 'product_title' -%}
+              <div class="cfp-title-{{ sid }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.use_dynamic and selected_product != blank -%}
+                  <{{ block.settings.heading_tag }} class="cfp-title-tag">{{ selected_product.title }}</{{ block.settings.heading_tag }}>
+                {%- elsif block.settings.custom_title != blank -%}
+                  <{{ block.settings.heading_tag }} class="cfp-title-tag">{{ block.settings.custom_title | escape }}</{{ block.settings.heading_tag }}>
+                {%- elsif selected_product != blank -%}
+                  <{{ block.settings.heading_tag }} class="cfp-title-tag">{{ selected_product.title }}</{{ block.settings.heading_tag }}>
+                {%- endif -%}
+              </div>
+
+            {%- elsif block.type == 'product_subtitle' -%}
+              <div class="cfp-subtitle-{{ sid }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.use_dynamic and selected_product != blank -%}
+                  <p>{{ selected_product.metafields.custom.subtitle | default: selected_product.vendor }}</p>
+                {%- else -%}
+                  <p>{{ block.settings.text | escape }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- elsif block.type == 'product_description' -%}
+              <div class="cfp-description-{{ sid }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.use_dynamic and selected_product != blank -%}
+                  <div class="cfp-desc-text">{{ selected_product.description }}</div>
+                {%- else -%}
+                  <p>{{ block.settings.custom_text }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- elsif block.type == 'cta' -%}
+              <div class="cfp-cta-{{ sid }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.btn_label != blank -%}
+                  {%- assign btn_url = block.settings.btn_url -%}
+                  {%- if block.settings.use_product_url and selected_product != blank -%}
+                    {%- assign btn_url = selected_product.url -%}
+                  {%- endif -%}
+                  <a href="{{ btn_url | default: '#' }}" class="cfp-btn-{{ sid }}">
+                    {{ block.settings.btn_label | escape }}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.guarantee_text != blank -%}
+                  <p class="cfp-guarantee-{{ sid }}">
+                    {%- if block.settings.guarantee_custom_icon != blank -%}
+                      <img src="{{ block.settings.guarantee_custom_icon | image_url: width: 48 }}"
+                           alt="" loading="lazy" width="48" height="48"
+                           style="width:{{ section.settings.guarantee_icon_size }}px;height:{{ section.settings.guarantee_icon_size }}px;object-fit:contain;flex-shrink:0;">
+                    {%- elsif block.settings.guarantee_icon != 'none' -%}
+                      {%- case block.settings.guarantee_icon -%}
+                        {%- when 'shield' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        {%- when 'diamond' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                        {%- when 'check-circle' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        {%- when 'star' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        {%- when 'award' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        {%- when 'heart' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        {%- when 'leaf' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2s-2 0-2 5 5 5 6 7"/></svg>
+                        {%- when 'truck' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        {%- when 'refresh' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                        {%- when 'lock' -%}
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      {%- endcase -%}
+                    {%- endif -%}
+                    {{ block.settings.guarantee_text | escape }}
+                  </p>
+                {%- endif -%}
+              </div>
+
+            {%- endif -%}
+
+          {%- endfor -%}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sid = '{{ sid }}';
+
+  function cfpInit() {
+
+    // ── DESKTOP: thumbnail click ──
+    var thumbsTrack = document.getElementById('cfp-thumbs-track-' + sid);
+    if (thumbsTrack) {
+      thumbsTrack.addEventListener('click', function(e) {
+        var thumb = e.target.closest('[data-src]');
+        if (!thumb) return;
+        var mainImg = document.getElementById('cfp-main-img-el-' + sid);
+        if (!mainImg) return;
+        mainImg.style.opacity = '0.5';
+        mainImg.src = thumb.dataset.src;
+        mainImg.alt = thumb.dataset.alt || '';
+        mainImg.onload = function() { mainImg.style.opacity = '1'; };
+        thumbsTrack.querySelectorAll('[data-src]').forEach(function(t) {
+          t.classList.remove('is-active');
+        });
+        thumb.classList.add('is-active');
+      });
+    }
+
+    // ── DESKTOP: arrows ──
+    var track = document.getElementById('cfp-thumbs-track-' + sid);
+    var prev  = document.getElementById('cfp-arr-prev-' + sid);
+    var next  = document.getElementById('cfp-arr-next-' + sid);
+
+    function updateArrows() {
+      if (!track || !prev || !next) return;
+      prev.classList.toggle('hidden', track.scrollLeft <= 2);
+      next.classList.toggle('hidden', track.scrollLeft + track.clientWidth >= track.scrollWidth - 2);
+    }
+
+    if (prev) prev.addEventListener('click', function() {
+      track.scrollLeft -= {{ section.settings.thumb_size | plus: section.settings.thumb_gap | times: 2 }};
+      setTimeout(updateArrows, 350);
+    });
+    if (next) next.addEventListener('click', function() {
+      track.scrollLeft += {{ section.settings.thumb_size | plus: section.settings.thumb_gap | times: 2 }};
+      setTimeout(updateArrows, 350);
+    });
+    if (track) {
+      track.addEventListener('scroll', updateArrows);
+      updateArrows();
+    }
+
+    // ── MOBILE: swiper ──
+    var swiperEl = document.getElementById('cfp-swiper-' + sid);
+    var trackEl  = document.getElementById('cfp-swiper-track-' + sid);
+    var dotsEl   = document.getElementById('cfp-dots-' + sid);
+    var current  = 0;
+    var slides   = trackEl ? trackEl.querySelectorAll('.cfp-swiper-slide-' + sid) : [];
+    var total    = slides.length;
+
+    function getSlideWidth() {
+      return swiperEl ? swiperEl.offsetWidth : 0;
+    }
+
+    function gotoSlide(idx) {
+  if (!trackEl) return;
+  current = idx;
+  trackEl.style.transform = 'translateX(-' + (idx * 100) + '%)';
+  if (dotsEl) {
+    dotsEl.querySelectorAll('[data-index]').forEach(function(d) {
+      d.classList.toggle('is-active', parseInt(d.dataset.index) === idx);
+    });
+  }
+}
+
+    // recalc on resize (orientation change)
+    window.addEventListener('resize', function() {
+      gotoSlide(current);
+    });
+
+    if (dotsEl) {
+      dotsEl.addEventListener('click', function(e) {
+        var dot = e.target.closest('[data-index]');
+        if (!dot) return;
+        gotoSlide(parseInt(dot.dataset.index, 10));
+      });
+    }
+
+    if (swiperEl && total > 1) {
+      var startX = 0, startY = 0, isHoriz = null, dragging = false;
+
+      swiperEl.addEventListener('touchstart', function(e) {
+        startX   = e.touches[0].clientX;
+        startY   = e.touches[0].clientY;
+        isHoriz  = null;
+        dragging = true;
+      }, { passive: true });
+
+      swiperEl.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        var dx = e.touches[0].clientX - startX;
+        var dy = e.touches[0].clientY - startY;
+        if (isHoriz === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+          isHoriz = Math.abs(dx) > Math.abs(dy);
+        }
+        if (isHoriz) e.preventDefault();
+      }, { passive: false });
+
+      swiperEl.addEventListener('touchend', function(e) {
+        if (!dragging || !isHoriz) return;
+        dragging = false;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) < 40) return;
+        if (dx < 0 && current < total - 1) gotoSlide(current + 1);
+        else if (dx > 0 && current > 0)    gotoSlide(current - 1);
+      }, { passive: true });
+
+      swiperEl.addEventListener('touchcancel', function() {
+        dragging = false;
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cfpInit);
+  } else {
+    cfpInit();
+  }
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Feature Product",
+  "tag": "section",
+  "class": "custom-feature-product-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback Image",
+      "info": "Shown when no product is selected"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image (optional)"
+    },
+    {
+      "type": "select",
+      "id": "bg_size",
+      "label": "Image Size",
+      "options": [
+        { "value": "cover",   "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "auto",    "label": "Auto" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top",    "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center",   "label": "Left" },
+        { "value": "right center",  "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "select",
+      "id": "overlay_direction",
+      "label": "Overlay Direction",
+      "options": [
+        { "value": "none",   "label": "None" },
+        { "value": "left",   "label": "From Left" },
+        { "value": "right",  "label": "From Right" },
+        { "value": "top",    "label": "From Top" },
+        { "value": "bottom", "label": "From Bottom" },
+        { "value": "full",   "label": "Full Solid" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (%)",
+      "min": 0, "max": 100, "step": 5, "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Column Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_image",
+      "label": "Hide image column",
+      "default": false,
+      "info": "Hides the image and lets content go full-width. Auto-hides when the product has no image."
+    },
+    {
+      "type": "select",
+      "id": "image_column",
+      "label": "Image Column Position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "col_image_width",
+      "label": "Image Column Width (fr)",
+      "min": 1, "max": 9, "step": 1, "default": 1
+    },
+    {
+      "type": "range",
+      "id": "col_content_width",
+      "label": "Content Column Width (fr)",
+      "min": 1, "max": 9, "step": 1, "default": 1
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "label": "Min Height - Desktop (px)",
+      "min": 0, "max": 900, "step": 20, "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "label": "Sticky content (desktop)",
+      "info": "Keeps the content column in view while the page scrolls. Desktop only.",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "sticky_top_offset",
+      "label": "Sticky Top Offset (px)",
+      "min": 0, "max": 120, "step": 4, "default": 20
+    },
+    {
+      "type": "select",
+      "id": "gallery_order_mobile",
+      "label": "Gallery Order on Mobile",
+      "options": [
+        { "value": "1", "label": "First (top)" },
+        { "value": "2", "label": "Second (bottom)" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "content_order_mobile",
+      "label": "Content Order on Mobile",
+      "options": [
+        { "value": "1", "label": "First (top)" },
+        { "value": "2", "label": "Second (bottom)" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_y_desktop",
+      "label": "Padding Top/Bottom (px)",
+      "min": 0, "max": 100, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_x_desktop",
+      "label": "Padding Left/Right (px)",
+      "min": 0, "max": 80, "step": 4, "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Padding - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_y_mobile",
+      "label": "Padding Top/Bottom (px)",
+      "min": 0, "max": 60, "step": 4, "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_x_mobile",
+      "label": "Padding Left/Right (px)",
+      "min": 0, "max": 40, "step": 4, "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Gallery Padding"
+    },
+    {
+      "type": "range",
+      "id": "gallery_padding_desktop",
+      "label": "Gallery Padding - Desktop (px)",
+      "min": 0, "max": 80, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "gallery_padding_mobile",
+      "label": "Gallery Padding - Mobile (px)",
+      "min": 0, "max": 40, "step": 4, "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Main Image"
+    },
+    {
+      "type": "select",
+      "id": "img_ratio",
+      "label": "Image Aspect Ratio",
+      "options": [
+        { "value": "1 / 1",  "label": "1:1 Square" },
+        { "value": "4 / 3",  "label": "4:3 Landscape" },
+        { "value": "3 / 4",  "label": "3:4 Portrait" },
+        { "value": "3 / 2",  "label": "3:2 Photo" },
+        { "value": "16 / 9", "label": "16:9 Wide" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "select",
+      "id": "img_fit",
+      "label": "Image Fit",
+      "options": [
+        { "value": "cover",   "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "img_radius",
+      "label": "Image Border Radius (px)",
+      "min": 0, "max": 32, "step": 1, "default": 8
+    },
+    {
+      "type": "color",
+      "id": "img_bg_color",
+      "label": "Image Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "Thumbnails"
+    },
+    {
+      "type": "range",
+      "id": "thumb_size",
+      "label": "Thumbnail Size (px)",
+      "min": 40, "max": 120, "step": 4, "default": 72
+    },
+    {
+      "type": "range",
+      "id": "thumb_radius",
+      "label": "Thumbnail Border Radius (px)",
+      "min": 0, "max": 20, "step": 1, "default": 4
+    },
+    {
+      "type": "range",
+      "id": "thumb_gap",
+      "label": "Gap Between Thumbnails (px)",
+      "min": 4, "max": 24, "step": 2, "default": 8
+    },
+    {
+      "type": "range",
+      "id": "thumb_margin_top",
+      "label": "Thumbnails Margin Top (px)",
+      "min": 4, "max": 40, "step": 2, "default": 12
+    },
+    {
+      "type": "range",
+      "id": "thumb_border_width",
+      "label": "Thumbnail Border Width (px)",
+      "min": 1, "max": 4, "step": 1, "default": 2
+    },
+    {
+      "type": "color",
+      "id": "thumb_active_color",
+      "label": "Active Thumbnail Border Color",
+      "default": "#8C3A3A"
+    },
+    {
+      "type": "header",
+      "content": "Content Padding - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top_desktop",
+      "label": "Padding Top (px)",
+      "min": 0, "max": 120, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom_desktop",
+      "label": "Padding Bottom (px)",
+      "min": 0, "max": 120, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_padding_x_desktop",
+      "label": "Padding Left/Right (px)",
+      "min": 0, "max": 120, "step": 4, "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content Padding - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top_mobile",
+      "label": "Padding Top (px)",
+      "min": 0, "max": 80, "step": 4, "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom_mobile",
+      "label": "Padding Bottom (px)",
+      "min": 0, "max": 80, "step": 4, "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding_x_mobile",
+      "label": "Padding Left/Right (px)",
+      "min": 0, "max": 60, "step": 1, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content Max Width (px)",
+      "min": 200, "max": 900, "step": 20, "default": 540
+    },
+    {
+      "type": "header",
+      "content": "Star Rating"
+    },
+    {
+      "type": "color",
+      "id": "star_color_filled",
+      "label": "Filled Star Color",
+      "default": "#E8A020"
+    },
+    {
+      "type": "color",
+      "id": "star_color_empty",
+      "label": "Empty Star Color",
+      "default": "#DDDDDD"
+    },
+    {
+      "type": "range",
+      "id": "star_size_desktop",
+      "label": "Star Size - Desktop (px)",
+      "min": 10, "max": 32, "step": 1, "default": 18
+    },
+    {
+      "type": "range",
+      "id": "star_size_mobile",
+      "label": "Star Size - Mobile (px)",
+      "min": 10, "max": 28, "step": 1, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "star_gap",
+      "label": "Gap Between Stars (px)",
+      "min": 0, "max": 10, "step": 1, "default": 2
+    },
+    {
+      "type": "range",
+      "id": "star_item_gap",
+      "label": "Gap: Stars to Meta Text (px)",
+      "min": 4, "max": 24, "step": 2, "default": 8
+    },
+    {
+      "type": "font_picker",
+      "id": "stars_meta_font",
+      "label": "Meta Text Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "stars_meta_size",
+      "label": "Meta Text Size (px)",
+      "min": 10, "max": 20, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "stars_meta_color",
+      "label": "Meta Text Color",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "stars_meta_bold_color",
+      "label": "Meta Bold Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "select",
+      "id": "stars_meta_bold_weight",
+      "label": "Meta Bold Weight",
+      "options": [
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" },
+        { "value": "800", "label": "800 - Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "stars_margin_bottom",
+      "label": "Stars Margin Bottom (px)",
+      "min": 0, "max": 40, "step": 1, "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Product Title"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "300", "label": "300 - Light" },
+        { "value": "400", "label": "400 - Regular" },
+        { "value": "500", "label": "500 - Medium" },
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" },
+        { "value": "800", "label": "800 - Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size - Desktop (px)",
+      "min": 16, "max": 72, "step": 1, "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size - Mobile (px)",
+      "min": 16, "max": 48, "step": 1, "default": 28
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Title Letter Spacing (px)",
+      "min": 0, "max": 10, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "label": "Title Line Height",
+      "min": 0, "max": 10, "step": 1, "default": 2,
+      "info": "0 = 1.0  |  5 = 1.5  |  10 = 2.0"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Title Margin Bottom (px)",
+      "min": 0, "max": 40, "step": 2, "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Product Subtitle"
+    },
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "Subtitle Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_font_weight",
+      "label": "Subtitle Font Weight",
+      "options": [
+        { "value": "400", "label": "400 - Regular" },
+        { "value": "500", "label": "500 - Medium" },
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Subtitle Size - Desktop (px)",
+      "min": 10, "max": 28, "step": 1, "default": 15
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle Size - Mobile (px)",
+      "min": 10, "max": 22, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#444444"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_letter_spacing",
+      "label": "Subtitle Letter Spacing (px)",
+      "min": 0, "max": 8, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom",
+      "label": "Subtitle Margin Bottom (px)",
+      "min": 0, "max": 40, "step": 2, "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Product Description"
+    },
+    {
+      "type": "font_picker",
+      "id": "description_font",
+      "label": "Description Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Description Font Weight",
+      "options": [
+        { "value": "300", "label": "300 - Light" },
+        { "value": "400", "label": "400 - Regular" },
+        { "value": "500", "label": "500 - Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Description Size - Desktop (px)",
+      "min": 10, "max": 24, "step": 1, "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description Size - Mobile (px)",
+      "min": 10, "max": 20, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#444444"
+    },
+    {
+      "type": "range",
+      "id": "description_letter_spacing",
+      "label": "Description Letter Spacing (px)",
+      "min": 0, "max": 8, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Description Line Height",
+      "min": 0, "max": 10, "step": 1, "default": 6
+    },
+    {
+      "type": "color",
+      "id": "description_bold_color",
+      "label": "Bold Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "select",
+      "id": "description_bold_weight",
+      "label": "Bold Text Weight",
+      "options": [
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" },
+        { "value": "800", "label": "800 - Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "label": "Description Margin Bottom (px)",
+      "min": 0, "max": 60, "step": 2, "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "font_picker",
+      "id": "btn_font",
+      "label": "Button Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "btn_font_weight",
+      "label": "Button Font Weight",
+      "options": [
+        { "value": "400", "label": "400 - Regular" },
+        { "value": "500", "label": "500 - Medium" },
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "btn_size_desktop",
+      "label": "Button Size - Desktop (px)",
+      "min": 12, "max": 28, "step": 1, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "btn_size_mobile",
+      "label": "Button Size - Mobile (px)",
+      "min": 12, "max": 22, "step": 1, "default": 15
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#8C3A3A"
+    },
+    {
+      "type": "range",
+      "id": "btn_border_width",
+      "label": "Button Border Width (px)",
+      "min": 0, "max": 4, "step": 1, "default": 0
+    },
+    {
+      "type": "color",
+      "id": "btn_border_color",
+      "label": "Button Border Color",
+      "default": "#8C3A3A"
+    },
+    {
+      "type": "range",
+      "id": "btn_radius",
+      "label": "Button Border Radius (px)",
+      "min": 0, "max": 60, "step": 2, "default": 4
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_v",
+      "label": "Button Padding Vertical (px)",
+      "min": 4, "max": 40, "step": 2, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_h",
+      "label": "Button Padding Horizontal (px)",
+      "min": 4, "max": 80, "step": 2, "default": 24
+    },
+    {
+      "type": "range",
+      "id": "btn_letter_spacing",
+      "label": "Button Letter Spacing (px)",
+      "min": 0, "max": 8, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "select",
+      "id": "btn_transform",
+      "label": "Button Text Case",
+      "options": [
+        { "value": "none",       "label": "Normal" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Guarantee"
+    },
+    {
+      "type": "font_picker",
+      "id": "guarantee_font",
+      "label": "Guarantee Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "guarantee_font_weight",
+      "label": "Guarantee Font Weight",
+      "options": [
+        { "value": "300", "label": "300 - Light" },
+        { "value": "400", "label": "400 - Regular" },
+        { "value": "500", "label": "500 - Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "guarantee_size",
+      "label": "Guarantee Font Size (px)",
+      "min": 10, "max": 18, "step": 1, "default": 13
+    },
+    {
+      "type": "color",
+      "id": "guarantee_color",
+      "label": "Guarantee Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "guarantee_icon_size",
+      "label": "Guarantee Icon Size (px)",
+      "min": 10, "max": 24, "step": 1, "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_gap",
+      "label": "Gap: Button to Guarantee (px)",
+      "min": 4, "max": 40, "step": 2, "default": 10
+    },
+    {
+      "type": "range",
+      "id": "cta_margin_bottom",
+      "label": "CTA Block Margin Bottom (px)",
+      "min": 0, "max": 40, "step": 2, "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "star_rating",
+      "name": "Star Rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating (out of 5)",
+          "min": 1, "max": 5, "step": 1, "default": 5
+        },
+        {
+          "type": "text",
+          "id": "meta_text",
+          "label": "Meta Text (supports <strong>)",
+          "default": "Rated <strong>4.8 Excellent</strong> 50,312+ Reviews",
+          "info": "Wrap bold words in <strong></strong>"
+        }
+      ]
+    },
+    {
+      "type": "product_title",
+      "name": "Product Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "use_dynamic",
+          "label": "Use Product Title Dynamically",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title Override",
+          "info": "Only used if dynamic is off"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "HTML Tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "p",  "label": "Paragraph" }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "product_subtitle",
+      "name": "Product Subtitle",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "use_dynamic",
+          "label": "Use Product Vendor Dynamically",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subtitle Text",
+          "default": "Cellular Beauty From Pure 12mg"
+        }
+      ]
+    },
+    {
+      "type": "product_description",
+      "name": "Product Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "use_dynamic",
+          "label": "Use Product Description Dynamically",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "custom_text",
+          "label": "Custom Description",
+          "default": "<p>Reaches damaged cells where pain starts, attaches, repairs and protects them. <strong>800x stronger</strong> than CoQ10. <strong>550x stronger</strong> than vitamin E. One softgel a day.</p>"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "Button + Guarantee",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_product_url",
+          "label": "Link to Selected Product",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Custom Button URL",
+          "info": "Only used when Link to Product is off"
+        },
+        {
+          "type": "text",
+          "id": "guarantee_text",
+          "label": "Guarantee Text",
+          "default": "60-day money-back guarantee"
+        },
+        {
+          "type": "select",
+          "id": "guarantee_icon",
+          "label": "Guarantee Icon",
+          "options": [
+            { "value": "none",         "label": "None" },
+            { "value": "shield",       "label": "Shield" },
+            { "value": "diamond",      "label": "Diamond" },
+            { "value": "check-circle", "label": "Check Circle" },
+            { "value": "star",         "label": "Star" },
+            { "value": "award",        "label": "Award" },
+            { "value": "heart",        "label": "Heart" },
+            { "value": "leaf",         "label": "Leaf" },
+            { "value": "truck",        "label": "Truck" },
+            { "value": "refresh",      "label": "Refresh / Return" },
+            { "value": "lock",         "label": "Lock / Secure" }
+          ],
+          "default": "diamond"
+        },
+        {
+          "type": "image_picker",
+          "id": "guarantee_custom_icon",
+          "label": "Custom Guarantee Icon (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Feature Product",
+      "blocks": [
+        { "type": "star_rating",        "settings": { "rating": 5, "meta_text": "Rated <strong>4.8 Excellent</strong> 50,312+ Reviews" } },
+        { "type": "product_title",      "settings": { "use_dynamic": true } },
+        { "type": "product_subtitle",   "settings": { "text": "Cellular Beauty From Pure 12mg" } },
+        { "type": "product_description","settings": { "use_dynamic": false } },
+        { "type": "cta",                "settings": { "btn_label": "Shop Now", "use_product_url": true, "guarantee_text": "60-day money-back guarantee" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

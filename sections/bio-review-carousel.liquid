@@ -1,0 +1,235 @@
+{%- comment -%} Review carousel — infinite loop (Dawn 16) {%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }}{
+    background:{{ section.settings.section_bg }};
+    margin-top:0 !important;
+    --bio-rc-fs:{{ section.settings.font_scale }};
+    --bio-rc-star:{{ section.settings.star_color }};
+    --bio-rc-gap:{{ section.settings.gap }}px;
+    --bio-rc-cols:{{ section.settings.cols_mobile }};
+  }
+  .bio-rc{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .bio-rc *,.bio-rc *::before,.bio-rc *::after{ box-sizing:border-box; min-width:0; }
+  .bio-rc img{ max-width:100%; display:block; }
+
+  .bio-rc__head{ text-align:center; margin-bottom:20px; }
+  .bio-rc__eyebrow{ font-size:calc(1.5rem * var(--bio-rc-fs)); font-weight:600; }
+  .bio-rc__trust{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:6px; }
+  .bio-rc__trust b{ font-size:calc(1.5rem * var(--bio-rc-fs)); font-weight:600; }
+  .bio-rc__title{ margin:12px 0 0; font-size:calc({{ section.settings.heading_size }}rem * var(--bio-rc-fs)); line-height:1.15; font-weight:800; letter-spacing:-.02em; }
+
+  .bio-rc__stars{ display:inline-flex; gap:2px; }
+  .bio-rc__stars i{ width:{{ section.settings.star_size }}px; height:{{ section.settings.star_size }}px; background:var(--bio-rc-star);
+    display:flex; align-items:center; justify-content:center; }
+  .bio-rc__stars svg{ width:72%; height:72%; fill:#fff; }
+
+  .bio-rc__wrap{ position:relative; }
+  .bio-rc__track{ display:flex; gap:var(--bio-rc-gap); overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; -ms-overflow-style:none; padding-bottom:4px; cursor:grab; }
+  .bio-rc__track::-webkit-scrollbar{ display:none; }
+  .bio-rc__track.is-drag{ cursor:grabbing; scroll-snap-type:none; }
+  .bio-rc__card{ flex:0 0 calc((100% - (var(--bio-rc-cols) - 1) * var(--bio-rc-gap)) / var(--bio-rc-cols));
+    scroll-snap-align:start; display:flex; flex-direction:column;
+    background:{{ section.settings.card_bg }}; border-radius:{{ section.settings.card_radius }}px; overflow:hidden; }
+  .bio-rc__img{ position:relative; width:100%; height:0; padding-top:calc({{ section.settings.image_ratio }} * 100%); background:rgba(0,0,0,.06); flex:0 0 auto; }
+  .bio-rc__img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bio-rc__body{ flex:1 1 auto; padding:16px; font-size:calc({{ section.settings.text_size }}rem * var(--bio-rc-fs)); line-height:1.5; }
+  .bio-rc__body p{ margin:0 0 8px; } .bio-rc__body p:last-child{ margin:0; }
+  .bio-rc__foot{ padding:0 16px 16px; }
+  .bio-rc__meta{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .bio-rc__verified{ background:{{ section.settings.verified_bg }}; color:{{ section.settings.verified_text }};
+    font-size:calc(1.2rem * var(--bio-rc-fs)); font-weight:700; padding:4px 9px; border-radius:4px; line-height:1.1; }
+  .bio-rc__name{ margin:10px 0 0; font-size:calc(1.4rem * var(--bio-rc-fs)); font-weight:700; }
+
+  .bio-rc__arw{ position:absolute; top:35%; z-index:3; width:36px; height:36px; padding:0; border-radius:50%; cursor:pointer;
+    border:1px solid rgba(0,0,0,.12); background:#fff; display:none; align-items:center; justify-content:center; }
+  .bio-rc__arw svg{ width:11px; height:11px; }
+  .bio-rc__arw--prev{ left:-14px; } .bio-rc__arw--next{ right:-14px; }
+  @media screen and (max-width:749px){
+  .bio-rc__card{ flex:0 0 85%; }
+}
+
+  @media screen and (min-width:750px){
+    .bio-rc{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+    #shopify-section-{{ section.id }}{ --bio-rc-cols:{{ section.settings.cols_desktop }}; }
+    {% if section.settings.show_arrows %}.bio-rc__arw{ display:flex; }{% endif %}
+  }
+</style>
+
+<div class="bio-rc color-{{ section.settings.color_scheme }}" id="bio-rc-{{ section.id }}">
+  <div class="page-width">
+    <div class="bio-rc__head">
+      {%- if section.settings.eyebrow != blank -%}<div class="bio-rc__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      {%- if section.settings.trust_text != blank -%}
+        <div class="bio-rc__trust">
+          {%- if section.settings.stars_position == 'left' -%}
+            <span class="bio-rc__stars">{% for i in (1..5) %}<i><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg></i>{% endfor %}</span>
+            <b>{{ section.settings.trust_text }}</b>
+          {%- else -%}
+            <b>{{ section.settings.trust_text }}</b>
+            <span class="bio-rc__stars">{% for i in (1..5) %}<i><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg></i>{% endfor %}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="bio-rc__title">{{ section.settings.heading }}</h2>{%- endif -%}
+    </div>
+
+    <div class="bio-rc__wrap">
+      {%- if section.settings.show_arrows -%}
+        <button type="button" class="bio-rc__arw bio-rc__arw--prev" data-bio-rc-arw="prev" aria-label="Previous"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L2 8l6 7"/></svg></button>
+        <button type="button" class="bio-rc__arw bio-rc__arw--next" data-bio-rc-arw="next" aria-label="Next"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 1l6 7-6 7"/></svg></button>
+      {%- endif -%}
+
+      <div class="bio-rc__track" data-bio-rc-track>
+        {%- for block in section.blocks -%}
+          <article class="bio-rc__card" data-bio-rc-card {{ block.shopify_attributes }}>
+            <div class="bio-rc__img">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300,500,700,900', sizes: '(min-width:750px) 33vw, 80vw', alt: block.settings.name | escape }}
+              {%- endif -%}
+            </div>
+            <div class="bio-rc__body rte">{{ block.settings.review }}</div>
+            <div class="bio-rc__foot">
+              <div class="bio-rc__meta">
+                {%- if block.settings.show_stars -%}
+                  <span class="bio-rc__stars">{% for i in (1..5) %}<i><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg></i>{% endfor %}</span>
+                {%- endif -%}
+                {%- if block.settings.verified_label != blank -%}<span class="bio-rc__verified">{{ block.settings.verified_label }}</span>{%- endif -%}
+              </div>
+              {%- if block.settings.name != blank -%}<p class="bio-rc__name">{{ block.settings.name }}</p>{%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var id='{{ section.id }}';
+  function init(){
+    var root=document.getElementById('bio-rc-'+id); if(!root||root.dataset.init)return; root.dataset.init='1';
+    var track=root.querySelector('[data-bio-rc-track]'); if(!track)return;
+    var originals=[].slice.call(track.querySelectorAll('[data-bio-rc-card]'));
+    if(originals.length<2)return;
+
+    /* clone 1 set di kiri & kanan -> loop tanpa balik ke awal */
+    var head=document.createDocumentFragment(), tail=document.createDocumentFragment();
+    originals.forEach(function(c){
+      var a=c.cloneNode(true), b=c.cloneNode(true);
+      a.removeAttribute('data-bio-rc-card'); b.removeAttribute('data-bio-rc-card');
+      a.setAttribute('aria-hidden','true'); b.setAttribute('aria-hidden','true');
+      a.removeAttribute('id'); b.removeAttribute('id');
+      head.appendChild(a); tail.appendChild(b);
+    });
+    track.insertBefore(head, track.firstChild);
+    track.appendChild(tail);
+
+    var setW=0, step=0;
+    function measure(){
+      var cards=track.children, gap=parseFloat(getComputedStyle(track).columnGap)||0;
+      step=cards[0].offsetWidth+gap;
+      setW=step*originals.length;
+      track.scrollLeft=setW;
+    }
+    measure();
+    window.addEventListener('resize',function(){ measure(); });
+
+    var busy=false;
+    function normalize(){
+      if(busy)return;
+      var x=track.scrollLeft;
+      if(x<step*0.5){ busy=true; track.style.scrollBehavior='auto'; track.scrollLeft=x+setW; track.style.scrollBehavior=''; busy=false; }
+      else if(x>setW*2-step*0.5){ busy=true; track.style.scrollBehavior='auto'; track.scrollLeft=x-setW; track.style.scrollBehavior=''; busy=false; }
+    }
+    var tk; track.addEventListener('scroll',function(){ clearTimeout(tk); tk=setTimeout(normalize,60); },{passive:true});
+
+    root.querySelectorAll('[data-bio-rc-arw]').forEach(function(b){
+      b.addEventListener('click',function(){
+        track.scrollBy({left:b.dataset.bioRcArw==='next'?step:-step,behavior:'smooth'});
+        setTimeout(normalize,420);
+      });
+    });
+
+    /* drag desktop */
+    var down=false,sx=0,sl=0,moved=false;
+    track.addEventListener('mousedown',function(e){ down=true;moved=false;sx=e.pageX;sl=track.scrollLeft;track.classList.add('is-drag'); });
+    window.addEventListener('mousemove',function(e){ if(!down)return; var d=e.pageX-sx; if(Math.abs(d)>4)moved=true; track.scrollLeft=sl-d; });
+    window.addEventListener('mouseup',function(){ if(!down)return; down=false; track.classList.remove('is-drag'); normalize(); });
+    track.addEventListener('click',function(e){ if(moved)e.preventDefault(); },true);
+
+    {%- if section.settings.autoplay -%}
+    var timer=setInterval(function(){
+      if(document.hidden)return;
+      track.scrollBy({left:step,behavior:'smooth'}); setTimeout(normalize,420);
+    },{{ section.settings.autoplay_speed | times: 1000 }});
+    ['mouseenter','touchstart'].forEach(function(ev){ track.addEventListener(ev,function(){ clearInterval(timer); },{passive:true,once:true}); });
+    {%- endif -%}
+  }
+  init();
+  document.addEventListener('shopify:section:load',function(e){ if(e.detail&&e.detail.sectionId===id)init(); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bio: Review Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#F4F2EF" },
+    { "type": "range", "id": "font_scale", "min": 0.6, "max": 1.2, "step": 0.1, "label": "Font scale", "default": 1 },
+
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "200K+ Happy Customers" },
+    { "type": "text", "id": "trust_text", "label": "Trust text", "default": "Excellent 4.9" },
+    { "type": "select", "id": "stars_position", "label": "Stars position", "default": "right",
+      "options": [ {"value":"left","label":"Before text"},{"value":"right","label":"After text"} ] },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What Real Customers Are Saying" },
+    { "type": "range", "id": "heading_size", "min": 2.0, "max": 5.0, "step": 0.1, "unit": "rem", "label": "Heading size", "default": 3.2 },
+    { "type": "color", "id": "star_color", "label": "Star box color", "default": "#00B67A" },
+    { "type": "range", "id": "star_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Star size", "default": 18 },
+
+    { "type": "header", "content": "Carousel" },
+    { "type": "range", "id": "cols_mobile", "min": 1, "max": 3, "step": 1, "label": "Cards visible (mobile)", "default": 1 },
+    { "type": "range", "id": "cols_desktop", "min": 2, "max": 4, "step": 1, "label": "Cards visible (desktop)", "default": 3 },
+    { "type": "range", "id": "gap", "min": 8, "max": 40, "step": 2, "unit": "px", "label": "Gap", "default": 16 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows (desktop)", "default": true },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": false },
+    { "type": "range", "id": "autoplay_speed", "min": 3, "max": 12, "step": 1, "unit": "s", "label": "Autoplay speed", "default": 5 },
+
+    { "type": "header", "content": "Card" },
+    { "type": "color", "id": "card_bg", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Card radius", "default": 10 },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "1 / 1",
+      "options": [ {"value":"1 / 1","label":"Square"},{"value":"4 / 3","label":"Landscape"},{"value":"3 / 4","label":"Portrait"} ] },
+    { "type": "range", "id": "text_size", "min": 1.1, "max": 2.0, "step": 0.1, "unit": "rem", "label": "Review text size", "default": 1.4 },
+    { "type": "color", "id": "verified_bg", "label": "Verified badge background", "default": "#EDEDED" },
+    { "type": "color", "id": "verified_text", "label": "Verified badge text", "default": "#121212" },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "review", "name": "Review", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "richtext", "id": "review", "label": "Review" },
+      { "type": "checkbox", "id": "show_stars", "label": "Show stars", "default": true },
+      { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified" },
+      { "type": "text", "id": "name", "label": "Name", "default": "Sandra Rideout" } ] }
+  ],
+  "presets": [
+    { "name": "Bio: Review Carousel",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Sandra Rideout", "review": "<p>I took Ibuprofen for over 40 years, trying to control my fibromyalgia and osteoarthritis pain. I knew I needed to stop taking them, but I just couldn't find anything else that worked. Until I started reading about Curcumin. When I found the supplement by Bioroot Labs, I felt it was manufactured in the best way possible, with additions that all the material I read said should be included. I have been taking 3 per day for 4 months now, and I am so happy to say that I am taking NO other pain medication and feel better than I have for many years. My pain and stiffness is not entirely gone, but I am definitely better than I ever was on Ibuprofen. I am a very satisfied customer!</p>" } },
+        { "type": "review", "settings": { "name": "Tara Crow", "review": "<p>Before starting this amazing product I had had to give up my business (upholstery) as I could no longer use my hands through swelling joints I could no longer wear my rings. I think I have been on it about 3 months now and I have my complete use of my hands back. All swelling has gone. Absolutely amazing. The dont click or feel gritty. Thank you</p>" } },
+        { "type": "review", "settings": { "name": "Gill Rowlands", "review": "<p>I was diagnosed with polymyalgia rhuematica within 6 months I had developed severe ME or CFS. Over the following years I suffered pain and exhaustion and in 2016 eventually Fibromyalgia was mentioned. I've managed it with rest but rarely painkillers. Since starting your fornula of turmeric I am massively better. It's over 20 years since I was this painfree and not suffering from debilitating exhaustion. I cannot believe I'm soooooo much improved. I want to shout about it to everyone. It's been a miracle for me.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

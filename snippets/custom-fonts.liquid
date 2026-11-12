@@ -1,0 +1,26 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+{% style %}
+  :root {
+    /* --font-heading-family: 'Poppins', sans-serif;
+    --font-body-family: 'Plus Jakarta Sans', sans-serif; */
+    --font-body-weight: 400;
+    --font-body-weight-bold: 700;
+    --font-heading-weight: 700;
+  }
+
+  html, body,
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, li, label,
+  button, input, select, textarea {
+    font-family: var(--font-body-family) !important;
+
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading-family) !important;
+  }
+{% endstyle %}

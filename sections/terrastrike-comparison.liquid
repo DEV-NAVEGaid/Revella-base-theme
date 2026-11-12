@@ -1,0 +1,243 @@
+{%- comment -%}
+  Comparison table. Columns come from a newline-separated setting; each row is a
+  block whose "values" setting holds one line per column.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-comparison">
+    <div class="ts-container">
+      {%- if st.heading != blank -%}
+        <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+      {%- endif -%}
+
+      {% render 'terrastrike-comparison-table',
+        column_headings: st.column_headings,
+        row_label_heading: st.row_label_heading,
+        highlight_column: st.highlight_column,
+        featured_image: st.featured_image,
+        blocks: section.blocks
+      %}
+
+      {%- if st.hint != blank -%}
+        <div class="ts-comparison__hint">{{ st.hint }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Comparison table",
+  "tag": "section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why TerraStrike Outperforms Every Other Option"
+    },
+    { "type": "text", "id": "row_label_heading", "label": "First column heading" },
+    {
+      "type": "textarea",
+      "id": "column_headings",
+      "label": "Column headings",
+      "info": "One per line. Each row's values must be listed in the same order.",
+      "default": "TerraStrike\nSpring-Loaded Punch\nSeatbelt Cutter\nTactical Pen\nBare Hands"
+    },
+    {
+      "type": "range",
+      "id": "highlight_column",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "label": "Highlight column",
+      "info": "0 = no highlight. 1 = the first column after the labels.",
+      "default": 1
+    },
+    { "type": "text", "id": "hint", "label": "Note under the table", "default": "Swipe to see all columns" },
+
+    { "type": "header", "content": "Highlighted column" },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Product image",
+      "info": "Replaces the highlighted column's heading text."
+    },
+    {
+      "type": "range",
+      "id": "featured_image_width",
+      "min": 24,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Product image width",
+      "default": 56
+    },
+    { "type": "color", "id": "table_featured_background", "label": "Column background", "default": "#eaf3fc" },
+    { "type": "color", "id": "table_featured_border", "label": "Column border", "default": "#1f3b5c" },
+    {
+      "type": "range",
+      "id": "featured_border_width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "label": "Column border width",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "featured_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Column corner radius",
+      "default": 28
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "table_head_text", "label": "Column heading text", "default": "#121212" },
+    { "type": "color", "id": "table_divider_color", "label": "Line under the headings", "default": "#d9dee5" },
+    { "type": "color", "id": "check_color", "label": "Check icon", "default": "#16a34a" },
+    { "type": "color", "id": "cross_color", "label": "Cross icon", "default": "#c0392b" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "table_min_width",
+      "min": 320,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Minimum table width",
+      "info": "Below this the table scrolls sideways instead of squashing.",
+      "default": 640
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Table corner radius",
+      "default": 10
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 48 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Row label" },
+        {
+          "type": "textarea",
+          "id": "values",
+          "label": "Values",
+          "info": "One line per column, in the same order as the column headings. Use yes, no or na — anything else is shown as text."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Comparison table",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": { "label": "Fits in a Pocket, Keychain, or Visor", "values": "yes\nno\nno\nno\nyes" }
+        },
+        { "type": "row", "settings": { "label": "Shatters Tempered Glass", "values": "yes\nyes\nno\nyes\nno" } },
+        { "type": "row", "settings": { "label": "Cuts Jammed Seatbelts", "values": "yes\nno\nyes\nno\nno" } },
+        {
+          "type": "row",
+          "settings": { "label": "Spring-Loaded (No Arm Strength)", "values": "yes\nyes\nna\nno\nno" }
+        },
+        { "type": "row", "settings": { "label": "Hidden Blade (Safe Around Kids)", "values": "yes\nna\nno\nna\nna" } },
+        { "type": "row", "settings": { "label": "Keychain-Sized", "values": "yes\nno\nno\nno\nna" } },
+        { "type": "row", "settings": { "label": "Reusable 20+ Times", "values": "yes\nVaries\nyes\nyes\nno" } },
+        { "type": "row", "settings": { "label": "120-Day Guarantee", "values": "yes\nno\nno\nno\nno" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

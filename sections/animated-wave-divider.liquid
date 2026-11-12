@@ -1,0 +1,361 @@
+{% comment %}
+  Animated Wave Divider Section for Shopify
+  - Canvas-based multi-layer wave animation
+  - Per-layer opacity controls
+  - Slow, smooth motion by default
+  - Mobile-first, responsive
+{% endcomment %}
+
+<style>
+  .wave-section-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ section.settings.background_color }};
+    height: {{ section.settings.wave_height_mobile }}px;
+    line-height: 0;
+  }
+
+  @media (min-width: 768px) {
+    .wave-section-{{ section.id }} {
+      height: {{ section.settings.wave_height_desktop }}px;
+    }
+  }
+
+  .wave-section-{{ section.id }} canvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
+
+<div class="wave-section-{{ section.id }}" aria-hidden="true">
+  <canvas id="wave-canvas-{{ section.id }}"></canvas>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var canvas = document.getElementById('wave-canvas-' + sectionId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  var settings = {
+    waveColor:       '{{ section.settings.wave_color }}',
+    backgroundColor: '{{ section.settings.background_color }}',
+    // Speed: stored as 1–20, mapped to a very slow range (0.0003 – 0.006)
+    speed:           {{ section.settings.wave_speed | times: 1.0 }},
+    amplitude:       {{ section.settings.wave_amplitude | times: 1.0 }},
+    frequency:       {{ section.settings.wave_frequency | times: 1.0 }},
+    layers:          {{ section.settings.wave_layers }},
+    direction:       '{{ section.settings.wave_direction }}',
+    fillBottom:      {{ section.settings.fill_bottom }},
+    fillColor:       '{{ section.settings.fill_color }}',
+    // Per-layer opacities (0–100 from schema, used as 0.0–1.0)
+    layerOpacity: [
+      {{ section.settings.layer_1_opacity | times: 1.0 }},
+      {{ section.settings.layer_2_opacity | times: 1.0 }},
+      {{ section.settings.layer_3_opacity | times: 1.0 }},
+      {{ section.settings.layer_4_opacity | times: 1.0 }},
+      {{ section.settings.layer_5_opacity | times: 1.0 }}
+    ]
+  };
+
+  function hexToRgba(hex, alpha) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(function(c){ return c+c; }).join('');
+    var r = parseInt(hex.substring(0,2), 16);
+    var g = parseInt(hex.substring(2,4), 16);
+    var b = parseInt(hex.substring(4,6), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
+  var animationId;
+  var offsets = [];
+
+  function init() {
+    offsets = [];
+    for (var i = 0; i < 5; i++) {
+      offsets.push(Math.random() * 1000);
+    }
+  }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    var container = canvas.parentElement;
+    canvas.width  = container.offsetWidth  * dpr;
+    canvas.height = container.offsetHeight * dpr;
+    ctx.scale(dpr, dpr);
+  }
+
+  function drawWave(t, layerIndex) {
+    var W = canvas.parentElement.offsetWidth;
+    var H = canvas.parentElement.offsetHeight;
+    var total = settings.layers;
+
+    var freqMult  = 1 + layerIndex * 0.18;
+    var ampMult   = 1 - layerIndex * (0.18 / Math.max(total - 1, 1));
+    var speedMult = 1 - layerIndex * 0.12;
+
+    var amp   = (settings.amplitude / 100) * H * 0.38 * ampMult;
+    var freq  = settings.frequency * freqMult;
+    var off   = offsets[layerIndex] || 0;
+    var dirMult = settings.direction === 'right' ? -1 : 1;
+
+    // Speed remap: schema 1–20 → actual multiplier 0.0003–0.006 (very slow)
+    var speedFactor = settings.speed * 0.0003;
+    var timeShift   = dirMult * t * speedFactor * speedMult + off;
+
+    var vertBase = H * (0.55 + layerIndex * (0.12 / Math.max(total - 1, 1)));
+
+    // Per-layer opacity from settings array (values are 0–100, convert to 0–1)
+    var alpha = (settings.layerOpacity[layerIndex] || 0) / 100;
+
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+
+    for (var x = 0; x <= W; x += 2) {
+      var nx = x / W;
+      var y  = vertBase
+             - amp * Math.sin(nx * freq * Math.PI * 2 + timeShift)
+             - (amp * 0.35) * Math.sin(nx * freq * 1.7 * Math.PI * 2 + timeShift * 0.8 + 1.2);
+      ctx.lineTo(x, y);
+    }
+
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    ctx.fillStyle = hexToRgba(settings.waveColor, alpha);
+    ctx.fill();
+  }
+
+  function drawFrame(t) {
+    var W = canvas.parentElement.offsetWidth;
+    var H = canvas.parentElement.offsetHeight;
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = settings.layers - 1; i >= 0; i--) {
+      drawWave(t, i);
+    }
+
+    if (settings.fillBottom) {
+      var solidY = H * 0.82;
+      ctx.fillStyle = hexToRgba(settings.fillColor, 1);
+      ctx.fillRect(0, solidY, W, H - solidY);
+    }
+  }
+
+  var startTime = null;
+  function animate(ts) {
+    if (!startTime) startTime = ts;
+    drawFrame(ts - startTime);
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function start() {
+    cancelAnimationFrame(animationId);
+    resize();
+    init();
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Animate only while the wave is on screen; offscreen it would redraw every frame for the whole visit
+  var visible = !('IntersectionObserver' in window);
+  if (visible) {
+    start();
+  } else {
+    resize();
+    init();
+    new IntersectionObserver(function(entries) {
+      visible = entries[0].isIntersecting;
+      cancelAnimationFrame(animationId);
+      if (visible) animationId = requestAnimationFrame(animate);
+    }).observe(canvas);
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      cancelAnimationFrame(animationId);
+      startTime = null;
+      if (visible) start(); else { resize(); init(); }
+    }, 150);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Animated Wave",
+  "tag": "section",
+  "class": "section-animated-wave",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Wave Color",
+      "default": "#7B2223"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color (above wave)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "fill_color",
+      "label": "Fill Color (below wave)",
+      "default": "#7B2223"
+    },
+    {
+      "type": "checkbox",
+      "id": "fill_bottom",
+      "label": "Show Solid Fill Below Wave",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Wave Motion"
+    },
+    {
+      "type": "range",
+      "id": "wave_speed",
+      "label": "Wave Speed",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 4,
+      "info": "1 = very slow drift, 20 = fast flowing"
+    },
+    {
+      "type": "select",
+      "id": "wave_direction",
+      "label": "Wave Direction",
+      "options": [
+        { "value": "left",  "label": "Left to Right" },
+        { "value": "right", "label": "Right to Left" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Wave Shape"
+    },
+    {
+      "type": "range",
+      "id": "wave_amplitude",
+      "label": "Amplitude (wave height)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 22,
+      "info": "How tall the wave crests are"
+    },
+    {
+      "type": "range",
+      "id": "wave_frequency",
+      "label": "Frequency (ripples)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "info": "1 = single gentle curve, 6 = many ripples"
+    },
+    {
+      "type": "range",
+      "id": "wave_layers",
+      "label": "Number of Wave Layers",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "info": "Active layers (1 = front only, 5 = full depth)"
+    },
+    {
+      "type": "header",
+      "content": "Layer Opacity (0 = hidden, 100 = solid)"
+    },
+    {
+      "type": "range",
+      "id": "layer_1_opacity",
+      "label": "Layer 1 Opacity (front)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "layer_2_opacity",
+      "label": "Layer 2 Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "layer_3_opacity",
+      "label": "Layer 3 Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "layer_4_opacity",
+      "label": "Layer 4 Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "layer_5_opacity",
+      "label": "Layer 5 Opacity (back)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Section Height"
+    },
+    {
+      "type": "range",
+      "id": "wave_height_mobile",
+      "label": "Height on Mobile (px)",
+      "min": 40,
+      "max": 200,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "wave_height_desktop",
+      "label": "Height on Desktop (px)",
+      "min": 60,
+      "max": 300,
+      "step": 4,
+      "default": 120
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animated Wave",
+      "category": "Decorative"
+    }
+  ]
+}
+{% endschema %}

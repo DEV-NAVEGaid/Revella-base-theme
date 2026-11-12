@@ -1,0 +1,483 @@
+{{ 'reviews-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="reviews-grid-section" data-section-id="{{ section.id }}">
+  <div class="reviews-grid-section__inner">
+
+    <div class="reviews-summary">
+      <div class="reviews-summary__stars" aria-label="{{ section.settings.rating_value }} out of 5 stars">★★★★★</div>
+      <span class="reviews-summary__text">{{ section.settings.rating_value }} ({{ section.settings.rating_count }} reviews)</span>
+    </div>
+
+    <button type="button" class="reviews-write-btn" data-reviews-open-modal>Write a Review</button>
+
+    <hr class="reviews-divider">
+
+    {% if section.settings.heading != blank %}
+      <h2 class="reviews-grid-section__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        {% if section.settings.image_1 %}
+          <div class="review-card__image">
+            {{ section.settings.image_1 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Dionne F. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Dionne F.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Didn't think a serum could do what this has done. My skin looks more lifted around my cheeks and I don't look as hollow under my eyes. People keep telling me I look well.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_2 %}
+          <div class="review-card__image">
+            {{ section.settings.image_2 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Simone F. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Simone F.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">I've tried a lot of serums over the years, and most of them just hydrate. This one actually feels different when you apply it. My skin feels tighter and my smile lines don't look as noticeable.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_3 %}
+          <div class="review-card__image">
+            {{ section.settings.image_3 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Paulette W. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Paulette W.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">I was looking into fillers before I found this. Glad I waited. My face looks more supported like things have gone back to where they used to sit. Not dramatic but definitely noticeable.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_4 %}
+          <div class="review-card__image">
+            {{ section.settings.image_4 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Doris S. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Doris S.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Honestly, it's not a &ldquo;miracle overnight&rdquo; product, but it's an excellent hydrating and smoothing serum. My fine lines around the eyes are less visible, and my skin bounces back better when I smile. I also like that it has almost no scent, it feels very &ldquo;clean.&rdquo; I'll probably repurchase, especially for winter when my skin needs this kind of texture.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_5 %}
+          <div class="review-card__image">
+            {{ section.settings.image_5 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Rochelle K. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Rochelle K.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">You can actually see the silk threads in it which made me think this was something different. Skin feels firmer and less droopy around my jaw. I'm on my second bottle.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_6 %}
+          <div class="review-card__image">
+            {{ section.settings.image_6 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Michelle D. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Michelle D.</p>
+          <div class="review-card__stars" aria-label="4 out of 5 stars">★★★★<span class="review-card__star-empty">★</span></div>
+          <p class="review-card__text">Honestly, I bought it out of curiosity and I don't regret it at all. The gel texture feels amazing, it spreads easily and leaves the skin plump and glowing without any greasy residue. The little gold threads melt as you massage, you can't feel them but you really see a &ldquo;smoothing&rdquo; effect. I use it morning and night on my face and neck, and even at the end of the day my skin doesn't feel tight anymore.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_7 %}
+          <div class="review-card__image">
+            {{ section.settings.image_7 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Marlene S. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Marlene S.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">At my age I've accepted some things but the sagging was really getting to me. This didn't turn back the clock completely but my face looks more supported and defined than it has in years. Worth every penny.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_8 %}
+          <div class="review-card__image">
+            {{ section.settings.image_8 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Beverley C. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Beverley C.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">My skin started looking really drawn after menopause. Everything just dropped. I tried this not expecting miracles and honestly it's the closest thing to one I've found. My face looks fuller and less tired.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_9 %}
+          <div class="review-card__image">
+            {{ section.settings.image_9 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Monique B. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Monique B.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">I've spent a lot of money on skincare over the years. This is the first thing that's actually done something for the sagging. My skin looks lifted, not just moisturised.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_10 %}
+          <div class="review-card__image">
+            {{ section.settings.image_10 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Claudette H. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Claudette H.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Lost a bit of weight last year and my face looked so deflated afterwards. This has genuinely helped bring some of that fullness back. My skin looks healthier, not just tighter.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_11 %}
+          <div class="review-card__image">
+            {{ section.settings.image_11 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Calley W. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Calley W.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Just a small amount in the evening and I wake up with plump, radiant skin. Like I slept better than usual.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_12 %}
+          <div class="review-card__image">
+            {{ section.settings.image_12 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Jasmine I. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Jasmine I.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">I'm in my late 40s and my skin has definitely changed over the last few years. This serum has helped with dryness and that crepey texture I was starting to notice. It doesn't feel heavy, which I really like.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_13 %}
+          <div class="review-card__image">
+            {{ section.settings.image_13 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Helen E. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Helen E.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">I love drawing up the product with the little syringe, seeing the gold threads and feeling them disappear under my fingers. It makes my routine way more fun.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_14 %}
+          <div class="review-card__image">
+            {{ section.settings.image_14 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Owen F. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Owen F.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Couldn't believe how easy it was. Affordable and super effective. 🙏</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_15 %}
+          <div class="review-card__image">
+            {{ section.settings.image_15 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Ava G. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Ava G.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Amazing product! No pain or irritation at all.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_16 %}
+          <div class="review-card__image">
+            {{ section.settings.image_16 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Lucas M. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Lucas M.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Best thing I've bought all year! It took less than a week to see full results. 😊</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_17 %}
+          <div class="review-card__image">
+            {{ section.settings.image_17 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Mason R. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Mason R.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">Best thing I've bought all year! Way better than going to the dermatologist.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_18 %}
+          <div class="review-card__image">
+            {{ section.settings.image_18 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Caitlyn O. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Caitlyn O.</p>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-card__text">This is one of the few serums I've used consistently because I actually feel a difference.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_19 %}
+          <div class="review-card__image">
+            {{ section.settings.image_19 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Ella C. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Ella C.</p>
+          <div class="review-card__stars" aria-label="4 out of 5 stars">★★★★<span class="review-card__star-empty">★</span></div>
+          <p class="review-card__text">Great results, but shipping was slower than I hoped.</p>
+        </div>
+      </div>
+
+      <div class="review-card">
+        {% if section.settings.image_20 %}
+          <div class="review-card__image">
+            {{ section.settings.image_20 | image_url: width: 700 | image_tag: loading: 'lazy', alt: 'Abigail C. review photo' }}
+          </div>
+        {% endif %}
+        <div class="review-card__body">
+          <p class="review-card__name">Abigail C.</p>
+          <div class="review-card__stars" aria-label="3 out of 5 stars">★★★<span class="review-card__star-empty">★★</span></div>
+          <p class="review-card__text">Might work better for others, just slow for me.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Write a review modal -->
+  <div class="reviews-modal" data-reviews-modal hidden>
+    <div class="reviews-modal__backdrop" data-reviews-close-modal></div>
+    <div class="reviews-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="reviews-modal-title-{{ section.id }}">
+      <button type="button" class="reviews-modal__close" data-reviews-close-modal aria-label="Close">&times;</button>
+
+      <div class="reviews-modal__content">
+
+        <form class="reviews-form" data-reviews-form novalidate>
+          <h3 id="reviews-modal-title-{{ section.id }}" class="reviews-modal__title">Write a Review</h3>
+
+          <div class="reviews-form__field">
+            <label class="reviews-form__label">Your rating</label>
+            <div class="reviews-form__stars" data-reviews-star-picker>
+              <button type="button" class="reviews-form__star" data-value="1" aria-label="1 star">★</button>
+              <button type="button" class="reviews-form__star" data-value="2" aria-label="2 stars">★</button>
+              <button type="button" class="reviews-form__star" data-value="3" aria-label="3 stars">★</button>
+              <button type="button" class="reviews-form__star" data-value="4" aria-label="4 stars">★</button>
+              <button type="button" class="reviews-form__star" data-value="5" aria-label="5 stars">★</button>
+            </div>
+            <input type="hidden" name="rating" data-reviews-rating-input value="0">
+          </div>
+
+          <div class="reviews-form__row">
+            <div class="reviews-form__field">
+              <label for="reviews-name-{{ section.id }}" class="reviews-form__label">Name</label>
+              <input type="text" id="reviews-name-{{ section.id }}" class="reviews-form__input" name="name" placeholder="Your name" required>
+            </div>
+            <div class="reviews-form__field">
+              <label for="reviews-email-{{ section.id }}" class="reviews-form__label">Email</label>
+              <input type="email" id="reviews-email-{{ section.id }}" class="reviews-form__input" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="reviews-form__field">
+            <label for="reviews-title-{{ section.id }}" class="reviews-form__label">Review title</label>
+            <input type="text" id="reviews-title-{{ section.id }}" class="reviews-form__input" name="title" placeholder="Sum it up in a few words">
+          </div>
+
+          <div class="reviews-form__field">
+            <label for="reviews-body-{{ section.id }}" class="reviews-form__label">Review</label>
+            <textarea id="reviews-body-{{ section.id }}" class="reviews-form__textarea" name="body" rows="4" placeholder="What did you like or dislike?" required></textarea>
+          </div>
+
+          <div class="reviews-form__field">
+            <label class="reviews-form__label">Add photos</label>
+            <label class="reviews-form__upload" for="reviews-photos-{{ section.id }}" data-reviews-upload-label>
+              <span class="reviews-form__upload-text">Click to upload, or drag photos here</span>
+              <input type="file" id="reviews-photos-{{ section.id }}" class="reviews-form__file-input" name="photos" accept="image/*" multiple data-reviews-photo-input>
+            </label>
+            <div class="reviews-form__photo-preview" data-reviews-photo-preview></div>
+          </div>
+
+          <button type="submit" class="reviews-form__submit">Submit review</button>
+        </form>
+
+        <div class="reviews-success" data-reviews-success hidden>
+          <div class="reviews-success__icon">✓</div>
+          <p class="reviews-success__title">Thanks for your review!</p>
+          <p class="reviews-success__text">Your review has been submitted successfully.</p>
+          <button type="button" class="reviews-form__submit" data-reviews-close-modal>Done</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ 'reviews-grid.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Reviews grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What customers are saying"
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Average rating",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Review count",
+      "default": "1202"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Dionne F. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Simone F. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Paulette W. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Doris S. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Rochelle K. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Michelle D. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Marlene S. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Beverley C. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Monique B. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Claudette H. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_11",
+      "label": "Calley W. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_12",
+      "label": "Jasmine I. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_13",
+      "label": "Helen E. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_14",
+      "label": "Owen F. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_15",
+      "label": "Ava G. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_16",
+      "label": "Lucas M. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_17",
+      "label": "Mason R. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_18",
+      "label": "Caitlyn O. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_19",
+      "label": "Ella C. — photo (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_20",
+      "label": "Abigail C. — photo (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,795 @@
+{% comment %}
+  Tabbed Content Section
+  - Pill-style tab nav switches between content panels (image + heading + rich text)
+  - Each tab is a repeatable block, fully editable in the theme editor
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign tab_blocks = section.blocks | where: 'type', 'tab'
+-%}
+
+<style>
+  #shopify-section-{{ sid }} {
+    background-color: {{ section.settings.section_bg_color }};
+    padding-top: {{ section.settings.section_padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ sid }} {
+      padding-top: {{ section.settings.section_padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom_desktop }}px;
+    }
+  }
+
+  /* ── Container ── */
+  .tc-inner-{{ sid }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: {{ section.settings.section_padding_x_mobile }}px;
+    padding-right: {{ section.settings.section_padding_x_mobile }}px;
+  }
+
+  @media (min-width: 750px) {
+    .tc-inner-{{ sid }} {
+      padding-left: {{ section.settings.section_padding_x_desktop }}px;
+      padding-right: {{ section.settings.section_padding_x_desktop }}px;
+    }
+  }
+
+  /* ── Heading ── */
+  .tc-heading-{{ sid }} {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-weight: {{ section.settings.heading_font.weight }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    color: {{ section.settings.heading_color }};
+    text-align: {{ section.settings.heading_align }};
+    line-height: 1.25;
+    margin: 0 0 {{ section.settings.heading_margin_bottom }}px;
+  }
+
+  @media (min-width: 750px) {
+    .tc-heading-{{ sid }} {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+  }
+
+  /* ── Tab nav ── */
+  .tc-nav-wrap-{{ sid }} {
+    display: flex;
+    justify-content: {{ section.settings.nav_align }};
+    margin-bottom: {{ section.settings.nav_margin_bottom }}px;
+  }
+
+  .tc-nav-{{ sid }} {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: {{ section.settings.nav_gap }}px;
+    background-color: {{ section.settings.nav_bg_color }};
+    border: 1px solid {{ section.settings.nav_border_color }};
+    border-radius: {{ section.settings.tab_radius }}px;
+    padding: 4px;
+    width: 100%;
+  }
+
+  .tc-tab-{{ sid }} {
+    flex: 1;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: {{ section.settings.tab_inactive_text_color }};
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_font_size_mobile }}px;
+    border-radius: {{ section.settings.tab_radius | minus: 4 | at_least: 0 }}px;
+    padding: {{ section.settings.tab_padding_v }}px {{ section.settings.tab_padding_h }}px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+  
+
+  @media (min-width: 750px) {
+    .tc-tab-{{ sid }} {
+      font-size: {{ section.settings.tab_font_size_desktop }}px;
+    }
+  }
+
+  .tc-tab-{{ sid }}:hover {
+    color: {{ section.settings.tab_active_text_color }};
+  }
+
+  .tc-tab-{{ sid }}.is-active {
+    background-color: {{ section.settings.tab_active_bg }};
+    color: {{ section.settings.tab_active_text_color }};
+  }
+
+  .tc-tab-{{ sid }}:focus-visible {
+    outline: 2px solid {{ section.settings.tab_active_bg }};
+    outline-offset: 2px;
+  }
+
+  /* ── Panels ── */
+  .tc-panel-{{ sid }} {
+    display: block;
+  }
+
+  .tc-panel-{{ sid }}[hidden] {
+    display: none;
+  }
+
+  .tc-panel-grid-{{ sid }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ section.settings.content_gap_mobile }}px;
+    align-items: center;
+  }
+
+  @media (min-width: 750px) {
+    .tc-panel-grid-{{ sid }} {
+      grid-template-columns: 1fr 1fr;
+      gap: {{ section.settings.content_gap_desktop }}px;
+      {%- if section.settings.image_position == 'right' -%}
+        direction: rtl;
+      {%- endif -%}
+    }
+
+    .tc-panel-grid-{{ sid }} > * {
+      {%- if section.settings.image_position == 'right' -%}
+        direction: ltr;
+      {%- endif -%}
+    }
+  }
+
+  .tc-panel-grid-{{ sid }}.tc-panel-grid--no-image {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Image ── */
+  .tc-image-wrap-{{ sid }} {
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+    aspect-ratio: {{ section.settings.image_aspect_ratio }};
+    background-color: {{ section.settings.image_bg_color }};
+  }
+
+  .tc-image-wrap-{{ sid }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+    display: block;
+  }
+
+  /* ── Content ── */
+  .tc-content-heading-{{ sid }} {
+    font-family: {{ section.settings.content_heading_font.family }}, {{ section.settings.content_heading_font.fallback_families }};
+    font-weight: {{ section.settings.content_heading_font.weight }};
+    font-size: {{ section.settings.content_heading_size_mobile }}px;
+    color: {{ section.settings.content_heading_color }};
+    line-height: 1.25;
+    margin: 0 0 {{ section.settings.content_heading_margin_bottom }}px;
+  }
+
+  @media (min-width: 750px) {
+    .tc-content-heading-{{ sid }} {
+      font-size: {{ section.settings.content_heading_size_desktop }}px;
+    }
+  }
+
+  .tc-body-{{ sid }},
+  .tc-closing-{{ sid }} {
+    font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+    font-weight: {{ section.settings.body_font.weight }};
+    font-size: {{ section.settings.body_size_mobile }}px;
+    color: {{ section.settings.body_color }};
+    line-height: {{ section.settings.body_line_height | times: 0.1 | plus: 1.0 }};
+  }
+
+  @media (min-width: 750px) {
+    .tc-body-{{ sid }},
+    .tc-closing-{{ sid }} {
+      font-size: {{ section.settings.body_size_desktop }}px;
+    }
+  }
+
+  .tc-body-{{ sid }} p,
+  .tc-body-{{ sid }} ul {
+    margin: 0 0 {{ section.settings.body_paragraph_spacing }}px;
+  }
+
+  .tc-body-{{ sid }} p:last-child,
+  .tc-body-{{ sid }} ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .tc-body-{{ sid }} ul {
+    padding-left: 1.2em;
+  }
+
+  .tc-body-{{ sid }} li {
+    margin-bottom: 0.4em;
+  }
+
+  .tc-body-{{ sid }} li:last-child {
+    margin-bottom: 0;
+  }
+
+  .tc-body-{{ sid }} strong,
+  .tc-closing-{{ sid }} strong {
+    font-weight: {{ section.settings.body_bold_weight }};
+    color: {{ section.settings.body_bold_color }};
+  }
+
+  .tc-closing-{{ sid }} {
+    margin-top: {{ section.settings.closing_margin_top }}px;
+  }
+
+  .tc-closing-{{ sid }} p {
+    margin: 0;
+  }
+
+</style>
+
+{% if tab_blocks.size > 0 %}
+  <div class="tc-inner-{{ sid }}">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="tc-heading-{{ sid }}">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="tc-nav-wrap-{{ sid }}">
+      <div class="tc-nav-{{ sid }}" role="tablist" aria-label="{{ section.settings.heading | escape }}">
+        {%- for block in tab_blocks -%}
+          <button
+            type="button"
+            class="tc-tab-{{ sid }}{% if forloop.first %} is-active{% endif %}"
+            id="tc-tab-{{ sid }}-{{ forloop.index0 }}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="tc-panel-{{ sid }}-{{ forloop.index0 }}"
+            tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            data-tc-tab="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tab_label | escape }}
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="tc-panels-{{ sid }}" style="padding:0px 12px">
+      {%- for block in tab_blocks -%}
+        <div
+          class="tc-panel-{{ sid }}{% if forloop.first %} is-active{% endif %}"
+          id="tc-panel-{{ sid }}-{{ forloop.index0 }}"
+          role="tabpanel"
+          aria-labelledby="tc-tab-{{ sid }}-{{ forloop.index0 }}"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          <div class="tc-panel-grid-{{ sid }}{% if block.settings.image == blank %} tc-panel-grid--no-image{% endif %}">
+
+            {%- if block.settings.image != blank -%}
+              <div class="tc-image-wrap-{{ sid }}">
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.image.alt | escape | default: block.settings.heading | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              </div>
+            {%- endif -%}
+
+            <div class="tc-content-{{ sid }}">
+              {%- if block.settings.heading != blank -%}
+                <h3 class="tc-content-heading-{{ sid }}">{{ block.settings.heading | escape }}</h3>
+              {%- endif -%}
+
+              {%- if block.settings.content != blank -%}
+                <div class="tc-body-{{ sid }}">{{ block.settings.content }}</div>
+              {%- endif -%}
+
+              {%- if block.settings.closing_text != blank -%}
+                <div class="tc-closing-{{ sid }}">{{ block.settings.closing_text }}</div>
+              {%- endif -%}
+            </div>
+
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+{% endif %}
+
+<script>
+  (function() {
+    var sid = {{ sid | json }};
+    var root = document.getElementById('shopify-section-' + sid);
+    if (!root) return;
+
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('.tc-tab-' + sid));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('.tc-panel-' + sid));
+
+    function activate(index, focusTab) {
+      tabs.forEach(function(tab, i) {
+        var active = i === index;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.tabIndex = active ? 0 : -1;
+        if (active && focusTab) tab.focus();
+      });
+      panels.forEach(function(panel, i) {
+        var active = i === index;
+        panel.classList.toggle('is-active', active);
+        if (active) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      });
+    }
+
+    tabs.forEach(function(tab, i) {
+      tab.addEventListener('click', function() {
+        activate(i, false);
+      });
+
+      tab.addEventListener('keydown', function(e) {
+        var newIndex = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          newIndex = (i + 1) % tabs.length;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          newIndex = (i - 1 + tabs.length) % tabs.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = tabs.length - 1;
+        }
+        if (newIndex !== null) {
+          e.preventDefault();
+          activate(newIndex, true);
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Tabbed Content",
+  "tag": "section",
+  "class": "tabbed-content-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover Why Experts Trust [Product]"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 16, "max": 60, "step": 1, "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 14, "max": 40, "step": 1, "default": 24
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "label": "Margin below heading (px)",
+      "min": 0, "max": 60, "step": 2, "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Tab navigation"
+    },
+    {
+      "type": "select",
+      "id": "nav_align",
+      "label": "Nav alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Nav container background",
+      "default": "#00000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Nav container border",
+      "default": "#ffffff80"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Active tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text_color",
+      "label": "Active tab text color",
+      "default": "#5c2a1e"
+    },
+    {
+      "type": "color",
+      "id": "tab_inactive_text_color",
+      "label": "Inactive tab text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "font_picker",
+      "id": "tab_font",
+      "label": "Tab font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size_desktop",
+      "label": "Tab font size – Desktop (px)",
+      "min": 10, "max": 24, "step": 1, "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size_mobile",
+      "label": "Tab font size – Mobile (px)",
+      "min": 10, "max": 20, "step": 1, "default": 13
+    },
+    {
+      "type": "range",
+      "id": "tab_radius",
+      "label": "Tab pill border radius (px)",
+      "min": 0, "max": 40, "step": 1, "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_v",
+      "label": "Tab padding vertical (px)",
+      "min": 4, "max": 24, "step": 1, "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_h",
+      "label": "Tab padding horizontal (px)",
+      "min": 8, "max": 40, "step": 1, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "nav_gap",
+      "label": "Gap between tabs (px)",
+      "min": 0, "max": 24, "step": 1, "default": 4
+    },
+    {
+      "type": "range",
+      "id": "nav_margin_bottom",
+      "label": "Margin below nav (px)",
+      "min": 0, "max": 80, "step": 2, "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Section max width (px)",
+      "min": 600, "max": 1600, "step": 20, "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "content_gap_desktop",
+      "label": "Image/content gap – Desktop (px)",
+      "min": 0, "max": 100, "step": 4, "default": 56
+    },
+    {
+      "type": "range",
+      "id": "content_gap_mobile",
+      "label": "Image/content gap – Mobile (px)",
+      "min": 0, "max": 60, "step": 4, "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "1 / 1", "label": "1:1 Square" },
+        { "value": "4 / 3", "label": "4:3 Landscape" },
+        { "value": "3 / 4", "label": "3:4 Portrait" },
+        { "value": "16 / 9", "label": "16:9 Wide" }
+      ],
+      "default": "4 / 3"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image border radius (px)",
+      "min": 0, "max": 40, "step": 1, "default": 12
+    },
+    {
+      "type": "color",
+      "id": "image_bg_color",
+      "label": "Image background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Content heading (per tab)"
+    },
+    {
+      "type": "font_picker",
+      "id": "content_heading_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "content_heading_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 14, "max": 48, "step": 1, "default": 26
+    },
+    {
+      "type": "range",
+      "id": "content_heading_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 14, "max": 36, "step": 1, "default": 22
+    },
+    {
+      "type": "color",
+      "id": "content_heading_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "content_heading_margin_bottom",
+      "label": "Margin below heading (px)",
+      "min": 0, "max": 40, "step": 2, "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Body text"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "body_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 10, "max": 28, "step": 1, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 10, "max": 22, "step": 1, "default": 15
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "label": "Line height",
+      "min": 0, "max": 10, "step": 1, "default": 6,
+      "info": "0 = 1.0  |  5 = 1.5  |  10 = 2.0"
+    },
+    {
+      "type": "range",
+      "id": "body_paragraph_spacing",
+      "label": "Space between paragraphs (px)",
+      "min": 0, "max": 40, "step": 2, "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_bold_color",
+      "label": "Bold text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "body_bold_weight",
+      "label": "Bold text weight",
+      "options": [
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" },
+        { "value": "800", "label": "800 - Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "closing_margin_top",
+      "label": "Closing text margin top (px)",
+      "min": 0, "max": 40, "step": 2, "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Section background & spacing"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background color",
+      "default": "#5c2a1e"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_desktop",
+      "label": "Padding top – Desktop (px)",
+      "min": 0, "max": 120, "step": 4, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_desktop",
+      "label": "Padding bottom – Desktop (px)",
+      "min": 0, "max": 120, "step": 4, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding top – Mobile (px)",
+      "min": 0, "max": 80, "step": 4, "default": 36
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding bottom – Mobile (px)",
+      "min": 0, "max": 80, "step": 4, "default": 36
+    },
+    {
+      "type": "range",
+      "id": "section_padding_x_desktop",
+      "label": "Padding left/right – Desktop (px)",
+      "min": 0, "max": 120, "step": 4, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_x_mobile",
+      "label": "Padding left/right – Mobile (px)",
+      "min": 0, "max": 60, "step": 2, "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "Tab Label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Content heading",
+          "default": "Content Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Body content",
+          "default": "<p>Add your tab content here.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "closing_text",
+          "label": "Closing statement (optional, bold)",
+          "info": "Shown below the body content, e.g. a key takeaway line."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Content",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Antioxidant Strength",
+            "heading": "The Strongest Antioxidant",
+            "content": "<p>Astaxanthin is recognized as one of the most powerful antioxidants available. Research shows it is:</p><ul><li><strong>6,000x stronger than Vitamin C</strong></li><li><strong>800x stronger than CoQ10</strong></li><li><strong>550x stronger than Vitamin E</strong></li><li><strong>75x stronger than Alpha Lipoic Acid</strong></li></ul><p>...at neutralizing free radicals that contribute to cellular aging, oxidative stress, and declining wellness.</p><p>Unlike most antioxidants, astaxanthin's unique molecular structure allows it to anchor across the entire cell membrane, providing antioxidant activity at multiple layers simultaneously. This allows it to defend cells more completely against oxidative stress from environmental factors, daily demands, and natural aging processes.</p>",
+            "closing_text": "<p><strong>This level of protection is why benefits build over time instead of fading.</strong></p>"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "What's Inside",
+            "heading": "One Pure Ingredient",
+            "content": "<p>Many supplements rely on complex blends and proprietary formulas. We keep it simple. Pure astaxanthin from microalgae, nothing unnecessary.</p><p>The natural extraction process preserves the compound's antioxidant integrity while our oil-based delivery system ensures optimal absorption, making it suitable for consistent daily use without harsh additives or synthetic alternatives.</p><p>✔ Natural microalgae source<br>✔ Oil-based for absorption<br>✔ No fillers or unnecessary additives</p>"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Why It Works",
+            "heading": "Backed by Research & Results",
+            "content": "<p>Astaxanthin has been extensively studied as part of nutritional research focused on cellular health, antioxidant activity, and overall wellness. Revella delivers a 12mg dose in a convenient softgel format.</p><p>Designed for long-term wellness, not quick fixes.</p><p>Trusted by 100,000+ customers and backed by our 60-day money-back guarantee.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

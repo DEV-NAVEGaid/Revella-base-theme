@@ -1,0 +1,713 @@
+{% comment %}
+  Four Column Badge Section
+  Category: Template
+  A four-column section with icon, heading, and paragraph blocks.
+{% endcomment %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --fcb-bg: {{ section.settings.background_color }};
+    --fcb-icon-color: {{ section.settings.icon_color }};
+    --fcb-heading-color: {{ section.settings.heading_color }};
+    --fcb-para-color: {{ section.settings.paragraph_color }};
+    --fcb-divider-color: {{ section.settings.divider_color }};
+  }
+
+  .fcb-section {
+    background-color: var(--fcb-bg);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    width: 100%;
+  }
+
+  .fcb-container {
+    max-width: {{ section.settings.container_max_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ section.settings.container_padding }}px;
+  }
+
+  /* ─── Grid ─── */
+  .fcb-grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    gap: {{ section.settings.column_gap }}px {{ section.settings.column_gap_h }}px;
+    align-items: start;
+  }
+
+  /* ─── Column Item ─── */
+  .fcb-item {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ section.settings.content_alignment }};
+    text-align: {{ section.settings.content_alignment }};
+    gap: {{ section.settings.item_gap }}px;
+  }
+
+  /* ─── Divider between columns ─── */
+  {%- if section.settings.show_dividers -%}
+  .fcb-item + .fcb-item {
+    border-left: {{ section.settings.divider_width }}px {{ section.settings.divider_style }} var(--fcb-divider-color);
+    padding-left: {{ section.settings.column_gap_h }}px;
+    margin-left: -{{ section.settings.column_gap_h }}px;
+  }
+  {%- endif -%}
+
+  /* ─── Icon ─── */
+  .fcb-icon-wrap {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .fcb-icon-wrap svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--fcb-icon-color);
+    color: var(--fcb-icon-color);
+  }
+
+  .fcb-icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* ─── Heading ─── */
+  .fcb-heading {
+    margin: 0;
+    font-family: {{ section.settings.heading_font_family }};
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    line-height: {{ section.settings.heading_line_height }};
+    color: var(--fcb-heading-color);
+  }
+
+  /* ─── Paragraph ─── */
+  .fcb-paragraph {
+    margin: 0;
+    font-family: {{ section.settings.paragraph_font_family }};
+    font-size: {{ section.settings.paragraph_font_size }}px;
+    font-weight: {{ section.settings.paragraph_font_weight }};
+    line-height: {{ section.settings.paragraph_line_height }};
+    color: var(--fcb-para-color);
+  }
+
+  .fcb-paragraph p { margin: 0; }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 749px) {
+    .fcb-section {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    .fcb-container {
+      padding: 0 {{ section.settings.container_padding_mobile }}px;
+    }
+
+    .fcb-grid {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      gap: {{ section.settings.column_gap_mobile }}px;
+    }
+
+    .fcb-heading {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
+
+    .fcb-paragraph {
+      font-size: {{ section.settings.paragraph_font_size_mobile }}px;
+    }
+
+    /* Remove dividers on mobile to avoid layout issues */
+    .fcb-item + .fcb-item {
+      border-left: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+
+  @media (min-width: 750px) and (max-width: 989px) {
+    .fcb-grid {
+      grid-template-columns: repeat({{ section.settings.columns_tablet }}, 1fr);
+    }
+
+    .fcb-item + .fcb-item {
+      border-left: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+</style>
+
+<section class="fcb-section" id="fcb-{{ section.id }}">
+  <div class="fcb-container">
+    <div class="fcb-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'badge_column' -%}
+          <div class="fcb-item" {{ block.shopify_attributes }}>
+
+            {%- comment %} ── Icon ── {%- endcomment %}
+            {%- if block.settings.custom_icon != blank -%}
+              <div class="fcb-icon-wrap">
+                <img
+                  src="{{ block.settings.custom_icon | image_url: width: 120 }}"
+                  alt="{{ block.settings.heading }}"
+                  loading="lazy"
+                  width="{{ section.settings.icon_size }}"
+                  height="{{ section.settings.icon_size }}">
+              </div>
+            {%- elsif block.settings.icon != 'none' -%}
+              <div class="fcb-icon-wrap">
+                {%- case block.settings.icon -%}
+                  {%- when 'shield' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2zm0 2.18l7 3.12V12c0 4.25-2.9 8.2-7 9.43C7.9 20.2 5 16.25 5 12V7.3l7-3.12zM11 7v2H9v2h2v2h2v-2h2V9h-2V7h-2z"/>
+                    </svg>
+                  {%- when 'shield_check' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2zm0 2.18l7 3.12V12c0 4.25-2.9 8.2-7 9.43C7.9 20.2 5 16.25 5 12V7.3l7-3.12zm-1 9.24l-2.5-2.5-1.42 1.42L11 16.25l6.5-6.5-1.41-1.41L11 13.42z"/>
+                    </svg>
+                  {%- when 'cell' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                  {%- when 'gear' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                    </svg>
+                  {%- when 'flask' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2v8.5L4.5 19c-.83 1.33.08 3 1.5 3h12c1.42 0 2.33-1.67 1.5-3L15 10.5V2H9zm0 2h6v7h.26l3.94 7H4.8l3.94-7H9V4zm2 1v1h2V5h-2zm0 2v1h2V7h-2z"/>
+                    </svg>
+                  {%- when 'leaf' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-5 8z"/>
+                    </svg>
+                  {%- when 'heart' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                  {%- when 'star' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                  {%- when 'award' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2zM12 5.66L13.77 9.8l4.48.38-3.39 2.94 1.01 4.36L12 15.12 8.13 17.48l1.01-4.36L5.75 10.18l4.48-.38L12 5.66z"/>
+                    </svg>
+                  {%- when 'clock' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                    </svg>
+                  {%- when 'check_circle' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  {%- when 'bolt' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                    </svg>
+                  {%- when 'drop' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/>
+                    </svg>
+                  {%- when 'magnify' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                  {%- when 'recycle' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.93 10.58l-1.5-2.6H8V6H4.5L3 8.37l1.5 2.6-1.5.03V13h3.5L8 10.58h-.07zM12 3L9.27 7.77l1.5 2.6H12v1.77L9.27 7.77 12 3zm2.73 4.77L12 3l-2.73 4.77 1.5 2.6H12V9l2.73 4.77zM20.5 8H17V6h1.57l-1.5 2.6L18.5 11H15v1.37l2.5-4.37L20.5 13H22v-1.6l-1.5-.03 1.5-2.6L20.5 6.37V8zM9 16l1.5 2.6H9v2h3.5l1.5-2.37-1.5-2.6 1.5-.03V14H10.5L9 16.37zm6 0l-1.5-2.37H12v-1.77l2.73 4.77L12 21l2.73-4.77 1.5 2.6L15 21h3.5v-2h-1.57L18.5 16H15z"/>
+                    </svg>
+                  {%- when 'users' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                  {%- when 'globe' -%}
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/>
+                    </svg>
+                {%- endcase -%}
+              </div>
+            {%- endif -%}
+
+            {%- comment %} ── Heading ── {%- endcomment %}
+            {%- if block.settings.heading != blank -%}
+              <{{ block.settings.heading_tag }} class="fcb-heading">
+                {{ block.settings.heading }}
+              </{{ block.settings.heading_tag }}>
+            {%- endif -%}
+
+            {%- comment %} ── Paragraph ── {%- endcomment %}
+            {%- if block.settings.text != blank -%}
+              <div class="fcb-paragraph">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Four Column Badge",
+  "tag": "div",
+  "class": "shopify-section--four-column-badge",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Columns (tablet 750–989px)",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Columns (mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left"   },
+        { "value": "center",     "label": "Center" },
+        { "value": "flex-end",   "label": "Right"  }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Row gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "column_gap_h",
+      "label": "Column gap (horizontal)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Gap (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between icon / heading / text",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Dividers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "Show column dividers (desktop only)",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Divider style",
+      "options": [
+        { "value": "solid",  "label": "Solid"  },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Max width",
+      "min": 600,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Side padding (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "container_padding_mobile",
+      "label": "Side padding (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color (built-in icons only)",
+      "default": "#9b1c1c"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Heading Typography"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_family",
+      "label": "Heading font family",
+      "default": "system-ui, sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size (desktop)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading font size (mobile)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)"    },
+        { "value": "500", "label": "Medium (500)"     },
+        { "value": "600", "label": "Semi-bold (600)"  },
+        { "value": "700", "label": "Bold (700)"       },
+        { "value": "800", "label": "Extra-bold (800)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_height",
+      "label": "Heading line height",
+      "default": "1.3"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Paragraph Typography"
+    },
+    {
+      "type": "text",
+      "id": "paragraph_font_family",
+      "label": "Paragraph font family",
+      "default": "system-ui, sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "paragraph_font_size",
+      "label": "Paragraph font size (desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "paragraph_font_size_mobile",
+      "label": "Paragraph font size (mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "paragraph_font_weight",
+      "label": "Paragraph font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)"   },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)"  }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "paragraph_line_height",
+      "label": "Paragraph line height",
+      "default": "1.5"
+    },
+    {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Paragraph color",
+      "default": "#555555"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge_column",
+      "name": "Badge Column",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Built-in icon",
+          "options": [
+            { "value": "none",         "label": "None"                  },
+            { "value": "shield",       "label": "Shield"                },
+            { "value": "shield_check", "label": "Shield with check"     },
+            { "value": "cell",         "label": "Cell / Circle layers"  },
+            { "value": "gear",         "label": "Gear / Settings"       },
+            { "value": "flask",        "label": "Flask / Lab"           },
+            { "value": "leaf",         "label": "Leaf / Nature"         },
+            { "value": "heart",        "label": "Heart"                 },
+            { "value": "star",         "label": "Star (filled)"         },
+            { "value": "award",        "label": "Award / Star (outline)"},
+            { "value": "clock",        "label": "Clock / Time"          },
+            { "value": "check_circle", "label": "Check circle"          },
+            { "value": "bolt",         "label": "Bolt / Lightning"      },
+            { "value": "drop",         "label": "Drop / Water"          },
+            { "value": "magnify",      "label": "Magnify / Research"    },
+            { "value": "recycle",      "label": "Recycle / Repair"      },
+            { "value": "users",        "label": "Users / People"        },
+            { "value": "globe",        "label": "Globe / World"         }
+          ],
+          "default": "shield_check"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon image",
+          "info": "Overrides the built-in icon above when set. Use SVG or PNG with transparent background."
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading HTML tag",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "p",  "label": "p (paragraph)" }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Paragraph",
+          "default": "<p>Supporting description text goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four Column Badge",
+      "category": "Template",
+      "blocks": [
+        {
+          "type": "badge_column",
+          "settings": {
+            "icon": "shield_check",
+            "heading": "Cellular Protection",
+            "text": "<p>Shields cells from joint-damaging breakdown.</p>"
+          }
+        },
+        {
+          "type": "badge_column",
+          "settings": {
+            "icon": "cell",
+            "heading": "Reaches the Cell",
+            "text": "<p>The only compound that crosses the cell membrane.</p>"
+          }
+        },
+        {
+          "type": "badge_column",
+          "settings": {
+            "icon": "gear",
+            "heading": "Source-Level Repair",
+            "text": "<p>Stops breakdown faster than your body can.</p>"
+          }
+        },
+        {
+          "type": "badge_column",
+          "settings": {
+            "icon": "clock",
+            "heading": "30+ Years of Research",
+            "text": "<p>Decades of studies on joints and longevity.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

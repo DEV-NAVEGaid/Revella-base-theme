@@ -1,0 +1,35 @@
+{% doc %}
+  Renders one testimonial card: a full-width photo, then the name, star rating and
+  the quote stacked beneath it.
+
+  @param {object} block - A section block of type "review"
+  @example
+  {% render 'terrastrike-review-card', block: block %}
+{% enddoc %}
+
+{%- assign bs = block.settings -%}
+
+<div class="ts-testimonial-card" {{ block.shopify_attributes }}>
+  {% render 'terrastrike-image',
+    image: bs.image,
+    alt: bs.name,
+    class: 'ts-testimonial-card__image',
+    width: 700,
+    lazy: true
+  %}
+
+  {%- if bs.name != blank -%}
+    <strong class="ts-testimonial-card__name">{{ bs.name }}</strong>
+  {%- endif -%}
+
+  {%- if bs.rating > 0 -%}
+    <div class="ts-testimonial-card__stars">
+      <span class="visually-hidden">{{ bs.rating }} out of 5 stars</span>
+      {%- for i in (1..bs.rating) -%}
+        {% render 'terrastrike-icon', name: 'star' %}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="ts-testimonial-card__body">{{ bs.text }}</div>
+</div>

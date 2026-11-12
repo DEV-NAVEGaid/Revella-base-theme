@@ -1,0 +1,1006 @@
+{%- comment -%} Product Information V2 — Dawn 16 (main product section, block-based) {%- endcomment -%}
+
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- assign form_id = 'PI2Form-' | append: section.id -%}
+{%- assign has_tiles = false -%}
+{%- for b in section.blocks -%}{%- if b.type == 'icon_tile' -%}{%- assign has_tiles = true -%}{%- endif -%}{%- endfor -%}
+{%- case section.settings.image_ratio -%}
+  {%- when 'square' -%}{%- assign ratio = 1.0 -%}
+  {%- when 'portrait' -%}{%- assign ratio = 0.8 -%}
+  {%- when 'landscape' -%}{%- assign ratio = 1.33 -%}
+  {%- else -%}{%- assign ratio = product.featured_media.aspect_ratio | default: 1.0 -%}
+{%- endcase -%}
+
+<style>
+:root{
+  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }} !important;
+  --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }} !important;
+}
+  #shopify-section-{{ section.id }}{
+    --pi2-accent: {{ section.settings.accent }};
+    --pi2-check: {{ section.settings.check_color }};
+    --pi2-panel-bg: {{ section.settings.panel_bg }};
+    --pi2-panel-tx: {{ section.settings.panel_text }};
+    --pi2-panel-w: {{ section.settings.panel_width }}%;
+    --pi2-ratio: {{ ratio }};
+    --pi2-r: {{ section.settings.corner_radius }}px;
+    --pi2-line: rgba(var(--color-foreground),.14);
+  }
+  .pi2{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .pi2 *,.pi2 *::before,.pi2 *::after{ box-sizing:border-box; min-width:0; }
+  .pi2 img{ max-width:100%; height:auto; display:block; }
+  .pi2__grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:0px; }
+
+  /* MEDIA */
+  .pi2__mediarow{ display:grid; grid-template-columns:minmax(0,1fr); gap:{{ section.settings.media_gap }}px; }
+  {% if has_tiles %}.pi2__mediarow{ grid-template-columns:minmax(0,1fr) minmax(0,var(--pi2-panel-w)); }{% endif %}
+  .pi2__stage{ display:flex; width:100%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -ms-overflow-style:none; border-radius:var(--pi2-r); }
+  .pi2__stage::-webkit-scrollbar{ display:none; }
+  .pi2__slide{ flex:0 0 100%; scroll-snap-align:start; aspect-ratio:var(--pi2-ratio); background:rgba(var(--color-foreground),.04); }
+  .pi2__slide img,.pi2__slide video,.pi2__slide iframe{ width:100%; height:100%; object-fit:{{ section.settings.image_fit }}; }
+  .pi2__panel{ display:grid; grid-auto-rows:1fr; background:var(--pi2-panel-bg); color:var(--pi2-panel-tx); border-radius:var(--pi2-r); overflow:hidden; }
+  .pi2__tile{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center; padding:10px 6px; }
+  .pi2__tile+.pi2__tile{ border-top:1px solid rgba(255,255,255,.2); }
+  .pi2__tile img,.pi2__tile svg{ width:{{ section.settings.icon_size }}px; height:{{ section.settings.icon_size }}px; object-fit:contain; }
+  .pi2__tile p{ margin:0; font-size:{{ section.settings.tile_font_size }}rem; line-height:1.25; font-weight:500; }
+
+  /* THUMBS */
+  .pi2__thumbs{ display:flex; align-items:center; gap:0px; margin-top:10px; }
+  .pi2__strip{ display:flex; gap:8px; overflow:hidden; flex:1; min-width:0; }
+  .pi2__strip::-webkit-scrollbar{ display:none; }
+  .pi2__thumb{ flex:0 0 calc((100% - 32px) / 5); aspect-ratio:1; padding:0; cursor:pointer; background:none; overflow:hidden;
+    border:2px solid var(--pi2-line);  }
+  .pi2__thumb img{ width:100%; height:100%; object-fit:cover; }
+  .pi2__thumb.is-active{ border-color:var(--pi2-accent); }
+  .pi2__arw{ position:static; transform:none; flex:0 0 26px; width:26px; height:26px; padding:0; border-radius:50%;
+    border:1px solid var(--pi2-line); background:rgb(var(--color-background)); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .pi2__arw svg{ width:9px; height:9px; }
+
+  /* INFO */
+  .pi2__info{ display:flex; flex-direction:column; gap:12px; }
+  .pi2__badges{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pi2__badge{ display:inline-flex; padding:5px 8px; border-radius:999px; font-size:1.3rem; font-weight:700; line-height:1.1; }
+  .pi2__badge--solid{ background:var(--pi2-accent); color:#fff; }
+  .pi2__badge--outline{ border:1px solid #d3d2d2ff; }
+  .pi2__rating{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:1.4rem; text-decoration:none; color:inherit; }
+  .pi2__stars{ display:inline-flex; align-items:center; gap:2px; }
+  .pi2__title{ margin:0; font-size:{{ section.settings.title_size_mobile }}rem; line-height:1.15; font-weight:{{ section.settings.title_weight }}; letter-spacing:-.02em; }
+  .pi2__price{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+  .pi2__price-now{ font-size:{{ section.settings.price_size }}rem; font-weight:800; line-height:1; }
+  .pi2__price-was{ font-size:calc({{ section.settings.price_size }}rem - .5rem); color:rgba(var(--color-foreground),.45); text-decoration:line-through; }
+  .pi2__price-was[hidden]{ display:none; }
+  .pi2__sale{ background:var(--pi2-accent); color:#fff; font-size:1.25rem; font-weight:700; padding:6px 10px; border-radius:6px; line-height:1; }
+  .pi2__heading{ margin:0; font-size:1.7rem; font-weight:800; line-height:1.3; }
+  .pi2__check{ display:flex; align-items:flex-start; gap:9px; font-size:1.45rem; line-height:1.4; }
+  .pi2__check svg{ flex:0 0 auto; width:18px; height:18px; margin-top:1px; color:var(--pi2-check); }
+
+  /* SHIPPING */
+  .pi2__ship{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; font-size:1.35rem;
+    border-top:1px solid var(--pi2-line); border-bottom:1px solid var(--pi2-line); padding:6px 16px; border-radius:20px; background-color:#f6f6f6; }
+  .pi2__ship-l{ display:flex; align-items:center; gap:8px; }
+  .pi2__dot{ width:9px; height:9px; border-radius:50%; background:var(--pi2-check); flex:0 0 auto; }
+  .pi2__dot--pulse{ animation:pi2pulse 1.4s infinite; }
+  @keyframes pi2pulse{ 0%{ box-shadow:0 0 0 0 rgba(0,0,0,.28); } 70%{ box-shadow:0 0 0 7px rgba(0,0,0,0); } 100%{ box-shadow:0 0 0 0 rgba(0,0,0,0); } }
+  .pi2__ship-r{ display:flex; align-items:center; gap:6px; font-weight:600; }
+  .pi2__ship-r img{ width:20px; }
+
+  /* VARIANTS */
+  .pi2__opt{ display:flex; flex-direction:column; gap:6px; }
+  .pi2__opt legend,.pi2__opt label{ font-size:1.3rem; font-weight:600; }
+  .pi2__pills{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pi2__pill{ border:1px solid var(--pi2-line); border-radius:999px; padding:8px 14px; font-size:1.35rem; cursor:pointer; background:none; }
+  .pi2__pill.is-active{ border-color:var(--pi2-accent); background:var(--pi2-accent); color:#fff; }
+
+  /* SUBSCRIPTION */
+  .pi2__sub{ display:flex; gap:10px; align-items:flex-start; border:1.5px dashed var(--pi2-check); border-radius:8px; padding:12px; cursor:pointer; }
+  .pi2__sub input{ width:18px; height:18px; margin:2px 0 0; accent-color:var(--pi2-check); flex:0 0 auto; }
+  .pi2__sub b{ display:block; font-size:1.45rem; }
+  .pi2__sub span{ font-size:1.3rem; color:rgba(var(--color-foreground),.7); }
+
+  /* ATC */
+  .pi2__qty{ display:inline-flex; align-items:center; border:1px solid var(--pi2-line); border-radius:6px; margin-bottom:10px; }
+  .pi2__qty button{ width:40px; height:42px; background:none; border:0; font-size:1.8rem; cursor:pointer; }
+  .pi2__qty input{ width:46px; height:42px; text-align:center; border:0; background:none; -moz-appearance:textfield; }
+  .pi2__atc{ width:100%; border:0; cursor:pointer; padding:14px 16px; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .pi2__atc b{ font-size:1.9rem; font-weight:800; letter-spacing:.02em; }
+  .pi2__atc small{ font-size:1.15rem; opacity:.85; display:flex; align-items:center; gap:5px; }
+  .pi2__atc[disabled]{ opacity:.5; cursor:not-allowed; }
+
+  /* SELLING FAST */
+  .pi2__sf { border-style: solid; padding: 6px 16px; border-radius: 8px; }
+  .pi2__sf b{ display:block; font-size:1.5rem; }
+  .pi2__sf p{ margin:2px 0 8px; font-size:1.3rem; color:rgba(var(--color-foreground),.7); }
+  .pi2__bar{ height:7px; border-radius:99px; background:rgba(var(--color-foreground),.12); overflow:hidden; }
+  .pi2__bar i{ display:block; height:100%; background:var(--pi2-accent); border-radius:99px; }
+  .pi2__sf-foot{ display:flex; justify-content:space-between; gap:8px; margin-top:6px; font-size:1.3rem; font-weight:700; }
+  .pi2__sf-foot span:last-child{ color:var(--pi2-accent); }
+
+  /* TRUSTED */
+  .pi2__trust{ display:flex; gap:10px; align-items:center; background: #E8EBEC; border-radius:100px; padding:7px 15px;margin: 0px 0px; }
+  .pi2__trust img{ width:200px; border-radius:6px; }
+  .pi2__trust b{ font-size:1.2rem; } .pi2__trust span{ font-size:1rem; color:rgba(var(--color-foreground),.7); }
+
+  /* ACCORDION */
+  {% comment %} .pi2__acc{ border-bottom:1px solid var(--pi2-line); } {% endcomment %}
+  .pi2__acc summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px; padding-top:12px; padding-bottom:0px; font-size:1.4rem; font-weight:700;border-top: 1px solid #f7f7f7 }
+  .pi2__acc summary::-webkit-details-marker{ display:none; }
+  .pi2__acc svg{ width:13px; transition:transform .2s; }
+  .pi2__acc[open] svg{ transform:rotate(180deg); }
+  .pi2__acc-body{ padding:10px 0 0px; font-size:1.8rem; }
+
+  /* UGC */
+  .pi2__ugc-strip{ display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:8px; }
+  .pi2__ugc-strip::-webkit-scrollbar{ display:none; }
+  .pi2__ugc{ position:relative; flex:0 0 {{ section.settings.ugc_width }}%; scroll-snap-align:start; aspect-ratio:9/16; border-radius:8px; overflow:hidden; background:#000; cursor:pointer; }
+  .pi2__ugc img,.pi2__ugc video,.pi2__ugc iframe{ width:100%; height:100%; object-fit:cover; border:0; }
+  .pi2__play{ position:absolute; inset:0; margin:auto; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.85);
+    display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  .pi2__play::after{ content:''; border-left:14px solid #111; border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:3px; }
+
+  /* GOES WELL WITH */
+  .pi2__gw-card{ display:flex; align-items:center; gap:12px; background:{{ section.settings.gw_bg }}; border-radius:8px; padding:12px; }
+  .pi2__gw-card+.pi2__gw-card{ margin-top:10px; }
+  .pi2__gw-card img{ width:58px; height:58px; object-fit:contain; }
+  .pi2__gw-info{ flex:1 1 auto; width: 40%; }
+  .pi2__gw-info .pi2__stars{ font-size:1rem; }
+  .pi2__gw-info b{ display:block; font-size:1.4rem; } .pi2__gw-info span{ font-size:1.4rem; font-weight:700; }
+  .pi2__gw-add{ border:0; border-radius:999px; padding:11px 18px; font-size:1.4rem; font-weight:700; cursor:pointer;
+    background:var(--pi2-accent); color:#fff; }
+
+  @media screen and (min-width:750px){
+    .pi2{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  }
+  @media screen and (min-width:990px){
+    .pi2__grid{ grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:44px; align-items:start; }
+    .pi2__media{ position:sticky; top:20px; }
+    .pi2__title{ font-size:{{ section.settings.title_size }}rem; }
+    .pi2__ugc{ flex-basis:calc({{ section.settings.ugc_width }}% - 40px); }
+  }
+  .pi2{ --fs: .6; }   /* 1 = ukuran awal · .7 = 30% lebih kecil · .5 = setengah (kekecilan) */
+
+  .pi2__badge            { font-size:calc(1.7rem * var(--fs)); }
+  .pi2__rating           { font-size:calc(2rem * var(--fs)); }
+  .pi2__title            { font-size:calc({{ section.settings.title_size_mobile }}rem * var(--fs)); }
+  .pi2__price-now        { font-size:calc({{ section.settings.price_size }}rem * var(--fs)); }
+  .pi2__price-was        { font-size:calc(({{ section.settings.price_size }}rem - .5rem) * var(--fs)); }
+  .pi2__sale             { font-size:calc(1.9rem * var(--fs)); }
+  .pi2__tile p           { font-size:calc({{ section.settings.tile_font_size }}rem * var(--fs)); }
+  .pi2__heading          { font-size:calc(2.5rem * var(--fs)); }
+  .pi2__check            { font-size:calc(2.1rem * var(--fs)); }
+  .pi2__ship             { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__opt legend       { font-size:calc(1.9rem * var(--fs)); }
+  .pi2__pill             { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__sub b            { font-size:calc(2rem * var(--fs)); }
+  .pi2__sub span         { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__atc b            { font-size:calc(3.2rem * var(--fs)); }
+  .pi2__atc small        { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__qty input        { font-size:calc(2rem * var(--fs)); }
+  .pi2__sf b             { font-size:calc(2.1rem * var(--fs)); }
+  .pi2__sf p             { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__sf-foot          { font-size:calc(1.8rem * var(--fs)); }
+  .pi2__trust b          { font-size:calc(1.7rem * var(--fs)); }
+  .pi2__trust span       { font-size:calc(1.6rem * var(--fs)); }
+  .pi2__acc summary      { font-size:calc(2.1rem * var(--fs)); }
+  .pi2__acc-body         { font-size:calc(2.1rem * var(--fs)); }
+  .pi2__gw-info b        { font-size:calc(1.7rem * var(--fs)); }
+  .pi2__gw-info span     { font-size:calc(1.7rem * var(--fs)); }
+  .pi2__gw-add           { font-size:calc(1.9rem * var(--fs)); }
+  .pi2__gw-info .pi2__stars,
+  .pi2__rating .pi2__stars { font-size:calc(1.6rem * var(--fs)); }
+  #shopify-section-{{ section.id }}.section {
+    --full-page-grid-margin: 0;
+    --full-page-grid-central-column-width: 100%;
+  }
+</style>
+
+<div class="pi2 page-width color-{{ section.settings.color_scheme }} gradient" id="pi2-{{ section.id }}"
+  data-money-format="{{ shop.money_format | escape }}">
+  <div class="pi2__grid">
+
+    <div class="pi2__media">
+      <div class="pi2__mediarow">
+        <div class="pi2__stage" data-pi2-stage>
+          {%- if product.media.size > 0 -%}
+            {%- for media in product.media -%}
+              <div class="pi2__slide" data-pi2-slide="{{ forloop.index0 }}">
+                {%- if media.media_type == 'image' -%}
+                  {{ media | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '375,550,750,1100,1400', sizes: '(min-width:990px) 600px, 66vw', alt: media.alt | escape }}
+                {%- else -%}
+                  {{ media | media_tag: image_size: '1400x' }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <div class="pi2__slide" data-pi2-slide="0">{{ 'product-apparel-1' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+        </div>
+
+        {%- if has_tiles -%}
+          <div class="pi2__panel">
+            {%- for block in section.blocks -%}{%- if block.type == 'icon_tile' -%}
+              <div class="pi2__tile" {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != blank -%}
+                  {{ block.settings.icon | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+              </div>
+            {%- endif -%}{%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_thumbnails and product.media.size > 1 -%}
+        <div class="pi2__thumbs">
+          {%- if section.settings.show_arrows -%}
+            <button type="button" class="pi2__arw pi2__arw--prev" data-pi2-arw="prev" aria-label="Previous"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L2 8l6 7"/></svg></button>
+          {%- endif -%}
+          <div class="pi2__strip" data-pi2-thumbs>
+            {%- for media in product.media -%}
+              <button type="button" class="pi2__thumb{% if forloop.first %} is-active{% endif %}" data-pi2-thumb="{{ forloop.index0 }}" aria-label="Image {{ forloop.index }}">
+                {{ media.preview_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+              </button>
+            {%- endfor -%}
+          </div>
+          {%- if section.settings.show_arrows -%}
+            <button type="button" class="pi2__arw pi2__arw--next" data-pi2-arw="next" aria-label="Next"><svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 1l6 7-6 7"/></svg></button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="pi2__info">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+        {%- when 'badges' -%}
+          <div class="pi2__badges" {{ block.shopify_attributes }}>
+            {%- if block.settings.badge_1 != blank -%}<span class="pi2__badge pi2__badge--solid">{{ block.settings.badge_1 }}</span>{%- endif -%}
+            {%- if block.settings.badge_2 != blank -%}<span class="pi2__badge pi2__badge--outline">{{ block.settings.badge_2 }}</span>{%- endif -%}
+            {%- if block.settings.badge_3 != blank -%}<span class="pi2__badge pi2__badge--outline">{{ block.settings.badge_3 }}</span>{%- endif -%}
+          </div>
+
+        {%- when 'rating' -%}
+          {%- assign fill = block.settings.stars | times: 20 -%}
+          <a class="pi2__rating" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+            <span class="pi2__stars">
+              {%- assign full_stars = block.settings.stars | floor -%}
+              {%- assign remainder = block.settings.stars | minus: full_stars -%}
+              {%- assign partial_index = full_stars | plus: 1 -%}
+              {%- for i in (1..5) -%}
+                {%- if i <= full_stars -%}
+                  <svg width="{{ block.settings.star_size | times: 10 }}" viewBox="0 0 24 24" fill="{{ block.settings.star_color }}"><path d="M12 2c.4 0 .8.2 1 .6l2.5 5.1 5.6.8c.5.1.9.4 1 .9s0 .9-.3 1.2l-4.1 4 1 5.5c.1.5-.1 1-.5 1.2s-.9.3-1.3.1L12 18.8l-5 2.6c-.4.2-.9.2-1.3-.1s-.6-.8-.5-1.2l1-5.5-4.1-4c-.4-.3-.5-.8-.3-1.2s.5-.8 1-.9l5.6-.8L10.9 2.6c.2-.4.6-.6 1.1-.6z"/></svg>
+                {%- elsif i == partial_index and remainder > 0 -%}
+                  <svg width="{{ block.settings.star_size | times: 10 }}" viewBox="0 0 24 24"><defs><clipPath id="pi2half{{ block.id }}"><rect x="0" y="0" width="{{ remainder | times: 24 }}" height="24"/></clipPath></defs><path d="M12 2c.4 0 .8.2 1 .6l2.5 5.1 5.6.8c.5.1.9.4 1 .9s0 .9-.3 1.2l-4.1 4 1 5.5c.1.5-.1 1-.5 1.2s-.9.3-1.3.1L12 18.8l-5 2.6c-.4.2-.9.2-1.3-.1s-.6-.8-.5-1.2l1-5.5-4.1-4c-.4-.3-.5-.8-.3-1.2s.5-.8 1-.9l5.6-.8L10.9 2.6c.2-.4.6-.6 1.1-.6z" fill="rgba(0,0,0,.15)"/><path d="M12 2c.4 0 .8.2 1 .6l2.5 5.1 5.6.8c.5.1.9.4 1 .9s0 .9-.3 1.2l-4.1 4 1 5.5c.1.5-.1 1-.5 1.2s-.9.3-1.3.1L12 18.8l-5 2.6c-.4.2-.9.2-1.3-.1s-.6-.8-.5-1.2l1-5.5-4.1-4c-.4-.3-.5-.8-.3-1.2s.5-.8 1-.9l5.6-.8L10.9 2.6c.2-.4.6-.6 1.1-.6z" fill="{{ block.settings.star_color }}" clip-path="url(#pi2half{{ block.id }})"/></svg>
+                {%- else -%}
+                  <svg width="{{ block.settings.star_size | times: 10 }}" viewBox="0 0 24 24" fill="rgba(0,0,0,.15)"><path d="M12 2c.4 0 .8.2 1 .6l2.5 5.1 5.6.8c.5.1.9.4 1 .9s0 .9-.3 1.2l-4.1 4 1 5.5c.1.5-.1 1-.5 1.2s-.9.3-1.3.1L12 18.8l-5 2.6c-.4.2-.9.2-1.3-.1s-.6-.8-.5-1.2l1-5.5-4.1-4c-.4-.3-.5-.8-.3-1.2s.5-.8 1-.9l5.6-.8L10.9 2.6c.2-.4.6-.6 1.1-.6z"/></svg>
+                {%- endif -%}
+              {%- endfor -%}
+            </span>
+            <strong>{{ block.settings.rating_text }}</strong><span>|</span><strong>{{ block.settings.customers }}</strong><span>{{ block.settings.suffix }}</span>
+          </a>
+
+        {%- when 'title' -%}
+          <h1 class="pi2__title" {{ block.shopify_attributes }}>{% if block.settings.custom_title != blank %}{{ block.settings.custom_title }}{% else %}{{ product.title }}{% endif %}</h1>
+
+        {%- when 'price' -%}
+          <div class="pi2__price" {{ block.shopify_attributes }}>
+            <span class="pi2__price-now" data-pi2-now>{{ v.price | money }}</span>
+            {%- if block.settings.show_compare -%}
+              <s class="pi2__price-was" data-pi2-was {% unless v.compare_at_price > v.price %}hidden{% endunless %}>{{ v.compare_at_price | money }}</s>
+            {%- endif -%}
+            {%- if block.settings.sale_label != blank -%}<span class="pi2__sale">{{ block.settings.sale_label }}</span>{%- endif -%}
+          </div>
+
+        {%- when 'heading' -%}
+          <h2 class="pi2__heading" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+
+        {%- when 'checklist_item' -%}
+          <div class="pi2__check" {{ block.shopify_attributes }}>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 0a10 10 0 100 20A10 10 0 0010 0zm-1.2 14.6l-4-4 1.6-1.6 2.4 2.4 5.2-5.2 1.6 1.6-6.8 6.8z"/></svg>
+            <span>{{ block.settings.text }}</span>
+          </div>
+
+        {%- when 'shipping' -%}
+          {%- assign ship_date = 'now' | date: '%s' | plus: 0 -%}
+          {%- assign secs = block.settings.days_offset | times: 86400 -%}
+          {%- assign ship_ts = ship_date | plus: secs -%}
+          <div class="pi2__ship" {{ block.shopify_attributes }}>
+            <span class="pi2__ship-l">
+              <i class="pi2__dot{% if block.settings.pulse %} pi2__dot--pulse{% endif %}" style="background:{{ block.settings.dot_color }}"></i>
+              <span>{{ block.settings.prefix }} <b>{% if block.settings.custom_date != blank %}{{ block.settings.custom_date }}{% else %}{{ ship_ts | date: block.settings.date_format }}{% endif %}</b></span>
+            </span>
+            <span class="pi2__ship-r" data-pi2-ship-r>
+              {{ block.settings.right_text }}
+            </span>
+          </div>
+
+        {%- when 'variant_picker' -%}
+          {%- unless product.has_only_default_variant -%}
+            <div {{ block.shopify_attributes }}>
+              {%- for option in product.options_with_values -%}
+                <fieldset class="pi2__opt" data-pi2-optset>
+                  <legend>{{ option.name }}</legend>
+                  <div class="pi2__pills">
+                    {%- for value in option.values -%}
+                      <button type="button" class="pi2__pill{% if option.selected_value == value %} is-active{% endif %}"
+                        data-pi2-opt="{{ forloop.parentloop.index0 }}" data-value="{{ value | escape }}">{{ value }}</button>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+        {%- when 'subscription' -%}
+          <label class="pi2__sub" {{ block.shopify_attributes }}>
+            <input type="checkbox" data-pi2-sub data-plan="{{ block.settings.selling_plan_id }}" {% if block.settings.checked %}checked{% endif %}>
+            <span><b>{{ block.settings.heading }}</b><span>{{ block.settings.text }}</span></span>
+          </label>
+
+        {%- when 'founder_badge' -%}
+          {%- assign nv_badge_protrusion = block.settings.badge_size | divided_by: 2 | plus: 8 -%}
+          <div {{ block.shopify_attributes }} style="max-width:{{ block.settings.max_width }}px;margin:{{ nv_badge_protrusion }}px auto {{ block.settings.margin_bottom }}px;padding:0 10px;box-sizing:border-box;">
+            <div style="position:relative;background:{{ block.settings.bg_color }};border-radius:8px;padding:34px 14px 14px;text-align:center;box-sizing:border-box;">
+              <div style="position:absolute;top:-{{ nv_badge_protrusion }}px;left:50%;transform:translateX(-50%);width:{{ block.settings.badge_size }}px;height:{{ block.settings.badge_size }}px;border-radius:50%;overflow:hidden;border:3px solid {{ block.settings.ring_color }};box-shadow:0 1px 6px rgba(0,0,0,0.2);background:{{ block.settings.bg_color }};display:flex;align-items:center;justify-content:center;">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 200 }}"
+                        alt="{{ block.settings.image.alt | escape | default: block.settings.badge_text | escape }}"
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                {%- else -%}
+                  <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12Zm0 2.5c-3.3 0-9.8 1.6-9.8 4.9v2.4h19.6v-2.4c0-3.3-6.5-4.9-9.8-4.9Z" fill="{{ block.settings.ring_color }}"/></svg>
+                {%- endif -%}
+              </div>
+              <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:{{ block.settings.text_size }}px;font-weight:600;line-height:1.35;color:{{ block.settings.text_color }};letter-spacing:-0.01em;">
+                {{ block.settings.badge_text }}
+              </p>
+            </div>
+          </div>
+          
+        {%- when 'feature_pills' -%}
+          <div {{ block.shopify_attributes }} style="display:flex;justify-content:center;flex-wrap:wrap;gap:{{ block.settings.gap }}px;max-width:100%;line-height:1;margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- for i in (1..6) -%}
+              {%- assign pill_key = 'text_' | append: i -%}
+              {%- assign pill_val = block.settings[pill_key] -%}
+              {%- if pill_val != blank -%}
+                <span style="background:{{ block.settings.bg_color }};color:{{ block.settings.text_color }};font-size:{{ block.settings.font_size }}px;font-weight:600;padding:4px 8px;border-radius:{{ block.settings.radius }}px;display:inline-flex;align-items:center;white-space:nowrap;">{{ pill_val }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        
+        {%- when 'imitation_warning' -%}
+          <div {{ block.shopify_attributes }} style="border:1.5px dashed {{ block.settings.border_color }};background:{{ block.settings.bg_color }};border-radius:8px;padding:10px 14px;margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:{{ block.settings.font_size }}px;line-height:1.4;color:{{ block.settings.text_color }};display:flex;gap:8px;align-items:flex-start;">
+            <span style="flex:0 0 auto;">{{ block.settings.icon }}</span>
+            <span>
+              <strong>{{ block.settings.prefix_text }}</strong>
+              {%- if block.settings.show_product_title %} {{ product.title }}{% endif %}
+              {{ block.settings.suffix_text }}
+            </span>
+          </div>
+
+        {%- when 'testimonial_carousel' -%}
+          <div class="nv-testimonial-{{ block.id }}" {{ block.shopify_attributes }} style="position:relative;border-radius:14px;padding:18px 20px;margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;background:{{ block.settings.bg_color }};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+            {%- assign slide_index = 0 -%}
+            {%- for i in (1..3) -%}
+              {%- assign quote_key = 'quote_' | append: i -%}
+              {%- assign quote_val = block.settings[quote_key] -%}
+              {%- if quote_val != blank -%}
+                {%- assign name_key = 'name_' | append: i -%}
+                {%- assign avatar_key = 'avatar_' | append: i -%}
+                {%- assign rating_key = 'rating_' | append: i -%}
+                {%- assign avatar_val = block.settings[avatar_key] -%}
+                {%- assign name_val = block.settings[name_key] | default: 'Customer' -%}
+                {%- assign rating_val = block.settings[rating_key] | default: 5 -%}
+                <div class="nv-testimonial-slide" style="display:{% if slide_index == 0 %}flex{% else %}none{% endif %};gap:12px;align-items:flex-start;">
+                  <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;overflow:hidden;background:#eeeeee;display:flex;align-items:center;justify-content:center;font-weight:700;color:#999999;font-size:16px;">
+                    {%- if avatar_val != blank -%}
+                      <img src="{{ avatar_val | image_url: width: 88 }}" alt="{{ name_val | escape }}" style="width:100%;height:100%;object-fit:cover;">
+                    {%- else -%}
+                      {{ name_val | slice: 0, 1 | upcase }}
+                    {%- endif -%}
+                  </div>
+                  <div style="flex:1 1 auto;min-width:0;">
+                    <p style="margin:0 0 8px;font-size:{{ block.settings.font_size }}px;line-height:1.5;color:{{ block.settings.text_color }};">&ldquo;{{ quote_val | strip_html }}&rdquo;</p>
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                      <div style="display:flex;align-items:center;gap:6px;font-size:13px;">
+                        <strong style="color:{{ block.settings.text_color }};">{{ name_val | escape }}</strong>
+                        {%- if block.settings.show_verified_badge -%}
+                          <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#1DB954;flex-shrink:0;" title="Verified buyer">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span>
+                        {%- endif -%}
+                      </div>
+                      <div style="color:{{ block.settings.star_color }};font-size:14px;letter-spacing:1px;white-space:nowrap;flex-shrink:0;">
+                        {%- for s in (1..5) -%}{% if s <= rating_val %}&#9733;{% else %}&#9734;{% endif %}{%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {%- assign slide_index = slide_index | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if slide_index > 1 -%}
+              <button type="button" class="nv-testimonial-prev" aria-label="Previous testimonial" style="position:absolute;top:50%;left:-14px;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#ffffff;border:none;box-shadow:0 1px 4px rgba(0,0,0,0.2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#666666;font-size:16px;line-height:1;padding:0;">&lsaquo;</button>
+              <button type="button" class="nv-testimonial-next" aria-label="Next testimonial" style="position:absolute;top:50%;right:-14px;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#ffffff;border:none;box-shadow:0 1px 4px rgba(0,0,0,0.2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#666666;font-size:16px;line-height:1;padding:0;">&rsaquo;</button>
+            {%- endif -%}
+          </div>
+          {%- if slide_index > 1 -%}
+            <script>
+            (function(){
+              var root = document.querySelector('.nv-testimonial-{{ block.id }}');
+              if (!root) return;
+              var slides = root.querySelectorAll('.nv-testimonial-slide');
+              var idx = 0;
+              function show(n){ slides.forEach(function(el, i){ el.style.display = (i === n) ? 'flex' : 'none'; }); }
+              var prevBtn = root.querySelector('.nv-testimonial-prev');
+              var nextBtn = root.querySelector('.nv-testimonial-next');
+              if (prevBtn) prevBtn.addEventListener('click', function(){ idx = (idx - 1 + slides.length) % slides.length; show(idx); });
+              if (nextBtn) nextBtn.addEventListener('click', function(){ idx = (idx + 1) % slides.length; show(idx); });
+            })();
+            </script>
+          {%- endif -%}
+
+        {%- when 'custom_liquid' -%}
+          <div {{ block.shopify_attributes }}>{{ block.settings.code }}</div>
+
+        {%- when 'buy_buttons' -%}
+          <product-form class="product-form" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+            <div class="product-form__error-message-wrapper" role="alert" hidden>
+              <span class="product-form__error-message"></span>
+            </div>
+            {%- form 'product', product, id: form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ v.id }}" class="product-variant-id" data-pi2-id>
+              {%- if block.settings.show_quantity -%}
+                <div class="pi2__qty">
+                  <button type="button" data-pi2-qty="-" aria-label="Minus">−</button>
+                  <input type="number" name="quantity" value="1" min="1" aria-label="Quantity">
+                  <button type="button" data-pi2-qty="+" aria-label="Plus">+</button>
+                </div>
+              {%- endif -%}
+              <button type="submit" name="add" class="pi2__atc product-form__submit"
+                style="background:{{ block.settings.btn_bg }};color:{{ block.settings.btn_text }};border-radius:{{ block.settings.btn_radius }}px;"
+                {% unless v.available %}disabled{% endunless %}>
+                <b data-pi2-atc-label>{% if v.available %}{{ block.settings.label }}{% else %}{{ block.settings.sold_out_label }}{% endif %}</b>
+                {%- if block.settings.sub_label != blank -%}
+                  <small>{%- if block.settings.show_shield -%}<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 1L3 5v6c0 5 3.8 9.7 9 12 5.2-2.3 9-7 9-12V5l-9-4z"/></svg>{%- endif -%}{{ block.settings.sub_label }}</small>
+                {%- endif -%}
+                <div class="loading__spinner hidden">
+                  <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </button>
+              {%- if block.settings.show_dynamic_checkout -%}{{ form | payment_button }}{%- endif -%}
+            {%- endform -%}
+          </product-form>
+
+        {%- when 'selling_fast' -%}
+          <div class="pi2__sf" data-pi2-sf data-mode="{{ block.settings.timer_mode }}" data-hours="{{ block.settings.timer_hours }}" data-key="pi2-{{ block.id }}"
+            style="background:{{ block.settings.sf_bg_color }}; border-color:{{ block.settings.sf_border_color }}; border-width:{{ block.settings.sf_border_width }}px;"
+            {{ block.shopify_attributes }}>
+            <b>{{ block.settings.heading }}</b>
+            <p>{{ block.settings.text }}</p>
+            <div class="pi2__bar"><i style="width:{{ block.settings.percent }}%"></i></div>
+            <div class="pi2__sf-foot">
+              <span>{{ block.settings.percent }}{{ block.settings.percent_suffix }}</span>
+              <span>{{ block.settings.timer_prefix }} <span data-pi2-timer>--:--:--</span></span>
+            </div>
+          </div>
+
+        {%- when 'trusted' -%}
+          <div class="pi2__trust" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+            <span><b>{{ block.settings.heading }}</b>
+            <br><span>{{ block.settings.text }}</span></span>
+          </div>
+
+        {%- when 'accordion' -%}
+          <details class="pi2__acc" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+            <summary>{{ block.settings.heading }}<svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l7 7 7-7"/></svg></summary>
+            <div class="pi2__acc-body rte">{{ block.settings.content }}</div>
+          </details>
+
+        {%- when 'ugc_videos' -%}
+          <div {{ block.shopify_attributes }} style="padding: 20px 0px 0px;">
+            {%- if block.settings.heading != blank -%}<h2 class="pi2__heading" style="margin-bottom:10px">{{ block.settings.heading }}</h2>{%- endif -%}
+            <div class="pi2__ugc-strip">
+              {%- for i in (1..6) -%}
+                {%- assign vid = 'video_' | append: i -%}
+                {%- assign url = 'url_' | append: i -%}
+                {%- assign pos = 'poster_' | append: i -%}
+                {%- assign vfile = block.settings[vid] -%}
+                {%- assign vurl = block.settings[url] -%}
+                {%- assign vpos = block.settings[pos] -%}
+                {%- if vfile != blank or vurl != blank -%}
+                  <div class="pi2__ugc" data-pi2-video{% if vurl != blank and vfile == blank %} data-embed="{{ vurl.id }}" data-type="{{ vurl.type }}"{% endif %}>
+                    {%- if vfile != blank -%}
+                      {{ vfile | video_tag: image_size: '600x', playsinline: true, controls: true, preload: 'metadata', poster: vpos }}
+                    {%- else -%}
+                      {%- if vpos != blank -%}{{ vpos | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+                      <span class="pi2__play"></span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+
+        {%- when 'complementary' -%}
+          <product-recommendations class="pi2__gw" data-url="{{ routes.product_recommendations_url }}?limit={{ block.settings.limit }}&intent=complementary"
+            data-section-id="{{ section.id }}" data-product-id="{{ product.id }}"
+            data-gw-heading="{{ block.settings.heading | escape }}"
+            data-gw-stars="{{ block.settings.show_stars }}"
+            data-gw-star-color="{{ block.settings.star_color }}"
+            data-gw-show-add="{{ block.settings.show_add }}"
+            data-gw-add-label="{{ block.settings.add_label | escape }}"
+            {{ block.shopify_attributes }}>
+            {%- if recommendations.performed and recommendations.products_count > 0 -%}
+              {%- if block.settings.heading != blank -%}<h2 class="pi2__heading" style="margin-bottom:10px">{{ block.settings.heading }}</h2>{%- endif -%}
+              {%- for rec in recommendations.products -%}
+                {%- assign rv = rec.selected_or_first_available_variant -%}
+                <div class="pi2__gw-card">
+                  {%- if rec.featured_image -%}<a href="{{ rec.url }}">{{ rec.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: rec.title | escape }}</a>{%- endif -%}
+                  <div class="pi2__gw-info">
+                    {%- if block.settings.show_stars -%}<span class="pi2__stars" style="color:{{ block.settings.star_color }}">★★★★★</span>{%- endif -%}
+                    <b>{{ rec.title }}</b>
+                    <span>{{ rv.price | money }}</span>
+                  </div>
+                  {%- if block.settings.show_add and rv.available -%}
+                    <button type="button" class="pi2__gw-add" data-pi2-gw-add="{{ rv.id }}">{{ block.settings.add_label }}</button>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </product-recommendations>
+
+        {%- when 'text' -%}
+          <div class="rte" style="font-size:1.4rem" {{ block.shopify_attributes }}>{{ block.settings.content }}</div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var id='{{ section.id }}';
+  function init(){
+    var root=document.getElementById('pi2-'+id); if(!root||root.dataset.init)return; root.dataset.init='1';
+    var variants={{ product.variants | json }};
+
+    /* gallery */
+    var stage=root.querySelector('[data-pi2-stage]'),strip=root.querySelector('[data-pi2-thumbs]'),
+        thumbs=[].slice.call(root.querySelectorAll('[data-pi2-thumb]'));
+    function setActive(i){ thumbs.forEach(function(t,n){t.classList.toggle('is-active',n===i);});
+      if(strip&&thumbs[i]){var t=thumbs[i];
+        if(t.offsetLeft<strip.scrollLeft||t.offsetLeft+t.offsetWidth>strip.scrollLeft+strip.offsetWidth)strip.scrollTo({left:t.offsetLeft-10,behavior:'smooth'});}}
+    thumbs.forEach(function(t,i){t.addEventListener('click',function(){var s=stage.querySelector('[data-pi2-slide="'+i+'"]');
+      if(s)stage.scrollTo({left:s.offsetLeft,behavior:'smooth'});setActive(i);});});
+    if(stage){var tk;stage.addEventListener('scroll',function(){clearTimeout(tk);tk=setTimeout(function(){setActive(Math.round(stage.scrollLeft/stage.offsetWidth));},80);});}
+    root.querySelectorAll('[data-pi2-arw]').forEach(function(b){b.addEventListener('click',function(){
+      if(!strip)return;var st=strip.offsetWidth*0.6;strip.scrollBy({left:b.dataset.pi2Arw==='next'?st:-st,behavior:'smooth'});});});
+
+    /* money */
+    var fmt=root.dataset.moneyFormat||'${{amount}}';
+    function money(c){var val=(c||0)/100;return fmt.replace(/\{\{\s*(\w+)\s*\}\}/,function(m,k){
+      var dec=k.indexOf('no_decimals')>-1?0:2,comma=k.indexOf('comma_separator')>-1,p=val.toFixed(dec).split('.');
+      p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,comma?'.':',');return p.join(comma?',':'.');});}
+    var now=root.querySelector('[data-pi2-now]'),was=root.querySelector('[data-pi2-was]');
+    function render(p,c){ if(!now)return; now.innerHTML=typeof p==='string'?p:money(p);
+      if(!was)return; var cv=typeof c==='string'?c:(c?money(c):null),hi=typeof c==='number'?c>p:!!c;
+      if(cv&&hi){was.innerHTML=cv;was.removeAttribute('hidden');}else{was.setAttribute('hidden','');}}
+
+    /* variant picker */
+    var idInput=root.querySelector('[data-pi2-id]'),atc=root.querySelector('.pi2__atc'),lbl=root.querySelector('[data-pi2-atc-label]');
+    function current(){var out=[];root.querySelectorAll('[data-pi2-optset]').forEach(function(fs){
+      var a=fs.querySelector('.pi2__pill.is-active');out.push(a?a.dataset.value:null);});return out;}
+    root.querySelectorAll('[data-pi2-opt]').forEach(function(p){p.addEventListener('click',function(){
+      p.parentNode.querySelectorAll('.pi2__pill').forEach(function(x){x.classList.remove('is-active');});
+      p.classList.add('is-active');
+      var sel=current(),match=variants.filter(function(vr){return sel.every(function(val,i){return !val||vr.options[i]===val;});})[0];
+      if(!match)return;
+      if(idInput)idInput.value=match.id;
+      render(match.price,match.compare_at_price);
+      if(atc){atc.disabled=!match.available;if(lbl&&!match.available)lbl.textContent='{{ 'products.product.sold_out' | t }}';}
+      window.history.replaceState({},'','?variant='+match.id);
+      document.dispatchEvent(new CustomEvent('bioroot:variant:change',{detail:{id:match.id,variant:match}}));
+    });});
+
+    /* external price/bundle hooks */
+    document.addEventListener('bioroot:price:update',function(e){var d=e.detail||{};render(d.price,d.compare_at_price!=null?d.compare_at_price:d.compare);});
+    document.addEventListener('change',function(e){var el=e.target;if(!el||el.name!=='id'||el===idInput)return;
+      var vr=variants.filter(function(x){return String(x.id)===String(el.value);})[0];
+      if(vr){if(idInput)idInput.value=vr.id;render(vr.price,vr.compare_at_price);}},true);
+
+    /* quantity */
+    root.querySelectorAll('[data-pi2-qty]').forEach(function(b){b.addEventListener('click',function(){
+      var inp=b.parentNode.querySelector('input');var n=parseInt(inp.value||1,10);
+      inp.value=Math.max(1,b.dataset.pi2Qty==='+'?n+1:n-1);inp.dispatchEvent(new Event('change',{bubbles:true}));});});
+
+    /* subscription -> selling_plan */
+    var sub=root.querySelector('[data-pi2-sub]'),form=document.getElementById('{{ form_id }}');
+    function syncPlan(){ if(!sub||!form)return; var f=form.querySelector('[name="selling_plan"]');
+      if(sub.checked&&sub.dataset.plan){ if(!f){f=document.createElement('input');f.type='hidden';f.name='selling_plan';form.appendChild(f);} f.value=sub.dataset.plan; }
+      else if(f){f.remove();} }
+    if(sub){sub.addEventListener('change',syncPlan);syncPlan();}
+
+    /* countdown */
+    root.querySelectorAll('[data-pi2-sf]').forEach(function(box){
+      var out=box.querySelector('[data-pi2-timer]');if(!out)return;
+      var end;
+      if(box.dataset.mode==='daily'){var d=new Date();d.setHours(23,59,59,999);end=d.getTime();}
+      else{var k=box.dataset.key,s=localStorage.getItem(k),h=parseFloat(box.dataset.hours||4)*3600000;
+        if(!s||isNaN(+s)||+s<Date.now()){s=Date.now()+h;localStorage.setItem(k,s);}end=+s;}
+      (function tick(){var ms=end-Date.now();if(ms<0)ms=0;
+        var hh=Math.floor(ms/3600000),mm=Math.floor(ms%3600000/60000),ss=Math.floor(ms%60000/1000);
+        out.textContent=[hh,mm,ss].map(function(n){return n<10?'0'+n:n;}).join(':');
+        if(ms>0)setTimeout(tick,1000);})();
+    });
+
+    /* ugc external embed */
+     root.querySelectorAll('[data-pi2-video][data-embed]').forEach(function(el){
+      el.addEventListener('click',function(){
+        var src=el.dataset.type==='vimeo'?'https://player.vimeo.com/video/'+el.dataset.embed+'?autoplay=1'
+                                        :'https://www.youtube.com/embed/'+el.dataset.embed+'?autoplay=1';
+        el.innerHTML='<iframe src="'+src+'" allow="autoplay; encrypted-media" allowfullscreen></iframe>';});});
+      
+        /* complementary products */
+    root.querySelectorAll('product-recommendations[data-url]').forEach(function(el){
+      var pid=el.dataset.productId;
+      if(!pid)return;
+      var gwHeading=el.dataset.gwHeading||'';
+      var gwStars=el.dataset.gwStars==='true';
+      var gwStarColor=el.dataset.gwStarColor||'#0F5132';
+      var gwShowAdd=el.dataset.gwShowAdd==='true';
+      var gwAddLabel=el.dataset.gwAddLabel||'Add +';
+      fetch('/recommendations/products.json?product_id='+pid+'&limit=4&intent=complementary')
+        .then(function(r){return r.json();})
+        .then(function(data){
+          if(!data.products||!data.products.length)return;
+          var html='';
+          if(gwHeading)html+='<h2 class="pi2__heading" style="margin-bottom:10px">'+gwHeading+'</h2>';
+          data.products.forEach(function(p){
+            var img=p.featured_image?'<a href="'+p.url+'"><img src="'+p.featured_image+'" width="58" height="58" style="object-fit:contain"></a>':'';
+            var price=money(p.price);
+            var vid=p.variants[0]?p.variants[0].id:'';
+            var stars=gwStars?'<span class="pi2__stars" style="color:'+gwStarColor+'">★★★★★</span>':'';
+            var addBtn=gwShowAdd&&vid?'<button type="button" class="pi2__gw-add" data-pi2-gw-add="'+vid+'">'+gwAddLabel+'</button>':'';
+            html+='<div class="pi2__gw-card">'+img
+              +'<div class="pi2__gw-info">'+stars+'<b>'+p.title+'</b><span>'+price+'</span></div>'
+              +addBtn+'</div>';
+          });
+          el.innerHTML=html;
+        }).catch(function(){});
+    });
+
+    /* goes well with — ajax add to cart */
+    root.addEventListener('click',function(e){
+      var btn=e.target.closest('[data-pi2-gw-add]');
+      if(!btn)return;
+      btn.disabled=true;
+      btn.textContent='Adding...';
+      fetch('/cart/add.js',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({id:Number(btn.dataset.pi2GwAdd),quantity:1})
+      }).then(function(r){return r.json();})
+        .then(function(){btn.textContent='Added ✓';})
+        .catch(function(){btn.textContent='Error';btn.disabled=false;});
+    });
+  }
+  init();
+  fetch('/browsing_context_suggestions.json')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var code=(d.detected_values&&d.detected_values.country&&d.detected_values.country.handle)||'';
+    if(!code)return;
+    var el=document.querySelector('[data-pi2-ship-r]');
+    if(!el)return;
+    var map={
+      us:'USA',gb:'UK',ae:'UAE',
+      kr:'KOR',jp:'JPN',cn:'CHN',
+      ph:'PHL',nz:'NZL',za:'RSA',
+      br:'BRA',mx:'MEX',ar:'ARG',
+      de:'GER',fr:'FRA',es:'ESP',
+      it:'ITA',nl:'NED',pt:'POR',
+      ch:'SUI',at:'AUT',be:'BEL',
+      se:'SWE',no:'NOR',dk:'DEN',
+      fi:'FIN',pl:'POL',cz:'CZE',
+      ro:'ROU',gr:'GRE',tr:'TUR',
+      ru:'RUS',ua:'UKR',eg:'EGY',
+      ng:'NGA',ke:'KEN',gh:'GHA',
+      sa:'KSA',qa:'QAT',kw:'KWT',
+      in:'IND',pk:'PAK',bd:'BGD',
+      th:'THA',vn:'VNM',tw:'TWN',
+      hk:'HKG',mm:'MMR',kh:'KHM',
+      la:'LAO',au:'AUS',ca:'CAN',
+      co:'COL',cl:'CHL',pe:'PER'
+    };
+    var display=map[code.toLowerCase()]||code.toUpperCase();
+    var flag=String.fromCodePoint.apply(null,code.toUpperCase().split('').map(function(c){return 127397+c.charCodeAt(0);}));
+    el.innerHTML=flag+' Fast <b>'+display+'</b> Shipping';
+  }).catch(function(){});
+  document.addEventListener('shopify:section:load',function(e){if(e.detail&&e.detail.sectionId===id)init();});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product information V2",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "accent", "label": "Accent", "default": "#0F5132" },
+    { "type": "color", "id": "check_color", "label": "Checkmark / dot color", "default": "#0F5132" },
+    { "type": "header", "content": "Gallery" },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "square",
+      "options": [ {"value":"adapt","label":"Adapt"},{"value":"square","label":"Square"},{"value":"portrait","label":"Portrait"},{"value":"landscape","label":"Landscape"} ] },
+    { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover",
+      "options": [ {"value":"cover","label":"Cover"},{"value":"contain","label":"Contain"} ] },
+    { "type": "checkbox", "id": "show_thumbnails", "label": "Show thumbnails", "default": true },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show thumbnail arrows", "default": true },
+    { "type": "range", "id": "thumb_width", "min": 50, "max": 140, "step": 5, "unit": "px", "label": "Thumbnail size", "default": 75 },
+    { "type": "range", "id": "corner_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Corner radius", "default": 6 },
+    { "type": "header", "content": "Icon panel (block: Icon tile)" },
+    { "type": "color", "id": "panel_bg", "label": "Panel background", "default": "#0F5132" },
+    { "type": "color", "id": "panel_text", "label": "Panel text", "default": "#FFFFFF" },
+    { "type": "range", "id": "panel_width", "min": 20, "max": 50, "step": 1, "unit": "%", "label": "Panel width", "default": 34 },
+    { "type": "range", "id": "media_gap", "min": 0, "max": 24, "step": 1, "unit": "px", "label": "Gap image / panel", "default": 0 },
+    { "type": "range", "id": "icon_size", "min": 18, "max": 64, "step": 2, "unit": "px", "label": "Icon size", "default": 30 },
+    { "type": "range", "id": "tile_font_size", "min": 1.0, "max": 1.8, "step": 0.1, "unit": "rem", "label": "Tile text size", "default": 1.2 },
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "title_size_mobile", "min": 2.0, "max": 4.4, "step": 0.1, "unit": "rem", "label": "Title size (mobile)", "default": 2.8 },
+    { "type": "range", "id": "title_size", "min": 2.4, "max": 6.0, "step": 0.1, "unit": "rem", "label": "Title size (desktop)", "default": 3.6 },
+    { "type": "select", "id": "title_weight", "label": "Title weight", "default": "800",
+      "options": [ {"value":"600","label":"Semibold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra bold"} ] },
+    { "type": "range", "id": "price_size", "min": 1.8, "max": 4.0, "step": 0.1, "unit": "rem", "label": "Price size", "default": 2.6 },
+    { "type": "header", "content": "UGC & recommendations" },
+    { "type": "range", "id": "ugc_width", "min": 30, "max": 90, "step": 5, "unit": "%", "label": "UGC card width", "default": 45 },
+    { "type": "color", "id": "gw_bg", "label": "Goes-well-with card background", "default": "#9aa3ad" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 32 }
+  ],
+  "blocks": [
+    { "type": "icon_tile", "name": "Icon tile (on image)", "limit": 6, "settings": [
+      { "type": "image_picker", "id": "icon", "label": "Icon (white PNG/SVG)" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Powerful Inflammation Relief" } ] },
+
+    { "type": "badges", "name": "Badges", "limit": 1, "settings": [
+      { "type": "text", "id": "badge_1", "label": "Badge 1 (solid)", "default": "Best Seller" },
+      { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "#1 Choice For Doctors & Practitioners" },
+      { "type": "text", "id": "badge_3", "label": "Badge 3" } ] },
+
+    { "type": "rating", "name": "Rating", "limit": 1, "settings": [
+      { "type": "range", "id": "stars", "min": 0, "max": 5, "step": 0.1, "label": "Stars filled", "default": 5 },
+      { "type": "color", "id": "star_color", "label": "Star color", "default": "#F5A623" },
+      { "type": "range", "id": "star_size", "min": 0.2, "max": 2.4, "step": 0.1, "unit": "rem", "label": "Star size", "default": 1.6 },
+      { "type": "text", "id": "rating_text", "label": "Rating", "default": "4.8" },
+      { "type": "text", "id": "customers", "label": "Customers", "default": "200,000+" },
+      { "type": "text", "id": "suffix", "label": "Suffix", "default": "Happy Customers" },
+      { "type": "url", "id": "link", "label": "Reviews link" } ] },
+
+    { "type": "title", "name": "Title", "limit": 1, "settings": [
+      { "type": "text", "id": "custom_title", "label": "Custom title (empty = product title)" } ] },
+
+    { "type": "price", "name": "Price", "limit": 1, "settings": [
+      { "type": "checkbox", "id": "show_compare", "label": "Show compare-at price", "default": true },
+      { "type": "text", "id": "sale_label", "label": "Sale label", "default": "Summer Sale - 50% off" } ] },
+
+    { "type": "heading", "name": "Heading", "settings": [
+      { "type": "text", "id": "text", "label": "Heading", "default": "Powerful Support for Joints, Inflammation & Mobility" } ] },
+
+    { "type": "checklist_item", "name": "Checklist item", "settings": [
+      { "type": "text", "id": "text", "label": "Text", "default": "Reduces joint pain & stiffness in 2-4 weeks" } ] },
+
+    { "type": "shipping", "name": "Shipping bar", "limit": 1, "settings": [
+      { "type": "text", "id": "prefix", "label": "Prefix", "default": "Ships by" },
+      { "type": "range", "id": "days_offset", "min": 0, "max": 14, "step": 1, "unit": "d", "label": "Days from today", "default": 3 },
+      { "type": "text", "id": "date_format", "label": "Date format", "default": "%a, %b %-d", "info": "e.g. %a, %b %-d → Mon, Aug 17" },
+      { "type": "text", "id": "custom_date", "label": "Manual date (overrides)" },
+      { "type": "color", "id": "dot_color", "label": "Dot color", "default": "#0F5132" },
+      { "type": "checkbox", "id": "pulse", "label": "Pulsing dot", "default": true },
+      { "type": "image_picker", "id": "flag", "label": "Flag icon" },
+      { "type": "text", "id": "right_text", "label": "Right text", "default": "Fast ID Shipping" } ] },
+
+    { "type": "variant_picker", "name": "Variant picker", "limit": 1, "settings": [] },
+
+    { "type": "subscription", "name": "Subscription offer", "limit": 1, "settings": [
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Save 20% with automatic refills" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Shipped every month. No commitment. Cancel anytime" },
+      { "type": "text", "id": "selling_plan_id", "label": "Selling plan ID (optional)" },
+      { "type": "checkbox", "id": "checked", "label": "Checked by default", "default": true } ] },
+
+    { "type": "buy_buttons", "name": "Add to cart", "limit": 1, "settings": [
+      { "type": "text", "id": "label", "label": "Button label", "default": "ADD TO CART" },
+      { "type": "text", "id": "sold_out_label", "label": "Sold out label", "default": "SOLD OUT" },
+      { "type": "text", "id": "sub_label", "label": "Sub label", "default": "60 DAY MONEY-BACK GUARANTEE" },
+      { "type": "checkbox", "id": "show_shield", "label": "Shield icon", "default": true },
+      { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": false },
+      { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Dynamic checkout buttons", "default": false },
+      { "type": "color", "id": "btn_bg", "label": "Button background", "default": "#0F5132" },
+      { "type": "color", "id": "btn_text", "label": "Button text", "default": "#FFFFFF" },
+      { "type": "range", "id": "btn_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Button radius", "default": 8 } ] },
+
+    { "type": "selling_fast", "name": "Selling fast + timer", "limit": 1, "settings": [
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Selling out fast" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Due to high demand, limited quantities available." },
+      { "type": "range", "id": "percent", "min": 1, "max": 100, "step": 1, "unit": "%", "label": "Sold percent", "default": 89 },
+      { "type": "text", "id": "percent_suffix", "label": "Percent suffix", "default": "% sold" },
+      { "type": "text", "id": "timer_prefix", "label": "Timer prefix", "default": "Ends in" },
+      { "type": "select", "id": "timer_mode", "label": "Timer mode", "default": "duration",
+        "options": [ {"value":"daily","label":"Reset at midnight"},{"value":"duration","label":"Fixed duration per visitor"} ] },
+      { "type": "range", "id": "timer_hours", "min": 1, "max": 24, "step": 1, "unit": "h", "label": "Duration", "default": 9 },
+      { "type": "color", "id": "sf_bg_color", "label": "Background color", "default": "#fffff5" },
+      { "type": "color", "id": "sf_border_color", "label": "Border color", "default": "#DABD2F" },
+      { "type": "range", "id": "sf_border_width", "min": 0, "max": 6, "step": 0.5, "unit": "px", "label": "Border width", "default": 1.5 } ] },
+
+    { "type": "trusted", "name": "Trusted by", "limit": 1, "settings": [
+      { "type": "image_picker", "id": "image", "label": "Avatars image" },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Trusted by 200K+ customers" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "who choose Bioroot for joints that finally feel like their own again." } ] },
+
+    { "type": "accordion", "name": "Accordion row", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading", "default": "60-Day Guarantee" },
+      { "type": "richtext", "id": "content", "label": "Content" },
+      { "type": "checkbox", "id": "open", "label": "Open by default", "default": false } ] },
+
+    { "type": "ugc_videos", "name": "UGC video slider", "limit": 1, "settings": [
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Loved By Thousands" },
+      { "type": "video", "id": "video_1", "label": "Video 1" }, { "type": "video_url", "id": "url_1", "label": "or URL 1", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_1", "label": "Poster 1" },
+      { "type": "video", "id": "video_2", "label": "Video 2" }, { "type": "video_url", "id": "url_2", "label": "or URL 2", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_2", "label": "Poster 2" },
+      { "type": "video", "id": "video_3", "label": "Video 3" }, { "type": "video_url", "id": "url_3", "label": "or URL 3", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_3", "label": "Poster 3" },
+      { "type": "video", "id": "video_4", "label": "Video 4" }, { "type": "video_url", "id": "url_4", "label": "or URL 4", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_4", "label": "Poster 4" },
+      { "type": "video", "id": "video_5", "label": "Video 5" }, { "type": "video_url", "id": "url_5", "label": "or URL 5", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_5", "label": "Poster 5" },
+      { "type": "video", "id": "video_6", "label": "Video 6" }, { "type": "video_url", "id": "url_6", "label": "or URL 6", "accept": ["youtube","vimeo"] }, { "type": "image_picker", "id": "poster_6", "label": "Poster 6" } ] },
+
+    { "type": "complementary", "name": "Goes well with", "limit": 1, "settings": [
+      { "type": "paragraph", "content": "Uses Shopify Search & Discovery complementary products." },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Goes well with" },
+      { "type": "range", "id": "limit", "min": 1, "max": 6, "step": 1, "label": "Products", "default": 2 },
+      { "type": "checkbox", "id": "show_stars", "label": "Show stars", "default": true },
+      { "type": "color", "id": "star_color", "label": "Star color", "default": "#0F5132" },
+      { "type": "checkbox", "id": "show_add", "label": "Show add button", "default": true },
+      { "type": "text", "id": "add_label", "label": "Add label", "default": "Add +" } ] },
+
+    { "type": "text", "name": "Rich text", "settings": [ { "type": "richtext", "id": "content", "label": "Text" } ] },
+    {
+      "type": "founder_badge",
+      "name": "Founder / Trust Badge",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to show a generic icon placeholder." },
+        { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "Proudly Founder-Led 🤍" },
+        { "type": "header", "content": "Style" },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#111111" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" },
+        { "type": "color", "id": "ring_color", "label": "Photo Ring Color", "default": "#F2C14E" },
+        { "type": "range", "id": "badge_size", "label": "Photo Size (px)", "min": 32, "max": 96, "step": 2, "default": 52 },
+        { "type": "range", "id": "text_size", "label": "Text Size (px)", "min": 10, "max": 20, "step": 1, "default": 13 },
+        { "type": "range", "id": "max_width", "label": "Max Width (px)", "min": 120, "max": 400, "step": 10, "default": 220 },
+        { "type": "range", "id": "margin_bottom", "label": "Margin Bottom (px)", "min": 0, "max": 40, "step": 2, "default": 20 }
+      ]
+    },
+    {
+      "type": "feature_pills",
+      "name": "Feature Pills",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text_1", "label": "Pill 1", "default": "Sensitive skin safe" },
+        { "type": "text", "id": "text_2", "label": "Pill 2", "default": "For all skin tones" },
+        { "type": "text", "id": "text_3", "label": "Pill 3", "default": "No needles required" },
+        { "type": "text", "id": "text_4", "label": "Pill 4", "default": "60-day risk-free trial" },
+        { "type": "text", "id": "text_5", "label": "Pill 5" },
+        { "type": "text", "id": "text_6", "label": "Pill 6" },
+        { "type": "header", "content": "Style" },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FFD84D" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
+        { "type": "range", "id": "font_size", "label": "Font Size (px)", "min": 9, "max": 16, "step": 1, "default": 11 },
+        { "type": "range", "id": "radius", "label": "Border Radius (px)", "min": 0, "max": 24, "step": 1, "default": 8 },
+        { "type": "range", "id": "gap", "label": "Gap Between Pills (px)", "min": 0, "max": 20, "step": 1, "default": 6 },
+        { "type": "header", "content": "Spacing" },
+        { "type": "range", "id": "margin_top", "label": "Margin Top (px)", "min": 0, "max": 40, "step": 2, "default": 10 },
+        { "type": "range", "id": "margin_bottom", "label": "Margin Bottom (px)", "min": 0, "max": 40, "step": 2, "default": 10 }
+      ]
+    },
+    {
+      "type": "imitation_warning",
+      "name": "Authenticity Warning",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "⚠️" },
+        { "type": "text", "id": "prefix_text", "label": "Bold Prefix", "default": "Watch out for imitations." },
+        { "type": "checkbox", "id": "show_product_title", "label": "Insert product title after prefix", "default": true },
+        { "type": "text", "id": "suffix_text", "label": "Rest of Message", "default": "is the original, backed by our 60-day guarantee." },
+        { "type": "header", "content": "Style" },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FDF3F3" },
+        { "type": "color", "id": "border_color", "label": "Border Color", "default": "#E4A0A0" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#7A2E2E" },
+        { "type": "range", "id": "font_size", "label": "Font Size (px)", "min": 10, "max": 18, "step": 1, "default": 13 },
+        { "type": "header", "content": "Spacing" },
+        { "type": "range", "id": "margin_top", "label": "Margin Top (px)", "min": 0, "max": 40, "step": 2, "default": 14 },
+        { "type": "range", "id": "margin_bottom", "label": "Margin Bottom (px)", "min": 0, "max": 40, "step": 2, "default": 14 }
+      ]
+    },
+    {
+      "type": "testimonial_carousel",
+      "name": "Testimonial Carousel",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Testimonial 1" },
+        { "type": "image_picker", "id": "avatar_1", "label": "Photo", "info": "Leave empty to show initials." },
+        { "type": "text", "id": "name_1", "label": "Name", "default": "Customer Name" },
+        { "type": "textarea", "id": "quote_1", "label": "Quote", "default": "Replace this with a real customer quote." },
+        { "type": "range", "id": "rating_1", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "header", "content": "Testimonial 2" },
+        { "type": "image_picker", "id": "avatar_2", "label": "Photo", "info": "Leave empty to show initials." },
+        { "type": "text", "id": "name_2", "label": "Name" },
+        { "type": "textarea", "id": "quote_2", "label": "Quote" },
+        { "type": "range", "id": "rating_2", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "header", "content": "Testimonial 3" },
+        { "type": "image_picker", "id": "avatar_3", "label": "Photo", "info": "Leave empty to show initials." },
+        { "type": "text", "id": "name_3", "label": "Name" },
+        { "type": "textarea", "id": "quote_3", "label": "Quote" },
+        { "type": "range", "id": "rating_3", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "header", "content": "Style" },
+        { "type": "checkbox", "id": "show_verified_badge", "label": "Show verified-buyer checkmark", "default": true },
+        { "type": "range", "id": "font_size", "label": "Quote Text Size (px)", "min": 10, "max": 20, "step": 1, "default": 14 },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FDF3D9" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#222222" },
+        { "type": "color", "id": "star_color", "label": "Star Color", "default": "#FFCC00" },
+        { "type": "header", "content": "Spacing" },
+        { "type": "range", "id": "margin_top", "label": "Margin Top (px)", "min": 0, "max": 40, "step": 2, "default": 16 },
+        { "type": "range", "id": "margin_bottom", "label": "Margin Bottom (px)", "min": 0, "max": 40, "step": 2, "default": 16 }
+      ]
+    },
+    { "type": "custom_liquid", "name": "Custom Liquid", "settings": [ { "type": "liquid", "id": "code", "label": "Liquid" } ] }
+  ],
+  "presets": [
+    {
+      "name": "Product information V2",
+      "blocks": [
+        { "type": "icon_tile", "settings": { "text": "Powerful Inflammation Relief" } },
+        { "type": "icon_tile", "settings": { "text": "Joint Pain & Mobility Support" } },
+        { "type": "icon_tile", "settings": { "text": "Clinically Backed Fast Acting Formula" } },
+
+        { "type": "badges", "settings": { "badge_1": "Best Seller", "badge_2": "#1 Choice For Doctors & Practitioners" } },
+        { "type": "rating", "settings": { "stars": 5, "rating_text": "4.8", "customers": "200,000+", "suffix": "Happy Customers" } },
+        { "type": "title", "settings": {} },
+        { "type": "price", "settings": { "show_compare": true, "sale_label": "Summer Sale - 50% off" } },
+
+        { "type": "heading", "settings": { "text": "Powerful Support for Joints, Inflammation & Mobility" } },
+        { "type": "checklist_item", "settings": { "text": "Reduces joint pain & stiffness in 2-4 weeks" } },
+        { "type": "checklist_item", "settings": { "text": "Targets inflammation at the root" } },
+        { "type": "checklist_item", "settings": { "text": "95% curcuminoids for real results" } },
+        { "type": "checklist_item", "settings": { "text": "20x absorption with black pepper extract" } },
+        { "type": "checklist_item", "settings": { "text": "Clinically dosed — no weak powder" } },
+        { "type": "checklist_item", "settings": { "text": "Clean, vegan and third-party tested" } },
+
+        { "type": "shipping", "settings": { "prefix": "Ships by", "days_offset": 3, "date_format": "%a, %b %-d", "pulse": true, "right_text": "Fast ID Shipping" } },
+        { "type": "variant_picker", "settings": {} },
+        { "type": "subscription", "settings": { "heading": "Save 20% with automatic refills", "text": "Shipped every month. No commitment. Cancel anytime", "checked": true } },
+        { "type": "buy_buttons", "settings": { "label": "ADD TO CART", "sub_label": "60 DAY MONEY-BACK GUARANTEE", "show_shield": true, "btn_radius": 8 } },
+        { "type": "selling_fast", "settings": { "heading": "Selling out fast", "text": "Due to high demand, limited quantities available.", "percent": 89, "percent_suffix": "% sold", "timer_prefix": "Ends in", "timer_mode": "duration", "timer_hours": 9 } },
+        { "type": "trusted", "settings": { "heading": "Trusted by 200K+ customers", "text": "who choose Bioroot for joints that finally feel like their own again." } },
+
+        { "type": "accordion", "settings": { "heading": "60-Day Guarantee", "content": "<p>Try it risk-free for 60 days. If you do not feel a difference, email us and we will refund you in full — no need to return the bottle.</p>" } },
+        { "type": "accordion", "settings": { "heading": "The Science Behind It", "content": "<p>Curcumin is standardized to <strong>95% curcuminoids</strong> and paired with black pepper extract, which is shown to dramatically increase absorption compared to plain turmeric powder.</p>" } },
+        { "type": "accordion", "settings": { "heading": "Shipping & Returns", "content": "<p>Orders ship within 24 hours on business days. Free returns within 60 days of delivery.</p>" } },
+        { "type": "accordion", "settings": { "heading": "Is It Safe?", "content": "<p>Made in a GMP-certified facility and third-party tested for purity and heavy metals. If you are pregnant, nursing, or on medication, consult your doctor first.</p>" } },
+        { "type": "accordion", "settings": { "heading": "Ingredients", "content": "<p>Turmeric (95% Curcuminoids), Black Pepper Extract, Ginger, Bee Propolis, MCT Oil, Vitamin C. Vegan capsule. No fillers, no binders.</p>" } },
+        { "type": "accordion", "settings": { "heading": "Frequently Asked Questions", "content": "<p><strong>How long until I feel it?</strong> Most customers report noticeable relief in 2-4 weeks of daily use.</p><p><strong>How many per day?</strong> 3 capsules daily with food.</p>" } },
+
+        { "type": "ugc_videos", "settings": { "heading": "Loved By Thousands" } },
+        { "type": "complementary", "settings": { "heading": "Goes well with", "limit": 2, "show_stars": true, "show_add": true, "add_label": "Add +" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

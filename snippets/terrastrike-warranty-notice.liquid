@@ -1,0 +1,19 @@
+{% doc %}
+  Renders the small icon + "120 Day Money-Back • 2 Yr Warranty" notice line.
+
+  @param {string} [text] - Notice text. Nothing renders when blank.
+  @param {string} [icon] - Icon name, defaults to 'lock'. Pass 'none' to hide it.
+  @example
+  {% render 'terrastrike-warranty-notice', text: block.settings.text, icon: 'lock' %}
+{% enddoc %}
+
+{%- liquid
+  assign icon_name = icon | default: 'lock'
+-%}
+
+{%- if text != blank -%}
+  <div class="ts-note">
+    {% render 'terrastrike-icon', name: icon_name %}
+    {{ text }}
+  </div>
+{%- endif -%}

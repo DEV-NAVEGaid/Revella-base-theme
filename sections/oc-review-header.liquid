@@ -1,0 +1,104 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign benefits = section.blocks | where: 'type', 'benefit' -%}
+<div class="lm">
+  <section class="rh rhx"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="rh-i">
+      <div class="rh-g">
+        {%- if s.eyebrow != blank %}<span class="eb">{{ s.eyebrow }}</span>{% endif -%}
+        <h2 class="rh-t">
+          {%- if s.line_1 != blank %}<span>{{ s.line_1 }}</span>{% endif -%}
+          {%- if s.line_2 != blank %}<span class="l2">{{ s.line_2 }}</span>{% endif -%}
+        </h2>
+      </div>
+      {%- if s.text != blank %}<p class="rh-p">{{ s.text }}</p>{% endif -%}
+    </div>
+
+    {%- if benefits.size > 0 or s.image != blank -%}
+      <div class="rhx-g">
+        {%- if benefits.size > 0 -%}
+          <div class="rhx-ben">
+            {%- for block in benefits -%}
+              <div class="rhx-b" {{ block.shopify_attributes }}>
+                <span class="rhx-ic">
+                  {%- if block.settings.icon != blank -%}
+                    {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+                  {%- endif -%}
+                </span>
+                <p class="rhx-bt">{{ block.settings.title }}</p>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if s.image != blank -%}
+          <div class="rhx-prod">
+            <span class="rhx-ring r1" aria-hidden="true"></span>
+            <span class="rhx-ring r2" aria-hidden="true"></span>
+            <span class="rhx-ring r3" aria-hidden="true"></span>
+            <span class="rhx-glow" aria-hidden="true"></span>
+            {{ s.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rhx-img', widths: '400, 600, 900', sizes: '(min-width: 990px) 420px, 280px', alt: s.image.alt }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+<style>
+  .lm .rhx{padding-bottom:48px;overflow:hidden}
+  .lm .rhx-g{max-width:1120px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:40px}
+  .lm .rhx-prod{order:-1;position:relative;width:min(88%,330px);flex:none;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+  .lm .rhx-ring{position:absolute;left:50%;top:50%;border-radius:50%;border:1.5px dashed rgba(38,83,146,.45);transform:translate(-50%,-50%)}
+  .lm .rhx-ring.r1{width:100%;height:100%;animation:rhx-spin 90s linear infinite}
+  .lm .rhx-ring.r2{width:80%;height:80%;border-color:rgba(38,83,146,.32);animation:rhx-spin 70s linear infinite reverse}
+  .lm .rhx-ring.r3{width:62%;height:62%;border-style:solid;border-color:rgba(38,83,146,.12);background:radial-gradient(circle,#E3EBF6 0%,#EEF3FA 70%)}
+  .lm .rhx-glow{position:absolute;left:50%;top:50%;width:70%;height:70%;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(108,147,194,.35) 0%,rgba(108,147,194,0) 70%)}
+  .lm .rhx-img{position:absolute;left:50%;top:50%;height:72%!important;width:auto!important;max-width:none!important;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 26px rgba(13,30,57,.3));animation:rhx-float 6s ease-in-out infinite}
+  .lm .rhx-ben{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .lm .rhx-b{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+  .lm .rhx-ic{width:64px;height:64px;border-radius:20px;background:#fff;border:1px solid rgba(38,83,146,.12);box-shadow:0 10px 24px -14px rgba(13,30,57,.35);display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
+  .lm .rhx-ic img{width:34px;height:34px;object-fit:contain;display:block}
+  .lm .rhx-b:hover .rhx-ic{transform:translateY(-3px)}
+  .lm .rhx-bt{font-size:16px;line-height:21px;font-weight:700;color:#0D1E39;max-width:180px}
+  @keyframes rhx-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes rhx-float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 8px))}}
+  @media screen and (min-width:990px){
+    .lm .rhx{padding-bottom:80px}
+    .lm .rhx-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;margin-top:56px}
+    .lm .rhx-prod{order:0;width:min(100%,460px);justify-self:center}
+    .lm .rhx-ben{gap:48px 32px;max-width:480px;justify-self:center}
+    .lm .rhx-ic{width:76px;height:76px;border-radius:22px}
+    .lm .rhx-ic img{width:40px;height:40px}
+    .lm .rhx-bt{font-size:19px;line-height:25px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .lm .rhx-ring,.lm .rhx-img{animation:none}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: Review header",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "Ready to feel more in flow?" },
+    { "type": "text", "id": "line_1", "label": "Heading line 1", "default": "Feel Lighter." },
+    { "type": "text", "id": "line_2", "label": "Heading line 2 (accent)", "default": "Every Single Day." },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "image_picker", "id": "image", "label": "Product image", "info": "Transparent PNG works best. Shown inside the rings." },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #F5F8FF." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon", "info": "Square PNG/SVG." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Benefit*" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "OC: Review header", "blocks": [ { "type": "benefit" }, { "type": "benefit" }, { "type": "benefit" }, { "type": "benefit" } ] } ]
+}
+{% endschema %}

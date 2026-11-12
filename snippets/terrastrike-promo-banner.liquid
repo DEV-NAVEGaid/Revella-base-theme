@@ -1,0 +1,61 @@
+{% doc %}
+  Renders the "SAVE UP TO X%" call-to-action.
+
+  With a custom link it renders an `<a>`; with a product and no link it renders a
+  real add-to-cart form for that product's first available variant; with neither it
+  renders an inert button so the section still previews in the theme editor.
+
+  @param {object} [product] - Product to add to cart
+  @param {string} [button_text] - Button label
+  @param {string} [button_link] - Custom URL. Takes priority over the add-to-cart form.
+  @param {object} [image] - Optional image rendered under the button
+  @param {boolean} [full_width] - Stretch the button to the full column width
+  @param {string} [sold_out_text] - Label used when the variant is unavailable
+  @example
+  {% render 'terrastrike-promo-banner',
+    product: section.settings.featured_product,
+    button_text: section.settings.button_text %}
+{% enddoc %}
+
+{%- liquid
+  assign label = button_text | default: 'Save Up To 55% 👉'
+  assign btn_class = 'ts-btn'
+  if full_width
+    assign btn_class = btn_class | append: ' is-full'
+  endif
+-%}
+
+{%- if label != blank -%}
+  <div class="ts-btn-row">
+    {%- if button_link != blank -%}
+      <a href="{{ button_link }}" class="{{ btn_class }}">{{ label }}</a>
+
+    {%- elsif product != blank -%}
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <button type="submit" class="{{ btn_class }}" {% if current_variant.available == false %}disabled{% endif %}>
+          {%- if current_variant.available -%}
+            {{ label }}
+          {%- else -%}
+            {{ sold_out_text | default: 'Sold out' }}
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+
+    {%- else -%}
+      <button type="button" class="{{ btn_class }}" disabled>{{ label }}</button>
+    {%- endif -%}
+
+    {%- if image != blank -%}
+      {% render 'terrastrike-image',
+        image: image,
+        alt: '',
+        class: 'ts-promo-banner__image',
+        width: 600,
+        lazy: true,
+        placeholder: 'none'
+      %}
+    {%- endif -%}
+  </div>
+{%- endif -%}

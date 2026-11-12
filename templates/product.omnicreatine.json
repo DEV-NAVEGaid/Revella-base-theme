@@ -1,0 +1,2515 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "star_rating_custom_wmfWgE": {
+          "type": "star_rating_custom",
+          "disabled": true,
+          "settings": {
+            "rating": 5,
+            "star_size": 14,
+            "star_gap": 0,
+            "stroke_width": 0,
+            "stroke_color": "#e0a800",
+            "star_color": "#ffcc00",
+            "star_empty_color": "#ececec",
+            "meta_text": "<p>Rated <strong>4.8 Excellent</strong> over <strong>50,312+ Reviews</strong></p>",
+            "text_size": 12,
+            "text_color": "#444444",
+            "margin_bottom": 6
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size_mobile": 22,
+            "font_size_desktop": 32,
+            "font_weight": "500",
+            "text_color": "#193b68",
+            "letter_spacing": 1,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "icon_with_content_BgtaqU": {
+          "type": "icon_with_content",
+          "settings": {
+            "icon_color": "#0d1e39",
+            "icon_size": 18,
+            "icon_gap": 10,
+            "item_gap": 0,
+            "item_1": "Supports healthy lymphatic flow*",
+            "item_2": "Study-backed Pycnogenol® + Centella",
+            "item_3": "6,000mg herb equivalent, one softgel a day",
+            "item_4": "60-day money-back guarantee",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 14,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "left",
+            "margin_bottom": 16
+          }
+        },
+        "text_nJn6ye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The daily softgel for lighter-feeling days.",
+            "text_style": "body",
+            "alignment": "left",
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#121212",
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "benefit_icon_grid_hHGThf": {
+          "type": "benefit_icon_grid",
+          "disabled": true,
+          "settings": {
+            "label_1": "Lymphatic Flow Support*",
+            "label_2": "Healthy Circulation*",
+            "label_3": "Less Puffy Feeling*",
+            "label_4": "Lighter-Feeling Legs*",
+            "label_5": "Antioxidant Support*",
+            "label_6": "Daily Lymphgem Ritual*",
+            "col_gap": 24,
+            "row_gap": 16,
+            "icon_gap": 10,
+            "icon_size": 32,
+            "font_size": 14,
+            "font_weight": "400",
+            "text_color": "#1a1a1a",
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "urgency_bar_63dMd4": {
+          "type": "urgency_bar",
+          "disabled": true,
+          "settings": {
+            "percentage": 95,
+            "label_after": "% Sold Out",
+            "label_position": "right",
+            "bg_color": "#f5f8ff",
+            "fill_color": "#193b68",
+            "track_color": "#dce6f0",
+            "label_color": "#193b68",
+            "bar_height": 8,
+            "bar_radius": 10,
+            "wrap_radius": 12,
+            "wrap_padding": 2,
+            "gap": 12,
+            "label_size": 13,
+            "margin_bottom": 0
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_custom_price": true,
+            "price_size": 20,
+            "price_color": "#121212",
+            "compare_size": 14,
+            "compare_color": "#6b6b6b",
+            "badge_text": "Advanced Herbal Formula",
+            "badge_bg": "#288b75",
+            "badge_text_color": "#cee9e2",
+            "badge_font_size": 13,
+            "badge_radius": 20,
+            "margin_top": 0,
+            "margin_bottom": 8
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "margin_top": 0,
+            "margin_bottom": 8,
+            "btn_bg_color": "#193b68",
+            "btn_text_color": "#ffffff",
+            "btn_font_size": 20,
+            "btn_font_weight": "600",
+            "btn_radius": 6,
+            "btn_padding_v": 16,
+            "btn_text_transform": "uppercase",
+            "btn_letter_spacing": 1,
+            "btn_hover_bg_color": "#3a3a3a",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_lift": true
+          }
+        },
+        "icon_with_content_3wypNV": {
+          "type": "icon_with_content",
+          "settings": {
+            "icon_color": "#193b68",
+            "icon_size": 18,
+            "icon_gap": 4,
+            "item_gap": 0,
+            "item_1": "60-day Money-Back Guarantee",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "text_size": 16,
+            "text_color": "#111111",
+            "text_weight": "500",
+            "alignment": "center",
+            "margin_bottom": 8
+          }
+        },
+        "payment_badges_bkKpJn": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, paypal, stripe, visa",
+            "alignment": "center",
+            "badge_size": 24,
+            "badge_gap": 0,
+            "margin_top": 9,
+            "margin_bottom": 15
+          }
+        },
+        "social_proof_bar_zn4Pjg": {
+          "type": "social_proof_bar",
+          "disabled": true,
+          "settings": {
+            "avatar_size": 32,
+            "avatar_overlap": 12,
+            "heading": "Made for everyday consistency",
+            "heading_size": 12,
+            "heading_weight": "700",
+            "subtext": "Lymphgem: one softgel a day for lighter-feeling days.*",
+            "subtext_size": 11,
+            "heading_line_height": 1.4,
+            "subtext_line_height": 1.4,
+            "bg_color": "#f2f2f2",
+            "heading_color": "#1a1a1a",
+            "subtext_color": "#666666",
+            "radius": 40,
+            "padding_v": 6,
+            "padding_h": 6,
+            "margin_bottom": 8
+          }
+        },
+        "collapsible_row_custom_aagMJW": {
+          "type": "collapsible_row_custom",
+          "settings": {
+            "q_1": "Pycnogenol® + Centella",
+            "a_1": "<p>An advanced herbal formula built around study-backed Pycnogenol® (French maritime pine bark extract) and Centella asiatica, using 20:1 concentrated extracts for a 6,000mg herb equivalent per softgel. Suspended in MCT coconut oil in a plant-based shell.</p>",
+            "q_2": "Simple & Transparent",
+            "a_2": "<p>30 softgels per pouch. One softgel a day. No droppers, no teas, nothing to measure. Just a clear formula you can take anywhere.</p>",
+            "q_3": "How Does It Support Lymphatic Flow?",
+            "a_3": "<p>Your lymphatic system moves fluid through your body all day, relying on healthy circulation and movement. Pycnogenol® and Centella are two of the most researched botanicals for circulation and leg comfort, giving your body gentle, daily support rather than a harsh flush.*</p>",
+            "q_4": "How Long Before I Notice a Difference?",
+            "a_4": "<p>Everyone is different. Botanical support builds with consistency, so we recommend taking Lymphgem daily for at least 4–8 weeks, alongside hydration and regular movement.*</p>",
+            "q_5": "Recommended Use",
+            "a_5": "<p>Take one softgel a day with water, ideally with a meal. If you are pregnant, nursing, taking medication (especially blood thinners) or have a medical condition, talk to your healthcare provider before use.</p>",
+            "q_6": "Do You Offer a Guarantee?",
+            "a_6": "<p>Yes. If Lymphgem isn’t right for you, contact us within 30 days for a full refund.</p>",
+            "q_7": "",
+            "a_7": "",
+            "q_8": "",
+            "a_8": "",
+            "q_9": "",
+            "a_9": "",
+            "q_10": "",
+            "a_10": "",
+            "heading_size": 16,
+            "heading_weight": "500",
+            "heading_color": "#193b68",
+            "content_size": 14,
+            "content_color": "#193b68",
+            "border_color": "#dddddd",
+            "border_style": "dashed",
+            "border_width": 1,
+            "header_bg": "#ffffff",
+            "content_bg": "#fefaff",
+            "padding_v": 14,
+            "padding_h": 10,
+            "content_padding_v": 10,
+            "margin_bottom": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "font_size_mobile": 14,
+            "font_size_desktop": 15,
+            "font_weight": "400",
+            "text_color": "#444444",
+            "line_height": 6,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_custom_wmfWgE",
+        "title",
+        "icon_with_content_BgtaqU",
+        "text_nJn6ye",
+        "benefit_icon_grid_hHGThf",
+        "urgency_bar_63dMd4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_content_3wypNV",
+        "payment_badges_bkKpJn",
+        "social_proof_bar_zn4Pjg",
+        "collapsible_row_custom_aagMJW",
+        "description"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-3b962a04-6631-4334-84ee-bc9afe663e22",
+        "media_size": "large",
+        "hide_image": false,
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "cfp_mobile_gallery_style": "thumbnails",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12,
+        "enable_sticky_info": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "trust_banner_wXM4E4": {
+      "type": "trust-banner",
+      "blocks": {
+        "heading_RJVaij": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Lymphgem Fits Your Daily Routine",
+            "heading_tag": "h2"
+          }
+        },
+        "icon_text_TYnrhB": {
+          "type": "icon_text",
+          "settings": {
+            "text": "One Daily Softgel",
+            "icon": "check-circle"
+          }
+        },
+        "icon_text_pTbDwJ": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Plant-Based Shell",
+            "icon": "check-circle"
+          }
+        },
+        "icon_text_qWYQdE": {
+          "type": "icon_text",
+          "settings": {
+            "text": "MCT Coconut Oil",
+            "icon": "check-circle"
+          }
+        },
+        "icon_text_H8Hf9N": {
+          "type": "icon_text",
+          "settings": {
+            "text": "20:1 Concentrated Extracts",
+            "icon": "check-circle"
+          }
+        },
+        "icon_text_8D3yzp": {
+          "type": "icon_text",
+          "settings": {
+            "text": "Pycnogenol® + Centella",
+            "icon": "check-circle"
+          }
+        },
+        "icon_text_N9Mek6": {
+          "type": "icon_text",
+          "settings": {
+            "text": "60-day Supply per Pouch",
+            "icon": "check-circle"
+          }
+        },
+        "paragraph_q3pzTY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p><em>Gentle, Study-Backed Botanicals</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RJVaij",
+        "icon_text_TYnrhB",
+        "icon_text_pTbDwJ",
+        "icon_text_qWYQdE",
+        "icon_text_H8Hf9N",
+        "icon_text_8D3yzp",
+        "icon_text_N9Mek6",
+        "paragraph_q3pzTY"
+      ],
+      "name": "Trust Banner",
+      "settings": {
+        "background_color": "#0d1e39",
+        "overlay_color": "#193b68",
+        "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 1) 4%, rgba(25, 59, 104, 1) 50%, rgba(25, 59, 104, 1) 100%)",
+        "overlay_opacity": 55,
+        "banner_height_desktop": 0,
+        "banner_height_mobile": 0,
+        "border_radius": 12,
+        "max_width": 1000,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "icon_columns_tablet": "2",
+        "mobile_columns": 2,
+        "padding_top_desktop": 32,
+        "padding_bottom_desktop": 32,
+        "padding_x_desktop": 64,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "padding_x_mobile": 12,
+        "section_bg_color": "#ffffff",
+        "section_padding_top": 24,
+        "section_padding_bottom": 24,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 16,
+        "icon_color": "#ffffff",
+        "icon_size_desktop": 22,
+        "icon_size_mobile": 18,
+        "icon_text_gap": 10,
+        "icon_align": "center",
+        "icon_text_font": "system_ui_n4",
+        "icon_text_size_desktop": 16,
+        "icon_text_size_mobile": 14,
+        "icon_text_color": "#ffffff",
+        "icon_text_letter_spacing": 0,
+        "icon_col_gap_desktop": 32,
+        "icon_col_gap_mobile": 16,
+        "icon_row_gap_desktop": 20,
+        "icon_row_gap_mobile": 16,
+        "icon_grid_margin_bottom": 0,
+        "paragraph_font": "system_ui_n4",
+        "paragraph_size_desktop": 16,
+        "paragraph_size_mobile": 16,
+        "paragraph_color": "#ffffff",
+        "paragraph_style": "italic",
+        "paragraph_letter_spacing": 0,
+        "paragraph_line_height": 6,
+        "paragraph_margin_top": 20
+      }
+    },
+    "review_marquee_imQLUz": {
+      "type": "review-marquee",
+      "blocks": {
+        "star_rating_FQrP7C": {
+          "type": "star_rating",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd"
+          }
+        },
+        "heading_ExpxgB": {
+          "type": "heading",
+          "settings": {
+            "text_primary": "Join 120,000+",
+            "text_accent": "Happy Customers",
+            "heading_tag": "h2"
+          }
+        },
+        "paragraph_FQVnWz": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Experiences with our products"
+          }
+        },
+        "photo_marquee_tMxabP": {
+          "type": "photo_marquee",
+          "settings": {
+            "scroll_speed": 35,
+            "scroll_direction": "left",
+            "marquee_margin_top": 16,
+            "marquee_margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_FQrP7C",
+        "heading_ExpxgB",
+        "paragraph_FQVnWz",
+        "photo_marquee_tMxabP"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".rm-heading__tag {font-weight: 500;}"
+      ],
+      "name": "Review Marquee",
+      "settings": {
+        "background_color": "#ffffff",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "content_align_desktop": "center",
+        "content_align_mobile": "center",
+        "text_align_desktop": "center",
+        "text_align_mobile": "center",
+        "content_gap_desktop": 12,
+        "content_gap_mobile": 8,
+        "text_marquee_gap_desktop": 24,
+        "text_marquee_gap_mobile": 16,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 0,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 0,
+        "padding_x_mobile": 20,
+        "star_size_desktop": 24,
+        "star_size_mobile": 20,
+        "star_gap": 3,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_accent_font_weight": "inherit",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color_primary": "#222222",
+        "heading_color_accent": "#193b68",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "para_font": "poppins_n4",
+        "para_font_weight": "400",
+        "para_size_desktop": 15,
+        "para_size_mobile": 13,
+        "para_color": "#555555",
+        "para_style": "normal",
+        "para_letter_spacing": 0,
+        "para_line_height": 4,
+        "photo_shape": "rounded",
+        "photo_border_radius": 10,
+        "photo_ratio": "1:1",
+        "photo_height_desktop": 200,
+        "photo_height_mobile": 140,
+        "photo_fit": "fill",
+        "photo_gap": 12,
+        "photo_shadow": true,
+        "marquee_edge_fade": true,
+        "marquee_pause_hover": true
+      }
+    },
+    "review_card_3xCdjj": {
+      "type": "review-card",
+      "blocks": {
+        "card_pdp_01": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "my shoulder had been locking up for two years.",
+            "body": "My shoulder pain was the worst at night. I could deal with it during the day, but if I rolled onto it in my sleep I’d wake up immediately. I’ve been taking this a little over a month and I’m finally sleeping longer without constantly adjusting pillows. That alone is worth it for me.",
+            "name": "Linda R."
+          }
+        },
+        "card_pdp_02": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "ran my first 5k since my knee swelled up two years ago",
+            "body": "I used to run 4 days a week. Then my right knee swelled up and never fully went back down. Started astaxanthin and the swelling slowly came down over 3 weeks. I ran a full 5k last month. Slow but i finished. I sat in my car after and just sat there for a while. You dont realize what you lost until you get a piece of it back.",
+            "name": "David L."
+          }
+        },
+        "card_pdp_03": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "menopause took my sleep. Revella gave it back.",
+            "body": "my hips burned so bad at night i hadnt slept on my side in over a year. doctor said its just menopause!!! started taking revella and and i began seeing a change within a couple of days - minor but there! I tracked my progress around week 7 i slept on my side through the whole night. thank you revella and team! on my third bag now.",
+            "name": "Susan K."
+          }
+        },
+        "card_pdp_04": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "6 months post ACL surgery and this is the first thing that actually reduced the swelling",
+            "body": "tore my ACL playing basketball. surgery went fine but the inflammation after never fully went away. knee stayed puffy and stiff for months. PT helped with range of motion but the swelling just lingered. my physical therapist mentioned astaxanthin for the anti-inflammatory research. wish i started this day one of recovery - its the only thing that moved the needle enough to give me back mobility.",
+            "name": "Marcus T."
+          }
+        },
+        "card_pdp_05": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "was skeptical but my shoulder is noticeably better",
+            "body": "I got this because my shoulder has been bothering me for a long time, especially at night. I couldn’t sleep on that side and reaching behind me was awful. Im definitely moving better and sleeping with less pain. I already ordered another bottle.",
+            "name": "Theresa M."
+          }
+        },
+        "card_pdp_06": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "helped with neck stiffness from desk work",
+            "body": "I have neck and shoulder tightness from being on the computer all day. I bought this mostly for inflammation. It took a little while, but my neck doesn’t feel as tense at night and I’m sleeping better. I like that it’s easy to take and doesn’t upset my stomach like some other supplements have.",
+            "name": "Frank D."
+          }
+        },
+        "card_pdp_07": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "my hands were so swollen i couldnt wear my wedding ring.",
+            "body": "Perimenopause hit and my fingers blew up. Swollen, stiff, aching. Couldnt wear my wedding ring. Doctor tested me for rheumatoid arthritis — came back negative. Nobody could tell me why. Then I found Revella, started taking it and about  6 weeks in  the swelling went down enough to wear my ring again. It was the minor things for me... but i feel better on it everyday.",
+            "name": "Carol A."
+          }
+        },
+        "card_pdp_08": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "less achy overall",
+            "body": "I’m in my 50s and lately everything has just felt achy — knees, hands, back, shoulders. I didn’t want to keep taking ibuprofen all the time. This took about 3-4 weeks before I really noticed anything, but I do feel less stiff overall. The biggest difference is getting up in the morning. I don’t feel 25 again, but I feel better.",
+            "name": "Gloria S."
+          }
+        },
+        "card_pdp_09": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "i reorganized my entire kitchen around my shoulder pain.",
+            "body": "plates in the bottom drawer. cereal where the pots used to go. i moved everything to waist level so i would never have to reach up. ordered Revella because i had nothing left to try. week 2 the morning stiffness was gone. week 4 i put the coffee back where it belongs. my husband noticed and asked what changed. Revella changed!",
+            "name": "Nancy K."
+          }
+        },
+        "card_pdp_10": {
+          "type": "card",
+          "settings": {
+            "rating": 5,
+            "star_color_filled": "#e8a020",
+            "star_color_empty": "#dddddd",
+            "heading": "i stopped waking up with a yelp every time i rolled over",
+            "body": "I would be up nightly, don't think I would sleep for more than 1 hour at a time unless i forced myself with pillows to stay on my back... heating pads, ibuprofen, nothing helped like Revella did. It was not just the sleep quality and pain that went away during the night, but the daily mobility i regained. I just felt looser after about a month of taking it - can't really put it any other way.",
+            "name": "Patricia H."
+          }
+        }
+      },
+      "block_order": [
+        "card_pdp_01",
+        "card_pdp_02",
+        "card_pdp_03",
+        "card_pdp_04",
+        "card_pdp_05",
+        "card_pdp_06",
+        "card_pdp_07",
+        "card_pdp_08",
+        "card_pdp_09",
+        "card_pdp_10"
+      ],
+      "disabled": true,
+      "name": "Review Card",
+      "settings": {
+        "background_color": "#f8f8f8",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 1200,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 16,
+        "card_bg": "#ffffff",
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#e5e5e5",
+        "card_padding_desktop": 24,
+        "card_padding_mobile": 18,
+        "card_inner_gap": 12,
+        "card_gap_desktop": 24,
+        "card_gap_mobile": 16,
+        "star_size_desktop": 18,
+        "star_size_mobile": 16,
+        "star_gap": 2,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 16,
+        "heading_size_mobile": 15,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "body_font": "system_ui_n4",
+        "body_font_weight": "400",
+        "body_size_desktop": 14,
+        "body_size_mobile": 13,
+        "body_color": "#444444",
+        "body_letter_spacing": 0,
+        "body_line_height": 6,
+        "show_divider": true,
+        "divider_color": "#e5e5e5",
+        "avatar_size": 44,
+        "avatar_placeholder_color": "#cccccc",
+        "profile_gap": 10,
+        "name_font": "system_ui_n4",
+        "name_font_weight": "600",
+        "name_size": 14,
+        "name_color": "#111111",
+        "show_verified": true,
+        "verified_label": "Verified Customer",
+        "verified_size": 12,
+        "verified_color": "#2e8b57",
+        "pagination_margin_top": 32,
+        "pagination_gap": 16,
+        "arrow_size": 40,
+        "arrow_border_width": 1,
+        "arrow_bg": "#ffffff",
+        "arrow_color": "#444444",
+        "arrow_border_color": "#cccccc",
+        "dot_size": 8,
+        "dot_gap": 8,
+        "dot_color_active": "#444444",
+        "dot_color_inactive": "#cccccc",
+        "icon_card_font": "system_ui_n4",
+        "icon_card_font_weight": "500",
+        "icon_card_font_size_desktop": 16,
+        "icon_card_font_size_mobile": 14,
+        "icon_card_text_color": "#222222",
+        "icon_card_letter_spacing": 0,
+        "icon_card_icon_color": "#888888",
+        "icon_card_icon_size": 28,
+        "icon_card_gap": 14,
+        "icon_row_margin_top": 24
+      }
+    },
+    "proven_result_mdNYJ9": {
+      "type": "proven-result",
+      "blocks": {
+        "heading_text_mpVJqF": {
+          "type": "heading_text",
+          "settings": {
+            "heading": "Clinically Studied Haematococcus Pluvialis Astaxanthin",
+            "text": "Every batch is produced with attention to detail, ensuring a consistent research experience from start to finish. Built for those who value clarity, quality, and results-driven formulation.",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "stat_grid_w4nqHa": {
+          "type": "stat_grid",
+          "settings": {
+            "stat_1_number": "94%",
+            "stat_1_text": "Said their joint stiffness, swelling or daily pain noticeably improved within the first 30 days - without changing anything else.",
+            "stat_2_number": "87%",
+            "stat_2_text": "Said they could move their shoulder, knees or hips more freely than they had in months.",
+            "stat_3_number": "83%",
+            "stat_3_text": "Reduced or stopped using ibuprofen, heating pads or OTC pain medicines within 30 days.",
+            "stat_4_number": "88%",
+            "stat_4_text": "Reordered within 60 days. Not from a reminder email. Not from a discount code. Because the results spoke for themselves.",
+            "cell_border_width": 1,
+            "cell_border_color": "#ffffff",
+            "cell_1_border_top": true,
+            "cell_1_border_right": false,
+            "cell_1_border_bottom": false,
+            "cell_1_border_left": false,
+            "cell_2_border_top": true,
+            "cell_2_border_right": false,
+            "cell_2_border_bottom": false,
+            "cell_2_border_left": false,
+            "cell_3_border_top": true,
+            "cell_3_border_right": false,
+            "cell_3_border_bottom": false,
+            "cell_3_border_left": false,
+            "cell_4_border_top": true,
+            "cell_4_border_right": false,
+            "cell_4_border_bottom": false,
+            "cell_4_border_left": false,
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        },
+        "cta_cNMfkP": {
+          "type": "cta",
+          "settings": {
+            "btn_label": "Try Risk-Free Today",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "guarantee_text": "60-day money-back guarantee",
+            "guarantee_icon_type": "custom",
+            "guarantee_custom_svg": "",
+            "border_width": 1,
+            "border_color": "#ffffff",
+            "border_top": false,
+            "border_right": false,
+            "border_bottom": false,
+            "border_left": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_text_mpVJqF",
+        "stat_grid_w4nqHa",
+        "cta_cNMfkP"
+      ],
+      "disabled": true,
+      "name": "Proven Results",
+      "settings": {
+        "background_color": "#193b68",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "max_width": 700,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_x_desktop": 40,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "padding_x_mobile": 20,
+        "block_padding_v_desktop": 20,
+        "block_padding_h_desktop": 0,
+        "block_padding_v_mobile": 16,
+        "block_padding_h_mobile": 0,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "600",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 22,
+        "heading_color": "#ffffff",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 3,
+        "heading_block_gap": 10,
+        "subtext_font": "system_ui_n4",
+        "subtext_font_weight": "400",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "subtext_color": "#ffffff",
+        "subtext_letter_spacing": 0,
+        "subtext_line_height": 6,
+        "stat_number_font": "system_ui_n4",
+        "stat_number_font_weight": "600",
+        "stat_number_size_desktop": 32,
+        "stat_number_size_mobile": 28,
+        "stat_number_color": "#ffffff",
+        "stat_number_letter_spacing": 0,
+        "stat_text_font": "system_ui_n4",
+        "stat_text_font_weight": "400",
+        "stat_text_size_desktop": 14,
+        "stat_text_size_mobile": 13,
+        "stat_text_color": "#ffffff",
+        "stat_text_letter_spacing": 0,
+        "stat_text_line_height": 5,
+        "stat_column_gap": 40,
+        "stat_inner_gap": 8,
+        "stat_padding_v_desktop": 20,
+        "stat_padding_h_desktop": 0,
+        "stat_padding_v_mobile": 16,
+        "stat_padding_h_mobile": 0,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 16,
+        "btn_text_color": "#222222",
+        "btn_bg_color": "#ffffff",
+        "btn_border_width": 4,
+        "btn_border_color": "#ffffff",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "guarantee_font": "system_ui_n4",
+        "guarantee_font_weight": "400",
+        "guarantee_size_desktop": 14,
+        "guarantee_size_mobile": 13,
+        "guarantee_color": "#ffffff",
+        "guarantee_letter_spacing": 0,
+        "guarantee_icon_size": 15,
+        "cta_gap": 12
+      }
+    },
+    "carousel_nPPaMB": {
+      "type": "carousel",
+      "blocks": {
+        "slide_rJL6aU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/photo_edit_in_image_1_first_person_top_down_view_of_two_hands_holding_a_blue_bdcf8457-d092-405c-a154-fd37e1febf0b.png",
+            "caption": "Goals"
+          }
+        },
+        "slide_MtXF9a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/editorial_lifestyle_photography_for_feel_lighter_every_day._an_elegant_glowy.png",
+            "caption": "Rest"
+          }
+        },
+        "slide_CUxHcV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/authentic_candid_lifestyle_photo_in_square_1_1_aspect_ratio_matching_the_style.png",
+            "caption": "Connection"
+          }
+        },
+        "slide_BzxM7i": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/outdoor_lifestyle_candid_photograph_in_1_1_square_format_matching_the_series.png",
+            "caption": "Hobbies"
+          }
+        },
+        "slide_6LMz3q": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/authentic_warm_lifestyle_photography_in_1_1_square_aspect_ratio_matching_the.png",
+            "caption": "Family"
+          }
+        },
+        "slide_exd6U7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/authentic_lifestyle_photography_in_square_1_1_aspect_ratio_similar_in_mood.png",
+            "caption": "Routine"
+          }
+        }
+      },
+      "block_order": [
+        "slide_rJL6aU",
+        "slide_MtXF9a",
+        "slide_CUxHcV",
+        "slide_BzxM7i",
+        "slide_6LMz3q",
+        "slide_exd6U7"
+      ],
+      "name": "Carousel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding_vertical": 16,
+        "heading_part1": "Feel Lighter",
+        "heading_part2": "Every Day",
+        "heading_font_family": "inherit",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 22,
+        "heading_font_weight": "600",
+        "heading_letter_spacing": 0,
+        "heading_color_1": "#222222",
+        "heading_color_2": "#193b68",
+        "heading_margin_bottom": 16,
+        "slide_width_desktop": 50,
+        "slide_width_mobile": 78,
+        "slide_height_desktop": 560,
+        "slide_height_mobile": 320,
+        "slide_gap_desktop": 20,
+        "slide_gap_mobile": 12,
+        "slide_border_radius": 4,
+        "infinite_scroll": true,
+        "autoplay": false,
+        "autoplay_speed": 10,
+        "caption_font_family": "inherit",
+        "caption_font_size": 14,
+        "caption_font_size_mobile": 12,
+        "caption_font_weight": "500",
+        "caption_letter_spacing": 1,
+        "caption_text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0.55)",
+        "caption_padding_vertical": 14,
+        "caption_padding_vertical_mobile": 10,
+        "caption_padding_horizontal": 20,
+        "show_arrows": true,
+        "hide_arrows_mobile": false,
+        "nav_btn_side_offset": 16,
+        "nav_btn_size": 48,
+        "nav_btn_bg": "#121212",
+        "nav_btn_border_color": "#121212",
+        "nav_btn_icon_color": "#ffffff",
+        "nav_btn_hover_bg": "#193b68",
+        "nav_btn_hover_border": "#193b68",
+        "show_dots": true,
+        "dots_margin_top": 20
+      }
+    },
+    "before_after_biiP9L": {
+      "type": "before-after",
+      "blocks": {
+        "dual_tone_heading_hrLdhb": {
+          "type": "dual_tone_heading",
+          "settings": {
+            "heading_before": "The Astaxanthin",
+            "heading_accent": "Difference",
+            "heading_tag": "2"
+          }
+        },
+        "paragraph_fLw4aY": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>A look inside your body — what's happening now, and what changes with cellular protection.</p>"
+          }
+        },
+        "before_after_image_FCabrK": {
+          "type": "before_after_image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "dual_tone_heading_hrLdhb",
+        "paragraph_fLw4aY",
+        "before_after_image_FCabrK"
+      ],
+      "disabled": true,
+      "name": "Before After",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "image_position": "right",
+        "mobile_image_position": "bottom",
+        "column_gap": 16,
+        "text_gap": 16,
+        "text_alignment": "center",
+        "container_max_width": 1200,
+        "stacked_max_width": 720,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "custom_gradient_background": "",
+        "accent_color": "#265392",
+        "heading_font_family": "",
+        "heading_size": "h1",
+        "custom_desktop_size": 33,
+        "custom_mobile_size": 22,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "heading_accent_color": "#193b68",
+        "accent_font_style": "normal",
+        "heading_highlight": "none",
+        "highlight_color": "#265392",
+        "highlight_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_bg_color": "#f9efff",
+        "highlight_border_radius": 8,
+        "highlight_border_width": 0,
+        "highlight_border_style": "solid",
+        "highlight_border_color": "#265392",
+        "highlight_padding_block": 0.3,
+        "highlight_padding_inline": 0.3,
+        "highlight_underline_thickness": 2,
+        "highlight_underline_color": "#265392",
+        "highlight_underline_gradient": "linear-gradient(57deg, rgba(249, 119, 255, 1) 8%, rgba(54, 212, 255, 1) 47%, rgba(43, 252, 135, 1) 83%)",
+        "highlight_underline_position": 25,
+        "highlight_line_color": "#265392",
+        "highlight_line_stroke": 3,
+        "highlight_line_position": 60,
+        "paragraph_font_family": "system-ui, sans-serif",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.6",
+        "paragraph_color": "#555555",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "button_color": "#1a1a1a",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 8,
+        "show_labels": true,
+        "label_before": "Before",
+        "label_after": "After",
+        "label_background_color": "#193b68",
+        "label_text_color": "#ffffff",
+        "label_font_family": "system-ui, sans-serif",
+        "label_font_size": 11,
+        "label_font_weight": "600",
+        "label_text_transform": "uppercase",
+        "label_letter_spacing": 1,
+        "label_padding_v": 5,
+        "label_padding_h": 10,
+        "label_border_radius": 4,
+        "label_offset_top": 12,
+        "label_offset_side": 12,
+        "arrows_style": "circle",
+        "handle_color": "#193b68",
+        "handle_width": 2,
+        "handle_circle_size": 44,
+        "border_radius": 12,
+        "image_shadow": "0 8px 40px rgba(0,0,0,0.12)"
+      }
+    },
+    "four_column_badge_KkbnrX": {
+      "type": "four-column-badge",
+      "blocks": {
+        "badge_column_3HfJqe": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "shield_check",
+            "heading": "Lymphatic Support",
+            "heading_tag": "h3",
+            "text": "<p>Gentle daily support for your body’s natural flow.*</p>"
+          }
+        },
+        "badge_column_9TcGCc": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "cell",
+            "heading": "Study-Backed",
+            "heading_tag": "h3",
+            "text": "<p>Pycnogenol® and Centella, two well-researched botanicals.</p>"
+          }
+        },
+        "badge_column_Xi9AJU": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "gear",
+            "heading": "20:1 Concentrated",
+            "heading_tag": "h3",
+            "text": "<p>A 6,000mg herb equivalent in one small softgel.</p>"
+          }
+        },
+        "badge_column_mxaGkM": {
+          "type": "badge_column",
+          "settings": {
+            "icon": "clock",
+            "heading": "Made for Every Day",
+            "heading_tag": "h3",
+            "text": "<p>One softgel. No droppers, no teas, no measuring.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "badge_column_3HfJqe",
+        "badge_column_9TcGCc",
+        "badge_column_Xi9AJU",
+        "badge_column_mxaGkM"
+      ],
+      "name": "Four Column Badge",
+      "settings": {
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": 2,
+        "content_alignment": "center",
+        "column_gap": 24,
+        "column_gap_h": 32,
+        "column_gap_mobile": 24,
+        "item_gap": 8,
+        "show_dividers": false,
+        "divider_style": "solid",
+        "divider_width": 1,
+        "divider_color": "#e5e5e5",
+        "container_max_width": 1200,
+        "container_padding": 24,
+        "container_padding_mobile": 16,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 16,
+        "background_color": "#ffffff",
+        "icon_color": "#193b68",
+        "icon_size": 32,
+        "heading_font_family": "system-ui, sans-serif",
+        "heading_font_size": 16,
+        "heading_font_size_mobile": 14,
+        "heading_font_weight": "600",
+        "heading_line_height": "1.2",
+        "heading_color": "#1a1a1a",
+        "paragraph_font_family": "",
+        "paragraph_font_size": 16,
+        "paragraph_font_size_mobile": 14,
+        "paragraph_font_weight": "400",
+        "paragraph_line_height": "1.5",
+        "paragraph_color": "#555555"
+      }
+    },
+    "animated_wave_divider_pbft83": {
+      "type": "animated-wave-divider",
+      "name": "Animated Wave",
+      "settings": {
+        "wave_color": "#0d1e39",
+        "background_color": "#ffffff",
+        "fill_color": "#0d1e39",
+        "fill_bottom": false,
+        "wave_speed": 5,
+        "wave_direction": "left",
+        "wave_amplitude": 20,
+        "wave_frequency": 1,
+        "wave_layers": 3,
+        "layer_1_opacity": 45,
+        "layer_2_opacity": 100,
+        "layer_3_opacity": 30,
+        "layer_4_opacity": 25,
+        "layer_5_opacity": 15,
+        "wave_height_mobile": 80,
+        "wave_height_desktop": 88
+      }
+    },
+    "information_card_igAJVJ": {
+      "type": "information-card",
+      "blocks": {
+        "card_9m7djb": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/real_life_candid_lifestyle_photo_representing_feel_lighter_every_day._an.png",
+            "eyebrow": "",
+            "title": "Works With Your Body",
+            "text": "<p>Your lymphatic system has no pump of its own. It relies on circulation and movement to keep fluid flowing. Lymphgem supports that natural process instead of forcing a harsh flush.*</p>"
+          }
+        },
+        "card_dTUAaG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/authentic_lifestyle_photo_embodying_feel_lighter_every_day._a_healthy_radiant_1.png",
+            "eyebrow": "",
+            "title": "Why Days Feel Heavy",
+            "text": "<p>Long hours sitting or standing, travel, salty meals and low activity can leave you feeling puffy and heavy by evening. Small daily habits help, and Lymphgem is designed to be one of them.*</p>"
+          }
+        },
+        "card_hWhKrE": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/professional_commercial_still_life_product_photography_matching_the_exact.png",
+            "eyebrow": "",
+            "title": "Study-Backed Botanicals",
+            "text": "<p>Pycnogenol®, a French maritime pine bark extract, has been studied in controlled trials for ankle swelling and leg comfort. Centella asiatica has a long history of use for circulation support.*</p>"
+          }
+        },
+        "card_DLtUhH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/clean_top_down_flat_lay_morning_routine_aesthetic_photography_matching_the.png",
+            "eyebrow": "",
+            "title": "Concentrated, Not Complicated",
+            "text": "<p>With 20:1 concentrated extracts, one softgel delivers a 6,000mg herb equivalent, so there’s no need for handfuls of capsules, droppers or bitter teas.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_9m7djb",
+        "card_dTUAaG",
+        "card_hWhKrE",
+        "card_DLtUhH"
+      ],
+      "name": "Information Card",
+      "settings": {
+        "display_id": false,
+        "visibility": "always-display",
+        "title": "Gentle botanical support for your body’s natural flow*",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "columns_desktop": 4,
+        "columns_mobile": 1.3,
+        "card_gap": 16,
+        "show_image": true,
+        "image_aspect_ratio": "1 / 1",
+        "card_height": 500,
+        "card_bg_color": "#f5f5f5",
+        "card_border_radius": 10,
+        "card_content_gap": 10,
+        "card_show_border": false,
+        "card_border_width": 1,
+        "card_border_color": "#f5f5f5",
+        "card_show_shadow": true,
+        "chevron_size": 36,
+        "chevron_opacity": 90,
+        "chevron_bg_color": "#193b68",
+        "chevron_bg_opacity": 60,
+        "chevron_icon_color": "#ffffff",
+        "chevron_border_radius": 18,
+        "eyebrow_font_size": 12,
+        "eyebrow_font_weight": "600",
+        "eyebrow_color": "#888888",
+        "eyebrow_text_transform": "uppercase",
+        "title_font_size": 16,
+        "title_font_weight": "600",
+        "title_color": "#193b68",
+        "text_font_size": 14,
+        "text_color": "#4a4a4a",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "research_card_fqgxnW": {
+      "type": "research-card",
+      "blocks": {
+        "card_TV4pEe": {
+          "type": "card",
+          "settings": {
+            "image_url": "",
+            "card_heading": "Lymphatic Flow",
+            "card_subdesc": "Support your natural flow.",
+            "card_para": "Pycnogenol® and Centella help support healthy circulation, which your lymphatic system relies on to keep fluid moving.*",
+            "start_active": false
+          }
+        },
+        "card_TzRfd7": {
+          "type": "card",
+          "settings": {
+            "image_url": "",
+            "card_heading": "Legs",
+            "card_subdesc": "Lighter-feeling legs.",
+            "card_para": "In an 8-week controlled study, adults taking Pycnogenol® had less ankle swelling and better leg comfort scores (Cesarone et al., 2010).*",
+            "start_active": false
+          }
+        },
+        "card_4wTJU7": {
+          "type": "card",
+          "settings": {
+            "image_url": "",
+            "card_heading": "Face",
+            "card_subdesc": "Less puffy mornings.",
+            "card_para": "Daily lymphatic support, plus hydration and movement, helps you feel less puffy and more like yourself.*",
+            "start_active": false
+          }
+        },
+        "card_Qi4pLP": {
+          "type": "card",
+          "settings": {
+            "image_url": "",
+            "card_heading": "Everyday",
+            "card_subdesc": "A ritual you’ll keep.",
+            "card_para": "One small softgel with MCT coconut oil in a plant-based shell. Easy to take, easy to stay consistent.",
+            "start_active": false
+          }
+        },
+        "button_guarantee_eByYiP": {
+          "type": "button_guarantee",
+          "settings": {
+            "btn_text": "Try Lymphgem Risk-Free",
+            "btn_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "btn_arrow": true,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "card_TV4pEe",
+        "card_TzRfd7",
+        "card_4wTJU7",
+        "card_Qi4pLP",
+        "button_guarantee_eByYiP"
+      ],
+      "name": "Research Card",
+      "settings": {
+        "section_h1": "Real Botanicals.",
+        "section_h2": "Backed by Research.",
+        "section_desc": "One softgel a day. Study-backed Pycnogenol® and Centella for whole-body lymphatic and circulation support.*",
+        "heading_align": "center",
+        "h1_font_size": 32,
+        "h1_font_size_mobile": 22,
+        "h1_font_weight": "600",
+        "h1_color": "#193b68",
+        "h1_font_family": "",
+        "h2_font_size": 32,
+        "h2_font_size_mobile": 22,
+        "h2_font_weight": "600",
+        "h2_color": "#1a1a1a",
+        "h2_font_family": "",
+        "desc_font_size": 14,
+        "desc_font_size_mobile": 13,
+        "desc_font_weight": "400",
+        "desc_color": "#555555",
+        "desc_font_family": "sans-serif",
+        "columns_desktop": "2",
+        "card_gap": 12,
+        "section_padding_v": 16,
+        "section_padding_h": 20,
+        "section_bg": "#f5f8ff",
+        "card_bg": "#ffffff",
+        "card_border_radius": 8,
+        "card_border_width": 1,
+        "card_border_color": "#dce6f0",
+        "card_padding": 14,
+        "card_min_height": 72,
+        "toggle_color": "#0d1e39",
+        "card_img_size": 80,
+        "card_img_radius": 6,
+        "card_heading_font_size": 16,
+        "card_heading_font_weight": "600",
+        "card_heading_color": "#1a1a1a",
+        "card_heading_font_family": "sans-serif",
+        "card_subdesc_font_size": 14,
+        "card_subdesc_font_weight": "400",
+        "card_subdesc_color": "#777777",
+        "card_subdesc_font_family": "",
+        "card_para_font_size": 14,
+        "card_para_font_weight": "400",
+        "card_para_color": "#444444",
+        "card_para_font_family": "",
+        "btn_bg": "#0d1e39",
+        "btn_color": "#ffffff",
+        "btn_font_size": 16,
+        "btn_font_weight": "600",
+        "btn_font_family": "",
+        "btn_border_radius": 8,
+        "btn_padding_v": 10,
+        "btn_padding_h": 80,
+        "guarantee_font_size": 14,
+        "guarantee_font_weight": "400",
+        "guarantee_color": "#777777",
+        "guarantee_font_family": "sans-serif"
+      }
+    },
+    "running_marquee_k3qnar": {
+      "type": "running-marquee",
+      "blocks": {
+        "item_ERyYFb": {
+          "type": "item",
+          "settings": {
+            "icon": "gluten_free",
+            "text": "One Softgel a Day"
+          }
+        },
+        "item_eJxcdx": {
+          "type": "item",
+          "settings": {
+            "icon": "no_additives",
+            "text": "Plant-Based Shell"
+          }
+        },
+        "item_8zceJH": {
+          "type": "item",
+          "settings": {
+            "icon": "cgmp",
+            "text": "Pycnogenol® + Centella"
+          }
+        },
+        "item_7UgHmH": {
+          "type": "item",
+          "settings": {
+            "icon": "non_gmo",
+            "text": "6,000mg Herb Equivalent"
+          }
+        }
+      },
+      "block_order": [
+        "item_ERyYFb",
+        "item_eJxcdx",
+        "item_8zceJH",
+        "item_7UgHmH"
+      ],
+      "name": "Running Marquee Banner",
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "section_bg": "#0d1e39",
+        "speed": 10,
+        "direction": "left",
+        "pause_on_hover": false,
+        "show_fade": false,
+        "fade_width": 60,
+        "item_gap": 50,
+        "icon_text_gap": 8,
+        "show_separator": false,
+        "separator_char": "·",
+        "separator_margin": 8,
+        "separator_color": "#ffffff",
+        "icon_size": 16,
+        "icon_color": "#ffffff",
+        "text_size": 14,
+        "text_weight": "500",
+        "text_color": "#ffffff",
+        "text_font_family": "sans-serif",
+        "text_letter_spacing": 2
+      }
+    },
+    "journey_MWkCz7": {
+      "type": "journey",
+      "blocks": {
+        "timeline_step_AcYDaC": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Days 1–7: Build the Habit",
+            "items": "One softgel each morning with water\nPair it with a short walk and plenty of water\nNo droppers, teas or measuring"
+          }
+        },
+        "timeline_step_7gtap8": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Weeks 2–4: Settle Into Your Routine",
+            "items": "Consistency starts to count\nNotice how your legs and face feel by evening*\nKeep moving and stay hydrated"
+          }
+        },
+        "timeline_step_VxgqNb": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Weeks 4–8: Feel the Rhythm",
+            "items": "Daily botanical support keeps building*\nLighter-feeling days become your normal*\nYour routine feels effortless"
+          }
+        },
+        "timeline_step_D9RqdY": {
+          "type": "timeline_step",
+          "settings": {
+            "label": "Day 60+: Make It Yours",
+            "items": "Long-term daily use is where support adds up*\nKeep a pouch on hand so you never miss a day\nLighter-feeling days, every day"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_step_AcYDaC",
+        "timeline_step_7gtap8",
+        "timeline_step_VxgqNb",
+        "timeline_step_D9RqdY"
+      ],
+      "name": "Journey",
+      "settings": {
+        "max_width": 1000,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "hero_image_height": 100,
+        "hero_text": "Lymphgem",
+        "hero_text_font_size": 20,
+        "hero_text_color": "#ffffff",
+        "hero_overlay_color": "#000000",
+        "hero_overlay_gradient": "",
+        "hero_overlay_opacity": 30,
+        "hero_border_radius": 16,
+        "hero_margin_bottom": 0,
+        "desktop_image_position": "right",
+        "desktop_image_width": 40,
+        "hide_image_on_desktop": true,
+        "desktop_content_max_width": 700,
+        "desktop_col_gap": 48,
+        "desktop_image_sticky_top": 80,
+        "image_border_radius": 16,
+        "header_alignment": "center",
+        "header_margin_top": 24,
+        "header_margin_bottom": 24,
+        "eyebrow": "Your Daily",
+        "eyebrow_font_size": 22,
+        "eyebrow_font_weight": "600",
+        "heading": "Journey With Lymphgem®",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "subtext": "Lymphgem® is built for daily use. Here’s what a consistent routine can look like once it’s part of your day.*",
+        "subtext_font_size": 14,
+        "line_width": 2,
+        "dot_size": 14,
+        "dot_gap": 12,
+        "step_gap": 20,
+        "label_font_size": 14,
+        "label_font_weight": "700",
+        "label_border_radius": 6,
+        "label_padding_vertical": 8,
+        "label_padding_horizontal": 14,
+        "label_margin_bottom": 0,
+        "item_font_size": 14,
+        "items_padding_top": 10,
+        "items_padding_bottom": 2,
+        "tagline": "Botanical support builds with consistency. Don’t quit early.",
+        "tagline_font_size": 14,
+        "tagline_font_style": "normal",
+        "tagline_margin_top": 16,
+        "button_label": "Start My Journey",
+        "button_url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+        "button_show_arrow": true,
+        "button_font_size": 16,
+        "button_font_weight": "700",
+        "button_padding_vertical": 12,
+        "button_padding_horizontal": 24,
+        "button_border_radius": 8,
+        "cta_margin_top": 24,
+        "guarantee_text": "60-day money-back guarantee",
+        "guarantee_font_size": 14,
+        "guarantee_margin_top": 12,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#193b68",
+        "heading_color": "#1a1a1a",
+        "subtext_color": "#555555",
+        "line_color": "#d0d0d0",
+        "dot_color": "#193b68",
+        "label_background": "#193b68",
+        "label_text_color": "#ffffff",
+        "item_text_color": "#333333",
+        "checkmark_color": "#193b68",
+        "tagline_color": "#777777",
+        "button_background": "#193b68",
+        "button_text_color": "#ffffff",
+        "guarantee_color": "#777777"
+      }
+    },
+    "comparison_table_hH8TLN": {
+      "type": "comparison-table",
+      "blocks": {
+        "heading_button_WfmXAh": {
+          "type": "heading_button",
+          "settings": {
+            "heading_tag": "h2",
+            "heading": "Lymphgem vs. Typical Drops & Teas",
+            "subtext": "",
+            "button_label": "Try Lymphgem Risk-Free",
+            "button_link": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "button_new_tab": false,
+            "show_button_arrow": true,
+            "guarantee_icon_size": 18,
+            "guarantee_text": "60-day money-back guarantee"
+          }
+        },
+        "product_image_Wd8tQJ": {
+          "type": "product_image",
+          "settings": {
+            "show_image": true,
+            "product_name": "Lymphgem",
+            "header_style": "separate"
+          }
+        },
+        "product_image_XFA8gp": {
+          "type": "product_image",
+          "settings": {
+            "show_image": true,
+            "product_name": "Drops & Teas",
+            "header_style": "separate"
+          }
+        },
+        "comparison_table_Pj6Tak": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "1",
+            "row_1_icon": "shield",
+            "row_1_label": "One Softgel a Day",
+            "row_2_icon": "flask",
+            "row_2_label": "20:1 Concentrated Extracts",
+            "row_3_icon": "globe",
+            "row_3_label": "Pycnogenol® + Centella",
+            "row_4_icon": "leaf",
+            "row_4_label": "No Bitter Taste or Measuring",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        },
+        "comparison_table_RehzWn": {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "2",
+            "row_1_icon": "cross",
+            "row_1_label": "Multiple Daily Doses",
+            "row_2_icon": "cross",
+            "row_2_label": "Concentration Often Unstated",
+            "row_3_icon": "cross",
+            "row_3_label": "Rarely Study-Backed Botanicals",
+            "row_4_icon": "cross",
+            "row_4_label": "Droppers, Brewing & Aftertaste",
+            "row_5_icon": "none",
+            "row_5_label": "",
+            "row_6_icon": "none",
+            "row_6_label": "",
+            "row_7_icon": "none",
+            "row_7_label": "",
+            "row_8_icon": "none",
+            "row_8_label": "",
+            "row_9_icon": "none",
+            "row_9_label": "",
+            "row_10_icon": "none",
+            "row_10_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_button_WfmXAh",
+        "product_image_Wd8tQJ",
+        "product_image_XFA8gp",
+        "comparison_table_Pj6Tak",
+        "comparison_table_RehzWn"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.ct-section-template--20958960713914__comparison_table_hH8TLN .ct-cta--mobile {gap: 8px; }}"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "layout_order": "info_first",
+        "info_col_width": 30,
+        "info_alignment": "left",
+        "column_gap": 48,
+        "info_gap": 20,
+        "table_col_gap": 12,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "horizontal_padding": 16,
+        "background_type": "color",
+        "background_color": "#265392",
+        "background_gradient": "",
+        "bg_image_size": "cover",
+        "bg_image_position": "center center",
+        "bg_image_repeat": "no-repeat",
+        "font_family": "system_ui_n4",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 22,
+        "heading_color": "#ffffff",
+        "heading_font_weight": "600",
+        "subtext_font_size": 14,
+        "subtext_color": "#f1f5f9",
+        "button_full_width": false,
+        "button_background_color": "#193b68",
+        "button_text_color": "#ffffff",
+        "button_font_size": 16,
+        "button_font_weight": "600",
+        "button_border_radius": 6,
+        "button_padding_v": 12,
+        "button_padding_h": 24,
+        "guarantee_font_size": 14,
+        "guarantee_color": "#f1f5f9",
+        "richtext_font_size": 16,
+        "richtext_font_size_mobile": 15,
+        "richtext_font_weight": "400",
+        "richtext_font_style": "normal",
+        "richtext_color": "#f1f5f9",
+        "richtext_line_height": 1.6,
+        "richtext_letter_spacing": 0,
+        "richtext_text_transform": "none",
+        "richtext_margin_top": 0,
+        "richtext_margin_bottom": 16,
+        "richtext_highlight_color": "#ffffff",
+        "richtext_highlight_weight": "inherit",
+        "richtext_highlight_style": "italic",
+        "richtext_highlight_underline": false,
+        "richtext_list_marker_color": "#ffffff",
+        "richtext_list_marker_size": 18,
+        "richtext_list_marker_gap": 12,
+        "richtext_list_gap": 16,
+        "column1_top_offset": 0,
+        "column2_top_offset": 0,
+        "merged_image_overlap": 32,
+        "product_image_size": 180,
+        "mobile_product_image_size": 120,
+        "product_image_gap": 8,
+        "product_header_gap": 12,
+        "product_name_font_size": 14,
+        "product_name_font_weight": "600",
+        "product1_name_color": "#193b68",
+        "product2_name_color": "#333333",
+        "col1_table_bg_color": "#193b68",
+        "col1_table_text_color": "#ffffff",
+        "col1_icon_color": "#ffffff",
+        "col1_row_divider_color": "#ffffff26",
+        "col2_table_bg_color": "#ffffff",
+        "col2_table_text_color": "#333333",
+        "col2_icon_color": "#333333",
+        "col2_row_divider_color": "#e8e8e8",
+        "row_font_size": 16,
+        "mobile_row_font_size": 14,
+        "row_vertical_padding": 20,
+        "row_min_height": 0,
+        "mobile_row_padding": 14,
+        "icon_size": 32,
+        "table_border_radius": 12,
+        "mobile_info_alignment": "center",
+        "mobile_section_gap": 32,
+        "mobile_cta_margin_top": 24
+      }
+    },
+    "free_trial_rgzqta": {
+      "type": "free-trial",
+      "blocks": {
+        "badge_tnKKap": {
+          "type": "badge",
+          "settings": {
+            "number": "30",
+            "label": "Days",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "eyebrow_Fm7pWK": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Feel the Difference",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "heading_nNyJNC": {
+          "type": "heading",
+          "settings": {
+            "text": "60-day Risk-Free Trial",
+            "heading_tag": "h2",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "description_dQtpVD": {
+          "type": "description",
+          "settings": {
+            "text": "Give Lymphgem a real try. If you’re not completely satisfied in your first 30 days, contact us for a full refund.",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        },
+        "button_hEPpnB": {
+          "type": "button",
+          "settings": {
+            "label": "Try Lymphgem Risk-Free",
+            "url": "#shopify-block-ARmpYcFBTeE5yUUZac__kaching_bundles_app_block_FBELLr",
+            "column": "1",
+            "mobile_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "badge_tnKKap",
+        "eyebrow_Fm7pWK",
+        "heading_nNyJNC",
+        "description_dQtpVD",
+        "button_hEPpnB"
+      ],
+      "custom_css": [
+        ".ft-page-width-template--21111456202938__free_trial_rgzqta {padding-bottom: 0px;}"
+      ],
+      "name": "Free Trial",
+      "settings": {
+        "background_color": "#f0edea",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "overlay_direction": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "section_padding_y_desktop": 0,
+        "section_padding_x_desktop": 20,
+        "section_padding_y_mobile": 16,
+        "section_padding_x_mobile": 0,
+        "col1_width": 1,
+        "col2_width": 1,
+        "col_valign": "center",
+        "min_height_desktop": 460,
+        "min_height_mobile": 0,
+        "col1_is_image": false,
+        "col1_order_mobile": "first",
+        "col2_is_image": true,
+        "col2_image": "shopify://shop_images/aesthetic_wellness_still_life_photography_matching_the_refined_clean_tone_of.png",
+        "col2_order_mobile": "last",
+        "img_fit": "cover",
+        "img_position": "center center",
+        "img_col_min_height_mobile": 300,
+        "placeholder_bg_color": "#e8e4e0",
+        "placeholder_icon_color": "#666666",
+        "content_padding_top_desktop": 60,
+        "content_padding_bottom_desktop": 60,
+        "content_padding_x_desktop": 60,
+        "content_padding_top_mobile": 16,
+        "content_padding_bottom_mobile": 0,
+        "content_padding_x_mobile": 24,
+        "content_max_width": 500,
+        "badge_font": "system_ui_n4",
+        "badge_size": 64,
+        "badge_bg_color": "#193b68",
+        "badge_text_color": "#ffffff",
+        "badge_number_weight": "700",
+        "badge_number_size": 22,
+        "badge_label_weight": "400",
+        "badge_label_size": 14,
+        "badge_margin_bottom": 20,
+        "eyebrow_font": "system_ui_n4",
+        "eyebrow_font_weight": "600",
+        "eyebrow_size_desktop": 13,
+        "eyebrow_size_mobile": 12,
+        "eyebrow_color": "#193b68",
+        "eyebrow_letter_spacing": 2,
+        "eyebrow_transform": "uppercase",
+        "eyebrow_margin_bottom": 8,
+        "heading_font": "system_ui_n4",
+        "heading_font_weight": "700",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 26,
+        "heading_color": "#111111",
+        "heading_letter_spacing": 0,
+        "heading_line_height": 2,
+        "heading_transform": "none",
+        "heading_margin_bottom": 12,
+        "description_font": "system_ui_n4",
+        "description_font_weight": "400",
+        "description_size_desktop": 15,
+        "description_size_mobile": 14,
+        "description_color": "#444444",
+        "description_letter_spacing": 0,
+        "description_line_height": 6,
+        "description_margin_bottom": 24,
+        "btn_font": "system_ui_n4",
+        "btn_font_weight": "500",
+        "btn_size_desktop": 16,
+        "btn_size_mobile": 15,
+        "btn_text_color": "#ffffff",
+        "btn_bg_color": "#193b68",
+        "btn_border_width": 0,
+        "btn_border_color": "#193b68",
+        "btn_radius": 8,
+        "btn_padding_v": 12,
+        "btn_padding_h": 24,
+        "btn_letter_spacing": 0,
+        "btn_display": "block",
+        "button_margin_bottom": 0
+      }
+    },
+    "nvgd_review_grid_VfVdcT": {
+      "type": "nvgd-review-grid",
+      "blocks": {
+        "review_group_UPBFta": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Cynthia",
+            "rating_1": 5,
+            "text_1": "Great product!!! It really works as advertised. I have started to see results and only starting the third week of usage.",
+            "image_1": "shopify://shop_images/authentic_ugc_customer_review_selfie_photo_of_a_radiant_east_asian_woman_in_her.png",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w11_7056f3bb-dc97-4fa9-8f2a-9467dde3d22f.png?v=1776370450",
+            "name_2": "Mattie Banks",
+            "rating_2": 5,
+            "text_2": "It is easy to take. The taste is not bad. I'm hoping for great results, stay tuned!",
+            "image_2": "shopify://shop_images/real_life_ugc_customer_review_selfie_of_a_vibrant_south_asian_indian_woman_in.png",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w15.png?v=1776370450",
+            "name_3": "Tara \"Lilteach\" Agnew",
+            "rating_3": 5,
+            "text_3": "I received my package in a reasonable time and in great condition. The updated tracking of my package was great and the follow up after delivery was amazing. The flavor is amazing! I take my drops under my tongue with ease. I trust the quality and expect to see great results.",
+            "image_3": "shopify://shop_images/real_life_ugc_customer_review_selfie_of_a_cheerful_woman_in_her_mid_30s_sitting.png",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m9_087d5b1c-48d6-4842-b8c2-f1d92a1ddeb6.png?v=1776370450",
+            "name_4": "Nagela Salahuddin-Smith",
+            "rating_4": 5,
+            "text_4": "Love the product, but the tracking needs work. Appreciate the delivery person's attention to securing the package, but let me know where the package will be placed. Overall great product and service. Will keep in touch.",
+            "image_4": "shopify://shop_images/ugc_customer_review_selfie_style_photograph_of_a_fit_athletic_man_in_his_early.png",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w7_b42d7f54-6003-4189-a0f9-fd34e4427f02.png?v=1776370450",
+            "name_5": "Rosa E. Navarro",
+            "rating_5": 5,
+            "text_5": "The process of ordering the product was very easy. The order was delivered in a timely manner and was well protected. I feel I'm sleeping better, although it is still too early to say if it's effective for the purpose it's advertised.",
+            "image_5": "shopify://shop_images/candid_customer_review_selfie_of_a_healthy_woman_in_her_early_30s_on_an_outdoor.png",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w8_0fa9eeb2-e605-4cdc-9aa4-a569f2aed024.png?v=1776370451"
+          }
+        },
+        "review_group_aepe6i": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Ozema Arnold",
+            "rating_1": 5,
+            "text_1": "So far I'm on day 3 and can feel a difference in my energy level. Still too early to tell on everything else. After week 1 I'll come back and update my experience.",
+            "image_1": "shopify://shop_images/real_life_ugc_customer_testimonial_selfie_of_a_friendly_man_in_his_30s_in_a.png",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m10_804de057-76fa-4ad9-b698-e5e40ed2a3e5.png?v=1776370450",
+            "name_2": "Margie Chavez",
+            "rating_2": 5,
+            "text_2": "It's been only two days taking it and I'm so excited and confident that my son and I will see great results. It has a great taste.",
+            "image_2": "shopify://shop_images/authentic_candid_ugc_customer_review_selfie_of_a_cheerful_man_in_his_late_20s.png",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w17.png?v=1776370450",
+            "name_3": "Dana Baith",
+            "rating_3": 5,
+            "text_3": "I have not had a chance to see any effects yet, but the product was delivered on time as promised and the taste is not offensive in any way.",
+            "image_3": "shopify://shop_images/authentic_customer_review_selfie_style_photograph_of_a_smiling_woman_in_her.png",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w16.png?v=1776370451",
+            "name_4": "Kdrama Fan Davis",
+            "rating_4": 5,
+            "text_4": "Had trouble with the original shipment and it was replaced quickly. Only been using it for 3 days so I haven't had a chance to see if there is a big change. I want to give the product a fair and proper review.",
+            "image_4": "shopify://shop_images/authentic_customer_review_selfie_photo_of_a_stylish_east_asian_man_in_his_early.png",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m14.png?v=1776370450",
+            "name_5": "Laurie Miller",
+            "rating_5": 5,
+            "text_5": "Received my drops last night. Have only taken 2 doses so far. The taste is pleasant.",
+            "image_5": "shopify://shop_images/authentic_ugc_customer_review_photo_of_an_attractive_hispanic_latina_woman_in.png",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w13.png?v=1776370450"
+          }
+        },
+        "review_group_YDE7Jn": {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Scott Kaufman",
+            "rating_1": 5,
+            "text_1": "Great job! Received my whole order in good shape! Can't wait to try this! Excited! Fast shipping!",
+            "image_1": "shopify://shop_images/real_ugc_customer_review_selfie_of_a_fit_black_african_american_man_in_his_late.png",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w9_b40890a1-698d-4e7d-9880-f75b3020ea78.png?v=1776370450",
+            "name_2": "Roenella Short",
+            "rating_2": 5,
+            "text_2": "The ordering process was easy, delivery communication was great, and the packaging was perfect!",
+            "image_2": "shopify://shop_images/candid_customer_review_selfie_style_photo_of_a_middle_eastern_woman_in_her_late.png",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m11.png?v=1776370450",
+            "name_3": "",
+            "rating_3": 5,
+            "text_3": "",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w5_022bb544-74b1-46ae-919f-fd9889915afb.png?v=1776370450",
+            "name_4": "",
+            "rating_4": 5,
+            "text_4": "",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m3_a8e72f00-65d5-4550-bf4c-294e6bd8da01.png?v=1776370450",
+            "name_5": "",
+            "rating_5": 5,
+            "text_5": "",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w4_c6edae75-76c5-4a17-84bc-add1e9c5876f.png?v=1776370450"
+          }
+        },
+        "review_group_T8RAiD": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Wanda K.",
+            "rating_1": 5,
+            "text_1": "my ankles were so swollen by the end of every day i could barely see the bones. by week 5 the swelling was noticeably less. by week 9 my ankles looked normal at 8pm for the first time in i dont know how long.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w3_c2ba75e1-c21c-4992-abab-07a64d3ddec2.png?v=1776370450",
+            "name_2": "Dale H.",
+            "rating_2": 5,
+            "text_2": "both shoulders were so inflamed i couldnt reach the top shelf. my PT actually suggested astaxanthin for the inflammation. 6 weeks in and my range of motion improved noticeably. reaching overhead doesnt make me flinch anymore.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m6_ae62afa2-4061-4673-a24d-0a560be7b1ad.png?v=1776370450",
+            "name_3": "Donna M.",
+            "rating_3": 5,
+            "text_3": "retired 2 years ago and figured the joint pain was just part of getting older. both knees, both hips, hands in the morning — i just accepted it. my daughter kept sending me links and i kept ignoring her. finally tried it. 8 weeks in and the morning stiffness that i'd lived with for years just started lifting. i'm moving better at 60 than i was at 55. wish i hadn't waited so long.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w12.png?v=1776370450",
+            "name_4": "Hal P.",
+            "rating_4": 5,
+            "text_4": "48 years old. knees are bone on bone. this stuff doesnt regrow cartilage obviously but the inflammation around the joint calmed down significantly by week 6. i went from 4 advil a day to maybe 1. some days none. thats a win at my age.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m15.png?v=1776370450",
+            "name_5": "Margaret L.",
+            "rating_5": 5,
+            "text_5": "frozen shoulder for 5 months. my doctor said it could take a year or more to resolve on its own. started this and the thawing happened faster than anyone expected. week 4 the stiffness started breaking. week 8 i could reach behind my back. my physical therapist was genuinely surprised at the timeline.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w18.png?v=1776370450"
+          }
+        },
+        "review_group_QHcHcT": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Dennis J.",
+            "rating_1": 5,
+            "text_1": "my doctor put me on a statin and within 3 months my legs felt like concrete. took CoQ10 for 4 months. nothing. started this and by week 5 the heaviness in my legs started lifting. i can actually walk up a flight of stairs without my thighs screaming.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m2_2556b9bb-26bf-4190-b10e-3b564db33c58.png?v=1776370450",
+            "name_2": "Arlene D.",
+            "rating_2": 5,
+            "text_2": "my wrists and fingers were so inflamed i had to stop knitting — my hobby for 30 years. by week 7 the swelling in my fingers went down enough to hold needles again. im knitting a blanket for my new grandbaby right now. wouldnt be happening without this.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w2_cef21a0f-60dc-4493-a4a5-5305548c27e5.png?v=1776370450",
+            "name_3": "Pamela C.",
+            "rating_3": 5,
+            "text_3": "joint pain is real and i am tired of doctors acting like its not. my knees, my hips, my hands — all started hurting within months of my last period. none of them said your estrogen dropped and your joints lost their protection. this supplement does what estrogen used to do. 6 weeks in and the difference is undeniable.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w1_6793d2d5-118e-4cbb-98cf-c627587795cb.png?v=1776370450",
+            "name_4": "Keith T.",
+            "rating_4": 5,
+            "text_4": "shoulder impingement for over a year. couldnt bench press. couldnt do overhead work. week 4 the inflammation started calming. by week 8 i was pressing again at lighter weight. slow comeback but its a comeback.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m1_ef2b7eef-fcf2-4962-9baa-8b8203d7d541.png?v=1776370450",
+            "name_5": "Cynthia R.",
+            "rating_5": 5,
+            "text_5": "i was popping advil like candy. 4-6 a day just to get through work. my stomach was a mess. by week 6 i was down to 1 advil. by week 10 some days i dont need any. this replaced a habit that was destroying me.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.png?v=1776370450"
+          }
+        },
+        "review_group_tdz3wF": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Brenda S.",
+            "rating_1": 5,
+            "text_1": "bought this for my husband because he was waking up at 3am every night from shoulder pain. 4 weeks in he slept through the night. i know because i did too. best purchase ive made in years.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w6_06e96ecb-72db-46f5-a723-15210b30ede2.png?v=1776370450",
+            "name_2": "Trevor S.",
+            "rating_2": 5,
+            "text_2": "gym guy. 44 years old. started getting joint inflammation that wouldnt quit. knees after squats, shoulders after pressing, even my elbows were angry. week 3 i noticed recovery was faster. by week 6 the chronic ache was mostly gone. easiest addition to my stack.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m13.png?v=1776370450",
+            "name_3": "Debra K.",
+            "rating_3": 5,
+            "text_3": "my outer hip pain was unbearable. couldnt lie on either side. 6 weeks in and i can lie on my side again. not perfectly comfortable but i can do it without wanting to cry. thats progress i didnt think was possible.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w14.png?v=1776370450",
+            "name_4": "Renee R.",
+            "rating_4": 5,
+            "text_4": "57, postmenopausal, both knees were so stiff every morning i would sit on the edge of the bed for 10 minutes just working up the courage to stand. tried everything. thousands of dollars. this is the only thing that actually reached the pain. by month 2 i was standing up and just walking. no warmup. no bracing. just walking.",
+            "image_url_4": "",
+            "name_5": "Curt A.",
+            "rating_5": 5,
+            "text_5": "i dont write reviews. ever. but this one earned it. frozen shoulder for 6 months. couldnt lift my arm. added this and the progress accelerated noticeably starting week 4. by week 10 i had most of my range back. thats all i have to say.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m7_ea7157a1-f119-48de-8841-7a304877cee5.png?v=1776370450"
+          }
+        },
+        "review_group_V8gcJa": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Marie B.",
+            "rating_1": 5,
+            "text_1": "58 years old and my joints woke me up every night. took about 5 weeks but the nighttime pain dropped dramatically. i actually sleep now.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b2.png?v=1776370450",
+            "name_2": "Penny B.",
+            "rating_2": 5,
+            "text_2": "my shoulder was frozen solid. getting dressed was a nightmare, my wife had to help. within a month the thawing accelerated. my PT kept saying she was surprised how fast things were moving. by month 3 i was reaching overhead. i get emotional thinking about it because i really thought i lost that arm.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b3.png?v=1776370450",
+            "name_3": "Hank D.",
+            "rating_3": 5,
+            "text_3": "55 years old. both knees from decades of basketball. by week 5 i was getting out of bed easier. by week 8 i played a half court game with my nephews for the first time in 3 years. something changed inside the joint and i can feel it.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.png?v=1776370450",
+            "name_4": "Martha T.",
+            "rating_4": 5,
+            "text_4": "everything hurt after menopause. elbows, wrists, knees, ankles. my gp said its normal aging. im 51. thats not old. 7 weeks in and the pain is probably 60% reduced. not gone but i feel human again.",
+            "image_url_4": "",
+            "name_5": "Vince B.",
+            "rating_5": 5,
+            "text_5": "tore my meniscus 10 years ago. knee was never the same. this is the first supplement that actually kept the flare-ups from happening. 3 months in and ive had zero bad days. not fewer bad days. zero. thats never happened.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.png?v=1776370450"
+          }
+        },
+        "review_group_Ab4xEx": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Bonnie W.",
+            "rating_1": 5,
+            "text_1": "ignored my daughters link three times. finally ordered because she wouldnt stop. 6 weeks later i called her and said you were right. my hip pain is genuinely better. moms should listen to their daughters more.",
+            "image_url_1": "",
+            "name_2": "Joyce P.",
+            "rating_2": 5,
+            "text_2": "my right shoulder froze 8 months ago. then my left started going too. the right shoulder started thawing faster than expected and the left one never fully froze. i genuinely believe this prevented the second one from getting as bad.",
+            "image_url_2": "",
+            "name_3": "Glen F.",
+            "rating_3": 5,
+            "text_3": "61. both shoulders stiff and painful. my doctor wanted to do cortisone in both shoulders. i wanted to try something else first. 8 weeks in my range improved enough that my doctor agreed to hold off on the shots. still improving at week 12.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m5_28e1614e-c265-42d9-b9bf-33fd207ebc80.png?v=1776370450",
+            "name_4": "Elaine D.",
+            "rating_4": 5,
+            "text_4": "menopause gave me joint pain i didnt even know was possible. tried turmeric. collagen. glucosamine. cutting sugar. nothing helped enough. this is the first thing that actually reduced the inflammation to where i could function normally. week 6 was when i felt the shift.",
+            "image_url_4": "",
+            "name_5": "Phil M.",
+            "rating_5": 5,
+            "text_5": "my wife begged me to try this for my shoulder. i resisted because i dont believe in supplements. she ordered it anyway. 5 weeks in my shoulder felt better. i still wont admit she was right to her face.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m12.png?v=1776370450"
+          }
+        },
+        "review_group_nr3dGW": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Connie L.",
+            "rating_1": 5,
+            "text_1": "the hip pain went from a constant 7 to maybe a 3. its not perfect but going from 7 to 3 gave me my life back.",
+            "image_url_1": "",
+            "name_2": "Dorothy V.",
+            "rating_2": 5,
+            "text_2": "I stopped taking it after 2 months because i felt fine. within 10 days everything came back. the stiffness, the swelling, the pain getting out of bed. reordered immediately. i will never stop taking this again. lesson learned.",
+            "image_url_2": "",
+            "name_3": "Valerie C.",
+            "rating_3": 5,
+            "text_3": "i couldnt open a water bottle. couldnt grip a pen. couldnt hold my grandsons hand without pain. by week 8 i held my grandsons hand on a walk and squeezed it. he squeezed back. that was worth more than i can explain here.",
+            "image_url_3": "",
+            "name_4": "Marilyn A.",
+            "rating_4": 5,
+            "text_4": "frozen shoulder club. mine lasted 14 months before i found this. by week 4 the pain at night reduced. by week 8 i could reach behind my back. im at 80% and 80% is a miracle compared to where i was.",
+            "image_url_4": "",
+            "name_5": "Shirley F.",
+            "rating_5": 5,
+            "text_5": "i tried SO many things. turmeric. glucosamine. boswellia. collagen. fish oil. literally everything. none of them did what this does. week 6 i understood the difference.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_QqgX4N": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Todd L.",
+            "rating_1": 5,
+            "text_1": "bad knees from running for 20 years. 10 weeks in and the daily ache is noticeably less. i started running again twice a week. my orthopedic said whatever youre doing keep doing it because the inflammation markers in my blood dropped.",
+            "image_url_1": "",
+            "name_2": "Cheryl N.",
+            "rating_2": 5,
+            "text_2": "both hips. both knees. menopause hit and my lower body just fell apart. i went from hiking on weekends to barely making it through a grocery store. 8 weeks later i did a short hike with my daughter. she cried. i cried. first time in 2 years.",
+            "image_url_2": "",
+            "name_3": "Jean M.",
+            "rating_3": 5,
+            "text_3": "my doctor said the shoulder will unfreeze on its own in 1-2 years. i said i cant wait 2 years i have a life to live. i am at about 90% range of motion at month 4. my doctor said some people just heal faster. i didnt tell him about the supplement.",
+            "image_url_3": "",
+            "name_4": "Rick H.",
+            "rating_4": 5,
+            "text_4": "construction worker. 52 years old. knees shoulders lower back — all inflamed all the time. by month 2 the baseline inflammation just dropped. the constant burning background pain is gone. thats the difference between functioning and suffering.",
+            "image_url_4": "",
+            "name_5": "Judith A.",
+            "rating_5": 5,
+            "text_5": "I am 61 and postmenopausal. my friend had been on this for 3 months and looked like a different person. she moved differently. 7 weeks in and i understand now. the inflammation just quiets down. thats the only way i can describe it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_6TJfcy": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Carolyn E.",
+            "rating_1": 5,
+            "text_1": "menopause took my flexibility. i used to do yoga 4 times a week. by week 6 i was back on the mat. by week 12 i was almost back to my normal practice. i lost a year of my life to that inflammation and im angry nobody told me sooner.",
+            "image_url_1": "",
+            "name_2": "Virginia R.",
+            "rating_2": 5,
+            "text_2": "i bought every joint supplement on amazon over 2 years. spent hundreds. this helped a lot. the difference is it goes somewhere the others physically cannot. i wish id found it first and saved myself 2 years.",
+            "image_url_2": "",
+            "name_3": "Joe P.",
+            "rating_3": 5,
+            "text_3": "my wife ordered this for me because she was tired of hearing me complain about my knees. week 5 i realized i hadnt complained in a while. she pointed that out too. she doesnt need to know she was right though.",
+            "image_url_3": "",
+            "name_4": "Ruth S.",
+            "rating_4": 5,
+            "text_4": "54 and my hands swelled up so bad i had to cut my wedding ring off. that was the lowest point. 8 weeks in the swelling is controlled. not wearing my ring yet but my fingers are close.",
+            "image_url_4": "",
+            "name_5": "Beverly H.",
+            "rating_5": 5,
+            "text_5": "i almost gave up at week 3 because nothing felt different. so glad i didnt. week 5 is when the shift happened. by week 8 i was up and moving within 15 minutes of waking up. if youre reading this and thinking about quitting early — dont.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_FFMpiX": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Paul D.",
+            "rating_1": 5,
+            "text_1": "herniated disc plus knee arthritis plus shoulder impingement. added this and the background inflammation dropped enough that i could cut the NSAIDs in half. my liver enzymes improved at my next blood test too. doctor was pleased but wouldnt credit the supplement. thats fine. i know.",
+            "image_url_1": "",
+            "name_2": "Janice H.",
+            "rating_2": 5,
+            "text_2": "i work as a hairdresser. standing all day, arms overhead for 8 hours. the shoulder pain from menopause was threatening my career. by week 6 i was making it through a full day without the burning. im 58 and i wasnt ready to retire. this kept me working.",
+            "image_url_2": "",
+            "name_3": "Evelyn W.",
+            "rating_3": 5,
+            "text_3": "finishing bag 2 now. the joint pain from menopause is about 70% better. hips dont burn at night. knees dont lock on the stairs. the improvement was gradual enough that i didnt notice until i realized i stopped reaching for the ibuprofen bottle.",
+            "image_url_3": "",
+            "name_4": "Brent T.",
+            "rating_4": 5,
+            "text_4": "i read the actual studies before ordering. astaxanthin at 12mg has peer reviewed clinical data for inflammation and joint function. results matched the literature. joint pain reduced measurably by week 6. the evidence base is solid and my knees agree.",
+            "image_url_4": "",
+            "name_5": "Norma J.",
+            "rating_5": 5,
+            "text_5": "this is my third bag. the last time i ran low i stretched it out to every other day and within a week my hips started aching again. every single day. no skipping.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_UkqjWA": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Rose M.",
+            "rating_1": 5,
+            "text_1": "menopause at 48. joint pain at 49. by 50 i felt like i was 70. week 6 was the turning point. the inflammation just started calming and it hasnt come back.",
+            "image_url_1": "",
+            "name_2": "Kayla S.",
+            "rating_2": 4,
+            "text_2": "genuinely noticing improvement in my knee and hip pain. giving 4 stars only because results took about 5 weeks to show up. if youre patient it delivers.",
+            "image_url_2": "",
+            "name_3": "Paige W.",
+            "rating_3": 4,
+            "text_3": "product works great for my joint inflammation. my shoulders feel significantly better. knocking one star because i wish they had a bigger size so i didnt have to reorder as often.",
+            "image_url_3": "",
+            "name_4": "Joanne T.",
+            "rating_4": 4,
+            "text_4": "joint pain improved noticeably, morning stiffness much shorter. taking off one star because the softgel is a bit large for me — i manage fine but worth knowing.",
+            "image_url_4": "",
+            "name_5": "Scott R.",
+            "rating_5": 4,
+            "text_5": "shoulder pain improved around week 5. not completely gone but significantly better. would give 5 but i think the price could be a bit lower for what you get.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_G9zbdE": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Teri H.",
+            "rating_1": 4,
+            "text_1": "bought this for my husband. month 2 he said his knees feel better and asked what changed. he reordered himself. giving 4 stars because it took a full 6 weeks to see results.",
+            "image_url_1": "",
+            "name_2": "Diane M.",
+            "rating_2": 4,
+            "text_2": "was skeptical a supplement could help with my hip tendinitis, but after two weeks i could tell a difference, and after four weeks i was almost pain free. only 4 stars because i wish there was a subscription option.",
+            "image_url_2": "",
+            "name_3": "Shari L.",
+            "rating_3": 4,
+            "text_3": "i was very surprised this helped my hip pain. wasnt able to sleep on my sides, very painful, but it actually worked. only thing holding back the 5th star is the price.",
+            "image_url_3": "",
+            "name_4": "Nadia T.",
+            "rating_4": 3,
+            "text_4": "only 3 weeks in so probably too early to judge. joint pain might be slightly better but nothing dramatic yet. giving it the full 8 weeks before deciding.",
+            "image_url_4": "",
+            "name_5": "Wendy F.",
+            "rating_5": 3,
+            "text_5": "mixed so far. shoulder seems a bit better but no major change yet. only 4 weeks in so i know thats probably early. sticking with it.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_iMdCKz": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Holly H.",
+            "rating_1": 3,
+            "text_1": "took about 12 days to arrive which is annoying when youre in pain and trying to start something. product itself seems fine once i got started.",
+            "image_url_1": "",
+            "name_2": "Vera P.",
+            "rating_2": 2,
+            "text_2": "delivery took about 10 days. not a deal breaker but worth knowing if timing matters to you.",
+            "image_url_2": "",
+            "name_3": "Beth T.",
+            "rating_3": 2,
+            "text_3": "softgel is bigger than expected. i manage but if you have trouble swallowing pills its worth knowing before you order.",
+            "image_url_3": "",
+            "name_4": "Julie S.",
+            "rating_4": 1,
+            "text_4": "expected something different from the photos. product is just softgels in a bag.",
+            "image_url_4": "",
+            "name_5": "Nikki P.",
+            "rating_5": 1,
+            "text_5": "sale ended before i could order. they wouldnt honor it. frustrating.",
+            "image_url_5": ""
+          }
+        },
+        "review_group_AFyBcx": {
+          "type": "review_group",
+          "disabled": true,
+          "settings": {
+            "name_1": "Carly M.",
+            "rating_1": 1,
+            "text_1": "shipping took longer than expected. annoying when youre in pain and trying to start consistently.",
+            "image_url_1": "",
+            "name_2": "Maya R.",
+            "rating_2": 1,
+            "text_2": "3 days in. nothing to report yet. leaving this to track my start date.",
+            "image_url_2": "",
+            "name_3": "",
+            "rating_3": 5,
+            "text_3": "",
+            "image_url_3": "",
+            "name_4": "",
+            "rating_4": 5,
+            "text_4": "",
+            "image_url_4": "",
+            "name_5": "",
+            "rating_5": 5,
+            "text_5": "",
+            "image_url_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_group_UPBFta",
+        "review_group_aepe6i",
+        "review_group_YDE7Jn",
+        "review_group_T8RAiD",
+        "review_group_QHcHcT",
+        "review_group_tdz3wF",
+        "review_group_V8gcJa",
+        "review_group_Ab4xEx",
+        "review_group_nr3dGW",
+        "review_group_QqgX4N",
+        "review_group_6TJfcy",
+        "review_group_FFMpiX",
+        "review_group_UkqjWA",
+        "review_group_G9zbdE",
+        "review_group_iMdCKz",
+        "review_group_AFyBcx"
+      ],
+      "name": "Reviews grid",
+      "settings": {
+        "average_rating": "4.84",
+        "total_reviews": "50,312",
+        "pct_5": 88,
+        "count_5": "44,863",
+        "pct_4": 7,
+        "count_4": "3,979",
+        "pct_3": 2,
+        "count_3": "758",
+        "pct_2": 1,
+        "count_2": "293",
+        "pct_1": 2,
+        "count_1": "419",
+        "columns_desktop": 3,
+        "reviews_per_page": 9,
+        "button_color": "#193b68"
+      }
+    },
+    "nvgd_faq_yXeVbA": {
+      "type": "nvgd-faq",
+      "blocks": {
+        "faq_item_mPtaqq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What Makes Lymphgem Different?",
+            "answer": "<p>Most lymphatic products are drops or teas you dose several times a day. Lymphgem puts study-backed Pycnogenol® and Centella, concentrated 20:1 for a 6,000mg herb equivalent, into one easy softgel a day.*</p>"
+          }
+        },
+        "faq_item_idPTLU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How Do I Take It?",
+            "answer": "<p>Take one softgel a day with water, ideally with a meal. Each pouch holds 30 softgels, a full 60-day supply.</p>"
+          }
+        },
+        "faq_item_8DqNVU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are There Any Side Effects?",
+            "answer": "<p>Lymphgem is made with botanicals that are generally well tolerated. If you are pregnant, nursing, taking medication (especially blood thinners) or have a medical condition, please talk to your healthcare provider before use.</p>"
+          }
+        },
+        "faq_item_EMrJUj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is It Safe for Daily Use?",
+            "answer": "<p>Yes, Lymphgem is designed for daily use. Consistency is what allows botanical support to build over time.*</p>"
+          }
+        },
+        "faq_item_ctyrmU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What’s Inside?",
+            "answer": "<p>Pycnogenol® (French maritime pine bark extract) and Centella asiatica as 20:1 concentrated extracts, in MCT coconut oil with a plant-based softgel shell.</p>"
+          }
+        },
+        "faq_item_zm9mVx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What If It Doesn’t Work for Me?",
+            "answer": "<p>We offer a full 60-day money-back guarantee. If you’re not satisfied for any reason, contact our team for a refund.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_mPtaqq",
+        "faq_item_idPTLU",
+        "faq_item_8DqNVU",
+        "faq_item_EMrJUj",
+        "faq_item_ctyrmU",
+        "faq_item_zm9mVx"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "layout": "stacked",
+        "split_header_width": 35,
+        "split_column_gap": 64,
+        "max_width": 700,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_horizontal": 16,
+        "header_alignment": "center",
+        "header_margin_bottom": 32,
+        "eyebrow": "Frequently Asked Questions",
+        "eyebrow_font_size": 14,
+        "eyebrow_font_weight": "400",
+        "heading": "Your Questions, Answered!",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "item_gap": 12,
+        "item_border_radius": 16,
+        "item_border_width": 1,
+        "item_padding_vertical": 18,
+        "item_padding_horizontal": 20,
+        "question_font_size": 16,
+        "question_font_weight": "400",
+        "answer_font_size": 15,
+        "icon_size": 22,
+        "accordion_mode": false,
+        "background_color": "#ffffff",
+        "eyebrow_color": "#777777",
+        "heading_color": "#193b68",
+        "item_background": "#f1f5f9",
+        "item_border_color": "#193b68",
+        "question_color": "#1a1a1a",
+        "answer_color": "#555555",
+        "icon_color": "#555555"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "trust_banner_wXM4E4",
+    "review_marquee_imQLUz",
+    "review_card_3xCdjj",
+    "proven_result_mdNYJ9",
+    "carousel_nPPaMB",
+    "before_after_biiP9L",
+    "four_column_badge_KkbnrX",
+    "animated_wave_divider_pbft83",
+    "information_card_igAJVJ",
+    "research_card_fqgxnW",
+    "running_marquee_k3qnar",
+    "journey_MWkCz7",
+    "comparison_table_hH8TLN",
+    "free_trial_rgzqta",
+    "nvgd_review_grid_VfVdcT",
+    "nvgd_faq_yXeVbA"
+  ]
+}

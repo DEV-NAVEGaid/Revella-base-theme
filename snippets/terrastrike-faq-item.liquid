@@ -1,0 +1,16 @@
+{% doc %}
+  Renders one native <details>/<summary> FAQ row. No JS is required for the accordion.
+
+  @param {object} block - A section block of type "faq"
+  @param {boolean} [open] - Render this row expanded
+  @example
+  {% render 'terrastrike-faq-item', block: block, open: forloop.first %}
+{% enddoc %}
+
+<details class="ts-faq__item" {% if open %}open{% endif %} {{ block.shopify_attributes }}>
+  <summary>
+    <span>{{ block.settings.question }}</span>
+    <span class="ts-faq__icon">{% render 'terrastrike-icon', name: 'chevron-right' %}</span>
+  </summary>
+  <div class="ts-faq__answer">{{ block.settings.answer }}</div>
+</details>

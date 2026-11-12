@@ -1,0 +1,578 @@
+{% comment %}
+  GNRL Sticky Add To Cart
+  Redesigned to match a stacked layout: title + rating row, full-width button.
+{% endcomment %}
+
+{%- if product -%}
+  <style>
+    #shopify-section-{{ section.id }} .gnrl-satc {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: {{ section.settings.z_index }};
+      background: {{ section.settings.bar_bg_color }};
+      box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.2);
+      transform: translateY(100%);
+      transition: transform 0.15s ease-in-out;
+      padding: 1rem 0 1.5rem;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc.is-visible {
+      transform: translateY(0);
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-inner {
+      max-width: {{ section.settings.bar_max_width }}px;
+      margin: 0 auto;
+      padding: 0 {{ section.settings.bar_padding_h }}px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* -- Image (desktop only) -- */
+    #shopify-section-{{ section.id }} .gnrl-satc-image-wrap {
+      flex-shrink: 0;
+      width: {{ section.settings.image_size }}px;
+      height: {{ section.settings.image_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: {{ section.settings.image_radius }}px;
+    }
+
+    /* -- Left: title + rating -- */
+    #shopify-section-{{ section.id }} .gnrl-satc-left {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-title {
+      margin: 0 0 2px;
+      font-size: {{ section.settings.title_font_size }}px;
+      font-weight: {{ section.settings.title_font_weight }};
+      color: {{ section.settings.title_color }};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* -- Rating row -- */
+    #shopify-section-{{ section.id }} .gnrl-satc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: {{ section.settings.rating_font_size }}px;
+      color: {{ section.settings.title_color }};
+      line-height: 1.3;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-stars {
+      display: inline-flex;
+      gap: 1px;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: {{ section.settings.star_color }};
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-rating-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-rating-label strong {
+      font-weight: 700;
+    }
+
+    /* -- Button -- */
+    #shopify-section-{{ section.id }} .gnrl-satc-button-wrap {
+      flex-shrink: 0;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-form {
+      display: flex;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: {{ section.settings.button_height }}px;
+      padding: 0 {{ section.settings.button_padding_h }}px;
+      border: none;
+      border-radius: {{ section.settings.button_radius }}px;
+      background: {{ section.settings.button_bg_color }};
+      color: {{ section.settings.button_text_color }};
+      font-size: {{ section.settings.button_font_size }}px;
+      font-weight: {{ section.settings.button_font_weight }};
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    a#shopify-section-{{ section.id }} .gnrl-satc-submit,
+    #shopify-section-{{ section.id }} a.gnrl-satc-submit {
+      text-decoration: none;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-submit[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #shopify-section-{{ section.id }} .gnrl-satc-submit .loading__spinner {
+      width: 16px;
+      height: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .product-form__error-message-wrapper {
+      display: none;
+    }
+
+    /* -- Mobile -- */
+    @media (max-width: 749px) {
+      #shopify-section-{{ section.id }} .gnrl-satc-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      #shopify-section-{{ section.id }} .gnrl-satc-image-wrap {
+        display: none;
+      }
+
+      #shopify-section-{{ section.id }} .gnrl-satc-title {
+        font-size: {{ section.settings.title_font_size_mobile }}px;
+      }
+
+      #shopify-section-{{ section.id }} .gnrl-satc-rating {
+        font-size: {{ section.settings.rating_font_size_mobile }}px;
+      }
+
+      #shopify-section-{{ section.id }} .gnrl-satc-button-wrap {
+        width: 100%;
+      }
+
+      #shopify-section-{{ section.id }} .gnrl-satc-submit {
+        width: 100%;
+      }
+    }
+
+    /* -- Desktop -- */
+    @media (min-width: 750px) {
+      #shopify-section-{{ section.id }} .gnrl-satc-rating {
+        display: {% if section.settings.show_rating_desktop %}flex{% else %}none{% endif %};
+      }
+    }
+  </style>
+
+  {%- liquid
+    assign satc_form_id = 'gnrl-satc-form-' | append: section.id
+    assign satc_variant = product.selected_or_first_available_variant
+  -%}
+
+  <div class="gnrl-satc" id="gnrl-satc-{{ section.id }}" data-reveal-offset="{{ section.settings.reveal_offset }}">
+    <div class="gnrl-satc-inner">
+
+      {%- if section.settings.show_image and product.featured_image -%}
+        <div class="gnrl-satc-image-wrap">
+          <img
+            class="gnrl-satc-image"
+            src="{{ product.featured_image | image_url: width: 160 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="80"
+            height="80"
+            loading="lazy"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="gnrl-satc-left">
+        {%- if section.settings.show_title -%}
+          <h4 class="gnrl-satc-title">{{ product.title }}</h4>
+        {%- endif -%}
+
+        {%- if section.settings.show_rating -%}
+          <div class="gnrl-satc-rating">
+            <span class="gnrl-satc-stars">
+              {%- for i in (1..5) -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+              {%- endfor -%}
+            </span>
+            <span class="gnrl-satc-rating-label">&nbsp;{{ section.settings.rating_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="gnrl-satc-button-wrap">
+        {%- if section.settings.button_link != blank -%}
+          <a href="{{ section.settings.button_link }}" class="gnrl-satc-submit">
+            <span>{{ section.settings.button_text }}</span>
+          </a>
+        {%- else -%}
+          <product-form class="gnrl-satc-form-wrap" data-section-id="{{ section.id }}">
+            <div class="product-form__error-message-wrapper" role="alert" hidden>
+              <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+              <span class="product-form__error-message"></span>
+            </div>
+
+            {%- form 'product', product, id: satc_form_id, class: 'gnrl-satc-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input
+                type="hidden"
+                name="id"
+                value="{{ satc_variant.id }}"
+                class="product-variant-id"
+                {% if satc_variant.available == false or satc_variant == null %}disabled{% endif %}
+              >
+
+              <button
+                type="submit"
+                name="add"
+                class="gnrl-satc-submit product-form__submit"
+                {% if satc_variant.available == false or satc_variant == null %}disabled{% endif %}
+              >
+                <span>
+                  {%- if satc_variant == null -%}
+                    {{ 'products.product.unavailable' | t }}
+                  {%- elsif satc_variant.available == false -%}
+                    {{ 'products.product.sold_out' | t }}
+                  {%- else -%}
+                    {{ section.settings.button_text }}
+                  {%- endif -%}
+                </span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            {%- endform -%}
+          </product-form>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var bar = document.getElementById('gnrl-satc-{{ section.id }}');
+      if (!bar) return;
+
+      function init() {
+        var mainBtn = document.querySelector('.product-form__submit:not(.gnrl-satc-submit)');
+        if (!mainBtn) {
+          var offset = parseInt(bar.getAttribute('data-reveal-offset'), 10) || 600;
+          window.addEventListener('scroll', function () {
+            bar.classList.toggle('is-visible', window.scrollY > offset);
+          }, { passive: true });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          var entry = entries[0];
+          var btnTop = entry.boundingClientRect.top;
+          /* Show only when button is above the viewport (scrolled past it) */
+          var scrolledPast = btnTop < 0;
+          bar.classList.toggle('is-visible', !entry.isIntersecting && scrolledPast);
+        }, { threshold: 0 });
+
+        observer.observe(mainBtn);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "GNRL Sticky Add To Cart",
+  "tag": "div",
+  "class": "shopify-section--gnrl-sticky-add-to-cart",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Add this section to a Product template. It uses the page's product, so it has no effect on non-product pages."
+    },
+    {
+      "type": "header",
+      "content": "Reveal Behavior"
+    },
+    {
+      "type": "range",
+      "id": "reveal_offset",
+      "label": "Reveal after scrolling (px)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "z_index",
+      "label": "Stacking order (z-index)",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Product Image (desktop only)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show product image (desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show product title",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title font size (desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Title font size (mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title / text color",
+      "default": "#2b2b2b"
+    },
+    {
+      "type": "header",
+      "content": "Rating / Social Proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show rating row",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating_desktop",
+      "label": "Show rating row on desktop too",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating label (supports HTML)",
+      "default": "Rated <strong>4.4 Excellent</strong> | Over <strong>100,000 Sold</strong>"
+    },
+    {
+      "type": "range",
+      "id": "rating_font_size",
+      "label": "Rating font size (desktop)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "rating_font_size_mobile",
+      "label": "Rating font size (mobile)",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#ffcc00"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button link (leave blank to add to cart)",
+      "info": "Use #section-id to scroll to a section, or a full URL."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button label",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "label": "Button height",
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "button_padding_h",
+      "label": "Button horizontal padding",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#933333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bar Style"
+    },
+    {
+      "type": "range",
+      "id": "bar_max_width",
+      "label": "Bar max width",
+      "min": 600,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_h",
+      "label": "Bar horizontal padding",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "bar_bg_color",
+      "label": "Bar background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GNRL Sticky Add To Cart"
+    }
+  ]
+}
+{% endschema %}

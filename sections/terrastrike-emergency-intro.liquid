@@ -1,0 +1,283 @@
+{%- comment -%}
+  Intro copy, the risk stat grid (block-driven) and the closing safety callout.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+<style>
+  #shopify-section-{{ section.id }} .ts-landing,
+  #shopify-section-{{ section.id }} .ts-landing * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+</style>
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.lead != blank -%}
+      <div class="ts-emergency__lead">{{ st.lead }}</div>
+    {%- endif -%}
+
+    {%- if st.body != blank -%}
+      <div class="ts-emergency__body">{{ st.body }}</div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ts-grid">
+        {%- for block in section.blocks -%}
+          {% render 'terrastrike-risk-item', block: block %}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if st.safety_message != blank -%}
+      <div class="ts-safety-message">{{ st.safety_message }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Emergency intro",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "Lead heading",
+      "default": "Two Emergencies. One Tool: Break The Glass, Cut the Belt. In Seconds."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Intro paragraph",
+      "default": "<p>Every year, thousands of Americans get trapped inside their own vehicles - doors jammed, windows locked, seatbelts pinned - with nothing on them to get out.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "safety_message",
+      "label": "Closing message",
+      "default": "<p>Car crashes, fires, and submersions keep catching drivers off guard.</p><p>When the doors jam, most drivers don't have anything that can break a window or cut a stuck seatbelt fast.</p>"
+    },
+
+    { "type": "header", "content": "Cards" },
+    {
+      "type": "select",
+      "id": "card_ratio",
+      "label": "Image shape",
+      "info": "Applies to every card image.",
+      "options": [
+        { "value": "auto", "label": "Original" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "card_image_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Image corner radius",
+      "info": "50% makes the image a circle — pair it with the Square shape.",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "card_image_width",
+      "min": 80,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "label": "Image width",
+      "default": 220
+    },
+    { "type": "color", "id": "risk_card_background", "label": "Card background", "info": "Leave empty for none." },
+    {
+      "type": "range",
+      "id": "risk_card_padding",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Title icon width",
+      "default": 18
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f0f8ff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "lead_color", "label": "Lead heading", "default": "#c0392b" },
+    { "type": "color", "id": "accent_color", "label": "Card icon", "default": "#c0392b" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "min": 1, "max": 6, "step": 1, "label": "Columns (desktop)", "default": 4 },
+    { "type": "range", "id": "columns_tablet", "min": 1, "max": 4, "step": 1, "label": "Columns (tablet)", "default": 2 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 60 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "risk",
+      "name": "Risk card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "alert", "label": "Alert" },
+            { "value": "info", "label": "Info" },
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "alert"
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Emergency intro",
+      "blocks": [
+        {
+          "type": "risk",
+          "settings": {
+            "title": "Vehicle Fires",
+            "body": "<p><strong>650+ fatalities</strong> per year. Post-crash fires turn seconds into smoke. Doors jam, windows die, and the exit disappears while you are still buckled in.</p>"
+          }
+        },
+        {
+          "type": "risk",
+          "settings": {
+            "title": "Vehicle Submersions",
+            "body": "<p><strong>400+ fatalities</strong> per year in submerged vehicles. Water pressure locks doors in seconds. The cabin fills in under two minutes.</p>"
+          }
+        },
+        {
+          "type": "risk",
+          "settings": {
+            "title": "Car Crashes",
+            "body": "<p><strong>6 million+</strong> crashes every year. It does not have to be huge. <strong>One twisted frame can jam the door</strong>. One dead battery can turn every window button into plastic.</p>"
+          }
+        },
+        {
+          "type": "risk",
+          "settings": {
+            "title": "Rollovers & Electric Door Failures",
+            "body": "<p><strong>33%</strong> of all occupant deaths come from rollovers. Modern electric door handles fail when the battery dies in storms.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

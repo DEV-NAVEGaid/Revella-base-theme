@@ -1,0 +1,41 @@
+{% doc %}
+  Renders one trust-strip item: an image (or a built-in icon when no image is set),
+  a title and a line of supporting text.
+
+  Sizing: the section sets a shared width as --ts-icon-size on .ts-landing, which
+  terrastrike.css reads. An item that opts into its own width writes that width
+  straight onto the <img>/<svg> as an inline style, so it wins outright rather than
+  relying on the variable reaching the element.
+
+  @param {object} block - A section block of type "item"
+  @example
+  {% render 'terrastrike-trio-item', block: block %}
+{% enddoc %}
+
+{%- liquid
+  assign bs = block.settings
+
+  assign image_style = ''
+  assign icon_style = ''
+  if bs.custom_size and bs.icon_size != blank
+    assign image_style = 'width:' | append: bs.icon_size | append: 'px;max-width:100%;height:auto'
+    assign icon_style = 'width:' | append: bs.icon_size | append: 'px;height:' | append: bs.icon_size | append: 'px'
+  endif
+-%}
+
+<div class="ts-trio__item ts-trio-item-{{ block.id }}" {{ block.shopify_attributes }}>
+  {%- if bs.image != blank -%}
+    {% render 'terrastrike-image', image: bs.image, alt: '', width: 400, lazy: true, style: image_style %}
+  {%- else -%}
+    {% render 'terrastrike-icon', name: bs.icon, style: icon_style %}
+  {%- endif -%}
+
+  <div>
+    {%- if bs.title != blank -%}
+      <div class="ts-trio__item-title">{{ bs.title }}</div>
+    {%- endif -%}
+    {%- if bs.text != blank -%}
+      <div class="ts-trio__item-text">{{ bs.text }}</div>
+    {%- endif -%}
+  </div>
+</div>

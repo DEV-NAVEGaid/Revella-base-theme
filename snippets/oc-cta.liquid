@@ -1,0 +1,25 @@
+{%- comment -%}
+  CTA button + guarantee line.
+  Params: label, link (blank => #product), variant ('' | 'dk' | 'gh'), guarantee, show_guarantee (false hides it), guarantee_icon (image), arrow_icon (image, replaces the default arrow), dark (guarantee on light bg), style (inline style on wrapper)
+{%- endcomment -%}
+{%- assign gtee_on = true -%}
+{%- if guarantee == blank or show_guarantee == false %}{% assign gtee_on = false %}{% endif -%}
+{%- if label != blank or gtee_on -%}
+  <div class="cta"{% if style != blank %} style="{{ style }}"{% endif %}>
+    {%- if label != blank -%}
+      <a class="btn{% if variant != blank %} {{ variant }}{% endif %}" href="{{ link | default: '#product' }}">
+        {{- label }} {% if arrow_icon != blank %}{{ arrow_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'ar ar-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'arrow' %}{% endif -%}
+      </a>
+    {%- endif -%}
+    {%- if gtee_on -%}
+      <div class="gtee{% if dark %} dk{% endif %}">
+        {%- if guarantee_icon != blank -%}
+          {{ guarantee_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'gtee-img', alt: '' }}
+        {%- else -%}
+          {% render 'oc-icon', icon: 'shield' %}
+        {%- endif -%}
+        <p>{{ guarantee }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

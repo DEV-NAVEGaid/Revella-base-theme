@@ -1,0 +1,114 @@
+{%- comment -%}
+  One row of a "Feature list" block: an icon (or a small image) plus rich text.
+
+  Private on purpose — it is only offered inside the Feature list parent, which
+  supplies the shared icon colour, sizes and spacing as inherited custom properties.
+  Overrides are written inline on the row so they beat the inherited values.
+{%- endcomment -%}
+
+{%- liquid
+  assign bs = block.settings
+
+  comment
+    A size of 0 means "inherit the list's value", so the variable simply isn't
+    written and the parent's inherited one stands.
+  endcomment
+  assign row_style = ''
+  if bs.icon_color != blank
+    assign row_style = row_style | append: '--tsl-item-icon-color:' | append: bs.icon_color | append: ';'
+  endif
+  if bs.icon_size > 0
+    assign row_style = row_style | append: '--tsl-icon-size:' | append: bs.icon_size | append: 'px;'
+  endif
+  if bs.text_size > 0
+    assign row_style = row_style | append: '--tsl-text-size:' | append: bs.text_size | append: 'px;'
+  endif
+-%}
+
+<li class="ts-list__item" {% if row_style != blank %}style="{{ row_style }}"{% endif %} {{ block.shopify_attributes }}>
+  {%- if bs.image != blank -%}
+    {% render 'terrastrike-image',
+      image: bs.image,
+      alt: '',
+      class: 'ts-list__media',
+      width: 200,
+      lazy: true,
+      placeholder: 'none'
+    %}
+  {%- else -%}
+    {% render 'terrastrike-icon', name: bs.icon, class: 'ts-list__icon' %}
+  {%- endif -%}
+
+  <div class="ts-list__text">{{ bs.text }}</div>
+</li>
+
+{% schema %}
+{
+  "name": "List row",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p><strong>Bold lead-in -</strong> then the supporting detail</p>"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        { "value": "check", "label": "Check" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "star", "label": "Star" },
+        { "value": "thumbs-up", "label": "Thumbs up" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "bolt", "label": "Bolt" },
+        { "value": "clock", "label": "Clock" },
+        { "value": "lock", "label": "Lock" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "alert", "label": "Alert" },
+        { "value": "info", "label": "Info" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "info": "Leave empty to use the list's icon color."
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 0,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon / image width",
+      "info": "0 uses the list's icon size.",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "info": "0 uses the list's text size.",
+      "default": 0
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image instead of icon",
+      "info": "Optional. Replaces the icon on this row, and uses the width above."
+    }
+  ],
+  "presets": [{ "name": "List row" }]
+}
+{% endschema %}

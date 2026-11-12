@@ -1,0 +1,205 @@
+{%- comment -%}
+  Fixed checkout bar pinned to the bottom of the viewport. It stays hidden at the
+  top of the page and slides up once the visitor scrolls past the threshold.
+
+  Because the bar is position: fixed it is lifted out of the page flow, so where
+  this section sits in the section order makes no visual difference.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'terrastrike-sticky-cta.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign st = section.settings
+  assign cta_product = st.featured_product | default: product
+  assign variant = cta_product.selected_or_first_available_variant
+
+  comment
+    The bar renders outside .ts-landing, so the button tokens that terrastrike.css
+    expects are written here instead of inherited.
+  endcomment
+  assign styles = '--tsc-bg:' | append: st.background_color | append: ';'
+  assign styles = styles | append: '--tsc-width:' | append: st.content_width | append: 'px;'
+  assign styles = styles | append: '--tsc-pad:' | append: st.bar_padding | append: 'px;'
+  assign styles = styles | append: '--tsc-image:' | append: st.image_size | append: 'px;'
+  assign styles = styles | append: '--ts-btn-bg:' | append: st.button_background | append: ';'
+  assign styles = styles | append: '--ts-btn-bg-hover:' | append: st.button_background_hover | append: ';'
+  assign styles = styles | append: '--ts-btn-text:' | append: st.button_text_color | append: ';'
+  assign styles = styles | append: '--ts-btn-radius:' | append: st.button_radius | append: 'px;'
+  if st.text_color != blank
+    assign styles = styles | append: '--tsc-text:' | append: st.text_color | append: ';'
+  endif
+
+  assign bar_class = 'ts-sticky-cta'
+  unless st.show_on_desktop
+    assign bar_class = bar_class | append: ' hide-desktop'
+  endunless
+  unless st.show_on_mobile
+    assign bar_class = bar_class | append: ' hide-mobile'
+  endunless
+
+  comment
+    Where the button goes: an explicit link wins, then the chosen action.
+  endcomment
+  assign button_url = st.button_link
+  if button_url == blank
+    case st.action
+      when 'checkout'
+        assign button_url = routes.cart_url | append: '?checkout'
+      when 'cart'
+        assign button_url = routes.cart_url
+      when 'product'
+        assign button_url = cta_product.url
+    endcase
+  endif
+-%}
+
+<terrastrike-sticky-cta
+  class="{{ bar_class }}"
+  style="{{ styles }}"
+  data-threshold="{{ st.scroll_threshold }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="ts-sticky-cta__inner">
+    {%- if st.show_image and cta_product.featured_image != blank -%}
+      {{
+        cta_product.featured_image
+        | image_url: width: 160
+        | image_tag: class: 'ts-sticky-cta__image', alt: '', loading: 'lazy', width: 160, height: 160
+      }}
+    {%- endif -%}
+
+    {%- if st.show_title or st.show_price -%}
+      <div class="ts-sticky-cta__info">
+        {%- if st.show_title -%}
+          <div class="ts-sticky-cta__title">{{ st.title | default: cta_product.title }}</div>
+        {%- endif -%}
+
+        {%- if st.show_price and variant != blank -%}
+          <div class="ts-sticky-cta__price">
+            {{ variant.price | money }}
+            {%- if variant.compare_at_price > variant.price -%}
+              <s>{{ variant.compare_at_price | money }}</s>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if button_url != blank -%}
+      <a href="{{ button_url }}" class="ts-btn ts-sticky-cta__btn">{{ st.button_text }}</a>
+
+    {%- elsif cta_product != blank -%}
+      {%- form 'product', cta_product, class: 'ts-sticky-cta__form' -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <button type="submit" class="ts-btn ts-sticky-cta__btn" {% if variant.available == false %}disabled{% endif %}>
+          {%- if variant.available -%}
+            {{ st.button_text }}
+          {%- else -%}
+            {{ st.sold_out_text }}
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+
+    {%- else -%}
+      <button type="button" class="ts-btn ts-sticky-cta__btn" disabled>{{ st.button_text }}</button>
+    {%- endif -%}
+  </div>
+</terrastrike-sticky-cta>
+
+{% schema %}
+{
+  "name": "TS: Sticky checkout bar",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Behavior" },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "label": "Show after scrolling",
+      "info": "The bar stays hidden until the page is scrolled this far, and hides again at the top.",
+      "default": 400
+    },
+    { "type": "checkbox", "id": "show_on_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_on_mobile", "label": "Show on mobile", "default": true },
+
+    { "type": "header", "content": "Button" },
+    { "type": "product", "id": "featured_product", "label": "Product", "info": "Leave empty on a product page to use that product." },
+    {
+      "type": "select",
+      "id": "action",
+      "label": "Button action",
+      "options": [
+        { "value": "add_to_cart", "label": "Add to cart" },
+        { "value": "checkout", "label": "Go straight to checkout" },
+        { "value": "cart", "label": "Go to cart" },
+        { "value": "product", "label": "Go to the product page" }
+      ],
+      "default": "add_to_cart"
+    },
+    { "type": "url", "id": "button_link", "label": "Custom link", "info": "Overrides the action above." },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "SAVE UP TO 55% 👉" },
+    { "type": "text", "id": "sold_out_text", "label": "Sold out text", "default": "Sold out" },
+
+    { "type": "header", "content": "Content" },
+    { "type": "checkbox", "id": "show_image", "label": "Show product image", "default": true },
+    { "type": "checkbox", "id": "show_title", "label": "Show title", "default": true },
+    { "type": "text", "id": "title", "label": "Title override", "info": "Defaults to the product title." },
+    { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Bar background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#e8733a" },
+    { "type": "color", "id": "button_background_hover", "label": "Button background (hover)", "default": "#d4622c" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#ffffff" },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Button corner radius",
+      "default": 8
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "bar_padding",
+      "min": 4,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Bar padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 32,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Product image size",
+      "default": 48
+    }
+  ],
+  "presets": [{ "name": "TS: Sticky checkout bar" }]
+}
+{% endschema %}

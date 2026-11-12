@@ -1,0 +1,911 @@
+/*
+  TerraStrike landing page styles.
+
+  Every value a merchant can change is a CSS custom property. Each section emits
+  its own `#shopify-section-<id> .ts-landing { --ts-*: ... }` block from
+  snippets/terrastrike-section-style.liquid, so the schema drives the look and
+  this file only holds structure + defaults.
+
+  Breakpoints match the theme: 989px (tablet) and 749px (mobile).
+*/
+#shopify-section-{{ section.id }} .ts-landing,
+  #shopify-section-{{ section.id }} .ts-landing * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
+.ts-landing {
+  /* Palette */
+  --ts-blue: rgb(26, 75, 140);
+  --ts-blue-light: rgb(240, 248, 255);
+  --ts-blue-pale: rgb(224, 240, 246);
+  --ts-orange: rgb(243, 156, 18);
+  --ts-orange-deep: rgb(230, 126, 34);
+  --ts-red: rgb(192, 57, 43);
+  --ts-teal: rgb(22, 160, 133);
+  --ts-slate: rgb(52, 73, 94);
+  --ts-ink: rgb(18, 18, 18);
+  --ts-cream: rgb(252, 248, 227);
+  --ts-cream-border: rgb(197, 199, 211);
+  --ts-card-bg: #ffffff;
+  --ts-muted: #666666;
+  --ts-hairline: #e2e2e2;
+
+  /* Per-section, overridden inline */
+  --ts-bg: transparent;
+  --ts-text: var(--ts-ink);
+  --ts-heading: inherit;
+  --ts-accent: var(--ts-orange);
+  --ts-pad-top: 48px;
+  --ts-pad-bottom: 48px;
+  --ts-pad-top-mobile: var(--ts-pad-top);
+  --ts-pad-bottom-mobile: var(--ts-pad-bottom);
+  --ts-content-width: 1200px;
+  --ts-gap: 24px;
+
+  /* The schema only ever sets the three -desktop/-tablet/-mobile values. --ts-cols
+     is resolved from them here and in the breakpoints below, all at the same
+     specificity, so the per-section inline block can't outrank the media queries. */
+  --ts-cols-desktop: 3;
+  --ts-cols-tablet: 2;
+  --ts-cols-mobile: 1;
+  --ts-cols: var(--ts-cols-desktop);
+  --ts-radius: 10px;
+  --ts-align: left;
+
+  /* Typography — fluid, so nothing has to be re-tuned per breakpoint.
+     The schema scales all of it at once via --ts-type-scale. */
+  --ts-font: inherit;
+  --ts-type-scale: 1;
+  --ts-size-xl: calc(clamp(1.5rem, 1.05rem + 1.9vw, 2.0625rem) * var(--ts-type-scale)); /* 24 -> 33px */
+  --ts-size-lg: calc(clamp(1.25rem, 1.05rem + 0.85vw, 1.5rem) * var(--ts-type-scale)); /* 20 -> 24px */
+  --ts-size-md: calc(clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem) * var(--ts-type-scale)); /* 18 -> 20px */
+  --ts-size-body: calc(clamp(1rem, 0.96rem + 0.16vw, 1.0625rem) * var(--ts-type-scale)); /* 16 -> 17px */
+  --ts-size-sm: calc(0.9375rem * var(--ts-type-scale));
+
+  font-family: var(--ts-font);
+  color: var(--ts-text);
+  background: var(--ts-bg);
+  line-height: 1.5;
+  padding-block: var(--ts-pad-top) var(--ts-pad-bottom);
+  text-align: var(--ts-align);
+}
+
+.ts-landing *,
+.ts-landing *::before,
+.ts-landing *::after {
+  box-sizing: border-box;
+}
+
+.ts-landing img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.ts-landing p { margin: 0; }
+.ts-landing ul,
+.ts-landing ol { margin: 0; padding: 0; }
+.ts-landing a { cursor: pointer; }
+.ts-landing :is(h1, h2, h3, h4) { color: var(--ts-heading); }
+
+.ts-container {
+  width: 100%;
+  max-width: var(--ts-content-width);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
+}
+
+/* Reusable grid: column counts come from the schema, so a merchant can
+   choose 2/3/4 up and 1/2 on mobile without touching CSS. */
+.ts-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--ts-cols), minmax(0, 1fr));
+  gap: var(--ts-gap);
+}
+
+.ts-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.ts-landing .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Placeholder shown when no image has been picked yet */
+.ts-placeholder {
+  width: 100%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.04);
+  fill: rgba(0, 0, 0, 0.25);
+  border-radius: var(--ts-radius);
+  display: block;
+}
+
+/* ---------- Buttons ---------- */
+
+.ts-btn {
+  display: inline-block;
+  background: var(--ts-btn-bg, var(--ts-orange));
+  color: var(--ts-btn-text, #fff);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(1rem, 0.9rem + 0.45vw, 1.125rem);
+  line-height: 1.2;
+  padding: 14px 28px;
+  border-radius: var(--ts-btn-radius, 8px);
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  max-width: 100%;
+  transition: background-color 0.2s ease;
+}
+.ts-btn:hover { background: var(--ts-btn-bg-hover, var(--ts-orange-deep)); }
+.ts-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+.ts-btn.is-full { display: block; width: 100%; }
+
+.ts-btn-row { text-align: center; margin: 16px 0; }
+.ts-btn-row form { display: block; margin: 0; }
+.ts-promo-banner__image { margin: 12px auto 0; }
+
+/* ---------- Type helpers ---------- */
+
+.ts-heading-xl { font-size: var(--ts-size-xl); font-weight: 700; line-height: 1.25; margin: 0 0 15px; }
+.ts-heading-lg { font-size: var(--ts-size-lg); font-weight: 700; line-height: 1.3; margin: 0 0 15px; }
+.ts-heading-md { font-size: var(--ts-size-lg); font-weight: 700; line-height: 1.35; margin: 0 0 12px; }
+.ts-body { font-size: var(--ts-size-body); line-height: 1.6; }
+/* The `.ts-landing` prefix is load-bearing: `*` adds no specificity, so a bare
+   `.ts-body > * + *` (0,1,0) would lose to `.ts-landing p` (0,1,1) above and the
+   paragraph gap would collapse. Same reason for every sibling rule below. */
+.ts-landing .ts-body > * + * { margin-top: 0.85em; }
+.ts-center { text-align: center; }
+.ts-subheading { font-size: var(--ts-size-body); line-height: 1.6; margin: 0 0 24px; }
+
+/* Rich text settings save each paragraph as its own <p>, and `.ts-landing p` above
+   resets every margin — so paragraph breaks typed in the editor would collapse.
+   Restore the gap between stacked children inside every rich text holder. */
+.ts-landing
+  :is(
+    .ts-subheading,
+    .ts-emergency__body,
+    .ts-safety-message,
+    .ts-risk-item__body,
+    .ts-warning-card__body,
+    .ts-feature-item__body,
+    .ts-testimonial-card__body,
+    .ts-review-card__body,
+    .ts-trio__item-text,
+    .ts-bullet-content,
+    .ts-note
+  )
+  > * + * {
+  margin-top: 0.75em;
+}
+
+/* ---------- Hero ---------- */
+
+.ts-hero__player {
+  max-width: var(--ts-media-width, 400px);
+  margin: 0 auto 20px;
+}
+.ts-hero__player :is(img, video, iframe) { width: 100%; height: auto; border-radius: var(--ts-radius); }
+.ts-hero__player iframe { aspect-ratio: 16 / 9; }
+.ts-hero__player .ts-placeholder { aspect-ratio: 4 / 5; }
+
+/* ---------- Gallery + purchase panel ---------- */
+
+.ts-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ts-gap);
+  align-items: start;
+}
+.ts-gallery-grid.media-left .ts-gallery-media { order: -1; }
+
+.ts-bullet-list { list-style: none; }
+.ts-bullet-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; text-align: left; }
+.ts-bullet-icon { font-size: 22px; margin-top: 2px; }
+.ts-bullet-icon.is-check { color: var(--ts-check-color, var(--ts-teal)); }
+.ts-bullet-icon.is-cross { color: var(--ts-cross-color, var(--ts-red)); }
+.ts-bullet-icon.is-star { color: var(--ts-accent); }
+.ts-bullet-icon.is-thumbs-up { color: var(--ts-accent); }
+.ts-bullet-content { font-size: var(--ts-size-body); line-height: 1.5; }
+
+.ts-note { margin-top: 10px; text-align: center; font-style: italic; font-size: 0.875rem; color: var(--ts-note-color, var(--ts-blue)); }
+
+.ts-trust-strip { margin: 15px auto 0; }
+.ts-trust-strip img { margin-inline: auto; }
+
+.ts-guarantee-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ts-card-bg);
+  color: var(--ts-ink);
+  border-radius: var(--ts-radius);
+  padding: 12px;
+  margin-top: 15px;
+}
+.ts-guarantee-inline img { width: 48px; flex-shrink: 0; }
+.ts-guarantee-inline__title { font-size: 1.125rem; font-weight: 700; }
+.ts-guarantee-inline__sub { font-size: 0.9375rem; }
+
+/* ---------- Product slider ---------- */
+
+.ts-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ts-radius);
+  background: var(--ts-card-bg);
+  aspect-ratio: var(--ts-slider-ratio, 1 / 1);
+}
+.ts-slider__track { display: flex; height: 100%; transition: transform 0.35s ease; }
+.ts-slider__slide { flex: 0 0 100%; height: 100%; }
+.ts-slider__slide img { width: 100%; height: 100%; object-fit: var(--ts-media-fit, contain); }
+.ts-slider__slide .ts-placeholder { width: 100%; height: 100%; }
+.ts-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ts-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.ts-slider__arrow.prev { left: 12px; }
+.ts-slider__arrow.next { right: 12px; }
+.ts-slider__arrow:focus-visible { outline: 2px solid var(--ts-blue); outline-offset: 2px; }
+.ts-slider[hidden] { display: none; }
+
+.ts-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+.ts-thumb {
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.6;
+  cursor: pointer;
+  background: var(--ts-card-bg);
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+.ts-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ts-thumb.is-active { opacity: 1; border-color: var(--ts-blue); }
+.ts-thumb:focus-visible { outline: 2px solid var(--ts-blue); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-slider__track { transition: none; }
+}
+
+/* ---------- Trust trio ---------- */
+
+.ts-trio__heading { text-align: center; font-size: var(--ts-size-md); font-weight: 700; margin: 0 0 24px; }
+.ts-trio__item { display: flex; align-items: flex-start; gap: 12px; text-align: left; }
+.ts-trio__item img,
+.ts-trio__item .ts-icon { width: var(--ts-icon-size, 60px); height: auto; flex-shrink: 0; }
+.ts-trio__item .ts-icon { font-size: var(--ts-icon-size, 60px); height: var(--ts-icon-size, 60px); color: var(--ts-accent); }
+.ts-trio__item-title { font-size: var(--ts-size-body); font-weight: 700; margin: 0 0 4px; }
+.ts-trio__item-text { font-size: var(--ts-size-sm); }
+
+/* ---------- Emergency intro ---------- */
+
+.ts-emergency__lead {
+  font-size: var(--ts-size-xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ts-lead-color, var(--ts-red));
+  text-align: center;
+  margin-bottom: 20px;
+}
+.ts-emergency__body {
+  font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.ts-risk-item {
+  text-align: center;
+  background: var(--ts-risk-bg, transparent);
+  border-radius: var(--ts-radius);
+  padding: var(--ts-risk-padding, 0);
+}
+.ts-risk-item img,
+.ts-risk-item .ts-placeholder {
+  width: 100%;
+  max-width: var(--ts-risk-image-width, 220px);
+  margin: 0 auto 10px;
+  /* A percentage radius stays a true circle at any rendered width; pair 50% with
+     the square image shape. */
+  border-radius: var(--ts-card-image-radius, var(--ts-radius));
+  aspect-ratio: var(--ts-card-ratio, auto);
+  object-fit: cover;
+}
+.ts-risk-item__title { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: var(--ts-size-body); margin-bottom: 8px; }
+.ts-risk-item__title .ts-icon {
+  color: var(--ts-accent);
+  width: var(--ts-icon-size, 1em);
+  height: var(--ts-icon-size, 1em);
+}
+.ts-risk-item__body { font-size: var(--ts-size-sm); line-height: 1.5; }
+
+.ts-safety-message { text-align: center; font-size: 1.125rem; line-height: 1.5; margin-top: 24px; }
+
+/* ---------- Image + copy panel ---------- */
+
+.ts-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ts-gap);
+  align-items: center;
+}
+.ts-split.media-left .ts-split__media { order: -1; }
+.ts-split__media img,
+.ts-split__media .ts-placeholder { border-radius: var(--ts-radius); width: 100%; }
+.ts-split + .ts-split { margin-top: calc(var(--ts-gap) * 1.5); }
+
+/* ---------- Warnings ("glove box") ---------- */
+
+.ts-glovebox__heading { font-size: var(--ts-size-xl); font-weight: 700; text-align: center; color: var(--ts-heading); margin-bottom: 15px; }
+.ts-glovebox__sub { font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem); text-align: center; margin-bottom: 40px; font-weight: 500; }
+.ts-warning-grid { justify-items: center; }
+.ts-warning-card {
+  width: 100%;
+  max-width: 320px;
+  border: var(--ts-card-border-width, 5px) var(--ts-card-border-style, dashed) var(--ts-card-border-color, var(--ts-red));
+  border-radius: var(--ts-radius);
+  padding: 20px 12px;
+  background: var(--ts-card-bg);
+  color: var(--ts-ink);
+  text-align: center;
+}
+.ts-warning-card__title { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--ts-cross-color, var(--ts-red)); font-size: 1.125rem; margin-bottom: 10px; }
+.ts-warning-card__body { font-size: 1rem; line-height: 1.5; }
+.ts-glovebox__solution { margin: 35px auto 0; text-align: left; max-width: 700px; }
+
+/* ---------- Solution panels ---------- */
+
+.ts-eyebrow { font-style: italic; font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem); margin-bottom: 10px; }
+
+/* ---------- Reviews (Amazon-style cards) ---------- */
+
+/* The reviews sit inside one shared panel and read as a stacked list, so the
+   individual reviews carry no border or background of their own. */
+.ts-reviews-panel {
+  background: var(--ts-card-bg);
+  color: var(--ts-ink);
+  border-radius: var(--ts-radius);
+  padding: var(--ts-panel-padding, 32px);
+}
+.ts-review-card {
+  color: var(--ts-ink);
+  text-align: left;
+}
+.ts-reviews-panel .ts-grid > .ts-review-card + .ts-review-card,
+.ts-reviews-panel > .ts-review-card + .ts-review-card {
+  border-top: var(--ts-review-divider-width, 0) solid var(--ts-review-divider-color, var(--ts-hairline));
+  padding-top: var(--ts-review-divider-width, 0);
+}
+.ts-review-card__head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.ts-review-card__head img {
+  width: var(--ts-avatar-size, 48px);
+  height: var(--ts-avatar-size, 48px);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+/* Stars sit on the same line as the headline, wrapping only if the line is tight. */
+.ts-review-card__rating { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.ts-review-card__stars { color: var(--ts-star-color, var(--ts-orange)); display: inline-flex; gap: 2px; flex-shrink: 0; }
+.ts-review-card__stars .ts-icon { width: 1.15em; height: 1.15em; }
+.ts-review-card__headline { font-weight: 700; }
+.ts-review-card__meta { font-size: 0.8125rem; color: var(--ts-muted); margin-bottom: 4px; }
+.ts-review-card__verified {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--ts-verified-color, var(--ts-orange-deep));
+  margin-bottom: 10px;
+}
+.ts-review-card__body { font-size: var(--ts-size-sm); line-height: 1.6; margin-bottom: 10px; }
+.ts-review-card__helpful { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--ts-muted); }
+
+/* ---------- Comparison table ---------- */
+
+.ts-comparison__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ts-comparison table {
+  width: 100%;
+  /* `separate` (not `collapse`) so the featured column can carry a border radius */
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  min-width: var(--ts-table-min-width, 640px);
+}
+.ts-comparison :is(th, td) { padding: 14px 10px; text-align: center; vertical-align: middle; font-size: var(--ts-table-font-size, 15px); }
+.ts-comparison thead th {
+  font-size: calc(var(--ts-table-font-size, 15px) * 0.933);
+  font-weight: 700;
+  color: var(--ts-table-head-text, inherit);
+  vertical-align: bottom;
+  padding-bottom: 16px;
+}
+.ts-comparison thead th:not(.is-featured) { border-bottom: 1px solid var(--ts-table-divider, #d9dee5); }
+.ts-comparison tbody th { text-align: left; font-weight: 400; padding-left: 0; }
+/* The reference design alternates emphasis down the label column. */
+.ts-comparison tbody tr:nth-child(odd) th { font-weight: 700; }
+
+.ts-comparison .is-yes { color: var(--ts-check-color, var(--ts-teal)); }
+.ts-comparison .is-no { color: var(--ts-cross-color, var(--ts-red)); }
+.ts-comparison :is(.is-yes, .is-no) .ts-icon { width: 1.6rem; height: 1.6rem; }
+.ts-comparison .is-na { color: var(--ts-muted); font-size: calc(var(--ts-table-font-size, 15px) * 0.933); }
+
+/* The featured column reads as one rounded capsule running the table's height:
+   side borders on every cell, with the caps rounded on the first and last row. */
+.ts-comparison :is(th, td).is-featured {
+  background: var(--ts-table-featured-bg, #eaf3fc);
+  border-left: var(--ts-featured-border-width, 2px) solid var(--ts-table-featured-border, #1f3b5c);
+  border-right: var(--ts-featured-border-width, 2px) solid var(--ts-table-featured-border, #1f3b5c);
+}
+.ts-comparison thead th.is-featured {
+  border-top: var(--ts-featured-border-width, 2px) solid var(--ts-table-featured-border, #1f3b5c);
+  border-top-left-radius: var(--ts-featured-radius, 28px);
+  border-top-right-radius: var(--ts-featured-radius, 28px);
+  padding-top: 16px;
+}
+.ts-comparison tbody tr:last-child :is(th, td).is-featured {
+  border-bottom: var(--ts-featured-border-width, 2px) solid var(--ts-table-featured-border, #1f3b5c);
+  border-bottom-left-radius: var(--ts-featured-radius, 28px);
+  border-bottom-right-radius: var(--ts-featured-radius, 28px);
+}
+.ts-comparison__featured-image {
+  width: var(--ts-featured-image-width, 56px);
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+.ts-comparison__scroll:focus-visible { outline: 2px solid var(--ts-accent); outline-offset: 2px; }
+.ts-comparison__hint { font-size: 0.8125rem; color: var(--ts-muted); text-align: center; margin-top: 8px; }
+
+/* ---------- Video ---------- */
+
+/* `aspect-ratio` (not the classic percentage `padding-bottom` trick) sizes this
+   box: that property is resolved against the element's own width, so shrinking
+   --ts-video-width recomputes the height too instead of leaving it pinned to
+   the un-shrunk parent's width. */
+.ts-video__frame {
+  position: relative;
+  width: var(--ts-video-width, 100%);
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: var(--ts-radius, 0);
+  background: #000000;
+}
+.ts-video__frame :is(video, iframe) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+}
+.ts-video__frame .placeholder-svg { width: 100%; height: 100%; }
+
+/* ---------- Offer panel ---------- */
+
+/* Bordered panel holding a media column and the offer copy side by side. */
+.ts-offer__panel {
+  background: var(--ts-offer-panel-bg, transparent);
+  border: var(--ts-offer-border-width, 0) var(--ts-offer-border-style, dashed)
+    var(--ts-offer-border-color, currentColor);
+  border-radius: var(--ts-offer-radius, 16px);
+  padding: var(--ts-offer-padding, 40px);
+}
+.ts-offer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ts-gap);
+  align-items: center;
+}
+.ts-offer__grid.media-right .ts-offer__media { order: 1; }
+.ts-offer__media img,
+.ts-offer__media .ts-placeholder {
+  width: 100%;
+  max-width: var(--ts-offer-image-width, 520px);
+  margin: 0 auto;
+  border-radius: var(--ts-radius);
+  display: block;
+}
+.ts-offer__content { text-align: center; }
+.ts-offer__eyebrow { font-size: var(--ts-size-xl); font-weight: 700; color: var(--ts-accent); margin-bottom: 10px; }
+
+.ts-offer__payments { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0; }
+.ts-offer__payments svg { height: var(--ts-payment-icon-height, 32px); width: auto; display: block; }
+
+.ts-shipping-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--ts-cream-border);
+  border-radius: var(--ts-radius);
+  background: var(--ts-cream);
+  color: var(--ts-ink);
+  padding: 10px 12px;
+  margin: 15px 0;
+  text-align: center;
+}
+.ts-shipping-badge img { width: 40px; height: auto; flex-shrink: 0; }
+.ts-shipping-badge strong { color: var(--ts-red); font-size: 1rem; }
+
+/* ---------- Feature grid ---------- */
+
+.ts-feature-item { text-align: center; }
+.ts-feature-item img,
+.ts-feature-item .ts-placeholder { width: 100%; max-width: 220px; margin: 0 auto 12px; border-radius: var(--ts-radius); }
+.ts-feature-item__title { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; }
+.ts-feature-item__body { font-size: var(--ts-size-sm); line-height: 1.5; }
+
+/* ---------- 120-day guarantee ---------- */
+
+.ts-guarantee-120__grid {
+  display: grid;
+  grid-template-columns: minmax(0, var(--ts-guarantee-media-col, 46%)) minmax(0, 1fr);
+  gap: var(--ts-gap);
+  align-items: start;
+  max-width: var(--ts-guarantee-width, 1100px);
+  margin-inline: auto;
+}
+.ts-guarantee-120__grid.media-right .ts-guarantee-120__media { order: 1; }
+/* Badge, title and intro copy stack together in the media column. */
+.ts-guarantee-120__media { text-align: center; }
+.ts-guarantee-120__media img,
+.ts-guarantee-120__media .ts-placeholder {
+  width: 100%;
+  max-width: var(--ts-badge-width, 420px);
+  height: auto;
+  margin: 0 auto 20px;
+}
+.ts-guarantee-120__title {
+  font-size: var(--ts-g-title-size, var(--ts-size-xl));
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  text-align: center;
+}
+.ts-guarantee-120__media .ts-body { text-align: left; font-size: var(--ts-g-body-size, var(--ts-size-body)); }
+.ts-guarantee-120__checklist { margin-top: 0; font-size: var(--ts-g-check-size, var(--ts-size-body)); }
+.ts-guarantee-120__intro { font-size: var(--ts-g-intro-size, var(--ts-size-body)); }
+.ts-guarantee-120__outro { font-size: var(--ts-g-outro-size, var(--ts-size-body)); }
+/* The closing line's emphasis is the one accent in this block. */
+.ts-guarantee-120__outro strong { color: var(--ts-highlight, var(--ts-orange)); }
+.ts-landing .ts-guarantee-120__checklist > * + * { margin-top: var(--ts-check-gap, 18px); }
+
+/* ---------- FAQ ---------- */
+
+.ts-faq__list {
+  max-width: var(--ts-faq-width, 800px);
+  margin-inline: auto;
+  text-align: left;
+  display: grid;
+  gap: var(--ts-faq-gap, 12px);
+}
+.ts-faq__item {
+  border-bottom: var(--ts-faq-divider-width, 0) solid var(--ts-faq-divider, #ddd);
+}
+/* The fill sits on the question row only — the answer opens beneath it on the
+   plain section background. */
+.ts-faq__item summary {
+  background: var(--ts-faq-bg, transparent);
+  border-radius: var(--ts-faq-radius, 8px);
+  list-style: none;
+  cursor: pointer;
+  padding: var(--ts-faq-pad-y, 16px) var(--ts-faq-pad-x, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+  font-size: var(--ts-size-body);
+}
+.ts-faq__item summary::-webkit-details-marker { display: none; }
+.ts-faq__item summary:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+/* The chevron points down when closed and flips up when open. */
+.ts-faq__icon { transition: transform 0.2s ease; flex-shrink: 0; transform: rotate(90deg); }
+.ts-faq__item[open] .ts-faq__icon { transform: rotate(-90deg); }
+.ts-faq__answer {
+  padding: var(--ts-faq-pad-y, 16px) var(--ts-faq-pad-x, 20px) 0;
+  font-size: var(--ts-size-sm);
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-faq__icon { transition: none; }
+}
+
+/* ---------- Testimonial grid ---------- */
+
+.ts-testimonial-card {
+  background: var(--ts-card-bg);
+  color: var(--ts-ink);
+  border-radius: var(--ts-radius);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  text-align: left;
+}
+/* Photo leads the card at full width, then name, stars and the quote. */
+.ts-testimonial-card__image,
+.ts-testimonial-card .ts-placeholder {
+  width: 100%;
+  aspect-ratio: var(--ts-card-ratio, 1 / 1);
+  object-fit: cover;
+  border-radius: var(--ts-tcard-image-radius, 12px);
+  margin-bottom: 14px;
+  display: block;
+}
+.ts-testimonial-card__name { display: block; font-weight: 700; margin-bottom: 8px; }
+.ts-testimonial-card__stars {
+  color: var(--ts-star-color, var(--ts-orange));
+  margin-bottom: 10px;
+  display: flex;
+  gap: 2px;
+}
+.ts-testimonial-card__stars .ts-icon { width: 1.15em; height: 1.15em; }
+.ts-testimonial-card__body { font-size: var(--ts-size-sm); line-height: 1.6; }
+
+/* ---------- Final CTA ---------- */
+
+/* The whole section sits inside one bordered panel; the two choice columns are
+   plain, so the dashed frame is the only container. */
+.ts-final-cta__panel {
+  background: var(--ts-cta-panel-bg, transparent);
+  border: var(--ts-cta-border-width, 0) var(--ts-cta-border-style, dashed)
+    var(--ts-cta-border-color, currentColor);
+  border-radius: var(--ts-cta-radius, 16px);
+  padding: var(--ts-cta-padding, 40px);
+}
+.ts-final-cta__heading {
+  text-align: center;
+  font-size: var(--ts-size-xl);
+  font-weight: 700;
+  color: var(--ts-heading);
+  margin: 0 0 12px;
+}
+.ts-final-cta__sub { text-align: center; font-size: var(--ts-size-md); font-weight: 700; margin: 0 0 28px; }
+.ts-final-cta__intro { text-align: center; font-size: var(--ts-size-lg); font-weight: 700; margin-bottom: 24px; }
+.ts-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ts-gap); }
+.ts-choice-panel { background: transparent; color: inherit; }
+.ts-choice-panel > img,
+.ts-choice-panel > .ts-placeholder {
+  border-radius: var(--ts-radius);
+  margin: 0 auto 16px;
+  width: 100%;
+  max-width: var(--ts-choice-image-width, 300px);
+}
+.ts-choice-panel__heading { text-align: center; font-size: var(--ts-size-md); font-weight: 700; margin-bottom: 18px; }
+.ts-final-cta__link { display: block; text-align: center; margin-top: 24px; color: inherit; font-size: 1.125rem; font-weight: 700; text-decoration: underline; }
+
+/* ---------- Feature list block ----------
+   Lives here rather than in the block's own {% stylesheet %} because this block is
+   used outside .ts-landing (the product detail column), and this file is loaded by
+   the block itself. Selectors are deliberately standalone. */
+
+.ts-list {
+  width: 100%;
+  color: var(--tsl-text-color, inherit);
+  background: var(--tsl-bg, transparent);
+  border-radius: var(--tsl-radius, 0);
+  padding: var(--tsl-padding, 0);
+  box-sizing: border-box;
+}
+.ts-list *,
+.ts-list *::before,
+.ts-list *::after { box-sizing: border-box; }
+
+.ts-list__heading { font-weight: 700; font-size: calc(var(--tsl-text-size, 17px) * 1.1); margin: 0 0 12px; }
+.ts-list__items { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--tsl-row-gap, 14px); }
+.ts-list__item { display: flex; align-items: flex-start; gap: var(--tsl-icon-gap, 12px); text-align: left; }
+
+/* Scoped to .ts-list so these beat the generic .ts-icon rule above. */
+.ts-list .ts-list__icon,
+.ts-list .ts-list__media {
+  width: var(--tsl-icon-size, 22px);
+  height: var(--tsl-icon-size, 22px);
+  flex-shrink: 0;
+  display: block;
+  /* Centre the icon against the first line of text at any size combination. */
+  margin-top: max(0px, calc((var(--tsl-text-size, 17px) * 1.5 - var(--tsl-icon-size, 22px)) / 2));
+}
+.ts-list .ts-list__icon {
+  color: var(--tsl-item-icon-color, var(--tsl-icon-color, rgb(22, 160, 133)));
+  fill: currentColor;
+}
+.ts-list .ts-list__media { height: auto; object-fit: contain; border-radius: 4px; }
+
+.ts-list__text { font-size: var(--tsl-text-size, 17px); line-height: 1.5; min-width: 0; }
+.ts-list__text > * { margin: 0; }
+.ts-list__text > * + * { margin-top: 0.5em; }
+
+@media screen and (max-width: 749px) {
+  .ts-list__items { gap: min(var(--tsl-row-gap, 14px), 12px); }
+}
+
+/* ---------- Sticky checkout bar ----------
+   Fixed to the bottom of the viewport and revealed by terrastrike-sticky-cta.js
+   once the page is scrolled. It sits outside .ts-landing, so the section writes
+   the button tokens it needs inline. */
+
+.ts-sticky-cta {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--tsc-z, 50);
+  display: block;
+  background: var(--tsc-bg, #ffffff);
+  color: var(--tsc-text, inherit);
+  box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.12);
+  /* Off-screen and inert until .is-visible is added. */
+  transform: translateY(110%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s;
+  /* Clears the iOS home indicator. */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.ts-sticky-cta.is-visible { transform: none; opacity: 1; visibility: visible; }
+
+.ts-sticky-cta__inner {
+  max-width: var(--tsc-width, 1200px);
+  margin-inline: auto;
+  padding: var(--tsc-pad, 12px) clamp(12px, 4vw, 24px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ts-sticky-cta__image {
+  width: var(--tsc-image, 48px);
+  height: var(--tsc-image, 48px);
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: block;
+}
+.ts-sticky-cta__info { min-width: 0; flex: 1 1 auto; }
+.ts-sticky-cta__title {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ts-sticky-cta__price { font-size: 0.875rem; }
+.ts-sticky-cta__price s { opacity: 0.6; margin-left: 6px; }
+.ts-sticky-cta__form { margin: 0; flex-shrink: 0; }
+.ts-sticky-cta__btn { flex-shrink: 0; padding: 12px 24px; }
+
+@media screen and (min-width: 750px) {
+  .ts-sticky-cta.hide-desktop { display: none; }
+}
+@media screen and (max-width: 749px) {
+  .ts-sticky-cta.hide-mobile { display: none; }
+  .ts-sticky-cta__inner { gap: 10px; padding: 10px 12px; }
+  /* The button takes the leftover width rather than the product copy. */
+  .ts-sticky-cta__form,
+  .ts-sticky-cta__btn { flex: 1 1 auto; }
+  .ts-sticky-cta__form .ts-sticky-cta__btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-sticky-cta { transform: none; transition: opacity 0.2s ease, visibility 0.2s; }
+}
+
+/* ---------- Footer / disclaimer ---------- */
+
+.ts-footer-body { font-size: 0.8125rem; line-height: 1.7; text-align: left; }
+.ts-landing .ts-footer-body > * + * { margin-top: 16px; }
+.ts-footer-body a { color: inherit; }
+.ts-footer__policy-links a { margin-right: 4px; display: inline-block; }
+
+/* ================= Tablet ================= */
+
+@media screen and (max-width: 989px) {
+  .ts-landing { --ts-cols: var(--ts-cols-tablet); }
+
+  .ts-guarantee-120__grid {
+    grid-template-columns: minmax(0, min(var(--ts-badge-width, 180px), 140px)) minmax(0, 1fr);
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media screen and (max-width: 749px) {
+  .ts-landing {
+    --ts-cols: var(--ts-cols-mobile);
+    padding-block: var(--ts-pad-top-mobile) var(--ts-pad-bottom-mobile);
+  }
+
+  .ts-gallery-grid,
+  .ts-split,
+  .ts-choice-grid,
+  .ts-offer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ts-offer__grid.media-right .ts-offer__media { order: 0; }
+
+  /* Per-part sizes are absolute px, so ease them down on small screens. */
+  .ts-guarantee-120__title { font-size: calc(var(--ts-g-title-size, 2rem) * 0.82); }
+
+  /* Cap the merchant's gap rather than overriding --ts-gap, which the ID-scoped
+     per-section style block would win against. */
+  .ts-grid,
+  .ts-gallery-grid,
+  .ts-split,
+  .ts-choice-grid,
+  .ts-guarantee-120__grid {
+    gap: min(var(--ts-gap), 20px);
+  }
+
+  /* On mobile the media always leads, regardless of the desktop order setting */
+  .ts-gallery-grid.media-left .ts-gallery-media,
+  .ts-split.media-left .ts-split__media { order: 0; }
+
+  /* One full-width column. No `justify-items: center` — that shrink-wraps the
+     column to its content and squeezes the copy into a narrow ribbon. Centre the
+     badge with auto margins instead and let the text run the full width. */
+  .ts-guarantee-120__grid { grid-template-columns: minmax(0, 1fr); text-align: center; }
+  .ts-guarantee-120__grid.media-right .ts-guarantee-120__media { order: 0; }
+  .ts-guarantee-120__media { max-width: none; }
+  .ts-guarantee-120__media img,
+  .ts-guarantee-120__media .ts-placeholder { max-width: min(var(--ts-badge-width, 420px), 100%); }
+  .ts-guarantee-120__media .ts-body,
+  .ts-guarantee-120__checklist { text-align: left; }
+
+  .ts-trio__item { flex-direction: column; align-items: center; text-align: center; }
+
+  .ts-warning-card { max-width: none; }
+
+  .ts-glovebox__sub { margin-bottom: 28px; }
+
+  .ts-btn { width: 100%; padding-inline: 16px; }
+
+  /* The table fits the screen instead of scrolling: the column headings turn on
+     their side, which is what buys back the horizontal room. */
+  .ts-comparison table { min-width: 0; }
+  .ts-comparison :is(th, td) { padding: 10px 3px; font-size: calc(var(--ts-table-font-size, 15px) * 0.867); }
+  .ts-comparison thead th { padding-bottom: 12px; }
+  .ts-comparison thead th:not(:first-child) .ts-comparison__label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .ts-comparison tbody th { font-size: calc(var(--ts-table-font-size, 15px) * 0.933); padding-right: 8px; }
+  .ts-comparison :is(.is-yes, .is-no) .ts-icon { width: 1.35rem; height: 1.35rem; }
+  .ts-comparison .is-na { font-size: calc(var(--ts-table-font-size, 15px) * 0.8); }
+  .ts-comparison__hint { display: none; }
+
+  .ts-video__frame { width: var(--ts-video-width-mobile, var(--ts-video-width, 100%)); }
+}

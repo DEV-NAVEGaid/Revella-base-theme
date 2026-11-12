@@ -1,0 +1,163 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign stages = section.blocks | where: 'type', 'stage' -%}
+<div class="lm">
+  <section class="wrap exp xt{% if s.theme == 'light' %} xt-light{% endif %}"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="xt-i">
+      <div class="xt-h">
+        {%- if s.eyebrow != blank %}<span class="eb w">{{ s.eyebrow }}</span>{% endif -%}
+        {%- if s.heading != blank %}<h2 class="h2 wt">{{ s.heading }}</h2>{% endif -%}
+        {%- if s.subheading != blank %}<p class="exp-sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+      <div class="xt-g">
+        {%- if s.image != blank -%}
+          <div class="xt-l">
+            <div class="xt-img">
+              {{ s.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '375, 600, 900, 1200', sizes: '(min-width: 990px) 520px, 100vw', alt: s.image.alt }}
+            </div>
+          </div>
+        {%- endif -%}
+
+      {%- if stages.size > 0 -%}
+        <ol class="xt-tl" data-xt="{{ section.id }}">
+          <span class="xt-track" aria-hidden="true"><span class="xt-fill"></span></span>
+          {%- for block in stages -%}
+            <li class="xt-st" {{ block.shopify_attributes }}>
+              <span class="xt-dot" aria-hidden="true"></span>
+              <div class="xt-card">
+                {%- if block.settings.label != blank %}<span class="xt-when">{{ block.settings.label }}</span>{% endif -%}
+                <p class="xt-t">{{ block.settings.title }}</p>
+              </div>
+              {%- assign lines = block.settings.points | newline_to_br | split: '<br />' -%}
+              <ul class="xt-pts">
+                {%- for line in lines -%}
+                  {%- assign l = line | strip -%}
+                  {%- if l != blank -%}
+                    <li><span class="ic">{% render 'oc-icon', icon: 'check-12' %}</span><span>{{ l }}</span></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </li>
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm .xt-i{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+  .lm .xt-h{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;max-width:720px;margin:0 auto}
+  .lm .xt .h2 em{color:#6C93C2}
+  .lm .xt .exp-sub{font-size:17px;line-height:26px;max-width:560px}
+  .lm .xt-g{display:flex;flex-direction:column;gap:36px}
+  .lm .xt-img{border-radius:24px;overflow:hidden;aspect-ratio:4/3;border:1.6px solid rgba(255,255,255,.08)}
+  .lm .xt-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .lm .xt-tl{position:relative;list-style:none;margin:0;padding:0 0 0 36px;display:flex;flex-direction:column;gap:28px}
+  .lm .xt-track{position:absolute;left:9px;top:22px;bottom:22px;width:2px;border-radius:2px;background:rgba(255,255,255,.12)}
+  .lm .xt-fill{position:absolute;left:0;top:0;width:100%;height:0;border-radius:2px;background:linear-gradient(180deg,#6C93C2,#fff)}
+  .lm .xt-st{position:relative;display:flex;flex-direction:column;gap:14px}
+  .lm .xt-dot{position:absolute;left:-36px;top:13px;width:20px;height:20px;border-radius:50%;background:#0D1E39;border:2px solid rgba(255,255,255,.25);transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+  .lm .xt-card{display:flex;align-items:baseline;gap:12px;padding:12px 18px;border-radius:14px;border:1.6px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);transition:background .35s ease,border-color .35s ease}
+  .lm .xt-when{flex:none;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .35s ease}
+  .lm .xt-t{font-size:18px;line-height:24px;font-weight:700;color:#fff}
+  .lm .xt-pts{list-style:none;margin:0;padding:0 0 0 4px;display:flex;flex-direction:column;gap:8px}
+  .lm .xt-pts li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:22px;color:rgba(255,255,255,.78)}
+  .lm .xt-pts .ic{width:18px;height:18px;margin-top:2px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center;flex:none}
+  .lm .xt-pts .ic svg{width:12px;height:12px}
+  .lm .xt-st.on .xt-dot{background:#fff;border-color:#fff;box-shadow:0 0 0 6px rgba(108,147,194,.25)}
+  .lm .xt-st.on .xt-card{background:linear-gradient(129deg,#0D1E39 0%,#193B68 100%);border-color:rgba(108,147,194,.55)}
+  .lm .xt-st.on .xt-when{color:#6C93C2}
+  .lm .xt-tl.js .xt-pts li{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+  .lm .xt-tl.js .xt-st.on .xt-pts li{opacity:1;transform:none}
+  .lm .xt-tl.js .xt-st.on .xt-pts li:nth-child(2){transition-delay:.08s}
+  .lm .xt-tl.js .xt-st.on .xt-pts li:nth-child(3){transition-delay:.16s}
+  .lm .exp.xt-light{background:#EEF3FA}
+  .lm .xt-light .h2{color:#0D1E39}
+  .lm .xt-light .h2 em{color:#265392}
+  .lm .xt-light .exp-sub{color:rgba(13,30,57,.72)}
+  .lm .xt-light .eb.w{background:rgba(38,83,146,.08);border-color:rgba(38,83,146,.18);color:#265392}
+  .lm .xt-light .xt-img{border-color:rgba(38,83,146,.12);box-shadow:0 20px 40px -28px rgba(13,30,57,.45)}
+  .lm .xt-light .xt-track{background:rgba(38,83,146,.15)}
+  .lm .xt-light .xt-fill{background:linear-gradient(180deg,#6C93C2,#265392)}
+  .lm .xt-light .xt-dot{background:#EEF3FA;border-color:rgba(38,83,146,.3)}
+  .lm .xt-light .xt-card{background:#fff;border-color:rgba(38,83,146,.12)}
+  .lm .xt-light .xt-when{color:rgba(13,30,57,.5)}
+  .lm .xt-light .xt-t{color:#0D1E39;transition:color .35s ease}
+  .lm .xt-light .xt-pts li{color:rgba(13,30,57,.78)}
+  .lm .xt-light .xt-st.on .xt-dot{background:#265392;border-color:#265392;box-shadow:0 0 0 6px rgba(38,83,146,.15)}
+  .lm .xt-light .xt-st.on .xt-card{background:linear-gradient(129deg,#193B68 0%,#265392 100%);border-color:#265392}
+  .lm .xt-light .xt-st.on .xt-when{color:#9DB8DA}
+  .lm .xt-light .xt-st.on .xt-t{color:#fff}
+  @media screen and (min-width:990px){
+    .lm .xt-i{gap:56px;padding:0 48px}
+    .lm .xt .h2{font-size:48px;line-height:56px}
+    .lm .xt-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:72px;align-items:start}
+    .lm .xt-l{position:sticky;top:110px}
+    .lm .xt-img{aspect-ratio:4/5}
+    .lm .xt-tl{gap:32px;padding-left:44px}
+    .lm .xt-dot{left:-44px}
+    .lm .xt-t{font-size:20px;line-height:26px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .lm .xt-tl.js .xt-pts li{opacity:1;transform:none;transition:none}
+    .lm .xt-dot,.lm .xt-card,.lm .xt-when{transition:none}
+  }
+</style>
+<script>
+  (function () {
+    var tl = document.querySelector('[data-xt="{{ section.id }}"]');
+    if (!tl) return;
+    var fill = tl.querySelector('.xt-fill');
+    var track = tl.querySelector('.xt-track');
+    var steps = [].slice.call(tl.querySelectorAll('.xt-st'));
+    tl.classList.add('js');
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var mark = window.innerHeight * 0.6;
+      var t = track.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (mark - t.top) / t.height));
+      fill.style.height = (p * 100) + '%';
+      steps.forEach(function (st) {
+        var d = st.querySelector('.xt-dot').getBoundingClientRect();
+        st.classList.toggle('on', d.top + d.height / 2 <= mark);
+      });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "OC: What to expect",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Left of the timeline on desktop, above it on mobile." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "What to expect" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Your First Weeks with Lymphgem" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "header", "content": "Style" },
+    { "type": "select", "id": "theme", "label": "Color scheme", "default": "dark", "options": [ { "value": "dark", "label": "Navy" }, { "value": "light", "label": "Light blue" } ] },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = navy, or #EEF3FA in light." }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Timeline stage",
+      "settings": [
+        { "type": "text", "id": "label", "label": "When", "default": "Days 1-7" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Build the habit" },
+        { "type": "textarea", "id": "points", "label": "Points (one per line)", "default": "One softgel with breakfast\nAdd water and a daily walk" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "OC: What to expect", "blocks": [ { "type": "stage" }, { "type": "stage" }, { "type": "stage" } ] }
+  ]
+}
+{% endschema %}

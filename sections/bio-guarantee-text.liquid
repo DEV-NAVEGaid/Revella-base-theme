@@ -1,0 +1,81 @@
+{%- comment -%} Guarantee — icon + heading + text (Dawn 16) {%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }}{
+    background:{{ section.settings.section_bg }};
+    margin-top:0 !important;
+    --bio-gt-fs:{{ section.settings.font_scale }};
+  }
+  .bio-gt{ padding:{{ section.settings.padding_top | times: 0.7 | round }}px 0 {{ section.settings.padding_bottom | times: 0.7 | round }}px; overflow-x:clip; }
+  .bio-gt *,.bio-gt *::before,.bio-gt *::after{ box-sizing:border-box; min-width:0; }
+  .bio-gt img{ max-width:100%; display:block; }
+
+  .bio-gt__inner{ text-align:center; max-width:{{ section.settings.max_width }}px; margin:0 auto; }
+  .bio-gt__ico{ width:{{ section.settings.icon_size }}px; height:{{ section.settings.icon_size }}px; margin:0 auto {{ section.settings.icon_gap }}px;
+    display:flex; align-items:center; justify-content:center; color:{{ section.settings.icon_color }}; }
+  .bio-gt__ico img,.bio-gt__ico svg{ width:100%; height:100%; object-fit:contain; }
+  .bio-gt__title{ margin:0 0 {{ section.settings.title_gap }}px; font-size:calc({{ section.settings.heading_size }}rem * var(--bio-gt-fs));
+    line-height:1.2; font-weight:800; letter-spacing:-.02em; color:{{ section.settings.heading_color }}; }
+  .bio-gt__text{ margin:0 auto; max-width:560px; font-size:calc({{ section.settings.text_size }}rem * var(--bio-gt-fs));
+    line-height:1.5; color:{{ section.settings.text_color }}; }
+  .bio-gt__text p{ margin:0 0 6px; } .bio-gt__text p:last-child{ margin:0; }
+
+  @media screen and (min-width:750px){
+    .bio-gt{ padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  }
+</style>
+
+<div class="bio-gt color-{{ section.settings.color_scheme }}" id="bio-gt-{{ section.id }}">
+  <div class="page-width">
+    <div class="bio-gt__inner">
+      {%- if section.settings.show_icon -%}
+        <div class="bio-gt__ico">
+          {%- if section.settings.icon != blank -%}
+            {{ section.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+              <circle cx="24" cy="24" r="21"/><path d="M15 24.5l6.5 6.5L34 18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="bio-gt__title">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="bio-gt__text rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bio: Guarantee Text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "range", "id": "font_scale", "min": 0.6, "max": 1.2, "step": 0.1, "label": "Font scale", "default": 1 },
+    { "type": "range", "id": "max_width", "min": 400, "max": 1000, "step": 20, "unit": "px", "label": "Content max width", "default": 640 },
+
+    { "type": "header", "content": "Icon" },
+    { "type": "checkbox", "id": "show_icon", "label": "Show icon", "default": true },
+    { "type": "image_picker", "id": "icon", "label": "Icon (optional)" },
+    { "type": "color", "id": "icon_color", "label": "Default icon color", "default": "#1F5A4A" },
+    { "type": "range", "id": "icon_size", "min": 24, "max": 100, "step": 2, "unit": "px", "label": "Icon size", "default": 56 },
+    { "type": "range", "id": "icon_gap", "min": 4, "max": 40, "step": 2, "unit": "px", "label": "Space below icon", "default": 16 },
+
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "60 Day Money Back Guarantee" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#121212" },
+    { "type": "range", "id": "heading_size", "min": 2.0, "max": 5.0, "step": 0.1, "unit": "rem", "label": "Heading size", "default": 3.0 },
+    { "type": "range", "id": "title_gap", "min": 4, "max": 40, "step": 2, "unit": "px", "label": "Space below heading", "default": 12 },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Don't feel the difference within 60 days? we'll refund you. No questions asked</p>" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#3A3A3A" },
+    { "type": "range", "id": "text_size", "min": 1.2, "max": 2.4, "step": 0.1, "unit": "rem", "label": "Text size", "default": 1.7 },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 32 }
+  ],
+  "presets": [ { "name": "Bio: Guarantee Text" } ]
+}
+{% endschema %}

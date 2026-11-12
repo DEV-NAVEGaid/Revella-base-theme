@@ -1,0 +1,153 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+{%- assign bars = section.blocks | where: 'type', 'bar' -%}
+{%- assign reviews = section.blocks | where: 'type', 'review' -%}
+<div class="lm">
+  <section class="jr"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <lm-reviews class="jr-c" data-step="{{ s.initial_count }}" style="display: block">
+      <div class="sum">
+        <div class="avg">
+          <p class="big">{{ s.average }}</p>
+          <div class="rt">{% render 'oc-stars' %}<p class="cnt">{{ s.count_text }}</p></div>
+        </div>
+        <div class="sum-r">
+        {%- if bars.size > 0 -%}
+          <div class="bars">
+            {%- for block in bars -%}
+              <div class="bar" {{ block.shopify_attributes }}>
+                <span class="s">{{ block.settings.stars }}<svg viewBox="0 0 20 20" aria-hidden="true"><path fill="#239627" d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"></path></svg></span>
+                <div class="tr2"><div class="fl" style="width: {{ block.settings.percent }}%"></div></div>
+                <span class="c">{{ block.settings.count }}</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if s.show_sort and reviews.size > 1 -%}
+          <div class="sort">
+            <label for="lm-sort-{{ section.id }}">{{ s.sort_label }}</label>
+            <div class="sort-s">
+              <select id="lm-sort-{{ section.id }}" data-sort>
+                <option value="latest">{{ s.sort_latest }}</option>
+                <option value="oldest">{{ s.sort_oldest }}</option>
+                <option value="high">{{ s.sort_high }}</option>
+                <option value="low">{{ s.sort_low }}</option>
+              </select>
+              {% render 'oc-icon', icon: 'chev-down' %}
+            </div>
+          </div>
+        {%- endif -%}
+        </div>
+      </div>
+      {%- if reviews.size > 0 -%}
+        <div class="rlist">
+          {%- for block in reviews -%}
+            <article class="ri" data-i="{{ forloop.index0 }}" data-rating="{{ block.settings.rating }}" {{ block.shopify_attributes }}{% if forloop.index > s.initial_count %} hidden{% endif %}>
+              <div class="ri-top">
+                <p class="ri-n">{{ block.settings.name }}</p>
+                {%- if block.settings.verified_label != blank -%}
+                  <span class="ver">
+                    {%- assign ver_icon = block.settings.verified_icon | default: s.verified_icon -%}
+                    {%- if ver_icon != blank -%}
+                      {{ ver_icon | image_url: width: 48 | image_tag: loading: 'lazy', class: 'ver-img', alt: '' }}
+                    {%- else -%}
+                      {% render 'oc-icon', icon: 'verified-ring' %}
+                    {%- endif -%}
+                    {{ block.settings.verified_label }}
+                  </span>
+                {%- endif -%}
+                {%- if block.settings.date != blank %}<p class="ri-d">{{ block.settings.date }}</p>{% endif -%}
+              </div>
+              {% render 'oc-stars', rating: block.settings.rating %}
+              {%- if block.settings.title != blank %}<p class="ri-t">{{ block.settings.title }}</p>{% endif -%}
+              {%- if block.settings.body != blank %}<p class="ri-b">{{ block.settings.body }}</p>{% endif -%}
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if s.more_label != blank -%}
+        <div class="more"{% if reviews.size <= s.initial_count and s.more_link == blank %} hidden{% endif %}>
+          {%- if reviews.size > s.initial_count -%}
+            <button type="button" data-more>{{ s.more_label }}</button>
+          {%- else -%}
+            <a href="{{ s.more_link }}" style="font-size:16px;line-height:19.2px;font-weight:800;color:#265392;text-transform:uppercase;text-decoration:none">{{ s.more_label }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon, dark: true %}
+    </lm-reviews>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Review list",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "average", "label": "Average rating", "default": "[4.82]" },
+    { "type": "text", "id": "count_text", "label": "Review count", "default": "[X,XXX] reviews" },
+    { "type": "range", "id": "initial_count", "label": "Reviews shown before \"See more\"", "min": 1, "max": 20, "step": 1, "default": 4 },
+    { "type": "text", "id": "more_label", "label": "\"See more\" label", "default": "See more reviews" },
+    { "type": "url", "id": "more_link", "label": "\"See more\" link", "info": "Used when all reviews are already visible (e.g. link to a full reviews page)." },
+    { "type": "image_picker", "id": "verified_icon", "label": "Verified badge icon (all reviews)", "info": "Square PNG/SVG, shown 12 px. Each review can override it. Empty = check icon." },
+    { "type": "header", "content": "Sort" },
+    { "type": "checkbox", "id": "show_sort", "label": "Show sort dropdown", "default": true },
+    { "type": "text", "id": "sort_label", "label": "Label", "default": "Sort by" },
+    { "type": "text", "id": "sort_latest", "label": "Option: latest", "default": "Latest", "info": "Latest = block order (top block = newest)." },
+    { "type": "text", "id": "sort_oldest", "label": "Option: oldest", "default": "Oldest" },
+    { "type": "text", "id": "sort_high", "label": "Option: highest rating", "default": "Highest rating" },
+    { "type": "text", "id": "sort_low", "label": "Option: lowest rating", "default": "Lowest rating" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "dk", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "info": "Not in the original design — leave empty to hide." },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #F5F8FF." }
+  ],
+  "blocks": [
+    {
+      "type": "bar",
+      "name": "Rating bar",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "stars", "label": "Stars", "default": "5" },
+        { "type": "range", "id": "percent", "label": "Bar fill (%)", "min": 0, "max": 100, "step": 1, "default": 83 },
+        { "type": "text", "id": "count", "label": "Count", "default": "[XXX]" }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "[Customer name]" },
+        { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified buyer" },
+        { "type": "image_picker", "id": "verified_icon", "label": "Verified icon (optional)", "info": "Empty = section verified icon." },
+        { "type": "text", "id": "date", "label": "Date", "default": "[X days ago]" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Title", "default": "[Review title]" },
+        { "type": "textarea", "id": "body", "label": "Review", "default": "[Review text — a few sentences about flavor, results and how easy it is to take.]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Review list",
+      "blocks": [
+        { "type": "bar" },
+        { "type": "bar", "settings": { "stars": "4", "percent": 17 } },
+        { "type": "bar", "settings": { "stars": "3", "percent": 4 } },
+        { "type": "bar", "settings": { "stars": "2", "percent": 2 } },
+        { "type": "bar", "settings": { "stars": "1", "percent": 1 } },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}

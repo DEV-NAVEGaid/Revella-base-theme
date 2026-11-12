@@ -1,0 +1,105 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+<div class="lm">
+  <section class="rev"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="rev-h">
+        <div class="hd">
+          {%- if s.eyebrow != blank %}<span class="eb w">{{ s.eyebrow }}</span>{% endif -%}
+          {%- if s.heading != blank %}<h2 class="h2 wt">{{ s.heading }}</h2>{% endif -%}
+        </div>
+        {%- if s.show_rating -%}
+          <div class="rev-rg">
+            {% render 'oc-stars' %}
+            {%- if s.rating_text != blank %}<p>{{ s.rating_text }}</p>{% endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 0 -%}
+        <lm-carousel data-start="1">
+          <div class="hscroll rev-list">
+            {%- for block in section.blocks -%}
+              <article class="rc" {{ block.shopify_attributes }}>
+                {% render 'oc-stars', rating: block.settings.rating %}
+                <div class="cn">
+                  {%- if block.settings.title != blank %}<p class="ct">{{ block.settings.title }}</p>{% endif -%}
+                  {%- if block.settings.quote != blank %}<p class="cq">{{ block.settings.quote }}</p>{% endif -%}
+                </div>
+                <div class="cf">
+                  {%- if block.settings.avatar != blank -%}
+                    <span class="av" style="overflow:hidden">{{ block.settings.avatar | image_url: width: 84 | image_tag: loading: 'lazy', width: 42, height: 42, style: 'width:100%;height:100%;object-fit:cover', alt: block.settings.name }}</span>
+                  {%- else -%}
+                    <span class="av">{{ block.settings.initials }}</span>
+                  {%- endif -%}
+                  <div class="mt">
+                    <p class="mn">{{ block.settings.name }}</p>
+                    {%- if block.settings.verified_label != blank -%}
+                      <div class="mv">{% render 'oc-icon', icon: 'verified' %}<span>{{ block.settings.verified_label }}</span></div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+          {%- if s.show_dots -%}
+            {% render 'oc-dots', count: section.blocks.size, start: 1, white: true, prev_icon: s.prev_icon, next_icon: s.next_icon %}
+          {%- endif -%}
+        </lm-carousel>
+      {%- endif -%}
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Reviews carousel",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "Verified reviews" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "[95]% Said They Felt It in Week One." },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "inline_richtext", "id": "rating_text", "label": "Rating text", "default": "<strong>Excellent [4.8]</strong> | +[3.5K] Reviews" },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dots & arrows (mobile)", "default": true },
+    { "type": "image_picker", "id": "prev_icon", "label": "Previous arrow icon", "info": "Optional. Replaces the default left arrow. Square PNG/SVG." },
+    { "type": "image_picker", "id": "next_icon", "label": "Next arrow icon", "info": "Optional. Replaces the default right arrow. Square PNG/SVG." },
+    { "type": "header", "content": "Button (optional)" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Not in the original design — leave empty to hide." },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = design gradient (#193B68 → #0D1E39)." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Title", "default": "Steady Energy" },
+        { "type": "textarea", "id": "quote", "label": "Review", "default": "[Review text — what changed for this customer and how quickly.]" },
+        { "type": "text", "id": "name", "label": "Name", "default": "[Customer name]" },
+        { "type": "text", "id": "initials", "label": "Initials", "default": "AB" },
+        { "type": "image_picker", "id": "avatar", "label": "Avatar (optional)", "info": "Replaces the initials." },
+        { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified buyer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Reviews carousel",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review", "settings": { "title": "Clearer Focus", "initials": "CD" } },
+        { "type": "review", "settings": { "title": "Faster Recovery", "initials": "EF" } },
+        { "type": "review", "settings": { "title": "Real Strength", "initials": "GH" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

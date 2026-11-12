@@ -1,0 +1,350 @@
+<div
+  class="amua-whats-inside"
+  style="
+    --awi-bg: {{ section.settings.background_color }};
+    --awi-heading-color: {{ section.settings.heading_color }};
+    --awi-accent-color: {{ section.settings.accent_color }};
+    --awi-heading-gradient-start: {{ section.settings.heading_gradient_start }};
+    --awi-heading-gradient-end: {{ section.settings.heading_gradient_end }};
+    --awi-body-color: {{ section.settings.body_text_color }};
+    --awi-tab-bg: {{ section.settings.tab_bg_color }};
+    --awi-tab-text: {{ section.settings.tab_text_color }};
+    --awi-tab-border: {{ section.settings.tab_border_color }};
+    --awi-tab-active-bg: {{ section.settings.accent_color }};
+    --awi-tab-active-text: {{ section.settings.tab_active_text_color }};
+    --awi-heading-size: {{ section.settings.heading_font_size }}px;
+    --awi-subheading-size: {{ section.settings.subheading_font_size }}px;
+    --awi-tab-font-size: {{ section.settings.tab_font_size }}px;
+    --awi-content-heading-size: {{ section.settings.content_heading_font_size }}px;
+    --awi-content-text-size: {{ section.settings.content_text_font_size }}px;
+    --awi-padding-top: {{ section.settings.padding_top }}px;
+    --awi-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --awi-tab-gap: {{ section.settings.tab_gap }}px;
+    --awi-tab-padding-y: {{ section.settings.tab_padding_vertical }}px;
+    --awi-content-gap: {{ section.settings.content_gap }}px;
+    --awi-image-radius: {{ section.settings.image_radius }}px;
+  "
+>
+  <div class="page-width amua-whats-inside__inner">
+    <h2 class="amua-whats-inside__heading">
+      {{ section.settings.heading }}
+      <span class="amua-whats-inside__heading-accent">{{ section.settings.heading_accent }}</span>
+    </h2>
+
+    {% if section.settings.subheading != blank %}
+      <div class="amua-whats-inside__subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="amua-whats-inside__tabs" role="tablist">
+        {% for block in section.blocks %}
+          <button
+            type="button"
+            class="amua-whats-inside__tab{% if forloop.first %} is-active{% endif %}"
+            data-awi-tab
+            data-awi-index="{{ forloop.index0 }}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tab_label | default: 'Ingredient' }}
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="amua-whats-inside__panels">
+        {% for block in section.blocks %}
+          <div
+            class="amua-whats-inside__panel{% if forloop.first %} is-active{% endif %}"
+            data-awi-panel
+            data-awi-index="{{ forloop.index0 }}"
+          >
+            <div class="amua-whats-inside__content">
+              {% if block.settings.content_heading != blank %}
+                <h3 class="amua-whats-inside__content-heading">{{ block.settings.content_heading }}</h3>
+              {% endif %}
+              {% if block.settings.content_text != blank %}
+                <div class="amua-whats-inside__content-text">{{ block.settings.content_text }}</div>
+              {% endif %}
+            </div>
+            <div class="amua-whats-inside__image">
+              {% if block.settings.image %}
+                {{
+                  block.settings.image
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 900',
+                    sizes: '(min-width: 750px) 45vw, 100vw',
+                    alt: block.settings.image.alt | default: block.settings.tab_label
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'amua-whats-inside__placeholder' }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .amua-whats-inside {
+    background: var(--awi-bg);
+    padding-top: var(--awi-padding-top);
+    padding-bottom: var(--awi-padding-bottom);
+  }
+
+  .amua-whats-inside__heading {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(36px, 7vw, var(--awi-heading-size));
+    line-height: 1.15;
+    font-weight: 800;
+    color: var(--awi-heading-color);
+  }
+
+  .amua-whats-inside__heading-accent {
+    background: linear-gradient(90deg, var(--awi-heading-gradient-start), var(--awi-heading-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .amua-whats-inside__subheading {
+    max-width: 640px;
+    margin: 16px auto 0;
+    text-align: center;
+    font-size: var(--awi-subheading-size);
+    line-height: 1.5;
+    color: var(--awi-body-color);
+  }
+
+  .amua-whats-inside__subheading p {
+    margin: 0;
+  }
+
+  .amua-whats-inside__tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--awi-tab-gap);
+    max-width: 640px;
+    margin: 32px auto 0;
+  }
+
+  .amua-whats-inside__tab {
+    cursor: pointer;
+    border: 1px solid var(--awi-tab-border);
+    border-radius: 2px;
+    background: var(--awi-tab-bg);
+    color: var(--awi-tab-text);
+    font-size: var(--awi-tab-font-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: var(--awi-tab-padding-y) 12px;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .amua-whats-inside__tab.is-active {
+    background: var(--awi-tab-active-bg);
+    border-color: var(--awi-tab-active-bg);
+    color: var(--awi-tab-active-text);
+  }
+
+  .amua-whats-inside__panel {
+    display: none;
+  }
+
+  .amua-whats-inside__panel.is-active {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .amua-whats-inside__content-heading {
+    margin: 0 0 12px;
+    font-size: var(--awi-content-heading-size);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--awi-heading-color);
+  }
+
+  .amua-whats-inside__content-text {
+    margin: 0;
+    font-size: var(--awi-content-text-size);
+    line-height: 1.6;
+    color: var(--awi-body-color);
+  }
+
+  .amua-whats-inside__content-text p {
+    margin: 0;
+  }
+
+  .amua-whats-inside__image {
+    margin-top: var(--awi-content-gap);
+  }
+
+  .amua-whats-inside__image img,
+  .amua-whats-inside__placeholder {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--awi-image-radius);
+  }
+
+  @media screen and (min-width: 750px) {
+    .amua-whats-inside__tabs {
+      max-width: 760px;
+    }
+
+    .amua-whats-inside__panel.is-active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--awi-content-gap);
+    }
+
+    .amua-whats-inside__image {
+      margin-top: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function initAmuaWhatsInside(root) {
+    if (!root || root.dataset.awiInit) return;
+    root.dataset.awiInit = 'true';
+
+    var tabs = root.querySelectorAll('[data-awi-tab]');
+    var panels = root.querySelectorAll('[data-awi-panel]');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var index = tab.getAttribute('data-awi-index');
+
+        tabs.forEach(function (t) {
+          var isActive = t === tab;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        panels.forEach(function (panel) {
+          panel.classList.toggle('is-active', panel.getAttribute('data-awi-index') === index);
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll('.amua-whats-inside').forEach(initAmuaWhatsInside);
+
+  // Re-init after the theme editor reloads this section's HTML via AJAX
+  // (e.g. when you change a setting), otherwise the buttons stop responding.
+  document.addEventListener('shopify:section:load', function (event) {
+    var root = event.target.querySelector('.amua-whats-inside');
+    initAmuaWhatsInside(root);
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Amua: What's Inside",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What's Inside" },
+    { "type": "text", "id": "heading_accent", "label": "Heading highlighted word", "default": "VitalDrops" },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>A plant-based curve-building blend designed to <strong>support feminine weight distribution</strong> and help your body build curves naturally.</p>"
+    },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "heading_color", "label": "Heading & text", "default": "#111111" },
+    { "type": "color", "id": "accent_color", "label": "Accent (active tab background)", "default": "#F0C36A" },
+    { "type": "color", "id": "heading_gradient_start", "label": "Heading highlight gradient — left", "default": "#FCE18A" },
+    { "type": "color", "id": "heading_gradient_end", "label": "Heading highlight gradient — right", "default": "#F2A73D" },
+    { "type": "color", "id": "body_text_color", "label": "Body text", "default": "#333333" },
+    { "type": "color", "id": "tab_bg_color", "label": "Tab background (inactive)", "default": "#FFFFFF" },
+    { "type": "color", "id": "tab_text_color", "label": "Tab text (inactive)", "default": "#111111" },
+    { "type": "color", "id": "tab_border_color", "label": "Tab border", "default": "#111111" },
+    { "type": "color", "id": "tab_active_text_color", "label": "Tab text (active)", "default": "#FFFFFF" },
+    { "type": "header", "content": "Font size" },
+    { "type": "range", "id": "heading_font_size", "min": 24, "max": 60, "step": 1, "unit": "px", "label": "Heading size", "default": 38 },
+    { "type": "range", "id": "subheading_font_size", "min": 12, "max": 22, "step": 1, "unit": "px", "label": "Subheading size", "default": 16 },
+    { "type": "range", "id": "tab_font_size", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Tab label size", "default": 13 },
+    { "type": "range", "id": "content_heading_font_size", "min": 18, "max": 36, "step": 1, "unit": "px", "label": "Content heading size", "default": 24 },
+    { "type": "range", "id": "content_text_font_size", "min": 13, "max": 20, "step": 1, "unit": "px", "label": "Content text size", "default": 16 },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 40 },
+    { "type": "range", "id": "tab_gap", "min": 4, "max": 24, "step": 1, "unit": "px", "label": "Gap between tabs", "default": 10 },
+    { "type": "range", "id": "tab_padding_vertical", "min": 8, "max": 28, "step": 1, "unit": "px", "label": "Tab vertical padding", "default": 16 },
+    { "type": "range", "id": "content_gap", "min": 12, "max": 60, "step": 2, "unit": "px", "label": "Gap between text & image", "default": 24 },
+    { "type": "header", "content": "Image" },
+    { "type": "range", "id": "image_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Image corner radius", "default": 6 }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Ingredient" },
+        { "type": "text", "id": "content_heading", "label": "Heading", "default": "Heading" },
+        { "type": "richtext", "id": "content_text", "label": "Text", "default": "<p>Describe this ingredient's benefit.</p>" },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: What's Inside",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_label": "Maca Root",
+            "content_heading": "Your Body's Curve-Building Signal",
+            "content_text": "<p>Maca is the foundation of VitalDrops. It's traditionally used to <strong>support healthy hormone balance</strong> and encourage your body to store weight in feminine areas like the hips, thighs, and booty instead of only around the stomach.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_label": "Ashwagandha",
+            "content_heading": "Your stress-blocking bodyguard",
+            "content_text": "<p>Stress can make it harder for your body to maintain healthy weight and curves. Ashwagandha <strong>helps support a balanced stress response</strong> so your body can focus on feeling and looking its best.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_label": "Beet Root",
+            "content_heading": "Better Nutrient Delivery",
+            "content_text": "<p>Beet Root supports healthy circulation, helping your body <strong>efficiently deliver nutrients where they're needed most</strong> while supporting overall wellness and energy.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_label": "Fenugreek"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_label": "L-Arginine"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+{%- comment -%} Illustrated pouch placeholder (shown when no product image is set). Params: brand, title, tag1, tag2 {%- endcomment -%}
+<div class="pouch">
+  <div class="top"></div>
+  <div class="zip"></div>
+  <div class="lb">
+    <p class="nm">{{ brand | default: 'Lymphgem' }}</p>
+    <p class="tt">{{ title | default: 'Creatine Monohydrate Gummies' }}</p>
+    <div class="tags">
+      {%- if tag1 != blank %}<span class="tg f" data-flavor-name>{{ tag1 }}</span>{% endif -%}
+      {%- if tag2 != blank %}<span class="tg">{{ tag2 }}</span>{% endif -%}
+    </div>
+  </div>
+</div>

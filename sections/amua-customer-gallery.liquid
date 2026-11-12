@@ -1,0 +1,602 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .amua-ric {
+    --amua-ric-bg: {{ section.settings.background_color }};
+    --amua-ric-heading-color: {{ section.settings.heading_color }};
+    --amua-ric-subtext-color: {{ section.settings.subtext_color }};
+    --amua-ric-star-color: {{ section.settings.star_color }};
+    --amua-ric-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --amua-ric-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --amua-ric-subtext-size-mobile: {{ section.settings.subtext_size_mobile }}px;
+    --amua-ric-subtext-size-desktop: {{ section.settings.subtext_size_desktop }}px;
+    --amua-ric-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --amua-ric-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --amua-ric-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --amua-ric-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --amua-ric-image-gap: {{ section.settings.image_gap }}px;
+    --amua-ric-image-radius: {{ section.settings.image_border_radius }}px;
+    --amua-ric-image-width-mobile: {{ section.settings.image_width_mobile }}px;
+    --amua-ric-image-width-desktop: {{ section.settings.image_width_desktop }}px;
+    --amua-ric-heading-weight: {{ section.settings.heading_font_weight }};
+    --amua-ric-star-size: {{ section.settings.star_size }}px;
+    --amua-ric-content-gap: {{ section.settings.content_gap }}px;
+
+    background-color: var(--amua-ric-bg);
+    padding-top: var(--amua-ric-padding-top-mobile);
+    padding-bottom: var(--amua-ric-padding-bottom-mobile);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__carousel {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__track {
+    display: flex;
+    column-gap: var(--amua-ric-image-gap);
+    will-change: transform;
+    cursor: grab;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__track:active {
+    cursor: grabbing;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__slide {
+    flex-shrink: 0;
+    width: var(--amua-ric-image-width-mobile);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    border-radius: var(--amua-ric-image-radius);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__placeholder {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: var(--amua-ric-image-radius);
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__placeholder-svg {
+    width: 60%;
+    height: auto;
+    opacity: 0.4;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__content {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: var(--amua-ric-content-gap);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__heading {
+    color: var(--amua-ric-heading-color);
+    font-size: var(--amua-ric-heading-size-mobile);
+    font-weight: var(--amua-ric-heading-weight);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__star {
+    width: var(--amua-ric-star-size);
+    height: var(--amua-ric-star-size);
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__star--full {
+    color: var(--amua-ric-star-color);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__star--half {
+    color: var(--amua-ric-star-color);
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__star--empty {
+    color: #D1D5DB;
+  }
+
+  #shopify-section-{{ section.id }} .amua-ric__rating-text {
+    color: var(--amua-ric-subtext-color);
+    font-size: var(--amua-ric-subtext-size-mobile);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .amua-ric {
+      padding-top: var(--amua-ric-padding-top-desktop);
+      padding-bottom: var(--amua-ric-padding-bottom-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .amua-ric__slide {
+      width: var(--amua-ric-image-width-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .amua-ric__heading {
+      font-size: var(--amua-ric-heading-size-desktop);
+      max-width: 720px;
+    }
+
+    #shopify-section-{{ section.id }} .amua-ric__rating-text {
+      font-size: var(--amua-ric-subtext-size-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .amua-ric__content {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="amua-ric" id="amua-review-images-{{ section.id }}">
+  {%- assign image_blocks = section.blocks | where: "type", "review_image" -%}
+
+  {%- if image_blocks.size > 0 -%}
+    <div class="amua-ric__carousel" aria-label="{{ section.settings.heading | escape }}">
+      <div class="amua-ric__track"
+           data-amua-ric-track
+           data-speed="{{ section.settings.scroll_speed }}"
+           data-direction="{{ section.settings.scroll_direction }}"
+           data-pause-hover="{{ section.settings.pause_on_hover }}">
+
+        {%- for block in image_blocks -%}
+          <div class="amua-ric__slide" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 600
+                | image_tag:
+                  class: 'amua-ric__image',
+                  loading: 'lazy',
+                  widths: '200, 300, 400, 500, 600',
+                  sizes: '(min-width: 750px) 260px, 200px',
+                  alt: block.settings.image_alt | default: section.settings.heading
+              }}
+            {%- else -%}
+              <div class="amua-ric__placeholder">
+                {{ 'image' | placeholder_svg_tag: 'amua-ric__placeholder-svg' }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        {%- for block in image_blocks -%}
+          <div class="amua-ric__slide" aria-hidden="true">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 600
+                | image_tag:
+                  class: 'amua-ric__image',
+                  loading: 'lazy',
+                  widths: '200, 300, 400, 500, 600',
+                  sizes: '(min-width: 750px) 260px, 200px',
+                  alt: block.settings.image_alt | default: section.settings.heading
+              }}
+            {%- else -%}
+              <div class="amua-ric__placeholder">
+                {{ 'image' | placeholder_svg_tag: 'amua-ric__placeholder-svg' }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="amua-ric__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="amua-ric__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_stars or section.settings.rating_text != blank -%}
+      <div class="amua-ric__rating">
+        {%- if section.settings.show_stars -%}
+          <div class="amua-ric__stars" aria-label="Rated {{ section.settings.star_rating }} out of 5">
+                        {%- assign full_stars = section.settings.star_rating | floor -%}
+            {%- assign has_half = section.settings.star_rating | modulo: 1 -%}
+            {%- assign half_star_index = full_stars | plus: 1 -%}
+            {%- for i in (1..5) -%}
+              {%- if i <= full_stars -%}
+                <svg class="amua-ric__star amua-ric__star--full" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/></svg>
+              {%- elsif i == half_star_index and has_half > 0 -%}
+                <svg class="amua-ric__star amua-ric__star--half" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hs-{{ section.id }}-{{ i }}"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="#D1D5DB"/></linearGradient></defs><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#hs-{{ section.id }}-{{ i }})"/></svg>
+              {%- else -%}
+                <svg class="amua-ric__star amua-ric__star--empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#D1D5DB"/></svg>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.rating_text != blank -%}
+          <p class="amua-ric__rating-text">{{ section.settings.rating_text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function(){
+    var el = document.getElementById('amua-review-images-{{ section.id }}');
+    if(!el) return;
+    var track = el.querySelector('[data-amua-ric-track]');
+    if(!track) return;
+    var speed = parseFloat(track.dataset.speed)||30;
+    var dir = track.dataset.direction||'left';
+    var hoverPause = track.dataset.pauseHover==='true';
+    var slides = track.querySelectorAll('.amua-ric__slide');
+    var half = slides.length/2;
+
+    function setW(){
+      var w=0, g=parseFloat(getComputedStyle(track).columnGap)||0;
+      for(var i=0;i<half;i++) w+=slides[i].offsetWidth+g;
+      return w;
+    }
+
+    var aid,pos=0,lt=0,p=false;
+
+    function run(t){
+      if(!lt)lt=t;
+      var d=t-lt; lt=t;
+      if(!p){
+        var sw=setW(), r=sw/(speed*1000);
+        if(dir==='left'){pos-=r*d; if(Math.abs(pos)>=sw)pos+=sw;}
+        else{pos+=r*d; if(pos>=sw)pos-=sw;}
+        track.style.transform='translate3d('+pos+'px,0,0)';
+      }
+      aid=requestAnimationFrame(run);
+    }
+
+    aid=requestAnimationFrame(run);
+
+    if(hoverPause){
+      track.addEventListener('mouseenter',function(){p=true;});
+      track.addEventListener('mouseleave',function(){p=false;});
+    }
+
+    new IntersectionObserver(function(en){
+      en.forEach(function(e){
+        if(e.isIntersecting){if(!aid){lt=0;aid=requestAnimationFrame(run);}}
+        else{if(aid){cancelAnimationFrame(aid);aid=null;lt=0;}}
+      });
+    },{threshold:0.1}).observe(el);
+
+    var tx=0,to=0,dr=false;
+    track.addEventListener('touchstart',function(e){dr=true;p=true;tx=e.touches[0].clientX;to=pos;},{passive:true});
+    track.addEventListener('touchmove',function(e){if(!dr)return;pos=to+(e.touches[0].clientX-tx);track.style.transform='translate3d('+pos+'px,0,0)';},{passive:true});
+    track.addEventListener('touchend',function(){dr=false;p=false;lt=0;});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Amua: Customer Gallery",
+  "tag": "section",
+  "class": "section-amua-ric",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Look At How Others Are Loving Their VitalDrops"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading font size (mobile)",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading font size (desktop)",
+      "min": 24,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "star_rating",
+      "label": "Star rating value",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "default": 4.8
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#F59E0B"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating text",
+      "default": "Rated 4.8/5 by 33,319+ Happy Customers"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Rating text color",
+      "default": "#374151"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_mobile",
+      "label": "Rating text size (mobile)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_desktop",
+      "label": "Rating text size (desktop)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (seconds per loop)",
+      "info": "Lower = faster",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "scroll_direction",
+      "label": "Scroll direction",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "label": "Image width (mobile)",
+      "min": 120,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "image_width_desktop",
+      "label": "Image width (desktop)",
+      "min": 180,
+      "max": 400,
+      "step": 5,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Gap between images",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Gap between carousel and text",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review_image",
+      "name": "Review Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "info": "Describe the image for accessibility"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Cusromer Gallery",
+      "blocks": [
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" },
+        { "type": "review_image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

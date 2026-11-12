@@ -1,0 +1,963 @@
+{% comment %}
+  Reviews Grid Section — nvgd-reviews-grid.liquid
+  Each block holds up to 5 reviews. Add "Review group" blocks to add more.
+{% endcomment %}
+
+{%- liquid
+  assign safe_sid = section.id | replace: '-', '_'
+-%}
+
+<section class="custom-reviews-robust" id="ReviewsGrid-{{ section.id }}">
+  <div class="reviews-header">
+    <div class="summary-box">
+      <h2 class="rating-number">{{ section.settings.average_rating }}</h2>
+      <div class="stars-display">★★★★★</div>
+      <p class="total-text">Based on {{ section.settings.total_reviews }} Reviews</p>
+    </div>
+    <div class="distribution-bars">
+      <div class="dist-row"><span>5 ★</span><div class="bar"><div class="fill" style="width: {{ section.settings.pct_5 }}%;"></div></div><span>{{ section.settings.count_5 }}</span></div>
+      <div class="dist-row"><span>4 ★</span><div class="bar"><div class="fill" style="width: {{ section.settings.pct_4 }}%;"></div></div><span>{{ section.settings.count_4 }}</span></div>
+      <div class="dist-row"><span>3 ★</span><div class="bar"><div class="fill" style="width: {{ section.settings.pct_3 }}%;"></div></div><span>{{ section.settings.count_3 }}</span></div>
+      <div class="dist-row"><span>2 ★</span><div class="bar"><div class="fill" style="width: {{ section.settings.pct_2 }}%;"></div></div><span>{{ section.settings.count_2 }}</span></div>
+      <div class="dist-row"><span>1 ★</span><div class="bar"><div class="fill" style="width: {{ section.settings.pct_1 }}%;"></div></div><span>{{ section.settings.count_1 }}</span></div>
+    </div>
+    <div class="action-box">
+      <button class="write-review-btn" onclick="openReviewModal_{{ safe_sid }}()">Write a Review</button>
+    </div>
+  </div>
+
+
+  <div class="review-filters">
+    <select id="reviewSort-{{ section.id }}" onchange="currentPage_{{ safe_sid }}=1; renderReviews_{{ safe_sid }}();">
+      <option value="default">Default order</option>
+      <option value="highest">Highest Rating</option>
+      <option value="lowest">Lowest Rating</option>
+    </select>
+    {% comment %}
+    <select id="reviewFilter-{{ section.id }}" onchange="currentPage_{{ safe_sid }}=1; renderReviews_{{ safe_sid }}();">
+      <option value="0">All stars</option>
+      <option value="5">★★★★★ 5 stars</option>
+      <option value="4">★★★★☆ 4 stars</option>
+      <option value="3">★★★☆☆ 3 stars</option>
+      <option value="2">★★☆☆☆ 2 stars</option>
+      <option value="1">★☆☆☆☆ 1 star</option>
+    </select>
+    {% endcomment %}
+
+    <p class="review-disclosure">📷 Photos may be cropped based on device</p>
+  </div>
+
+
+  <div id="reviews-grid-{{ section.id }}" class="reviews-grid"></div>
+
+  <div class="pagination-container">
+    <button onclick="changePage_{{ safe_sid }}(-1)" id="prevBtn-{{ section.id }}">Previous</button>
+    <span id="pageInfo-{{ section.id }}">Page 1</span>
+    <button onclick="changePage_{{ safe_sid }}(1)" id="nextBtn-{{ section.id }}">Next</button>
+  </div>
+</section>
+
+<div id="reviewModal-{{ section.id }}" class="nvgd-review-modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeReviewModal_{{ safe_sid }}()">&times;</span>
+    <h2>Write a Review</h2>
+    <p style="color:#555;font-size:13px;margin-bottom:20px;">Share your experience with Revella Astaxanthin</p>
+    <form id="reviewForm-{{ section.id }}" onsubmit="submitReview_{{ safe_sid }}(event)">
+      <div class="form-group">
+        <label>Your Name *</label>
+        <input type="text" id="reviewerName-{{ section.id }}" required placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>Your Rating *</label>
+        <div class="star-rating-input" id="starInput-{{ section.id }}">
+          <span class="star-input" data-rating="1">☆</span>
+          <span class="star-input" data-rating="2">☆</span>
+          <span class="star-input" data-rating="3">☆</span>
+          <span class="star-input" data-rating="4">☆</span>
+          <span class="star-input" data-rating="5">☆</span>
+        </div>
+        <input type="hidden" id="selectedRating-{{ section.id }}" required>
+      </div>
+      <div class="form-group">
+        <label>Your Review *</label>
+        <textarea id="reviewText-{{ section.id }}" required placeholder="Tell us about your experience..." rows="5"></textarea>
+      </div>
+      <button type="submit" class="submit-review-btn">Submit Review</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  #ReviewsGrid-{{ section.id }} { max-width: 1100px; margin: 30px auto; font-family: var(--font-body-family); padding: 0 15px; }
+  #ReviewsGrid-{{ section.id }} .reviews-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e5e5; padding-bottom: 24px; gap: 30px; }
+  #ReviewsGrid-{{ section.id }} .rating-number { font-size: 42px; margin: 0; font-weight: 800; line-height: 1; color: #1a1a1a; }
+  #ReviewsGrid-{{ section.id }} .stars-display { color: #f5a623; font-size: 18px; margin: 6px 0; }
+  #ReviewsGrid-{{ section.id }} .total-text { font-size: 12px; color: #888; margin: 0; }
+  #ReviewsGrid-{{ section.id }} .distribution-bars { flex-grow: 1; max-width: 350px; }
+  #ReviewsGrid-{{ section.id }} .dist-row { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 5px; color: #555; }
+  #ReviewsGrid-{{ section.id }} .dist-row span:first-child { min-width: 32px; font-weight: 600; color: #1a1a1a; }
+  #ReviewsGrid-{{ section.id }} .dist-row span:last-child { min-width: 45px; text-align: right; font-size: 11px; color: #888; }
+  #ReviewsGrid-{{ section.id }} .dist-row .bar { background: #f0f0f0; height: 6px; flex-grow: 1; border-radius: 10px; overflow: hidden; position: relative; min-width: 150px; }
+  #ReviewsGrid-{{ section.id }} .dist-row .bar .fill { background: #1a1a1a; height: 6px; border-radius: 10px; display: block; position: absolute; top: 0; left: 0; }
+  #ReviewsGrid-{{ section.id }} .write-review-btn { background: {{ section.settings.button_color }}; color: #fff; padding: 11px 20px; border: none; cursor: pointer; font-weight: 600; border-radius: 6px; font-size: 13px; font-family: var(--font-body-family); }
+  #ReviewsGrid-{{ section.id }} .review-filters { margin: 20px 0; }
+  #ReviewsGrid-{{ section.id }} .review-disclosure { font-size: 11px; color: #aaa; margin: 6px 0 0; font-style: italic; display: block; }
+  #ReviewsGrid-{{ section.id }} #reviewSort-{{ section.id }},
+  #ReviewsGrid-{{ section.id }} #reviewFilter-{{ section.id }} { padding: 8px 14px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; cursor: pointer; background: white; font-family: var(--font-body-family); color: #1a1a1a; }
+  #ReviewsGrid-{{ section.id }} .reviews-grid { display: grid; grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr); gap: 14px; margin-top: 20px; }
+  #ReviewsGrid-{{ section.id }} .review-card { border: 1px solid #e5e5e5; padding: 18px; border-radius: 10px; background: white; }
+  #ReviewsGrid-{{ section.id }} .review-stars { color: #f5a623; font-size: 13px; margin-bottom: 8px; }
+  #ReviewsGrid-{{ section.id }} .reviewer-name { font-weight: 700; font-size: 13px; margin: 0 0 8px; color: #1a1a1a; }
+  #ReviewsGrid-{{ section.id }} .verified-badge { color: #2ecc71; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  #ReviewsGrid-{{ section.id }} .review-text { font-size: 13px; line-height: 1.6; color: #555; margin: 0; }
+  #ReviewsGrid-{{ section.id }} .read-more-btn { background: none; border: none; color: {{ section.settings.button_color }}; font-size: 12px; font-weight: 600; cursor: pointer; padding: 4px 0 0; font-family: var(--font-body-family); display: block; margin-top: 4px; }
+  #ReviewsGrid-{{ section.id }} .image-container { margin-top: 14px; border-radius: 8px; overflow: hidden; height: 220px; }
+  #ReviewsGrid-{{ section.id }} .review-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #ReviewsGrid-{{ section.id }} .pagination-container { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px; }
+  #ReviewsGrid-{{ section.id }} .pagination-container button { padding: 9px 20px; border: 1px solid #e5e5e5; background: white; cursor: pointer; border-radius: 6px; font-weight: 500; font-size: 13px; color: #1a1a1a; font-family: var(--font-body-family); }
+  #ReviewsGrid-{{ section.id }} .pagination-container button:disabled { opacity: 0.3; cursor: not-allowed; }
+  #ReviewsGrid-{{ section.id }} #pageInfo-{{ section.id }} { font-size: 13px; color: #888; }
+  .nvgd-review-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); overflow: auto; }
+  .nvgd-review-modal .modal-content { background: white; margin: 5% auto; padding: 30px; border-radius: 10px; width: 90%; max-width: 600px; position: relative; }
+  .nvgd-review-modal .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 20px; }
+  .nvgd-review-modal h2 { margin: 0 0 8px; font-size: 20px; font-weight: 800; color: #1a1a1a; }
+  .nvgd-review-modal .form-group { margin-bottom: 18px; }
+  .nvgd-review-modal .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #1a1a1a; font-size: 13px; }
+  .nvgd-review-modal .form-group input[type="text"],
+  .nvgd-review-modal .form-group textarea { width: 100%; padding: 10px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; font-family: var(--font-body-family); box-sizing: border-box; }
+  .nvgd-review-modal .star-rating-input { font-size: 28px; color: #ddd; cursor: pointer; }
+  .nvgd-review-modal .star-input.selected { color: #FFCC00; }
+  .nvgd-review-modal .submit-review-btn { background: {{ section.settings.button_color }}; color: white; padding: 13px 28px; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; font-family: var(--font-body-family); }
+  @media (max-width: 768px) {
+    #ReviewsGrid-{{ section.id }} .reviews-grid { grid-template-columns: 1fr; }
+    #ReviewsGrid-{{ section.id }} .reviews-header { flex-direction: column; text-align: center; }
+    #ReviewsGrid-{{ section.id }} .dist-row .bar { min-width: 100px; }
+  }
+</style>
+
+<script>
+(function() {
+  var sid = '{{ section.id }}';
+  var safeSid = '{{ safe_sid }}';
+  var TRUNCATE_AT = 220;
+  var reviewsPerPage = {{ section.settings.reviews_per_page }};
+
+  window['currentPage_' + safeSid] = 1;
+
+  // Build reviewData from blocks (each block holds up to 5 reviews)
+  var reviewData = [];
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'review_group' -%}
+
+      {%- comment -%} Slot 1 {%- endcomment -%}
+      {%- if block.settings.name_1 != blank and block.settings.text_1 != blank -%}
+        {%- if block.settings.image_1 != blank -%}{%- assign img1 = block.settings.image_1 | image_url: width: 800 -%}
+        {%- elsif block.settings.image_url_1 != blank -%}{%- assign img1 = block.settings.image_url_1 -%}
+        {%- else -%}{%- assign img1 = '' -%}{%- endif -%}
+        reviewData.push({ name: {{ block.settings.name_1 | json }}, rating: {{ block.settings.rating_1 }}, text: {{ block.settings.text_1 | json }}, img: {{ img1 | json }} });
+      {%- endif -%}
+
+      {%- comment -%} Slot 2 {%- endcomment -%}
+      {%- if block.settings.name_2 != blank and block.settings.text_2 != blank -%}
+        {%- if block.settings.image_2 != blank -%}{%- assign img2 = block.settings.image_2 | image_url: width: 800 -%}
+        {%- elsif block.settings.image_url_2 != blank -%}{%- assign img2 = block.settings.image_url_2 -%}
+        {%- else -%}{%- assign img2 = '' -%}{%- endif -%}
+        reviewData.push({ name: {{ block.settings.name_2 | json }}, rating: {{ block.settings.rating_2 }}, text: {{ block.settings.text_2 | json }}, img: {{ img2 | json }} });
+      {%- endif -%}
+
+      {%- comment -%} Slot 3 {%- endcomment -%}
+      {%- if block.settings.name_3 != blank and block.settings.text_3 != blank -%}
+        {%- if block.settings.image_3 != blank -%}{%- assign img3 = block.settings.image_3 | image_url: width: 800 -%}
+        {%- elsif block.settings.image_url_3 != blank -%}{%- assign img3 = block.settings.image_url_3 -%}
+        {%- else -%}{%- assign img3 = '' -%}{%- endif -%}
+        reviewData.push({ name: {{ block.settings.name_3 | json }}, rating: {{ block.settings.rating_3 }}, text: {{ block.settings.text_3 | json }}, img: {{ img3 | json }} });
+      {%- endif -%}
+
+      {%- comment -%} Slot 4 {%- endcomment -%}
+      {%- if block.settings.name_4 != blank and block.settings.text_4 != blank -%}
+        {%- if block.settings.image_4 != blank -%}{%- assign img4 = block.settings.image_4 | image_url: width: 800 -%}
+        {%- elsif block.settings.image_url_4 != blank -%}{%- assign img4 = block.settings.image_url_4 -%}
+        {%- else -%}{%- assign img4 = '' -%}{%- endif -%}
+        reviewData.push({ name: {{ block.settings.name_4 | json }}, rating: {{ block.settings.rating_4 }}, text: {{ block.settings.text_4 | json }}, img: {{ img4 | json }} });
+      {%- endif -%}
+
+      {%- comment -%} Slot 5 {%- endcomment -%}
+      {%- if block.settings.name_5 != blank and block.settings.text_5 != blank -%}
+        {%- if block.settings.image_5 != blank -%}{%- assign img5 = block.settings.image_5 | image_url: width: 800 -%}
+        {%- elsif block.settings.image_url_5 != blank -%}{%- assign img5 = block.settings.image_url_5 -%}
+        {%- else -%}{%- assign img5 = '' -%}{%- endif -%}
+        reviewData.push({ name: {{ block.settings.name_5 | json }}, rating: {{ block.settings.rating_5 }}, text: {{ block.settings.text_5 | json }}, img: {{ img5 | json }} });
+      {%- endif -%}
+
+    {%- endif -%}
+  {%- endfor -%}
+
+  function renderReviews() {
+    var currentPage = window['currentPage_' + safeSid];
+    var container = document.getElementById('reviews-grid-' + sid);
+    var filteredData = reviewData.slice();
+    var sortEl = document.getElementById('reviewSort-' + sid);
+    var sortVal = sortEl ? sortEl.value : 'default';    var filterEl = document.getElementById('reviewFilter-' + sid);
+    var filterVal = filterEl ? parseInt(filterEl.value, 10) : 0;
+    if (filterVal > 0) filteredData = filteredData.filter(function(r){ return r.rating === filterVal; });
+    if (sortVal === 'highest') filteredData.sort(function(a,b){ return b.rating - a.rating; });
+    if (sortVal === 'lowest')  filteredData.sort(function(a,b){ return a.rating - b.rating; });
+    var start = (currentPage - 1) * reviewsPerPage;
+    var end = start + reviewsPerPage;
+    var paginatedItems = filteredData.slice(start, end);
+
+    container.innerHTML = paginatedItems.map(function(rev, i) {
+      var needsTruncation = rev.text.length > TRUNCATE_AT;
+      var shortText = needsTruncation ? rev.text.slice(0, TRUNCATE_AT).trim() + '\u2026' : rev.text;
+      var id = 'rev-' + sid + '-' + (start + i);
+      var stars = '\u2605'.repeat(rev.rating) + '\u2606'.repeat(5 - rev.rating);
+      var escapedText = rev.text.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      return '<div class="review-card">' +
+        '<div class="review-stars">' + stars + '</div>' +
+        '<p class="reviewer-name">' + rev.name + '<span class="verified-badge">\u2713 Verified</span></p>' +
+        '<p class="review-text" id="' + id + '">"' + shortText + '"</p>' +
+        (needsTruncation ? '<button class="read-more-btn" onclick="toggleReview_' + safeSid + '(\'' + id + '\', \'' + escapedText + '\')">Read more</button>' : '') +
+        (rev.img ? '<div class="image-container"><img src="' + rev.img + '" class="review-img" loading="lazy" decoding="async" alt="' + rev.name + '"></div>' : '') +
+        '</div>';
+    }).join('');
+
+    document.getElementById('pageInfo-' + sid).innerText = 'Page ' + currentPage;
+    document.getElementById('prevBtn-' + sid).disabled = currentPage === 1;
+    document.getElementById('nextBtn-' + sid).disabled = end >= filteredData.length;
+  }
+
+  window['renderReviews_' + safeSid] = renderReviews;
+
+  window['toggleReview_' + safeSid] = function(id, fullText) {
+    var el = document.getElementById(id);
+    var btn = el.nextElementSibling;
+    if (btn.innerText === 'Read more') {
+      el.innerText = '"' + fullText + '"';
+      btn.innerText = 'Read less';
+    } else {
+      el.innerText = '"' + fullText.slice(0, TRUNCATE_AT).trim() + '\u2026"';
+      btn.innerText = 'Read more';
+    }
+  };
+
+  window['changePage_' + safeSid] = function(step) {
+    window['currentPage_' + safeSid] += step;
+    renderReviews();
+    window.scrollTo({ top: document.getElementById('ReviewsGrid-' + sid).offsetTop - 100, behavior: 'smooth' });
+  };
+
+  window['openReviewModal_' + safeSid] = function() {
+    document.getElementById('reviewModal-' + sid).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  };
+
+  window['closeReviewModal_' + safeSid] = function() {
+    document.getElementById('reviewModal-' + sid).style.display = 'none';
+    document.body.style.overflow = 'auto';
+    document.getElementById('reviewForm-' + sid).reset();
+    document.querySelectorAll('#starInput-' + sid + ' .star-input').forEach(function(s) {
+      s.classList.remove('selected'); s.textContent = '\u2606';
+    });
+  };
+
+  window['submitReview_' + safeSid] = function(event) {
+    event.preventDefault();
+    var name = document.getElementById('reviewerName-' + sid).value;
+    var rating = document.getElementById('selectedRating-' + sid).value;
+    window['closeReviewModal_' + safeSid]();
+    alert('Thank you ' + name + '! Your ' + rating + '-star review has been submitted and will appear after approval.');
+  };
+
+  window.addEventListener('click', function(event) {
+    var modal = document.getElementById('reviewModal-' + sid);
+    if (event.target === modal) window['closeReviewModal_' + safeSid]();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var stars = document.querySelectorAll('#starInput-' + sid + ' .star-input');
+    stars.forEach(function(star) {
+      star.addEventListener('click', function() {
+        var rating = this.getAttribute('data-rating');
+        document.getElementById('selectedRating-' + sid).value = rating;
+        stars.forEach(function(s) {
+          var active = s.getAttribute('data-rating') <= rating;
+          s.classList.toggle('selected', active);
+          s.textContent = active ? '\u2605' : '\u2606';
+        });
+      });
+      star.addEventListener('mouseenter', function() {
+        var rating = this.getAttribute('data-rating');
+        stars.forEach(function(s) { s.textContent = s.getAttribute('data-rating') <= rating ? '\u2605' : '\u2606'; });
+      });
+    });
+    var starWrap = document.getElementById('starInput-' + sid);
+    if (starWrap) {
+      starWrap.addEventListener('mouseleave', function() {
+        var r = document.getElementById('selectedRating-' + sid).value;
+        stars.forEach(function(s) { s.textContent = s.getAttribute('data-rating') <= r ? '\u2605' : '\u2606'; });
+      });
+    }
+    renderReviews();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Reviews grid",
+  "tag": "section",
+  "class": "nvgd-reviews-grid-section",
+  "max_blocks": 20,
+  "blocks": [
+    {
+      "type": "review_group",
+      "name": "Review group (5 reviews)",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Review 1"
+        },
+        {
+          "type": "text",
+          "id": "name_1",
+          "label": "Name 1"
+        },
+        {
+          "type": "range",
+          "id": "rating_1",
+          "label": "Rating 1",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text_1",
+          "label": "Review text 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Photo 1 (overrides URL)"
+        },
+        {
+          "type": "text",
+          "id": "image_url_1",
+          "label": "Photo URL 1"
+        },
+        {
+          "type": "header",
+          "content": "Review 2"
+        },
+        {
+          "type": "text",
+          "id": "name_2",
+          "label": "Name 2"
+        },
+        {
+          "type": "range",
+          "id": "rating_2",
+          "label": "Rating 2",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text_2",
+          "label": "Review text 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Photo 2 (overrides URL)"
+        },
+        {
+          "type": "text",
+          "id": "image_url_2",
+          "label": "Photo URL 2"
+        },
+        {
+          "type": "header",
+          "content": "Review 3"
+        },
+        {
+          "type": "text",
+          "id": "name_3",
+          "label": "Name 3"
+        },
+        {
+          "type": "range",
+          "id": "rating_3",
+          "label": "Rating 3",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text_3",
+          "label": "Review text 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Photo 3 (overrides URL)"
+        },
+        {
+          "type": "text",
+          "id": "image_url_3",
+          "label": "Photo URL 3"
+        },
+        {
+          "type": "header",
+          "content": "Review 4"
+        },
+        {
+          "type": "text",
+          "id": "name_4",
+          "label": "Name 4"
+        },
+        {
+          "type": "range",
+          "id": "rating_4",
+          "label": "Rating 4",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text_4",
+          "label": "Review text 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Photo 4 (overrides URL)"
+        },
+        {
+          "type": "text",
+          "id": "image_url_4",
+          "label": "Photo URL 4"
+        },
+        {
+          "type": "header",
+          "content": "Review 5"
+        },
+        {
+          "type": "text",
+          "id": "name_5",
+          "label": "Name 5"
+        },
+        {
+          "type": "range",
+          "id": "rating_5",
+          "label": "Rating 5",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text_5",
+          "label": "Review text 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Photo 5 (overrides URL)"
+        },
+        {
+          "type": "text",
+          "id": "image_url_5",
+          "label": "Photo URL 5"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Summary stats"
+    },
+    {
+      "type": "text",
+      "id": "average_rating",
+      "label": "Average rating",
+      "default": "4.84"
+    },
+    {
+      "type": "text",
+      "id": "total_reviews",
+      "label": "Total reviews",
+      "default": "13,933"
+    },
+    {
+      "type": "range",
+      "id": "pct_5",
+      "label": "5★ bar width (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 88
+    },
+    {
+      "type": "text",
+      "id": "count_5",
+      "label": "5★ count",
+      "default": "12,271"
+    },
+    {
+      "type": "range",
+      "id": "pct_4",
+      "label": "4★ bar width (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "count_4",
+      "label": "4★ count",
+      "default": "1,018"
+    },
+    {
+      "type": "range",
+      "id": "pct_3",
+      "label": "3★ bar width (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "count_3",
+      "label": "3★ count",
+      "default": "133"
+    },
+    {
+      "type": "range",
+      "id": "pct_2",
+      "label": "2★ bar width (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "count_2",
+      "label": "2★ count",
+      "default": "123"
+    },
+    {
+      "type": "range",
+      "id": "pct_1",
+      "label": "1★ bar width (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "count_1",
+      "label": "1★ count",
+      "default": "388"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "reviews_per_page",
+      "label": "Reviews per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#8C3A3A"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews grid",
+      "blocks": [
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Lorraine W.",
+            "rating_1": 5,
+            "text_1": "menopause started and within 6 months my hips my knees my fingers everything hurt. doctor tested me for arthritis lupus lyme — all negative. nobody could figure it out. then i read that estrogen protects your joints and when it drops the inflammation takes over. started this and by week 5 the morning stiffness shortened from over an hour to maybe 20 minutes. by week 9 i was walking my dog again without stopping. nobody told me this was menopause. this supplement told me.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w11_7056f3bb-dc97-4fa9-8f2a-9467dde3d22f.png?v=1776370450",
+            "name_2": "Tammy R.",
+            "rating_2": 5,
+            "text_2": "my hip pain was so bad at night i hadnt slept more than 3 hours straight in a year. every time i rolled onto my side it was like a knife. started this because i read it about its effects inside the body... about a month in i slept 6 hours straight. i cried in the morning because i forgot what that felt like.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w15.png?v=1776370450",
+            "name_3": "Earl R.",
+            "rating_3": 5,
+            "text_3": "retired carpenter. 40 years of kneeling on job sites destroyed my knees. doctor said the cartilage was just gone. 8 weeks in and the daily grinding pain dropped by at least half. went from needing to sit down every 20 minutes to walking the full farmers market with my wife last saturday. first time in years.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m9_087d5b1c-48d6-4842-b8c2-f1d92a1ddeb6.png?v=1776370450",
+            "name_4": "Colleen M.",
+            "rating_4": 5,
+            "text_4": "both knees swelled up during perimenopause. couldnt bend them fully. stairs were a nightmare. 8 weeks in and the swelling went down enough that i could kneel in my garden again. my husband said watching me get up and down used to make him nervous. not anymore.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w7_b42d7f54-6003-4189-a0f9-fd34e4427f02.png?v=1776370450",
+            "name_5": "Marlene H.",
+            "rating_5": 5,
+            "text_5": "the worst part of menopause wasnt the hot flashes. it was waking up every morning feeling like i aged 20 years overnight. stiff hands. locked knees. hips that burned. i tried turmeric for months. glucosamine for a year. nothing reached the actual pain. this was different. by week 4 something shifted. the stiffness started releasing. by week 8 i was getting out of bed like a normal person again.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w8_0fa9eeb2-e605-4cdc-9aa4-a569f2aed024.png?v=1776370451"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Steve K.",
+            "rating_1": 5,
+            "text_1": "my shoulder froze up about 4 months ago. couldnt lift my arm past my chest. added this and within 3 weeks the range of motion started opening up faster. by week 6 i reached overhead for a plate without thinking about it. my PT asked what changed because the progress jumped.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m10_804de057-76fa-4ad9-b698-e5e40ed2a3e5.png?v=1776370450",
+            "name_2": "Irene P.",
+            "rating_2": 5,
+            "text_2": "my fingers were so swollen from menopause i switched to front-close bras because i couldnt reach behind my back. started this and the swelling in my hands slowly went down over 6 weeks. i hooked my own necklace last tuesday and just stood there for a second. the little things hit different when youve lost them.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w17.png?v=1776370450",
+            "name_3": "Annette M.",
+            "rating_3": 5,
+            "text_3": "every single morning my knees sounded like bubble wrap. getting out of bed was a whole production. stairs were the worst. tried glucosamine for a year. turmeric for 6 months. nothing. started this and by week 4 the grinding was quieter. by week 8 i walked downstairs without thinking about it. my husband noticed before i did.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w16.png?v=1776370451",
+            "name_4": "Ray D.",
+            "rating_4": 5,
+            "text_4": "both hips were so stiff in the morning i had to roll out of bed sideways. getting dressed took 15 minutes because bending hurt. around week 5 the morning stiffness shortened from an hour to maybe 15 minutes. by week 10 i was getting dressed normally.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m14.png?v=1776370450",
+            "name_5": "Susan T.",
+            "rating_5": 5,
+            "text_5": "my shoulder locked up out of nowhere last fall. doctor said frozen shoulder, gave me cortisone, told me to stretch. cortisone wore off in two weeks. started this and by week 5 the shoulder started loosening. week 8 i put on my coat like a normal person. i actually laughed.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w13.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Loretta A.",
+            "rating_1": 5,
+            "text_1": "my hands were so swollen some mornings i couldnt close them into a fist. rings didnt fit. typing at work was painful by noon. by week 6 the swelling reduced enough to wear my wedding ring again. by week 10 i was typing all day without pain. my rheumatologist asked what changed.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w9_b40890a1-698d-4e7d-9880-f75b3020ea78.png?v=1776370450",
+            "name_2": "Wayne L.",
+            "rating_2": 5,
+            "text_2": "i used to run 4 days a week. then my right knee swelled up and never fully went back down. started this and the swelling slowly came down over 6 weeks. i ran a full 5k last month. slow but i finished. i sat in my car after and just sat there for a while. you dont realize what you lost until you get a piece of it back.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m11.png?v=1776370450",
+            "name_3": "Faye J.",
+            "rating_3": 5,
+            "text_3": "52 and everything hurt. my doctor kept saying its just aging. the joint pain started right when my periods stopped. started this and 6 weeks in my knees stopped burning on the stairs. 10 weeks in and i feel like myself again.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w5_022bb544-74b1-46ae-919f-fd9889915afb.png?v=1776370450",
+            "name_4": "Craig T.",
+            "rating_4": 5,
+            "text_4": "tore my rotator cuff years ago and it never fully healed. constant dull ache, limited range. this is the first supplement where i actually felt a difference. around week 4 the ache dialed down. by week 8 i was throwing a ball with my kid again.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m3_a8e72f00-65d5-4550-bf4c-294e6bd8da01.png?v=1776370450",
+            "name_5": "Gail W.",
+            "rating_5": 5,
+            "text_5": "i have never written a review in my life. but this one i had to. my hip pain from menopause was so bad i was limping by 3pm every day. 6 weeks later im walking normally. the pain isnt zero but its manageable and thats all i needed. thank you Revella.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w4_c6edae75-76c5-4a17-84bc-add1e9c5876f.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Wanda K.",
+            "rating_1": 5,
+            "text_1": "my ankles were so swollen by the end of every day i could barely see the bones. by week 5 the swelling was noticeably less. by week 9 my ankles looked normal at 8pm for the first time in i dont know how long.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w3_c2ba75e1-c21c-4992-abab-07a64d3ddec2.png?v=1776370450",
+            "name_2": "Dale H.",
+            "rating_2": 5,
+            "text_2": "both shoulders were so inflamed i couldnt reach the top shelf. my PT actually suggested astaxanthin for the inflammation. 6 weeks in and my range of motion improved noticeably. reaching overhead doesnt make me flinch anymore.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m6_ae62afa2-4061-4673-a24d-0a560be7b1ad.png?v=1776370450",
+            "name_3": "Donna M.",
+            "rating_3": 5,
+            "text_3": "retired 2 years ago and figured the joint pain was just part of getting older. both knees, both hips, hands in the morning — i just accepted it. my daughter kept sending me links and i kept ignoring her. finally tried it. 8 weeks in and the morning stiffness that i'd lived with for years just started lifting. i'm moving better at 60 than i was at 55. wish i hadn't waited so long.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w12.png?v=1776370450",
+            "name_4": "Hal P.",
+            "rating_4": 5,
+            "text_4": "48 years old. knees are bone on bone. this stuff doesnt regrow cartilage obviously but the inflammation around the joint calmed down significantly by week 6. i went from 4 advil a day to maybe 1. some days none. thats a win at my age.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m15.png?v=1776370450",
+            "name_5": "Margaret L.",
+            "rating_5": 5,
+            "text_5": "frozen shoulder for 5 months. my doctor said it could take a year or more to resolve on its own. started this and the thawing happened faster than anyone expected. week 4 the stiffness started breaking. week 8 i could reach behind my back. my physical therapist was genuinely surprised at the timeline.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w18.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Dennis J.",
+            "rating_1": 5,
+            "text_1": "my doctor put me on a statin and within 3 months my legs felt like concrete. took CoQ10 for 4 months. nothing. started this and by week 5 the heaviness in my legs started lifting. i can actually walk up a flight of stairs without my thighs screaming.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m2_2556b9bb-26bf-4190-b10e-3b564db33c58.png?v=1776370450",
+            "name_2": "Arlene D.",
+            "rating_2": 5,
+            "text_2": "my wrists and fingers were so inflamed i had to stop knitting — my hobby for 30 years. by week 7 the swelling in my fingers went down enough to hold needles again. im knitting a blanket for my new grandbaby right now. wouldnt be happening without this.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w2_cef21a0f-60dc-4493-a4a5-5305548c27e5.png?v=1776370450",
+            "name_3": "Pamela C.",
+            "rating_3": 5,
+            "text_3": "joint pain is real and i am tired of doctors acting like its not. my knees, my hips, my hands — all started hurting within months of my last period. none of them said your estrogen dropped and your joints lost their protection. this supplement does what estrogen used to do. 6 weeks in and the difference is undeniable.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w1_6793d2d5-118e-4cbb-98cf-c627587795cb.png?v=1776370450",
+            "name_4": "Keith T.",
+            "rating_4": 5,
+            "text_4": "shoulder impingement for over a year. couldnt bench press. couldnt do overhead work. week 4 the inflammation started calming. by week 8 i was pressing again at lighter weight. slow comeback but its a comeback.",
+            "image_url_4": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m1_ef2b7eef-fcf2-4962-9baa-8b8203d7d541.png?v=1776370450",
+            "name_5": "Cynthia R.",
+            "rating_5": 5,
+            "text_5": "i was popping advil like candy. 4-6 a day just to get through work. my stomach was a mess. by week 6 i was down to 1 advil. by week 10 some days i dont need any. this replaced a habit that was destroying me.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w10_3414631a-45e3-47f2-9d43-46a2a4e928ec.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Brenda S.",
+            "rating_1": 5,
+            "text_1": "bought this for my husband because he was waking up at 3am every night from shoulder pain. 4 weeks in he slept through the night. i know because i did too. best purchase ive made in years.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w6_06e96ecb-72db-46f5-a723-15210b30ede2.png?v=1776370450",
+            "name_2": "Trevor S.",
+            "rating_2": 5,
+            "text_2": "gym guy. 44 years old. started getting joint inflammation that wouldnt quit. knees after squats, shoulders after pressing, even my elbows were angry. week 3 i noticed recovery was faster. by week 6 the chronic ache was mostly gone. easiest addition to my stack.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m13.png?v=1776370450",
+            "name_3": "Debra K.",
+            "rating_3": 5,
+            "text_3": "my outer hip pain was unbearable. couldnt lie on either side. 6 weeks in and i can lie on my side again. not perfectly comfortable but i can do it without wanting to cry. thats progress i didnt think was possible.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/w14.png?v=1776370450",
+            "name_4": "Renee R.",
+            "rating_4": 5,
+            "text_4": "57, postmenopausal, both knees were so stiff every morning i would sit on the edge of the bed for 10 minutes just working up the courage to stand. tried everything. thousands of dollars. this is the only thing that actually reached the pain. by month 2 i was standing up and just walking. no warmup. no bracing. just walking.",
+            "name_5": "Curt A.",
+            "rating_5": 5,
+            "text_5": "i dont write reviews. ever. but this one earned it. frozen shoulder for 6 months. couldnt lift my arm. added this and the progress accelerated noticeably starting week 4. by week 10 i had most of my range back. thats all i have to say.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m7_ea7157a1-f119-48de-8841-7a304877cee5.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Marie B.",
+            "rating_1": 5,
+            "text_1": "58 years old and my joints woke me up every night. took about 5 weeks but the nighttime pain dropped dramatically. i actually sleep now.",
+            "image_url_1": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b2.png?v=1776370450",
+            "name_2": "Penny B.",
+            "rating_2": 5,
+            "text_2": "my shoulder was frozen solid. getting dressed was a nightmare, my wife had to help. within a month the thawing accelerated. my PT kept saying she was surprised how fast things were moving. by month 3 i was reaching overhead. i get emotional thinking about it because i really thought i lost that arm.",
+            "image_url_2": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/b3.png?v=1776370450",
+            "name_3": "Hank D.",
+            "rating_3": 5,
+            "text_3": "55 years old. both knees from decades of basketball. by week 5 i was getting out of bed easier. by week 8 i played a half court game with my nephews for the first time in 3 years. something changed inside the joint and i can feel it.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m8_9f4b979e-9667-4ea5-8847-193a0e2f1f72.png?v=1776370450",
+            "name_4": "Martha T.",
+            "rating_4": 5,
+            "text_4": "everything hurt after menopause. elbows, wrists, knees, ankles. my gp said its normal aging. im 51. thats not old. 7 weeks in and the pain is probably 60% reduced. not gone but i feel human again.",
+            "name_5": "Vince B.",
+            "rating_5": 5,
+            "text_5": "tore my meniscus 10 years ago. knee was never the same. this is the first supplement that actually kept the flare-ups from happening. 3 months in and ive had zero bad days. not fewer bad days. zero. thats never happened.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m4_9d88d246-bcac-42bf-958d-e2c28e37d327.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Bonnie W.",
+            "rating_1": 5,
+            "text_1": "ignored my daughters link three times. finally ordered because she wouldnt stop. 6 weeks later i called her and said you were right. my hip pain is genuinely better. moms should listen to their daughters more.",
+            "name_2": "Joyce P.",
+            "rating_2": 5,
+            "text_2": "my right shoulder froze 8 months ago. then my left started going too. the right shoulder started thawing faster than expected and the left one never fully froze. i genuinely believe this prevented the second one from getting as bad.",
+            "name_3": "Glen F.",
+            "rating_3": 5,
+            "text_3": "61. both shoulders stiff and painful. my doctor wanted to do cortisone in both shoulders. i wanted to try something else first. 8 weeks in my range improved enough that my doctor agreed to hold off on the shots. still improving at week 12.",
+            "image_url_3": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m5_28e1614e-c265-42d9-b9bf-33fd207ebc80.png?v=1776370450",
+            "name_4": "Elaine D.",
+            "rating_4": 5,
+            "text_4": "menopause gave me joint pain i didnt even know was possible. tried turmeric. collagen. glucosamine. cutting sugar. nothing helped enough. this is the first thing that actually reduced the inflammation to where i could function normally. week 6 was when i felt the shift.",
+            "name_5": "Phil M.",
+            "rating_5": 5,
+            "text_5": "my wife begged me to try this for my shoulder. i resisted because i dont believe in supplements. she ordered it anyway. 5 weeks in my shoulder felt better. i still wont admit she was right to her face.",
+            "image_url_5": "https://cdn.shopify.com/s/files/1/0732/4329/5930/files/m12.png?v=1776370450"
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Connie L.",
+            "rating_1": 5,
+            "text_1": "the hip pain went from a constant 7 to maybe a 3. its not perfect but going from 7 to 3 gave me my life back.",
+            "name_2": "Dorothy V.",
+            "rating_2": 5,
+            "text_2": "I stopped taking it after 2 months because i felt fine. within 10 days everything came back. the stiffness, the swelling, the pain getting out of bed. reordered immediately. i will never stop taking this again. lesson learned.",
+            "name_3": "Valerie C.",
+            "rating_3": 5,
+            "text_3": "i couldnt open a water bottle. couldnt grip a pen. couldnt hold my grandsons hand without pain. by week 8 i held my grandsons hand on a walk and squeezed it. he squeezed back. that was worth more than i can explain here.",
+            "name_4": "Marilyn A.",
+            "rating_4": 5,
+            "text_4": "frozen shoulder club. mine lasted 14 months before i found this. by week 4 the pain at night reduced. by week 8 i could reach behind my back. im at 80% and 80% is a miracle compared to where i was.",
+            "name_5": "Shirley F.",
+            "rating_5": 5,
+            "text_5": "i tried SO many things. turmeric. glucosamine. boswellia. collagen. fish oil. literally everything. none of them did what this does. week 6 i understood the difference."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Todd L.",
+            "rating_1": 5,
+            "text_1": "bad knees from running for 20 years. 10 weeks in and the daily ache is noticeably less. i started running again twice a week. my orthopedic said whatever youre doing keep doing it because the inflammation markers in my blood dropped.",
+            "name_2": "Cheryl N.",
+            "rating_2": 5,
+            "text_2": "both hips. both knees. menopause hit and my lower body just fell apart. i went from hiking on weekends to barely making it through a grocery store. 8 weeks later i did a short hike with my daughter. she cried. i cried. first time in 2 years.",
+            "name_3": "Jean M.",
+            "rating_3": 5,
+            "text_3": "my doctor said the shoulder will unfreeze on its own in 1-2 years. i said i cant wait 2 years i have a life to live. i am at about 90% range of motion at month 4. my doctor said some people just heal faster. i didnt tell him about the supplement.",
+            "name_4": "Rick H.",
+            "rating_4": 5,
+            "text_4": "construction worker. 52 years old. knees shoulders lower back — all inflamed all the time. by month 2 the baseline inflammation just dropped. the constant burning background pain is gone. thats the difference between functioning and suffering.",
+            "name_5": "Judith A.",
+            "rating_5": 5,
+            "text_5": "I am 61 and postmenopausal. my friend had been on this for 3 months and looked like a different person. she moved differently. 7 weeks in and i understand now. the inflammation just quiets down. thats the only way i can describe it."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carolyn E.",
+            "rating_1": 5,
+            "text_1": "menopause took my flexibility. i used to do yoga 4 times a week. by week 6 i was back on the mat. by week 12 i was almost back to my normal practice. i lost a year of my life to that inflammation and im angry nobody told me sooner.",
+            "name_2": "Virginia R.",
+            "rating_2": 5,
+            "text_2": "i bought every joint supplement on amazon over 2 years. spent hundreds. this helped a lot. the difference is it goes somewhere the others physically cannot. i wish id found it first and saved myself 2 years.",
+            "name_3": "Joe P.",
+            "rating_3": 5,
+            "text_3": "my wife ordered this for me because she was tired of hearing me complain about my knees. week 5 i realized i hadnt complained in a while. she pointed that out too. she doesnt need to know she was right though.",
+            "name_4": "Ruth S.",
+            "rating_4": 5,
+            "text_4": "54 and my hands swelled up so bad i had to cut my wedding ring off. that was the lowest point. 8 weeks in the swelling is controlled. not wearing my ring yet but my fingers are close.",
+            "name_5": "Beverly H.",
+            "rating_5": 5,
+            "text_5": "i almost gave up at week 3 because nothing felt different. so glad i didnt. week 5 is when the shift happened. by week 8 i was up and moving within 15 minutes of waking up. if youre reading this and thinking about quitting early — dont."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Paul D.",
+            "rating_1": 5,
+            "text_1": "herniated disc plus knee arthritis plus shoulder impingement. added this and the background inflammation dropped enough that i could cut the NSAIDs in half. my liver enzymes improved at my next blood test too. doctor was pleased but wouldnt credit the supplement. thats fine. i know.",
+            "name_2": "Janice H.",
+            "rating_2": 5,
+            "text_2": "i work as a hairdresser. standing all day, arms overhead for 8 hours. the shoulder pain from menopause was threatening my career. by week 6 i was making it through a full day without the burning. im 58 and i wasnt ready to retire. this kept me working.",
+            "name_3": "Evelyn W.",
+            "rating_3": 5,
+            "text_3": "finishing bag 2 now. the joint pain from menopause is about 70% better. hips dont burn at night. knees dont lock on the stairs. the improvement was gradual enough that i didnt notice until i realized i stopped reaching for the ibuprofen bottle.",
+            "name_4": "Brent T.",
+            "rating_4": 5,
+            "text_4": "i read the actual studies before ordering. astaxanthin at 12mg has peer reviewed clinical data for inflammation and joint function. results matched the literature. joint pain reduced measurably by week 6. the evidence base is solid and my knees agree.",
+            "name_5": "Norma J.",
+            "rating_5": 5,
+            "text_5": "this is my third bag. the last time i ran low i stretched it out to every other day and within a week my hips started aching again. every single day. no skipping."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Rose M.",
+            "rating_1": 5,
+            "text_1": "menopause at 48. joint pain at 49. by 50 i felt like i was 70. week 6 was the turning point. the inflammation just started calming and it hasnt come back.",
+            "name_2": "Kayla S.",
+            "rating_2": 4,
+            "text_2": "genuinely noticing improvement in my knee and hip pain. giving 4 stars only because results took about 5 weeks to show up. if youre patient it delivers.",
+            "name_3": "Paige W.",
+            "rating_3": 4,
+            "text_3": "product works great for my joint inflammation. my shoulders feel significantly better. knocking one star because i wish they had a bigger size so i didnt have to reorder as often.",
+            "name_4": "Joanne T.",
+            "rating_4": 4,
+            "text_4": "joint pain improved noticeably, morning stiffness much shorter. taking off one star because the softgel is a bit large for me — i manage fine but worth knowing.",
+            "name_5": "Scott R.",
+            "rating_5": 4,
+            "text_5": "shoulder pain improved around week 5. not completely gone but significantly better. would give 5 but i think the price could be a bit lower for what you get."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Teri H.",
+            "rating_1": 4,
+            "text_1": "bought this for my husband. month 2 he said his knees feel better and asked what changed. he reordered himself. giving 4 stars because it took a full 6 weeks to see results.",
+            "name_2": "Diane M.",
+            "rating_2": 4,
+            "text_2": "was skeptical a supplement could help with my hip tendinitis, but after two weeks i could tell a difference, and after four weeks i was almost pain free. only 4 stars because i wish there was a subscription option.",
+            "name_3": "Shari L.",
+            "rating_3": 4,
+            "text_3": "i was very surprised this helped my hip pain. wasnt able to sleep on my sides, very painful, but it actually worked. only thing holding back the 5th star is the price.",
+            "name_4": "Nadia T.",
+            "rating_4": 3,
+            "text_4": "only 3 weeks in so probably too early to judge. joint pain might be slightly better but nothing dramatic yet. giving it the full 8 weeks before deciding.",
+            "name_5": "Wendy F.",
+            "rating_5": 3,
+            "text_5": "mixed so far. shoulder seems a bit better but no major change yet. only 4 weeks in so i know thats probably early. sticking with it."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Holly H.",
+            "rating_1": 3,
+            "text_1": "took about 12 days to arrive which is annoying when youre in pain and trying to start something. product itself seems fine once i got started.",
+            "name_2": "Vera P.",
+            "rating_2": 2,
+            "text_2": "delivery took about 10 days. not a deal breaker but worth knowing if timing matters to you.",
+            "name_3": "Beth T.",
+            "rating_3": 2,
+            "text_3": "softgel is bigger than expected. i manage but if you have trouble swallowing pills its worth knowing before you order.",
+            "name_4": "Julie S.",
+            "rating_4": 1,
+            "text_4": "expected something different from the photos. product is just softgels in a bag.",
+            "name_5": "Nikki P.",
+            "rating_5": 1,
+            "text_5": "sale ended before i could order. they wouldnt honor it. frustrating."
+          }
+        },
+        {
+          "type": "review_group",
+          "settings": {
+            "name_1": "Carly M.",
+            "rating_1": 1,
+            "text_1": "shipping took longer than expected. annoying when youre in pain and trying to start consistently.",
+            "name_2": "Maya R.",
+            "rating_2": 1,
+            "text_2": "3 days in. nothing to report yet. leaving this to track my start date."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

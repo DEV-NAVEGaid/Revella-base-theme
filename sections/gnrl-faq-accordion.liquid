@@ -1,0 +1,535 @@
+<style>
+  .faq-accordion-section-{{ section.id }} {
+    padding: 4rem 2rem;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion-section__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── Heading ── */
+  .faq-accordion-section-{{ section.id }} .faq-accordion-section__heading {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-weight: {{ section.settings.heading_weight }};
+    font-style: {{ section.settings.heading_style }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    line-height: {{ section.settings.heading_line_height | times: 0.1 | plus: 1.0 }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    text-transform: {{ section.settings.heading_transform }};
+    text-align: {{ section.settings.heading_align_mobile }};
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 2.4rem;
+  }
+
+  /* ── Question ── */
+  .faq-accordion-section-{{ section.id }} .faq-accordion__question {
+    font-family: {{ section.settings.question_font.family }}, {{ section.settings.question_font.fallback_families }};
+    font-weight: {{ section.settings.question_weight }};
+    font-style: {{ section.settings.question_style }};
+    font-size: {{ section.settings.question_size_mobile }}px;
+    line-height: {{ section.settings.question_line_height | times: 0.1 | plus: 1.0 }};
+    letter-spacing: {{ section.settings.question_letter_spacing }}px;
+    text-transform: {{ section.settings.question_transform }};
+    color: {{ section.settings.question_color }};
+  }
+
+  /* ── Answer ── */
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner,
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner p {
+    font-family: {{ section.settings.answer_font.family }}, {{ section.settings.answer_font.fallback_families }};
+    font-weight: {{ section.settings.answer_weight }};
+    font-style: {{ section.settings.answer_style }};
+    font-size: {{ section.settings.answer_size_mobile }}px;
+    line-height: {{ section.settings.answer_line_height | times: 0.1 | plus: 1.0 }};
+    letter-spacing: {{ section.settings.answer_letter_spacing }}px;
+    text-transform: {{ section.settings.answer_transform }};
+    text-align: {{ section.settings.answer_align_mobile }};
+    color: {{ section.settings.answer_color }};
+  }
+
+  @media (min-width: 750px) {
+    .faq-accordion-section-{{ section.id }} .faq-accordion-section__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+      text-align: {{ section.settings.heading_align_desktop }};
+    }
+
+    .faq-accordion-section-{{ section.id }} .faq-accordion__question {
+      font-size: {{ section.settings.question_size_desktop }}px;
+    }
+
+    .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner,
+    .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner p {
+      font-size: {{ section.settings.answer_size_desktop }}px;
+      text-align: {{ section.settings.answer_align_desktop }};
+    }
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item {
+    border-bottom: 1px solid rgba(31, 27, 46, 0.12);
+    padding: 1.6rem 0;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item:first-child {
+    border-top: 1px solid rgba(31, 27, 46, 0.12);
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__icon {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1F1B2E;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__icon-plus,
+  .faq-accordion-section-{{ section.id }} .faq-accordion__icon-caret {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__icon-caret {
+    display: none;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item[data-icon="caret"] .faq-accordion__icon-plus {
+    display: none;
+  }
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item[data-icon="caret"] .faq-accordion__icon-caret {
+    display: block;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item[open] .faq-accordion__icon-plus {
+    transform: rotate(45deg);
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__item[open] .faq-accordion__content {
+    max-height: 60rem;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner {
+    padding-top: 1.2rem;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner p {
+    margin: 0 0 1em;
+  }
+
+  .faq-accordion-section-{{ section.id }} .faq-accordion__content-inner p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq-accordion-section-{{ section.id }} {
+      padding: 3rem 1.6rem;
+    }
+  }
+</style>
+
+<div class="faq-accordion-section faq-accordion-section-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
+  <div class="faq-accordion-section__inner">
+    <h2 class="faq-accordion-section__heading">{{ section.settings.heading }}</h2>
+
+    <div class="faq-accordion">
+      {% for block in section.blocks %}
+        {% if block.type == 'question' %}
+          <details class="faq-accordion__item" data-icon="{{ block.settings.icon_style }}" {{ block.shopify_attributes }}>
+            <summary class="faq-accordion__summary">
+              <span class="faq-accordion__question">{{ block.settings.question }}</span>
+              <span class="faq-accordion__icon">
+                <svg class="faq-accordion__icon-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"/>
+                </svg>
+                <svg class="faq-accordion__icon-caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-accordion__content">
+              <div class="faq-accordion__content-inner">{{ block.settings.answer }}</div>
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GNRL FAQ Accordion",
+  "tag": "section",
+  "class": "section faq-accordion-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FBEDEA"
+    },
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extrabold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "800",
+      "info": "Only applies if the selected font family supports this weight."
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 14, "max": 72, "step": 1, "default": 42
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 14, "max": 48, "step": 1, "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#1F1B2E"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height (×0.1 + 1)",
+      "min": 0, "max": 10, "step": 1, "default": 2,
+      "info": "0 = 1.0  |  5 = 1.5  |  10 = 2.0"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Letter spacing (px)",
+      "min": -2, "max": 10, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "select",
+      "id": "heading_transform",
+      "label": "Text case",
+      "options": [
+        { "value": "none",       "label": "Normal" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "heading_align_desktop",
+      "label": "Alignment – Desktop",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "heading_align_mobile",
+      "label": "Alignment – Mobile",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Question style"
+    },
+    {
+      "type": "font_picker",
+      "id": "question_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "question_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extrabold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700",
+      "info": "Only applies if the selected font family supports this weight."
+    },
+    {
+      "type": "range",
+      "id": "question_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 10, "max": 32, "step": 1, "default": 18
+    },
+    {
+      "type": "range",
+      "id": "question_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 10, "max": 28, "step": 1, "default": 17
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Color",
+      "default": "#1F1B2E"
+    },
+    {
+      "type": "select",
+      "id": "question_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "question_line_height",
+      "label": "Line height (×0.1 + 1)",
+      "min": 0, "max": 10, "step": 1, "default": 4,
+      "info": "0 = 1.0  |  5 = 1.5  |  10 = 2.0"
+    },
+    {
+      "type": "range",
+      "id": "question_letter_spacing",
+      "label": "Letter spacing (px)",
+      "min": -2, "max": 10, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "select",
+      "id": "question_transform",
+      "label": "Text case",
+      "options": [
+        { "value": "none",       "label": "Normal" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Answer style"
+    },
+    {
+      "type": "font_picker",
+      "id": "answer_font",
+      "label": "Font family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "answer_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extrabold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "400",
+      "info": "Only applies if the selected font family supports this weight."
+    },
+    {
+      "type": "range",
+      "id": "answer_size_desktop",
+      "label": "Font size – Desktop (px)",
+      "min": 10, "max": 28, "step": 1, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "answer_size_mobile",
+      "label": "Font size – Mobile (px)",
+      "min": 10, "max": 24, "step": 1, "default": 16
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "Color",
+      "default": "#1F1B2E"
+    },
+    {
+      "type": "select",
+      "id": "answer_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "answer_line_height",
+      "label": "Line height (×0.1 + 1)",
+      "min": 0, "max": 10, "step": 1, "default": 6,
+      "info": "0 = 1.0  |  5 = 1.5  |  10 = 2.0"
+    },
+    {
+      "type": "range",
+      "id": "answer_letter_spacing",
+      "label": "Letter spacing (px)",
+      "min": -2, "max": 10, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "select",
+      "id": "answer_transform",
+      "label": "Text case",
+      "options": [
+        { "value": "none",       "label": "Normal" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "answer_align_desktop",
+      "label": "Alignment – Desktop",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" },
+        { "value": "justify","label": "Justify" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "answer_align_mobile",
+      "label": "Alignment – Mobile",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" },
+        { "value": "justify","label": "Justify" }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question goes here?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer goes here.</p>"
+        },
+        {
+          "type": "select",
+          "id": "icon_style",
+          "label": "Icon style",
+          "options": [
+            { "value": "plus", "label": "Plus" },
+            { "value": "caret", "label": "Caret" }
+          ],
+          "default": "plus"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GNRL FAQ Accordion",
+      "blocks": [
+        { "type": "question", "settings": { "question": "How long until I see results?", "answer": "<p>Most customers notice improvements in as few as 3-4 weeks. Full benefits typically peak around weeks 6 to 8. The longer you take it, the more it compounds.*</p>" } },
+        { "type": "question", "settings": { "question": "Where is Revella made?", "answer": "<p>Revella Astaxanthin is produced in a GMP-certified, FDA-registered facility and third-party tested every batch. We prioritize quality control at every step — from sourcing natural microalgae to final product.</p>", "icon_style": "caret" } },
+        { "type": "question", "settings": { "question": "Is it safe for long-term use?", "answer": "<p>Yes. Astaxanthin is one of the most studied antioxidants in the world with decades of research and no adverse effects recorded at standard doses. Our formula is sourced from natural microalgae, formulated with non-GMO ingredients, third-party tested, and manufactured in a GMP-certified facility.*</p>" } },
+        { "type": "question", "settings": { "question": "Can I take it with other supplements?", "answer": "<p>Astaxanthin is well-tolerated and works synergistically with most supplements. If you are on blood thinners or immunosuppressants, consult your doctor first.*</p>" } },
+        { "type": "question", "settings": { "question": "How and when should I take it?", "answer": "<p>Take 2 softgels in the morning and 2 in the evening, each with a meal that contains healthy fat. Splitting your dose this way maximizes absorption throughout the day since astaxanthin is fat-soluble. Consistency matters more than perfect timing, just make it part of your routine.</p>" } },
+        { "type": "question", "settings": { "question": "Why 4 softgels per day instead of 1 or 2 like other brands?", "answer": "<p>Astaxanthin is fat-soluble. Your body can only absorb so much at one time.</p><p>It's like watering a plant, pour too much at once and most of it runs off. Give it the right amount twice a day and it actually absorbs.</p><p>By taking 2 softgels in the morning and 2 in the evening, your body may absorb more effectively throughout the day - instead of passing the excess.*</p>" } },
+        { "type": "question", "settings": { "question": "Do I need to change my routine?", "answer": "<p>No! Simply add 4 softgels daily to your existing routine — 2 in the morning and 2 at night. It works alongside whatever you're already doing.</p>" } },
+        { "type": "question", "settings": { "question": "How is this different from other supplements?", "answer": "<p>Astaxanthin is recognized as one of nature's most powerful antioxidants based on published research comparing its antioxidant activity to Vitamin C, CoQ10, and Vitamin E.* Unlike most antioxidants, astaxanthin is both water and fat-soluble, which may allow it to interact with both sides of the cell membrane for more comprehensive support.*</p>" } },
+        { "type": "question", "settings": { "question": "How is this different from other antioxidants?*", "answer": "<p>Most antioxidants are water-soluble, meaning they can only protect one side of your cell membrane. Astaxanthin is both water and fat-soluble, meaning it protects the entire cell. It is also 6,000x more powerful than Vitamin C, 800x stronger than CoQ10, and 550x stronger than Vitamin E. Nothing else in nature does what it does.</p>" } },
+        { "type": "question", "settings": { "question": "Can I buy Revella in stores?", "answer": "<p>Not yet. We sell exclusively through our website so we can maintain full quality control, offer the best pricing, and back every order with our 60-day guarantee. You will never find us marked up at a retailer.</p>" } },
+        { "type": "question", "settings": { "question": "Are there any age or health restrictions?*", "answer": "<p>Revella is designed for adults 18 and over. Not recommended during pregnancy or breastfeeding. Consult your doctor if you have a medical condition or take medications.*</p>" } },
+        { "type": "question", "settings": { "question": "How should I store it?", "answer": "<p>Store in a cool, dry place away from direct sunlight. No refrigeration needed. Keep the cap tightly closed to maintain freshness.</p>" } },
+        { "type": "question", "settings": { "question": "What if it does not work for me?", "answer": "<p>We back every order with a 60-day money-back guarantee. If you are not satisfied for any reason, contact us and we will make things right. No forms, no hassle, no questions asked.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

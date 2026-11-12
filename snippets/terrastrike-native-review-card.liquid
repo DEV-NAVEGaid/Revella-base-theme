@@ -1,0 +1,53 @@
+{% doc %}
+  Renders one marketplace-style review: avatar and reviewer line, then the stars
+  alongside the headline, the purchase meta line, the verified badge, the review
+  body and the "N people found this helpful" footer.
+
+  @param {object} block - A section block of type "review"
+  @example
+  {% render 'terrastrike-native-review-card', block: block %}
+{% enddoc %}
+
+{%- assign settings = block.settings -%}
+
+<div class="ts-review-card" {{ block.shopify_attributes }}>
+  <div class="ts-review-card__head">
+    {%- if settings.image != blank -%}
+      {% render 'terrastrike-image', image: settings.image, alt: '', width: 160, lazy: true %}
+    {%- endif -%}
+    <div>{{ settings.name }}</div>
+  </div>
+
+  {%- if settings.rating > 0 or settings.headline != blank -%}
+    <div class="ts-review-card__rating">
+      {%- if settings.rating > 0 -%}
+        <span class="ts-review-card__stars">
+          <span class="visually-hidden">{{ settings.rating }} out of 5 stars</span>
+          {%- for i in (1..settings.rating) -%}
+            {% render 'terrastrike-icon', name: 'star' %}
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+      {%- if settings.headline != blank -%}
+        <span class="ts-review-card__headline">{{ settings.headline }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if settings.meta != blank -%}
+    <div class="ts-review-card__meta">{{ settings.meta }}</div>
+  {%- endif -%}
+
+  {%- if settings.verified_text != blank -%}
+    <div class="ts-review-card__verified">{{ settings.verified_text }}</div>
+  {%- endif -%}
+
+  <div class="ts-review-card__body">{{ settings.text }}</div>
+
+  {%- if settings.helpful_text != blank -%}
+    <div class="ts-review-card__helpful">
+      {% render 'terrastrike-icon', name: 'thumbs-up' %}
+      {{ settings.helpful_text }}
+    </div>
+  {%- endif -%}
+</div>

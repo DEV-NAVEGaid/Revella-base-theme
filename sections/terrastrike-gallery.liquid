@@ -1,0 +1,167 @@
+{%- comment -%}
+  A single image + copy panel. Heading, body, image and the image side are all
+  schema settings.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- liquid
+  assign st = section.settings
+  assign split_class = 'ts-split'
+  if st.media_position == 'left'
+    assign split_class = split_class | append: ' media-left'
+  endif
+-%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    <div class="{{ split_class }}">
+      <div class="ts-split__copy">
+        {%- if st.eyebrow != blank -%}
+          <div class="ts-eyebrow">{{ st.eyebrow }}</div>
+        {%- endif -%}
+        {%- if st.heading != blank -%}
+          <h2 class="ts-heading-xl">{{ st.heading }}</h2>
+        {%- endif -%}
+        <div class="ts-body">{{ st.body }}</div>
+      </div>
+      <div class="ts-split__media">
+        {% render 'terrastrike-image', image: st.image, alt: st.heading, width: 900, lazy: true %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Seconds panel",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "After a Crash, You Have Seconds. Here's How They Disappear."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>In water, pressure can pin the doors shut. In fire, smoke eats the cabin. In a rollover, your own weight can trap the buckle.</p><p>Kids, elderly parents, and anyone smaller than average have even less body strength to fight back when trapped.</p><p><strong>🚨 Seconds 1-15:</strong> You pull the handle. Nothing. You hit the window button. Nothing. Then you reach for the belt and it won't release.</p><p><strong>⚠️ Seconds 15-60:</strong> Water is coming up. Smoke is spreading. Your phone slid to the floor. And you have seconds to get out.</p><p>Meanwhile, average EMS response is 7+ minutes. A submerging car gives you 60 seconds. A post-crash fire gives you 90. The math does not work.</p><p><strong>What gets you out is something that can break the glass and cut the belt fast.</strong></p>"
+    },
+
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Image position (desktop)",
+      "info": "On mobile the image always comes first.",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between columns",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 12
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 36
+    }
+  ],
+  "presets": [{ "name": "TS: Seconds panel" }]
+}
+{% endschema %}

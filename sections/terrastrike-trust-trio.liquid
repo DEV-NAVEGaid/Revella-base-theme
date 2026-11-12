@@ -1,0 +1,318 @@
+{%- comment -%}
+  Trust strip: a heading plus any number of icon/image + title + text columns.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+<style>
+  #shopify-section-{{ section.id }} .ts-landing,
+  #shopify-section-{{ section.id }} .ts-landing * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+</style>
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.rating_image != blank -%}
+      {%- liquid
+        assign rating_src_width = st.rating_image.width | at_most: 800
+        assign rating_src_height = rating_src_width | times: st.rating_image.height | divided_by: st.rating_image.width
+      -%}
+      <img
+        src="{{ st.rating_image | image_url: width: rating_src_width }}"
+        alt="{{ st.rating_image.alt | escape }}"
+        width="{{ rating_src_width }}"
+        height="{{ rating_src_height }}"
+        style="width: {{ st.rating_image_width }}px; max-width: 100%; height: auto; margin: 0 auto 12px;"
+      >
+    {%- endif -%}
+
+    {%- if st.heading != blank -%}
+      <div class="ts-trio__heading">{{ st.heading }}</div>
+    {%- endif -%}
+
+    <div class="ts-grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign bs = block.settings
+
+          # The width is written straight onto the media element so it beats both
+          # terrastrike.css and the theme's global `img { width: 100% }`. With no
+          # per-item override it falls back to the section-wide --ts-icon-size.
+          assign media_width = 'var(--ts-icon-size, 60px)'
+          if bs.custom_size and bs.icon_size != blank
+            assign media_width = bs.icon_size | append: 'px'
+          endif
+          assign icon_style = 'width:' | append: media_width | append: ';height:' | append: media_width
+        -%}
+        <div class="ts-trio__item" {{ block.shopify_attributes }}>
+          {%- if bs.image != blank -%}
+            {%- liquid
+              assign src_width = bs.image.width | at_most: 400
+              assign src_height = src_width | times: bs.image.height | divided_by: bs.image.width
+            -%}
+            <img
+              src="{{ bs.image | image_url: width: src_width }}"
+              alt="{{ bs.image.alt | escape }}"
+              width="{{ src_width }}"
+              height="{{ src_height }}"
+              loading="lazy"
+              style="width: {{ media_width }}; max-width: 100%; height: auto;"
+            >
+          {%- else -%}
+            {% render 'terrastrike-icon', name: bs.icon, style: icon_style %}
+          {%- endif -%}
+
+          <div>
+            {%- if bs.title != blank -%}
+              <div class="ts-trio__item-title">{{ bs.title }}</div>
+            {%- endif -%}
+            {%- if bs.text != blank -%}
+              <div class="ts-trio__item-text">{{ bs.text }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Trust trio",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "image_picker",
+      "id": "rating_image",
+      "label": "Rating / stars image",
+      "info": "Shown centered above the heading. Set the image's alt text in Content > Files so screen readers announce the rating."
+    },
+    {
+      "type": "range",
+      "id": "rating_image_width",
+      "min": 60,
+      "max": 400,
+      "step": 4,
+      "unit": "px",
+      "label": "Rating image width",
+      "default": 160
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Thousands of Families Carry One Every Day" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#e0f0f6" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "accent_color", "label": "Icon color", "default": "#1a4b8c" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Columns (desktop)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns (tablet)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Columns (mobile)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon / image size",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Leave empty to use the icon below." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "check", "label": "Check" },
+            { "value": "star", "label": "Star" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "info", "label": "Info" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_size",
+          "label": "Use a custom width for this item",
+          "info": "Off means this item follows the section's Image / icon size.",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 16,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Image / icon width",
+          "default": 60,
+          "visible_if": "{{ block.settings.custom_size }}"
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Trust trio",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "120 Day Guarantee",
+            "text": "<p>100% satisfaction or quick full refund</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "FREE SHIPPING in USA",
+            "text": "<p>When you choose one of our bundles</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "title": "Spring-Strike Technology",
+            "text": "<p>Spring-loaded tungsten tip delivers glass-breaking force every time without training or strength</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

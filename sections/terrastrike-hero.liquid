@@ -1,0 +1,234 @@
+{%- comment -%}
+  Hero: eyebrow, headline, a merchant-selectable image or video, subtext and the
+  first add-to-cart button. Everything is schema driven.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.eyebrow != blank -%}
+      <div class="ts-eyebrow ts-center">{{ st.eyebrow }}</div>
+    {%- endif -%}
+
+    {%- if st.heading != blank -%}
+      <h1 class="ts-heading-xl ts-center">{{ st.heading }}</h1>
+    {%- endif -%}
+
+    {%- if st.subheading != blank -%}
+      <div class="ts-subheading ts-center">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-hero__player">
+      {%- if st.media_type == 'image' -%}
+        {% render 'terrastrike-image', image: st.image, alt: st.heading, width: 1000 %}
+      {%- elsif st.video != blank -%}
+        {{
+          st.video
+          | video_tag: autoplay: st.video_autoplay, loop: st.video_loop, controls: true, muted: st.video_autoplay
+        }}
+      {%- elsif st.video_url != blank -%}
+        {{ st.video_url | external_video_tag }}
+      {%- else -%}
+        {% render 'terrastrike-image', image: st.image, alt: st.heading, width: 1000 %}
+      {%- endif -%}
+    </div>
+
+    {% render 'terrastrike-promo-banner',
+      product: st.featured_product,
+      button_text: st.button_text,
+      button_link: st.button_link,
+      image: st.button_image
+    %}
+
+    {% render 'terrastrike-warranty-notice', text: st.notice_text, icon: st.notice_icon %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get Out of a Crashed Car in Under 60 Seconds - Even When the Doors Jam"
+    },
+    { "type": "richtext", "id": "subheading", "label": "Subheading" },
+
+    { "type": "header", "content": "Media" },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "video", "label": "Video" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Used when media type is Image, and as the fallback when no video is set."
+    },
+    { "type": "video", "id": "video", "label": "Video file" },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used when no video file is uploaded."
+    },
+    { "type": "checkbox", "id": "video_autoplay", "label": "Autoplay video (muted)", "default": false },
+    { "type": "checkbox", "id": "video_loop", "label": "Loop video", "default": false },
+    {
+      "type": "range",
+      "id": "media_width",
+      "min": 240,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Media max width",
+      "default": 400
+    },
+
+    { "type": "header", "content": "Button" },
+    { "type": "product", "id": "featured_product", "label": "Product to add to cart" },
+    { "type": "url", "id": "button_link", "label": "Custom link", "info": "Overrides the add-to-cart button." },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "SAVE UP TO 55% 👉" },
+    { "type": "image_picker", "id": "button_image", "label": "Image under the button" },
+    { "type": "text", "id": "notice_text", "label": "Notice under the button" },
+    {
+      "type": "select",
+      "id": "notice_icon",
+      "label": "Notice icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "lock", "label": "Lock" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "lock"
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f0f8ff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+    { "type": "color", "id": "note_color", "label": "Notice text", "default": "#1a4b8c" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#f39c12" },
+    { "type": "color", "id": "button_background_hover", "label": "Button background (hover)", "default": "#e67e22" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#ffffff" },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Button corner radius",
+      "default": 8
+    },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 10
+    },
+
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 20
+    }
+  ],
+  "presets": [{ "name": "TS: Hero" }]
+}
+{% endschema %}

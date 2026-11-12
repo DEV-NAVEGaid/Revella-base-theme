@@ -1,0 +1,1833 @@
+{% comment %}
+  Comparison Table Section
+  A fully customizable two-column comparison section for Shopify themes.
+  Mobile: CTA button + guarantee are rendered below the table.
+{% endcomment %}
+
+{%- liquid
+  assign layout_order = section.settings.layout_order
+  assign bg_type = section.settings.background_type
+  assign section_padding_top = section.settings.padding_top
+  assign section_padding_bottom = section.settings.padding_bottom
+-%}
+
+<style>
+  {{ section.settings.font_family | font_face: font_display: 'swap' }}
+
+  #shopify-section-{{ section.id }} {
+    --ct-font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+    --ct-heading-size: {{ section.settings.heading_font_size }}px;
+    --ct-heading-color: {{ section.settings.heading_color }};
+    --ct-heading-weight: {{ section.settings.heading_font_weight }};
+    --ct-subtext-size: {{ section.settings.subtext_font_size }}px;
+    --ct-subtext-color: {{ section.settings.subtext_color }};
+    --ct-btn-bg: {{ section.settings.button_background_color }};
+    --ct-btn-color: {{ section.settings.button_text_color }};
+    --ct-btn-radius: {{ section.settings.button_border_radius }}px;
+    --ct-btn-size: {{ section.settings.button_font_size }}px;
+    --ct-btn-weight: {{ section.settings.button_font_weight }};
+    --ct-guarantee-size: {{ section.settings.guarantee_font_size }}px;
+    --ct-guarantee-color: {{ section.settings.guarantee_color }};
+    --ct-col1-bg: {{ section.settings.col1_table_bg_color }};
+    --ct-col1-text: {{ section.settings.col1_table_text_color }};
+    --ct-col1-icon: {{ section.settings.col1_icon_color }};
+    --ct-col2-bg: {{ section.settings.col2_table_bg_color }};
+    --ct-col2-text: {{ section.settings.col2_table_text_color }};
+    --ct-col2-icon: {{ section.settings.col2_icon_color }};
+    --ct-row-divider: {{ section.settings.row_divider_color }};
+    --ct-row-padding: {{ section.settings.row_vertical_padding }}px;
+    --ct-row-min-height: {{ section.settings.row_min_height }}px;
+    --ct-col-gap: {{ section.settings.column_gap }}px;
+    --ct-table-radius: {{ section.settings.table_border_radius }}px;
+    --ct-product-name-size: {{ section.settings.product_name_font_size }}px;
+    --ct-product-name-color1: {{ section.settings.product1_name_color }};
+    --ct-product-name-color2: {{ section.settings.product2_name_color }};
+    --ct-product-name-weight: {{ section.settings.product_name_font_weight }};
+    --ct-icon-size: {{ section.settings.icon_size }}px;
+    --ct-row-font-size: {{ section.settings.row_font_size }}px;
+    --ct-richtext-size: {{ section.settings.richtext_font_size }}px;
+    --ct-richtext-color: {{ section.settings.richtext_color }};
+    --ct-richtext-weight: {{ section.settings.richtext_font_weight }};
+    --ct-richtext-line-height: {{ section.settings.richtext_line_height }};
+    --ct-richtext-letter-spacing: {{ section.settings.richtext_letter_spacing }}em;
+    --ct-richtext-transform: {{ section.settings.richtext_text_transform }};
+    --ct-richtext-style: {{ section.settings.richtext_font_style }};
+    --ct-richtext-highlight-color: {{ section.settings.richtext_highlight_color }};
+    --ct-richtext-highlight-weight: {{ section.settings.richtext_highlight_weight }};
+  }
+
+  .ct-section-{{ section.id }} {
+    padding-top: {{ section_padding_top }}px;
+    padding-bottom: {{ section_padding_bottom }}px;
+    width: 100%;
+    box-sizing: border-box;
+
+    {% if bg_type == 'color' %}
+      background-color: {{ section.settings.background_color }};
+    {% elsif bg_type == 'gradient' %}
+      background: {{ section.settings.background_gradient }};
+    {% elsif bg_type == 'image' and section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
+      background-size: {{ section.settings.bg_image_size }};
+      background-position: {{ section.settings.bg_image_position }};
+      background-repeat: {{ section.settings.bg_image_repeat }};
+    {% endif %}
+  }
+
+  .ct-section-{{ section.id }} .ct-page-width {
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto;
+    padding: 0 {{ section.settings.horizontal_padding }}px;
+    box-sizing: border-box;
+  }
+
+  .ct-section-{{ section.id }} .ct-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--ct-col-gap);
+    flex-direction: {% if layout_order == 'info_first' %}row{% else %}row-reverse{% endif %};
+  }
+
+  /* ── Info Column ── */
+  .ct-section-{{ section.id }} .ct-info-col {
+    flex: 0 0 {{ section.settings.info_col_width }}%;
+    max-width: {{ section.settings.info_col_width }}%;
+    display: flex;
+    flex-direction: column;
+    align-items: {% if section.settings.info_alignment == 'left' %}flex-start{% elsif section.settings.info_alignment == 'center' %}center{% else %}flex-end{% endif %};
+    text-align: {{ section.settings.info_alignment }};
+    gap: {{ section.settings.info_gap }}px;
+  }
+
+  .ct-section-{{ section.id }} .ct-heading {
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-heading-size);
+    color: var(--ct-heading-color);
+    font-weight: var(--ct-heading-weight);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .ct-section-{{ section.id }} .ct-subtext {
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-subtext-size);
+    color: var(--ct-subtext-color);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ct-section-{{ section.id }} .ct-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ct-btn-bg);
+    color: var(--ct-btn-color);
+    border-radius: var(--ct-btn-radius);
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-btn-size);
+    font-weight: var(--ct-btn-weight);
+    padding: {{ section.settings.button_padding_v }}px {{ section.settings.button_padding_h }}px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    {% if section.settings.button_full_width %}
+      width: 100%;
+    {% endif %}
+  }
+
+  .ct-section-{{ section.id }} .ct-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .ct-section-{{ section.id }} .ct-guarantee {
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-guarantee-size);
+    color: var(--ct-guarantee-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ct-section-{{ section.id }} .ct-guarantee-icon {
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+  }
+
+  .ct-section-{{ section.id }} .ct-richtext,
+  .ct-section-{{ section.id }} .ct-richtext p {
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-richtext-size);
+    font-weight: var(--ct-richtext-weight);
+    color: var(--ct-richtext-color);
+    line-height: var(--ct-richtext-line-height);
+    letter-spacing: var(--ct-richtext-letter-spacing);
+    text-transform: var(--ct-richtext-transform);
+    font-style: var(--ct-richtext-style);
+    margin: 0;
+  }
+
+  .ct-section-{{ section.id }} .ct-richtext {
+    margin-top: {{ section.settings.richtext_margin_top }}px;
+    margin-bottom: {{ section.settings.richtext_margin_bottom }}px;
+  }
+
+  /* Highlight <em> tags inside rich text — mirrors gnrl-rich-text.liquid */
+  .ct-section-{{ section.id }} .ct-richtext em {
+    font-style:  {{ section.settings.richtext_highlight_style }};
+    color:       var(--ct-richtext-highlight-color);
+    font-weight: var(--ct-richtext-highlight-weight);
+    {% if section.settings.richtext_highlight_underline %}
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    {% endif %}
+  }
+
+  /* Bullet lists inside rich text render as a checkmark list — see screenshot reference */
+  .ct-section-{{ section.id }} .ct-richtext ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.richtext_list_gap }}px;
+  }
+
+  .ct-section-{{ section.id }} .ct-richtext ul li {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.richtext_list_marker_gap }}px;
+  }
+
+  .ct-section-{{ section.id }} .ct-richtext ul li::before {
+    content: '';
+    flex-shrink: 0;
+    width: {{ section.settings.richtext_list_marker_size }}px;
+    height: {{ section.settings.richtext_list_marker_size }}px;
+    background-color: {{ section.settings.richtext_list_marker_color }};
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 9 17 20 6'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 9 17 20 6'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  /* ── CTA visibility: desktop inside info-col, mobile below table ── */
+  .ct-section-{{ section.id }} .ct-cta--desktop {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.info_gap }}px;
+    align-items: inherit;
+    {% if section.settings.button_full_width %}
+      align-self: stretch;
+      width: 100%;
+    {% endif %}
+  }
+  .ct-section-{{ section.id }} .ct-cta--mobile   { display: none; }
+
+  /* ── Comparison Column ── */
+  .ct-section-{{ section.id }} .ct-compare-col {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ct-section-{{ section.id }} .ct-table-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: {{ section.settings.product_image_gap }}px;
+    margin-bottom: {{ section.settings.product_header_gap }}px;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-img {
+    width: {{ section.settings.product_image_size }}px;
+    height: {{ section.settings.product_image_size }}px;
+    object-fit: contain;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-img--hidden {
+    visibility: hidden;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-name {
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-product-name-size);
+    font-weight: var(--ct-product-name-weight);
+    margin: 0;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-name--hidden {
+    visibility: hidden;
+  }
+
+  .ct-section-{{ section.id }} .ct-product-name--1 { color: var(--ct-product-name-color1); }
+  .ct-section-{{ section.id }} .ct-product-name--2 { color: var(--ct-product-name-color2); }
+
+  /* ── Merged header style: image + name appear fused into the table card ── */
+  .ct-section-{{ section.id }} .ct-table-merged-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ct-section-{{ section.id }} .ct-table-merged-img {
+    width: {{ section.settings.product_image_size }}px;
+    height: {{ section.settings.product_image_size }}px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -{{ section.settings.merged_image_overlap }}px;
+  }
+
+  .ct-section-{{ section.id }} .ct-table-merged-img--hidden {
+    visibility: hidden;
+  }
+
+  .ct-section-{{ section.id }} .ct-table--merged {
+    width: 100%;
+    padding-top: calc({{ section.settings.merged_image_overlap }}px + {{ section.settings.product_image_gap }}px);
+  }
+
+  .ct-section-{{ section.id }} .ct-table-header-name {
+    text-align: center;
+    padding: 0 12px {{ section.settings.product_header_gap }}px;
+  }
+
+  /* ── Tables Grid ── */
+  .ct-section-{{ section.id }} .ct-tables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ section.settings.table_col_gap }}px;
+    align-items: start;
+  }
+
+  .ct-section-{{ section.id }} .ct-table {
+    border-radius: var(--ct-table-radius);
+    overflow: hidden;
+  }
+
+  .ct-section-{{ section.id }} .ct-table--1 { background: var(--ct-col1-bg); color: var(--ct-col1-text); }
+  .ct-section-{{ section.id }} .ct-table--2 { background: var(--ct-col2-bg); color: var(--ct-col2-text); }
+
+  .ct-section-{{ section.id }} .ct-table-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--ct-row-padding) 12px;
+    min-height: var(--ct-row-min-height);
+    box-sizing: border-box;
+    gap: 8px;
+    font-family: var(--ct-font-family);
+    font-size: var(--ct-row-font-size);
+    line-height: 1.4;
+  }
+
+  .ct-section-{{ section.id }} .ct-table--1 .ct-table-row + .ct-table-row {
+    border-top: 1px solid {{ section.settings.col1_row_divider_color }};
+  }
+  .ct-section-{{ section.id }} .ct-table--2 .ct-table-row + .ct-table-row {
+    border-top: 1px solid {{ section.settings.col2_row_divider_color }};
+  }
+
+  .ct-section-{{ section.id }} .ct-row-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ct-icon-size);
+    height: var(--ct-icon-size);
+    flex-shrink: 0;
+  }
+
+  .ct-section-{{ section.id }} .ct-table--1 .ct-row-icon svg {
+    fill: none;
+    stroke: var(--ct-col1-icon);
+    color: var(--ct-col1-icon);
+  }
+  .ct-section-{{ section.id }} .ct-table--2 .ct-row-icon svg {
+    fill: var(--ct-col2-icon);
+    stroke: var(--ct-col2-icon);
+    color: var(--ct-col2-icon);
+  }
+
+  /* ── Responsive ── */
+  @media screen and (max-width: 768px) {
+    .ct-section-{{ section.id }} .ct-inner {
+      flex-direction: column !important;
+      gap: {{ section.settings.mobile_section_gap }}px;
+    }
+
+    .ct-section-{{ section.id }} .ct-info-col {
+      flex: none;
+      max-width: 100%;
+      width: 100%;
+      align-items: {% if section.settings.mobile_info_alignment == 'left' %}flex-start{% elsif section.settings.mobile_info_alignment == 'center' %}center{% else %}flex-end{% endif %};
+      text-align: {{ section.settings.mobile_info_alignment }};
+    }
+
+    .ct-section-{{ section.id }} .ct-compare-col {
+      width: 100%;
+    }
+
+    .ct-section-{{ section.id }} .ct-heading {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
+    }
+
+    .ct-section-{{ section.id }} .ct-richtext,
+    .ct-section-{{ section.id }} .ct-richtext p {
+      font-size: {{ section.settings.richtext_font_size_mobile }}px;
+    }
+
+    .ct-section-{{ section.id }} .ct-table-row {
+      font-size: {{ section.settings.mobile_row_font_size }}px;
+      padding: {{ section.settings.mobile_row_padding }}px 10px;
+    }
+
+    .ct-section-{{ section.id }} .ct-product-img {
+      width: {{ section.settings.mobile_product_image_size }}px;
+      height: {{ section.settings.mobile_product_image_size }}px;
+    }
+
+    .ct-section-{{ section.id }} .ct-table-merged-img {
+      width: {{ section.settings.mobile_product_image_size }}px;
+      height: {{ section.settings.mobile_product_image_size }}px;
+    }
+
+    /* Hide CTA inside info-col; show the standalone mobile CTA below */
+    .ct-section-{{ section.id }} .ct-cta--desktop { display: none; }
+    .ct-section-{{ section.id }} .ct-cta--mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: {% if section.settings.mobile_info_alignment == 'left' %}flex-start{% elsif section.settings.mobile_info_alignment == 'center' %}center{% else %}flex-end{% endif %};
+      text-align: {{ section.settings.mobile_info_alignment }};
+      gap: {{ section.settings.info_gap }}px;
+      margin-top: {{ section.settings.mobile_cta_margin_top }}px;
+    }
+  }
+</style>
+
+<section class="ct-section-{{ section.id }}">
+  <div class="ct-page-width">
+    <div class="ct-inner">
+
+      {%- comment -%}── Info Column ──{%- endcomment -%}
+      <div class="ct-info-col">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'heading_button' -%}
+
+            {%- comment -%} Heading + subtext: always visible {%- endcomment -%}
+            <{{ block.settings.heading_tag }} class="ct-heading" {{ block.shopify_attributes }}>
+              {{ block.settings.heading }}
+            </{{ block.settings.heading_tag }}>
+
+            {%- if block.settings.subtext != blank -%}
+              <p class="ct-subtext">{{ block.settings.subtext }}</p>
+            {%- endif -%}
+
+            {%- comment -%}
+              CTA — desktop only.
+              On mobile this is hidden and re-rendered below the table (.ct-cta--mobile).
+            {%- endcomment -%}
+            <div class="ct-cta--desktop">
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  href="{{ block.settings.button_link }}"
+                  class="ct-btn"
+                  {% if block.settings.button_new_tab %}target="_blank" rel="noopener"{% endif %}
+                >
+                  {{ block.settings.button_label }}
+                  {%- if block.settings.show_button_arrow -%}
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+              {%- if block.settings.guarantee_text != blank -%}
+                <p class="ct-guarantee">
+                  {%- if block.settings.guarantee_icon != blank -%}
+                    <img
+                      class="ct-guarantee-icon"
+                      src="{{ block.settings.guarantee_icon | image_url: width: 100 }}"
+                      alt=""
+                      loading="lazy"
+                      width="{{ block.settings.guarantee_icon_size }}"
+                      height="{{ block.settings.guarantee_icon_size }}"
+                      style="width:{{ block.settings.guarantee_icon_size }}px;height:{{ block.settings.guarantee_icon_size }}px;"
+                    >
+                  {%- endif -%}
+                  <span>{{ block.settings.guarantee_text }}</span>
+                </p>
+              {%- endif -%}
+            </div>
+
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%}── Comparison Column ──{%- endcomment -%}
+      <div class="ct-compare-col">
+
+        {%- comment -%} Capture product image blocks per column so each table can look up its own header style {%- endcomment -%}
+        {%- assign product_idx = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product_image' -%}
+            {%- assign product_idx = product_idx | plus: 1 -%}
+            {%- if product_idx == 1 -%}
+              {%- assign product1_block = block -%}
+            {%- elsif product_idx == 2 -%}
+              {%- assign product2_block = block -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        <div class="ct-tables-grid">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'comparison_table' -%}
+              {%- if block.settings.table_column == '1' -%}
+                {%- assign header_block = product1_block -%}
+              {%- else -%}
+                {%- assign header_block = product2_block -%}
+              {%- endif -%}
+              {%- assign is_merged = false -%}
+              {%- if header_block.settings.header_style == 'merged' -%}
+                {%- assign is_merged = true -%}
+              {%- endif -%}
+              {%- if block.settings.table_column == '1' -%}
+                {%- assign col_top_offset = section.settings.column1_top_offset -%}
+              {%- else -%}
+                {%- assign col_top_offset = section.settings.column2_top_offset -%}
+              {%- endif -%}
+
+              <div class="ct-table-column" style="margin-top: {{ col_top_offset }}px;">
+
+                {%- comment -%} Separate style: image/name render above the table, in their own block {%- endcomment -%}
+                {%- if header_block and is_merged == false -%}
+                  <div class="ct-product-header" {{ header_block.shopify_attributes }}>
+                    {%- if header_block.settings.show_image and header_block.settings.product_image != blank -%}
+                      <img
+                        class="ct-product-img"
+                        src="{{ header_block.settings.product_image | img_url: '200x200' }}"
+                        alt="{{ header_block.settings.product_name | escape }}"
+                        loading="lazy"
+                        width="{{ section.settings.product_image_size }}"
+                        height="{{ section.settings.product_image_size }}"
+                      >
+                    {%- else -%}
+                      {%- comment -%} No image to show (hidden, or none uploaded) — keep the box invisible so both tables stay row-for-row aligned {%- endcomment -%}
+                      <div class="ct-product-img ct-product-img--hidden" aria-hidden="true"></div>
+                    {%- endif -%}
+                    {%- if header_block.settings.product_name != blank -%}
+                      <p class="ct-product-name ct-product-name--{{ block.settings.table_column }}">{{ header_block.settings.product_name }}</p>
+                    {%- else -%}
+                      <p class="ct-product-name ct-product-name--{{ block.settings.table_column }} ct-product-name--hidden" aria-hidden="true">&nbsp;</p>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Merged style: image overlaps directly into this column's table card {%- endcomment -%}
+                {%- if is_merged -%}<div class="ct-table-merged-wrap">
+                  {%- if header_block.settings.show_image and header_block.settings.product_image != blank -%}
+                    <img
+                      class="ct-table-merged-img"
+                      src="{{ header_block.settings.product_image | img_url: '200x200' }}"
+                      alt="{{ header_block.settings.product_name | escape }}"
+                      loading="lazy"
+                      width="{{ section.settings.product_image_size }}"
+                      height="{{ section.settings.product_image_size }}"
+                    >
+                  {%- else -%}
+                    {%- comment -%} No image to show (hidden, or none uploaded) — keep the box invisible so both tables stay row-for-row aligned {%- endcomment -%}
+                    <div class="ct-table-merged-img ct-table-merged-img--hidden" aria-hidden="true"></div>
+                  {%- endif -%}
+                {%- endif -%}
+
+                <div class="ct-table ct-table--{{ block.settings.table_column }}{% if is_merged %} ct-table--merged{% endif %}" {{ block.shopify_attributes }}>
+                  {%- if is_merged and header_block.settings.product_name != blank -%}
+                    <div class="ct-table-header-name">
+                      <p class="ct-product-name ct-product-name--{{ block.settings.table_column }}">{{ header_block.settings.product_name }}</p>
+                    </div>
+                  {%- endif -%}
+                  {%- for i in (1..10) -%}
+                  {%- assign row_label_key = 'row_' | append: i | append: '_label' -%}
+                  {%- assign row_icon_key  = 'row_' | append: i | append: '_icon'  -%}
+                  {%- assign row_label = block.settings[row_label_key] -%}
+                  {%- assign row_icon  = block.settings[row_icon_key]  -%}
+                  {%- assign row_custom_icon_key = 'row_' | append: i | append: '_custom_icon' -%}
+                  {%- assign row_custom_icon = block.settings[row_custom_icon_key] -%}
+                  {%- if row_label != blank -%}
+                    <div class="ct-table-row">
+                      {%- if row_custom_icon != blank -%}
+                        <span class="ct-row-icon">
+                          <img src="{{ row_custom_icon | image_url: width: 64 }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;">
+                        </span>
+                      {%- elsif row_icon == 'check' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'cross' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                            <path d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'star' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2l2.9 6 6.6.9-4.8 4.7 1.1 6.6L12 17.3l-5.8 3-.1-.1 1.1-6.5L2.4 8.9l6.6-.9L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'shield' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3L4 6.5V12c0 4.4 3.4 8.5 8 9.5 4.6-1 8-5.1 8-9.5V6.5L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'flask' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 3h6M10 3v6l-4 9a1 1 0 00.9 1.5h10.2a1 1 0 00.9-1.5L14 9V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'globe' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M3 12h18M12 3c-2.5 3-4 5.7-4 9s1.5 6 4 9M12 3c2.5 3 4 5.7 4 9s-1.5 6-4 9" stroke="currentColor" stroke-width="1.8"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'leaf' -%}
+                        <span class="ct-row-icon">
+                          <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22c0 0-8-4-8-12 0 0 4-6 12-6s8 6 8 6c0 8-8 12-8 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                            <path d="M12 22V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                          </svg>
+                        </span>
+                      {%- elsif row_icon == 'none' -%}
+                        {%- comment -%} no icon {%- endcomment -%}
+                      {%- endif -%}
+                      <span>{{ row_label }}</span>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+                </div>
+                {%- if is_merged -%}</div>{%- endif -%}
+
+              </div>{%- comment -%} end ct-table-column {%- endcomment -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+      </div>{%- comment -%} end ct-compare-col {%- endcomment -%}
+
+    </div>{%- comment -%} end ct-inner {%- endcomment -%}
+
+    {%- comment -%} Rich text below the table — full width, own block {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'rich_text_below_table' and block.settings.rich_text != blank -%}
+        <div
+          class="ct-richtext ct-richtext--below-table"
+          style="margin-top: {{ block.settings.margin_top }}px;"
+          {{ block.shopify_attributes }}
+        >{{ block.settings.rich_text }}</div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%}
+      Mobile CTA — rendered outside ct-inner so it sits below the table.
+      Hidden on desktop via CSS; shown on mobile only.
+    {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'heading_button' -%}
+        {%- if block.settings.button_label != blank or block.settings.guarantee_text != blank -%}
+          <div class="ct-cta--mobile">
+            {%- if block.settings.button_label != blank -%}
+              <a
+                href="{{ block.settings.button_link }}"
+                class="ct-btn"
+                {% if block.settings.button_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                {{ block.settings.button_label }}
+                {%- if block.settings.show_button_arrow -%}
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+            {%- if block.settings.guarantee_text != blank -%}
+              <p class="ct-guarantee">
+                {%- if block.settings.guarantee_icon != blank -%}
+                  <img
+                    class="ct-guarantee-icon"
+                    src="{{ block.settings.guarantee_icon | image_url: width: 100 }}"
+                    alt=""
+                    loading="lazy"
+                    width="{{ block.settings.guarantee_icon_size }}"
+                    height="{{ block.settings.guarantee_icon_size }}"
+                    style="width:{{ block.settings.guarantee_icon_size }}px;height:{{ block.settings.guarantee_icon_size }}px;"
+                  >
+                {%- endif -%}
+                <span>{{ block.settings.guarantee_text }}</span>
+              </p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "tag": "section",
+  "class": "shopify-section--comparison-table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_order",
+      "label": "Column order",
+      "options": [
+        { "value": "info_first",    "label": "Info left / Table right" },
+        { "value": "compare_first", "label": "Table left / Info right" }
+      ],
+      "default": "info_first"
+    },
+    {
+      "type": "range",
+      "id": "info_col_width",
+      "label": "Info column width (%)",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "info_alignment",
+      "label": "Info column alignment",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between columns (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "info_gap",
+      "label": "Info column inner gap (px)",
+      "min": 4,
+      "max": 60,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "table_col_gap",
+      "label": "Gap between table columns (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "select",
+      "id": "background_type",
+      "label": "Background type",
+      "options": [
+        { "value": "color",    "label": "Solid color" },
+        { "value": "gradient", "label": "Gradient" },
+        { "value": "image",    "label": "Image" }
+      ],
+      "default": "color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#b07a85"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Background gradient (CSS value)",
+      "placeholder": "linear-gradient(135deg, #b07a85 0%, #7a3f4b 100%)",
+      "info": "Used when background type is 'Gradient'."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Used when background type is 'Image'."
+    },
+    {
+      "type": "select",
+      "id": "bg_image_size",
+      "label": "Background image size",
+      "options": [
+        { "value": "cover",   "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "auto",    "label": "Auto" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "bg_image_position",
+      "label": "Background image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center",    "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "left center",   "label": "Left" },
+        { "value": "right center",  "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "bg_image_repeat",
+      "label": "Background image repeat",
+      "options": [
+        { "value": "no-repeat", "label": "No repeat" },
+        { "value": "repeat",    "label": "Repeat" },
+        { "value": "repeat-x",  "label": "Repeat X" },
+        { "value": "repeat-y",  "label": "Repeat Y" }
+      ],
+      "default": "no-repeat"
+    },
+    {
+      "type": "header",
+      "content": "Typography — Global"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font family",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "header",
+      "content": "Heading Text"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size (px)",
+      "min": 14,
+      "max": 72,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Heading font size – mobile (px)",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "label": "Subtext font size (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#f0e8e8"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width",
+      "label": "Make button full width",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background",
+      "default": "#7a2b35"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "button_padding_v",
+      "label": "Button vertical padding (px)",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_h",
+      "label": "Button horizontal padding (px)",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Guarantee Text"
+    },
+    {
+      "type": "range",
+      "id": "guarantee_font_size",
+      "label": "Guarantee font size (px)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "guarantee_color",
+      "label": "Guarantee text color",
+      "default": "#f0e8e8"
+    },
+    {
+      "type": "header",
+      "content": "Rich Text"
+    },
+    {
+      "type": "range",
+      "id": "richtext_font_size",
+      "label": "Font size — desktop (px)",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "richtext_font_size_mobile",
+      "label": "Font size — mobile (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "richtext_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "richtext_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "richtext_color",
+      "label": "Color",
+      "default": "#f0e8e8"
+    },
+    {
+      "type": "range",
+      "id": "richtext_line_height",
+      "label": "Line height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "range",
+      "id": "richtext_letter_spacing",
+      "label": "Letter spacing (em)",
+      "min": 0,
+      "max": 0.2,
+      "step": 0.1,
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "richtext_text_transform",
+      "label": "Text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "richtext_margin_top",
+      "label": "Margin top (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "richtext_margin_bottom",
+      "label": "Margin bottom (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Rich text <em> highlight"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wrap any word in the rich text with <em>word</em> tags to apply this highlight style."
+    },
+    {
+      "type": "color",
+      "id": "richtext_highlight_color",
+      "label": "Highlight color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "richtext_highlight_weight",
+      "label": "Highlight font weight",
+      "options": [
+        { "value": "inherit", "label": "Same as text" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "inherit"
+    },
+    {
+      "type": "select",
+      "id": "richtext_highlight_style",
+      "label": "Highlight font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "checkbox",
+      "id": "richtext_highlight_underline",
+      "label": "Underline highlight",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Rich text checklist style"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add a bullet list in the rich text editor to render it as a checkmark list, like in the example screenshot."
+    },
+    {
+      "type": "color",
+      "id": "richtext_list_marker_color",
+      "label": "Checkmark color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "richtext_list_marker_size",
+      "label": "Checkmark size (px)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "richtext_list_marker_gap",
+      "label": "Gap: checkmark to text (px)",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "richtext_list_gap",
+      "label": "Gap between list items (px)",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Product Images & Names"
+    },
+    {
+      "type": "paragraph",
+      "content": "Each product's image can be shown/hidden individually — see the 'Show image' option on that Product Image block. Hiding an image still reserves its space so both table columns line up row-for-row."
+    },
+    {
+      "type": "range",
+      "id": "column1_top_offset",
+      "label": "Column 1 vertical nudge (px)",
+      "min": -80,
+      "max": 80,
+      "step": 2,
+      "default": 0,
+      "info": "Manually shift this column up (negative) or down (positive) to fine-tune alignment against the other column."
+    },
+    {
+      "type": "range",
+      "id": "column2_top_offset",
+      "label": "Column 2 vertical nudge (px)",
+      "min": -80,
+      "max": 80,
+      "step": 2,
+      "default": 0,
+      "info": "Manually shift this column up (negative) or down (positive) to fine-tune alignment against the other column."
+    },
+    {
+      "type": "range",
+      "id": "merged_image_overlap",
+      "label": "Merged style: image overlap into table (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 32,
+      "info": "Used when product header style is Merged."
+    },
+    {
+      "type": "range",
+      "id": "product_image_size",
+      "label": "Product image size (px)",
+      "min": 40,
+      "max": 180,
+      "step": 4,
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_image_size",
+      "label": "Product image size – mobile (px)",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "product_image_gap",
+      "label": "Gap: image to name (px)",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product_header_gap",
+      "label": "Gap: header to table (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "product_name_font_size",
+      "label": "Product name font size (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "product_name_font_weight",
+      "label": "Product name font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "product1_name_color",
+      "label": "Product 1 name color",
+      "default": "#7a2b35"
+    },
+    {
+      "type": "color",
+      "id": "product2_name_color",
+      "label": "Product 2 name color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Table Column 1 (Your Product)"
+    },
+    {
+      "type": "color",
+      "id": "col1_table_bg_color",
+      "label": "Column 1 background",
+      "default": "#7a2b35"
+    },
+    {
+      "type": "color",
+      "id": "col1_table_text_color",
+      "label": "Column 1 text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "col1_icon_color",
+      "label": "Column 1 icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "col1_row_divider_color",
+      "label": "Column 1 row divider color",
+      "default": "rgba(255,255,255,0.15)"
+    },
+    {
+      "type": "header",
+      "content": "Table Column 2 (Competitors)"
+    },
+    {
+      "type": "color",
+      "id": "col2_table_bg_color",
+      "label": "Column 2 background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "col2_table_text_color",
+      "label": "Column 2 text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "col2_icon_color",
+      "label": "Column 2 icon color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "col2_row_divider_color",
+      "label": "Column 2 row divider color",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "header",
+      "content": "Table Rows"
+    },
+    {
+      "type": "range",
+      "id": "row_font_size",
+      "label": "Row text font size (px)",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_row_font_size",
+      "label": "Row text font size – mobile (px)",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "row_vertical_padding",
+      "label": "Row vertical padding (px)",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_min_height",
+      "label": "Row minimum height (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0,
+      "info": "Forces every row in both columns to be at least this tall, so rows line up even when the text length differs between columns. Set to 0 to size rows automatically."
+    },
+    {
+      "type": "range",
+      "id": "mobile_row_padding",
+      "label": "Row vertical padding – mobile (px)",
+      "min": 6,
+      "max": 32,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "table_border_radius",
+      "label": "Table border radius (px)",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "mobile_info_alignment",
+      "label": "Info alignment on mobile",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_gap",
+      "label": "Gap between stacked columns (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_cta_margin_top",
+      "label": "CTA top margin on mobile (px)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 24,
+      "info": "Space between the table and the button on mobile."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading_button",
+      "name": "Heading & Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading HTML tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" }
+          ],
+          "default": "h2"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Revella vs. Other Brands"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext (optional)",
+          "info": "Leave blank to hide."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Try Risk-Free Today"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button_arrow",
+          "label": "Show arrow on button",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "guarantee_icon",
+          "label": "Guarantee icon (optional)",
+          "info": "PNG/SVG, shown before the guarantee text."
+        },
+        {
+          "type": "range",
+          "id": "guarantee_icon_size",
+          "label": "Guarantee icon size (px)",
+          "min": 12, "max": 48, "step": 2, "default": 18
+        },
+        {
+          "type": "text",
+          "id": "guarantee_text",
+          "label": "Guarantee text",
+          "default": "60-day money-back guarantee"
+        }
+      ]
+    },
+    {
+      "type": "product_image",
+      "name": "Product Image",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "label": "Show image",
+          "default": true,
+          "info": "Turn off to hide only this column's image. The space is still reserved so both tables stay aligned."
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product name",
+          "default": "Your Brand"
+        },
+        {
+          "type": "select",
+          "id": "header_style",
+          "label": "Header style",
+          "options": [
+            { "value": "separate", "label": "Separate (image/name above table)" },
+            { "value": "merged",   "label": "Merged (image/name fused into table card)" }
+          ],
+          "default": "separate",
+          "info": "Merged makes the image overlap into this product's table, like a single card."
+        }
+      ]
+    },
+    {
+      "type": "comparison_table",
+      "name": "Comparison Table",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "table_column",
+          "label": "This table represents column",
+          "options": [
+            { "value": "1", "label": "Column 1 (Your product)" },
+            { "value": "2", "label": "Column 2 (Competitors)" }
+          ],
+          "default": "1"
+        },
+        { "type": "header", "content": "Row 1" },
+        {
+          "type": "select", "id": "row_1_icon", "label": "Row 1 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "shield"
+        },
+        { "type": "image_picker", "id": "row_1_custom_icon", "label": "Row 1 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_1_label", "label": "Row 1 label", "default": "Clinical Dose — 12mg" },
+        { "type": "header", "content": "Row 2" },
+        {
+          "type": "select", "id": "row_2_icon", "label": "Row 2 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "flask"
+        },
+        { "type": "image_picker", "id": "row_2_custom_icon", "label": "Row 2 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_2_label", "label": "Row 2 label", "default": "3rd-Party Lab Tested" },
+        { "type": "header", "content": "Row 3" },
+        {
+          "type": "select", "id": "row_3_icon", "label": "Row 3 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "globe"
+        },
+        { "type": "image_picker", "id": "row_3_custom_icon", "label": "Row 3 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_3_label", "label": "Row 3 label", "default": "No Fillers or Additives" },
+        { "type": "header", "content": "Row 4" },
+        {
+          "type": "select", "id": "row_4_icon", "label": "Row 4 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "leaf"
+        },
+        { "type": "image_picker", "id": "row_4_custom_icon", "label": "Row 4 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_4_label", "label": "Row 4 label", "default": "GMP-Certified Facility" },
+        { "type": "header", "content": "Row 5" },
+        {
+          "type": "select", "id": "row_5_icon", "label": "Row 5 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_5_custom_icon", "label": "Row 5 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_5_label", "label": "Row 5 label", "info": "Leave blank to hide." },
+        { "type": "header", "content": "Row 6" },
+        {
+          "type": "select", "id": "row_6_icon", "label": "Row 6 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_6_custom_icon", "label": "Row 6 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_6_label", "label": "Row 6 label", "info": "Leave blank to hide." },
+        { "type": "header", "content": "Row 7" },
+        {
+          "type": "select", "id": "row_7_icon", "label": "Row 7 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_7_custom_icon", "label": "Row 7 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_7_label", "label": "Row 7 label", "info": "Leave blank to hide." },
+        { "type": "header", "content": "Row 8" },
+        {
+          "type": "select", "id": "row_8_icon", "label": "Row 8 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_8_custom_icon", "label": "Row 8 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_8_label", "label": "Row 8 label", "info": "Leave blank to hide." },
+        { "type": "header", "content": "Row 9" },
+        {
+          "type": "select", "id": "row_9_icon", "label": "Row 9 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_9_custom_icon", "label": "Row 9 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_9_label", "label": "Row 9 label", "info": "Leave blank to hide." },
+        { "type": "header", "content": "Row 10" },
+        {
+          "type": "select", "id": "row_10_icon", "label": "Row 10 icon",
+          "options": [
+            { "value": "check",  "label": "Check (outline circle)" },
+            { "value": "cross",  "label": "Cross (filled circle)" },
+            { "value": "star",   "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "flask",  "label": "Flask / Lab" },
+            { "value": "globe",  "label": "Globe" },
+            { "value": "leaf",   "label": "Leaf" },
+            { "value": "none",   "label": "No icon" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "row_10_custom_icon", "label": "Row 10 custom icon (overrides icon above)" },
+        { "type": "text", "id": "row_10_label", "label": "Row 10 label", "info": "Leave blank to hide." }
+      ]
+    },
+    {
+      "type": "rich_text_below_table",
+      "name": "Rich Text (below table)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "rich_text",
+          "label": "Rich text",
+          "default": "<ul><li>Built for comprehensive daily wellness</li><li>Visible results in weeks, not months</li><li>Long-term cellular protection</li><li>Clean, High-Quality Formula</li></ul>",
+          "info": "Rendered full-width below the comparison table. Add a bullet list to render a checkmark list (see Rich text checklist style settings above). Wrap words in <em>em</em> tags to apply the highlight style set in section settings above."
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Space above (px)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "default": 32
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        {
+          "type": "heading_button",
+          "settings": {
+            "heading": "Revella vs. Other Brands",
+            "button_label": "Try Risk-Free Today",
+            "guarantee_text": "60-day money-back guarantee",
+            "show_button_arrow": true
+          }
+        },
+        { "type": "product_image", "settings": { "product_name": "Revella" } },
+        { "type": "product_image", "settings": { "product_name": "Other Brands" } },
+        {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "1",
+            "row_1_icon": "shield", "row_1_label": "Clinical Dose — 12mg",
+            "row_2_icon": "flask",  "row_2_label": "3rd-Party Lab Tested",
+            "row_3_icon": "globe",  "row_3_label": "No Fillers or Additives",
+            "row_4_icon": "leaf",   "row_4_label": "GMP-Certified Facility"
+          }
+        },
+        {
+          "type": "comparison_table",
+          "settings": {
+            "table_column": "2",
+            "row_1_icon": "cross", "row_1_label": "Underdosed (4–6mg)",
+            "row_2_icon": "cross", "row_2_label": "No Transparent Testing",
+            "row_3_icon": "cross", "row_3_label": "Fillers & Additives",
+            "row_4_icon": "cross", "row_4_label": "Synthetic or Undisclosed Source"
+          }
+        },
+        { "type": "rich_text_below_table" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,8 @@
+{%- comment -%} Carousel dots + arrows. Params: count, start (1-based), white (bool), style, prev_icon / next_icon (images, replace the default chevrons) {%- endcomment -%}
+<div class="dots{% if white %} wt{% endif %}"{% if style != blank %} style="{{ style }}"{% endif %}>
+  <button type="button" class="nv" data-dir="-1" aria-label="Previous">{% if prev_icon != blank %}{{ prev_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'nv-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'chev-left' %}{% endif %}</button>
+  <div class="d">
+    {%- for i in (1..count) -%}<i{% if forloop.index == start %} class="on"{% endif %}></i>{%- endfor -%}
+  </div>
+  <button type="button" class="nv" data-dir="1" aria-label="Next">{% if next_icon != blank %}{{ next_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'nv-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'chev-right' %}{% endif %}</button>
+</div>

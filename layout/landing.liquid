@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title>
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% comment %}
+    Atkinson Hyperlegible is a deliberate accessibility choice for the 55+
+    audience and is not available in Shopify's font library, so it loads
+    from Google Fonts. To self-host later: upload the woff2 files to
+    assets/ and swap these links for an @font-face block.
+  {% endcomment %}
+  {% # theme-check-disable RemoteAsset %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {% # theme-check-enable RemoteAsset %}
+
+  {% comment %}
+    Load the theme's base stylesheet so sections that depend on it
+    (main-product, payment badges, buy buttons, etc.) render correctly.
+  {% endcomment %}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+
+  {% comment %}
+    Override body-level properties that base.css sets (fonts, colors,
+    container widths) so the landing page and listicle sections keep
+    their own design system.
+  {% endcomment %}
+  <style>
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      background:oklch(0.975 0.018 85);
+      font-family:"Plus Jakarta Sans",sans-serif;
+      font-size:16px;
+      line-height:1.8;
+    }
+    /* Prevent theme container/main overrides from adding unwanted padding */
+    main,#main,.main{
+      margin:0!important;
+      padding:0!important;
+      max-width:none!important;
+    }
+  </style>
+  {{ content_for_header }}
+</head>
+<body>
+  {{ content_for_layout }}
+</body>
+</html>

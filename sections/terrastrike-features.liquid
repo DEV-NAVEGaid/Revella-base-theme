@@ -1,0 +1,199 @@
+{%- comment -%}
+  Feature grid (block-driven) with an editable heading and intro.
+{%- endcomment -%}
+
+{{ 'terrastrike.css' | asset_url | stylesheet_tag }}
+{% render 'terrastrike-section-style', section: section %}
+
+{%- assign st = section.settings -%}
+
+<div class="ts-landing">
+  <div class="ts-container">
+    {%- if st.heading != blank -%}
+      <h2 class="ts-heading-xl ts-center">{{ st.heading }}</h2>
+    {%- endif -%}
+    {%- if st.subheading != blank -%}
+      <div class="ts-subheading ts-center">{{ st.subheading }}</div>
+    {%- endif -%}
+
+    <div class="ts-grid">
+      {%- for block in section.blocks -%}
+        {% render 'terrastrike-feature-item', block: block %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TS: Features",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everything Your Family Needs. Nothing It Doesn't."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Thousands of drivers, families and fleet managers agree: TerraStrike is the one thing they never leave home without.</p>"
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#121212" },
+
+    { "type": "header", "content": "Typography" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "options": [
+        { "value": "theme", "label": "Theme default" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "type_scale",
+      "min": 70,
+      "max": 140,
+      "step": 5,
+      "unit": "%",
+      "label": "Text size",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "min": 1, "max": 6, "step": 1, "label": "Columns (desktop)", "default": 5 },
+    { "type": "range", "id": "columns_tablet", "min": 1, "max": 4, "step": 1, "label": "Columns (tablet)", "default": 3 },
+    { "type": "range", "id": "columns_mobile", "min": 1, "max": 3, "step": 1, "label": "Columns (mobile)", "default": 1 },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1200
+    },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top", "default": 40 },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom (mobile)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS: Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Spring-Loaded Tungsten Striker",
+            "description": "No arm strength. No aiming. The spring fires the tungsten tip with the same mechanical force every time - whether you are calm, panicked, or hanging upside down. Reusable 20+ times."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Hidden Stainless Steel Seatbelt Cutter",
+            "description": "The blade is recessed inside the body - fingers cannot reach the edge, but seatbelt webbing slides right in. One firm swipe cuts through jammed or locked belts. Safe around kids."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Aircraft-Grade Aluminum Alloy Body",
+            "description": "34.5 grams. 105mm long. Built from aluminum alloy, tungsten steel, and reinforced ABS housing. This is not a gadget - it is safety gear."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Smaller Than a Car Key Fob",
+            "description": "30mm wide. 17mm thin. Small enough to keep close at hand. Light enough you forget it's there - until you need it."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Never Caught Without One",
+            "description": "Clip it to your keychain, or keep one in every car you drive. Either way, it's there before anything goes wrong."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

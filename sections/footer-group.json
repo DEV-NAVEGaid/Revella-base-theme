@@ -1,0 +1,110 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_Ty4h4X": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_PN4PPd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe to our emails",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_hCYBLy": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
+          }
+        },
+        "email_form_aAYtn7": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_PN4PPd",
+        "paragraph_hCYBLy",
+        "email_form_aAYtn7"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_6iN8ec": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "heading": "Lymphgem",
+            "subtext": ""
+          }
+        },
+        "link_list_MKpVpR": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "footer"
+          }
+        },
+        "text_cFKQkC": {
+          "type": "text",
+          "settings": {
+            "heading": "&nbsp;<strong>Need Help?</strong>&nbsp;",
+            "subtext": "<p>Email: 24/7 Support<br/>support@lymphgem.com</p><p>INDEPENDENT&nbsp;USING&nbsp;L.L.C.</p>"
+          }
+        },
+        "text_HVPRmR": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "subtext": "<h6>• These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.<br/><br/>• Individual results may vary. Testimonials and reviews reflect individual experiences and are not guaranteed outcomes.<br/><br/>• Consult your healthcare provider before starting any supplement regimen, especially if you are pregnant, nursing, taking medication, or have a medical condition.</h6>"
+          }
+        }
+      },
+      "block_order": [
+        "text_6iN8ec",
+        "link_list_MKpVpR",
+        "text_cFKQkC",
+        "text_HVPRmR"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.footer__content-top.page-width {padding-left: 15px !important; padding-right: 15px !important; text-align: left; } .footer-block__details-content .list-menu__item--link {padding-top: 0rem; padding-bottom: 0.5rem; } .footer-block.grid__item {margin: 2rem 0 !important; } .footer-block__details-content {margin-bottom: 0rem !important; }}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-5",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "newsletter_Ty4h4X",
+    "footer"
+  ]
+}

@@ -1,0 +1,96 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+<div class="lm">
+  <section class="wrap res"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="inner">
+      <div class="res-h">
+        {%- if s.heading != blank %}<h2 class="h2 wt">{{ s.heading }}</h2>{% endif -%}
+        {%- if s.subheading != blank %}<p class="sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+      {%- if s.show_trust -%}
+        <div class="trust{% if s.show_divider %} has-div{% endif %}">
+          <div class="trust-l">
+            {%- if s.trust_icon != blank -%}
+              {%- capture trust_icon_style %}width: {{ s.trust_icon_size }}px; height: {{ s.trust_icon_size }}px; object-fit: contain{% endcapture -%}
+              {{ s.trust_icon | image_url: width: 128 | image_tag: loading: 'lazy', style: trust_icon_style, alt: '' }}
+            {%- else -%}
+              {% render 'oc-icon', icon: 'shield-32' %}
+            {%- endif -%}
+            <span>{{ s.trust_label }}</span></div>
+          <div class="trust-r">
+            <div class="trust-i"><p class="trust-n">{{ s.expert_name }}</p><p class="trust-ro">{{ s.expert_title }}</p></div>
+            <div class="av-w">
+              <div class="avatar">
+                {%- if s.expert_image != blank -%}
+                  {{ s.expert_image | image_url: width: 120 | image_tag: loading: 'lazy', width: 50, height: 52, alt: s.expert_name }}
+                {%- endif -%}
+              </div>
+              {%- if s.show_verified %}<span class="av-ck">{% render 'oc-icon', icon: 'check-green-18' %}</span>{% endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      {% render 'oc-cta', label: s.button_label, link: s.button_link, variant: btn_variant, guarantee: s.guarantee, show_guarantee: s.show_guarantee, guarantee_icon: s.guarantee_icon, arrow_icon: s.arrow_icon, style: 'gap: 12px' %}
+      {%- if section.blocks.size > 0 -%}
+        <div class="rstats">
+          {%- for block in section.blocks -%}
+            <div class="rs" {{ block.shopify_attributes }}><p class="n">{{ block.settings.number }}</p><p class="l">{{ block.settings.label }}</p></div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Real results",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Real Customers. Real Results." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "*We surveyed [X,XXX] Lymphgem subscribers after [60] days of daily use. Here's what they reported." },
+    { "type": "header", "content": "Expert badge" },
+    { "type": "checkbox", "id": "show_trust", "label": "Show expert badge", "default": true },
+    { "type": "text", "id": "trust_label", "label": "Label", "default": "Trusted by experts" },
+    { "type": "image_picker", "id": "trust_icon", "label": "Label icon", "info": "Square PNG/SVG. Empty = shield icon." },
+    { "type": "range", "id": "trust_icon_size", "label": "Label icon size (px)", "min": 16, "max": 64, "step": 1, "default": 32 },
+    { "type": "text", "id": "expert_name", "label": "Expert name", "default": "[Expert name]" },
+    { "type": "text", "id": "expert_title", "label": "Expert title", "default": "[Expert title]" },
+    { "type": "image_picker", "id": "expert_image", "label": "Expert photo" },
+    { "type": "checkbox", "id": "show_verified", "label": "Show verified check on photo", "default": true },
+    { "type": "checkbox", "id": "show_divider", "label": "Show divider line", "default": true },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "gh", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
+    { "type": "text", "id": "guarantee", "label": "Guarantee text", "default": "60-day Money-Back Guarantee" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show guarantee line", "default": true },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Guarantee icon", "info": "Square PNG/SVG, shown 20 px. Empty = shield icon." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = design gradient (#0D1E39 → #193B68)." }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "[XX]%" },
+        { "type": "text", "id": "label", "label": "Label", "default": "*Take Lymphgem every single day" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Real results",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat", "settings": { "label": "*Feel stronger in their workouts" } },
+        { "type": "stat", "settings": { "label": "*Notice faster recovery" } },
+        { "type": "stat", "settings": { "label": "*Feel sharper focus" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

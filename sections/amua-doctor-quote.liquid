@@ -1,0 +1,181 @@
+{%- style -%}
+  #amua-dq-{{ section.id }},
+  #amua-dq-{{ section.id }} * { box-sizing: border-box; }
+
+  #amua-dq-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  .amua-dq { max-width: 900px; margin: 0 auto; }
+
+  /* ── Image ── */
+  .amua-dq__image {
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+  .amua-dq__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .amua-dq__image::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: {{ section.settings.overlay_height }}%;
+    background: linear-gradient(to bottom, transparent, {{ section.settings.bg_color }});
+    pointer-events: none;
+  }
+
+  /* ── Content ── */
+  .amua-dq__content {
+    padding: {{ section.settings.content_padding_top }}px {{ section.settings.content_padding_x }}px 0;
+  }
+
+  /* ── Quote ── */
+  .amua-dq__quote {
+    margin: 0 0 {{ section.settings.quote_gap }}px;
+    font-size: {{ section.settings.quote_size }}px;
+    font-weight: {{ section.settings.quote_weight }};
+    color: {{ section.settings.quote_color }};
+    line-height: {{ section.settings.quote_line_height }};
+  }
+
+  /* ── Body ── */
+  .amua-dq__body {
+    font-size: {{ section.settings.body_size }}px;
+    font-weight: {{ section.settings.body_weight }};
+    color: {{ section.settings.body_color }};
+    line-height: {{ section.settings.body_line_height }};
+  }
+  .amua-dq__body p { margin: 0 0 {{ section.settings.paragraph_gap }}px; }
+  .amua-dq__body p:last-child { margin-bottom: 0; }
+
+  /* ── Rating ── */
+  .amua-dq__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: {{ section.settings.rating_gap }}px;
+  }
+  .amua-dq__stars { display: flex; gap: 2px; }
+  .amua-dq__rating-text {
+    margin: 0;
+    font-size: {{ section.settings.rating_text_size }}px;
+    font-weight: {{ section.settings.rating_text_weight }};
+    color: {{ section.settings.rating_text_color }};
+    line-height: 1.4;
+  }
+
+  @media (min-width: 990px) {
+    .amua-dq__content { padding-left: 0; padding-right: 0; }
+    .amua-dq__image img { max-height: 500px; object-position: center top; }
+  }
+{%- endstyle -%}
+
+<section id="amua-dq-{{ section.id }}">
+  <div class="amua-dq">
+
+    {%- if section.settings.image != blank -%}
+      <div class="amua-dq__image">
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          alt="{{ section.settings.image.alt | escape | default: 'Doctor quote' }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+
+    <div class="amua-dq__content">
+
+      {%- if section.settings.quote != blank -%}
+        <p class="amua-dq__quote">{{ section.settings.quote }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="amua-dq__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.show_rating -%}
+        <div class="amua-dq__rating">
+          <div class="amua-dq__stars">
+            {%- assign filled = section.settings.star_count | round -%}
+            {%- for i in (1..5) -%}
+              <svg width="{{ section.settings.star_size }}" height="{{ section.settings.star_size }}" viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  fill="{% if i <= filled %}{{ section.settings.star_color }}{% else %}#E0E0E0{% endif %}" stroke="none"/>
+              </svg>
+            {%- endfor -%}
+          </div>
+          {%- if section.settings.rating_text != blank -%}
+            <p class="amua-dq__rating-text">{{ section.settings.rating_text }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Amua: Doctor Quote",
+  "tag": "section",
+  "class": "amua-section",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+
+    { "type": "header", "content": "Quote" },
+    { "type": "textarea", "id": "quote", "label": "Quote text", "default": "\"It was never your willpower. It's two hormones.\"" },
+    { "type": "range", "id": "quote_size", "label": "Quote size (px)", "min": 20, "max": 44, "step": 1, "default": 28 },
+    { "type": "select", "id": "quote_weight", "label": "Quote weight", "options": [{ "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" }, { "value": "900", "label": "Black" }], "default": "900" },
+    { "type": "color", "id": "quote_color", "label": "Quote color", "default": "#121212" },
+    { "type": "text", "id": "quote_line_height", "label": "Quote line-height", "default": "1.2" },
+    { "type": "range", "id": "quote_gap", "label": "Gap below quote (px)", "min": 8, "max": 40, "step": 2, "default": 20 },
+
+    { "type": "header", "content": "Body" },
+    { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>I tell every patient the same thing: the problem was never your diet. It's two hormones. When your stress hormone, cortisol, runs high and your curve hormones run low, your body parks fat on your belly and leaves your hips and thighs flat. Dieting can't fix that, because diet was never the cause.</p><p>VitalDrops works on the actual cause: five plants that calm cortisol, support your curve hormones, and boost circulation, so your shape fills out where it's meant to. And it's in liquid drops for a reason. Capsules lose most of their potency to stomach acid. Drops absorb almost instantly, so your body actually gets what it needs.</p><p>Give it the full 90 days. The women who commit are the ones who get the body they've chased for years.</p>" },
+    { "type": "range", "id": "body_size", "label": "Body size (px)", "min": 13, "max": 20, "step": 1, "default": 16 },
+    { "type": "select", "id": "body_weight", "label": "Body weight", "options": [{ "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }], "default": "400" },
+    { "type": "color", "id": "body_color", "label": "Body color", "default": "#222222" },
+    { "type": "text", "id": "body_line_height", "label": "Body line-height", "default": "1.6" },
+    { "type": "range", "id": "paragraph_gap", "label": "Paragraph gap (px)", "min": 8, "max": 32, "step": 2, "default": 20 },
+
+    { "type": "header", "content": "Rating" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "range", "id": "star_count", "label": "Filled stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+    { "type": "range", "id": "star_size", "label": "Star size (px)", "min": 14, "max": 24, "step": 1, "default": 18 },
+    { "type": "color", "id": "star_color", "label": "Star color", "default": "#F0C14B" },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8/5 from 33,319+ Happy Customers" },
+    { "type": "range", "id": "rating_text_size", "label": "Rating text size (px)", "min": 12, "max": 18, "step": 1, "default": 15 },
+    { "type": "select", "id": "rating_text_weight", "label": "Rating text weight", "options": [{ "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi Bold" }], "default": "500" },
+    { "type": "color", "id": "rating_text_color", "label": "Rating text color", "default": "#333333" },
+    { "type": "range", "id": "rating_gap", "label": "Gap above rating (px)", "min": 10, "max": 40, "step": 2, "default": 24 },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "content_padding_top", "label": "Content padding top (px)", "min": 10, "max": 50, "step": 2, "default": 28 },
+    { "type": "range", "id": "content_padding_x", "label": "Content padding sides (px)", "min": 0, "max": 32, "step": 2, "default": 16 },
+
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding top", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom", "default": 40 },
+    { "type": "range", "id": "overlay_height", "label": "Image fade height (%)", "min": 10, "max": 80, "step": 5, "default": 40, "info": "White gradient fade at bottom of image" }
+  ],
+  "presets": [
+    {
+      "name": "Amua: Doctor Quote"
+    }
+  ]
+}
+{% endschema %}
