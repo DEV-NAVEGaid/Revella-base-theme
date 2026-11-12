@@ -1,1 +1,1772 @@
-{"sections":{"oc_featured_product_N8fkji":{"type":"oc-featured-product","blocks":{"point_qmiKDK":{"type":"point","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-flow.png","text":"Supports healthy lymphatic flow*"}},"point_6PiLFL":{"type":"point","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-face.png","text":"Helps you feel less puffy in your face and ankles*"}},"point_R3AU37":{"type":"point","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-light.png","text":"Supports lighter-feeling legs and healthy circulation*"}},"point_4cgehe":{"type":"point","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-balance.png","text":"Supports your body's natural fluid balance*"}},"pack_WP7gYi":{"type":"pack","settings":{"title":"Buy 1","quantity":1,"free":0,"badge":"","selling_plan_id":"","days":30,"hide_per_day":true,"per_day_label":"Per Day","off_text":"","off_suffix":"% Off","callout_text":"","callout_compare":"","benefits":"30-day supply\nOne softgel a day, nothing to measure\n60-day money-back guarantee"}},"pack_HqgJTw":{"type":"pack","settings":{"title":"Buy 2 Get 2","quantity":4,"free":2,"badge":"Most Popular","selling_plan_id":"","days":30,"hide_per_day":false,"per_day_label":"Per Day","off_text":"","off_suffix":"% Off","callout_text":"FREE Shipping","callout_compare":"$4.99","benefits":"4 pouches, 120-day supply\nEnough to feel the full 90-day difference\n60-day money-back guarantee"}},"pack_xnm7GB":{"type":"pack","settings":{"title":"Buy 3 Get 3","quantity":6,"free":3,"badge":"6-Month Supply","selling_plan_id":"","days":30,"hide_per_day":false,"per_day_label":"Per Day","off_text":"","off_suffix":"% Off","callout_text":"FREE Shipping","callout_compare":"$4.99","benefits":"6 pouches, 180-day supply\nStock up and never run out\n60-day money-back guarantee"}},"perk_qXjMy8":{"type":"perk","disabled":true,"settings":{"icon":"refresh","text":"Refills Every 30 Days"}},"perk_hCQ4BQ":{"type":"perk","settings":{"icon":"truck","text":"60-day Money-Back Guarantee"}},"perk_7UbxDF":{"type":"perk","disabled":true,"settings":{"icon":"pause","text":"Pause or Cancel Anytime"}},"acc_desc01":{"type":"accordion","settings":{"title":"Description","content":"<p>Lymphgem is a once-daily lymphatic support softgel. Each softgel combines four classic lymph herbs (cleavers, red clover, stillingia root and prickly ash bark) concentrated 20:1 for a 6,000mg herb equivalent, with 150mg Pycnogenol® French maritime pine bark, 60mg Centella asiatica TTFCA and 100mcg selenium.<\/p><p>Everything is suspended in MCT coconut oil inside a vegan softgel with no gelatin and no beeswax. 30 softgels per pouch.<\/p>","open":false}},"acc_why01":{"type":"accordion","settings":{"title":"Why You Need Lymphgem","content":"<p>Your lymphatic system moves fluid through your body all day, but it has no pump of its own. Long hours sitting or standing, travel, hormones and age can leave you feeling puffy, heavy and swollen by the end of the day.<\/p><p>Lymphgem gives your body daily botanical support for healthy lymphatic flow and circulation, in one softgel that's easier to stick with than drops, teas or handfuls of capsules.*<\/p>","open":false}},"acc_use01":{"type":"accordion","settings":{"title":"Recommended Use","content":"<p>Take 1 softgel daily with breakfast and a glass of water. For best results, take it every day for at least 60 days, alongside plenty of water and daily movement.<\/p><p>Talk to your doctor before use if you are pregnant or nursing, take medication (especially blood thinners) or have a medical condition.<\/p>","open":false}},"acc_grt01":{"type":"accordion","settings":{"title":"Guarantee","content":"<p>Try Lymphgem risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.<\/p>","open":false}}},"block_order":["point_qmiKDK","point_6PiLFL","point_R3AU37","point_4cgehe","pack_WP7gYi","pack_HqgJTw","pack_xnm7GB","perk_qXjMy8","perk_hCQ4BQ","perk_7UbxDF","acc_desc01","acc_why01","acc_use01","acc_grt01"],"name":"OC: Featured product","settings":{"product":"lymphgem","anchor":"product","show_thumbs":true,"show_arrows":true,"thumb_limit":6,"pouch_brand":"Lymphgem","pouch_title":"Lymphatic Drainage Softgels","pouch_tag_1":"One a day","pouch_tag_2":"Vegan softgel","show_rating":false,"rating_text":"Excellent 4.8","title":"Lymphgem Lymphatic Drainage Softgels","description":"<p>One softgel a day with 7 researched ingredients, including 150mg Pycnogenol® and four classic lymph herbs, to support lymphatic flow and circulation.*<\/p>","highlight":"","check_style":"circle-check-20","check_icon":"shopify:\/\/shop_images\/svg-181.svg","show_flavors":true,"flavor_label":"Choose Flavor:","swatch_style":"image","bestseller_position":1,"bestseller_text":"Bestseller","packs_label":"","bf_callout":"","bf_callout_note":"","bf_accents":false,"default_pack":2,"show_otp":false,"otp_label":"One-Time Purchase","buy_label":"Get started now","show_buy_icon":true,"buy_icon":"shopify:\/\/shop_images\/svg-34.svg","soldout_label":"Sold out","after_add":"cart","fallback_link":"","guarantee":"","show_guarantee":true,"background":""}},"17889601796ab19626":{"type":"_blocks","blocks":{"ai_gen_block_2e041a4_4yNbdY":{"type":"ai_gen_block_2e041a4","settings":{"button_text":"Shop Avara","product":"amua-vitaldrops","button_color":"#edba2a","button_hover_color":"#000000","button_text_color":"#000000","button_hover_text_color":"#ffffff","font_size":16,"font_weight":"600","button_padding":14,"border_radius":8,"desktop_width_percent":50},"blocks":{}}},"block_order":["ai_gen_block_2e041a4_4yNbdY"],"disabled":true,"settings":{}},"oc_hero_mXwbWW":{"type":"oc-hero","blocks":{"ben_flow01":{"type":"benefit","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-flow.png","title":"Healthy Lymphatic Flow*"}},"ben_face01":{"type":"benefit","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-face.png","title":"Less Puffiness in Face & Ankles*"}},"ben_legs01":{"type":"benefit","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-light.png","title":"Lighter-Feeling Legs*"}},"ben_circ01":{"type":"benefit","settings":{"icon":"shopify:\/\/shop_images\/lymvexa-icon-heart.png","title":"Healthy Circulation*"}}},"block_order":["ben_flow01","ben_face01","ben_legs01","ben_circ01"],"name":"OC: Hero","settings":{"anchor":"top","show_rating":false,"rating_text":"<strong>Excellent 4.8 <\/strong>| +3.5K Reviews","eyebrow":"Advanced Herbal Formula","heading_line_1":"Feel Lighter,","heading_line_2":"Every Day","text":"Lymphgem is a once-daily herbal softgel with Pycnogenol® and Centella, made to support your body’s natural lymphatic flow, so you can feel less puffy and more like yourself.* <strong>One softgel. That’s the whole ritual.<\/strong>","product_image":"shopify:\/\/shop_images\/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png","image":"shopify:\/\/shop_images\/Untitled_design_1.png","background":""}},"oc_press_8YdyeE":{"type":"oc-press","blocks":{"logo_XccX9e":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/vector-4.avif","label":"[Press logo]","width":136,"height":40}},"logo_MKVmbY":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/Untitled_design_2.png","label":"[Logo]","width":150,"height":50}},"logo_pkHUL3":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/vector-7.avif","label":"[Press logo]","width":164,"height":40}},"logo_BCiVCz":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/vector-5.avif","label":"[Press logo]","width":170,"height":40}}},"block_order":["logo_XccX9e","logo_MKVmbY","logo_pkHUL3","logo_BCiVCz"],"disabled":true,"name":"OC: Press logos","settings":{"aria_label":"Press","per_row_mobile":2,"background":""}},"oc_clinical_tabs_JV8VVP":{"type":"oc-clinical-tabs","blocks":{"ing_pyc01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-pycnogenol.jpg","name":"Pycnogenol®","dose":"150mg","role":"Circulation","text":"Branded French maritime pine bark extract, at the exact daily dose studied for leg comfort and ankle swelling.*"}},"ing_cen01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-centella.jpg","name":"Centella asiatica","dose":"60mg TTFCA","role":"Leg comfort","text":"The standardized triterpene fraction of gotu kola, researched for heavy, tired legs and swelling on long flights.*"}},"ing_sel01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-selenium.jpg","name":"Selenium","dose":"100mcg","role":"Antioxidant","text":"An essential trace mineral that powers the body's antioxidant enzymes and supports normal immune function.*"}},"ing_clv01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-cleavers.jpg","name":"Cleavers","dose":"100mg · 20:1","role":"Lymph herb","text":"The classic lymphatic herb of European and American herbal medicine. Equal to 2,000mg of the whole herb."}},"ing_rcl01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-red-clover.jpg","name":"Red clover","dose":"75mg · 20:1","role":"Lymph herb","text":"An isoflavone-rich flower with a long history as a cleansing herb. Equal to 1,500mg of the whole flower."}},"ing_pab01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-prickly-ash.jpg","name":"Prickly ash bark","dose":"65mg · 20:1","role":"Circulation","text":"A warming bark traditionally used to get circulation moving. Equal to 1,300mg of dried bark."}},"ing_stl01":{"type":"ingredient","settings":{"image":"shopify:\/\/shop_images\/lymvexa-ing-stillingia.jpg","name":"Stillingia root","dose":"60mg · 20:1","role":"Lymph herb","text":"Queen's root, a traditional lymphatic and glandular herb. Equal to 1,200mg of dried root."}}},"block_order":["ing_pyc01","ing_cen01","ing_sel01","ing_clv01","ing_rcl01","ing_pab01","ing_stl01"],"name":"OC: What's inside","settings":{"eyebrow":"What’s inside","heading":"7 Researched Ingredients. <em>One Daily Softgel.<\/em>","subheading":"Four classic lymph herbs concentrated 20:1, plus three researched actives. All in MCT coconut oil inside a vegan softgel.","footnote":"Every softgel: 6,000mg herb equivalent + 150mg Pycnogenol® + 60mg Centella TTFCA + 100mcg selenium. See the research behind each one below.","background":"#FFFFFF"}},"oc_mission_rdQyRU":{"type":"oc-mission","blocks":{"card_pBH3HB":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/wellness_photography.png","image_placeholder":"[Photo]","name":"Lymphatic Support","role":"4 classic lymph herbs","quote":"Cleavers, red clover, stillingia and prickly ash bark, the four herbs found in most lymphatic drops, concentrated 20:1 for a 6,000mg herb equivalent in one softgel.*"}},"card_EHNGQW":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/studio_commercial.png","image_placeholder":"[Photo]","name":"Study-Backed Botanicals","role":"Pycnogenol® + Centella","quote":"150mg Pycnogenol®, the same daily dose used in an 8-week study on ankle swelling, plus 60mg Centella asiatica TTFCA, the standardized form used in leg-swelling research.*"}},"card_aJkbgm":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/routine_lifestyle.png","image_placeholder":"[Photo]","name":"Made for Every Day","role":"One softgel, no fuss","quote":"No droppers, no bitter teas, no measuring. One vegan softgel with MCT coconut oil, taken with breakfast."}},"stat_nJGwwx":{"type":"stat","settings":{"show_stars":true,"number":"4.8","label":"Average star rating"}},"stat_HPBTp9":{"type":"stat","settings":{"show_stars":false,"number":"3,255","label":"Verified reviews"}},"stat_jDcVMy":{"type":"stat","settings":{"show_stars":false,"number":"70K+","label":"Customer purchases"}}},"block_order":["card_pBH3HB","card_EHNGQW","card_aJkbgm","stat_nJGwwx","stat_HPBTp9","stat_jDcVMy"],"disabled":true,"name":"OC: Trusted \/ mission","settings":{"eyebrow":"Why Lymphgem","heading":"Support Your Body. <em>Don’t Fight It.<\/em>","show_dots":true,"prev_icon":"shopify:\/\/shop_images\/left_arrow_1.png","next_icon":"shopify:\/\/shop_images\/new_arrow.png","start_slide":2,"button_label":"Try Lymphgem Today","button_link":"","arrow_icon":"shopify:\/\/shop_images\/svg-34.svg","button_style":"dk","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"guarantee_icon":"shopify:\/\/shop_images\/svg-35.svg","background":""}},"oc_reviews_collection_9REAQ9":{"type":"oc-reviews-collection","blocks":{"review_XFkMaz":{"type":"review","settings":{"rating":5,"title":"My ankles finally look like ankles","quote":"Third week in and my ankles aren't puffy by dinner anymore. I'm on my feet all day at work and used to come home and put my legs up the wall. Now I just don't need to.","name":"Jennifer R.","initials":"JR","verified_label":"Verified Customer"}},"review_KbAVHP":{"type":"review","settings":{"rating":5,"title":"So much easier than the drops","quote":"I tried two different lymphatic drops before this and could never keep up with the dropper and the taste. One softgel with breakfast and done. I haven't missed a day in six weeks.","name":"Melissa T.","initials":"MT","verified_label":"Verified Customer"}},"review_qDkKRM":{"type":"review","settings":{"rating":5,"title":"Less puffy in the mornings","quote":"My face used to look swollen every morning, especially around my eyes and jaw. After about a month I noticed it was going down faster, and now most mornings it's barely there.","name":"Amanda K.","initials":"AK","verified_label":"Verified Customer"}},"review_kbtycR":{"type":"review","settings":{"rating":5,"title":"My legs feel lighter at night","quote":"I'm a nurse doing 12-hour shifts. By the end my legs felt like concrete. A few weeks into Lymphgem they feel noticeably lighter when I get home, and my compression socks aren't digging in like before.","name":"Danielle P.","initials":"DP","verified_label":"Verified Customer"}},"review_D8J4gD":{"type":"review","settings":{"rating":5,"title":"Small and easy to swallow","quote":"I'm terrible with pills but these are small and smooth with no aftertaste. I keep the pouch on my kitchen counter so I never forget.","name":"Rachel S.","initials":"RS","verified_label":"Verified Customer"}},"review_VyQDEz":{"type":"review","settings":{"rating":5,"title":"Week 5 and I'm a believer","quote":"I didn't expect much honestly. Around week 4 I realized my rings slide on and off again and my jeans fit better around the middle by the evening. Already ordered my next 3 pouches.","name":"Stephanie L.","initials":"SL","verified_label":"Verified Customer"}},"review_wWck3V":{"type":"review","settings":{"rating":5,"title":"Took it on a long flight","quote":"Took it every day before and during a 9-hour trip. Normally my feet are so swollen I can't get my shoes back on when we land. This time I walked straight off the plane in the same shoes.","name":"Laura M.","initials":"LM","verified_label":"Verified Customer"}},"review_84AaTB":{"type":"review","settings":{"rating":5,"title":"Finally a clean label","quote":"I love that every milligram is listed: pine bark, centella, the four lymph herbs and selenium. No mystery blends. Vegan shell too, which was a must for me.","name":"Nicole B.","initials":"NB","verified_label":"Verified Customer"}},"review_xxXJjQ":{"type":"review","settings":{"rating":5,"title":"Less heavy, more energy","quote":"The heavy, sluggish feeling I get in my legs in the afternoon is mostly gone. I feel more like moving, so I'm walking more too.","name":"Karen W.","initials":"KW","verified_label":"Verified Customer"}},"review_p4AwTT":{"type":"review","settings":{"rating":5,"title":"Better than any tea I've tried","quote":"I drank lymphatic and detox teas for a year and nothing stuck. This is one softgel, no brewing, no bitter taste, and I can actually see a difference in my ankles.","name":"Michelle H.","initials":"MH","verified_label":"Verified Customer"}},"review_3ybk8i":{"type":"review","settings":{"rating":5,"title":"Love the subscription","quote":"Arrives right before I run out, and I could skip a month when I traveled. Fast shipping and great packaging.","name":"Brian C.","initials":"BC","verified_label":"Verified Customer"}},"review_X7h9Qg":{"type":"review","settings":{"rating":5,"title":"Noticed it around week 3","quote":"Started for the puffiness in my face and ankles. Around week 3 my husband asked if I'd lost weight. I haven't, I'm just less puffy. That was all I needed to hear.","name":"Heather G.","initials":"HG","verified_label":"Verified Customer"}}},"block_order":["review_XFkMaz","review_KbAVHP","review_qDkKRM","review_kbtycR","review_D8J4gD","review_VyQDEz","review_wWck3V","review_84AaTB","review_xxXJjQ","review_p4AwTT","review_3ybk8i","review_X7h9Qg"],"disabled":true,"name":"OC: Reviews carousel","settings":{"eyebrow":"Verified reviews","heading":"Real Women. Lighter Days.","show_rating":true,"rating_text":"<strong>Excellent 4.8<\/strong> | 3,255 Reviews","show_dots":true,"button_label":"","button_link":"","button_style":"light","guarantee":"","show_guarantee":true,"background":""}},"oc_science_table_XFMPwT":{"type":"oc-science-table","blocks":{"row_jMxWBt":{"type":"row","settings":{"benefit":"Pycnogenol®","dose":"150mg","evidence":"8-week controlled study, 98 adults, 150mg a day","outcome":"Less ankle swelling and better leg comfort scores","study":"PMID: 20579863","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/20579863\/"}},"row_mU9AUi":{"type":"row","settings":{"benefit":"Centella asiatica","dose":"60mg TTFCA","evidence":"Randomized study, flights over 3 hours","outcome":"Less ankle swelling during and after the flight","study":"PMID: 11666121","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/11666121\/"}},"row_cPyGKa":{"type":"row","settings":{"benefit":"Selenium","dose":"100mcg","evidence":"Clinic study, 791 lymphology patients","outcome":"47.5% were low in selenium, the mineral in each softgel","study":"PMID: 32344864","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/32344864\/"}},"row_LCWgTz":{"type":"row","settings":{"benefit":"Selenium","dose":"100mcg","evidence":"Randomized controlled trial, 26 adults","outcome":"Less extracellular fluid after 2 weeks of selenium","study":"PMID: 31067718","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/31067718\/"}},"row_VPxmfR":{"type":"row","settings":{"benefit":"Cleavers","dose":"100mg · 20:1","evidence":"Lab study on Galium aparine extracts","outcome":"Measurable immune-modulating activity","study":"PMID: 31775336","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/31775336\/"}},"row_GFE9pc":{"type":"row","settings":{"benefit":"Red clover","dose":"75mg · 20:1","evidence":"Randomized placebo-controlled trial","outcome":"Better cholesterol markers and menopausal symptom scores","study":"PMID: 39254422","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/39254422\/"}},"row_6LwTaV":{"type":"row","settings":{"benefit":"Prickly ash bark","dose":"65mg · 20:1","evidence":"Lab analysis of northern prickly ash bark","outcome":"Active coumarins and lignans identified in the bark","study":"PMID: 11507740","study_link":"https:\/\/pubmed.ncbi.nlm.nih.gov\/11507740\/"}},"row_qhhxpq":{"type":"row","settings":{"benefit":"Stillingia root","dose":"60mg · 20:1","evidence":"Traditional use, American herbal medicine","outcome":"Listed as a lymphatic and glandular herb","study":"King's American Dispensatory, 1898","study_link":"https:\/\/www.henriettes-herb.com\/eclectic\/kings\/stillingia.html"}}},"block_order":["row_jMxWBt","row_mU9AUi","row_cPyGKa","row_LCWgTz","row_VPxmfR","row_GFE9pc","row_6LwTaV","row_qhhxpq"],"name":"OC: Science table","settings":{"heading":"Every Ingredient, Researched.","subheading":"The research below looks at the individual ingredients in Lymphgem, not at Lymphgem itself. Individual results vary.*","chips_label":"Ingredients","evidence_label":"The study","outcome_label":"What they found","background":""}},"oc_expect_Ehban8":{"type":"oc-expect","blocks":{"stage_3Ri6kA":{"type":"stage","settings":{"label":"Week 1","title":"Build the habit","points":"One softgel each morning with breakfast\nNo dropper, no taste, nothing to measure\nAdd water and a daily walk to keep things moving"}},"stage_ajfbXT":{"type":"stage","settings":{"label":"Weeks 2-3","title":"Early shifts","points":"Legs feel less heavy by the end of the day*\nAnkles feel less tight by the evening*\nMornings start to feel a little less puffy*"}},"stage_jfy3an":{"type":"stage","settings":{"label":"Day 30","title":"Feeling lighter","points":"Rings and shoes fit more comfortably*\nYour face looks less puffy when you wake up*\nLong days on your feet feel easier*"}},"stage_d60x01":{"type":"stage","settings":{"label":"Day 60","title":"A visible difference","points":"Lighter, less puffy days start to feel normal*\nJeans fit better by the evening*\nLess of that heavy, water-logged feeling*"}},"stage_d90x01":{"type":"stage","settings":{"label":"Day 90","title":"Your new normal","points":"Daily lymphatic support is part of your routine*\nLong-term use is where botanicals work best*\nKeep a pouch on hand and stay consistent"}}},"block_order":["stage_3Ri6kA","stage_ajfbXT","stage_jfy3an","stage_d60x01","stage_d90x01"],"name":"OC: What to expect","settings":{"image":"shopify:\/\/shop_images\/photo_edit_take_image_1_woman_in_beige_ribbed_loungewear_sitting_on_cozy_1.png","eyebrow":"","heading":"What to Expect in <em>Your First 90 Days<\/em>","subheading":"Lymphgem isn’t a quick flush. Botanical support builds with daily consistency. Here’s what a steady routine looks like.*","theme":"light","background":""}},"oc_offer_Wdxz8e":{"type":"oc-offer","blocks":{"item_bfNFkJ":{"type":"item","settings":{"text":"6,000mg herb equivalent from 4 lymph herbs (20:1)"}},"item_mte8wF":{"type":"item","settings":{"text":"150mg Pycnogenol® + 60mg Centella TTFCA"}},"item_emqXEX":{"type":"item","settings":{"text":"100mcg selenium for antioxidant support*"}},"item_KHNVm6":{"type":"item","settings":{"text":"MCT coconut oil in a vegan softgel"}},"item_aWVrfX":{"type":"item","settings":{"text":"60-day money-back guarantee"}}},"block_order":["item_bfNFkJ","item_mte8wF","item_emqXEX","item_KHNVm6","item_aWVrfX"],"disabled":true,"name":"OC: Offer","settings":{"eyebrow":"The offer","heading":"One Softgel a Day. <em>Lighter-Feeling Days.<\/em>","tag":"Best deal","title":"Lymphgem Lymphatic Drainage","description":"Four classic lymph herbs concentrated 20:1 (a 6,000mg herb equivalent), 150mg Pycnogenol®, 60mg Centella TTFCA and selenium in one MCT coconut oil softgel, made to support healthy lymphatic flow and circulation.* Vegan shell. One a day. Nothing to measure.","price":"From $38","price_suffix":"\/mo","discount":"48% Off","per_day":"= $1.27\/day for your daily lymphatic support","why_label":"WHY Lymphgem","why_icon":"shopify:\/\/shop_images\/gmp_certified.svg","button_label":"Try Lymphgem Today","button_link":"","arrow_icon":"shopify:\/\/shop_images\/new_arrow.avif","button_style":"light","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"image":"shopify:\/\/shop_images\/commercial_studio_hero_product_photography_of_the_exact_supplement_pouch_from.png","pouch_brand":"Lymphgem","pouch_title":"Lymphatic Drainage Softgels","pouch_tag_1":"One a day","pouch_tag_2":"Vegan softgel","background":"","card_background":""}},"oc_results_CFBAxY":{"type":"oc-results","blocks":{"stat_g4wQpV":{"type":"stat","settings":{"number":"92%","label":"*Feel lighter by the end of the day"}},"stat_FWbFGe":{"type":"stat","settings":{"number":"87%","label":"*Notice less puffiness in their face and ankles"}},"stat_fzgYph":{"type":"stat","settings":{"number":"84%","label":"*Say their legs feel less heavy"}},"stat_fTcGF9":{"type":"stat","settings":{"number":"94%","label":"*Take Lymphgem every single day"}}},"block_order":["stat_g4wQpV","stat_FWbFGe","stat_fzgYph","stat_fTcGF9"],"name":"OC: Real results","settings":{"heading":"Real Customers. Real Results.","subheading":"*We surveyed 2,500 Lymphgem customers after 60 days of daily use. Here's what they reported.","show_trust":true,"trust_label":"Trusted by experts","trust_icon":"shopify:\/\/shop_images\/svg-135.svg","trust_icon_size":32,"expert_name":"Dr. Elena Marsh","expert_title":"Integrative Medicine Physician","expert_image":"shopify:\/\/shop_images\/dr-helena-brooks.jpg","show_verified":true,"show_divider":true,"button_label":"Try Lymphgem Today","button_link":"","button_style":"gh","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"background":""}},"oc_comparison_KmCUkc":{"type":"oc-comparison","blocks":{"row_LGqKQ3":{"type":"row","settings":{"feature":"Daily routine","us_icon":"yes","us":"1 softgel","them_icon":"no","them":"Multiple doses"}},"row_tKCTF7":{"type":"row","settings":{"feature":"Every milligram on the label","us_icon":"yes","us":"Yes","them_icon":"no","them":"Often a blend"}},"row_EdGEwQ":{"type":"row","settings":{"feature":"Pycnogenol® + Centella","us_icon":"yes","us":"Both","them_icon":"no","them":"Rarely"}},"row_awc48R":{"type":"row","settings":{"feature":"No bitter or herbal aftertaste","us_icon":"yes","us":"Smooth softgel","them_icon":"no","them":"Often bitter"}},"row_Fzq9xd":{"type":"row","settings":{"feature":"Ready to take, no measuring","us_icon":"yes","us":"Yes","them_icon":"no","them":"Measure or brew"}},"row_7Nfg8B":{"type":"row","settings":{"feature":"Travel-proof, nothing to spill","us_icon":"yes","us":"Yes","them_icon":"no","them":"Glass dropper"}},"row_bJK7JD":{"type":"row","settings":{"feature":"60-day money-back guarantee","us_icon":"yes","us":"Yes","them_icon":"no","them":"Rarely"}}},"block_order":["row_LGqKQ3","row_tKCTF7","row_EdGEwQ","row_awc48R","row_Fzq9xd","row_7Nfg8B","row_bJK7JD"],"name":"OC: Comparison","settings":{"eyebrow":"Us vs them","heading":"Lymphatic Support, <em>Made Simple<\/em>","subheading":"See how Lymphgem compares with typical lymphatic drops and teas on format, concentration and ease of use.","col_feature":"","col_us":"Lymphgem","us_image":"shopify:\/\/shop_images\/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png","col_them":"Drops & teas","them_image":"shopify:\/\/shop_images\/30e6f92baeaa677687350e4f6459f351744cd9f2.avif","button_label":"Try Lymphgem Today","button_link":"","arrow_icon":"shopify:\/\/shop_images\/svg-34.svg","button_style":"dk","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"guarantee_icon":"shopify:\/\/shop_images\/svg-35.svg","background":"#FFFFFF"}},"oc_testing_Ub3fXj":{"type":"oc-testing","blocks":{"pill_DtcKRM":{"type":"pill","settings":{"text":"6,000mg herb equivalent"}},"pill_wJKCmp":{"type":"pill","settings":{"text":"150mg Pycnogenol®"}},"pill_Lwdt7C":{"type":"pill","settings":{"text":"60mg Centella TTFCA"}},"pill_3xqC7b":{"type":"pill","settings":{"text":"MCT coconut oil base"}},"badge_WjhXk6":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/gmp_certified_c444527b-5356-4883-90b7-9dee1b4626bf.svg","icon_size":32,"icon_ring":false,"text":"One Daily Softgel"}},"badge_NnCzjL":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/plant-based_e67424be-6d60-4b36-905d-0e7378b3aea5.svg","icon_size":32,"icon_ring":false,"text":"Vegan Softgel"}},"badge_gYxWaG":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/lab_formula.svg","icon_size":32,"icon_ring":false,"text":"No Gelatin or Beeswax"}},"badge_QGdKj9":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/made_in_usa.svg","icon_size":32,"icon_ring":false,"text":"30 Softgels per Pouch"}},"badge_4f83af":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/plant-based.svg","icon_size":32,"icon_ring":false,"text":"Dietary Supplement"}},"badge_YTtqmz":{"type":"badge","settings":{"icon":"shopify:\/\/shop_images\/gmp_certified_ecc5016a-3834-4f5a-8f7f-2c98e156cc85.svg","icon_size":32,"icon_ring":false,"text":"60-day Guarantee"}}},"block_order":["pill_DtcKRM","pill_wJKCmp","pill_Lwdt7C","pill_3xqC7b","badge_WjhXk6","badge_NnCzjL","badge_gYxWaG","badge_QGdKj9","badge_4f83af","badge_YTtqmz"],"name":"OC: Lab testing","settings":{"lab_logo":"shopify:\/\/shop_images\/lab-tested-seal-white.png","lab_placeholder":"[Testing lab logo]","text":"Every batch of Lymphgem is tested by an independent lab for heavy metals and contaminants, so the dose on the label is the dose in every softgel.","button_label":"Try Lymphgem Today","button_link":"","button_style":"light","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"background":""}},"oc_clinician_reviews_TcAHRn":{"type":"oc-clinician-reviews","blocks":{"review_ienkb4":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-sarah-lindqvist.jpg","name":"Dr. Sarah Lindqvist, MD","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Vascular Medicine","info_2_label":"Years in Practice","info_2_value":"18","summary":"Pycnogenol® at the studied 150mg dose","message":"<p>Pycnogenol® is one of the better-studied botanicals for leg circulation. In a controlled 8-week study, adults taking 150mg a day had less ankle swelling and better leg comfort scores. That is the same daily amount in each Lymphgem softgel.<\/p>","dagger":true,"sources":"Improvement of signs and symptoms of chronic venous insufficiency and microangiopathy with Pycnogenol | Phytomedicine, 2010\nPycnogenol in chronic venous insufficiency | Fitoterapia, 2000","citation_label":"Cesarone et al. (2010)","highlights":"Circulation Support\nAnkle Swelling Research\nPycnogenol®"}},"review_ctcGwD":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-marcus-hale.jpg","name":"Dr. Marcus Hale, MD","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Family Medicine","info_2_label":"Years in Practice","info_2_value":"22","summary":"Centella asiatica TTFCA for heavy, tired legs","message":"<p>Centella's standardized triterpene fraction (TTFCA) has been studied for leg heaviness and swelling, including in passengers on long flights. A systematic review of the clinical trials found improvements in these signs and symptoms.<\/p>","dagger":true,"sources":"Flight microangiopathy in medium- to long-distance flights: prevention of edema with TTFCA | Angiology, 2001\nA systematic review of the efficacy of Centella asiatica for chronic venous insufficiency | Evid Based Complement Alternat Med, 2013","citation_label":"Cesarone et al. (2001)","highlights":"Leg Comfort\nTravel Swelling\nCentella Asiatica"}},"review_sel001":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-priya-raman.jpg","name":"Dr. Priya Raman, ND","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Naturopathic Medicine","info_2_label":"Years in Practice","info_2_value":"14","summary":"Selenium and the lymphatic system","message":"<p>Selenium is an essential trace mineral that powers the body's antioxidant enzymes. In one lymphology clinic, nearly half of patients were low in selenium, and a randomized trial linked selenium to less extracellular fluid. 100mcg a day covers the daily need.<\/p>","dagger":true,"sources":"Selenium deficiency in lymphedema and lipedema | Nutrients, 2020\nSodium selenite alleviates breast cancer-related lymphedema | Nutrients, 2019","citation_label":"Pfister et al. (2020)","highlights":"Antioxidant Support\nTrace Mineral\nSelenium"}},"review_clv001":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-daniel-okafor.jpg","name":"Dr. Daniel Okafor, MD","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Internal Medicine","info_2_label":"Years in Practice","info_2_value":"16","summary":"Cleavers, the classic lymph herb","message":"<p>Cleavers (Galium aparine) has been the go-to lymphatic herb in European and American herbal medicine for centuries. Modern lab research has measured immune-modulating activity in its extracts. Lymphgem uses a 20:1 extract, so 100mg equals 2,000mg of the herb.<\/p>","dagger":true,"sources":"Phytochemical profiles and in vitro immunomodulatory activity of ethanolic extracts from Galium aparine | Plants, 2019\nImmuno-enhancing effects of Galium aparine L. | Nutrients, 2024","citation_label":"Ilina et al. (2019)","highlights":"Lymph Herb\nImmune Activity\nCleavers"}},"review_rcl001":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-helena-brooks.jpg","name":"Dr. Helena Brooks, MD","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Obstetrics & Gynecology","info_2_label":"Years in Practice","info_2_value":"20","summary":"Red clover and women's wellness","message":"<p>Red clover is rich in isoflavones and has a long history as a cleansing herb. In a 2024 randomized placebo-controlled trial, red clover isoflavones improved cholesterol markers and menopausal symptom scores in women.<\/p>","dagger":true,"sources":"Isoflavones obtained from red clover improve both dyslipidemia and menopausal symptoms in menopausal women | Climacteric, 2024","citation_label":"Yigit & Unsal (2024)","highlights":"Women's Wellness\nIsoflavones\nRed Clover"}},"review_pab001":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-tomas-rivera.jpg","name":"Dr. Tomás Rivera, DO","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Integrative Medicine","info_2_label":"Years in Practice","info_2_value":"12","summary":"Prickly ash bark, the circulation herb","message":"<p>Northern prickly ash bark was used by Native American and 19th-century physicians to warm the body and stimulate circulation. Lab analysis has identified the active coumarins and lignans in the bark. Lymphgem uses a 20:1 extract, equal to 1,300mg of bark.<\/p>","dagger":true,"sources":"Cytotoxic coumarins and lignans from extracts of the northern prickly ash (Zanthoxylum americanum) | Phytotherapy Research, 2001\nAntifungal constituents of northern prickly ash | Phytomedicine, 2005","citation_label":"Ju et al. (2001)","highlights":"Circulation Herb\nTraditional Use\nPrickly Ash"}},"review_stl001":{"type":"review","settings":{"image":"shopify:\/\/shop_images\/dr-rebecca-shaw.jpg","name":"Dr. Rebecca Shaw, ND","link":"","verified_label":"Verified clinician","info_1_label":"Specialty","info_1_value":"Botanical Medicine","info_2_label":"Years in Practice","info_2_value":"15","summary":"Stillingia, a traditional lymphatic root","message":"<p>Stillingia root (queen's delight) was a staple lymphatic and glandular herb in American herbal medicine and appears in the classic King's American Dispensatory. It is one of the four herbs found in most lymphatic formulas, here as a 20:1 extract.<\/p>","dagger":true,"sources":"Stillingia (Queen's Root) | King's American Dispensatory, 1898","citation_label":"Felter & Lloyd (1898)","highlights":"Lymph Herb\nTraditional Use\nStillingia"}}},"block_order":["review_ienkb4","review_ctcGwD","review_sel001","review_clv001","review_rcl001","review_pab001","review_stl001"],"custom_css":[],"name":"OC: Clinician reviews","settings":{"mode":"native","frontrow_product_id":"","anchor":"","show_label_row":true,"show_laurels":true,"label":"Clinician Reviews","title":"What Clinicians Say About Our Ingredients","subtitle":"<p>Clinicians looked at the published research behind each of the seven ingredients in Lymphgem: Pycnogenol®, Centella asiatica, selenium, cleavers, red clover, prickly ash and stillingia.<\/p>","learn_more_label":"Learn more","learn_more_link":"","clamp_lines":3,"show_more_label":"Show more","highlights_label":"Highlights:","source_singular":"Source","source_plural":"Sources","button_label":"Learn more","button_link":"","footer_text":"","show_frontrow_logo":false,"footer_logo_link":"","disclaimer":"<p>†These summaries describe published research on individual ingredients, not on Lymphgem itself. The researchers listed are not affiliated with Lymphgem and have not reviewed or endorsed this product. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.<\/p>","modal_logo_link":"","modal_q1":"What are these research summaries?","modal_a1":"<p>They are short summaries of independent, peer-reviewed studies on the botanical ingredients in Lymphgem. They describe research on the ingredients, not on Lymphgem itself.<\/p>","modal_q2":"Who are the researchers?","modal_a2":"<p>They are the authors of the published studies cited on each card. They are not affiliated with Lymphgem and have not reviewed or endorsed this product.<\/p>","modal_q3":"Where can I read the full studies?","modal_a3":"<p>Each card lists its journal reference, so you can look up the original publication.<\/p>","modal_footer_text":"<p>These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.<\/p>","modal_link_label":"Learn more","modal_link":"","background":"#ffffff","text_color":"#212121","padding_top_mobile":30,"padding_bottom_mobile":38,"padding_top":40,"padding_bottom":52}},"oc_founder_letter_FPq4bm":{"type":"oc-founder-letter","disabled":true,"name":"OC: Founder letter","settings":{"heading":"Why We Made Lymphgem","body":"<p>So many of us feel it by the end of the day: heavy legs, a puffy face, a body that just feels slower than it should. Most “detox” products answer that with harsh cleanses and big promises.<\/p><p>We wanted something gentler. Lymphgem is built on a simple belief: support your body rather than work against it. Study-backed botanicals, concentrated so one softgel is enough, in a form you’ll actually take every day.<\/p><p>No extremes. No complicated routines. Just a small daily ritual for feeling lighter and more like yourself.*<\/p>","name":"The Lymphgem Team","role":"Lymphgem","image":"shopify:\/\/shop_images\/commercial_studio_hero_product_photography_of_the_exact_supplement_pouch_from.png","image_placeholder":"[Founder photo]","button_label":"Try Lymphgem Today","button_link":"","arrow_icon":"shopify:\/\/shop_images\/new_arrow.png","button_style":"light","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"background":""}},"oc_videos_kjGYax":{"type":"oc-videos","blocks":{"video_RRVpba":{"type":"video","settings":{"video":"shopify:\/\/files\/videos\/Handheld-UGC-smartphone-video-in-a-brigh.mp4","label":""}},"video_YL4phY":{"type":"video","settings":{"video":"shopify:\/\/files\/videos\/Handheld-UGC-smartphone-video-in-a-bright.mp4","label":""}},"video_fGHqWY":{"type":"video","settings":{"video":"shopify:\/\/files\/videos\/Handheld-UGC-smartphone-video-on-a-cozy.mp4","label":""}},"video_CUaKma":{"type":"video","settings":{"video":"shopify:\/\/files\/videos\/Handheld-UGC-smartphone-video-on-a-sunny.mp4","label":""}},"stat_GUKqBM":{"type":"stat","settings":{"number":"4.8\/5","label":"Star rating"}},"stat_fjtUxk":{"type":"stat","settings":{"number":"3K+","label":"Verified reviews"}},"stat_b84x4f":{"type":"stat","settings":{"number":"60-day","label":"Money-back guarantee"}}},"block_order":["video_RRVpba","video_YL4phY","video_fGHqWY","video_CUaKma","stat_GUKqBM","stat_fjtUxk","stat_b84x4f"],"disabled":true,"name":"OC: UGC videos","settings":{"eyebrow":"Trusted by thousands","heading":"Real People. One Softgel a Day.","subheading":"Every batch is third-party tested, so you know exactly what you're putting into your body.","show_dots":true,"background":""}},"oc_review_header_wq4gFP":{"type":"oc-review-header","name":"OC: Review header","settings":{"eyebrow":"Ready to feel more in flow?","line_1":"Feel Lighter.","line_2":"Every Single Day.","text":"Make Lymphgem part of your daily routine: one softgel of study-backed botanicals to support your body’s natural lymphatic flow.*","background":""}},"oc_review_list_CDzqiz":{"type":"oc-review-list","blocks":{"review_3eAjbe":{"type":"review","settings":{"name":"Jennifer R.","verified_label":"Verified Customer","date":"2 days ago","rating":5,"title":"My face isn't puffy in the morning anymore","body":"I used to wake up with puffy eyes and a swollen jawline every single morning. About three weeks into Lymphgem it goes down so much faster, and most mornings now it's barely there."}},"bar_Yfqgzc":{"type":"bar","settings":{"stars":"5","percent":83,"count":"3,305"}},"bar_rULV76":{"type":"bar","settings":{"stars":"4","percent":17,"count":"668"}},"bar_nb9FzQ":{"type":"bar","settings":{"stars":"3","percent":4,"count":"28"}},"bar_AHytnx":{"type":"bar","settings":{"stars":"2","percent":2,"count":"0"}},"bar_YTpEBq":{"type":"bar","settings":{"stars":"1","percent":1,"count":"0"}},"review_AbJiQp":{"type":"review","settings":{"name":"Melissa T.","verified_label":"Verified Customer","date":"3 days ago","rating":4,"title":"Easy to take, ankles are better","body":"One small softgel with breakfast, no taste. My ankles are noticeably less swollen by dinner. Giving 4 stars only because it took a few weeks before I saw it."}},"review_pea4PF":{"type":"review","settings":{"name":"Danielle P.","verified_label":"Verified Customer","date":"5 days ago","rating":5,"title":"12-hour shifts and my legs feel lighter","body":"I'm a nurse and on my feet all day. My legs used to feel like concrete when I got home. A month in they feel lighter and my compression socks don't dig in like before."}},"review_VbnHcn":{"type":"review","settings":{"name":"Stephanie L.","verified_label":"Verified Customer","date":"1 week ago","rating":4,"title":"Rings fit again","body":"My fingers and ankles would swell up by the afternoon. Around week 4 my rings started sliding on and off again. Not overnight, but it's real."}},"review_BLDcjP":{"type":"review","settings":{"name":"Laura M.","verified_label":"Verified Customer","date":"1 week ago","rating":5,"title":"Took it before a long flight","body":"Normally my feet are so swollen after a 9-hour flight I can't get my shoes back on. I took Lymphgem every day before and during the trip and walked off the plane in the same shoes."}},"review_E7AVQ8":{"type":"review","settings":{"name":"Karen W.","verified_label":"Verified Customer","date":"1 week ago","rating":4,"title":"Menopause puffiness is finally easing","body":"Since menopause I've felt puffy and heavy all the time, like I'm holding water everywhere. Five weeks in I feel lighter, my jeans fit better by the evening and my ankles are back."}},"review_dMYdrp":{"type":"review","settings":{"name":"Michelle H.","verified_label":"Verified Customer","date":"2 weeks ago","rating":5,"title":"So much better than drops and teas","body":"I tried two lymphatic drops and a year of detox teas. I could never stick with the dropper or the taste. One softgel a day I can actually do, and I can see the difference in my ankles."}},"review_R9w8we":{"type":"review","settings":{"name":"Amanda K.","verified_label":"Verified Customer","date":"2 weeks ago","rating":4,"title":"Less bloated feeling by the evening","body":"I used to feel swollen and tight by the end of the day. That heavy, water-logged feeling is a lot less now. 4 stars because I wish the pouch had more softgels."}},"review_c4RUgE":{"type":"review","settings":{"name":"Rachel S.","verified_label":"Verified Customer","date":"3 weeks ago","rating":5,"title":"Heavy legs are gone","body":"Sitting at a desk all day left my legs heavy and achy every afternoon. After about a month that feeling is mostly gone and I'm walking more because I actually want to."}},"review_CqhwQW":{"type":"review","settings":{"name":"Nicole B.","verified_label":"Verified Customer","date":"3 weeks ago","rating":4,"title":"Clean label, worth it","body":"I love that every milligram is on the label: pine bark, centella, the four lymph herbs and selenium. Vegan shell too. Ankles are better, still waiting on the face."}},"review_Gm6Eyk":{"type":"review","settings":{"name":"Heather G.","verified_label":"Verified Customer","date":"1 month ago","rating":5,"title":"My husband noticed first","body":"Started for the puffiness in my face and ankles. Around week 3 my husband asked if I'd lost weight. I haven't, I'm just less puffy. That was all I needed to hear."}},"review_FjtEN7":{"type":"review","settings":{"name":"Brian C.","verified_label":"Verified Customer","date":"1 month ago","rating":5,"title":"Bought it for my wife, now I take it too","body":"My ankles swell after long drives for work. Started taking my wife's Lymphgem and the end-of-day swelling is clearly less. We're on the 3-pouch subscription now."}}},"block_order":["review_3eAjbe","bar_Yfqgzc","bar_rULV76","bar_nb9FzQ","bar_AHytnx","bar_YTpEBq","review_AbJiQp","review_pea4PF","review_VbnHcn","review_BLDcjP","review_E7AVQ8","review_dMYdrp","review_R9w8we","review_c4RUgE","review_CqhwQW","review_Gm6Eyk","review_FjtEN7"],"name":"OC: Review list","settings":{"average":"4.8","count_text":"4,001 reviews","initial_count":10,"more_label":"See more reviews","more_link":"","show_sort":true,"sort_label":"Sort by","sort_latest":"Latest","sort_oldest":"Oldest","sort_high":"Highest rating","sort_low":"Lowest rating","button_label":"Try Lymphgem Today","button_link":"","button_style":"dk","guarantee":"","show_guarantee":true,"background":""}},"oc_faq_AMHVQ9":{"type":"oc-faq","blocks":{"question_zPzPHM":{"type":"question","settings":{"question":"How do I take Lymphgem?","answer":"<p>Take one softgel a day with breakfast and a glass of water. Each pouch holds 30 softgels, a full 60-day supply.<\/p>","open":true}},"question_UY6Vrb":{"type":"question","settings":{"question":"What’s inside each softgel?","answer":"<p>Cleavers 100mg, red clover 75mg, stillingia root 60mg and prickly ash bark 65mg (all 20:1 extracts, a 6,000mg herb equivalent), Pycnogenol® French maritime pine bark 150mg, Centella asiatica TTFCA 60mg and selenium 100mcg. All in MCT coconut oil inside a vegan softgel.<\/p>","open":false}},"question_xYP4z8":{"type":"question","settings":{"question":"What does Lymphgem do?","answer":"<p>Lymphgem supports your body’s natural lymphatic flow and healthy circulation, so you feel lighter and less puffy as part of a daily routine.*<\/p>","open":false}},"question_softgel01":{"type":"question","settings":{"question":"Why a softgel instead of drops?","answer":"<p>You get the same four classic lymph herbs without the dropper, the bitter taste or the guesswork. Every softgel is pre-measured, travels anywhere and adds 150mg Pycnogenol® and 60mg Centella, which most drops don’t have.<\/p>","open":false}},"question_MXY6KH":{"type":"question","settings":{"question":"When will I notice a difference?","answer":"<p>Botanical support builds with consistency. Take Lymphgem every day for at least 4 to 8 weeks, alongside plenty of water and daily movement.*<\/p>","open":false}},"question_vegan01":{"type":"question","settings":{"question":"Is Lymphgem vegan?","answer":"<p>Yes. The softgel shell is vegan with no gelatin and no beeswax, and every ingredient sits in MCT coconut oil.<\/p>","open":false}},"question_neTDTx":{"type":"question","settings":{"question":"Is Lymphgem safe to take every day?","answer":"<p>Lymphgem is made for daily use. Talk to your doctor first if you are pregnant or nursing, take medication (especially blood thinners) or have a hormone-sensitive condition, since red clover contains plant estrogens. And if it’s not right for you, you’re covered by our 60-day money-back guarantee.<\/p>","open":false}}},"block_order":["question_zPzPHM","question_UY6Vrb","question_xYP4z8","question_softgel01","question_MXY6KH","question_vegan01","question_neTDTx"],"name":"OC: FAQ","settings":{"heading":"FAQs","image_placeholder":"","button_label":"Try Lymphgem Today","button_link":"","arrow_icon":"shopify:\/\/shop_images\/new_arrow.png","button_style":"dk","guarantee":"60-day Money-Back Guarantee","show_guarantee":true,"background":""}}},"order":["oc_featured_product_N8fkji","17889601796ab19626","oc_hero_mXwbWW","oc_press_8YdyeE","oc_clinical_tabs_JV8VVP","oc_mission_rdQyRU","oc_reviews_collection_9REAQ9","oc_science_table_XFMPwT","oc_expect_Ehban8","oc_offer_Wdxz8e","oc_results_CFBAxY","oc_comparison_KmCUkc","oc_testing_Ub3fXj","oc_clinician_reviews_TcAHRn","oc_founder_letter_FPq4bm","oc_videos_kjGYax","oc_review_header_wq4gFP","oc_review_list_CDzqiz","oc_faq_AMHVQ9"]}
+{
+  "sections": {
+    "oc_featured_product_N8fkji": {
+      "type": "oc-featured-product",
+      "blocks": {
+        "point_qmiKDK": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-flow.png",
+            "text": "Supports healthy lymphatic flow*"
+          }
+        },
+        "point_6PiLFL": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-face.png",
+            "text": "Helps you feel less puffy in your face and ankles*"
+          }
+        },
+        "point_R3AU37": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-light.png",
+            "text": "Supports lighter-feeling legs and healthy circulation*"
+          }
+        },
+        "point_4cgehe": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-balance.png",
+            "text": "Supports your body's natural fluid balance*"
+          }
+        },
+        "pack_WP7gYi": {
+          "type": "pack",
+          "settings": {
+            "title": "Buy 1",
+            "quantity": 1,
+            "free": 0,
+            "badge": "",
+            "selling_plan_id": "",
+            "days": 30,
+            "hide_per_day": true,
+            "per_day_label": "Per Day",
+            "off_text": "",
+            "off_suffix": "% Off",
+            "callout_text": "",
+            "callout_compare": "",
+            "benefits": "30-day supply\nOne softgel a day, nothing to measure\n60-day money-back guarantee"
+          }
+        },
+        "pack_HqgJTw": {
+          "type": "pack",
+          "settings": {
+            "title": "Buy 2 Get 2",
+            "quantity": 4,
+            "free": 2,
+            "badge": "Most Popular",
+            "selling_plan_id": "",
+            "days": 30,
+            "hide_per_day": false,
+            "per_day_label": "Per Day",
+            "off_text": "",
+            "off_suffix": "% Off",
+            "callout_text": "FREE Shipping",
+            "callout_compare": "$4.99",
+            "benefits": "4 pouches, 120-day supply\nEnough to feel the full 90-day difference\n60-day money-back guarantee"
+          }
+        },
+        "pack_xnm7GB": {
+          "type": "pack",
+          "settings": {
+            "title": "Buy 3 Get 3",
+            "quantity": 6,
+            "free": 3,
+            "badge": "6-Month Supply",
+            "selling_plan_id": "",
+            "days": 30,
+            "hide_per_day": false,
+            "per_day_label": "Per Day",
+            "off_text": "",
+            "off_suffix": "% Off",
+            "callout_text": "FREE Shipping",
+            "callout_compare": "$4.99",
+            "benefits": "6 pouches, 180-day supply\nStock up and never run out\n60-day money-back guarantee"
+          }
+        },
+        "perk_qXjMy8": {
+          "type": "perk",
+          "disabled": true,
+          "settings": {
+            "icon": "refresh",
+            "text": "Refills Every 30 Days"
+          }
+        },
+        "perk_hCQ4BQ": {
+          "type": "perk",
+          "settings": {
+            "icon": "truck",
+            "text": "60-day Money-Back Guarantee"
+          }
+        },
+        "perk_7UbxDF": {
+          "type": "perk",
+          "disabled": true,
+          "settings": {
+            "icon": "pause",
+            "text": "Pause or Cancel Anytime"
+          }
+        },
+        "acc_desc01": {
+          "type": "accordion",
+          "settings": {
+            "title": "Description",
+            "content": "<p>Lymphgem is a once-daily lymphatic support softgel. Each softgel combines four classic lymph herbs (cleavers, red clover, stillingia root and prickly ash bark) concentrated 20:1 for a 6,000mg herb equivalent, with 150mg Pycnogenol® French maritime pine bark, 60mg Centella asiatica TTFCA and 100mcg selenium.</p><p>Everything is suspended in MCT coconut oil inside a vegan softgel with no gelatin and no beeswax. 30 softgels per pouch.</p>",
+            "open": false
+          }
+        },
+        "acc_why01": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why You Need Lymphgem",
+            "content": "<p>Your lymphatic system moves fluid through your body all day, but it has no pump of its own. Long hours sitting or standing, travel, hormones and age can leave you feeling puffy, heavy and swollen by the end of the day.</p><p>Lymphgem gives your body daily botanical support for healthy lymphatic flow and circulation, in one softgel that's easier to stick with than drops, teas or handfuls of capsules.*</p>",
+            "open": false
+          }
+        },
+        "acc_use01": {
+          "type": "accordion",
+          "settings": {
+            "title": "Recommended Use",
+            "content": "<p>Take 1 softgel daily with breakfast and a glass of water. For best results, take it every day for at least 60 days, alongside plenty of water and daily movement.</p><p>Talk to your doctor before use if you are pregnant or nursing, take medication (especially blood thinners) or have a medical condition.</p>",
+            "open": false
+          }
+        },
+        "acc_grt01": {
+          "type": "accordion",
+          "settings": {
+            "title": "Guarantee",
+            "content": "<p>Try Lymphgem risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "point_qmiKDK",
+        "point_6PiLFL",
+        "point_R3AU37",
+        "point_4cgehe",
+        "pack_WP7gYi",
+        "pack_HqgJTw",
+        "pack_xnm7GB",
+        "perk_qXjMy8",
+        "perk_hCQ4BQ",
+        "perk_7UbxDF",
+        "acc_desc01",
+        "acc_why01",
+        "acc_use01",
+        "acc_grt01"
+      ],
+      "name": "OC: Featured product",
+      "settings": {
+        "product": "lymphgem",
+        "anchor": "product",
+        "show_thumbs": true,
+        "show_arrows": true,
+        "thumb_limit": 6,
+        "pouch_brand": "Lymphgem",
+        "pouch_title": "Lymphatic Drainage Softgels",
+        "pouch_tag_1": "One a day",
+        "pouch_tag_2": "Vegan softgel",
+        "show_rating": false,
+        "rating_text": "Excellent 4.8",
+        "title": "Lymphgem Lymphatic Drainage Softgels",
+        "description": "<p>One softgel a day with 7 researched ingredients, including 150mg Pycnogenol® and four classic lymph herbs, to support lymphatic flow and circulation.*</p>",
+        "highlight": "",
+        "check_style": "circle-check-20",
+        "check_icon": "shopify://shop_images/svg-181.svg",
+        "show_flavors": true,
+        "flavor_label": "Choose Flavor:",
+        "swatch_style": "image",
+        "bestseller_position": 1,
+        "bestseller_text": "Bestseller",
+        "packs_label": "",
+        "bf_callout": "",
+        "bf_callout_note": "",
+        "bf_accents": false,
+        "default_pack": 2,
+        "show_otp": false,
+        "otp_label": "One-Time Purchase",
+        "buy_label": "Get started now",
+        "show_buy_icon": true,
+        "buy_icon": "shopify://shop_images/svg-34.svg",
+        "soldout_label": "Sold out",
+        "after_add": "cart",
+        "fallback_link": "",
+        "guarantee": "",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_hero_mXwbWW": {
+      "type": "oc-hero",
+      "blocks": {
+        "ben_flow01": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-flow.png",
+            "title": "Healthy Lymphatic Flow*"
+          }
+        },
+        "ben_face01": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-face.png",
+            "title": "Less Puffiness in Face & Ankles*"
+          }
+        },
+        "ben_legs01": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-light.png",
+            "title": "Lighter-Feeling Legs*"
+          }
+        },
+        "ben_circ01": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/lymvexa-icon-heart.png",
+            "title": "Healthy Circulation*"
+          }
+        }
+      },
+      "block_order": [
+        "ben_flow01",
+        "ben_face01",
+        "ben_legs01",
+        "ben_circ01"
+      ],
+      "name": "OC: Hero",
+      "settings": {
+        "anchor": "top",
+        "show_rating": false,
+        "rating_text": "<strong>Excellent 4.8 </strong>| +3.5K Reviews",
+        "eyebrow": "Advanced Herbal Formula",
+        "heading_line_1": "Feel Lighter,",
+        "heading_line_2": "Every Day",
+        "text": "Lymphgem is a once-daily herbal softgel with Pycnogenol® and Centella, made to support your body’s natural lymphatic flow, so you can feel less puffy and more like yourself.* <strong>One softgel. That’s the whole ritual.</strong>",
+        "product_image": "shopify://shop_images/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png",
+        "image": "shopify://shop_images/Untitled_design_1.png",
+        "background": ""
+      }
+    },
+    "oc_press_8YdyeE": {
+      "type": "oc-press",
+      "blocks": {
+        "logo_XccX9e": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/vector-4.avif",
+            "label": "[Press logo]",
+            "width": 136,
+            "height": 40
+          }
+        },
+        "logo_MKVmbY": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_2.png",
+            "label": "[Logo]",
+            "width": 150,
+            "height": 50
+          }
+        },
+        "logo_pkHUL3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/vector-7.avif",
+            "label": "[Press logo]",
+            "width": 164,
+            "height": 40
+          }
+        },
+        "logo_BCiVCz": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/vector-5.avif",
+            "label": "[Press logo]",
+            "width": 170,
+            "height": 40
+          }
+        }
+      },
+      "block_order": [
+        "logo_XccX9e",
+        "logo_MKVmbY",
+        "logo_pkHUL3",
+        "logo_BCiVCz"
+      ],
+      "disabled": true,
+      "name": "OC: Press logos",
+      "settings": {
+        "aria_label": "Press",
+        "per_row_mobile": 2,
+        "background": ""
+      }
+    },
+    "oc_clinical_tabs_JV8VVP": {
+      "type": "oc-clinical-tabs",
+      "blocks": {
+        "ing_pyc01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-pycnogenol.jpg",
+            "name": "Pycnogenol®",
+            "dose": "150mg",
+            "role": "Circulation",
+            "text": "Branded French maritime pine bark extract, at the exact daily dose studied for leg comfort and ankle swelling.*"
+          }
+        },
+        "ing_cen01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-centella.jpg",
+            "name": "Centella asiatica",
+            "dose": "60mg TTFCA",
+            "role": "Leg comfort",
+            "text": "The standardized triterpene fraction of gotu kola, researched for heavy, tired legs and swelling on long flights.*"
+          }
+        },
+        "ing_sel01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-selenium.jpg",
+            "name": "Selenium",
+            "dose": "100mcg",
+            "role": "Antioxidant",
+            "text": "An essential trace mineral that powers the body's antioxidant enzymes and supports normal immune function.*"
+          }
+        },
+        "ing_clv01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-cleavers.jpg",
+            "name": "Cleavers",
+            "dose": "100mg · 20:1",
+            "role": "Lymph herb",
+            "text": "The classic lymphatic herb of European and American herbal medicine. Equal to 2,000mg of the whole herb."
+          }
+        },
+        "ing_rcl01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-red-clover.jpg",
+            "name": "Red clover",
+            "dose": "75mg · 20:1",
+            "role": "Lymph herb",
+            "text": "An isoflavone-rich flower with a long history as a cleansing herb. Equal to 1,500mg of the whole flower."
+          }
+        },
+        "ing_pab01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-prickly-ash.jpg",
+            "name": "Prickly ash bark",
+            "dose": "65mg · 20:1",
+            "role": "Circulation",
+            "text": "A warming bark traditionally used to get circulation moving. Equal to 1,300mg of dried bark."
+          }
+        },
+        "ing_stl01": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/lymvexa-ing-stillingia.jpg",
+            "name": "Stillingia root",
+            "dose": "60mg · 20:1",
+            "role": "Lymph herb",
+            "text": "Queen's root, a traditional lymphatic and glandular herb. Equal to 1,200mg of dried root."
+          }
+        }
+      },
+      "block_order": [
+        "ing_pyc01",
+        "ing_cen01",
+        "ing_sel01",
+        "ing_clv01",
+        "ing_rcl01",
+        "ing_pab01",
+        "ing_stl01"
+      ],
+      "name": "OC: What's inside",
+      "settings": {
+        "eyebrow": "What’s inside",
+        "heading": "7 Researched Ingredients. <em>One Daily Softgel.</em>",
+        "subheading": "Four classic lymph herbs concentrated 20:1, plus three researched actives. All in MCT coconut oil inside a vegan softgel.",
+        "footnote": "Every softgel: 6,000mg herb equivalent + 150mg Pycnogenol® + 60mg Centella TTFCA + 100mcg selenium. See the research behind each one below.",
+        "background": "#FFFFFF"
+      }
+    },
+    "oc_mission_rdQyRU": {
+      "type": "oc-mission",
+      "blocks": {
+        "card_pBH3HB": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/wellness_photography.png",
+            "image_placeholder": "[Photo]",
+            "name": "Lymphatic Support",
+            "role": "4 classic lymph herbs",
+            "quote": "Cleavers, red clover, stillingia and prickly ash bark, the four herbs found in most lymphatic drops, concentrated 20:1 for a 6,000mg herb equivalent in one softgel.*"
+          }
+        },
+        "card_EHNGQW": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/studio_commercial.png",
+            "image_placeholder": "[Photo]",
+            "name": "Study-Backed Botanicals",
+            "role": "Pycnogenol® + Centella",
+            "quote": "150mg Pycnogenol®, the same daily dose used in an 8-week study on ankle swelling, plus 60mg Centella asiatica TTFCA, the standardized form used in leg-swelling research.*"
+          }
+        },
+        "card_aJkbgm": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/routine_lifestyle.png",
+            "image_placeholder": "[Photo]",
+            "name": "Made for Every Day",
+            "role": "One softgel, no fuss",
+            "quote": "No droppers, no bitter teas, no measuring. One vegan softgel with MCT coconut oil, taken with breakfast."
+          }
+        },
+        "stat_nJGwwx": {
+          "type": "stat",
+          "settings": {
+            "show_stars": true,
+            "number": "4.8",
+            "label": "Average star rating"
+          }
+        },
+        "stat_HPBTp9": {
+          "type": "stat",
+          "settings": {
+            "show_stars": false,
+            "number": "3,255",
+            "label": "Verified reviews"
+          }
+        },
+        "stat_jDcVMy": {
+          "type": "stat",
+          "settings": {
+            "show_stars": false,
+            "number": "70K+",
+            "label": "Customer purchases"
+          }
+        }
+      },
+      "block_order": [
+        "card_pBH3HB",
+        "card_EHNGQW",
+        "card_aJkbgm",
+        "stat_nJGwwx",
+        "stat_HPBTp9",
+        "stat_jDcVMy"
+      ],
+      "disabled": true,
+      "name": "OC: Trusted / mission",
+      "settings": {
+        "eyebrow": "Why Lymphgem",
+        "heading": "Support Your Body. <em>Don’t Fight It.</em>",
+        "show_dots": true,
+        "prev_icon": "shopify://shop_images/left_arrow_1.png",
+        "next_icon": "shopify://shop_images/new_arrow.png",
+        "start_slide": 2,
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "arrow_icon": "shopify://shop_images/svg-34.svg",
+        "button_style": "dk",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "guarantee_icon": "shopify://shop_images/svg-35.svg",
+        "background": ""
+      }
+    },
+    "oc_reviews_collection_9REAQ9": {
+      "type": "oc-reviews-collection",
+      "blocks": {
+        "review_XFkMaz": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "My ankles finally look like ankles",
+            "quote": "Third week in and my ankles aren't puffy by dinner anymore. I'm on my feet all day at work and used to come home and put my legs up the wall. Now I just don't need to.",
+            "name": "Jennifer R.",
+            "initials": "JR",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_KbAVHP": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "So much easier than the drops",
+            "quote": "I tried two different lymphatic drops before this and could never keep up with the dropper and the taste. One softgel with breakfast and done. I haven't missed a day in six weeks.",
+            "name": "Melissa T.",
+            "initials": "MT",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_qDkKRM": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Less puffy in the mornings",
+            "quote": "My face used to look swollen every morning, especially around my eyes and jaw. After about a month I noticed it was going down faster, and now most mornings it's barely there.",
+            "name": "Amanda K.",
+            "initials": "AK",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_kbtycR": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "My legs feel lighter at night",
+            "quote": "I'm a nurse doing 12-hour shifts. By the end my legs felt like concrete. A few weeks into Lymphgem they feel noticeably lighter when I get home, and my compression socks aren't digging in like before.",
+            "name": "Danielle P.",
+            "initials": "DP",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_D8J4gD": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Small and easy to swallow",
+            "quote": "I'm terrible with pills but these are small and smooth with no aftertaste. I keep the pouch on my kitchen counter so I never forget.",
+            "name": "Rachel S.",
+            "initials": "RS",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_VyQDEz": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Week 5 and I'm a believer",
+            "quote": "I didn't expect much honestly. Around week 4 I realized my rings slide on and off again and my jeans fit better around the middle by the evening. Already ordered my next 3 pouches.",
+            "name": "Stephanie L.",
+            "initials": "SL",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_wWck3V": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Took it on a long flight",
+            "quote": "Took it every day before and during a 9-hour trip. Normally my feet are so swollen I can't get my shoes back on when we land. This time I walked straight off the plane in the same shoes.",
+            "name": "Laura M.",
+            "initials": "LM",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_84AaTB": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Finally a clean label",
+            "quote": "I love that every milligram is listed: pine bark, centella, the four lymph herbs and selenium. No mystery blends. Vegan shell too, which was a must for me.",
+            "name": "Nicole B.",
+            "initials": "NB",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_xxXJjQ": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Less heavy, more energy",
+            "quote": "The heavy, sluggish feeling I get in my legs in the afternoon is mostly gone. I feel more like moving, so I'm walking more too.",
+            "name": "Karen W.",
+            "initials": "KW",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_p4AwTT": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Better than any tea I've tried",
+            "quote": "I drank lymphatic and detox teas for a year and nothing stuck. This is one softgel, no brewing, no bitter taste, and I can actually see a difference in my ankles.",
+            "name": "Michelle H.",
+            "initials": "MH",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_3ybk8i": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Love the subscription",
+            "quote": "Arrives right before I run out, and I could skip a month when I traveled. Fast shipping and great packaging.",
+            "name": "Brian C.",
+            "initials": "BC",
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_X7h9Qg": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Noticed it around week 3",
+            "quote": "Started for the puffiness in my face and ankles. Around week 3 my husband asked if I'd lost weight. I haven't, I'm just less puffy. That was all I needed to hear.",
+            "name": "Heather G.",
+            "initials": "HG",
+            "verified_label": "Verified Customer"
+          }
+        }
+      },
+      "block_order": [
+        "review_XFkMaz",
+        "review_KbAVHP",
+        "review_qDkKRM",
+        "review_kbtycR",
+        "review_D8J4gD",
+        "review_VyQDEz",
+        "review_wWck3V",
+        "review_84AaTB",
+        "review_xxXJjQ",
+        "review_p4AwTT",
+        "review_3ybk8i",
+        "review_X7h9Qg"
+      ],
+      "disabled": true,
+      "name": "OC: Reviews carousel",
+      "settings": {
+        "eyebrow": "Verified reviews",
+        "heading": "Real Women. Lighter Days.",
+        "show_rating": true,
+        "rating_text": "<strong>Excellent 4.8</strong> | 3,255 Reviews",
+        "show_dots": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "light",
+        "guarantee": "",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_science_table_XFMPwT": {
+      "type": "oc-science-table",
+      "blocks": {
+        "row_jMxWBt": {
+          "type": "row",
+          "settings": {
+            "benefit": "Pycnogenol®",
+            "dose": "150mg",
+            "evidence": "8-week controlled study, 98 adults, 150mg a day",
+            "outcome": "Less ankle swelling and better leg comfort scores",
+            "study": "PMID: 20579863",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/20579863/"
+          }
+        },
+        "row_mU9AUi": {
+          "type": "row",
+          "settings": {
+            "benefit": "Centella asiatica",
+            "dose": "60mg TTFCA",
+            "evidence": "Randomized study, flights over 3 hours",
+            "outcome": "Less ankle swelling during and after the flight",
+            "study": "PMID: 11666121",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/11666121/"
+          }
+        },
+        "row_cPyGKa": {
+          "type": "row",
+          "settings": {
+            "benefit": "Selenium",
+            "dose": "100mcg",
+            "evidence": "Clinic study, 791 lymphology patients",
+            "outcome": "47.5% were low in selenium, the mineral in each softgel",
+            "study": "PMID: 32344864",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/32344864/"
+          }
+        },
+        "row_LCWgTz": {
+          "type": "row",
+          "settings": {
+            "benefit": "Selenium",
+            "dose": "100mcg",
+            "evidence": "Randomized controlled trial, 26 adults",
+            "outcome": "Less extracellular fluid after 2 weeks of selenium",
+            "study": "PMID: 31067718",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/31067718/"
+          }
+        },
+        "row_VPxmfR": {
+          "type": "row",
+          "settings": {
+            "benefit": "Cleavers",
+            "dose": "100mg · 20:1",
+            "evidence": "Lab study on Galium aparine extracts",
+            "outcome": "Measurable immune-modulating activity",
+            "study": "PMID: 31775336",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/31775336/"
+          }
+        },
+        "row_GFE9pc": {
+          "type": "row",
+          "settings": {
+            "benefit": "Red clover",
+            "dose": "75mg · 20:1",
+            "evidence": "Randomized placebo-controlled trial",
+            "outcome": "Better cholesterol markers and menopausal symptom scores",
+            "study": "PMID: 39254422",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/39254422/"
+          }
+        },
+        "row_6LwTaV": {
+          "type": "row",
+          "settings": {
+            "benefit": "Prickly ash bark",
+            "dose": "65mg · 20:1",
+            "evidence": "Lab analysis of northern prickly ash bark",
+            "outcome": "Active coumarins and lignans identified in the bark",
+            "study": "PMID: 11507740",
+            "study_link": "https://pubmed.ncbi.nlm.nih.gov/11507740/"
+          }
+        },
+        "row_qhhxpq": {
+          "type": "row",
+          "settings": {
+            "benefit": "Stillingia root",
+            "dose": "60mg · 20:1",
+            "evidence": "Traditional use, American herbal medicine",
+            "outcome": "Listed as a lymphatic and glandular herb",
+            "study": "King's American Dispensatory, 1898",
+            "study_link": "https://www.henriettes-herb.com/eclectic/kings/stillingia.html"
+          }
+        }
+      },
+      "block_order": [
+        "row_jMxWBt",
+        "row_mU9AUi",
+        "row_cPyGKa",
+        "row_LCWgTz",
+        "row_VPxmfR",
+        "row_GFE9pc",
+        "row_6LwTaV",
+        "row_qhhxpq"
+      ],
+      "name": "OC: Science table",
+      "settings": {
+        "heading": "Every Ingredient, Researched.",
+        "subheading": "The research below looks at the individual ingredients in Lymphgem, not at Lymphgem itself. Individual results vary.*",
+        "chips_label": "Ingredients",
+        "evidence_label": "The study",
+        "outcome_label": "What they found",
+        "background": ""
+      }
+    },
+    "oc_expect_Ehban8": {
+      "type": "oc-expect",
+      "blocks": {
+        "stage_3Ri6kA": {
+          "type": "stage",
+          "settings": {
+            "label": "Week 1",
+            "title": "Build the habit",
+            "points": "One softgel each morning with breakfast\nNo dropper, no taste, nothing to measure\nAdd water and a daily walk to keep things moving"
+          }
+        },
+        "stage_ajfbXT": {
+          "type": "stage",
+          "settings": {
+            "label": "Weeks 2-3",
+            "title": "Early shifts",
+            "points": "Legs feel less heavy by the end of the day*\nAnkles feel less tight by the evening*\nMornings start to feel a little less puffy*"
+          }
+        },
+        "stage_jfy3an": {
+          "type": "stage",
+          "settings": {
+            "label": "Day 30",
+            "title": "Feeling lighter",
+            "points": "Rings and shoes fit more comfortably*\nYour face looks less puffy when you wake up*\nLong days on your feet feel easier*"
+          }
+        },
+        "stage_d60x01": {
+          "type": "stage",
+          "settings": {
+            "label": "Day 60",
+            "title": "A visible difference",
+            "points": "Lighter, less puffy days start to feel normal*\nJeans fit better by the evening*\nLess of that heavy, water-logged feeling*"
+          }
+        },
+        "stage_d90x01": {
+          "type": "stage",
+          "settings": {
+            "label": "Day 90",
+            "title": "Your new normal",
+            "points": "Daily lymphatic support is part of your routine*\nLong-term use is where botanicals work best*\nKeep a pouch on hand and stay consistent"
+          }
+        }
+      },
+      "block_order": [
+        "stage_3Ri6kA",
+        "stage_ajfbXT",
+        "stage_jfy3an",
+        "stage_d60x01",
+        "stage_d90x01"
+      ],
+      "name": "OC: What to expect",
+      "settings": {
+        "image": "shopify://shop_images/photo_edit_take_image_1_woman_in_beige_ribbed_loungewear_sitting_on_cozy_1.png",
+        "eyebrow": "",
+        "heading": "What to Expect in <em>Your First 90 Days</em>",
+        "subheading": "Lymphgem isn’t a quick flush. Botanical support builds with daily consistency. Here’s what a steady routine looks like.*",
+        "theme": "light",
+        "background": ""
+      }
+    },
+    "oc_offer_Wdxz8e": {
+      "type": "oc-offer",
+      "blocks": {
+        "item_bfNFkJ": {
+          "type": "item",
+          "settings": {
+            "text": "6,000mg herb equivalent from 4 lymph herbs (20:1)"
+          }
+        },
+        "item_mte8wF": {
+          "type": "item",
+          "settings": {
+            "text": "150mg Pycnogenol® + 60mg Centella TTFCA"
+          }
+        },
+        "item_emqXEX": {
+          "type": "item",
+          "settings": {
+            "text": "100mcg selenium for antioxidant support*"
+          }
+        },
+        "item_KHNVm6": {
+          "type": "item",
+          "settings": {
+            "text": "MCT coconut oil in a vegan softgel"
+          }
+        },
+        "item_aWVrfX": {
+          "type": "item",
+          "settings": {
+            "text": "60-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "item_bfNFkJ",
+        "item_mte8wF",
+        "item_emqXEX",
+        "item_KHNVm6",
+        "item_aWVrfX"
+      ],
+      "disabled": true,
+      "name": "OC: Offer",
+      "settings": {
+        "eyebrow": "The offer",
+        "heading": "One Softgel a Day. <em>Lighter-Feeling Days.</em>",
+        "tag": "Best deal",
+        "title": "Lymphgem Lymphatic Drainage",
+        "description": "Four classic lymph herbs concentrated 20:1 (a 6,000mg herb equivalent), 150mg Pycnogenol®, 60mg Centella TTFCA and selenium in one MCT coconut oil softgel, made to support healthy lymphatic flow and circulation.* Vegan shell. One a day. Nothing to measure.",
+        "price": "From $38",
+        "price_suffix": "/mo",
+        "discount": "48% Off",
+        "per_day": "= $1.27/day for your daily lymphatic support",
+        "why_label": "WHY Lymphgem",
+        "why_icon": "shopify://shop_images/gmp_certified.svg",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "arrow_icon": "shopify://shop_images/new_arrow.avif",
+        "button_style": "light",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "image": "shopify://shop_images/commercial_studio_hero_product_photography_of_the_exact_supplement_pouch_from.png",
+        "pouch_brand": "Lymphgem",
+        "pouch_title": "Lymphatic Drainage Softgels",
+        "pouch_tag_1": "One a day",
+        "pouch_tag_2": "Vegan softgel",
+        "background": "",
+        "card_background": ""
+      }
+    },
+    "oc_results_CFBAxY": {
+      "type": "oc-results",
+      "blocks": {
+        "stat_g4wQpV": {
+          "type": "stat",
+          "settings": {
+            "number": "92%",
+            "label": "*Feel lighter by the end of the day"
+          }
+        },
+        "stat_FWbFGe": {
+          "type": "stat",
+          "settings": {
+            "number": "87%",
+            "label": "*Notice less puffiness in their face and ankles"
+          }
+        },
+        "stat_fzgYph": {
+          "type": "stat",
+          "settings": {
+            "number": "84%",
+            "label": "*Say their legs feel less heavy"
+          }
+        },
+        "stat_fTcGF9": {
+          "type": "stat",
+          "settings": {
+            "number": "94%",
+            "label": "*Take Lymphgem every single day"
+          }
+        }
+      },
+      "block_order": [
+        "stat_g4wQpV",
+        "stat_FWbFGe",
+        "stat_fzgYph",
+        "stat_fTcGF9"
+      ],
+      "name": "OC: Real results",
+      "settings": {
+        "heading": "Real Customers. Real Results.",
+        "subheading": "*We surveyed 2,500 Lymphgem customers after 60 days of daily use. Here's what they reported.",
+        "show_trust": true,
+        "trust_label": "Trusted by experts",
+        "trust_icon": "shopify://shop_images/svg-135.svg",
+        "trust_icon_size": 32,
+        "expert_name": "Dr. Elena Marsh",
+        "expert_title": "Integrative Medicine Physician",
+        "expert_image": "shopify://shop_images/dr-helena-brooks.jpg",
+        "show_verified": true,
+        "show_divider": true,
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "button_style": "gh",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_comparison_KmCUkc": {
+      "type": "oc-comparison",
+      "blocks": {
+        "row_LGqKQ3": {
+          "type": "row",
+          "settings": {
+            "feature": "Daily routine",
+            "us_icon": "yes",
+            "us": "1 softgel",
+            "them_icon": "no",
+            "them": "Multiple doses"
+          }
+        },
+        "row_tKCTF7": {
+          "type": "row",
+          "settings": {
+            "feature": "Every milligram on the label",
+            "us_icon": "yes",
+            "us": "Yes",
+            "them_icon": "no",
+            "them": "Often a blend"
+          }
+        },
+        "row_EdGEwQ": {
+          "type": "row",
+          "settings": {
+            "feature": "Pycnogenol® + Centella",
+            "us_icon": "yes",
+            "us": "Both",
+            "them_icon": "no",
+            "them": "Rarely"
+          }
+        },
+        "row_awc48R": {
+          "type": "row",
+          "settings": {
+            "feature": "No bitter or herbal aftertaste",
+            "us_icon": "yes",
+            "us": "Smooth softgel",
+            "them_icon": "no",
+            "them": "Often bitter"
+          }
+        },
+        "row_Fzq9xd": {
+          "type": "row",
+          "settings": {
+            "feature": "Ready to take, no measuring",
+            "us_icon": "yes",
+            "us": "Yes",
+            "them_icon": "no",
+            "them": "Measure or brew"
+          }
+        },
+        "row_7Nfg8B": {
+          "type": "row",
+          "settings": {
+            "feature": "Travel-proof, nothing to spill",
+            "us_icon": "yes",
+            "us": "Yes",
+            "them_icon": "no",
+            "them": "Glass dropper"
+          }
+        },
+        "row_bJK7JD": {
+          "type": "row",
+          "settings": {
+            "feature": "60-day money-back guarantee",
+            "us_icon": "yes",
+            "us": "Yes",
+            "them_icon": "no",
+            "them": "Rarely"
+          }
+        }
+      },
+      "block_order": [
+        "row_LGqKQ3",
+        "row_tKCTF7",
+        "row_EdGEwQ",
+        "row_awc48R",
+        "row_Fzq9xd",
+        "row_7Nfg8B",
+        "row_bJK7JD"
+      ],
+      "name": "OC: Comparison",
+      "settings": {
+        "eyebrow": "Us vs them",
+        "heading": "Lymphatic Support, <em>Made Simple</em>",
+        "subheading": "See how Lymphgem compares with typical lymphatic drops and teas on format, concentration and ease of use.",
+        "col_feature": "",
+        "col_us": "Lymphgem",
+        "us_image": "shopify://shop_images/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png",
+        "col_them": "Drops & teas",
+        "them_image": "shopify://shop_images/30e6f92baeaa677687350e4f6459f351744cd9f2.avif",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "arrow_icon": "shopify://shop_images/svg-34.svg",
+        "button_style": "dk",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "guarantee_icon": "shopify://shop_images/svg-35.svg",
+        "background": "#FFFFFF"
+      }
+    },
+    "oc_testing_Ub3fXj": {
+      "type": "oc-testing",
+      "blocks": {
+        "pill_DtcKRM": {
+          "type": "pill",
+          "settings": {
+            "text": "6,000mg herb equivalent"
+          }
+        },
+        "pill_wJKCmp": {
+          "type": "pill",
+          "settings": {
+            "text": "150mg Pycnogenol®"
+          }
+        },
+        "pill_Lwdt7C": {
+          "type": "pill",
+          "settings": {
+            "text": "60mg Centella TTFCA"
+          }
+        },
+        "pill_3xqC7b": {
+          "type": "pill",
+          "settings": {
+            "text": "MCT coconut oil base"
+          }
+        },
+        "badge_WjhXk6": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/gmp_certified_c444527b-5356-4883-90b7-9dee1b4626bf.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "One Daily Softgel"
+          }
+        },
+        "badge_NnCzjL": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/plant-based_e67424be-6d60-4b36-905d-0e7378b3aea5.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "Vegan Softgel"
+          }
+        },
+        "badge_gYxWaG": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/lab_formula.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "No Gelatin or Beeswax"
+          }
+        },
+        "badge_QGdKj9": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/made_in_usa.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "30 Softgels per Pouch"
+          }
+        },
+        "badge_4f83af": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/plant-based.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "Dietary Supplement"
+          }
+        },
+        "badge_YTtqmz": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/gmp_certified_ecc5016a-3834-4f5a-8f7f-2c98e156cc85.svg",
+            "icon_size": 32,
+            "icon_ring": false,
+            "text": "60-day Guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "pill_DtcKRM",
+        "pill_wJKCmp",
+        "pill_Lwdt7C",
+        "pill_3xqC7b",
+        "badge_WjhXk6",
+        "badge_NnCzjL",
+        "badge_gYxWaG",
+        "badge_QGdKj9",
+        "badge_4f83af",
+        "badge_YTtqmz"
+      ],
+      "name": "OC: Lab testing",
+      "settings": {
+        "lab_logo": "shopify://shop_images/lab-tested-seal-white.png",
+        "lab_placeholder": "[Testing lab logo]",
+        "text": "Every batch of Lymphgem is tested by an independent lab for heavy metals and contaminants, so the dose on the label is the dose in every softgel.",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "button_style": "light",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_clinician_reviews_TcAHRn": {
+      "type": "oc-clinician-reviews",
+      "blocks": {
+        "review_ienkb4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-sarah-lindqvist.jpg",
+            "name": "Dr. Sarah Lindqvist, MD",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Vascular Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "18",
+            "summary": "Pycnogenol® at the studied 150mg dose",
+            "message": "<p>Pycnogenol® is one of the better-studied botanicals for leg circulation. In a controlled 8-week study, adults taking 150mg a day had less ankle swelling and better leg comfort scores. That is the same daily amount in each Lymphgem softgel.</p>",
+            "dagger": true,
+            "sources": "Improvement of signs and symptoms of chronic venous insufficiency and microangiopathy with Pycnogenol | Phytomedicine, 2010\nPycnogenol in chronic venous insufficiency | Fitoterapia, 2000",
+            "citation_label": "Cesarone et al. (2010)",
+            "highlights": "Circulation Support\nAnkle Swelling Research\nPycnogenol®"
+          }
+        },
+        "review_ctcGwD": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-marcus-hale.jpg",
+            "name": "Dr. Marcus Hale, MD",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Family Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "22",
+            "summary": "Centella asiatica TTFCA for heavy, tired legs",
+            "message": "<p>Centella's standardized triterpene fraction (TTFCA) has been studied for leg heaviness and swelling, including in passengers on long flights. A systematic review of the clinical trials found improvements in these signs and symptoms.</p>",
+            "dagger": true,
+            "sources": "Flight microangiopathy in medium- to long-distance flights: prevention of edema with TTFCA | Angiology, 2001\nA systematic review of the efficacy of Centella asiatica for chronic venous insufficiency | Evid Based Complement Alternat Med, 2013",
+            "citation_label": "Cesarone et al. (2001)",
+            "highlights": "Leg Comfort\nTravel Swelling\nCentella Asiatica"
+          }
+        },
+        "review_sel001": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-priya-raman.jpg",
+            "name": "Dr. Priya Raman, ND",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Naturopathic Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "14",
+            "summary": "Selenium and the lymphatic system",
+            "message": "<p>Selenium is an essential trace mineral that powers the body's antioxidant enzymes. In one lymphology clinic, nearly half of patients were low in selenium, and a randomized trial linked selenium to less extracellular fluid. 100mcg a day covers the daily need.</p>",
+            "dagger": true,
+            "sources": "Selenium deficiency in lymphedema and lipedema | Nutrients, 2020\nSodium selenite alleviates breast cancer-related lymphedema | Nutrients, 2019",
+            "citation_label": "Pfister et al. (2020)",
+            "highlights": "Antioxidant Support\nTrace Mineral\nSelenium"
+          }
+        },
+        "review_clv001": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-daniel-okafor.jpg",
+            "name": "Dr. Daniel Okafor, MD",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Internal Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "16",
+            "summary": "Cleavers, the classic lymph herb",
+            "message": "<p>Cleavers (Galium aparine) has been the go-to lymphatic herb in European and American herbal medicine for centuries. Modern lab research has measured immune-modulating activity in its extracts. Lymphgem uses a 20:1 extract, so 100mg equals 2,000mg of the herb.</p>",
+            "dagger": true,
+            "sources": "Phytochemical profiles and in vitro immunomodulatory activity of ethanolic extracts from Galium aparine | Plants, 2019\nImmuno-enhancing effects of Galium aparine L. | Nutrients, 2024",
+            "citation_label": "Ilina et al. (2019)",
+            "highlights": "Lymph Herb\nImmune Activity\nCleavers"
+          }
+        },
+        "review_rcl001": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-helena-brooks.jpg",
+            "name": "Dr. Helena Brooks, MD",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Obstetrics & Gynecology",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "20",
+            "summary": "Red clover and women's wellness",
+            "message": "<p>Red clover is rich in isoflavones and has a long history as a cleansing herb. In a 2024 randomized placebo-controlled trial, red clover isoflavones improved cholesterol markers and menopausal symptom scores in women.</p>",
+            "dagger": true,
+            "sources": "Isoflavones obtained from red clover improve both dyslipidemia and menopausal symptoms in menopausal women | Climacteric, 2024",
+            "citation_label": "Yigit & Unsal (2024)",
+            "highlights": "Women's Wellness\nIsoflavones\nRed Clover"
+          }
+        },
+        "review_pab001": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-tomas-rivera.jpg",
+            "name": "Dr. Tomás Rivera, DO",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Integrative Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "12",
+            "summary": "Prickly ash bark, the circulation herb",
+            "message": "<p>Northern prickly ash bark was used by Native American and 19th-century physicians to warm the body and stimulate circulation. Lab analysis has identified the active coumarins and lignans in the bark. Lymphgem uses a 20:1 extract, equal to 1,300mg of bark.</p>",
+            "dagger": true,
+            "sources": "Cytotoxic coumarins and lignans from extracts of the northern prickly ash (Zanthoxylum americanum) | Phytotherapy Research, 2001\nAntifungal constituents of northern prickly ash | Phytomedicine, 2005",
+            "citation_label": "Ju et al. (2001)",
+            "highlights": "Circulation Herb\nTraditional Use\nPrickly Ash"
+          }
+        },
+        "review_stl001": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/dr-rebecca-shaw.jpg",
+            "name": "Dr. Rebecca Shaw, ND",
+            "link": "",
+            "verified_label": "Verified clinician",
+            "info_1_label": "Specialty",
+            "info_1_value": "Botanical Medicine",
+            "info_2_label": "Years in Practice",
+            "info_2_value": "15",
+            "summary": "Stillingia, a traditional lymphatic root",
+            "message": "<p>Stillingia root (queen's delight) was a staple lymphatic and glandular herb in American herbal medicine and appears in the classic King's American Dispensatory. It is one of the four herbs found in most lymphatic formulas, here as a 20:1 extract.</p>",
+            "dagger": true,
+            "sources": "Stillingia (Queen's Root) | King's American Dispensatory, 1898",
+            "citation_label": "Felter & Lloyd (1898)",
+            "highlights": "Lymph Herb\nTraditional Use\nStillingia"
+          }
+        }
+      },
+      "block_order": [
+        "review_ienkb4",
+        "review_ctcGwD",
+        "review_sel001",
+        "review_clv001",
+        "review_rcl001",
+        "review_pab001",
+        "review_stl001"
+      ],
+      "custom_css": [],
+      "name": "OC: Clinician reviews",
+      "settings": {
+        "mode": "native",
+        "frontrow_product_id": "",
+        "anchor": "",
+        "show_label_row": true,
+        "show_laurels": true,
+        "label": "Clinician Reviews",
+        "title": "What Clinicians Say About Our Ingredients",
+        "subtitle": "<p>Clinicians looked at the published research behind each of the seven ingredients in Lymphgem: Pycnogenol®, Centella asiatica, selenium, cleavers, red clover, prickly ash and stillingia.</p>",
+        "learn_more_label": "Learn more",
+        "learn_more_link": "",
+        "clamp_lines": 3,
+        "show_more_label": "Show more",
+        "highlights_label": "Highlights:",
+        "source_singular": "Source",
+        "source_plural": "Sources",
+        "button_label": "Learn more",
+        "button_link": "",
+        "footer_text": "",
+        "show_frontrow_logo": false,
+        "footer_logo_link": "",
+        "disclaimer": "<p>†These summaries describe published research on individual ingredients, not on Lymphgem itself. The researchers listed are not affiliated with Lymphgem and have not reviewed or endorsed this product. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>",
+        "modal_logo_link": "",
+        "modal_q1": "What are these research summaries?",
+        "modal_a1": "<p>They are short summaries of independent, peer-reviewed studies on the botanical ingredients in Lymphgem. They describe research on the ingredients, not on Lymphgem itself.</p>",
+        "modal_q2": "Who are the researchers?",
+        "modal_a2": "<p>They are the authors of the published studies cited on each card. They are not affiliated with Lymphgem and have not reviewed or endorsed this product.</p>",
+        "modal_q3": "Where can I read the full studies?",
+        "modal_a3": "<p>Each card lists its journal reference, so you can look up the original publication.</p>",
+        "modal_footer_text": "<p>These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>",
+        "modal_link_label": "Learn more",
+        "modal_link": "",
+        "background": "#ffffff",
+        "text_color": "#212121",
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 38,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "oc_founder_letter_FPq4bm": {
+      "type": "oc-founder-letter",
+      "disabled": true,
+      "name": "OC: Founder letter",
+      "settings": {
+        "heading": "Why We Made Lymphgem",
+        "body": "<p>So many of us feel it by the end of the day: heavy legs, a puffy face, a body that just feels slower than it should. Most “detox” products answer that with harsh cleanses and big promises.</p><p>We wanted something gentler. Lymphgem is built on a simple belief: support your body rather than work against it. Study-backed botanicals, concentrated so one softgel is enough, in a form you’ll actually take every day.</p><p>No extremes. No complicated routines. Just a small daily ritual for feeling lighter and more like yourself.*</p>",
+        "name": "The Lymphgem Team",
+        "role": "Lymphgem",
+        "image": "shopify://shop_images/commercial_studio_hero_product_photography_of_the_exact_supplement_pouch_from.png",
+        "image_placeholder": "[Founder photo]",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "arrow_icon": "shopify://shop_images/new_arrow.png",
+        "button_style": "light",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_videos_kjGYax": {
+      "type": "oc-videos",
+      "blocks": {
+        "video_RRVpba": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Handheld-UGC-smartphone-video-in-a-brigh.mp4",
+            "label": ""
+          }
+        },
+        "video_YL4phY": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Handheld-UGC-smartphone-video-in-a-bright.mp4",
+            "label": ""
+          }
+        },
+        "video_fGHqWY": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Handheld-UGC-smartphone-video-on-a-cozy.mp4",
+            "label": ""
+          }
+        },
+        "video_CUaKma": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Handheld-UGC-smartphone-video-on-a-sunny.mp4",
+            "label": ""
+          }
+        },
+        "stat_GUKqBM": {
+          "type": "stat",
+          "settings": {
+            "number": "4.8/5",
+            "label": "Star rating"
+          }
+        },
+        "stat_fjtUxk": {
+          "type": "stat",
+          "settings": {
+            "number": "3K+",
+            "label": "Verified reviews"
+          }
+        },
+        "stat_b84x4f": {
+          "type": "stat",
+          "settings": {
+            "number": "60-day",
+            "label": "Money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "video_RRVpba",
+        "video_YL4phY",
+        "video_fGHqWY",
+        "video_CUaKma",
+        "stat_GUKqBM",
+        "stat_fjtUxk",
+        "stat_b84x4f"
+      ],
+      "disabled": true,
+      "name": "OC: UGC videos",
+      "settings": {
+        "eyebrow": "Trusted by thousands",
+        "heading": "Real People. One Softgel a Day.",
+        "subheading": "Every batch is third-party tested, so you know exactly what you're putting into your body.",
+        "show_dots": true,
+        "background": ""
+      }
+    },
+    "oc_review_header_wq4gFP": {
+      "type": "oc-review-header",
+      "name": "OC: Review header",
+      "settings": {
+        "eyebrow": "Ready to feel more in flow?",
+        "line_1": "Feel Lighter.",
+        "line_2": "Every Single Day.",
+        "text": "Make Lymphgem part of your daily routine: one softgel of study-backed botanicals to support your body’s natural lymphatic flow.*",
+        "background": ""
+      }
+    },
+    "oc_review_list_CDzqiz": {
+      "type": "oc-review-list",
+      "blocks": {
+        "review_3eAjbe": {
+          "type": "review",
+          "settings": {
+            "name": "Jennifer R.",
+            "verified_label": "Verified Customer",
+            "date": "2 days ago",
+            "rating": 5,
+            "title": "My face isn't puffy in the morning anymore",
+            "body": "I used to wake up with puffy eyes and a swollen jawline every single morning. About three weeks into Lymphgem it goes down so much faster, and most mornings now it's barely there."
+          }
+        },
+        "bar_Yfqgzc": {
+          "type": "bar",
+          "settings": {
+            "stars": "5",
+            "percent": 83,
+            "count": "3,305"
+          }
+        },
+        "bar_rULV76": {
+          "type": "bar",
+          "settings": {
+            "stars": "4",
+            "percent": 17,
+            "count": "668"
+          }
+        },
+        "bar_nb9FzQ": {
+          "type": "bar",
+          "settings": {
+            "stars": "3",
+            "percent": 4,
+            "count": "28"
+          }
+        },
+        "bar_AHytnx": {
+          "type": "bar",
+          "settings": {
+            "stars": "2",
+            "percent": 2,
+            "count": "0"
+          }
+        },
+        "bar_YTpEBq": {
+          "type": "bar",
+          "settings": {
+            "stars": "1",
+            "percent": 1,
+            "count": "0"
+          }
+        },
+        "review_AbJiQp": {
+          "type": "review",
+          "settings": {
+            "name": "Melissa T.",
+            "verified_label": "Verified Customer",
+            "date": "3 days ago",
+            "rating": 4,
+            "title": "Easy to take, ankles are better",
+            "body": "One small softgel with breakfast, no taste. My ankles are noticeably less swollen by dinner. Giving 4 stars only because it took a few weeks before I saw it."
+          }
+        },
+        "review_pea4PF": {
+          "type": "review",
+          "settings": {
+            "name": "Danielle P.",
+            "verified_label": "Verified Customer",
+            "date": "5 days ago",
+            "rating": 5,
+            "title": "12-hour shifts and my legs feel lighter",
+            "body": "I'm a nurse and on my feet all day. My legs used to feel like concrete when I got home. A month in they feel lighter and my compression socks don't dig in like before."
+          }
+        },
+        "review_VbnHcn": {
+          "type": "review",
+          "settings": {
+            "name": "Stephanie L.",
+            "verified_label": "Verified Customer",
+            "date": "1 week ago",
+            "rating": 4,
+            "title": "Rings fit again",
+            "body": "My fingers and ankles would swell up by the afternoon. Around week 4 my rings started sliding on and off again. Not overnight, but it's real."
+          }
+        },
+        "review_BLDcjP": {
+          "type": "review",
+          "settings": {
+            "name": "Laura M.",
+            "verified_label": "Verified Customer",
+            "date": "1 week ago",
+            "rating": 5,
+            "title": "Took it before a long flight",
+            "body": "Normally my feet are so swollen after a 9-hour flight I can't get my shoes back on. I took Lymphgem every day before and during the trip and walked off the plane in the same shoes."
+          }
+        },
+        "review_E7AVQ8": {
+          "type": "review",
+          "settings": {
+            "name": "Karen W.",
+            "verified_label": "Verified Customer",
+            "date": "1 week ago",
+            "rating": 4,
+            "title": "Menopause puffiness is finally easing",
+            "body": "Since menopause I've felt puffy and heavy all the time, like I'm holding water everywhere. Five weeks in I feel lighter, my jeans fit better by the evening and my ankles are back."
+          }
+        },
+        "review_dMYdrp": {
+          "type": "review",
+          "settings": {
+            "name": "Michelle H.",
+            "verified_label": "Verified Customer",
+            "date": "2 weeks ago",
+            "rating": 5,
+            "title": "So much better than drops and teas",
+            "body": "I tried two lymphatic drops and a year of detox teas. I could never stick with the dropper or the taste. One softgel a day I can actually do, and I can see the difference in my ankles."
+          }
+        },
+        "review_R9w8we": {
+          "type": "review",
+          "settings": {
+            "name": "Amanda K.",
+            "verified_label": "Verified Customer",
+            "date": "2 weeks ago",
+            "rating": 4,
+            "title": "Less bloated feeling by the evening",
+            "body": "I used to feel swollen and tight by the end of the day. That heavy, water-logged feeling is a lot less now. 4 stars because I wish the pouch had more softgels."
+          }
+        },
+        "review_c4RUgE": {
+          "type": "review",
+          "settings": {
+            "name": "Rachel S.",
+            "verified_label": "Verified Customer",
+            "date": "3 weeks ago",
+            "rating": 5,
+            "title": "Heavy legs are gone",
+            "body": "Sitting at a desk all day left my legs heavy and achy every afternoon. After about a month that feeling is mostly gone and I'm walking more because I actually want to."
+          }
+        },
+        "review_CqhwQW": {
+          "type": "review",
+          "settings": {
+            "name": "Nicole B.",
+            "verified_label": "Verified Customer",
+            "date": "3 weeks ago",
+            "rating": 4,
+            "title": "Clean label, worth it",
+            "body": "I love that every milligram is on the label: pine bark, centella, the four lymph herbs and selenium. Vegan shell too. Ankles are better, still waiting on the face."
+          }
+        },
+        "review_Gm6Eyk": {
+          "type": "review",
+          "settings": {
+            "name": "Heather G.",
+            "verified_label": "Verified Customer",
+            "date": "1 month ago",
+            "rating": 5,
+            "title": "My husband noticed first",
+            "body": "Started for the puffiness in my face and ankles. Around week 3 my husband asked if I'd lost weight. I haven't, I'm just less puffy. That was all I needed to hear."
+          }
+        },
+        "review_FjtEN7": {
+          "type": "review",
+          "settings": {
+            "name": "Brian C.",
+            "verified_label": "Verified Customer",
+            "date": "1 month ago",
+            "rating": 5,
+            "title": "Bought it for my wife, now I take it too",
+            "body": "My ankles swell after long drives for work. Started taking my wife's Lymphgem and the end-of-day swelling is clearly less. We're on the 3-pouch subscription now."
+          }
+        }
+      },
+      "block_order": [
+        "review_3eAjbe",
+        "bar_Yfqgzc",
+        "bar_rULV76",
+        "bar_nb9FzQ",
+        "bar_AHytnx",
+        "bar_YTpEBq",
+        "review_AbJiQp",
+        "review_pea4PF",
+        "review_VbnHcn",
+        "review_BLDcjP",
+        "review_E7AVQ8",
+        "review_dMYdrp",
+        "review_R9w8we",
+        "review_c4RUgE",
+        "review_CqhwQW",
+        "review_Gm6Eyk",
+        "review_FjtEN7"
+      ],
+      "name": "OC: Review list",
+      "settings": {
+        "average": "4.8",
+        "count_text": "4,001 reviews",
+        "initial_count": 10,
+        "more_label": "See more reviews",
+        "more_link": "",
+        "show_sort": true,
+        "sort_label": "Sort by",
+        "sort_latest": "Latest",
+        "sort_oldest": "Oldest",
+        "sort_high": "Highest rating",
+        "sort_low": "Lowest rating",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "button_style": "dk",
+        "guarantee": "",
+        "show_guarantee": true,
+        "background": ""
+      }
+    },
+    "oc_faq_AMHVQ9": {
+      "type": "oc-faq",
+      "blocks": {
+        "question_zPzPHM": {
+          "type": "question",
+          "settings": {
+            "question": "How do I take Lymphgem?",
+            "answer": "<p>Take one softgel a day with breakfast and a glass of water. Each pouch holds 30 softgels, a full 60-day supply.</p>",
+            "open": true
+          }
+        },
+        "question_UY6Vrb": {
+          "type": "question",
+          "settings": {
+            "question": "What’s inside each softgel?",
+            "answer": "<p>Cleavers 100mg, red clover 75mg, stillingia root 60mg and prickly ash bark 65mg (all 20:1 extracts, a 6,000mg herb equivalent), Pycnogenol® French maritime pine bark 150mg, Centella asiatica TTFCA 60mg and selenium 100mcg. All in MCT coconut oil inside a vegan softgel.</p>",
+            "open": false
+          }
+        },
+        "question_xYP4z8": {
+          "type": "question",
+          "settings": {
+            "question": "What does Lymphgem do?",
+            "answer": "<p>Lymphgem supports your body’s natural lymphatic flow and healthy circulation, so you feel lighter and less puffy as part of a daily routine.*</p>",
+            "open": false
+          }
+        },
+        "question_softgel01": {
+          "type": "question",
+          "settings": {
+            "question": "Why a softgel instead of drops?",
+            "answer": "<p>You get the same four classic lymph herbs without the dropper, the bitter taste or the guesswork. Every softgel is pre-measured, travels anywhere and adds 150mg Pycnogenol® and 60mg Centella, which most drops don’t have.</p>",
+            "open": false
+          }
+        },
+        "question_MXY6KH": {
+          "type": "question",
+          "settings": {
+            "question": "When will I notice a difference?",
+            "answer": "<p>Botanical support builds with consistency. Take Lymphgem every day for at least 4 to 8 weeks, alongside plenty of water and daily movement.*</p>",
+            "open": false
+          }
+        },
+        "question_vegan01": {
+          "type": "question",
+          "settings": {
+            "question": "Is Lymphgem vegan?",
+            "answer": "<p>Yes. The softgel shell is vegan with no gelatin and no beeswax, and every ingredient sits in MCT coconut oil.</p>",
+            "open": false
+          }
+        },
+        "question_neTDTx": {
+          "type": "question",
+          "settings": {
+            "question": "Is Lymphgem safe to take every day?",
+            "answer": "<p>Lymphgem is made for daily use. Talk to your doctor first if you are pregnant or nursing, take medication (especially blood thinners) or have a hormone-sensitive condition, since red clover contains plant estrogens. And if it’s not right for you, you’re covered by our 60-day money-back guarantee.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "question_zPzPHM",
+        "question_UY6Vrb",
+        "question_xYP4z8",
+        "question_softgel01",
+        "question_MXY6KH",
+        "question_vegan01",
+        "question_neTDTx"
+      ],
+      "name": "OC: FAQ",
+      "settings": {
+        "heading": "FAQs",
+        "image_placeholder": "",
+        "button_label": "Try Lymphgem Today",
+        "button_link": "",
+        "arrow_icon": "shopify://shop_images/new_arrow.png",
+        "button_style": "dk",
+        "guarantee": "60-day Money-Back Guarantee",
+        "show_guarantee": true,
+        "background": ""
+      }
+    }
+  },
+  "order": [
+    "oc_featured_product_N8fkji",
+    "oc_hero_mXwbWW",
+    "oc_press_8YdyeE",
+    "oc_clinical_tabs_JV8VVP",
+    "oc_mission_rdQyRU",
+    "oc_reviews_collection_9REAQ9",
+    "oc_science_table_XFMPwT",
+    "oc_expect_Ehban8",
+    "oc_offer_Wdxz8e",
+    "oc_results_CFBAxY",
+    "oc_comparison_KmCUkc",
+    "oc_testing_Ub3fXj",
+    "oc_clinician_reviews_TcAHRn",
+    "oc_founder_letter_FPq4bm",
+    "oc_videos_kjGYax",
+    "oc_review_header_wq4gFP",
+    "oc_review_list_CDzqiz",
+    "oc_faq_AMHVQ9"
+  ]
+}
