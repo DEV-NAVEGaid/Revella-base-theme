@@ -7,28 +7,28 @@
           "type": "point",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-flow.png",
-            "text": "Supports healthy lymphatic flow*"
+            "text": "Supports healthy liver function*"
           }
         },
         "point_6PiLFL": {
           "type": "point",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-face.png",
-            "text": "Helps you feel less puffy in your face and ankles*"
+            "text": "Supports your body's natural detox processes*"
           }
         },
         "point_R3AU37": {
           "type": "point",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-light.png",
-            "text": "Supports lighter-feeling legs and healthy circulation*"
+            "text": "Supports healthy bile flow and digestion*"
           }
         },
         "point_4cgehe": {
           "type": "point",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-balance.png",
-            "text": "Supports your body's natural fluid balance*"
+            "text": "No capsules: 2 mL under the tongue or in water"
           }
         },
         "pack_WP7gYi": {
@@ -46,7 +46,7 @@
             "off_suffix": "% Off",
             "callout_text": "",
             "callout_compare": "",
-            "benefits": "30-day supply\nOne softgel a day, nothing to measure\n60-day money-back guarantee"
+            "benefits": "30-day supply\nOne 2 mL serving a day\n60-day money-back guarantee"
           }
         },
         "pack_HqgJTw": {
@@ -55,7 +55,7 @@
             "title": "Buy 2 Get 2",
             "quantity": 4,
             "free": 2,
-            "badge": "Most Popular",
+            "badge": "4-Month Supply",
             "selling_plan_id": "",
             "days": 30,
             "hide_per_day": false,
@@ -64,7 +64,7 @@
             "off_suffix": "% Off",
             "callout_text": "FREE Shipping",
             "callout_compare": "$4.99",
-            "benefits": "4 pouches, 120-day supply\nEnough to feel the full 90-day difference\n60-day money-back guarantee"
+            "benefits": "4 bottles, 120-day supply\nTime to build a steady daily routine\n60-day money-back guarantee"
           }
         },
         "pack_xnm7GB": {
@@ -82,7 +82,7 @@
             "off_suffix": "% Off",
             "callout_text": "FREE Shipping",
             "callout_compare": "$4.99",
-            "benefits": "6 pouches, 180-day supply\nStock up and never run out\n60-day money-back guarantee"
+            "benefits": "6 bottles, 180-day supply\nStock up, or share with family\n60-day money-back guarantee"
           }
         },
         "perk_qXjMy8": {
@@ -112,15 +112,15 @@
           "type": "accordion",
           "settings": {
             "title": "Description",
-            "content": "<p>Lymphgem is a once-daily lymphatic support softgel. Each softgel combines four classic lymph herbs (cleavers, red clover, stillingia root and prickly ash bark) concentrated 20:1 for a 6,000mg herb equivalent, with 150mg Pycnogenol® French maritime pine bark, 60mg Centella asiatica TTFCA and 100mcg selenium.</p><p>Everything is suspended in MCT coconut oil inside a vegan softgel with no gelatin and no beeswax. 30 softgels per pouch.</p>",
+            "content": "<p>Liver Support Drops is a once-daily liquid supplement for liver support. Each 2 mL serving pairs organic milk thistle and dandelion root with artichoke leaf, beet root, choline and L-glutathione, plus a 100mg botanical blend that includes NAC.</p><p>It's made with organic glycerin, purified water and natural flavors, so there are no capsules to swallow. 30 servings per bottle.</p>",
             "open": false
           }
         },
         "acc_why01": {
           "type": "accordion",
           "settings": {
-            "title": "Why You Need Lymphgem",
-            "content": "<p>Your lymphatic system moves fluid through your body all day, but it has no pump of its own. Long hours sitting or standing, travel, hormones and age can leave you feeling puffy, heavy and swollen by the end of the day.</p><p>Lymphgem gives your body daily botanical support for healthy lymphatic flow and circulation, in one softgel that's easier to stick with than drops, teas or handfuls of capsules.*</p>",
+            "title": "Why Liver Support Drops",
+            "content": "<p>Plenty of liver products are built around a single herb. Liver Support Drops combines seven key ingredients, led by milk thistle, NAC and L-glutathione, in one daily serving, as part of a balanced diet and active lifestyle.*</p><p>As a liquid, it skips capsules entirely. Fill the dropper with 2 mL, then hold it under your tongue or stir it into water.</p>",
             "open": false
           }
         },
@@ -128,7 +128,7 @@
           "type": "accordion",
           "settings": {
             "title": "Recommended Use",
-            "content": "<p>Take 1 softgel daily with breakfast and a glass of water. For best results, take it every day for at least 60 days, alongside plenty of water and daily movement.</p><p>Talk to your doctor before use if you are pregnant or nursing, take medication (especially blood thinners) or have a medical condition.</p>",
+            "content": "<p>One 2 mL dose a day, roughly half a teaspoon, held under the tongue or mixed into water. A fixed time such as breakfast makes it easy to remember. Stay within the recommended serving.</p><p>Not for use under 18. Talk to your doctor before use if you are pregnant or nursing, take medication or have a medical condition. Keep out of reach of children.</p>",
             "open": false
           }
         },
@@ -136,7 +136,7 @@
           "type": "accordion",
           "settings": {
             "title": "Guarantee",
-            "content": "<p>Try Lymphgem risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.</p>",
+            "content": "<p>Try Liver Support Drops risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.</p>",
             "open": false
           }
         }
@@ -164,14 +164,14 @@
         "show_thumbs": true,
         "show_arrows": true,
         "thumb_limit": 6,
-        "pouch_brand": "Lymphgem",
-        "pouch_title": "Lymphatic Drainage Softgels",
-        "pouch_tag_1": "One a day",
-        "pouch_tag_2": "Vegan softgel",
+        "pouch_brand": "Liver Support",
+        "pouch_title": "Liquid Drops",
+        "pouch_tag_1": "2 mL daily",
+        "pouch_tag_2": "Liquid formula",
         "show_rating": false,
-        "rating_text": "Excellent 4.8",
-        "title": "Lymphgem Lymphatic Drainage Softgels",
-        "description": "<p>One softgel a day with 7 researched ingredients, including 150mg Pycnogenol® and four classic lymph herbs, to support lymphatic flow and circulation.*</p>",
+        "rating_text": "GMP Facility",
+        "title": "Liver Support Drops",
+        "description": "<p>A once-daily liquid that pairs milk thistle with NAC, L-glutathione, dandelion and artichoke, made to support healthy liver function.*</p>",
         "highlight": "",
         "check_style": "circle-check-20",
         "check_icon": "shopify://shop_images/svg-181.svg",
@@ -179,7 +179,7 @@
         "flavor_label": "Choose Flavor:",
         "swatch_style": "image",
         "bestseller_position": 1,
-        "bestseller_text": "Bestseller",
+        "bestseller_text": "",
         "packs_label": "",
         "bf_callout": "",
         "bf_callout_note": "",
@@ -205,28 +205,28 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-flow.png",
-            "title": "Healthy Lymphatic Flow*"
+            "title": "Healthy Liver Function*"
           }
         },
         "ben_face01": {
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-face.png",
-            "title": "Less Puffiness in Face & Ankles*"
+            "title": "Natural Detox Support*"
           }
         },
         "ben_legs01": {
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-light.png",
-            "title": "Lighter-Feeling Legs*"
+            "title": "Bile Flow & Digestion*"
           }
         },
         "ben_circ01": {
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/lymvexa-icon-heart.png",
-            "title": "Healthy Circulation*"
+            "title": "Antioxidant Defenses*"
           }
         }
       },
@@ -240,11 +240,11 @@
       "settings": {
         "anchor": "top",
         "show_rating": false,
-        "rating_text": "<strong>Excellent 4.8 </strong>| +3.5K Reviews",
-        "eyebrow": "Advanced Herbal Formula",
-        "heading_line_1": "Feel Lighter,",
-        "heading_line_2": "Every Day",
-        "text": "Lymphgem is a once-daily herbal softgel with Pycnogenol® and Centella, made to support your body’s natural lymphatic flow, so you can feel less puffy and more like yourself.* <strong>One softgel. That’s the whole ritual.</strong>",
+        "rating_text": "<strong>GMP-Certified Facility </strong>| Third-Party Tested",
+        "eyebrow": "Daily Liquid Liver Formula",
+        "heading_line_1": "Support Your Liver,",
+        "heading_line_2": "The Easy Way",
+        "text": "Liver Support Drops is a once-daily liquid with milk thistle, NAC and L-glutathione, made to support healthy liver function and your body’s natural detox processes.* <strong>2 mL a day. That’s the whole routine.</strong>",
         "product_image": "shopify://shop_images/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png",
         "image": "shopify://shop_images/Untitled_design_1.png",
         "background": ""
@@ -311,70 +311,70 @@
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-pycnogenol.jpg",
-            "name": "Pycnogenol®",
-            "dose": "150mg",
-            "role": "Circulation",
-            "text": "Branded French maritime pine bark extract, at the exact daily dose studied for leg comfort and ankle swelling.*"
+            "name": "Milk thistle",
+            "dose": "200mg · 30:1",
+            "role": "Liver herb",
+            "text": "Organic seed extract, a source of silymarin. Used for centuries and studied for how it supports healthy liver function.*"
           }
         },
         "ing_cen01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-centella.jpg",
-            "name": "Centella asiatica",
-            "dose": "60mg TTFCA",
-            "role": "Leg comfort",
-            "text": "The standardized triterpene fraction of gotu kola, researched for heavy, tired legs and swelling on long flights.*"
+            "name": "NAC",
+            "dose": "In blend",
+            "role": "Glutathione",
+            "text": "N-acetyl cysteine, an amino acid derivative your body uses to build its own glutathione and antioxidant defenses.*"
           }
         },
         "ing_sel01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-selenium.jpg",
-            "name": "Selenium",
-            "dose": "100mcg",
+            "name": "L-Glutathione",
+            "dose": "50mg",
             "role": "Antioxidant",
-            "text": "An essential trace mineral that powers the body's antioxidant enzymes and supports normal immune function.*"
+            "text": "An antioxidant your body already makes, included to help protect cells from everyday oxidative stress.*"
           }
         },
         "ing_clv01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-cleavers.jpg",
-            "name": "Cleavers",
-            "dose": "100mg · 20:1",
-            "role": "Lymph herb",
-            "text": "The classic lymphatic herb of European and American herbal medicine. Equal to 2,000mg of the whole herb."
+            "name": "Dandelion root",
+            "dose": "200mg · 4:1",
+            "role": "Bile flow",
+            "text": "Organic root extract, traditionally used to support healthy bile flow and digestion.*"
           }
         },
         "ing_rcl01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-red-clover.jpg",
-            "name": "Red clover",
-            "dose": "75mg · 20:1",
-            "role": "Lymph herb",
-            "text": "An isoflavone-rich flower with a long history as a cleansing herb. Equal to 1,500mg of the whole flower."
+            "name": "Artichoke leaf",
+            "dose": "100mg · 4:1",
+            "role": "Digestion",
+            "text": "A concentrated leaf extract with a long traditional use for bile flow and digestive comfort.*"
           }
         },
         "ing_pab01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-prickly-ash.jpg",
-            "name": "Prickly ash bark",
-            "dose": "65mg · 20:1",
-            "role": "Circulation",
-            "text": "A warming bark traditionally used to get circulation moving. Equal to 1,300mg of dried bark."
+            "name": "Choline",
+            "dose": "50mg",
+            "role": "Nutrient",
+            "text": "An essential nutrient, here as choline citrate, that supports normal fat metabolism and liver function.*"
           }
         },
         "ing_stl01": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/lymvexa-ing-stillingia.jpg",
-            "name": "Stillingia root",
-            "dose": "60mg · 20:1",
-            "role": "Lymph herb",
-            "text": "Queen's root, a traditional lymphatic and glandular herb. Equal to 1,200mg of dried root."
+            "name": "Beet root",
+            "dose": "100mg · 30:1",
+            "role": "Botanical",
+            "text": "Organic beet root extract, concentrated 30:1, one of the seven key ingredients in every serving."
           }
         }
       },
@@ -390,9 +390,9 @@
       "name": "OC: What's inside",
       "settings": {
         "eyebrow": "What’s inside",
-        "heading": "7 Researched Ingredients. <em>One Daily Softgel.</em>",
-        "subheading": "Four classic lymph herbs concentrated 20:1, plus three researched actives. All in MCT coconut oil inside a vegan softgel.",
-        "footnote": "Every softgel: 6,000mg herb equivalent + 150mg Pycnogenol® + 60mg Centella TTFCA + 100mcg selenium. See the research behind each one below.",
+        "heading": "Seven Key Ingredients. <em>One Daily Dropper.</em>",
+        "subheading": "Milk thistle, NAC and L-glutathione lead the formula, joined by dandelion, artichoke, beet root and choline. All in an organic glycerin base.",
+        "footnote": "Every 2 mL serving also carries a 100mg blend of NAC, astragalus, ginger, chanca piedra and burdock root. See why each one is in the formula below.",
         "background": "#FFFFFF"
       }
     },
@@ -653,89 +653,81 @@
         "row_jMxWBt": {
           "type": "row",
           "settings": {
-            "benefit": "Pycnogenol®",
-            "dose": "150mg",
-            "evidence": "8-week controlled study, 98 adults, 150mg a day",
-            "outcome": "Less ankle swelling and better leg comfort scores",
-            "study": "PMID: 20579863",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/20579863/"
+            "benefit": "Milk thistle",
+            "dose": "200mg · 30:1",
+            "evidence": "Organic seed extract, a source of silymarin",
+            "outcome": "A long-used herb studied for liver function*",
+            "study": ""
           }
         },
         "row_mU9AUi": {
           "type": "row",
           "settings": {
-            "benefit": "Centella asiatica",
-            "dose": "60mg TTFCA",
-            "evidence": "Randomized study, flights over 3 hours",
-            "outcome": "Less ankle swelling during and after the flight",
-            "study": "PMID: 11666121",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/11666121/"
+            "benefit": "NAC",
+            "dose": "In 100mg blend",
+            "evidence": "N-acetyl cysteine, an amino acid derivative",
+            "outcome": "Your body uses it to make its own glutathione*",
+            "study": ""
           }
         },
         "row_cPyGKa": {
           "type": "row",
           "settings": {
-            "benefit": "Selenium",
-            "dose": "100mcg",
-            "evidence": "Clinic study, 791 lymphology patients",
-            "outcome": "47.5% were low in selenium, the mineral in each softgel",
-            "study": "PMID: 32344864",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/32344864/"
+            "benefit": "L-Glutathione",
+            "dose": "50mg",
+            "evidence": "An antioxidant the body makes on its own",
+            "outcome": "Helps protect cells from everyday oxidative stress*",
+            "study": ""
           }
         },
         "row_LCWgTz": {
           "type": "row",
           "settings": {
-            "benefit": "Selenium",
-            "dose": "100mcg",
-            "evidence": "Randomized controlled trial, 26 adults",
-            "outcome": "Less extracellular fluid after 2 weeks of selenium",
-            "study": "PMID: 31067718",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/31067718/"
+            "benefit": "Dandelion root",
+            "dose": "200mg · 4:1",
+            "evidence": "Organic, concentrated root extract",
+            "outcome": "Traditionally used to support healthy bile flow*",
+            "study": ""
           }
         },
         "row_VPxmfR": {
           "type": "row",
           "settings": {
-            "benefit": "Cleavers",
-            "dose": "100mg · 20:1",
-            "evidence": "Lab study on Galium aparine extracts",
-            "outcome": "Measurable immune-modulating activity",
-            "study": "PMID: 31775336",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/31775336/"
+            "benefit": "Artichoke leaf",
+            "dose": "100mg · 4:1",
+            "evidence": "Concentrated leaf extract",
+            "outcome": "Traditionally used for digestion and bile flow*",
+            "study": ""
           }
         },
         "row_GFE9pc": {
           "type": "row",
           "settings": {
-            "benefit": "Red clover",
-            "dose": "75mg · 20:1",
-            "evidence": "Randomized placebo-controlled trial",
-            "outcome": "Better cholesterol markers and menopausal symptom scores",
-            "study": "PMID: 39254422",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/39254422/"
+            "benefit": "Choline",
+            "dose": "50mg",
+            "evidence": "An essential nutrient, as choline citrate",
+            "outcome": "Supports normal fat metabolism and liver function*",
+            "study": ""
           }
         },
         "row_6LwTaV": {
           "type": "row",
           "settings": {
-            "benefit": "Prickly ash bark",
-            "dose": "65mg · 20:1",
-            "evidence": "Lab analysis of northern prickly ash bark",
-            "outcome": "Active coumarins and lignans identified in the bark",
-            "study": "PMID: 11507740",
-            "study_link": "https://pubmed.ncbi.nlm.nih.gov/11507740/"
+            "benefit": "Beet root",
+            "dose": "100mg · 30:1",
+            "evidence": "Organic, concentrated root extract",
+            "outcome": "Rounds out the seven key ingredients",
+            "study": ""
           }
         },
         "row_qhhxpq": {
           "type": "row",
           "settings": {
-            "benefit": "Stillingia root",
-            "dose": "60mg · 20:1",
-            "evidence": "Traditional use, American herbal medicine",
-            "outcome": "Listed as a lymphatic and glandular herb",
-            "study": "King's American Dispensatory, 1898",
-            "study_link": "https://www.henriettes-herb.com/eclectic/kings/stillingia.html"
+            "benefit": "Botanical blend",
+            "dose": "100mg",
+            "evidence": "NAC, astragalus, ginger, chanca piedra, burdock",
+            "outcome": "Adds four more organic roots and herbs",
+            "study": ""
           }
         }
       },
@@ -751,11 +743,11 @@
       ],
       "name": "OC: Science table",
       "settings": {
-        "heading": "Every Ingredient, Researched.",
-        "subheading": "The research below looks at the individual ingredients in Lymphgem, not at Lymphgem itself. Individual results vary.*",
+        "heading": "Every Ingredient, Explained.",
+        "subheading": "What each ingredient is and why it’s in the formula. Individual results vary.*",
         "chips_label": "Ingredients",
-        "evidence_label": "The study",
-        "outcome_label": "What they found",
+        "evidence_label": "What it is",
+        "outcome_label": "Why it's included",
         "background": ""
       }
     },
@@ -765,41 +757,41 @@
         "stage_3Ri6kA": {
           "type": "stage",
           "settings": {
-            "label": "Week 1",
-            "title": "Build the habit",
-            "points": "One softgel each morning with breakfast\nNo dropper, no taste, nothing to measure\nAdd water and a daily walk to keep things moving"
+            "label": "Day 1",
+            "title": "Your first dropper",
+            "points": "Measure 2 mL with the dropper\nUnder the tongue or in a little water\nNo capsules, nothing to swallow"
           }
         },
         "stage_ajfbXT": {
           "type": "stage",
           "settings": {
-            "label": "Weeks 2-3",
-            "title": "Early shifts",
-            "points": "Legs feel less heavy by the end of the day*\nAnkles feel less tight by the evening*\nMornings start to feel a little less puffy*"
+            "label": "Weeks 1-2",
+            "title": "Pick your moment",
+            "points": "Take it at the same time each day\nBreakfast makes an easy anchor\nKeep the bottle where you'll see it"
           }
         },
         "stage_jfy3an": {
           "type": "stage",
           "settings": {
-            "label": "Day 30",
-            "title": "Feeling lighter",
-            "points": "Rings and shoes fit more comfortably*\nYour face looks less puffy when you wake up*\nLong days on your feet feel easier*"
+            "label": "Weeks 3-4",
+            "title": "Stay steady",
+            "points": "Pair it with water, meals and movement\nEat well and stay active alongside it\nOne bottle lasts a full 30 days"
           }
         },
         "stage_d60x01": {
           "type": "stage",
           "settings": {
-            "label": "Day 60",
-            "title": "A visible difference",
-            "points": "Lighter, less puffy days start to feel normal*\nJeans fit better by the evening*\nLess of that heavy, water-logged feeling*"
+            "label": "Weeks 5-8",
+            "title": "Make it automatic",
+            "points": "The daily serving becomes second nature\nOngoing support for healthy liver function*\nKeep up the water and daily movement"
           }
         },
         "stage_d90x01": {
           "type": "stage",
           "settings": {
-            "label": "Day 90",
-            "title": "Your new normal",
-            "points": "Daily lymphatic support is part of your routine*\nLong-term use is where botanicals work best*\nKeep a pouch on hand and stay consistent"
+            "label": "Week 8+",
+            "title": "Long-term support",
+            "points": "Daily use as part of a healthy routine*\nKeep a spare bottle so you never miss a day\nCheck in with your doctor along the way"
           }
         }
       },
@@ -814,8 +806,8 @@
       "settings": {
         "image": "shopify://shop_images/photo_edit_take_image_1_woman_in_beige_ribbed_loungewear_sitting_on_cozy_1.png",
         "eyebrow": "",
-        "heading": "What to Expect in <em>Your First 90 Days</em>",
-        "subheading": "Lymphgem isn’t a quick flush. Botanical support builds with daily consistency. Here’s what a steady routine looks like.*",
+        "heading": "What to Expect in <em>Your First 8 Weeks</em>",
+        "subheading": "Liver Support Drops isn’t a quick cleanse. Daily support works best with consistency. Here’s what a steady routine looks like.*",
         "theme": "light",
         "background": ""
       }
@@ -947,7 +939,8 @@
         "guarantee": "60-day Money-Back Guarantee",
         "show_guarantee": true,
         "background": ""
-      }
+      },
+      "disabled": true
     },
     "oc_comparison_KmCUkc": {
       "type": "oc-comparison",
@@ -955,61 +948,61 @@
         "row_LGqKQ3": {
           "type": "row",
           "settings": {
-            "feature": "Daily routine",
+            "feature": "How you take it",
             "us_icon": "yes",
-            "us": "1 softgel",
+            "us": "2 mL liquid",
             "them_icon": "no",
-            "them": "Multiple doses"
+            "them": "Capsules"
           }
         },
         "row_tKCTF7": {
           "type": "row",
           "settings": {
-            "feature": "Every milligram on the label",
+            "feature": "Milk thistle + NAC + glutathione",
             "us_icon": "yes",
-            "us": "Yes",
+            "us": "All three",
             "them_icon": "no",
-            "them": "Often a blend"
+            "them": "Often one"
           }
         },
         "row_EdGEwQ": {
           "type": "row",
           "settings": {
-            "feature": "Pycnogenol® + Centella",
+            "feature": "Dandelion & artichoke",
             "us_icon": "yes",
             "us": "Both",
             "them_icon": "no",
-            "them": "Rarely"
+            "them": "Varies"
           }
         },
         "row_awc48R": {
           "type": "row",
           "settings": {
-            "feature": "No bitter or herbal aftertaste",
+            "feature": "Nothing to swallow",
             "us_icon": "yes",
-            "us": "Smooth softgel",
+            "us": "Yes",
             "them_icon": "no",
-            "them": "Often bitter"
+            "them": "No"
           }
         },
         "row_Fzq9xd": {
           "type": "row",
           "settings": {
-            "feature": "Ready to take, no measuring",
+            "feature": "Free of gluten, soy & dairy",
             "us_icon": "yes",
             "us": "Yes",
             "them_icon": "no",
-            "them": "Measure or brew"
+            "them": "Varies"
           }
         },
         "row_7Nfg8B": {
           "type": "row",
           "settings": {
-            "feature": "Travel-proof, nothing to spill",
+            "feature": "Third-party tested",
             "us_icon": "yes",
             "us": "Yes",
             "them_icon": "no",
-            "them": "Glass dropper"
+            "them": "Varies"
           }
         },
         "row_bJK7JD": {
@@ -1019,7 +1012,7 @@
             "us_icon": "yes",
             "us": "Yes",
             "them_icon": "no",
-            "them": "Rarely"
+            "them": "Varies"
           }
         }
       },
@@ -1035,14 +1028,14 @@
       "name": "OC: Comparison",
       "settings": {
         "eyebrow": "Us vs them",
-        "heading": "Lymphatic Support, <em>Made Simple</em>",
-        "subheading": "See how Lymphgem compares with typical lymphatic drops and teas on format, concentration and ease of use.",
+        "heading": "Liver Support, <em>In One Bottle</em>",
+        "subheading": "See how Liver Support Drops compares with typical liver capsules on format, formula and everyday ease.",
         "col_feature": "",
-        "col_us": "Lymphgem",
+        "col_us": "Our Drops",
         "us_image": "shopify://shop_images/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png",
-        "col_them": "Drops & teas",
+        "col_them": "Typical capsules",
         "them_image": "shopify://shop_images/30e6f92baeaa677687350e4f6459f351744cd9f2.avif",
-        "button_label": "Try Lymphgem Today",
+        "button_label": "Try the Drops Today",
         "button_link": "",
         "arrow_icon": "shopify://shop_images/svg-34.svg",
         "button_style": "dk",
@@ -1058,25 +1051,25 @@
         "pill_DtcKRM": {
           "type": "pill",
           "settings": {
-            "text": "6,000mg herb equivalent"
+            "text": "200mg milk thistle"
           }
         },
         "pill_wJKCmp": {
           "type": "pill",
           "settings": {
-            "text": "150mg Pycnogenol®"
+            "text": "50mg L-glutathione"
           }
         },
         "pill_Lwdt7C": {
           "type": "pill",
           "settings": {
-            "text": "60mg Centella TTFCA"
+            "text": "NAC in every serving"
           }
         },
         "pill_3xqC7b": {
           "type": "pill",
           "settings": {
-            "text": "MCT coconut oil base"
+            "text": "Organic glycerin base"
           }
         },
         "badge_WjhXk6": {
@@ -1085,7 +1078,7 @@
             "icon": "shopify://shop_images/gmp_certified_c444527b-5356-4883-90b7-9dee1b4626bf.svg",
             "icon_size": 32,
             "icon_ring": false,
-            "text": "One Daily Softgel"
+            "text": "GMP-Certified Facility"
           }
         },
         "badge_NnCzjL": {
@@ -1094,7 +1087,7 @@
             "icon": "shopify://shop_images/plant-based_e67424be-6d60-4b36-905d-0e7378b3aea5.svg",
             "icon_size": 32,
             "icon_ring": false,
-            "text": "Vegan Softgel"
+            "text": "Non-GMO"
           }
         },
         "badge_gYxWaG": {
@@ -1103,16 +1096,16 @@
             "icon": "shopify://shop_images/lab_formula.svg",
             "icon_size": 32,
             "icon_ring": false,
-            "text": "No Gelatin or Beeswax"
+            "text": "Third-Party Tested"
           }
         },
         "badge_QGdKj9": {
           "type": "badge",
           "settings": {
-            "icon": "shopify://shop_images/made_in_usa.svg",
+            "icon": "shopify://shop_images/lab_formula.svg",
             "icon_size": 32,
             "icon_ring": false,
-            "text": "30 Softgels per Pouch"
+            "text": "30 Servings per Bottle"
           }
         },
         "badge_4f83af": {
@@ -1121,7 +1114,7 @@
             "icon": "shopify://shop_images/plant-based.svg",
             "icon_size": 32,
             "icon_ring": false,
-            "text": "Dietary Supplement"
+            "text": "Gluten-Free"
           }
         },
         "badge_YTtqmz": {
@@ -1150,8 +1143,8 @@
       "settings": {
         "lab_logo": "shopify://shop_images/lab-tested-seal-white.png",
         "lab_placeholder": "[Testing lab logo]",
-        "text": "Every batch of Lymphgem is tested by an independent lab for heavy metals and contaminants, so the dose on the label is the dose in every softgel.",
-        "button_label": "Try Lymphgem Today",
+        "text": "Liver Support Drops comes out of a GMP-certified facility, and an independent lab checks it for purity and potency before it ships.",
+        "button_label": "Try the Drops Today",
         "button_link": "",
         "button_style": "light",
         "guarantee": "60-day Money-Back Guarantee",
@@ -1345,7 +1338,8 @@
         "padding_bottom_mobile": 38,
         "padding_top": 40,
         "padding_bottom": 52
-      }
+      },
+      "disabled": true
     },
     "oc_founder_letter_FPq4bm": {
       "type": "oc-founder-letter",
@@ -1439,10 +1433,10 @@
       "type": "oc-review-header",
       "name": "OC: Review header",
       "settings": {
-        "eyebrow": "Ready to feel more in flow?",
-        "line_1": "Feel Lighter.",
+        "eyebrow": "Ready to start your routine?",
+        "line_1": "Liver Support.",
         "line_2": "Every Single Day.",
-        "text": "Make Lymphgem part of your daily routine: one softgel of study-backed botanicals to support your body’s natural lymphatic flow.*",
+        "text": "Make Liver Support Drops part of your day: one 2 mL serving of milk thistle, NAC and L-glutathione to support healthy liver function.*",
         "background": ""
       }
     },
@@ -1660,7 +1654,8 @@
         "guarantee": "",
         "show_guarantee": true,
         "background": ""
-      }
+      },
+      "disabled": true
     },
     "oc_faq_AMHVQ9": {
       "type": "oc-faq",
@@ -1668,56 +1663,56 @@
         "question_zPzPHM": {
           "type": "question",
           "settings": {
-            "question": "How do I take Lymphgem?",
-            "answer": "<p>Take one softgel a day with breakfast and a glass of water. Each pouch holds 30 softgels, a full 60-day supply.</p>",
+            "question": "How do I take Liver Support Drops?",
+            "answer": "<p>One 2 mL dose daily, roughly half a teaspoon, either under the tongue or mixed into water. A bottle gives you 30 servings, enough for 30 days.</p>",
             "open": true
           }
         },
         "question_UY6Vrb": {
           "type": "question",
           "settings": {
-            "question": "What’s inside each softgel?",
-            "answer": "<p>Cleavers 100mg, red clover 75mg, stillingia root 60mg and prickly ash bark 65mg (all 20:1 extracts, a 6,000mg herb equivalent), Pycnogenol® French maritime pine bark 150mg, Centella asiatica TTFCA 60mg and selenium 100mcg. All in MCT coconut oil inside a vegan softgel.</p>",
+            "question": "What’s inside each serving?",
+            "answer": "<p>Per 2 mL serving: organic milk thistle seed extract 30:1 200mg, organic dandelion root extract 4:1 200mg, artichoke leaf extract 4:1 100mg, organic beet root extract 30:1 100mg, choline (as choline citrate) 50mg, L-glutathione 50mg, and a 100mg blend of NAC, organic astragalus, ginger, chanca piedra and burdock root. Base: organic glycerin, purified water and natural flavors.</p>",
             "open": false
           }
         },
         "question_xYP4z8": {
           "type": "question",
           "settings": {
-            "question": "What does Lymphgem do?",
-            "answer": "<p>Lymphgem supports your body’s natural lymphatic flow and healthy circulation, so you feel lighter and less puffy as part of a daily routine.*</p>",
+            "question": "What does Liver Support Drops do?",
+            "answer": "<p>It supports healthy liver function, your body’s natural detox processes and healthy bile flow, as part of a balanced diet and active lifestyle.*</p>",
             "open": false
           }
         },
         "question_softgel01": {
           "type": "question",
           "settings": {
-            "question": "Why a softgel instead of drops?",
-            "answer": "<p>You get the same four classic lymph herbs without the dropper, the bitter taste or the guesswork. Every softgel is pre-measured, travels anywhere and adds 150mg Pycnogenol® and 60mg Centella, which most drops don’t have.</p>",
+            "question": "Why drops instead of capsules?",
+            "answer": "<p>Drops skip the capsule altogether. Fill the dropper with 2 mL, then take it under the tongue or stir it into water. You also get milk thistle, NAC, L-glutathione, dandelion and artichoke together, rather than buying them one by one.</p>",
             "open": false
           }
         },
         "question_MXY6KH": {
           "type": "question",
           "settings": {
-            "question": "When will I notice a difference?",
-            "answer": "<p>Botanical support builds with consistency. Take Lymphgem every day for at least 4 to 8 weeks, alongside plenty of water and daily movement.*</p>",
+            "question": "How long should I take it?",
+            "answer": "<p>It’s made for daily use as part of a healthy routine. Take it at about the same time each day and stay consistent. Individual results vary.*</p>",
             "open": false
           }
         },
         "question_vegan01": {
           "type": "question",
           "settings": {
-            "question": "Is Lymphgem vegan?",
-            "answer": "<p>Yes. The softgel shell is vegan with no gelatin and no beeswax, and every ingredient sits in MCT coconut oil.</p>",
+            "question": "Is it allergen-friendly?",
+            "answer": "<p>No soy, dairy, gluten or tree nuts, and non-GMO. The Supplement Facts panel lists everything in the bottle.</p>",
             "open": false
           }
         },
         "question_neTDTx": {
           "type": "question",
           "settings": {
-            "question": "Is Lymphgem safe to take every day?",
-            "answer": "<p>Lymphgem is made for daily use. Talk to your doctor first if you are pregnant or nursing, take medication (especially blood thinners) or have a hormone-sensitive condition, since red clover contains plant estrogens. And if it’s not right for you, you’re covered by our 60-day money-back guarantee.</p>",
+            "question": "Can I take it with medication?",
+            "answer": "<p>Talk to your doctor first if you are pregnant or nursing, take medication or have a medical condition. Not for use under 18, and keep it out of reach of children. If it’s not right for you, you’re covered by our 60-day money-back guarantee.</p>",
             "open": false
           }
         }
@@ -1735,7 +1730,7 @@
       "settings": {
         "heading": "FAQs",
         "image_placeholder": "",
-        "button_label": "Try Lymphgem Today",
+        "button_label": "Try the Drops Today",
         "button_link": "",
         "arrow_icon": "shopify://shop_images/new_arrow.png",
         "button_style": "dk",
