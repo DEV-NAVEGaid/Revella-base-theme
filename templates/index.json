@@ -242,60 +242,6 @@
       },
       "disabled": true
     },
-    "oc_press_8YdyeE": {
-      "type": "oc-press",
-      "blocks": {
-        "logo_XccX9e": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/vector-4.avif",
-            "label": "[Press logo]",
-            "width": 136,
-            "height": 40
-          }
-        },
-        "logo_MKVmbY": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_2.png",
-            "label": "[Logo]",
-            "width": 150,
-            "height": 50
-          }
-        },
-        "logo_pkHUL3": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/vector-7.avif",
-            "label": "[Press logo]",
-            "width": 164,
-            "height": 40
-          }
-        },
-        "logo_BCiVCz": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/vector-5.avif",
-            "label": "[Press logo]",
-            "width": 170,
-            "height": 40
-          }
-        }
-      },
-      "block_order": [
-        "logo_XccX9e",
-        "logo_MKVmbY",
-        "logo_pkHUL3",
-        "logo_BCiVCz"
-      ],
-      "disabled": true,
-      "name": "OC: Press logos",
-      "settings": {
-        "aria_label": "Press",
-        "per_row_mobile": 2,
-        "background": ""
-      }
-    },
     "oc_clinical_tabs_JV8VVP": {
       "type": "oc-clinical-tabs",
       "blocks": {
@@ -1366,74 +1312,6 @@
         "background": ""
       }
     },
-    "oc_videos_kjGYax": {
-      "type": "oc-videos",
-      "blocks": {
-        "video_RRVpba": {
-          "type": "video",
-          "settings": {
-            "label": ""
-          }
-        },
-        "video_YL4phY": {
-          "type": "video",
-          "settings": {
-            "label": ""
-          }
-        },
-        "video_fGHqWY": {
-          "type": "video",
-          "settings": {
-            "label": ""
-          }
-        },
-        "video_CUaKma": {
-          "type": "video",
-          "settings": {
-            "label": ""
-          }
-        },
-        "stat_GUKqBM": {
-          "type": "stat",
-          "settings": {
-            "number": "4.8/5",
-            "label": "Star rating"
-          }
-        },
-        "stat_fjtUxk": {
-          "type": "stat",
-          "settings": {
-            "number": "3K+",
-            "label": "Verified reviews"
-          }
-        },
-        "stat_b84x4f": {
-          "type": "stat",
-          "settings": {
-            "number": "60-day",
-            "label": "Money-back guarantee"
-          }
-        }
-      },
-      "block_order": [
-        "video_RRVpba",
-        "video_YL4phY",
-        "video_fGHqWY",
-        "video_CUaKma",
-        "stat_GUKqBM",
-        "stat_fjtUxk",
-        "stat_b84x4f"
-      ],
-      "disabled": true,
-      "name": "OC: UGC videos",
-      "settings": {
-        "eyebrow": "Trusted by thousands",
-        "heading": "Real People. One Softgel a Day.",
-        "subheading": "Every batch is third-party tested, so you know exactly what you're putting into your body.",
-        "show_dots": true,
-        "background": ""
-      }
-    },
     "oc_review_header_wq4gFP": {
       "type": "oc-review-header",
       "name": "OC: Review header",
@@ -2064,7 +1942,6 @@
   "order": [
     "oc_featured_product_N8fkji",
     "oc_hero_mXwbWW",
-    "oc_press_8YdyeE",
     "oc_clinical_tabs_JV8VVP",
     "oc_mission_rdQyRU",
     "oc_reviews_collection_9REAQ9",
@@ -2076,7 +1953,6 @@
     "oc_testing_Ub3fXj",
     "oc_clinician_reviews_TcAHRn",
     "oc_founder_letter_FPq4bm",
-    "oc_videos_kjGYax",
     "oc_review_header_wq4gFP",
     "oc_review_list_CDzqiz",
     "oc_faq_AMHVQ9",
