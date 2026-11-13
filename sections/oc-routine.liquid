@@ -6,7 +6,7 @@
     <div class="rt-i">
       <div class="rt-h">
         {%- if s.heading != blank or s.accent != blank -%}
-          <h2 class="rt-hd">{{ s.heading | escape }}{% if s.heading != blank and s.accent != blank %} {% endif %}{% if s.accent != blank %}<span>{{ s.accent | escape }}</span>{% endif %}</h2>
+          <h2 class="rt-hd">{{ s.heading | escape }}{% if s.accent != blank %} <span>{{ s.accent | escape }}</span>{% endif %}</h2>
         {%- endif -%}
         {%- if s.intro != blank %}<p class="rt-intro">{{ s.intro }}</p>{% endif -%}
       </div>
@@ -36,31 +36,31 @@
 </div>
 
 <style>
-  .lm .rt{padding:40px 20px}
-  .lm .rt-i{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
-  .lm .rt-h{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
-  .lm .rt-hd{margin:0;font-size:28px;line-height:1.3;font-weight:700;color:#121212}
-  .lm .rt-hd span{color:#289383}
-  .lm .rt-intro{margin:0;font-size:16px;line-height:24px;color:#121212;max-width:700px}
-  .lm .rt-tl{list-style:none;margin:0;padding:0}
-  .lm .rt-st{position:relative;padding:0 0 36px 50px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-  .lm .rt-st:last-child{padding-bottom:0}
-  .lm .rt-st::before{content:"";position:absolute;left:14px;top:15px;bottom:0;width:2px;background:#d9d9d9}
-  .lm .rt-st:last-child::before{bottom:0}
-  .lm .rt-node{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:#289383;display:flex;align-items:center;justify-content:center;z-index:1}
-  .lm .rt-node::after{content:"";width:12px;height:12px;border-radius:50%;background:#fff}
-  .lm .rt-pill{padding:4px 12px;border-radius:50px;background:#289383;color:#fff;font-size:12px;line-height:18px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
-  .lm .rt-t{margin:0;font-size:22px;line-height:1.3;font-weight:700;color:#121212}
-  .lm .rt-ln{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-  .lm .rt-ln li{position:relative;padding-left:18px;font-size:16px;line-height:25.6px;color:#666}
-  .lm .rt-ln li::before{content:"\2713";position:absolute;left:0;top:0}
-  .lm .rt-note{margin:0;text-align:center;font-size:14px;line-height:19.5px;color:#666}
+  .lm.lm .rt{padding:40px 20px}
+  .lm.lm .rt-i{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+  .lm.lm .rt-h{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .lm.lm .rt-hd{margin:0;font-size:28px;line-height:1.3;font-weight:700;color:#121212}
+  .lm.lm .rt-hd span{color:#289383}
+  .lm.lm .rt-intro{margin:0;font-size:16px;line-height:24px;color:#121212;max-width:700px}
+  .lm.lm .rt-tl{list-style:none;margin:0;padding:0}
+  .lm.lm .rt-st{position:relative;padding:0 0 36px 50px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .lm.lm .rt-st:last-child{padding-bottom:0}
+  .lm.lm .rt-st::before{content:"";position:absolute;left:14px;top:15px;bottom:0;width:2px;background:#d9d9d9}
+  .lm.lm .rt-st:last-child::before{bottom:0}
+  .lm.lm .rt-node{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:#289383;display:flex;align-items:center;justify-content:center;z-index:1}
+  .lm.lm .rt-node::after{content:"";width:12px;height:12px;border-radius:50%;background:#fff}
+  .lm.lm .rt-pill{padding:4px 12px;border-radius:50px;background:#289383;color:#fff;font-size:12px;line-height:18px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+  .lm.lm .rt-t{margin:0;font-size:22px;line-height:1.3;font-weight:700;color:#121212}
+  .lm.lm .rt-ln{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .lm.lm .rt-ln li{position:relative;padding-left:18px;font-size:16px;line-height:25.6px;color:#666}
+  .lm.lm .rt-ln li::before{content:"\2713";position:absolute;left:0;top:0}
+  .lm.lm .rt-note{margin:0;text-align:center;font-size:14px;line-height:19.5px;color:#666}
   @media screen and (min-width:990px){
-    .lm .rt{padding:60px 20px}
-    .lm .rt-i{gap:40px}
-    .lm .rt-hd{font-size:36px;line-height:46.8px}
-    .lm .rt-tl{max-width:800px;margin:0 auto;width:100%}
-    .lm .rt-t{font-size:24px;line-height:31.2px}
+    .lm.lm .rt{padding:60px 20px}
+    .lm.lm .rt-i{gap:40px}
+    .lm.lm .rt-hd{font-size:36px;line-height:46.8px}
+    .lm.lm .rt-tl{max-width:800px;margin:0 auto;width:100%}
+    .lm.lm .rt-t{font-size:24px;line-height:31.2px}
   }
 </style>
 

@@ -3,24 +3,26 @@
 {%- assign p = s.product | default: product -%}
 {%- assign link = s.button_link | default: '#product' -%}
 <style>
-  .lm .su{background:#fff;padding:40px 16px}
-  .lm .su-i{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px}
-  .lm .su-img{width:100%;max-width:640px;aspect-ratio:640/420;overflow:hidden}
-  .lm .su-img img,.lm .su-img svg{display:block;width:100%;height:100%;object-fit:contain}
-  .lm .su-img svg{background:#f2f2f2}
-  .lm .su-t{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
-  .lm .su .su-h{font-size:28px;line-height:1.2;font-weight:700;letter-spacing:-.02em;text-align:center;color:#000}
-  .lm .su .su-h span{color:#289383}
-  .lm .su .su-p{max-width:700px;font-size:16px;line-height:1.6;text-align:center;color:#181b1d}
-  .lm .su .su-p p{margin:0}
-  .lm .su .su-p strong{font-weight:700}
-  .lm .su .su-btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:660px;min-height:60px;padding:16px 24px;border-radius:10px;background:#202329;color:#fff;font-size:18px;line-height:1.2;font-weight:700;text-align:center;text-decoration:none}
-  .lm .su .su-btn:hover{color:#fff;filter:brightness(1.15)}
+  .lm.lm .su{background:#fff;padding:40px 16px}
+  .lm.lm .su-i{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px}
+  .lm.lm .su-img{width:100%;max-width:640px;aspect-ratio:640/420;overflow:hidden}
+  .lm.lm .su-img img,.lm.lm .su-img svg{display:block;width:100%;height:100%;object-fit:contain}
+  .lm.lm .su-img svg{background:#f2f2f2}
+  .lm.lm .su-t{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+  .lm.lm .su .su-h{font-size:28px;line-height:1.2;font-weight:700;letter-spacing:-.02em;text-align:center;color:#000}
+  .lm.lm .su .su-h span{color:#289383}
+  .lm.lm .su .su-p{max-width:700px;font-size:16px;line-height:1.6;text-align:center;color:#181b1d}
+  .lm.lm .su .su-p p{margin:0}
+  .lm.lm .su .su-p strong{font-weight:700}
+  .lm.lm .su .su-btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:660px;min-height:60px;padding:16px 24px;border-radius:10px;background:#202329;color:#fff;font-size:18px;line-height:1.2;font-weight:700;text-align:center;text-decoration:none}
+  .lm.lm .su .su-btn:hover{color:#fff;filter:brightness(1.15)}
   @media (min-width:990px){
-    .lm .su{padding:40px 20px}
-    .lm .su-t{gap:24px}
-    .lm .su .su-h{font-size:36px;line-height:43.2px}
-    .lm .su .su-p{font-size:18px;line-height:28.8px}
+    .lm.lm .su{padding:40px 20px}
+    .lm.lm .su-i{gap:40px}
+    .lm.lm .su-t{gap:24px}
+    .lm.lm .su .su-btn{margin-top:28px}
+    .lm.lm .su .su-h{font-size:36px;line-height:43.2px}
+    .lm.lm .su .su-p{font-size:18px;line-height:28.8px}
   }
 </style>
 <div class="lm">
@@ -37,7 +39,7 @@
       </div>
       <div class="su-t">
         {%- if s.heading != blank or s.accent != blank -%}
-          <h2 class="su-h">{{ s.heading }}{% if s.heading != blank and s.accent != blank %} {% endif %}{% if s.accent != blank %}<span>{{ s.accent }}</span>{% endif %}</h2>
+          <h2 class="su-h">{{ s.heading }}{% if s.accent != blank %} <span>{{ s.accent }}</span>{% endif %}</h2>
         {%- endif -%}
         {%- if s.text != blank %}<div class="su-p">{{ s.text }}</div>{% endif -%}
         {%- if s.button_label != blank -%}

@@ -92,7 +92,7 @@
         "perk_hCQ4BQ": {
           "type": "perk",
           "settings": {
-            "icon": "truck",
+            "icon": "shield-perk",
             "text": "60-day Money-Back Guarantee"
           }
         },
@@ -1870,7 +1870,7 @@
         "row_5"
       ],
       "settings": {
-        "heading": "What You Get in",
+        "heading": "Inside",
         "accent": "Each Bottle",
         "subheading": "Everything that comes with Liver Support Drops",
         "product": "liver-support-drops",

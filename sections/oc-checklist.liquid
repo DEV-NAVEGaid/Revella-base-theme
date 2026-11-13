@@ -3,28 +3,28 @@
 {%- assign p = s.product | default: product -%}
 {%- assign col_title = s.column_title | default: p.title -%}
 <style>
-  .lm .ckl{background:#f8fafc;padding:40px 16px}
-  .lm .ckl-i{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
-  .lm .ckl-h{display:flex;flex-direction:column;gap:12px;text-align:left}
-  .lm .ckl-t{font-family:var(--font-heading-family);font-style:var(--font-heading-style);font-size:32px;line-height:1.2;font-weight:700;letter-spacing:-.02em;color:#181b1d;margin:0;text-align:left}
-  .lm .ckl-t span{color:#289383}
-  .lm .ckl-sub{font-size:16px;line-height:24px;color:#616161;margin:0}
-  .lm .ckl-l{display:flex;flex-direction:column;min-width:0}
-  .lm .ckl-r{display:flex;align-items:stretch;min-height:59px}
-  .lm .ckl-tx{flex:1;min-width:0;padding:16px 10px 16px 0;display:flex;align-items:center;font-size:15px;line-height:1.3;font-weight:500;color:#181b1d}
-  .lm .ckl-c{flex:0 0 96px;box-sizing:border-box;background:#289383;display:flex;align-items:center;justify-content:center;padding:16px 8px;border-bottom:1px solid rgba(255,255,255,.2)}
-  .lm .ckl-r.top .ckl-c{border-radius:8px 8px 0 0;border-bottom:0;padding:20px 8px;box-shadow:0 -4px 15px rgba(0,0,0,.05);color:#fff;font-family:var(--font-heading-family);font-size:16px;line-height:1.3;font-weight:700;text-align:center;overflow-wrap:anywhere}
-  .lm .ckl-r.last .ckl-c{border-radius:0 0 8px 8px;border-bottom:0;padding-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
-  .lm .ckl-tk{width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
-  .lm .ckl-tk svg{width:14px;height:14px;fill:none;stroke:#289383;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .lm.lm .ckl{background:#f8fafc;padding:40px 16px}
+  .lm.lm .ckl-i{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+  .lm.lm .ckl-h{display:flex;flex-direction:column;gap:12px;text-align:left}
+  .lm.lm .ckl-t{font-family:var(--font-heading-family);font-style:var(--font-heading-style);font-size:32px;line-height:1.2;font-weight:700;letter-spacing:-.02em;color:#181b1d;margin:0;text-align:left}
+  .lm.lm .ckl-t span{color:#289383}
+  .lm.lm .ckl-sub{font-size:16px;line-height:24px;color:#616161;margin:0}
+  .lm.lm .ckl-l{display:flex;flex-direction:column;min-width:0}
+  .lm.lm .ckl-r{display:flex;align-items:stretch;min-height:59px}
+  .lm.lm .ckl-tx{flex:1;min-width:0;padding:16px 10px 16px 0;display:flex;align-items:center;font-size:15px;line-height:1.3;font-weight:500;color:#181b1d}
+  .lm.lm .ckl-c{flex:0 0 96px;box-sizing:border-box;background:#289383;display:flex;align-items:center;justify-content:center;padding:16px 8px;border-bottom:1px solid rgba(255,255,255,.2)}
+  .lm.lm .ckl-r.top .ckl-c{border-radius:8px 8px 0 0;border-bottom:0;padding:20px 8px;box-shadow:0 -4px 15px rgba(0,0,0,.05);color:#fff;font-family:var(--font-heading-family);font-size:16px;line-height:1.3;font-weight:700;text-align:center;overflow-wrap:anywhere}
+  .lm.lm .ckl-r.last .ckl-c{border-radius:0 0 8px 8px;border-bottom:0;padding-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+  .lm.lm .ckl-tk{width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+  .lm.lm .ckl-tk svg{width:14px;height:14px;fill:none;stroke:#289383;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
   @media (min-width:990px){
-    .lm .ckl{padding:60px 20px}
-    .lm .ckl-i{flex-direction:row;align-items:center;gap:40px}
-    .lm .ckl-h,.lm .ckl-l{flex:1 1 0}
-    .lm .ckl-t{font-size:42px;line-height:50.4px}
-    .lm .ckl-tx{padding-left:10px}
-    .lm .ckl-c{flex-basis:141px}
-    .lm .ckl-r.top .ckl-c{font-size:22px;line-height:33px;padding:25px 10px}
+    .lm.lm .ckl{padding:60px 20px}
+    .lm.lm .ckl-i{flex-direction:row;align-items:center;gap:40px}
+    .lm.lm .ckl-h,.lm.lm .ckl-l{flex:1 1 0}
+    .lm.lm .ckl-t{font-size:42px;line-height:50.4px}
+    .lm.lm .ckl-tx{padding-left:10px}
+    .lm.lm .ckl-c{flex-basis:141px}
+    .lm.lm .ckl-r.top .ckl-c{font-size:22px;line-height:33px;padding:25px 10px}
   }
 </style>
 <div class="lm">
