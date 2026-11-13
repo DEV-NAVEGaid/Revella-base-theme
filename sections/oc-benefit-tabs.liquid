@@ -62,7 +62,7 @@
   @keyframes bt-{{ sid }}-m{to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion:reduce){
     .lm.lm .bt-{{ sid }} .bt-track{animation:none;width:auto;justify-content:center}
-    .lm.lm .bt-{{ sid }} .bt-grp{flex-wrap:wrap;min-width:0;justify-content:center}
+    .lm.lm .bt-{{ sid }} .bt-grp{flex:1 1 100%;flex-wrap:wrap;min-width:0;justify-content:center}
     .lm.lm .bt-{{ sid }} .bt-grp[aria-hidden]{display:none}
   }
   @media (min-width:990px){
