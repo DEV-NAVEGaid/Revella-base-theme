@@ -92,7 +92,7 @@
         "perk_hCQ4BQ": {
           "type": "perk",
           "settings": {
-            "icon": "truck",
+            "icon": "shield-perk",
             "text": "60-day Money-Back Guarantee"
           }
         },
@@ -1687,7 +1687,7 @@
           "settings": {
             "question": "How much do I take?",
             "answer": "<p>2 mL a day, about half a teaspoon. Fill the dropper, then hold it under your tongue or add it to a little water. One bottle gives you 30 servings.</p>",
-            "open": true
+            "open": false
           }
         },
         "question_2": {
