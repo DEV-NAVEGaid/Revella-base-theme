@@ -42,12 +42,12 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "FAQs" },
     { "type": "image_picker", "id": "image", "label": "Lifestyle image", "info": "Full width on mobile (400 px tall), right column on desktop." },
-    { "type": "text", "id": "image_placeholder", "label": "Image placeholder text", "default": "[Lifestyle image]", "info": "Clear to hide the image area when no image is set." },
+    { "type": "text", "id": "image_placeholder", "label": "Image placeholder text", "info": "Optional. Empty = no image area when no image is set." },
     { "type": "header", "content": "Question icons" },
     { "type": "image_picker", "id": "icon_closed", "label": "Icon (closed)", "info": "Optional. Used for every question. Square PNG/SVG, shown at 28x28px. Empty = default plus/minus icon." },
     { "type": "image_picker", "id": "icon_open", "label": "Icon (open)", "info": "Optional. Shown when a question is open. Empty = the closed icon is used." },
     { "type": "header", "content": "Button" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
     { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
     { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
     { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
@@ -62,8 +62,8 @@
       "type": "question",
       "name": "Question",
       "settings": [
-        { "type": "text", "id": "question", "label": "Question", "default": "When should I take them — before or after a workout?" },
-        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Either is fine. Taking it every day matters more than the timing, and most people have theirs with breakfast.</p>" },
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer.</p>" },
         { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
       ]
     }
@@ -72,9 +72,9 @@
     {
       "name": "OC: FAQ",
       "blocks": [
-        { "type": "question", "settings": { "question": "How many gummies make a full serving of creatine?", "answer": "<p>[Serving size and dose — e.g. how many gummies equal the daily amount.]</p>", "open": true } },
+        { "type": "question", "settings": { "open": true } },
         { "type": "question" },
-        { "type": "question", "settings": { "question": "Will creatine make me look bloated or puffy?", "answer": "<p>[Explain the formula and what customers typically report.]</p>" } }
+        { "type": "question" }
       ]
     }
   ]

@@ -3,8 +3,8 @@
   <div class="top"></div>
   <div class="zip"></div>
   <div class="lb">
-    <p class="nm">{{ brand | default: 'Lymphgem' }}</p>
-    <p class="tt">{{ title | default: 'Creatine Monohydrate Gummies' }}</p>
+    <p class="nm">{{ brand }}</p>
+    <p class="tt">{{ title }}</p>
     <div class="tags">
       {%- if tag1 != blank %}<span class="tg f" data-flavor-name>{{ tag1 }}</span>{% endif -%}
       {%- if tag2 != blank %}<span class="tg">{{ tag2 }}</span>{% endif -%}

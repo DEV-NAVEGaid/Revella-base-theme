@@ -1,6 +1,7 @@
 {% render 'oc-assets' %}
 {%- assign s = section.settings -%}
 {%- assign btn_variant = s.button_style | replace: 'light', '' -%}
+{%- assign cp = s.product | default: product -%}
 <div class="lm">
   <section class="wrap cmp"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
     <div class="inner">
@@ -19,8 +20,10 @@
               <div class="cimg">
                 {%- if s.us_image != blank -%}
                   {{ s.us_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: s.col_us }}
+                {%- elsif cp.featured_media != blank -%}
+                  {{ cp.featured_media | image_url: width: 200 | image_tag: loading: 'lazy', alt: s.col_us }}
                 {%- else -%}
-                  <div class="mini"></div>
+                  {{ 'product-1' | placeholder_svg_tag: 'ph-svg' }}
                 {%- endif -%}
               </div>
               <span class="cl us-l">{{ s.col_us }}</span>
@@ -30,7 +33,7 @@
                 {%- if s.them_image != blank -%}
                   {{ s.them_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: s.col_them }}
                 {%- else -%}
-                  <div class="tub"></div>
+                  {{ 'image' | placeholder_svg_tag: 'ph-svg' }}
                 {%- endif -%}
               </div>
               <span class="cl th-l">{{ s.col_them }}</span>
@@ -57,15 +60,16 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow badge", "default": "Us vs them" },
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "The New <em>Gold Standard</em>", "info": "Italic text is shown in the blue accent color." },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "See how Lymphgem stacks up on dosing, testing and everyday ease." },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
     { "type": "header", "content": "Columns" },
     { "type": "text", "id": "col_feature", "label": "Feature column", "default": "Feature" },
-    { "type": "text", "id": "col_us", "label": "Our column", "default": "Lymphgem" },
-    { "type": "image_picker", "id": "us_image", "label": "Our product image", "info": "84 × 104 px. Empty = mini pouch." },
-    { "type": "text", "id": "col_them", "label": "Their column", "default": "Other creatine" },
-    { "type": "image_picker", "id": "them_image", "label": "Their product image", "info": "84 × 104 px. Empty = generic tub." },
+    { "type": "product", "id": "product", "label": "Our product", "info": "Its first photo is used when no image is uploaded below. Empty = the page's own product, or a placeholder." },
+    { "type": "text", "id": "col_us", "label": "Our column", "default": "Ours" },
+    { "type": "image_picker", "id": "us_image", "label": "Our product image (optional)", "info": "84 × 104 px. Empty = the product's first photo." },
+    { "type": "text", "id": "col_them", "label": "Their column", "default": "Others" },
+    { "type": "image_picker", "id": "them_image", "label": "Their product image", "info": "84 × 104 px. Empty = placeholder." },
     { "type": "header", "content": "Button" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Try Lymphgem Today" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
     { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
     { "type": "image_picker", "id": "arrow_icon", "label": "Button arrow icon", "info": "Optional. Replaces the default arrow inside the button. Square PNG/SVG, shown at 20x20px." },
     { "type": "select", "id": "button_style", "label": "Button style", "default": "dk", "options": [ { "value": "light", "label": "Light" }, { "value": "dk", "label": "Dark" }, { "value": "gh", "label": "Outline" } ] },
@@ -80,11 +84,11 @@
       "type": "row",
       "name": "Row",
       "settings": [
-        { "type": "text", "id": "feature", "label": "Feature", "default": "Creatine per serving" },
+        { "type": "text", "id": "feature", "label": "Feature", "default": "Feature" },
         { "type": "select", "id": "us_icon", "label": "Our icon", "default": "yes", "options": [ { "value": "yes", "label": "Check" }, { "value": "no", "label": "Cross" } ] },
-        { "type": "text", "id": "us", "label": "Our value", "default": "Full daily dose" },
+        { "type": "text", "id": "us", "label": "Our value", "default": "Yes" },
         { "type": "select", "id": "them_icon", "label": "Their icon", "default": "no", "options": [ { "value": "yes", "label": "Check" }, { "value": "no", "label": "Cross" } ] },
-        { "type": "text", "id": "them", "label": "Their value", "default": "[Lower dose]" }
+        { "type": "text", "id": "them", "label": "Their value", "default": "No" }
       ]
     }
   ],
@@ -93,8 +97,8 @@
       "name": "OC: Comparison",
       "blocks": [
         { "type": "row" },
-        { "type": "row", "settings": { "feature": "Dose independently tested", "us": "Third-party COA", "them": "Label only" } },
-        { "type": "row", "settings": { "feature": "Needs a shaker bottle", "us": "No", "them": "Yes" } }
+        { "type": "row" },
+        { "type": "row" }
       ]
     }
   ]
