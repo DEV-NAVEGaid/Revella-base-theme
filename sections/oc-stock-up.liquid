@@ -1,0 +1,71 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign p = s.product | default: product -%}
+{%- assign link = s.button_link | default: '#product' -%}
+<style>
+  .lm .su{background:#fff;padding:40px 16px}
+  .lm .su-i{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px}
+  .lm .su-img{width:100%;max-width:640px;aspect-ratio:640/420;overflow:hidden}
+  .lm .su-img img,.lm .su-img svg{display:block;width:100%;height:100%;object-fit:contain}
+  .lm .su-img svg{background:#f2f2f2}
+  .lm .su-t{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+  .lm .su .su-h{font-size:28px;line-height:1.2;font-weight:700;letter-spacing:-.02em;text-align:center;color:#000}
+  .lm .su .su-h span{color:#289383}
+  .lm .su .su-p{max-width:700px;font-size:16px;line-height:1.6;text-align:center;color:#181b1d}
+  .lm .su .su-p p{margin:0}
+  .lm .su .su-p strong{font-weight:700}
+  .lm .su .su-btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:660px;min-height:60px;padding:16px 24px;border-radius:10px;background:#202329;color:#fff;font-size:18px;line-height:1.2;font-weight:700;text-align:center;text-decoration:none}
+  .lm .su .su-btn:hover{color:#fff;filter:brightness(1.15)}
+  @media (min-width:990px){
+    .lm .su{padding:40px 20px}
+    .lm .su-t{gap:24px}
+    .lm .su .su-h{font-size:36px;line-height:43.2px}
+    .lm .su .su-p{font-size:18px;line-height:28.8px}
+  }
+</style>
+<div class="lm">
+  <section class="su">
+    <div class="su-i">
+      <div class="su-img">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 1280 | image_tag: loading: 'lazy', widths: '375, 640, 960, 1280', sizes: '(min-width: 990px) 640px, calc(100vw - 32px)', alt: s.image.alt }}
+        {%- elsif p.featured_media != blank -%}
+          {{ p.featured_media | image_url: width: 1280 | image_tag: loading: 'lazy', widths: '375, 640, 960, 1280', sizes: '(min-width: 990px) 640px, calc(100vw - 32px)', alt: p.featured_media.alt }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'ph-svg' }}
+        {%- endif -%}
+      </div>
+      <div class="su-t">
+        {%- if s.heading != blank or s.accent != blank -%}
+          <h2 class="su-h">{{ s.heading }}{% if s.heading != blank and s.accent != blank %} {% endif %}{% if s.accent != blank %}<span>{{ s.accent }}</span>{% endif %}</h2>
+        {%- endif -%}
+        {%- if s.text != blank %}<div class="su-p">{{ s.text }}</div>{% endif -%}
+        {%- if s.button_label != blank -%}
+          <a class="su-btn" href="{{ link }}">{{ s.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Closing CTA",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "product", "id": "product", "label": "Product", "info": "Empty = the product of the page this section is on." },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Wide image, about 640 x 420 px. Empty = the product's main photo, then a placeholder." },
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stock up." },
+    { "type": "text", "id": "accent", "label": "Heading, coloured part", "default": "Stay consistent.", "info": "Shown in teal after the heading. Empty = no coloured part." },
+    { "type": "richtext", "id": "text", "label": "Paragraph", "default": "<p><strong>Daily use works best.</strong> A multi-bottle supply means you will not run out, and you can share it with someone at home.</p>" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now", "info": "Empty = no button." },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the buy box (#product)." }
+  ],
+  "presets": [
+    { "name": "OC: Closing CTA" }
+  ]
+}
+{% endschema %}

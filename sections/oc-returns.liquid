@@ -1,0 +1,77 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+<div class="lm">
+  <section class="rt" style="--rt-bg: {{ s.background }}; --rt-card: {{ s.card_background }}">
+    <div class="rt-card">
+      {%- if s.show_icon -%}
+        <svg class="rt-ic" viewBox="0 0 24 24" width="60" height="60" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 1.5c-.3 0-.6.1-.9.3C9.2 3 6.4 3.9 3.6 4.1c-.9.1-1.6.8-1.6 1.7v5.4c0 5.3 3.6 9.6 9.6 11.7.3.1.5.1.8 0 6-2.1 9.6-6.4 9.6-11.7V5.8c0-.9-.7-1.6-1.6-1.7-2.8-.2-5.6-1.1-7.5-2.3-.3-.2-.6-.3-.9-.3z"/></svg>
+      {%- endif -%}
+      {%- if s.heading != blank %}<h2 class="rt-h">{{ s.heading }}</h2>{% endif -%}
+      {%- if s.text != blank %}<div class="rt-t">{{ s.text }}</div>{% endif -%}
+      {%- if s.button_label != blank %}<a class="rt-btn" href="{{ s.button_link | default: '#product' }}">{{ s.button_label }}</a>{% endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="rt-pts">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ block.settings.text }}</span></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm .rt{background:var(--rt-bg);padding:30px 16px}
+  .lm .rt-card{max-width:980px;margin:0 auto;background:var(--rt-card);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.03);padding:32px 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .lm .rt-ic{color:#000;width:60px;height:60px;margin-bottom:16px}
+  .lm .rt-h{font-size:28px;line-height:1.3;font-weight:700;color:#000;margin-bottom:12px}
+  .lm .rt-t{max-width:600px;font-size:16px;line-height:24px;color:#4a4a4a;margin-bottom:24px}
+  .lm .rt-t p{margin:0}
+  .lm .rt-t a{color:inherit;text-decoration:underline}
+  .lm .rt-btn,.lm .rt-btn:hover{display:flex;align-items:center;justify-content:center;width:100%;max-width:400px;padding:16px 30px;border-radius:8px;background:#000;color:#fff;font-size:18px;line-height:27px;font-weight:700;text-decoration:none}
+  .lm .rt-pts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 15px;margin-top:16px}
+  .lm .rt-pts li{display:flex;align-items:center;gap:6px;font-size:14px;line-height:21px;font-weight:700;color:#4a4a4a}
+  .lm .rt-pts svg{flex:none;color:#289383}
+  @media (min-width:990px){
+    .lm .rt-card{padding:40px 20px}
+    .lm .rt-h{font-size:35px;line-height:45.5px;letter-spacing:-.7px}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: Policy card",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "checkbox", "id": "show_icon", "label": "Show shield icon", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "60-Day Return Policy" },
+    { "type": "richtext", "id": "text", "label": "Text", "info": "Links are underlined. Empty = no text.", "default": "<p>Changed your mind? Sealed, unused products can be returned within 60 days. See our <a href=\"/policies/refund-policy\">Refund Policy</a> for full terms.</p>" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Empty = no button.", "default": "Shop Now" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "background", "label": "Band background", "default": "#f7fafb" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Easy returns" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Policy card",
+      "blocks": [
+        { "type": "point", "settings": { "text": "60-Day Returns" } },
+        { "type": "point", "settings": { "text": "Secure Checkout" } },
+        { "type": "point", "settings": { "text": "Email Support" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

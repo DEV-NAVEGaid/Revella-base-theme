@@ -1,0 +1,90 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign p = s.product | default: product -%}
+{%- assign col_title = s.column_title | default: p.title -%}
+<style>
+  .lm .ckl{background:#f8fafc;padding:40px 16px}
+  .lm .ckl-i{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+  .lm .ckl-h{display:flex;flex-direction:column;gap:12px;text-align:left}
+  .lm .ckl-t{font-family:var(--font-heading-family);font-style:var(--font-heading-style);font-size:32px;line-height:1.2;font-weight:700;letter-spacing:-.02em;color:#181b1d;margin:0;text-align:left}
+  .lm .ckl-t span{color:#289383}
+  .lm .ckl-sub{font-size:16px;line-height:24px;color:#616161;margin:0}
+  .lm .ckl-l{display:flex;flex-direction:column;min-width:0}
+  .lm .ckl-r{display:flex;align-items:stretch;min-height:59px}
+  .lm .ckl-tx{flex:1;min-width:0;padding:16px 10px 16px 0;display:flex;align-items:center;font-size:15px;line-height:1.3;font-weight:500;color:#181b1d}
+  .lm .ckl-c{flex:0 0 96px;box-sizing:border-box;background:#289383;display:flex;align-items:center;justify-content:center;padding:16px 8px;border-bottom:1px solid rgba(255,255,255,.2)}
+  .lm .ckl-r.top .ckl-c{border-radius:8px 8px 0 0;border-bottom:0;padding:20px 8px;box-shadow:0 -4px 15px rgba(0,0,0,.05);color:#fff;font-family:var(--font-heading-family);font-size:16px;line-height:1.3;font-weight:700;text-align:center;overflow-wrap:anywhere}
+  .lm .ckl-r.last .ckl-c{border-radius:0 0 8px 8px;border-bottom:0;padding-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+  .lm .ckl-tk{width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+  .lm .ckl-tk svg{width:14px;height:14px;fill:none;stroke:#289383;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  @media (min-width:990px){
+    .lm .ckl{padding:60px 20px}
+    .lm .ckl-i{flex-direction:row;align-items:center;gap:40px}
+    .lm .ckl-h,.lm .ckl-l{flex:1 1 0}
+    .lm .ckl-t{font-size:42px;line-height:50.4px}
+    .lm .ckl-tx{padding-left:10px}
+    .lm .ckl-c{flex-basis:141px}
+    .lm .ckl-r.top .ckl-c{font-size:22px;line-height:33px;padding:25px 10px}
+  }
+</style>
+<div class="lm">
+  <section class="ckl"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="ckl-i">
+      <div class="ckl-h">
+        {%- if s.heading != blank or s.accent != blank %}<h2 class="ckl-t">{{ s.heading }}{% if s.accent != blank %} <span>{{ s.accent }}</span>{% endif %}</h2>{% endif -%}
+        {%- if s.subheading != blank %}<p class="ckl-sub">{{ s.subheading }}</p>{% endif -%}
+      </div>
+      <div class="ckl-l">
+        <div class="ckl-r top{% if section.blocks.size == 0 %} last{% endif %}">
+          <div class="ckl-tx"></div>
+          <div class="ckl-c">{{ col_title }}</div>
+        </div>
+        {%- for block in section.blocks -%}
+          <div class="ckl-r{% if forloop.last %} last{% endif %}" {{ block.shopify_attributes }}>
+            <div class="ckl-tx">{{ block.settings.text }}</div>
+            <div class="ckl-c"><span class="ckl-tk"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg></span></div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Checklist column",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What is in" },
+    { "type": "text", "id": "accent", "label": "Accent word", "default": "every order", "info": "Shown in teal after the heading. Empty = no accent." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "A short line about what the customer gets." },
+    { "type": "header", "content": "Highlighted column" },
+    { "type": "product", "id": "product", "label": "Product", "info": "Empty = the product of the page." },
+    { "type": "text", "id": "column_title", "label": "Column title", "info": "Empty = product title. With no product, nothing is shown." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = #F8FAFC." }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "A benefit of the product" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Checklist column",
+      "blocks": [
+        { "type": "row", "settings": { "text": "Easy to take every day" } },
+        { "type": "row", "settings": { "text": "Made with a simple, clear formula" } },
+        { "type": "row", "settings": { "text": "Free from common allergens" } },
+        { "type": "row", "settings": { "text": "Tested by an independent lab" } },
+        { "type": "row", "settings": { "text": "Backed by a return policy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

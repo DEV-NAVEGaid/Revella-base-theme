@@ -1,0 +1,108 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+<style>
+  .lm .fql{background:#f9fcfd;color:#111;padding:40px 16px}
+  .lm .fql-i{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+  .lm .fql-hd{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+  .lm .fql h2{font-size:28px;line-height:34px;font-weight:700;letter-spacing:-.02em;color:#202329;text-align:center}
+  .lm .fql-sub{font-size:16px;line-height:24px;color:#111;text-align:center}
+  .lm .fql-sub strong{font-weight:700}
+  .lm .fql-p{background:#fff;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden}
+  .lm .fql-q summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;cursor:pointer;font-size:16px;line-height:24px;font-weight:700;color:#202329}
+  .lm .fql-q summary::-webkit-details-marker{display:none}
+  .lm .fql-q summary:focus-visible{outline:2px solid #202329;outline-offset:-2px}
+  .lm .fql-ic{position:relative;width:24px;height:24px;flex:none}
+  .lm .fql-ic::before,.lm .fql-ic::after{content:"";position:absolute;left:4px;right:4px;top:11px;height:2px;border-radius:1px;background:#202329}
+  .lm .fql-ic::after{transform:rotate(90deg)}
+  .lm .fql-q[open] .fql-ic::after{display:none}
+  .lm .fql-an{padding:0 20px 18px;font-size:16px;line-height:24px;color:#111}
+  .lm .fql-an p{margin:0 0 12px}
+  .lm .fql-an p:last-child{margin-bottom:0}
+  .lm .fql-an a{color:#202329;text-decoration:underline}
+  @media (min-width:990px){
+    .lm .fql{padding:60px 20px}
+    .lm .fql-i{gap:40px}
+    .lm .fql h2{font-size:36px;line-height:43px}
+  }
+</style>
+<div class="lm">
+  <section class="fql"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="fql-i">
+      {%- if s.heading != blank or s.intro != blank -%}
+        <div class="fql-hd">
+          {%- if s.heading != blank %}<h2>{{ s.heading }}</h2>{% endif -%}
+          {%- if s.intro != blank %}<p class="fql-sub">{{ s.intro }}</p>{% endif -%}
+        </div>
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="fql-p">
+          {%- for block in section.blocks -%}
+            <details class="fql-q" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+              <summary>
+                <span>{{ block.settings.question }}</span>
+                <span class="fql-ic" aria-hidden="true"></span>
+              </summary>
+              <div class="fql-an">{{ block.settings.answer }}</div>
+            </details>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+  {%- if s.show_schema and section.blocks.size > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- for block in section.blocks -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | strip_html | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | json }} }
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "OC: FAQ list",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered", "info": "Empty = no heading." },
+    { "type": "inline_richtext", "id": "intro", "label": "Intro", "default": "Quick answers about how to use it, what is inside and our <strong>return policy</strong>.", "info": "Optional. Bold is allowed. Empty = no intro line." },
+    { "type": "header", "content": "Search engines" },
+    { "type": "checkbox", "id": "show_schema", "label": "Add FAQ markup for search engines", "default": true, "info": "Prints the questions and answers as structured data. Turn off if another section already does." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background override", "info": "Empty = very pale flat band (#f9fcfd)." }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How do I use it?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Add a short, clear answer here.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: FAQ list",
+      "blocks": [
+        { "type": "question", "settings": { "question": "How do I use it?", "answer": "<p>Add a short, clear answer here.</p>" } },
+        { "type": "question", "settings": { "question": "What is inside?", "answer": "<p>List the main ingredients and where to find the full label.</p>" } },
+        { "type": "question", "settings": { "question": "How long does it take to see results?", "answer": "<p>Explain what customers can expect and over what period.</p>" } },
+        { "type": "question", "settings": { "question": "How should I store it?", "answer": "<p>Give the storage advice printed on the pack.</p>" } },
+        { "type": "question", "settings": { "question": "What if it is not right for me?", "answer": "<p>Describe the return or refund policy in a sentence or two.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
