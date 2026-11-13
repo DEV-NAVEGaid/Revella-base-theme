@@ -6,25 +6,29 @@
         "point_qmiKDK": {
           "type": "point",
           "settings": {
-            "text": "Helps support healthy liver function*"
+            "icon": "shopify://shop_images/lymvexa-icon-flow.png",
+            "text": "Supports healthy lymphatic flow*"
           }
         },
         "point_6PiLFL": {
           "type": "point",
           "settings": {
-            "text": "Supports your body's built-in detox processes*"
+            "icon": "shopify://shop_images/lymvexa-icon-face.png",
+            "text": "Helps you feel less puffy in your face and ankles*"
           }
         },
         "point_R3AU37": {
           "type": "point",
           "settings": {
-            "text": "Supports healthy bile flow and comfortable digestion*"
+            "icon": "shopify://shop_images/lymvexa-icon-light.png",
+            "text": "Supports lighter-feeling legs and healthy circulation*"
           }
         },
         "point_4cgehe": {
           "type": "point",
           "settings": {
-            "text": "Gluten-free and non-GMO, with nothing to swallow"
+            "icon": "shopify://shop_images/lymvexa-icon-balance.png",
+            "text": "Supports your body's natural fluid balance*"
           }
         },
         "pack_WP7gYi": {
@@ -42,7 +46,7 @@
             "off_suffix": "% Off",
             "callout_text": "",
             "callout_compare": "",
-            "benefits": "30-day supply\nOne 2 mL serving a day\n60-day money-back guarantee"
+            "benefits": "30-day supply\nOne softgel a day, nothing to measure\n60-day money-back guarantee"
           }
         },
         "pack_HqgJTw": {
@@ -51,7 +55,7 @@
             "title": "Buy 2 Get 2",
             "quantity": 4,
             "free": 2,
-            "badge": "2 Bottles Free",
+            "badge": "Most Popular",
             "selling_plan_id": "",
             "days": 30,
             "hide_per_day": false,
@@ -60,7 +64,7 @@
             "off_suffix": "% Off",
             "callout_text": "FREE Shipping",
             "callout_compare": "$4.99",
-            "benefits": "4 bottles, 120-day supply\nEnough for a steady daily routine\n60-day money-back guarantee"
+            "benefits": "4 pouches, 120-day supply\nEnough to feel the full 90-day difference\n60-day money-back guarantee"
           }
         },
         "pack_xnm7GB": {
@@ -78,7 +82,7 @@
             "off_suffix": "% Off",
             "callout_text": "FREE Shipping",
             "callout_compare": "$4.99",
-            "benefits": "6 bottles, 180-day supply\nStock up and never run out\n60-day money-back guarantee"
+            "benefits": "6 pouches, 180-day supply\nStock up and never run out\n60-day money-back guarantee"
           }
         },
         "perk_qXjMy8": {
@@ -92,7 +96,7 @@
         "perk_hCQ4BQ": {
           "type": "perk",
           "settings": {
-            "icon": "shield-perk",
+            "icon": "truck",
             "text": "60-day Money-Back Guarantee"
           }
         },
@@ -107,24 +111,24 @@
         "acc_desc01": {
           "type": "accordion",
           "settings": {
-            "title": "Key Ingredients",
-            "content": "<p>Per 2 mL: milk thistle seed extract 30:1 (200 mg), dandelion root extract 4:1 (200 mg), artichoke leaf extract 4:1 (100 mg), beet root extract 30:1 (100 mg), choline as choline citrate (50 mg) and L-glutathione (50 mg), plus a 100 mg blend of N-acetyl-L-cysteine (NAC), astragalus, ginger, chanca piedra and burdock root.</p><p>Base: organic glycerin, purified water and natural flavors. No soy, dairy, gluten or tree nuts.</p>",
+            "title": "Description",
+            "content": "<p>Lymphgem is a once-daily lymphatic support softgel. Each softgel combines four classic lymph herbs (cleavers, red clover, stillingia root and prickly ash bark) concentrated 20:1 for a 6,000mg herb equivalent, with 150mg Pycnogenol® French maritime pine bark, 60mg Centella asiatica TTFCA and 100mcg selenium.</p><p>Everything is suspended in MCT coconut oil inside a vegan softgel with no gelatin and no beeswax. 30 softgels per pouch.</p>",
             "open": false
           }
         },
         "acc_why01": {
           "type": "accordion",
           "settings": {
-            "title": "Why a Liquid?",
-            "content": "<p>A liquid means nothing to swallow. These drops put several familiar botanicals and nutrients into one measured 2 mL serving, so there is nothing to combine yourself.</p>",
+            "title": "Why You Need Lymphgem",
+            "content": "<p>Your lymphatic system moves fluid through your body all day, but it has no pump of its own. Long hours sitting or standing, travel, hormones and age can leave you feeling puffy, heavy and swollen by the end of the day.</p><p>Lymphgem gives your body daily botanical support for healthy lymphatic flow and circulation, in one softgel that's easier to stick with than drops, teas or handfuls of capsules.*</p>",
             "open": false
           }
         },
         "acc_use01": {
           "type": "accordion",
           "settings": {
-            "title": "How to Use",
-            "content": "<p>Fill the dropper to 2 mL (about half a teaspoon) once a day and hold it under your tongue, or stir it into a little water. Taking it at the same time each day, alongside balanced meals and regular movement, makes it easy to stay consistent. Do not take more than the suggested serving.</p><p>Check with your doctor first if you are pregnant or nursing, take any medication or have a medical condition. Not for anyone under 18.</p>",
+            "title": "Recommended Use",
+            "content": "<p>Take 1 softgel daily with breakfast and a glass of water. For best results, take it every day for at least 60 days, alongside plenty of water and daily movement.</p><p>Talk to your doctor before use if you are pregnant or nursing, take medication (especially blood thinners) or have a medical condition.</p>",
             "open": false
           }
         },
@@ -132,7 +136,7 @@
           "type": "accordion",
           "settings": {
             "title": "Guarantee",
-            "content": "<p>Try Liver Support Drops risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.</p>",
+            "content": "<p>Try Lymphgem risk-free with our 60-day money-back guarantee. If you're not happy, contact us within 30 days of delivery and we'll refund you in full.</p>",
             "open": false
           }
         }
@@ -155,23 +159,27 @@
       ],
       "name": "OC: Featured product",
       "settings": {
-        "product": "liver-support-drops",
+        "product": "lymphgem",
         "anchor": "product",
         "show_thumbs": true,
         "show_arrows": true,
         "thumb_limit": 6,
+        "pouch_brand": "Lymphgem",
+        "pouch_title": "Lymphatic Drainage Softgels",
+        "pouch_tag_1": "One a day",
+        "pouch_tag_2": "Vegan softgel",
         "show_rating": false,
-        "rating_text": "",
-        "title": "Liver Support Drops",
-        "description": "<p>One daily liquid serving that pairs milk thistle and NAC with L-glutathione, dandelion and artichoke to help support normal liver function.*</p><p>2 mL once a day, under the tongue or in a splash of water.</p>",
+        "rating_text": "Excellent 4.8",
+        "title": "Lymphgem Lymphatic Drainage Softgels",
+        "description": "<p>One softgel a day with 7 researched ingredients, including 150mg Pycnogenol® and four classic lymph herbs, to support lymphatic flow and circulation.*</p>",
         "highlight": "",
         "check_style": "circle-check-20",
         "check_icon": "shopify://shop_images/svg-181.svg",
         "show_flavors": true,
-        "flavor_label": "Choose an option:",
+        "flavor_label": "Choose Flavor:",
         "swatch_style": "image",
         "bestseller_position": 1,
-        "bestseller_text": "",
+        "bestseller_text": "Bestseller",
         "packs_label": "",
         "bf_callout": "",
         "bf_callout_note": "",
@@ -179,8 +187,8 @@
         "default_pack": 2,
         "show_otp": false,
         "otp_label": "One-Time Purchase",
-        "buy_label": "Add to Cart",
-        "show_buy_icon": false,
+        "buy_label": "Get started now",
+        "show_buy_icon": true,
         "buy_icon": "shopify://shop_images/svg-34.svg",
         "soldout_label": "Sold out",
         "after_add": "cart",
@@ -240,8 +248,7 @@
         "product_image": "shopify://shop_images/LYMPHGEMLymphaticDrainagePouch_ccf77a21-2ef3-49ee-9d94-1dc9c529f657.png",
         "image": "shopify://shop_images/Untitled_design_1.png",
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_press_8YdyeE": {
       "type": "oc-press",
@@ -387,8 +394,7 @@
         "subheading": "Four classic lymph herbs concentrated 20:1, plus three researched actives. All in MCT coconut oil inside a vegan softgel.",
         "footnote": "Every softgel: 6,000mg herb equivalent + 150mg Pycnogenol® + 60mg Centella TTFCA + 100mcg selenium. See the research behind each one below.",
         "background": "#FFFFFF"
-      },
-      "disabled": true
+      }
     },
     "oc_mission_rdQyRU": {
       "type": "oc-mission",
@@ -751,8 +757,7 @@
         "evidence_label": "The study",
         "outcome_label": "What they found",
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_expect_Ehban8": {
       "type": "oc-expect",
@@ -813,8 +818,7 @@
         "subheading": "Lymphgem isn’t a quick flush. Botanical support builds with daily consistency. Here’s what a steady routine looks like.*",
         "theme": "light",
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_offer_Wdxz8e": {
       "type": "oc-offer",
@@ -943,8 +947,7 @@
         "guarantee": "60-day Money-Back Guarantee",
         "show_guarantee": true,
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_comparison_KmCUkc": {
       "type": "oc-comparison",
@@ -1047,8 +1050,7 @@
         "show_guarantee": true,
         "guarantee_icon": "shopify://shop_images/svg-35.svg",
         "background": "#FFFFFF"
-      },
-      "disabled": true
+      }
     },
     "oc_testing_Ub3fXj": {
       "type": "oc-testing",
@@ -1155,8 +1157,7 @@
         "guarantee": "60-day Money-Back Guarantee",
         "show_guarantee": true,
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_clinician_reviews_TcAHRn": {
       "type": "oc-clinician-reviews",
@@ -1344,8 +1345,7 @@
         "padding_bottom_mobile": 38,
         "padding_top": 40,
         "padding_bottom": 52
-      },
-      "disabled": true
+      }
     },
     "oc_founder_letter_FPq4bm": {
       "type": "oc-founder-letter",
@@ -1367,6 +1367,74 @@
         "background": ""
       }
     },
+    "oc_videos_kjGYax": {
+      "type": "oc-videos",
+      "blocks": {
+        "video_RRVpba": {
+          "type": "video",
+          "settings": {
+            "label": ""
+          }
+        },
+        "video_YL4phY": {
+          "type": "video",
+          "settings": {
+            "label": ""
+          }
+        },
+        "video_fGHqWY": {
+          "type": "video",
+          "settings": {
+            "label": ""
+          }
+        },
+        "video_CUaKma": {
+          "type": "video",
+          "settings": {
+            "label": ""
+          }
+        },
+        "stat_GUKqBM": {
+          "type": "stat",
+          "settings": {
+            "number": "4.8/5",
+            "label": "Star rating"
+          }
+        },
+        "stat_fjtUxk": {
+          "type": "stat",
+          "settings": {
+            "number": "3K+",
+            "label": "Verified reviews"
+          }
+        },
+        "stat_b84x4f": {
+          "type": "stat",
+          "settings": {
+            "number": "60-day",
+            "label": "Money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "video_RRVpba",
+        "video_YL4phY",
+        "video_fGHqWY",
+        "video_CUaKma",
+        "stat_GUKqBM",
+        "stat_fjtUxk",
+        "stat_b84x4f"
+      ],
+      "disabled": true,
+      "name": "OC: UGC videos",
+      "settings": {
+        "eyebrow": "Trusted by thousands",
+        "heading": "Real People. One Softgel a Day.",
+        "subheading": "Every batch is third-party tested, so you know exactly what you're putting into your body.",
+        "show_dots": true,
+        "background": ""
+      }
+    },
     "oc_review_header_wq4gFP": {
       "type": "oc-review-header",
       "name": "OC: Review header",
@@ -1376,8 +1444,7 @@
         "line_2": "Every Single Day.",
         "text": "Make Lymphgem part of your daily routine: one softgel of study-backed botanicals to support your body’s natural lymphatic flow.*",
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_review_list_CDzqiz": {
       "type": "oc-review-list",
@@ -1593,8 +1660,7 @@
         "guarantee": "",
         "show_guarantee": true,
         "background": ""
-      },
-      "disabled": true
+      }
     },
     "oc_faq_AMHVQ9": {
       "type": "oc-faq",
@@ -1676,321 +1742,11 @@
         "guarantee": "60-day Money-Back Guarantee",
         "show_guarantee": true,
         "background": ""
-      },
-      "disabled": true
-    },
-    "oc_ref_faq": {
-      "type": "oc-ref-faq",
-      "blocks": {
-        "question_1": {
-          "type": "question",
-          "settings": {
-            "question": "How much do I take?",
-            "answer": "<p>2 mL a day, about half a teaspoon. Fill the dropper, then hold it under your tongue or add it to a little water. One bottle gives you 30 servings.</p>",
-            "open": false
-          }
-        },
-        "question_2": {
-          "type": "question",
-          "settings": {
-            "question": "Is it safe with my medication?",
-            "answer": "<p>Ask your doctor before you start if you take any medication, are pregnant or nursing, or have a medical condition. Store it out of children's reach.</p>"
-          }
-        },
-        "question_3": {
-          "type": "question",
-          "settings": {
-            "question": "Why not just take milk thistle?",
-            "answer": "<p>Milk thistle on its own covers one base. These drops pair it with NAC, L-glutathione, dandelion, artichoke, beet root and choline, so you get them together in one serving rather than buying each one separately.</p>"
-          }
-        },
-        "question_4": {
-          "type": "question",
-          "settings": {
-            "question": "How long should I take it for?",
-            "answer": "<p>It is made for everyday, ongoing use as part of a healthy routine. Results vary from person to person.</p>"
-          }
-        },
-        "question_5": {
-          "type": "question",
-          "settings": {
-            "question": "Is it free from common allergens?",
-            "answer": "<p>It contains no soy, dairy, gluten or tree nuts and is non-GMO. The active ingredients are botanicals (milk thistle, dandelion, artichoke, beet root), choline and amino acids. Check the Supplement Facts label for the complete list.</p>"
-          }
-        },
-        "question_6": {
-          "type": "question",
-          "settings": {
-            "question": "How do I store it?",
-            "answer": "<p>Close the cap tightly and keep it somewhere cool and dry. Slight color differences between bottles are natural.</p>"
-          }
-        },
-        "question_7": {
-          "type": "question",
-          "settings": {
-            "question": "What if it doesn't work for me?",
-            "answer": "<p>You're covered by our 60-day money-back guarantee. Reach us through our <a href=\"/pages/contact\">Contact page</a> and see the <a href=\"/policies/refund-policy\">refund policy</a> for details.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "question_1",
-        "question_2",
-        "question_3",
-        "question_4",
-        "question_5",
-        "question_6",
-        "question_7"
-      ],
-      "settings": {
-        "heading": "Questions About the Drops",
-        "intro": "Short answers on dosing, ingredients and our guarantee for <strong>Liver Support Drops</strong>."
-      }
-    },
-    "oc_ref_stock_up": {
-      "type": "oc-ref-stock-up",
-      "settings": {
-        "product": "liver-support-drops",
-        "heading": "More Bottles, <em>Fewer Gaps.</em>",
-        "text": "<p><strong>A daily routine is easier when the next bottle is already there.</strong> Pick a multi-bottle pack and share it with a partner or someone at home.</p>",
-        "button_label": "Choose Your Pack"
-      }
-    },
-    "oc_ref_checklist": {
-      "type": "oc-ref-checklist",
-      "blocks": {
-        "row_1": {
-          "type": "row",
-          "settings": {
-            "feature": "30 servings of 2 mL, nothing to swallow"
-          }
-        },
-        "row_2": {
-          "type": "row",
-          "settings": {
-            "feature": "Milk thistle, NAC and L-glutathione together"
-          }
-        },
-        "row_3": {
-          "type": "row",
-          "settings": {
-            "feature": "No gluten, soy, dairy or GMOs"
-          }
-        },
-        "row_4": {
-          "type": "row",
-          "settings": {
-            "feature": "Made in a GMP-certified facility, third-party tested"
-          }
-        },
-        "row_5": {
-          "type": "row",
-          "settings": {
-            "feature": "60-day money-back guarantee"
-          }
-        }
-      },
-      "block_order": [
-        "row_1",
-        "row_2",
-        "row_3",
-        "row_4",
-        "row_5"
-      ],
-      "settings": {
-        "heading": "What You Get <em>in Each Bottle</em>",
-        "subline": "A quick look at Liver Support Drops.",
-        "column_title": "Our Drops"
-      }
-    },
-    "oc_ref_return_card": {
-      "type": "oc-ref-return-card",
-      "settings": {
-        "heading": "60-Day Money-Back Guarantee",
-        "text": "<p>Not the right fit? You are covered by our 60-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a> for the full terms.</p>",
-        "button_label": "Try the Drops",
-        "trust_items": "60-day guarantee\nSecure checkout\nEmail support"
-      }
-    },
-    "oc_ref_story": {
-      "type": "oc-ref-story",
-      "blocks": {
-        "accordion_1": {
-          "type": "accordion",
-          "settings": {
-            "title": "Is It Right for Me?",
-            "content": "<p>It is made for healthy adults who want to look after their liver alongside balanced meals and an active life. It is a dietary supplement, not a medicine. If you take medication or have a health condition, speak with your doctor first.</p>"
-          }
-        },
-        "accordion_2": {
-          "type": "accordion",
-          "settings": {
-            "title": "Why Drops, Not Capsules",
-            "content": "<p>There is nothing to swallow, and the dropper measures the 2 mL serving for you. Take it straight under the tongue or mix it into a little water.</p>"
-          }
-        },
-        "accordion_3": {
-          "type": "accordion",
-          "settings": {
-            "title": "How We Make It",
-            "content": "<p>Made in a GMP-certified facility and tested by a third party for purity and potency. Every order is backed by our 60-day money-back guarantee.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "accordion_1",
-        "accordion_2",
-        "accordion_3"
-      ],
-      "settings": {
-        "heading": "Why We Made This",
-        "text": "<p>We wanted one daily serving that brings several familiar herbs and nutrients together, without a handful of capsules.</p><p>That is why milk thistle, NAC, L-glutathione, dandelion, artichoke, beet root and choline share one bottle, and why it is a liquid: 2 mL, under the tongue or stirred into water.*</p>"
-      }
-    },
-    "oc_ref_routine": {
-      "type": "oc-ref-routine",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "label": "Weeks 1-2",
-            "title": "Find Your Moment",
-            "points": "Take 2 mL once a day, with nothing to swallow\nPair it with a daily cue, such as your morning coffee"
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "label": "Weeks 3-4",
-            "title": "Keep It in Sight",
-            "points": "Give the bottle a spot you pass every day\nBack it up with water, balanced meals and a daily walk"
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "label": "Weeks 5-8",
-            "title": "On Autopilot",
-            "points": "Your daily serving no longer needs a reminder\nKeep up the meals and movement that go with it"
-          }
-        },
-        "step_4": {
-          "type": "step",
-          "settings": {
-            "label": "Week 8+",
-            "title": "The Long Run",
-            "points": "Daily support that fits a healthy lifestyle for the long term*\nTalk through your health goals with your doctor now and then"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3",
-        "step_4"
-      ],
-      "settings": {
-        "heading": "Make It Part of <em>Your Day</em>",
-        "intro": "A daily supplement is easiest to keep up as a habit. Here is one simple way to build it."
-      }
-    },
-    "oc_ref_benefit_tabs": {
-      "type": "oc-ref-benefit-tabs",
-      "blocks": {
-        "tab_1": {
-          "type": "tab",
-          "settings": {
-            "label": "Liver Support",
-            "text": "<p>Milk thistle is the anchor here, joined by NAC and L-glutathione to back normal liver function and the antioxidant systems your body already runs.*</p>"
-          }
-        },
-        "tab_2": {
-          "type": "tab",
-          "settings": {
-            "label": "Digestive Comfort",
-            "text": "<p>Dandelion root and artichoke leaf are traditional choices for healthy bile flow and easy digestion.*</p>"
-          }
-        },
-        "tab_3": {
-          "type": "tab",
-          "settings": {
-            "label": "Healthy Metabolism",
-            "text": "<p>Choline, an essential nutrient, takes part in normal fat metabolism and normal liver function.*</p>"
-          }
-        },
-        "tab_4": {
-          "type": "tab",
-          "settings": {
-            "label": "Antioxidant Defense",
-            "text": "<p>L-glutathione is an antioxidant your cells make themselves, and NAC is a building block your body uses for its own glutathione. Together they help protect cells from daily oxidative stress.*</p>"
-          }
-        }
-      },
-      "block_order": [
-        "tab_1",
-        "tab_2",
-        "tab_3",
-        "tab_4"
-      ],
-      "settings": {
-        "heading": "Where Each Ingredient <em>Fits In.</em>",
-        "intro": "Tap a goal to see which ingredients in <strong>Liver Support Drops</strong> are there for it.*",
-        "strip_items": "Non-GMO\nGluten-free\nNo soy or dairy\nThird-party tested"
-      }
-    },
-    "oc_ref_inside": {
-      "type": "oc-ref-inside",
-      "blocks": {
-        "card_1": {
-          "type": "card",
-          "settings": {
-            "title": "Milk Thistle",
-            "text": "A 30:1 seed extract of a herb people have turned to for generations, with a long research record around liver health.*"
-          }
-        },
-        "card_2": {
-          "type": "card",
-          "settings": {
-            "title": "NAC",
-            "text": "A form of the amino acid cysteine. Your body draws on it to build glutathione, one of its own antioxidants.*"
-          }
-        },
-        "card_3": {
-          "type": "card",
-          "settings": {
-            "title": "L-Glutathione",
-            "text": "An antioxidant your body makes on its own, added here to help shield cells from the wear of daily oxidative stress.*"
-          }
-        },
-        "card_4": {
-          "type": "card",
-          "settings": {
-            "title": "How It's Made",
-            "text": "Made in a GMP-certified facility and checked by an independent lab for purity and strength. No gluten, soy, dairy or GMOs."
-          }
-        }
-      },
-      "block_order": [
-        "card_1",
-        "card_2",
-        "card_3",
-        "card_4"
-      ],
-      "settings": {
-        "heading": "Inside Every Serving"
       }
     }
   },
   "order": [
     "oc_featured_product_N8fkji",
-    "oc_ref_inside",
-    "oc_ref_benefit_tabs",
-    "oc_ref_routine",
-    "oc_ref_story",
-    "oc_ref_return_card",
-    "oc_ref_checklist",
-    "oc_ref_stock_up",
-    "oc_ref_faq",
     "oc_hero_mXwbWW",
     "oc_press_8YdyeE",
     "oc_clinical_tabs_JV8VVP",
@@ -2004,6 +1760,7 @@
     "oc_testing_Ub3fXj",
     "oc_clinician_reviews_TcAHRn",
     "oc_founder_letter_FPq4bm",
+    "oc_videos_kjGYax",
     "oc_review_header_wq4gFP",
     "oc_review_list_CDzqiz",
     "oc_faq_AMHVQ9"

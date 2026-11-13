@@ -12,7 +12,7 @@
     assign title = s.title | default: p.title
     assign main = cur.featured_media | default: p.featured_media
   else
-    assign title = s.title
+    assign title = s.title | default: 'Lymphgem Lymphatic Drainage'
   endif
 -%}
 {%- capture check_icon -%}
@@ -66,7 +66,9 @@
               {% if section.index == 1 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
             >
           {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'ph-svg' }}
+            {%- assign pouch_flavor = s.pouch_tag_1 -%}
+            {%- if p != blank and p.has_only_default_variant == false %}{% assign pouch_flavor = cur.option1 %}{% endif -%}
+            {% render 'oc-pouch', brand: s.pouch_brand, title: s.pouch_title, tag1: pouch_flavor, tag2: s.pouch_tag_2 %}
           {%- endif -%}
           {%- if s.show_arrows and s.show_thumbs and p != blank and p.media.size > 1 -%}
             <button type="button" class="m-nav prev" data-media-dir="-1" aria-label="Previous image">{% if s.prev_icon != blank %}{{ s.prev_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'nv-img', alt: '' }}{% else %}{% render 'oc-icon', icon: 'chev-left' %}{% endif %}</button>
@@ -80,6 +82,10 @@
                 <button type="button" class="thumb{% if m.id == main.id %} on{% endif %}" data-src="{{ m | image_url: width: 1400 }}" data-media-id="{{ m.id }}" aria-label="Show image {{ forloop.index }}">
                   {{- m | image_url: width: 120 | image_tag: loading: 'lazy', width: 59, height: 59, alt: '' -}}
                 </button>
+              {%- endfor -%}
+            {%- elsif p == blank -%}
+              {%- for i in (1..6) -%}
+                <button type="button" class="thumb{% if forloop.first %} on{% endif %}" aria-label="Show image {{ i }}">{{ i }}</button>
               {%- endfor -%}
             {%- endif -%}
           </div>
@@ -137,11 +143,17 @@
                   {%- endfor -%}
                 </div>
               {%- endunless -%}
+            {%- else -%}
+              {%- if s.flavor_label != blank %}<p class="lbl3">{{ s.flavor_label }}</p>{% endif -%}
+              <div class="flv">
+                <button type="button" class="fo on" aria-pressed="true"><span class="fm"><span class="mini"></span></span><span class="fn">Watermelon</span>{% if s.bestseller_position == 1 and s.bestseller_text != blank %}<span class="fbadge">{{ s.bestseller_text }}</span>{% endif %}</button>
+                <button type="button" class="fo" aria-pressed="false"><span class="fm"><span class="mini pe"></span></span><span class="fn">Peach</span>{% if s.bestseller_position == 2 and s.bestseller_text != blank %}<span class="fbadge">{{ s.bestseller_text }}</span>{% endif %}</button>
+              </div>
             {%- endif -%}
           {%- endif -%}
 
           {%- if packs.size > 0 -%}
-            {%- if s.packs_label != blank %}<p class="lbl3" style="color: rgba(32,35,41,.8)">{{ s.packs_label }}</p>{% endif -%}
+            {%- if s.packs_label != blank %}<p class="lbl3" style="color: rgba(13,30,57,.8)">{{ s.packs_label }}</p>{% endif -%}
             {%- if s.bf_callout != blank -%}
               <p class="bf-call"><b>{{ s.bf_callout }}</b>{% if s.bf_callout_note != blank %}<span>{{ s.bf_callout_note }}</span>{% endif %}</p>
             {%- endif -%}
@@ -209,7 +221,7 @@
                       <div class="pk-t">
                         <b>{{ b.title }}</b>
                         {%- unless b.hide_per_day -%}
-                          <span data-perday>{% if p != blank %}{{ perday | money }} {{ b.per_day_label }}{% endif %}</span>
+                          <span data-perday>{% if p != blank %}{{ perday | money }} {{ b.per_day_label }}{% else %}[$X.XX] {{ b.per_day_label }}{% endif %}</span>
                         {%- endunless -%}
                       </div>
                     </div>
@@ -218,11 +230,13 @@
                     {%- elsif p != blank -%}
                       <span class="pk-off" data-off{% if pct <= 0 %} style="visibility: hidden"{% endif %}>{{ pct }}{{ b.off_suffix }}</span>
                     {%- else -%}
-                      <span class="pk-off" data-off style="visibility: hidden"></span>
+                      <span class="pk-off" data-off>[XX]{{ b.off_suffix }}</span>
                     {%- endif -%}
                     <div class="pk-pr">
                       {%- if p != blank -%}
                         <s data-compare{% if cmpt <= total %} hidden{% endif %}>{{ cmpt | money }}</s><b data-total>{{ total | money }}</b>
+                      {%- else -%}
+                        <s>[$XX]</s><b>[$XX]</b>
                       {%- endif -%}
                     </div>
                   </div>
@@ -245,7 +259,7 @@
           {%- if s.show_otp -%}
             <div class="otp">
               <a href="{% if p != blank %}#{% else %}#product{% endif %}"{% if p != blank %} data-otp{% endif %}>
-                {{- s.otp_label }} <span data-otp-price>{% if p != blank %}{{ cur.price | money }}{% endif %}</span>
+                {{- s.otp_label }} <span data-otp-price>{% if p != blank %}{{ cur.price | money }}{% else %}[$XX]{% endif %}</span>
               </a>
             </div>
           {%- endif -%}
@@ -320,28 +334,17 @@
           {%- endif -%}
         </button>
       </div>
-    {%- endif -%}
       <style>
-        .lm .main-img .ph-svg { width: 100%; height: 100%; display: block; background: #F2F4F5; fill: rgba(32, 35, 41, .28); }
-        .lm .prod .buy { min-height: 56px; border-color: #08503b; color: #fff; font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: .02em; }
-        .lm .prod .buy:hover { background: #16463d; border-color: #16463d; color: #fff; }
-        @media (min-width: 990px) { .lm .prod .ph-title { font-size: 35px; line-height: 44px; } }
-        .lm .prod .pacc { gap: 0; border: 1px solid #e3e6e8; border-radius: 8px; overflow: hidden; background: #fff; }
-        .lm .prod .pacc .qi, .lm .prod .pacc .qi[open] { border: 0; border-radius: 0; background: #fff; }
-        .lm .prod .pacc .qi + .qi { border-top: 1px solid #e3e6e8; }
-        .lm .prod .pacc .qi summary, .lm .prod .pacc .qi[open] summary { padding: 14px 16px; font-size: 16px; line-height: 22px; font-weight: 600; color: #202329; }
-        .lm .prod .pacc .qi .ic, .lm .prod .pacc .qi[open] .ic { width: 20px; height: 20px; border: 0; margin-top: 1px; color: #202329; }
-        .lm .prod .pacc .qi .an, .lm .prod .pacc .qi[open] .an { padding: 0 16px 16px; color: rgba(32, 35, 41, .8); }
         .lm .pacc { margin-top: 24px; }
         .lm .pacc .an { overflow: hidden; }
         .lm .pk { position: relative; }
         .lm .pk:has(.lmx-rib) { margin-top: 10px; padding-top: 18px; }
-        .lm .pk .lmx-rib { position: absolute; top: -11px; left: 46px; display: inline-block; width: auto; height: auto; padding: 4px 10px; border-radius: 999px; background: #1f7a6c; color: #fff; font-size: 11px; line-height: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 14px -6px rgba(32,35,41, .5); }
-        .lm .pk.on .lmx-rib { background: #202329; }
+        .lm .pk .lmx-rib { position: absolute; top: -11px; left: 46px; display: inline-block; width: auto; height: auto; padding: 4px 10px; border-radius: 999px; background: #265392; color: #fff; font-size: 11px; line-height: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 14px -6px rgba(13, 30, 57, .5); }
+        .lm .pk.on .lmx-rib { background: #0D1E39; }
         .lm .pk-t b { white-space: nowrap; }
-      .lm .pk-call { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px -18px -10px; padding: 9px 18px; border-top: 1px solid #e2eae7; border-radius: 0 0 19px 19px; background: #f2fbf8; color: #202329; font-size: 14px; font-weight: 700; line-height: 1.3; text-align: left; }
+      .lm .pk-call { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px -18px -10px; padding: 9px 18px; border-top: 1px solid #E2E8F0; border-radius: 0 0 19px 19px; background: #F1F5F9; color: #0D1E39; font-size: 14px; font-weight: 700; line-height: 1.3; text-align: left; }
     .lm .pk-call s { flex-shrink: 0; color: #64748B; font-weight: 400; }
-    .lm .pk.on .pk-call { background: #cfe9e1; border-top-color: #b5dccf; }
+    .lm .pk.on .pk-call { background: #C9D8EA; border-top-color: #B4C8E0; }
     @media (max-width: 749px) { .lm .pk-call { font-size: 13px; padding: 8px 16px; margin: 10px -18px -10px; } }
         .lm .bundle p.bf-call { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 12px; padding: 10px 18px; border-radius: 12px; background: #0b0b0b; color: #fff; font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
         .lm .bf-call b { font-weight: 800; color: #f2c14e; }
@@ -363,7 +366,7 @@
             transform: translateY(110%); transition: transform .28s ease; pointer-events: none;
           }
           .lm .lm-sticky.is-on { transform: translateY(0); pointer-events: auto; }
-          .lm .lm-sticky .lm-sticky-btn { width: 100%; margin: 0; box-shadow: 0 6px 18px rgba(32,35,41, .22); }
+          .lm .lm-sticky .lm-sticky-btn { width: 100%; margin: 0; box-shadow: 0 6px 18px rgba(13, 30, 57, .22); }
         }
       </style>
       <script>
@@ -494,6 +497,7 @@
           }, true);
         })();
       </script>
+    {%- endif -%}
   </section>
 </div>
 
@@ -502,29 +506,33 @@
   "name": "OC: Featured product",
   "tag": "div",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product", "info": "Gallery, title, prices and options come from this product. Option buttons = values of its first option. Empty = image placeholder and no prices." },
-    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "product", "info": "Buttons on this page with an empty link scroll here (#product)." },
+    { "type": "product", "id": "product", "label": "Product", "info": "Flavors = values of the product's first option. Empty = design preview with placeholder prices." },
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "product", "info": "All 'Try Lymphgem Today' buttons with an empty link scroll to #product." },
     { "type": "header", "content": "Gallery" },
     { "type": "checkbox", "id": "show_thumbs", "label": "Show thumbnails", "default": true },
     { "type": "checkbox", "id": "show_arrows", "label": "Show arrows on main image", "default": true, "info": "Needs thumbnails on and 2+ product images." },
     { "type": "image_picker", "id": "prev_icon", "label": "Previous arrow icon", "info": "Optional. Replaces the default left arrow. Square PNG/SVG." },
     { "type": "image_picker", "id": "next_icon", "label": "Next arrow icon", "info": "Optional. Replaces the default right arrow. Square PNG/SVG." },
     { "type": "range", "id": "thumb_limit", "label": "Max thumbnails", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "text", "id": "pouch_brand", "label": "Pouch placeholder: brand", "default": "Lymphgem", "info": "The illustrated pouch is shown when the product has no image." },
+    { "type": "text", "id": "pouch_title", "label": "Pouch placeholder: title", "default": "Creatine Monohydrate Gummies" },
+    { "type": "text", "id": "pouch_tag_1", "label": "Pouch placeholder: flavor tag", "default": "Watermelon" },
+    { "type": "text", "id": "pouch_tag_2", "label": "Pouch placeholder: second tag", "default": "Low calorie" },
     { "type": "header", "content": "Info" },
-    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": false, "info": "Only for a real rating from your reviews app." },
-    { "type": "text", "id": "rating_text", "label": "Rating text" },
-    { "type": "text", "id": "title", "label": "Title", "info": "Empty = product title." },
-    { "type": "richtext", "id": "description", "label": "Description", "info": "Empty = product description." },
-    { "type": "text", "id": "highlight", "label": "Highlight", "info": "Optional line under the description. Empty = hidden." },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "Excellent [4.8]" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Lymphgem Lymphatic Drainage", "info": "Empty = product title." },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Comes in Watermelon and Peach. Each gummy is made to be gentle on your stomach, without the bloating some people get from powders and heavy mixes. Simple ingredients, a good taste, and easy to take every day.</p>", "info": "Empty = product description." },
+    { "type": "text", "id": "highlight", "label": "Highlight", "default": "Limited-time Fall Sale! Up to [XX]% off + free shipping" },
     { "type": "header", "content": "Checklist icons" },
     { "type": "select", "id": "check_style", "label": "Checklist icon", "default": "circle-check-20", "options": [ { "value": "circle-check-20", "label": "Outline circle check" }, { "value": "check-green-18", "label": "Green filled check" }, { "value": "check-16", "label": "Plain check" } ], "info": "Used for check points and pack benefits." },
     { "type": "image_picker", "id": "check_icon", "label": "Custom checklist icon (optional)", "info": "Square PNG/SVG, shown 20 px. Replaces the icon above." },
-    { "type": "header", "content": "Option picker" },
-    { "type": "checkbox", "id": "show_flavors", "label": "Show option picker", "default": true, "info": "Shown when the product has more than one variant." },
-    { "type": "text", "id": "flavor_label", "label": "Label", "default": "Choose an option:" },
-    { "type": "select", "id": "swatch_style", "label": "Swatch", "default": "image", "options": [ { "value": "image", "label": "Variant image" }, { "value": "pouch", "label": "Plain swatch" } ] },
-    { "type": "range", "id": "bestseller_position", "label": "Badge on option #", "min": 0, "max": 6, "step": 1, "default": 0, "info": "0 = no badge." },
-    { "type": "text", "id": "bestseller_text", "label": "Badge text", "info": "Optional. Empty = no badge." },
+    { "type": "header", "content": "Flavor picker" },
+    { "type": "checkbox", "id": "show_flavors", "label": "Show flavor picker", "default": true },
+    { "type": "text", "id": "flavor_label", "label": "Label", "default": "Choose Flavor:" },
+    { "type": "select", "id": "swatch_style", "label": "Swatch", "default": "image", "options": [ { "value": "image", "label": "Variant image (falls back to pouch)" }, { "value": "pouch", "label": "Illustrated mini pouch" } ] },
+    { "type": "range", "id": "bestseller_position", "label": "Bestseller badge on flavor #", "min": 0, "max": 6, "step": 1, "default": 1, "info": "0 = no badge." },
+    { "type": "text", "id": "bestseller_text", "label": "Badge text", "default": "Bestseller" },
     { "type": "header", "content": "Packs" },
     { "type": "text", "id": "packs_label", "label": "Label", "default": "Subscribe & Save:" },
     { "type": "text", "id": "bf_callout", "label": "Campaign callout above packs", "info": "e.g. Black Friday Offer. Empty = hidden." },
@@ -569,7 +577,7 @@
         { "type": "text", "id": "off_suffix", "label": "Auto discount suffix", "default": "% Off" },
         { "type": "text", "id": "callout_text", "label": "Bottom callout text (optional)", "info": "Strip at the bottom of the card, e.g. +FREE Shipping. Empty = hidden." },
         { "type": "text", "id": "callout_compare", "label": "Bottom callout crossed-out value (optional)", "info": "e.g. $4.99" },
-        { "type": "textarea", "id": "benefits", "label": "Benefits (one per line)", "info": "Shown when this pack is selected.", "default": "Free shipping on your first order\n60-day money-back guarantee" }
+        { "type": "textarea", "id": "benefits", "label": "Benefits (one per line)", "info": "Shown when this pack is selected.", "default": "FREE shipping on 1st order\nBiggest savings, lowest price per serving\nFree gift — [Gift name]\n60-day money-back guarantee\nPause or cancel anytime" }
       ]
     },
     {
@@ -598,8 +606,9 @@
       "name": "OC: Featured product",
       "blocks": [
         { "type": "point" },
-        { "type": "point", "settings": { "text": "Free shipping on your first order" } },
-        { "type": "point", "settings": { "text": "Easy to take every day" } },
+        { "type": "point", "settings": { "text": "FREE shipping on 1st order" } },
+        { "type": "point", "settings": { "text": "FREE gift" } },
+        { "type": "point", "settings": { "text": "Up to [XX]% OFF" } },
         { "type": "pack" },
         { "type": "pack", "settings": { "title": "2x Packs", "quantity": 2 } },
         { "type": "pack", "settings": { "title": "3x Packs", "quantity": 3 } },
