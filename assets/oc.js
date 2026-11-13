@@ -158,21 +158,7 @@
   class LmProduct extends HTMLElement {
     connectedCallback() {
       const json = this.querySelector('script[data-lm-json]');
-      if (!json) {
-        // No product yet: selection still moves, prices and form stay untouched.
-        ['.pk[data-qty]', '.fo'].forEach((sel) => {
-          const btns = Array.from(this.querySelectorAll(sel));
-          btns.forEach((b) =>
-            b.addEventListener('click', () =>
-              btns.forEach((x) => {
-                x.classList.toggle('on', x === b);
-                x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
-              })
-            )
-          );
-        });
-        return;
-      }
+      if (!json) return;
       this.d = JSON.parse(json.textContent);
       this.form = this.querySelector('form');
       this.idInput = this.form.querySelector('[name="id"]');
