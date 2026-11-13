@@ -1,0 +1,76 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign btn_link = s.button_link | default: '#product' -%}
+<div class="lm">
+  <style>
+    .lm.lm .rp{padding:24px 16px;background:#F8FAFC;color:#4A4A4A;font-size:16px;line-height:24px}
+    .lm.lm .rp-card{max-width:980px;margin:0 auto;padding:32px 20px;background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.03);display:flex;flex-direction:column;align-items:center;text-align:center;box-sizing:border-box}
+    .lm.lm .rp-ic{width:64px;height:64px;color:#000;margin-bottom:16px}
+    .lm.lm .rp-ic svg{width:100%;height:100%;fill:currentColor}
+    .lm.lm .rp-ic svg path:last-child{stroke:#fff}
+    .lm.lm .rp-h{margin:0 0 12px;font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:28px;line-height:1.3;letter-spacing:-.02em;color:#000;text-transform:none}
+    .lm.lm .rp-t{max-width:600px;margin:0 0 24px;color:#4A4A4A}
+    .lm.lm .rp-t p{margin:0}
+    .lm.lm .rp-t a{color:#4A4A4A;text-decoration:underline}
+    .lm.lm .rp-btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:400px;box-sizing:border-box;padding:16px 30px;border-radius:6px;background:#000;color:#fff;font-size:18px;line-height:27px;font-weight:700;text-decoration:none}
+    .lm.lm .rp-btn:hover{color:#fff;opacity:.9}
+    .lm.lm .rp-list{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 15px;margin:16px 0 0;padding:0;list-style:none}
+    .lm.lm .rp-li{display:flex;align-items:center;gap:6px;font-size:14px;line-height:21px;font-weight:600;color:#4A4A4A}
+    .lm.lm .rp-ck{display:flex;width:18px;height:18px;flex:none;color:#289383}
+    .lm.lm .rp-ck svg{width:100%;height:100%}
+    @media (min-width:990px){
+      .lm.lm .rp{padding:30px 15px}
+      .lm.lm .rp-card{padding:40px 20px}
+      .lm.lm .rp-ic{width:80px;height:80px;margin-bottom:15px}
+      .lm.lm .rp-h{font-size:35px;line-height:45.5px}
+    }
+  </style>
+  <section class="rp"{% if s.background != blank %} style="background: {{ s.background }}"{% endif %}>
+    <div class="rp-card"{% if s.card_color != blank %} style="background: {{ s.card_color }}"{% endif %}>
+      {%- if s.show_icon -%}
+        <span class="rp-ic">{% render 'oc-icon', icon: 'shield-32' %}</span>
+      {%- endif -%}
+      {%- if s.heading != blank -%}<h2 class="rp-h">{{ s.heading }}</h2>{%- endif -%}
+      {%- if s.text != blank -%}<div class="rp-t">{{ s.text }}</div>{%- endif -%}
+      {%- if s.button_label != blank -%}
+        <a class="rp-btn" href="{{ btn_link }}"{% if s.button_color != blank %} style="background: {{ s.button_color }}"{% endif %}>{{ s.button_label }}</a>
+      {%- endif -%}
+      {%- assign items = s.trust_items | newline_to_br | strip_newlines | split: '<br />' -%}
+      {%- if s.trust_items != blank -%}
+        <ul class="rp-list">
+          {%- for item in items -%}
+            {%- assign label = item | strip -%}
+            {%- if label != blank -%}
+              <li class="rp-li"><span class="rp-ck">{% render 'oc-icon', icon: 'check-16' %}</span>{{ label }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Return card",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "checkbox", "id": "show_icon", "label": "Show shield icon", "default": true },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Our return policy", "info": "Empty = no heading." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Changed your mind? Unused products can be returned within the return window. See our <a href=\"/policies/refund-policy\">refund policy</a> for full terms.</p>", "info": "Empty = no text. Links are underlined." },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now", "info": "Empty = no button." },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = scroll to the featured product (#product)." },
+    { "type": "header", "content": "Trust labels" },
+    { "type": "textarea", "id": "trust_items", "label": "Labels", "default": "Easy returns\nSecure checkout\nEmail support", "info": "One label per line. Empty = no row." },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "background", "label": "Background colour", "default": "#F8FAFC" },
+    { "type": "color", "id": "card_color", "label": "Card colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_color", "label": "Button colour", "default": "#000000" }
+  ],
+  "presets": [
+    { "name": "OC: Return card" }
+  ]
+}
+{% endschema %}

@@ -158,7 +158,21 @@
   class LmProduct extends HTMLElement {
     connectedCallback() {
       const json = this.querySelector('script[data-lm-json]');
-      if (!json) return;
+      if (!json) {
+        /* No product yet: still let pack and option buttons take the selection */
+        ['.pk', '.fo'].forEach((sel) => {
+          const btns = Array.from(this.querySelectorAll(sel));
+          btns.forEach((b) =>
+            b.addEventListener('click', () =>
+              btns.forEach((x) => {
+                x.classList.toggle('on', x === b);
+                x.setAttribute('aria-pressed', String(x === b));
+              })
+            )
+          );
+        });
+        return;
+      }
       this.d = JSON.parse(json.textContent);
       this.form = this.querySelector('form');
       this.idInput = this.form.querySelector('[name="id"]');

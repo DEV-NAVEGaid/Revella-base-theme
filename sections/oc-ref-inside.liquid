@@ -1,0 +1,89 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+<div class="lm">
+  <section class="ri-sec" style="--ri-bg: {{ s.background }}; --ri-fg: {{ s.text_color }}">
+    <div class="ri-in">
+      {%- if s.heading != blank %}<h2 class="ri-h2">{{ s.heading }}</h2>{% endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="ri-grid">
+          {%- for block in section.blocks -%}
+            {%- assign b = block.settings -%}
+            <div class="ri-card" {{ block.shopify_attributes }}>
+              <div class="ri-img">
+                {%- if b.image != blank -%}
+                  {{ b.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 990px) 210px, 100vw', alt: b.image.alt }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'ri-ph' }}
+                {%- endif -%}
+              </div>
+              <div class="ri-txt">
+                {%- if b.title != blank %}<h3 class="ri-t">{{ b.title }}</h3>{% endif -%}
+                {%- if b.text != blank %}<p class="ri-p">{{ b.text | escape | newline_to_br }}</p>{% endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm .ri-sec{background:var(--ri-bg);color:var(--ri-fg);padding:40px 20px}
+  .lm .ri-in{max-width:1200px;margin:0 auto}
+  .lm.lm .ri-h2{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:32px;line-height:38px;letter-spacing:-.02em;text-align:center;color:var(--ri-fg);margin:0 0 32px}
+  .lm.lm .ri-h2 em{font-style:normal;color:inherit}
+  .lm .ri-grid{display:grid;grid-template-columns:1fr;gap:20px}
+  .lm .ri-card{display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.9);border-radius:12px;overflow:hidden}
+  .lm .ri-img{position:relative;flex:none;width:100%;aspect-ratio:16/10;background:#f8f9fa}
+  .lm .ri-img img,.lm .ri-img .ri-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .lm .ri-txt{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:20px;min-width:0}
+  .lm.lm .ri-t{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:22px;line-height:26px;color:var(--ri-fg);margin:0}
+  .lm.lm .ri-p{font-size:16px;line-height:24px;color:var(--ri-fg);margin:0}
+  @media (min-width:990px){
+    .lm .ri-sec{padding:60px 20px}
+    .lm.lm .ri-h2{font-size:42px;line-height:50px;margin-bottom:40px}
+    .lm .ri-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .lm .ri-card{flex-direction:row;min-height:210px}
+    .lm .ri-img{width:36%;aspect-ratio:auto}
+    .lm .ri-txt{flex:1;padding:25px}
+    .lm.lm .ri-t{font-size:24px;line-height:29px}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: What's inside",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "What's inside", "info": "Empty = no heading." },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#289383" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Empty = a placeholder is shown in the same frame." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Ingredient name", "info": "Empty = no title." },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "A short line about what this ingredient is and why it is included.", "info": "Empty = no text." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: What's inside",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

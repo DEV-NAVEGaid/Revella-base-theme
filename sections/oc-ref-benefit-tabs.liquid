@@ -1,0 +1,129 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign strip_lines = s.strip_items | newline_to_br | split: '<br />' -%}
+<div class="lm">
+  <style>
+    .lm.lm .rt-s{background:#fff;color:#181b1d}
+    .lm.lm .rt-i{max-width:1000px;margin:0 auto;padding:40px 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .lm.lm .rt-h2{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:28px;line-height:1.2;color:#000;text-align:center}
+    .lm.lm .rt-h2 em{color:var(--rt-accent)}
+    .lm.lm .rt-intro{margin-top:10px;font-size:15px;line-height:22.5px;color:#181b1d;text-align:center}
+    .lm.lm .rt-tabs{display:grid;grid-template-columns:1fr;gap:12px;width:100%;margin-top:32px}
+    .lm.lm .rt-tab{display:block;width:100%;margin:0;padding:12px 16px;border:1px solid #000;border-radius:0;background:#fff;color:#181b1d;font-size:18px;line-height:30px;font-weight:500;text-align:center}
+    .lm.lm .rt-tab[aria-selected="true"]{background:var(--rt-accent);border-color:var(--rt-accent);color:#fff}
+    .lm.lm .rt-tab:focus-visible{outline:2px solid #000;outline-offset:2px}
+    .lm.lm .rt-panel{width:100%;max-width:800px;margin-top:32px;font-size:16px;line-height:1.6;color:#333;text-align:center}
+    .lm.lm .rt-panel[hidden]{display:none}
+    .lm.lm .rt-panel p{margin:0 0 12px}
+    .lm.lm .rt-panel p:last-child{margin-bottom:0}
+    .lm.lm .rt-strip{background:var(--rt-strip);color:#fff}
+    .lm.lm .rt-strip-l{max-width:1280px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;list-style:none}
+    .lm.lm .rt-strip-i{display:inline-flex;align-items:center;gap:8px;font-size:15px;line-height:22px;font-weight:500;color:#fff}
+    .lm.lm .rt-strip-i svg{width:16px;height:16px;flex:none}
+    @media (min-width:990px){
+      .lm.lm .rt-i{padding:60px 20px}
+      .lm.lm .rt-h2{font-size:36px}
+      .lm.lm .rt-tabs{grid-template-columns:1fr 1fr;margin-top:40px}
+      .lm.lm .rt-tab{font-size:20px}
+      .lm.lm .rt-panel{margin-top:48px;font-size:18px;line-height:28.8px}
+      .lm.lm .rt-strip-l{gap:10px 48px}
+    }
+  </style>
+  <section class="rt-s" id="rt-{{ section.id }}" style="--rt-accent: {{ s.accent_color }}; --rt-strip: {{ s.strip_color }}">
+    <div class="rt-i">
+      {%- if s.heading != blank %}<h2 class="rt-h2">{{ s.heading }}</h2>{% endif -%}
+      {%- if s.intro != blank %}<p class="rt-intro">{{ s.intro }}</p>{% endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="rt-tabs" role="tablist" aria-label="{{ s.heading | strip_html | escape }}">
+          {%- for block in section.blocks -%}
+            <button type="button" class="rt-tab" role="tab" id="rt-{{ section.id }}-t{{ forloop.index }}" aria-controls="rt-{{ section.id }}-p{{ forloop.index }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label }}</button>
+          {%- endfor -%}
+        </div>
+        {%- for block in section.blocks -%}
+          <div class="rt-panel" role="tabpanel" id="rt-{{ section.id }}-p{{ forloop.index }}" aria-labelledby="rt-{{ section.id }}-t{{ forloop.index }}"{% unless forloop.first %} hidden{% endunless %}>{{ block.settings.text }}</div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    {%- if s.strip_items != blank -%}
+      <div class="rt-strip">
+        <ul class="rt-strip-l">
+          {%- for line in strip_lines -%}
+            {%- assign label = line | strip -%}
+            {%- if label != blank -%}
+              <li class="rt-strip-i">{% render 'oc-icon', icon: 'check-16-white' %}<span>{{ label }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </section>
+  <script>
+    (function () {
+      var root = document.getElementById('rt-{{ section.id }}');
+      if (!root) return;
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+      function select(i, focus) {
+        tabs.forEach(function (t, n) {
+          var on = n === i;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          var p = document.getElementById(t.getAttribute('aria-controls'));
+          if (p) p.hidden = !on;
+        });
+        if (focus) tabs[i].focus();
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { select(i); });
+        t.addEventListener('keydown', function (e) {
+          var k = e.key, n = tabs.length, j = -1;
+          if (k === 'ArrowRight' || k === 'ArrowDown') j = (i + 1) % n;
+          else if (k === 'ArrowLeft' || k === 'ArrowUp') j = (i - 1 + n) % n;
+          else if (k === 'Home') j = 0;
+          else if (k === 'End') j = n - 1;
+          if (j < 0) return;
+          e.preventDefault();
+          select(j, true);
+        });
+      });
+    })();
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Benefit tabs",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Text" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "How Each Part <em>Helps You.</em>", "info": "Wrap the words you want in the accent colour in italic. Empty = no heading." },
+    { "type": "inline_richtext", "id": "intro", "label": "Intro line", "default": "A short line that introduces the tabs below.", "info": "Empty = no intro line." },
+    { "type": "header", "content": "Quality strip" },
+    { "type": "textarea", "id": "strip_items", "label": "Strip labels", "default": "Made in small batches\nThird-party tested\nNo artificial colours\nEasy to take every day", "info": "One label per line, each with a tick. Empty = no strip." },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "accent_color", "label": "Accent colour", "default": "#289383", "info": "Heading accent, selected tab and tab outline of the selected tab." },
+    { "type": "color", "id": "strip_color", "label": "Strip colour", "default": "#289383" }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tab label", "default": "Tab label" },
+        { "type": "richtext", "id": "text", "label": "Tab text", "default": "<p>A short paragraph that appears when this tab is selected.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Benefit tabs",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "First benefit", "text": "<p>A short paragraph about the first benefit.</p>" } },
+        { "type": "tab", "settings": { "label": "Second benefit", "text": "<p>A short paragraph about the second benefit.</p>" } },
+        { "type": "tab", "settings": { "label": "Third benefit", "text": "<p>A short paragraph about the third benefit.</p>" } },
+        { "type": "tab", "settings": { "label": "Fourth benefit", "text": "<p>A short paragraph about the fourth benefit.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

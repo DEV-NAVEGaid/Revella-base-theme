@@ -1,0 +1,98 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+<style>
+  .lm.lm .rs{background:#fff;color:#333;padding:40px 20px}
+  .lm.lm .rs-i{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+  .lm.lm .rs-img{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:1/1;background:#F1F2F4}
+  .lm.lm .rs-img img,.lm.lm .rs-img .rs-ph{display:block;width:100%;height:100%;object-fit:cover}
+  .lm.lm .rs-t{display:flex;flex-direction:column;gap:20px;min-width:0}
+  .lm.lm .rs-t h2{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:32px;line-height:1.2;color:#202329;text-align:left}
+  .lm.lm .rs-t h2 em{font-style:normal}
+  .lm.lm .rs-tx{font-size:16px;line-height:1.6;color:#333}
+  .lm.lm .rs-tx p+p{margin-top:12px}
+  .lm.lm .rs-l{display:flex;flex-direction:column;gap:10px}
+  .lm.lm .rs-d{border:1px solid #202329;border-radius:8px;background:#fff}
+  .lm.lm .rs-d summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;cursor:pointer;font-size:16px;line-height:1.5;font-weight:600;color:#333}
+  .lm.lm .rs-d summary::-webkit-details-marker{display:none}
+  .lm.lm .rs-ic{display:flex;flex:none;width:18px;height:18px;color:#333}
+  .lm.lm .rs-ic svg{width:100%;height:100%}
+  .lm.lm .rs-d[open] .rs-ic{transform:rotate(45deg)}
+  .lm.lm .rs-a{padding:0 20px 16px;font-size:16px;line-height:1.6;color:#333}
+  .lm.lm .rs-a p+p{margin-top:10px}
+  @media screen and (min-width:990px){
+    .lm.lm .rs{padding:60px 20px}
+    .lm.lm .rs-i{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:stretch}
+    .lm.lm .rs-img{aspect-ratio:auto;min-height:600px}
+    .lm.lm .rs-img img,.lm.lm .rs-img .rs-ph{position:absolute;inset:0}
+    .lm.lm .rs-right .rs-img{order:2}
+    .lm.lm .rs-t h2{font-size:48px;line-height:1.2}
+    .lm.lm .rs-tx{font-size:18px;line-height:1.6}
+    .lm.lm .rs-d summary{font-size:18px}
+  }
+</style>
+<div class="lm">
+  <section class="rs{% if s.image_position == 'right' %} rs-right{% endif %}">
+    <div class="rs-i">
+      <div class="rs-img">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '375, 750, 1100, 1200', sizes: '(min-width: 990px) 600px, 100vw', alt: s.image.alt }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'rs-ph' }}
+        {%- endif -%}
+      </div>
+      <div class="rs-t">
+        {%- if s.heading != blank %}<h2>{{ s.heading }}</h2>{% endif -%}
+        {%- if s.text != blank %}<div class="rs-tx">{{ s.text }}</div>{% endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="rs-l">
+            {%- for block in section.blocks -%}
+              <details class="rs-d" {{ block.shopify_attributes }}>
+                <summary>
+                  <span>{{ block.settings.title }}</span>
+                  <span class="rs-ic">{% render 'oc-icon', icon: 'plus-18' %}</span>
+                </summary>
+                <div class="rs-a">{{ block.settings.content }}</div>
+              </details>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "OC: Story with accordion",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Square photo, at least 1200 px wide. Empty = a placeholder picture in the same frame." },
+    { "type": "select", "id": "image_position", "label": "Image position", "default": "left", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "info": "On phones the image always comes first." },
+    { "type": "header", "content": "Text" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Our story", "info": "Empty = no heading." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell customers why the product exists and what makes it different.</p><p>Add a second short paragraph with more detail.</p>", "info": "Empty = no text." }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Question title" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Write a short answer that opens when the title is tapped.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "OC: Story with accordion",
+      "blocks": [
+        { "type": "accordion", "settings": { "title": "Who it is for" } },
+        { "type": "accordion", "settings": { "title": "Why this format" } },
+        { "type": "accordion", "settings": { "title": "Our promise" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

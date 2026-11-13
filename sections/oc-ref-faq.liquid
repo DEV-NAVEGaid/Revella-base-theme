@@ -1,0 +1,87 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+<div class="lm">
+  <section class="rf-sec" style="background: {{ s.background | default: '#F9FCFD' }}">
+    <div class="rf-in">
+      {%- if s.heading != blank %}<h2 class="rf-h">{{ s.heading }}</h2>{% endif -%}
+      {%- if s.intro != blank %}<p class="rf-intro">{{ s.intro }}</p>{% endif -%}
+      <div class="rf-card">
+        {%- for block in section.blocks -%}
+          <details class="rf-row" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+            <summary class="rf-q">
+              <span>{{ block.settings.question }}</span>
+              <span class="rf-ic">{% render 'oc-icon', icon: 'plus-18' %}</span>
+            </summary>
+            {%- if block.settings.answer != blank %}<div class="rf-a">{{ block.settings.answer }}</div>{% endif -%}
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm.lm .rf-sec{padding:40px 16px;color:#202329}
+  .lm.lm .rf-in{max-width:800px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+  .lm.lm .rf-h{margin:0;font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:28px;line-height:1.2;letter-spacing:-.02em;text-align:center;color:#202329}
+  .lm.lm .rf-h em{font-style:normal}
+  .lm.lm .rf-intro{margin:14px 0 0;max-width:800px;font-size:16px;line-height:24px;text-align:center;color:#111}
+  .lm.lm .rf-intro strong{font-weight:700}
+  .lm.lm .rf-card{width:100%;margin-top:32px;background:#fff;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden}
+  .lm.lm .rf-row{border-bottom:1px solid transparent}
+  .lm.lm .rf-q{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;padding:18px 20px;cursor:pointer;font-size:16px;line-height:24px;font-weight:600;color:#202329;background:#fff}
+  .lm.lm .rf-q::-webkit-details-marker{display:none}
+  .lm.lm .rf-ic{display:flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;color:#202329;transition:transform .2s ease}
+  .lm.lm .rf-ic svg{width:18px;height:18px}
+  .lm.lm .rf-row[open] .rf-ic{transform:rotate(45deg)}
+  .lm.lm .rf-a{padding:0 20px 20px;font-size:16px;line-height:24px;color:#111}
+  .lm.lm .rf-a p{margin:0 0 12px}
+  .lm.lm .rf-a p:last-child{margin-bottom:0}
+  @media (min-width:990px){
+    .lm.lm .rf-sec{padding:60px 20px}
+    .lm.lm .rf-h{font-size:36px;line-height:43.2px}
+    .lm.lm .rf-intro{margin-top:15px}
+    .lm.lm .rf-card{margin-top:40px}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: FAQ (card)",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Text" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Questions, answered", "info": "Empty = no heading. Wrap a word in italics to accent it." },
+    { "type": "inline_richtext", "id": "intro", "label": "Intro line", "default": "Quick answers about how it works, what is inside and our <strong>returns</strong>.", "info": "Empty = no intro line." },
+    { "type": "header", "content": "Style" },
+    { "type": "color_background", "id": "background", "label": "Background", "default": "#F9FCFD", "info": "Empty = pale default." }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "limit": 12,
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How do I use it?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Add a short, clear answer here.</p>", "info": "Empty = the row opens with nothing inside." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "OC: FAQ (card)",
+      "blocks": [
+        { "type": "question", "settings": { "question": "How do I use it?", "answer": "<p>Add a short, clear answer here.</p>", "open": true } },
+        { "type": "question", "settings": { "question": "Can I use it with other products?" } },
+        { "type": "question", "settings": { "question": "How is it different from others?" } },
+        { "type": "question", "settings": { "question": "How long should I use it?" } },
+        { "type": "question", "settings": { "question": "Is it suitable for everyone?" } },
+        { "type": "question", "settings": { "question": "How should I store it?" } },
+        { "type": "question", "settings": { "question": "What if it is not right for me?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

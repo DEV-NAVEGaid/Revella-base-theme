@@ -1,0 +1,64 @@
+{% render 'oc-assets' %}
+{%- assign s = section.settings -%}
+{%- assign p = s.product | default: product -%}
+{%- assign img = s.image | default: p.featured_media -%}
+<div class="lm">
+  <section class="rk" style="--rk-btn: {{ s.button_color | default: '#202329' }}; --rk-accent: {{ s.accent_color | default: '#289383' }}">
+    <div class="rk-i">
+      <div class="rk-img">
+        {%- if img != blank -%}
+          {{ img | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rk-pic', widths: '450, 675, 900', sizes: '(min-width: 990px) 450px, 80vw', alt: img.alt }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'rk-ph' }}
+        {%- endif -%}
+      </div>
+      {%- if s.heading != blank %}<h2 class="rk-h2">{{ s.heading }}</h2>{% endif -%}
+      {%- if s.text != blank %}<div class="rk-p">{{ s.text }}</div>{% endif -%}
+      {%- if s.button_label != blank %}
+        <a class="rk-btn" href="{{ s.button_link | default: '#product' }}">{{ s.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+<style>
+  .lm.lm .rk{background:#fff;padding:40px 20px}
+  .lm.lm .rk-i{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .lm.lm .rk-img{width:min(100%,450px);aspect-ratio:450/420;display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+  .lm.lm .rk-img .rk-pic,.lm.lm .rk-img .rk-ph{display:block;width:100%;height:100%;object-fit:contain}
+  .lm.lm .rk-img .rk-ph{background:#f4f4f4;fill:#c9c9c9}
+  .lm.lm .rk-h2{font-family:var(--font-heading-family);font-weight:var(--font-heading-weight);font-size:30px;line-height:1.2;letter-spacing:-.02em;color:#000;text-align:center}
+  .lm.lm .rk-h2 em{font-style:normal;color:var(--rk-accent)}
+  .lm.lm .rk-p{max-width:700px;margin-top:20px}
+  .lm.lm .rk-p p{font-size:16px;line-height:1.6;color:#181b1d;text-align:center}
+  .lm.lm .rk-p strong{font-weight:700}
+  .lm.lm .rk-btn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;max-width:660px;min-height:56px;margin-top:28px;padding:16px 24px;border-radius:10px;background:var(--rk-btn);color:#fff;font-size:16px;line-height:24px;font-weight:700;text-decoration:none}
+  .lm.lm .rk-btn:hover,.lm.lm .rk-btn:focus-visible{color:#fff;filter:brightness(1.15)}
+  @media screen and (min-width:990px){
+    .lm.lm .rk{padding:40px 20px 56px}
+    .lm.lm .rk-h2{font-size:36px;line-height:43.2px}
+    .lm.lm .rk-p p{font-size:18px;line-height:28.8px}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "OC: Stock up",
+  "tag": "div",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "product", "id": "product", "label": "Product", "info": "Empty = the page's own product. Its main photo shows when no image is picked." },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Optional. About 900 x 840 px. Empty = product photo, then a placeholder." },
+    { "type": "header", "content": "Text" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "info": "Put the accent part in italics.", "default": "Stock up. <em>Stay consistent.</em>" },
+    { "type": "richtext", "id": "text", "label": "Paragraph", "default": "<p><strong>Daily use gives the best results.</strong> A multi-bottle supply means you will not run out.</p>" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Empty = no button.", "default": "Choose your pack" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty = jumps to #product." },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "button_color", "label": "Button colour", "default": "#202329" },
+    { "type": "color", "id": "accent_color", "label": "Accent colour", "info": "Colour of the italic part of the heading.", "default": "#289383" }
+  ],
+  "presets": [ { "name": "OC: Stock up" } ]
+}
+{% endschema %}
